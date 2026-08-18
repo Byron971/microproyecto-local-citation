@@ -1,0 +1,6 @@
+[core]
+    remote = aws-remote
+['remote "fuentelocal"']
+    url = C:\Users\johna\Downloads\dvcstore
+['remote "aws-remote"']
+    url = s3://byron971-local-citation-dvcstore-20260817
