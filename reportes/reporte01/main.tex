@@ -83,7 +83,7 @@
 \begin{tabular}{rl}
 \textbf{Nombres participantes:} & Carlos Duque, John Arias, Carlos Caicedo, Jose Zambrana \\[4pt]
 \textbf{Proyecto:} & Desarrollo de soluciones \\[4pt]
-\textbf{Docente:} & [Nombre del docente] \\[4pt]
+\textbf{Docente:} & Juan Fernando Pérez \\[4pt]
 \textbf{Fecha:} & 23 de agosto de 2026 \\
 \end{tabular}
 
@@ -290,9 +290,9 @@ La interfaz inicial se dividirá en dos componentes: un recomendador de citas y 
   \node[anchor=north west, color=primaryblue, font=\bfseries] at (7.1,6.35) {Dataset insights};
 
   \node[anchor=north west, align=left, font=\footnotesize] at (7.1,5.85)
-    {\shortstack[l]{Contexts: 63,768 \\ Papers: 19,776 \\ Train / Val / Test: 30,390 / 9,381 / 9,585}};
+    {\shortstack[l]{Contexts: 63,768 \\ Papers: 19,776 \\ Train / Val / Test: \\ 30,390 / 9,381 / 9,585}};
 
-  \draw[draw=midgray, fill=lightgray!60, rounded corners=2pt] (7.1,1.2) rectangle (12.4,4.6);
+  \draw[draw=midgray, fill=lightgray!60, rounded corners=2pt] (7.1,1.2) rectangle (12.4,4.0);
   \node[anchor=center, color=midgray, font=\itshape\footnotesize, text width=4.6cm, align=center]
     at (9.75,2.9) {Charts: context length, split distribution, data quality};
 
@@ -301,10 +301,49 @@ La interfaz inicial se dividirá en dos componentes: un recomendador de citas y 
 \label{fig:mockup}
 \end{figure}
 
+% ======================= ARQUITECTURA CONCEPTUAL =======================
+\section{Arquitectura conceptual del producto}
+
+El flujo propuesto sigue una arquitectura reproducible que separa el versionamiento del código, el versionamiento de los datos, el entrenamiento y el consumo del modelo (Figura~\ref{fig:arquitectura}). Esta separación es coherente con las prácticas de MLOps orientadas a reproducibilidad y trazabilidad de los activos de aprendizaje automático (Treveil \& Dataiku Team, 2021). A la fecha de esta entrega, las dos primeras etapas del flujo --versionamiento de datos en DVC y exploración inicial-- ya están implementadas y documentadas en la Sección~\ref{sec:eda}; las etapas de entrenamiento, empaquetamiento, API y tablero se desarrollarán en las siguientes entregas del curso.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  node distance=0.2cm,
+  box/.style={draw=accentblue, fill=lightgray, rounded corners=3pt, minimum width=7.4cm, minimum height=0.68cm, align=center, text=primaryblue, font=\sffamily\footnotesize\bfseries},
+  boxfinal/.style={draw=primaryblue, fill=primaryblue, rounded corners=3pt, minimum width=7.4cm, minimum height=0.68cm, align=center, text=white, font=\sffamily\footnotesize\bfseries},
+  arr/.style={-{Stealth[length=2mm]}, draw=midgray, thick}
+]
+  \node[box] (datos) {Dataset original};
+  \node[box, below=of datos] (dvc) {DVC + almacenamiento remoto};
+  \node[box, below=of dvc] (prep) {Preprocesamiento y construcción de pares};
+  \node[box, below=of prep] (train) {Entrenamiento y seguimiento de experimentos};
+  \node[box, below=of train] (model) {Modelo seleccionado y empaquetado};
+  \node[box, below=of model] (api) {API de inferencia};
+  \node[box, below=of api] (dash) {Tablero interactivo};
+  \node[boxfinal, below=of dash] (user) {Usuario};
+
+  \draw[arr] (datos) -- (dvc);
+  \draw[arr] (dvc) -- (prep);
+  \draw[arr] (prep) -- (train);
+  \draw[arr] (train) -- (model);
+  \draw[arr] (model) -- (api);
+  \draw[arr] (api) -- (dash);
+  \draw[arr] (dash) -- (user);
+\end{tikzpicture}
+\caption{Arquitectura conceptual del producto}
+\label{fig:arquitectura}
+\end{figure}
+
+% ======================= RESULTADO ESPERADO =======================
+\section{Resultado esperado del microproyecto}
+
+El resultado esperado es un prototipo funcional capaz de recibir un contexto académico en inglés y recomendar artículos potencialmente relevantes para citar. El análisis exploratorio de la Sección~\ref{sec:eda} confirma que el conjunto de datos es adecuado para este objetivo: la separación entre \textit{train}, \textit{validation} y \textit{test} no presenta fuga de información, y existe una señal léxica aprovechable entre el contexto y el artículo citado (90,1\,\% de las consultas evaluadas), lo que respalda TF--IDF como línea base razonable para las primeras versiones del modelo. Además del desempeño predictivo, el proyecto buscará que la solución sea reproducible y desplegable mediante versionamiento de código y datos, seguimiento de experimentos con MLflow, servicio del modelo por API, un tablero interactivo y contenerización con Docker. El prototipo permitirá demostrar el flujo completo desde la disponibilidad de los datos hasta el consumo de una predicción por parte de un usuario final.
+
 % ======================= 8. TRABAJO EN EQUIPO =======================
 \section{Reporte de trabajo en equipo}
 
-El equipo distribuyó el avance entre la definición del producto, la documentación, la infraestructura reproducible y la exploración. La evidencia verificable disponible en el historial de Git se resume en la Tabla~\ref{tab:equipo}. Antes de la entrega, cada integrante debe confirmar que su aporte individual esté reflejado mediante commits propios, tal como exige la guía del curso.
+El equipo distribuyó el avance entre la definición del producto, la documentación, la infraestructura reproducible y la exploración. La Tabla~\ref{tab:equipo} resume el aporte de cada integrante, respaldado por sus propios commits en el historial de Git, tal como exige la guía del curso.
 
 \begin{table}[h!]
 \centering
@@ -318,12 +357,11 @@ El equipo distribuyó el avance entre la definición del producto, la documentac
 John Arias & Inicialización de Git y DVC, configuración del remoto S3, versiones de datos y desarrollo del notebook de exploración. \\
 Carlos Duque & Documentación y actualización del archivo \texttt{README.md}. \\
 Jose Zambrana & Configuración del remoto del repositorio e integración del reporte de la Entrega 1. \\
-Carlos Caicedo & Aporte pendiente de identificar y respaldar con commits en el repositorio. \\
+Carlos Caicedo & Recuperación de las secciones de arquitectura conceptual y resultado esperado, corrección de figuras y soportes, y estructuración del plan de trabajo de las Entregas 2 y 3 en el repositorio. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\newpage
 \section*{Referencias}
 \addcontentsline{toc}{section}{Referencias}
 
@@ -337,6 +375,8 @@ Carlos Caicedo & Aporte pendiente de identificar y respaldar con commits en el r
 \item Gu, N. (2022). \textit{Local-Citation-Recommendation} [Computer software]. GitHub. \url{https://github.com/nianlonggu/Local-Citation-Recommendation}
 
 \item Gu, N., Gao, Y., \& Hahnloser, R.\,H.\,R. (2022). Local citation recommendation with hierarchical-attention text encoder and SciBERT-based reranking. In M. Hagen et al. (Eds.), \textit{Advances in Information Retrieval} (pp. 274--288). Springer International Publishing. \url{https://doi.org/10.1007/978-3-030-99736-6_19}
+
+\item Treveil, M., \& Dataiku Team. (2021). \textit{Introducing MLOps: How to scale machine learning in the enterprise}. O'Reilly Media.
 
 \end{list}
 
