@@ -156,23 +156,7 @@ El modelo estimará la relevancia de un artículo candidato condicionado al cont
 
 Como línea base se utilizará una representación TF--IDF con similitud coseno. Posteriormente se evaluará un modelo supervisado, inicialmente una regresión logística o un clasificador lineal, con características derivadas de la relación entre el contexto y el título y resumen del artículo candidato. Si los recursos lo permiten, se evaluarán \textit{embeddings} de textos científicos.
 
-Para cada contexto de entrada, el sistema devolverá una lista ordenada de artículos con un puntaje de relevancia. La Tabla~\ref{tab:ranking} presenta un ejemplo conceptual de la salida.
-
-\begin{table}[h!]
-\centering
-\caption{Ejemplo conceptual de salida del modelo}
-\label{tab:ranking}
-\rowcolors{2}{lightgray}{white}
-\begin{tabular}{c l c}
-\toprule
-\textbf{Posición} & \textbf{Artículo candidato} & \textbf{Puntaje de relevancia} \\
-\midrule
-1 & Artículo A & 0.91 \\
-2 & Artículo B & 0.84 \\
-3 & Artículo C & 0.76 \\
-\bottomrule
-\end{tabular}
-\end{table}
+Para cada contexto de entrada, el sistema devolverá una lista ordenada de artículos con un puntaje de relevancia, tal como se ilustra en la maqueta del prototipo (Figura~\ref{fig:mockup}).
 
 % ======================= 3. CONJUNTOS DE DATOS =======================
 \section{Conjuntos de datos a emplear}
@@ -284,7 +268,7 @@ La interfaz inicial se dividirá en dos componentes: un recomendador de citas y 
 
   % Left panel - recommender
   \draw[draw=accentblue, fill=white, rounded corners=4pt] (0.4,0.4) rectangle (6.6,6.6);
-  \node[anchor=north west, color=primaryblue, font=\bfseries\footnotesize, text width=5.8cm] at (0.6,6.3)
+  \node[anchor=north west, color=primaryblue, font=\bfseries\footnotesize, text width=5.8cm, inner sep=1pt] at (0.6,6.45)
     {Citation context (English text)};
   \draw[draw=midgray, dashed, fill=lightgray!60, rounded corners=2pt] (0.6,4.9) rectangle (6.4,6.0);
   \node[anchor=north west, color=midgray, text width=5.5cm] at (0.75,5.85)
