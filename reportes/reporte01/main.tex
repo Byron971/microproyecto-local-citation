@@ -103,24 +103,22 @@ La recomendación local de citas aborda este problema utilizando como consulta e
 
 El microproyecto propone desarrollar un prototipo que reciba como entrada un contexto académico en inglés y produzca un ranking de artículos candidatos. El objetivo es apoyar la etapa inicial de búsqueda de referencias, sin reemplazar la revisión crítica del artículo ni la decisión final del autor sobre qué fuente citar.
 
-% ======================= 2. USUARIO OBJETIVO =======================
-\section{Usuario objetivo}
+\subsection{Usuario objetivo}
 
 El usuario objetivo es una persona que se encuentre redactando o revisando literatura académica. Entre los usuarios potenciales se consideran investigadores, estudiantes universitarios, estudiantes de posgrado y autores de artículos científicos. El sistema se plantea como una herramienta de apoyo para reducir el esfuerzo de búsqueda inicial y facilitar la identificación de literatura potencialmente pertinente.
 
-% ======================= 3. PREGUNTA DE NEGOCIO =======================
-\section{Pregunta de negocio}
+% ======================= 2. PREGUNTA DE NEGOCIO Y ALCANCE =======================
+\section{Pregunta de negocio y alcance del proyecto}
 
 \notabox{¿Cómo apoyar a un autor de textos académicos en la identificación de artículos potencialmente relevantes para citar, utilizando el contexto textual local en el que requiere incluir una referencia?}
 
 Desde una perspectiva analítica, esta pregunta se traduce en: ¿es posible utilizar un modelo supervisado para estimar la relevancia de diferentes artículos académicos respecto a un contexto local de cita y ordenar los candidatos de acuerdo con dicha relevancia?
 
-% ======================= 4. ALCANCE =======================
-\section{Alcance del proyecto}
+\subsection{Alcance del proyecto}
 
 El microproyecto desarrollará un prototipo funcional de recomendación local de citas académicas. La entrada principal será un fragmento de texto académico en inglés correspondiente al contexto donde se requiere una cita. Para cada contexto, el sistema evaluará artículos candidatos, calculará un puntaje de relevancia y presentará al usuario las recomendaciones mejor posicionadas.
 
-\subsection{Dentro del alcance}
+\subsubsection{Dentro del alcance}
 \begin{itemize}[leftmargin=1.4em, itemsep=2pt]
   \item Procesamiento de contextos locales de cita.
   \item Procesamiento de la información de los artículos candidatos, principalmente título y resumen.
@@ -132,7 +130,7 @@ El microproyecto desarrollará un prototipo funcional de recomendación local de
   \item Empaquetamiento de los componentes para su despliegue mediante contenedores Docker.
 \end{itemize}
 
-\subsection{Fuera del alcance}
+\subsubsection{Fuera del alcance}
 Para mantener un alcance compatible con las ocho semanas del curso, se excluyen de este microproyecto:
 \begin{itemize}[leftmargin=1.4em, itemsep=2pt]
   \item La clasificación de las nueve funciones discursivas de cita.
@@ -143,8 +141,41 @@ Para mantener un alcance compatible con las ocho semanas del curso, se excluyen 
 \end{itemize}
 Estas actividades se reservan para el proyecto de grado.
 
-% ======================= 5. CONJUNTO DE DATOS =======================
-\section{Conjunto de datos}
+\subsection{Formulación del problema de aprendizaje automático}
+
+El problema de recomendación se transformará inicialmente en una tarea supervisada de clasificación de relevancia. Para cada contexto de cita se construirán ejemplos positivos y negativos:
+
+\begin{itemize}[leftmargin=1.4em, itemsep=3pt]
+  \item \textbf{Ejemplo positivo:} contexto de cita + artículo realmente citado $\rightarrow$ relevante (1).
+  \item \textbf{Ejemplo negativo:} contexto de cita + artículo candidato no citado $\rightarrow$ no relevante (0).
+\end{itemize}
+
+El modelo estimará la relevancia de un artículo candidato condicionado al contexto de cita. Durante la inferencia, se evaluarán varios candidatos y se ordenarán según el puntaje estimado. Los artículos con mayor puntuación serán presentados como recomendaciones.
+
+\subsection{Enfoque predictivo y resultado esperado}
+
+Como línea base se utilizará una representación TF--IDF con similitud coseno. Posteriormente se evaluará un modelo supervisado, inicialmente una regresión logística o un clasificador lineal, con características derivadas de la relación entre el contexto y el título y resumen del artículo candidato. Si los recursos lo permiten, se evaluarán \textit{embeddings} de textos científicos.
+
+Para cada contexto de entrada, el sistema devolverá una lista ordenada de artículos con un puntaje de relevancia. La Tabla~\ref{tab:ranking} presenta un ejemplo conceptual de la salida.
+
+\begin{table}[h!]
+\centering
+\caption{Ejemplo conceptual de salida del modelo}
+\label{tab:ranking}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{c l c}
+\toprule
+\textbf{Posición} & \textbf{Artículo candidato} & \textbf{Puntaje de relevancia} \\
+\midrule
+1 & Artículo A & 0.91 \\
+2 & Artículo B & 0.84 \\
+3 & Artículo C & 0.76 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ======================= 3. CONJUNTOS DE DATOS =======================
+\section{Conjuntos de datos a emplear}
 
 El conjunto de datos base proviene del repositorio \textit{Local-Citation-Recommendation}, publicado como código complementario del trabajo de Gu et al. (2022). El repositorio incluye un conjunto denominado \texttt{custom} que corresponde a ACL-200 y muestra la estructura requerida para entrenar y evaluar un sistema de recomendación local de citas (Gu, 2022).
 
@@ -160,12 +191,8 @@ Para el desarrollo inicial se utilizarán cinco componentes:
 
 En los conjuntos de entrenamiento, validación y prueba, \texttt{positive\_ids} identifica el artículo realmente citado por el contexto y constituye la referencia para construir el problema supervisado. La Sección~\ref{sec:eda} presenta el perfilamiento cuantitativo y las comprobaciones de calidad realizadas sobre estos archivos.
 
-% ======================= REPOSITORIOS GIT Y DVC =======================
-\section{Repositorios Git y DVC}
-
-Con el fin de garantizar la trazabilidad y reproducibilidad del proyecto, se establecieron dos repositorios independientes: uno para el versionamiento del código fuente y otro para el versionamiento de los datos.
-
-\subsection{Repositorio Git}
+% ======================= 4. REPOSITORIO GIT =======================
+\section{Repositorio Git en uso para el código}
 
 El código del proyecto se versiona mediante Git y se aloja en el siguiente repositorio:
 
@@ -175,7 +202,8 @@ El código del proyecto se versiona mediante Git y se aloja en el siguiente repo
 
 En este repositorio se registran los cambios asociados al preprocesamiento de datos, la construcción de los ejemplos supervisados, el entrenamiento de los modelos y, en etapas posteriores, el desarrollo de la API y el tablero interactivo.
 
-\subsection{Repositorio DVC}
+% ======================= 5. REPOSITORIO DVC =======================
+\section{Repositorio DVC en uso para los datos}
 
 Dado el tamaño de los archivos de datos (\texttt{contexts.json}, \texttt{papers.json}, \texttt{train.json}, \texttt{val.json}, \texttt{test.json}), su versionamiento se gestiona mediante DVC (\textit{Data Version Control}), utilizando un bucket de Amazon S3 como almacenamiento remoto. Esto permite mantener el historial de versiones de los datos de forma separada del repositorio de código, evitando incrementar su tamaño y facilitando la reproducibilidad de los experimentos.
 
@@ -194,49 +222,7 @@ Las Figuras~\ref{fig:dvc1} y~\ref{fig:dvc2} muestran el proceso de inicializaci�
 \caption{Proceso de carga (\textit{push}) de los datos versionados al repositorio DVC en S3}
 \label{fig:dvc2}
 \end{figure}
-% ======================= 6. FORMULACIÓN DEL PROBLEMA =======================
-\section{Formulación del problema de aprendizaje automático}
-
-El problema de recomendación se transformará inicialmente en una tarea supervisada de clasificación de relevancia. Para cada contexto de cita se construirán ejemplos positivos y negativos:
-
-\begin{itemize}[leftmargin=1.4em, itemsep=3pt]
-  \item \textbf{Ejemplo positivo:} contexto de cita + artículo realmente citado $\rightarrow$ relevante (1).
-  \item \textbf{Ejemplo negativo:} contexto de cita + artículo candidato no citado $\rightarrow$ no relevante (0).
-\end{itemize}
-
-El modelo estimará la relevancia de un artículo candidato condicionado al contexto de cita. Durante la inferencia, se evaluarán varios candidatos y se ordenarán según el puntaje estimado. Los artículos con mayor puntuación serán presentados como recomendaciones.
-
-% ======================= 7. ENFOQUE PREDICTIVO =======================
-\section{Enfoque predictivo}
-
-La solución se desarrollará de manera incremental. Como línea base se utilizará una representación TF-IDF con similitud coseno, que permitirá establecer un punto de comparación sencillo. Posteriormente se evaluará un modelo supervisado, inicialmente una regresión logística o un clasificador lineal, utilizando características derivadas de la relación entre el contexto y el artículo candidato.
-
-Entre las variables candidatas se encuentran la similitud TF-IDF entre el contexto y el título, la similitud entre el contexto y el \textit{abstract}, coincidencias de términos relevantes y características básicas de longitud. Si el tiempo y los recursos lo permiten, se evaluarán representaciones semánticas basadas en \textit{embeddings} de textos científicos. El enfoque incremental facilitará comparar alternativas antes de seleccionar el modelo que será empaquetado y desplegado.
-
-% ======================= 8. RESULTADO ESPERADO DEL MODELO =======================
-\section{Resultado esperado del modelo}
-
-Para un contexto de entrada, el sistema devolverá una lista ordenada de artículos con un puntaje de relevancia. Un ejemplo conceptual de salida se presenta en la Tabla~\ref{tab:ranking}.
-
-\begin{table}[h!]
-\centering
-\caption{Ejemplo conceptual de salida del modelo}
-\label{tab:ranking}
-\rowcolors{2}{lightgray}{white}
-\begin{tabular}{c l c}
-\toprule
-\textbf{Posición} & \textbf{Artículo candidato} & \textbf{Puntaje de relevancia} \\
-\midrule
-1 & Artículo A & 0.91 \\
-2 & Artículo B & 0.84 \\
-3 & Artículo C & 0.76 \\
-4 & Artículo D & 0.64 \\
-5 & Artículo E & 0.58 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% ======================= 9. EXPLORACION DE DATOS =======================
+% ======================= 6. EXPLORACION DE DATOS =======================
 \section{Exploración de los datos}
 \label{sec:eda}
 
@@ -279,8 +265,8 @@ Como verificación preliminar se tomó una muestra reproducible de 4.000 consult
 
 \notabox{\textbf{Implicación para el alcance.} ACL-200 permite entrenar y evaluar la recomendación local de citas, pero no contiene las nueve etiquetas de función de cita planteadas en la propuesta de grado. Por ello, esta entrega limita el producto supervisado a relevancia y ranking; la construcción y validación humana de las etiquetas discursivas queda fuera del microproyecto.}
 
-% ======================= 10. MAQUETA DEL PROTOTIPO =======================
-\section{Maqueta inicial del prototipo}
+% ======================= 7. MAQUETA DEL PROTOTIPO =======================
+\section{Maqueta del prototipo}
 
 La interfaz inicial se dividirá en dos componentes: un recomendador de citas y un módulo de exploración del conjunto de datos. La Figura~\ref{fig:mockup} presenta la maqueta conceptual de la primera versión del prototipo.
 
@@ -331,7 +317,7 @@ La interfaz inicial se dividirá en dos componentes: un recomendador de citas y 
 \label{fig:mockup}
 \end{figure}
 
-% ======================= 11. TRABAJO EN EQUIPO =======================
+% ======================= 8. TRABAJO EN EQUIPO =======================
 \section{Reporte de trabajo en equipo}
 
 El equipo distribuyó el avance entre la definición del producto, la documentación, la infraestructura reproducible y la exploración. La evidencia verificable disponible en el historial de Git se resume en la Tabla~\ref{tab:equipo}. Antes de la entrega, cada integrante debe confirmar que su aporte individual esté reflejado mediante commits propios, tal como exige la guía del curso.
