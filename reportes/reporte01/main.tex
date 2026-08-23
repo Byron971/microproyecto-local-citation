@@ -81,8 +81,8 @@
 {\Large Reporte de avance del microproyecto -- Semana 3}\\[3cm]
 
 \begin{tabular}{rl}
-\textbf{Nombres participantes:} & Carlos Duque, John Arias, Carlos Caicedo, Jose Zambrana \\[4pt]
-\textbf{Proyecto:} & Desarrollo de soluciones \\[4pt]
+\textbf{Nombres participantes:} & Carlos Duque, Carlos Caicedo, Jose Zambrana, John Arias \\[4pt]
+\textbf{Proyecto:} & Desarrollo de Soluciones \\[4pt]
 \textbf{Docente:} & Juan Fernando Pérez \\[4pt]
 \textbf{Fecha:} & 23 de agosto de 2026 \\
 \end{tabular}
@@ -176,7 +176,7 @@ Para el desarrollo inicial se utilizarán cinco componentes:
 En los conjuntos de entrenamiento, validación y prueba, \texttt{positive\_ids} identifica el artículo realmente citado por el contexto y constituye la referencia para construir el problema supervisado. La Sección~\ref{sec:eda} presenta el perfilamiento cuantitativo y las comprobaciones de calidad realizadas sobre estos archivos.
 
 % ======================= 4. REPOSITORIO GIT =======================
-\section{Repositorio Git en uso para el código}
+\section{Repositorio Git usado para el código}
 
 El código del proyecto se versiona mediante Git y se aloja en el siguiente repositorio:
 
@@ -195,14 +195,14 @@ Las Figuras~\ref{fig:dvc1} y~\ref{fig:dvc2} muestran el proceso de inicializaci�
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{buckets3.jpeg}
+\includegraphics[width=0.68\textwidth]{buckets3.jpeg}
 \caption{Creación exitosa de bucket en S3}
 \label{fig:dvc1}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{creaciondvcs3.jpeg}
+\includegraphics[width=0.68\textwidth]{creaciondvcs3.jpeg}
 \caption{Proceso de carga (\textit{push}) de los datos versionados al repositorio DVC en S3}
 \label{fig:dvc2}
 \end{figure}
@@ -214,7 +214,7 @@ La exploración se realizó en el notebook \texttt{notebooks/01\_exploracion\_da
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.64\textwidth]{eda_particiones.png}
+\includegraphics[width=0.58\textwidth]{eda_particiones.png}
 \caption{Cantidad de consultas en las particiones de entrenamiento, validación y prueba.}
 \label{fig:eda-particiones}
 \end{figure}
@@ -231,7 +231,7 @@ El contexto tiene una mediana de 63 palabras y un percentil 95 de 72; el máximo
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.92\textwidth]{eda_longitudes.png}
+\includegraphics[width=0.84\textwidth]{eda_longitudes.png}
 \caption{Distribución de la longitud de los contextos y resúmenes, medida en palabras. En los resúmenes se muestra hasta el percentil 99 para evitar que los valores extremos oculten la distribución principal.}
 \label{fig:eda-longitudes}
 \end{figure}
@@ -242,7 +242,7 @@ Como verificación preliminar se tomó una muestra reproducible de 4.000 consult
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.76\textwidth]{eda_similitud_tfidf.png}
+\includegraphics[width=0.68\textwidth]{eda_similitud_tfidf.png}
 \caption{Similitud TF--IDF entre el contexto y el artículo citado frente a un candidato aleatorio.}
 \label{fig:eda-similitud}
 \end{figure}
@@ -340,29 +340,33 @@ El flujo propuesto sigue una arquitectura reproducible que separa el versionamie
 
 El resultado esperado es un prototipo funcional capaz de recibir un contexto académico en inglés y recomendar artículos potencialmente relevantes para citar. El análisis exploratorio de la Sección~\ref{sec:eda} confirma que el conjunto de datos es adecuado para este objetivo: la separación entre \textit{train}, \textit{validation} y \textit{test} no presenta fuga de información, y existe una señal léxica aprovechable entre el contexto y el artículo citado (90,1\,\% de las consultas evaluadas), lo que respalda TF--IDF como línea base razonable para las primeras versiones del modelo. Además del desempeño predictivo, el proyecto buscará que la solución sea reproducible y desplegable mediante versionamiento de código y datos, seguimiento de experimentos con MLflow, servicio del modelo por API, un tablero interactivo y contenerización con Docker. El prototipo permitirá demostrar el flujo completo desde la disponibilidad de los datos hasta el consumo de una predicción por parte de un usuario final.
 
-% ======================= 8. TRABAJO EN EQUIPO =======================
+% ======================= TRABAJO EN EQUIPO =======================
+% Va dentro de este mismo reporte, pero en su propia hoja.
+% \clearpage (no \newpage): primero coloca los flotantes pendientes -la
+% Figura 7- y despues corta la pagina, para que esta seccion arranque sola.
+\clearpage
 \section{Reporte de trabajo en equipo}
 
-El equipo distribuyó el avance entre la definición del producto, la documentación, la infraestructura reproducible y la exploración. La Tabla~\ref{tab:equipo} resume el aporte de cada integrante, respaldado por sus propios commits en el historial de Git, tal como exige la guía del curso.
+El equipo distribuyó las actividades de la Entrega 1 entre la configuración de la infraestructura reproducible, la exploración de los datos, la documentación y la adecuación del reporte. Las contribuciones fueron verificadas mediante el historial de \textit{commits} del repositorio Git, de acuerdo con el requisito de evidenciar el aporte individual de cada integrante (Tabla~\ref{tab:equipo}).
 
 \begin{table}[h!]
 \centering
-\caption{Aportes observables en el repositorio}
+\caption{Aportes verificables en el repositorio}
 \label{tab:equipo}
 \small
 \begin{tabular}{p{3.1cm} p{8.8cm}}
 \toprule
-\textbf{Integrante} & \textbf{Aporte o evidencia registrada} \\
+\textbf{Integrante} & \textbf{Evidencia registrada} \\
 \midrule
-John Arias & Configuración inicial de DVC y estructura base; versionamiento del dataset; remoto AWS S3; notebook inicial de EDA; análisis de relaciones del dataset e integración de contribuciones mediante Pull Request. \\
-Carlos Duque & Documentación y actualización del archivo \texttt{README.md}, generación de archivos de reproducibilidad y maqueta.\\
-Jose Zambrana & Configuración remoto DVC, ampliación del notebook EDA, gráficas/evidencias, dependencias, reorganización del reporte según rúbrica \\
-Carlos Caicedo & Mejoras del informe, evidencias DVC/S3, corrección de maqueta, ajuste de arquitectura y resultado esperado \\
+John Arias & Configuración inicial de DVC y estructura base; versionamiento del \textit{dataset}; remoto AWS S3; \textit{notebook} inicial de EDA; análisis de relaciones del \textit{dataset} e integración de contribuciones mediante \textit{Pull Request}. \\[3pt]
+José Zambrana & Configuración de remoto DVC; actualización amplia del \textit{notebook} de EDA; incorporación de gráficas y evidencias; dependencias; creación y reorganización del reporte para alinearlo con la rúbrica. \\[3pt]
+Carlos Caicedo & Mejoras del informe y de las evidencias DVC/S3; eliminación de contenido redundante; corrección de la maqueta; recuperación y ajuste de la arquitectura conceptual y del resultado esperado. \\[3pt]
+Carlos Duque & Actualización de la documentación del proyecto mediante el \texttt{README} e incorporación de archivos asociados a la definición y reproducibilidad del entorno, incluyendo \texttt{.python-version}, \texttt{pyproject.toml} y \texttt{uv.lock}, además de la maqueta del prototipo. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-El historial del repositorio evidencia contribuciones de los cuatro integrantes. Adicionalmente, durante la validación final se comprobó la reproducibilidad del proyecto mediante la creación de en entorno limpio, recuperación de los datos versionados desde Amazon S3 mediante DVC y ejecución completa del notebook de exploración sin errores. 
+El historial del repositorio evidencia contribuciones de los cuatro integrantes. Adicionalmente, durante la validación final se comprobó la reproducibilidad del proyecto mediante la creación de un entorno limpio, la recuperación de los datos versionados desde Amazon S3 mediante DVC y la ejecución completa del \textit{notebook} de exploración sin errores.
 
 \section*{Referencias}
 \addcontentsline{toc}{section}{Referencias}
