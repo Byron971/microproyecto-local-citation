@@ -1,0 +1,121 @@
+% ============================================================================
+% Reporte de trabajo en equipo - Entrega 1
+% Documento SEPARADO del reporte principal, con limite de 1 pagina, segun la
+% seccion "Entregables" de maia_pds_proy_s2.pdf.
+% ============================================================================
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{geometry}
+\geometry{a4paper, top=2.2cm, bottom=2.0cm, left=2.4cm, right=2.4cm}
+
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% Misma paleta que el reporte principal, para que ambos documentos se lean
+% como parte de una sola entrega.
+\definecolor{primaryblue}{RGB}{28,58,92}
+\definecolor{accentblue}{RGB}{47,109,161}
+\definecolor{midgray}{RGB}{110,110,110}
+
+\titleformat{\section}
+  {\large\bfseries\color{primaryblue}}
+  {\thesection.}{0.4em}{}
+\titlespacing*{\section}{0pt}{1.0em}{0.4em}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accentblue,
+  pdftitle={Reporte de trabajo en equipo - Entrega 1},
+}
+
+\pagestyle{empty}  % una sola pagina: el numero de pagina sobra
+
+\begin{document}
+
+% ----------------------------------------------------------- encabezado
+\begin{center}
+{\large\bfseries\color{primaryblue} Reporte de trabajo en equipo}\\[0.15cm]
+{\color{midgray} Recomendación local de citas académicas mediante aprendizaje automático}\\[0.15cm]
+{\color{midgray} Microproyecto -- Entrega 1 · Proyecto: Desarrollo de soluciones}\\[0.15cm]
+{\color{midgray} Maestría en Inteligencia Artificial -- Universidad de los Andes}\\[0.15cm]
+{\color{midgray} 23 de agosto de 2026}
+\end{center}
+
+\vspace{0.2cm}
+{\color{primaryblue}\rule{\linewidth}{0.8pt}}
+\vspace{0.2cm}
+
+% ----------------------------------------------------------- organizacion
+\section{Organización del trabajo}
+
+El equipo distribuyó las actividades de la Entrega 1 entre la configuración de
+la infraestructura reproducible, la exploración de los datos, la documentación y
+la adecuación del reporte. La coordinación se realizó de forma asíncrona,
+integrando cada aporte al repositorio mediante ramas de trabajo y \textit{Pull
+Requests} revisados antes de incorporarse a la rama principal.
+
+Las contribuciones fueron verificadas mediante el historial de \textit{commits}
+del repositorio Git, de acuerdo con el requisito de evidenciar el aporte
+individual de cada integrante:
+
+\begin{center}
+\url{https://github.com/Byron971/microproyecto-local-citation}
+\end{center}
+
+% ----------------------------------------------------------- aportes
+\section{Aportes individuales}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{3.0cm} p{11.5cm}}
+\toprule
+\textbf{Integrante} & \textbf{Evidencia registrada} \\
+\midrule
+John Arias &
+Configuración inicial de DVC y estructura base; versionamiento del
+\textit{dataset}; remoto AWS S3; \textit{notebook} inicial de EDA; análisis de
+relaciones del \textit{dataset} e integración de contribuciones mediante
+\textit{Pull Request}. \\[3pt]
+
+José Zambrana &
+Configuración de remoto DVC; actualización amplia del \textit{notebook} de EDA;
+incorporación de gráficas y evidencias; dependencias; creación y reorganización
+del reporte para alinearlo con la rúbrica. \\[3pt]
+
+Carlos Caicedo &
+Mejoras del informe y de las evidencias DVC/S3; eliminación de contenido
+redundante; corrección de la maqueta; recuperación y ajuste de la arquitectura
+conceptual y del resultado esperado. \\[3pt]
+
+Carlos Duque &
+Actualización de la documentación del proyecto mediante el \texttt{README} e
+incorporación de archivos asociados a la definición y reproducibilidad del
+entorno, incluyendo \texttt{.python-version}, \texttt{pyproject.toml} y
+\texttt{uv.lock}. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ----------------------------------------------------------- verificacion
+\section{Verificación de la reproducibilidad}
+
+El historial del repositorio evidencia contribuciones de los cuatro integrantes.
+Adicionalmente, durante la validación final se comprobó la reproducibilidad del
+proyecto mediante la creación de un entorno limpio, la recuperación de los datos
+versionados desde Amazon S3 mediante DVC y la ejecución completa del
+\textit{notebook} de exploración sin errores.
+
+El plan de trabajo de las Entregas 2 y 3 quedó registrado en el repositorio como
+tareas individuales agrupadas en dos hitos con sus fechas límite, cada una con su
+criterio de aceptación, de modo que la asignación y el avance de cada integrante
+puedan verificarse directamente sobre el repositorio.
+
+\end{document}
