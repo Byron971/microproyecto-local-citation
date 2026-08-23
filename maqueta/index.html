@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Citation Recommender — Maqueta</title>
+<style>
+  :root {
+    --primary-blue: #1c3a5c;
+    --accent-blue: #2f6da1;
+    --light-gray: #f5f6f8;
+    --mid-gray: #6e6e6e;
+    --border: #d7dde4;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    background: #eef1f4;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .app {
+    width: 100%;
+    max-width: 960px;
+    background: var(--light-gray);
+    border: 1.5px solid var(--primary-blue);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(28, 58, 92, 0.12);
+  }
+
+  .titlebar {
+    background: var(--primary-blue);
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 14px 12px;
+    font-size: 15px;
+  }
+
+  .panels {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .panels { grid-template-columns: 1fr; }
+  }
+
+  .panel {
+    background: #fff;
+    border: 1.5px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel h2 {
+    margin: 0 0 10px;
+    color: var(--primary-blue);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* --- Left panel: recommender --- */
+
+  .context-box {
+    border: 1.5px dashed var(--border);
+    background: var(--light-gray);
+    border-radius: 6px;
+    padding: 10px 12px;
+    min-height: 64px;
+    color: var(--mid-gray);
+    font-size: 12px;
+    line-height: 1.5;
+    cursor: text;
+    margin-bottom: 12px;
+  }
+
+  .context-box[contenteditable="true"]:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: #fff;
+    color: #333;
+  }
+
+  .recommend-btn {
+    align-self: flex-start;
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-bottom: 18px;
+    transition: background 0.15s ease;
+  }
+
+  .recommend-btn:hover { background: #26567f; }
+
+  .top-recs {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+  }
+
+  .top-recs li {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 2px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .top-recs li:last-child { border-bottom: none; }
+
+  .top-recs .score { color: var(--accent-blue); font-weight: 600; }
+
+  .top-recs .empty-state,
+  .top-recs .error-state {
+    display: block;
+    border-bottom: none;
+    color: var(--mid-gray);
+    font-style: italic;
+    padding: 4px 2px;
+  }
+
+  .top-recs .error-state { color: #b0413e; }
+
+  .detail-box {
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--mid-gray);
+    font-style: italic;
+    font-size: 12px;
+    flex: 1;
+    min-height: 60px;
+  }
+
+  /* --- Right panel: dataset insights --- */
+
+  .stats {
+    margin: 0 0 16px;
+    font-size: 13px;
+    line-height: 1.9;
+    color: #222;
+  }
+
+  .stats b { color: var(--primary-blue); }
+
+  .chart-box {
+    border: 1.5px solid var(--border);
+    background: var(--light-gray);
+    border-radius: 6px;
+    flex: 1;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--mid-gray);
+    font-style: italic;
+    font-size: 12px;
+    padding: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="titlebar">LOCAL CITATION RECOMMENDER</div>
+
+  <div class="panels">
+
+    <!-- Recommender panel -->
+    <section class="panel">
+      <h2>Citation context (English text)</h2>
+      <div class="context-box" id="context-box" contenteditable="true" spellcheck="false">Write or paste the academic context where a citation is required&hellip;</div>
+
+      <button class="recommend-btn" id="recommend-btn" type="button">Recommend citations</button>
+
+      <h2>Top recommendations</h2>
+      <ol class="top-recs" id="top-recs">
+        <li class="empty-state">Click &ldquo;Recommend citations&rdquo; to see results.</li>
+      </ol>
+
+      <div class="detail-box">Selected paper abstract / details</div>
+    </section>
+
+    <!-- Dataset insights panel -->
+    <section class="panel">
+      <h2>Dataset insights</h2>
+      <p class="stats">
+        <b>Contexts:</b> 63,768<br>
+        <b>Papers:</b> 19,776<br>
+        <b>Train / Val / Test:</b><br>
+        30,390 / 9,381 / 9,585
+      </p>
+      <div class="chart-box">Charts: context length, split distribution, data quality</div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const API_URL = "http://localhost:8000/predict";
+
+  const contextBox = document.getElementById("context-box");
+  const recommendBtn = document.getElementById("recommend-btn");
+  const topRecs = document.getElementById("top-recs");
+
+  function renderRecommendations(recommendations) {
+    topRecs.innerHTML = "";
+    Object.entries(recommendations).forEach(([paper, score], i) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<span>${i + 1}. ${paper}</span><span class="score">${score.toFixed(2)}</span>`;
+      topRecs.appendChild(li);
+    });
+  }
+
+  function renderMessage(text, className) {
+    topRecs.innerHTML = `<li class="${className}">${text}</li>`;
+  }
+
+  recommendBtn.addEventListener("click", async () => {
+    const context = contextBox.innerText.trim();
+
+    renderMessage("Loading recommendations&hellip;", "empty-state");
+    recommendBtn.disabled = true;
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ context }),
+      });
+
+      if (!response.ok) throw new Error(`Backend responded with ${response.status}`);
+
+      const recommendations = await response.json();
+      renderRecommendations(recommendations);
+    } catch (err) {
+      renderMessage(
+        "Could not reach the backend. Is it running on port 8000?",
+        "error-state"
+      );
+      console.error(err);
+    } finally {
+      recommendBtn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>

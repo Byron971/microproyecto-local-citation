@@ -109,6 +109,30 @@ Los datos **no** se incluyen en este repositorio. Deben obtenerse desde el repos
 uv run jupyter notebook notebooks/
 ```
 
+## Maqueta del prototipo
+
+La carpeta `maqueta/` contiene una maqueta estática (HTML/CSS/JS, sin lógica de modelo real) de la interfaz descrita en el reporte, junto con un backend mínimo en FastAPI que expone un único endpoint `/predict`. Este endpoint recibe el contexto de cita enviado desde el formulario, pero siempre responde con las mismas recomendaciones fijas (`Paper A`, `Paper B`, `Paper C`); no hay modelo de por medio, solo sirve para mostrar el flujo de la interfaz.
+
+Requiere haber instalado las dependencias del proyecto (`uv sync`, ver sección de instalación arriba).
+
+### 1. Levantar el backend (puerto 8000)
+
+```bash
+uv run maqueta-back
+```
+
+### 2. Levantar el frontend (puerto 3000)
+
+En otra terminal:
+
+```bash
+uv run maqueta-front
+```
+
+### 3. Abrir la maqueta
+
+Visitar [http://localhost:3000](http://localhost:3000) en el navegador. Al escribir un contexto y presionar "Recommend citations", la página consulta el backend en `http://localhost:8000/predict` y muestra las recomendaciones devueltas.
+
 ## Tecnologías
 
 - Python
