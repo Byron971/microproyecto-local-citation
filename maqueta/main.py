@@ -1,9 +1,12 @@
-"""Minimal FastAPI backend for the Local Citation Recommender mock-up.
+"""Backend mínimo en FastAPI para la maqueta del recomendador local de citas.
 
-Single endpoint: POST /predict
+Expone un único endpoint:
 
-Run with:
-    uvicorn main:app --reload --port 8000
+    POST /predict
+
+Para ejecutarlo desde la raíz del proyecto:
+
+    python -m uvicorn maqueta.main:app --host 127.0.0.1 --port 8000
 """
 
 from fastapi import FastAPI
@@ -33,13 +36,13 @@ HARDCODED_RECOMMENDATIONS = {
 
 @app.post("/predict")
 def predict(payload: CitationContext) -> dict:
-    # The real context sent by the frontend arrives here...
+    """Recibe un contexto académico y devuelve recomendaciones de prueba."""
     print(f"Received context ({len(payload.context)} chars): {payload.context!r}")
     return HARDCODED_RECOMMENDATIONS
 
 
 def run_backend() -> None:
-    """Entry point for `uv run maqueta-back` — starts the API on port 8000."""
+    """Inicia el backend local de la maqueta en el puerto 8000."""
     import uvicorn
 
     uvicorn.run(app, host="127.0.0.1", port=8000)
