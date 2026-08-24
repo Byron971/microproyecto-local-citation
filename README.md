@@ -167,7 +167,7 @@ No debe editarse manualmente ni generarse mediante `pip freeze`.
 Después de agregar, eliminar o actualizar dependencias con `uv`, debe regenerarse ejecutando:
 
 ```bash
-uv export --locked --format requirements.txt --no-hashes --output-file requirements.txt
+uv export --locked --no-dev --format requirements.txt --no-hashes --output-file requirements.txt
 
 ## Obtener los datos
 
@@ -353,18 +353,33 @@ y mostrará las recomendaciones devueltas por el backend.
 
 ## Dependencias principales
 
-Actualmente el proyecto incluye:
+Actualmente el proyecto incluye como dependencias principales:
 
 - DVC con soporte para Amazon S3
 - Jupyter
 - IPykernel
 - Matplotlib
-- Pandas
+- Pandas 2.3.3
 - Seaborn
-- Scikit-learn
+- Scikit-learn 1.9.0
 - FastAPI
+- MLflow 3.15.1
 
 Estas dependencias se declaran en `pyproject.toml` y sus versiones resueltas se registran en `uv.lock`.
+
+Las herramientas utilizadas únicamente durante el desarrollo y las pruebas, como `pytest`, se gestionan mediante el grupo de dependencias de desarrollo de `uv` y no se incluyen en el `requirements.txt` exportado para compatibilidad y despliegue.
+
+Para instalar también las dependencias de desarrollo se utiliza:
+
+```bash
+uv sync
+```
+
+Para ejecutar las pruebas:
+
+```bash
+uv run pytest
+```
 
 ## Tecnologías
 
@@ -382,10 +397,11 @@ Utilizadas o configuradas durante el desarrollo:
 - Seaborn
 - Scikit-learn
 - FastAPI
+- MLflow
+- pytest
 
 Tecnologías contempladas para etapas posteriores:
 
-- MLflow
 - Docker
 
 ## Estado actual
@@ -402,6 +418,8 @@ Actualmente se encuentran implementados:
 - maqueta del frontend;
 - backend mínimo en FastAPI;
 - comunicación funcional entre frontend y backend.
+- seguimiento de experimentos preparado con MLflow;
+- estructura inicial de pruebas automatizadas con pytest;
 
 La maqueta permite probar el flujo completo de la aplicación, pero todavía utiliza recomendaciones fijas y no incorpora un modelo de aprendizaje automático entrenado.
 
