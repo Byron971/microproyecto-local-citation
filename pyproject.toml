@@ -16,6 +16,10 @@ dependencies = [
     "fastapi[standard]==0.141.1",
 ]
 
+[project.scripts]
+maqueta-back = "maqueta.main:run_backend"
+maqueta-front = "maqueta.front:run_frontend"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

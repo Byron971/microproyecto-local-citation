@@ -8,7 +8,7 @@ El proyecto busca desarrollar un prototipo de recomendación local de citas acad
 
 El sistema recibe como entrada un contexto textual académico en inglés y busca generar un ranking de artículos candidatos potencialmente relevantes para ser citados.
 
-Actualmente, el proyecto incluye el versionamiento de los datos con DVC, un análisis exploratorio del conjunto de datos y una maqueta funcional de la interfaz con un backend desarrollado en FastAPI.
+Actualmente, el proyecto incluye versionamiento de datos con DVC, análisis exploratorio del conjunto de datos y una maqueta funcional compuesta por un frontend y un backend desarrollado en FastAPI.
 
 ## Fuente de datos
 
@@ -28,22 +28,44 @@ Los archivos utilizados son:
 
 ## Estructura del proyecto
 
-- `data/`: metadatos y versionamiento de los datos mediante DVC.
+- `data/`: metadatos y versionamiento de datos mediante DVC.
 - `data/raw/`: datos originales utilizados por el proyecto.
 - `data/processed/`: espacio destinado a datos procesados.
 - `notebooks/`: análisis exploratorio y experimentación.
-- `maqueta/`: interfaz del prototipo y backend mínimo en FastAPI.
+- `maqueta/`: frontend y backend mínimo del prototipo.
 - `src/`: código fuente del proyecto.
 - `reportes/`: informes y soportes del proyecto.
-- `requirements.txt`: dependencias necesarias para ejecutar el proyecto.
-- `pyproject.toml`: configuración del proyecto Python.
+- `pyproject.toml`: configuración del proyecto y declaración de dependencias.
+- `uv.lock`: versiones resueltas de las dependencias para garantizar reproducibilidad.
+
+## Gestión de dependencias
+
+El proyecto utiliza `uv` como gestor principal del entorno y las dependencias.
+
+La fuente principal de dependencias es:
+
+```text
+pyproject.toml
+```
+
+Las versiones resueltas se almacenan en:
+
+```text
+uv.lock
+```
+
+El archivo `uv.lock` debe mantenerse versionado en Git para que todos los integrantes del equipo trabajen con el mismo entorno reproducible.
+
+Las dependencias no deben modificarse manualmente en `uv.lock`.
 
 ## Instalación y ejecución local
 
 ### Requisitos previos
 
-- Python 3.14 o superior
 - Git
+- `uv`
+
+Python no necesita instalarse o administrarse manualmente para el flujo habitual del proyecto, ya que `uv` puede gestionar el entorno Python utilizado por el proyecto.
 
 ### 1. Clonar el repositorio
 
@@ -52,59 +74,114 @@ git clone https://github.com/Byron971/microproyecto-local-citation.git
 cd microproyecto-local-citation
 ```
 
-### 2. Instalar dependencias
+### 2. Instalar uv
 
-El proyecto utiliza `pip` y el archivo `requirements.txt` para instalar las dependencias.
+#### Windows (PowerShell)
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Después de la instalación, abrir una nueva terminal y verificar:
+
+```powershell
+uv --version
+```
 
 #### Linux / macOS
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-#### Windows (PowerShell)
+Verificar la instalación:
 
-Crear el entorno virtual:
-
-```powershell
-python -m venv .venv
+```bash
+uv --version
 ```
 
-Si PowerShell bloquea la ejecución del script de activación por la política de ejecución, habilitarla únicamente para la sesión actual:
+### 3. Crear y sincronizar el entorno
 
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+Desde la raíz del repositorio ejecutar:
+
+```bash
+uv sync
 ```
 
-Activar el entorno virtual:
+Este comando:
 
-```powershell
-.\.venv\Scripts\Activate.ps1
+- lee las dependencias declaradas en `pyproject.toml`;
+- utiliza las versiones registradas en `uv.lock`;
+- crea o actualiza el entorno virtual `.venv`;
+- instala las dependencias necesarias.
+
+No es necesario ejecutar manualmente `pip install` ni activar `.venv` para utilizar los comandos del proyecto.
+
+## Manejo de dependencias
+
+### Agregar una dependencia
+
+Por ejemplo:
+
+```bash
+uv add mlflow
 ```
 
-Instalar las dependencias:
+`uv` actualizará automáticamente:
 
-```powershell
-python -m pip install -r requirements.txt
+```text
+pyproject.toml
+uv.lock
 ```
 
-#### Windows (CMD)
+### Eliminar una dependencia
 
-```bat
-python -m venv .venv
-.venv\Scripts\activate.bat
-python -m pip install -r requirements.txt
+```bash
+uv remove nombre-del-paquete
 ```
 
-### 3. Obtener los datos
+### Actualizar el entorno
+
+Después de obtener cambios del repositorio:
+
+```bash
+uv sync
+```
+
+### Actualizar el lockfile
+
+Cuando sea necesario resolver nuevamente las dependencias:
+
+```bash
+uv lock
+```
+
+## requirements.txt
+
+`pyproject.toml` y `uv.lock` son las fuentes oficiales para la gestión de dependencias del proyecto.
+
+El archivo `requirements.txt` se conserva en el repositorio como un artefacto congelado de compatibilidad para herramientas de despliegue o servicios que todavía esperan este formato.
+
+No debe editarse manualmente ni generarse mediante `pip freeze`.
+
+Después de agregar, eliminar o actualizar dependencias con `uv`, debe regenerarse ejecutando:
+
+```bash
+uv export --locked --format requirements.txt --no-hashes --output-file requirements.txt
+
+## Obtener los datos
 
 Los archivos de datos no se almacenan directamente en Git debido a su tamaño.
 
-El proyecto utiliza DVC para mantener el versionamiento de los datos mediante el archivo `data/raw.dvc`.
+El proyecto utiliza DVC para mantener el versionamiento de los datos mediante:
 
-Para obtener los datos directamente desde la fuente original, se puede clonar el repositorio:
+```text
+data/raw.dvc
+```
+
+### Obtener los datos desde la fuente original
+
+Clonar el repositorio:
 
 ```bash
 git clone https://github.com/nianlonggu/Local-Citation-Recommendation.git
@@ -144,7 +221,7 @@ val.json
 test.json
 ```
 
-### Uso de DVC
+## Uso de DVC
 
 Los datos están versionados mediante DVC.
 
@@ -156,23 +233,33 @@ data/raw.dvc
 
 contiene la referencia a la versión de los datos utilizada por el proyecto.
 
-La configuración de los remotos DVC no se almacena de forma compartida en este repositorio. Cada integrante debe configurar localmente un remoto al que tenga acceso antes de utilizar comandos como `dvc pull` o `dvc push`.
-
-Para verificar el estado local de los datos:
+La configuración de los remotos DVC no se almacena de forma compartida en el repositorio. Cada integrante debe configurar localmente un remoto DVC al que tenga acceso antes de utilizar operaciones como:
 
 ```bash
-dvc status
+uv run dvc pull
+```
+
+o:
+
+```bash
+uv run dvc push
+```
+
+Para verificar el estado de los datos:
+
+```bash
+uv run dvc status
 ```
 
 ## Ejecutar el análisis exploratorio
 
-Con el entorno virtual activado:
+Para iniciar Jupyter:
 
 ```bash
-jupyter notebook notebooks/
+uv run jupyter notebook notebooks/
 ```
 
-Abrir el notebook:
+Abrir:
 
 ```text
 notebooks/01_exploracion_datos.ipynb
@@ -182,15 +269,15 @@ El notebook contiene el análisis exploratorio inicial del conjunto de datos, in
 
 ## Maqueta del prototipo
 
-La carpeta `maqueta/` contiene una maqueta de la interfaz propuesta para el recomendador local de citas.
+La carpeta `maqueta/` contiene una maqueta funcional de la interfaz propuesta para el recomendador local de citas.
 
-La maqueta está compuesta por:
+Está compuesta por:
 
-- Un frontend desarrollado con HTML, CSS y JavaScript.
-- Un backend mínimo desarrollado con FastAPI.
-- Un endpoint `/predict` que recibe un contexto de cita.
+- frontend desarrollado con HTML, CSS y JavaScript;
+- backend mínimo desarrollado con FastAPI;
+- endpoint `POST /predict`.
 
-En el estado actual, la maqueta no utiliza todavía un modelo de recomendación entrenado.
+En el estado actual, la maqueta todavía no utiliza un modelo de recomendación entrenado.
 
 El endpoint devuelve recomendaciones fijas:
 
@@ -198,7 +285,7 @@ El endpoint devuelve recomendaciones fijas:
 - `Paper B`: 0.84
 - `Paper C`: 0.76
 
-Esto permite validar el flujo completo:
+Esto permite validar el flujo:
 
 ```text
 Usuario
@@ -216,10 +303,10 @@ Frontend
 
 ### 1. Levantar el backend
 
-Con el entorno virtual activado:
+Desde la raíz del proyecto:
 
 ```bash
-python -m uvicorn maqueta.main:app --host 127.0.0.1 --port 8000
+uv run maqueta-back
 ```
 
 El backend quedará disponible en:
@@ -230,10 +317,10 @@ http://127.0.0.1:8000
 
 ### 2. Levantar el frontend
 
-Abrir una segunda terminal, activar el entorno virtual y ejecutar:
+En otra terminal:
 
 ```bash
-python -m http.server 3000 --directory maqueta
+uv run maqueta-front
 ```
 
 El frontend quedará disponible en:
@@ -244,7 +331,7 @@ http://localhost:3000
 
 ### 3. Probar la maqueta
 
-Abrir en el navegador:
+Abrir:
 
 ```text
 http://localhost:3000
@@ -256,17 +343,17 @@ Escribir un contexto académico en inglés y presionar:
 Recommend citations
 ```
 
-El frontend envía el contexto al endpoint:
+El frontend enviará el contexto al endpoint:
 
 ```text
 http://localhost:8000/predict
 ```
 
-y muestra las recomendaciones devueltas por el backend.
+y mostrará las recomendaciones devueltas por el backend.
 
 ## Dependencias principales
 
-Las dependencias del proyecto se encuentran registradas en `requirements.txt` e incluyen:
+Actualmente el proyecto incluye:
 
 - DVC con soporte para Amazon S3
 - Jupyter
@@ -277,11 +364,14 @@ Las dependencias del proyecto se encuentran registradas en `requirements.txt` e 
 - Scikit-learn
 - FastAPI
 
+Estas dependencias se declaran en `pyproject.toml` y sus versiones resueltas se registran en `uv.lock`.
+
 ## Tecnologías
 
 Utilizadas o configuradas durante el desarrollo:
 
 - Python
+- uv
 - Git
 - GitHub
 - DVC
@@ -293,7 +383,7 @@ Utilizadas o configuradas durante el desarrollo:
 - Scikit-learn
 - FastAPI
 
-Tecnologías contempladas para etapas posteriores del microproyecto:
+Tecnologías contempladas para etapas posteriores:
 
 - MLflow
 - Docker
@@ -302,16 +392,17 @@ Tecnologías contempladas para etapas posteriores del microproyecto:
 
 Actualmente se encuentran implementados:
 
-- Estructura inicial del repositorio.
-- Control de versiones con Git.
-- Versionamiento de los datos con DVC.
-- Obtención y almacenamiento local del dataset.
-- Análisis exploratorio inicial de los datos.
-- Notebook reproducible de exploración.
-- Maqueta del frontend.
-- Backend mínimo en FastAPI.
-- Comunicación funcional entre frontend y backend.
+- estructura inicial del repositorio;
+- control de versiones con Git;
+- gestión reproducible de dependencias con `uv`;
+- versionamiento de datos con DVC;
+- obtención y almacenamiento local del dataset;
+- análisis exploratorio inicial de los datos;
+- notebook reproducible de exploración;
+- maqueta del frontend;
+- backend mínimo en FastAPI;
+- comunicación funcional entre frontend y backend.
 
 La maqueta permite probar el flujo completo de la aplicación, pero todavía utiliza recomendaciones fijas y no incorpora un modelo de aprendizaje automático entrenado.
 
-Las siguientes etapas del proyecto incorporarán el procesamiento de datos, entrenamiento y evaluación del modelo, seguimiento de experimentos, empaquetado y despliegue.
+Las siguientes etapas incorporarán procesamiento de datos, entrenamiento y evaluación del modelo, seguimiento de experimentos, empaquetado y despliegue.
