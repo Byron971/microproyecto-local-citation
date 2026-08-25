@@ -96,4 +96,3 @@ def test_build_pairs_is_reproducible_with_same_random_state():
     )
 
     assert first_result == second_result
-    
