@@ -8,6 +8,17 @@ __pycache__/
 # Archivos temporales de Jupyter
 .ipynb_checkpoints/
 
+# Seguimiento local de MLflow: cada integrante acumula sus propios runs y no
+# deben versionarse. La base SQLite guarda métricas y parámetros; mlartifacts/
+# los archivos (modelos, gráficas). Si el equipo levanta un servidor
+# compartido, se configura con la variable de entorno MLFLOW_TRACKING_URI.
+mlflow.db
+mlartifacts/
+mlruns/
+
+# Cache de pytest
+.pytest_cache/
+
 # Variables de entorno y secretos
 .env
 .env.*

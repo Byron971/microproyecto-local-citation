@@ -267,6 +267,56 @@ notebooks/01_exploracion_datos.ipynb
 
 El notebook contiene el análisis exploratorio inicial del conjunto de datos, incluyendo características de los textos, particiones y análisis de similitud entre contextos y artículos citados.
 
+## Seguimiento de experimentos con MLflow
+
+Todos los entrenamientos se registran en MLflow para poder comparar modelos con evidencia y no de memoria. La configuración está centralizada en `src/tracking/mlflow_setup.py`: **no se debe llamar a `mlflow` directamente desde los scripts de entrenamiento**, porque la comparación entre modelos solo funciona si todos los runs comparten experimento y nombres de métricas.
+
+### Dónde se guardan los runs
+
+Por defecto se usa una base **SQLite local** (`mlflow.db` en la raíz del repositorio) y una carpeta `mlartifacts/` para los archivos. Ambas están ignoradas por Git, así que cada integrante acumula sus propios runs sin ensuciar el historial.
+
+> MLflow 3.x dejó el backend de archivos (`./mlruns`) en modo mantenimiento y lanza una excepción si se usa, por eso el proyecto usa SQLite.
+
+Si más adelante se levanta un servidor compartido, basta con definir la variable de entorno `MLFLOW_TRACKING_URI`; el módulo la respeta sin cambiar código.
+
+### Convención de nombres
+
+| Elemento | Convención | Ejemplo |
+|---|---|---|
+| Experimento | Uno solo para todo el proyecto: `recomendacion-local-citas` | — |
+| Run | `modelo[-variante]-YYYYmmdd-HHMM` (UTC) | `tfidf-bigramas-20260901-1435` |
+| Etiquetas | `modelo` y `variante` | `modelo=tfidf` |
+| Métricas | `recall_at_k` y `mrr`; el valor de K va como parámetro `k` | — |
+
+Se usa **un solo experimento** para que la línea base y los modelos supervisados aparezcan en la misma tabla y se puedan ordenar por métrica.
+
+### Cómo registrar un entrenamiento
+
+```python
+from src.evaluation.ranking_metrics import mean_reciprocal_rank, recall_at_k
+from src.tracking.mlflow_setup import configure_mlflow, log_ranking_metrics, start_run
+
+configure_mlflow()  # una vez al inicio del script
+
+with start_run("tfidf", params={"max_features": 5000}):
+    # ... entrenar y generar el ranking ...
+    log_ranking_metrics(
+        recall_at_k=recall_at_k(ranked_ids, relevant_ids, k=10),
+        mrr=mean_reciprocal_rank(rankings),
+        k=10,
+    )
+```
+
+### Consultar los resultados
+
+Para abrir la interfaz web de MLflow:
+
+```bash
+uv run mlflow ui --backend-store-uri sqlite:///mlflow.db
+```
+
+Y visitar [http://localhost:5000](http://localhost:5000). Ahí se pueden comparar runs lado a lado, ordenar por `recall_at_k` o `mrr`, y filtrar por la etiqueta `modelo`.
+
 ## Maqueta del prototipo
 
 La carpeta `maqueta/` contiene una maqueta funcional de la interfaz propuesta para el recomendador local de citas.
