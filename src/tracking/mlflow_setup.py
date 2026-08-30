@@ -141,10 +141,11 @@ def configure_mlflow(
 def build_run_name(model_name: str, variant: str | None = None) -> str:
     """Construye el nombre de un run siguiendo la convención del equipo.
 
-    El formato es ``modelo[-variante]-YYYYmmdd-HHMM``. El modelo va primero
+    El formato es ``modelo[-variante]-YYYYmmdd-HHMMSS``. El modelo va primero
     para que la lista de runs quede agrupada por familia al ordenarla
     alfabéticamente, y la marca de tiempo (en UTC, como el resto del proyecto)
-    distingue reentrenamientos del mismo modelo.
+    distingue reentrenamientos del mismo modelo. Incluye segundos
+    porque dos runs lanzados en el mismo minuto colisionarían de otro modo.
 
     Parameters
     ----------
@@ -161,7 +162,7 @@ def build_run_name(model_name: str, variant: str | None = None) -> str:
     if not model_name:
         raise ValueError("model_name no puede estar vacío.")
 
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M")
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     parts = [model_name]
 
     if variant:

@@ -53,14 +53,14 @@ def test_get_artifacts_uri_creates_directory(tmp_path):
 def test_build_run_name_follows_convention():
     result = build_run_name("tfidf")
 
-    # modelo-YYYYmmdd-HHMM
-    assert re.fullmatch(r"tfidf-\d{8}-\d{4}", result)
+    # modelo-YYYYmmdd-HHMMSS
+    assert re.fullmatch(r"tfidf-\d{8}-\d{6}", result)
 
 
 def test_build_run_name_includes_variant_when_provided():
     result = build_run_name("regresion-logistica", variant="bigramas")
 
-    assert re.fullmatch(r"regresion-logistica-bigramas-\d{8}-\d{4}", result)
+    assert re.fullmatch(r"regresion-logistica-bigramas-\d{8}-\d{6}", result)
 
 
 def test_build_run_name_rejects_empty_model_name():

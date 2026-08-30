@@ -284,7 +284,7 @@ Si más adelante se levanta un servidor compartido, basta con definir la variabl
 | Elemento | Convención | Ejemplo |
 |---|---|---|
 | Experimento | Uno solo para todo el proyecto: `recomendacion-local-citas` | — |
-| Run | `modelo[-variante]-YYYYmmdd-HHMM` (UTC) | `tfidf-bigramas-20260901-1435` |
+| Run | `modelo[-variante]-YYYYmmdd-HHMMSS` (UTC) | `tfidf-bigramas-20260901-143512` |
 | Etiquetas | `modelo` y `variante` | `modelo=tfidf` |
 | Métricas | `recall_at_k` y `mrr`; el valor de K va como parámetro `k` | — |
 
@@ -316,6 +316,40 @@ uv run mlflow ui --backend-store-uri sqlite:///mlflow.db
 ```
 
 Y visitar [http://localhost:5000](http://localhost:5000). Ahí se pueden comparar runs lado a lado, ordenar por `recall_at_k` o `mrr`, y filtrar por la etiqueta `modelo`.
+
+## Línea base: TF-IDF con similitud coseno
+
+La línea base representa cada artículo (título + resumen) y cada contexto de cita como vectores TF-IDF, y ordena los artículos por similitud coseno con el contexto. No aprende de los ejemplos etiquetados: solo mide coincidencia léxica. Sirve como piso de comparación —  cualquier modelo supervisado debe superarla para justificarse.
+
+Para ejecutarla y registrar el run en MLflow:
+
+```bash
+python -m src.training.run_tfidf_baseline
+```
+
+Opciones útiles:
+
+```bash
+# Evaluar con otra profundidad de ranking
+python -m src.training.run_tfidf_baseline --k 5
+
+# Prueba rápida sobre las primeras 200 consultas
+python -m src.training.run_tfidf_baseline --limit 200
+
+# Evaluar sobre la partición de prueba
+python -m src.training.run_tfidf_baseline --split test
+```
+
+### Resultados de referencia
+
+Sobre las 9.381 consultas de validación, contra los 19.776 artículos candidatos:
+
+| Métrica | Valor |
+|---|---|
+| Recall@10 | 0,2541 |
+| MRR | 0,1249 |
+
+Es decir, sin ningún entrenamiento, el artículo correcto aparece entre los 10 primeros en aproximadamente 1 de cada 4 consultas. La evaluación completa toma unos 20 segundos.
 
 ## Maqueta del prototipo
 
