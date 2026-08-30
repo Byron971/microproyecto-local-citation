@@ -30,7 +30,12 @@ def evaluate_baseline(
     split: list[dict[str, Any]],
     k: int,
 ) -> tuple[float, float]:
-    """Evalúa la línea base sobre un split y devuelve (Recall@K, MRR).
+    """Evalúa la línea base sobre un split y devuelve (Recall@K, MRR@K).
+
+    Ambas métricas van truncadas a K: el ranking se corta en las K primeras
+    posiciones antes de evaluarlo, que es la convención en recuperación de
+    información. Su valor depende de K, así que solo son comparables entre
+    corridas que usen el mismo K.
 
     Parameters
     ----------
@@ -46,7 +51,7 @@ def evaluate_baseline(
     Returns
     -------
     tuple[float, float]
-        Recall@K promedio y MRR sobre todas las consultas del split.
+        Recall@K promedio y MRR@K sobre todas las consultas del split.
     """
     query_texts = [contexts[row["context_id"]]["masked_text"] for row in split]
     relevant_sets = [set(row["positive_ids"]) for row in split]
@@ -119,11 +124,11 @@ def main() -> None:
 
     print(f"  vocabulario: {len(baseline.vectorizer.vocabulary_)} términos")
 
-    print(f"Evaluando Recall@{args.k} y MRR...")
+    print(f"Evaluando Recall@{args.k} y MRR@{args.k}...")
     mean_recall, mrr = evaluate_baseline(baseline, contexts, split, args.k)
 
     print(f"\n  Recall@{args.k}: {mean_recall:.4f}")
-    print(f"  MRR:        {mrr:.4f}")
+    print(f"  MRR@{args.k}:{'':<6} {mrr:.4f}")
 
     # El run se registra al final, cuando ya hay métricas: así no quedan runs
     # vacíos en MLflow si la evaluación falla a mitad de camino.

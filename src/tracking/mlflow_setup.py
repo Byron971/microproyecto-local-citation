@@ -76,6 +76,27 @@ def get_tracking_uri(db_path: str | Path | None = None) -> str:
     return f"sqlite:///{resolved_path.as_posix()}"
 
 
+def is_local_backend(tracking_uri: str) -> bool:
+    """Indica si el URI apunta a un almacenamiento local y no a un servidor.
+
+    Sirve para decidir quien manda sobre la ubicacion de los artefactos: con un
+    backend local la decide este modulo, con un servidor remoto la decide el
+    servidor.
+
+    Parameters
+    ----------
+    tracking_uri:
+        URI de seguimiento, tal como lo devuelve ``get_tracking_uri``.
+
+    Returns
+    -------
+    bool
+        ``True`` para SQLite o rutas de archivo; ``False`` para http(s) u otros
+        servidores.
+    """
+    return not tracking_uri.startswith(("http://", "https://"))
+
+
 def get_artifacts_uri(artifacts_dir: str | Path | None = None) -> str:
     """Devuelve el URI donde MLflow debe guardar los artefactos.
 
@@ -124,14 +145,23 @@ def configure_mlflow(
     tracking_uri = get_tracking_uri(db_path)
     mlflow.set_tracking_uri(tracking_uri)
 
-    # El experimento se crea explícitamente para poder fijar dónde van los
-    # artefactos; ``set_experiment`` por sí solo no permite indicarlo y los
-    # dejaría en una ruta que depende del directorio de ejecución.
     if mlflow.get_experiment_by_name(experiment_name) is None:
-        mlflow.create_experiment(
-            experiment_name,
-            artifact_location=get_artifacts_uri(artifacts_dir),
-        )
+        if is_local_backend(tracking_uri):
+            # Con el backend SQLite local hay que fijar la ubicación de los
+            # artefactos: si no, MLflow los deja en una ruta relativa al
+            # directorio desde el que se ejecutó el script, y cada integrante
+            # terminaria con los artefactos en un sitio distinto.
+            mlflow.create_experiment(
+                experiment_name,
+                artifact_location=get_artifacts_uri(artifacts_dir),
+            )
+        else:
+            # Contra un servidor remoto (por ejemplo MLflow en una EC2) NO se
+            # pasa artifact_location: seria una ruta del disco local de quien
+            # crea el experimento, que no existe en el servidor y queda grabada
+            # de forma permanente en el experimento. El servidor sabe donde
+            # guardar sus propios artefactos.
+            mlflow.create_experiment(experiment_name)
 
     mlflow.set_experiment(experiment_name)
 

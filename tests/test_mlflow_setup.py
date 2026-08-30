@@ -2,14 +2,18 @@ import re
 
 import pytest
 
+import mlflow
+
 from src.tracking.mlflow_setup import (
     DEFAULT_ARTIFACTS_DIR,
     DEFAULT_DB_NAME,
     EXPERIMENT_NAME,
     TRACKING_URI_ENV_VAR,
     build_run_name,
+    configure_mlflow,
     get_artifacts_uri,
     get_tracking_uri,
+    is_local_backend,
 )
 
 
@@ -66,6 +70,51 @@ def test_build_run_name_includes_variant_when_provided():
 def test_build_run_name_rejects_empty_model_name():
     with pytest.raises(ValueError):
         build_run_name("")
+
+
+def test_is_local_backend_distinguishes_server_from_local_storage():
+    assert is_local_backend("sqlite:///C:/repo/mlflow.db")
+    assert is_local_backend("file:///C:/repo/mlruns")
+    assert not is_local_backend("http://18.212.44.10:8050")
+    assert not is_local_backend("https://mlflow.ejemplo.com")
+
+
+def test_configure_mlflow_fixes_artifact_location_on_local_backend(tmp_path):
+    # Con el backend local SI se fija la ubicacion: de lo contrario MLflow la
+    # resolveria relativa al directorio de ejecucion.
+    configure_mlflow(
+        experiment_name="prueba-local",
+        db_path=tmp_path / "mlflow.db",
+        artifacts_dir=tmp_path / "mlartifacts",
+    )
+
+    experimento = mlflow.get_experiment_by_name("prueba-local")
+
+    assert experimento is not None
+    assert "mlartifacts" in experimento.artifact_location
+
+
+def test_configure_mlflow_lets_remote_server_choose_artifact_location(
+    monkeypatch, tmp_path
+):
+    # Contra un servidor remoto NO debe enviarse una ruta del disco local: se
+    # grabaria de forma permanente en el experimento del servidor y apuntaria a
+    # una carpeta que alli no existe. Este es el defecto que la prueba fija.
+    llamadas = {}
+
+    def create_experiment_espia(name, artifact_location=None, tags=None):
+        llamadas["artifact_location"] = artifact_location
+        return "id-falso"
+
+    monkeypatch.setenv(TRACKING_URI_ENV_VAR, "http://servidor-mlflow:8050")
+    monkeypatch.setattr(mlflow, "get_experiment_by_name", lambda _name: None)
+    monkeypatch.setattr(mlflow, "create_experiment", create_experiment_espia)
+    monkeypatch.setattr(mlflow, "set_tracking_uri", lambda _uri: None)
+    monkeypatch.setattr(mlflow, "set_experiment", lambda _name: None)
+
+    configure_mlflow(experiment_name="prueba-remota")
+
+    assert llamadas["artifact_location"] is None
 
 
 def test_experiment_name_is_shared_across_the_project():

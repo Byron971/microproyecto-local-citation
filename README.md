@@ -347,9 +347,11 @@ Sobre las 9.381 consultas de validación, contra los 19.776 artículos candidato
 | Métrica | Valor |
 |---|---|
 | Recall@10 | 0,2541 |
-| MRR | 0,1249 |
+| MRR@10 | 0,1249 |
 
 Es decir, sin ningún entrenamiento, el artículo correcto aparece entre los 10 primeros en aproximadamente 1 de cada 4 consultas. La evaluación completa toma unos 20 segundos.
+
+Ambas métricas se calculan **truncadas a K**, como es convención en recuperación de información: el ranking se corta en las K primeras posiciones antes de evaluarlas. Por eso su valor depende de `--k`, y el `k` empleado queda registrado como parámetro de cada run de MLflow. Al comparar corridas entre sí, hay que asegurarse de que usen el mismo K.
 
 ## Maqueta del prototipo
 
