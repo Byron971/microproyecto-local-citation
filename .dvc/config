@@ -1,1 +1,6 @@
-
+[core]
+    remote = maia-josezambrana
+['remote "maia-josezambrana"']
+    url = s3://maia-josezambrana/dvcstore
+['remote "aws-remote"']
+    url = s3://byron971-local-citation-dvcstore-20260817
