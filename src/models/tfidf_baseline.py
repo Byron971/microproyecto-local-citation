@@ -133,6 +133,26 @@ class TfidfBaseline:
 
         return self
 
+    @property
+    def paper_matrix(self) -> sparse.csr_matrix:
+        """Matriz TF-IDF de los artículos, en el mismo orden que ``paper_ids``.
+
+        Se expone para permitir análisis que necesitan los valores de similitud
+        y no solo el ranking, como el diagnóstico de muestreo de negativos.
+        ``rank()`` devuelve identificadores ordenados pero descarta los puntajes,
+        y hay preguntas -por ejemplo, qué tan parecido es un negativo concreto a
+        su consulta- que no se pueden responder sin ellos.
+
+        Returns
+        -------
+        scipy.sparse.csr_matrix
+            Matriz dispersa de forma ``(n_articulos, n_terminos)``.
+        """
+        if self._paper_matrix is None:
+            raise RuntimeError("Debe llamarse fit() antes de usar paper_matrix.")
+
+        return self._paper_matrix
+
     def rank(
         self,
         contexts: Sequence[str],
