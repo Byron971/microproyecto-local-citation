@@ -305,6 +305,51 @@ Las fuentes de los modelos están en \texttt{src/models/} y \texttt{src/training
 \end{figure}
 
 % ============================================================================
+% REPORTE DE TRABAJO EN EQUIPO
+% Va dentro de este mismo documento pero en su propia hoja, igual que en la
+% Entrega 1. \clearpage (no \newpage) coloca primero los flotantes pendientes
+% -las figuras de AWS- y despues corta la pagina, para que la seccion arranque
+% sola.
+% ============================================================================
+\clearpage
+\section{Reporte de trabajo en equipo}
+
+El equipo distribuyó las actividades de esta entrega en cuatro frentes: el pipeline de datos supervisados, la infraestructura de seguimiento de experimentos, el desarrollo y la evaluación de los modelos, y el tablero. La coordinación se realizó de forma asíncrona mediante \textit{issues} agrupados en hitos con fecha límite, y la integración a la rama principal se hizo a través de \textit{Pull Requests} revisados por los demás integrantes, con un archivo \texttt{CODEOWNERS} que solicita automáticamente la revisión de todo el equipo. La Tabla~\ref{tab:equipo} resume el aporte de cada integrante, respaldado por sus propios \textit{commits} en el historial de Git.
+
+\begin{table}[h!]
+\centering
+\caption{Aportes verificables en el repositorio}
+\label{tab:equipo}
+\small
+\begin{tabular}{p{2.9cm} p{11.4cm}}
+\toprule
+\textbf{Integrante} & \textbf{Aporte y evidencia registrada} \\
+\midrule
+John Arias &
+Pipeline de datos supervisados: carga de los conjuntos, generación reproducible de pares positivos y negativos con semilla fija, y versionamiento de los conjuntos procesados con DVC. Métricas de evaluación de ranking (Recall@K y \textit{MRR}). Integración de contribuciones mediante \textit{Pull Request}. \\[3pt]
+
+Carlos Caicedo &
+Infraestructura de seguimiento de experimentos con MLflow, incluido su despliegue sobre una instancia AWS EC2 y la configuración centralizada de convenciones de experimentos y métricas. Línea base TF--IDF con similitud coseno, su evaluación sobre las 9.381 consultas de validación y el barrido de corridas registradas en el servidor. Restauración de los remotos de DVC. \\[3pt]
+
+% TODO: si cierra el issue #6 antes de la entrega, reemplazar la nota de
+% "sin commits" por la descripcion del aporte efectivamente registrado.
+José Zambrana &
+Responsable del entrenamiento y la evaluación del modelo supervisado de relevancia sobre los pares generados (\textit{issue} \#6). \emph{Sin \textit{commits} reportados en el repositorio a la fecha de corte de este reporte.} \\[3pt]
+
+% TODO: idem para los issues #8 y #9 (tablero).
+Carlos Duque &
+Responsable del desarrollo del tablero conforme a la maqueta aprobada y de su conexión con los resultados del análisis (\textit{issues} \#8 y \#9). \emph{Sin \textit{commits} reportados en el repositorio a la fecha de corte de este reporte.} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{-4pt}
+\noindent\footnotesize\textit{Fecha de corte: 1 de septiembre de 2026. La verificación se hizo sobre el historial de la rama principal y de las ramas de trabajo del repositorio, contando únicamente los \textit{commits} autorizados por cada integrante.}\normalsize
+
+\vspace{6pt}
+El reparto de tareas quedó registrado en los \textit{issues} del repositorio, cada uno con su criterio de aceptación y la evidencia que lo respalda, de modo que el avance de cada integrante puede verificarse directamente sobre el repositorio. Los experimentos quedaron centralizados en un único servidor de MLflow, lo que permite comparar corridas de distintos integrantes bajo el mismo experimento y con las mismas métricas.
+
+% ============================================================================
 \section*{Referencias}
 \addcontentsline{toc}{section}{Referencias}
 
