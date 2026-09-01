@@ -12,6 +12,8 @@ import argparse
 from pathlib import Path
 from typing import Any
 
+import mlflow
+
 from src.data.load_data import load_json
 from src.evaluation.ranking_metrics import mean_reciprocal_rank, recall_at_k
 from src.models.tfidf_baseline import TfidfBaseline
@@ -116,24 +118,12 @@ def main() -> None:
 
     print(f"  {len(papers)} artículos | {len(split)} consultas de {args.split}")
 
-    print("Ajustando TF-IDF sobre los artículos...")
-    baseline = TfidfBaseline(
-        max_features=args.max_features,
-        min_df=args.min_df,
-    ).fit(papers)
-
-    print(f"  vocabulario: {len(baseline.vectorizer.vocabulary_)} términos")
-
-    print(f"Evaluando Recall@{args.k} y MRR@{args.k}...")
-    mean_recall, mrr = evaluate_baseline(baseline, contexts, split, args.k)
-
-    print(f"\n  Recall@{args.k}: {mean_recall:.4f}")
-    print(f"  MRR@{args.k}:{'':<6} {mrr:.4f}")
-
-    # El run se registra al final, cuando ya hay métricas: así no quedan runs
-    # vacíos en MLflow si la evaluación falla a mitad de camino.
     configure_mlflow()
 
+    # El run envuelve el entrenamiento y la evaluación completos, no solo el
+    # registro de métricas. Si se abriera al final, la duración que muestra
+    # MLflow sería de milisegundos y no reflejaría el costo real del
+    # experimento, que es justamente lo que se compara entre corridas.
     with start_run(
         "tfidf",
         params={
@@ -145,6 +135,22 @@ def main() -> None:
             "n_papers": len(papers),
         },
     ):
+        print("Ajustando TF-IDF sobre los artículos...")
+        baseline = TfidfBaseline(
+            max_features=args.max_features,
+            min_df=args.min_df,
+        ).fit(papers)
+
+        vocabulario = len(baseline.vectorizer.vocabulary_)
+        print(f"  vocabulario: {vocabulario} términos")
+        mlflow.log_param("vocabulario", vocabulario)
+
+        print(f"Evaluando Recall@{args.k} y MRR@{args.k}...")
+        mean_recall, mrr = evaluate_baseline(baseline, contexts, split, args.k)
+
+        print(f"\n  Recall@{args.k}: {mean_recall:.4f}")
+        print(f"  MRR@{args.k}:{'':<6} {mrr:.4f}")
+
         log_ranking_metrics(recall_at_k=mean_recall, mrr=mrr, k=args.k)
 
     print("\nRun registrado en MLflow.")
