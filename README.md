@@ -168,6 +168,7 @@ Después de agregar, eliminar o actualizar dependencias con `uv`, debe regenerar
 
 ```bash
 uv export --locked --no-dev --format requirements.txt --no-hashes --output-file requirements.txt
+```
 
 ## Obtener los datos
 
