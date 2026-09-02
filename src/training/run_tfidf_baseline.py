@@ -12,6 +12,7 @@ import argparse
 from pathlib import Path
 from typing import Any
 
+import json
 import mlflow
 
 from src.data.load_data import load_json
@@ -25,6 +26,73 @@ from src.tracking.mlflow_setup import (
 
 DEFAULT_DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "raw"
 
+def build_candidate_records(
+    split: list[dict[str, Any]],
+    rankings: list[list[str]],
+) -> list[dict[str, Any]]:
+    """Construye registros de candidatos TF-IDF asociados a cada contexto."""
+    return [
+        {
+            "context_id": record["context_id"],
+            "positive_ids": record["positive_ids"],
+            "candidate_ids": ranking,
+        }
+        for record, ranking in zip(split, rankings, strict=True)
+    ]
+
+def get_top_candidates(
+    papers: dict[str, dict[str, Any]],
+    contexts: dict[str, dict[str, Any]],
+    split: list[dict[str, Any]],
+    top_n: int = 100,
+) -> list[dict[str, Any]]:
+
+
+
+    """Genera los Top-N candidatos TF-IDF para cada contexto."""
+    baseline = TfidfBaseline().fit(papers)
+
+    query_texts = [
+        contexts[row["context_id"]]["masked_text"]
+        for row in split
+    ]
+
+    rankings = baseline.rank(
+        query_texts,
+        top_k=top_n,
+    )
+
+    return build_candidate_records(split, rankings)
+
+def export_top100(
+    papers: dict[str, dict[str, Any]],
+    contexts: dict[str, dict[str, Any]],
+    split: list[dict[str, Any]],
+    output_path: str | Path,
+) -> None:
+    """Genera y guarda los Top-100 candidatos TF-IDF."""
+    records = get_top_candidates(
+        papers=papers,
+        contexts=contexts,
+        split=split,
+        top_n=100,
+    )
+
+    save_candidate_records(
+        records=records,
+        output_path=output_path,
+    )
+
+def save_candidate_records(
+    records: list[dict[str, Any]],
+    output_path: str | Path,
+) -> None:
+    """Guarda los candidatos TF-IDF en un archivo JSON reproducible."""
+    path = Path(output_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open("w", encoding="utf-8") as file:
+        json.dump(records, file, ensure_ascii=False)
 
 def evaluate_baseline(
     baseline: TfidfBaseline,
@@ -32,6 +100,9 @@ def evaluate_baseline(
     split: list[dict[str, Any]],
     k: int,
 ) -> tuple[float, float]:
+
+
+    
     """Evalúa la línea base sobre un split y devuelve (Recall@K, MRR@K).
 
     Ambas métricas van truncadas a K: el ranking se corta en las K primeras
@@ -84,7 +155,7 @@ def main() -> None:
     parser.add_argument(
         "--split",
         default="val",
-        choices=["val", "test"],
+        choices=["train", "val", "test"],
         help="Partición sobre la que se evalúa.",
     )
     parser.add_argument("--k", type=int, default=10, help="Profundidad del ranking.")
