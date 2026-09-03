@@ -233,16 +233,28 @@ data/raw.dvc
 
 contiene la referencia a la versión de los datos utilizada por el proyecto.
 
-La configuración de los remotos DVC no se almacena de forma compartida en el repositorio. Cada integrante debe configurar localmente un remoto DVC al que tenga acceso antes de utilizar operaciones como:
+### Descargar los datos versionados
+
+El remoto por defecto es `publico`, un bucket S3 expuesto por HTTPS y de **solo lectura**. No requiere credenciales de AWS, así que basta con:
 
 ```bash
 uv run dvc pull
 ```
 
-o:
+### Publicar datos nuevos
+
+Como el remoto por defecto es de solo lectura, un `dvc push` debe indicar explícitamente un remoto sobre el que se tenga permiso de escritura:
 
 ```bash
-uv run dvc push
+uv run dvc push -r caicedo
+```
+
+Los remotos `s3://` declarados en `.dvc/config` pertenecen a cuentas distintas de AWS Academy. **Esas cuentas están aisladas entre sí**, de modo que ningún integrante puede leer el bucket de otro: cada quien escribe en el suyo, y `publico` es el único legible por todos.
+
+Las credenciales de AWS Academy son temporales y caducan al detenerse el Learner Lab. Antes de un `dvc push`, conviene comprobarlas:
+
+```bash
+aws sts get-caller-identity
 ```
 
 Para verificar el estado de los datos:
@@ -250,6 +262,19 @@ Para verificar el estado de los datos:
 ```bash
 uv run dvc status
 ```
+
+> **Advertencia.** `dvc status -c` no sirve como prueba de que los datos se puedan recuperar: sobre un bucket sin ningún permiso de lectura llega a reportar *«Cache and remote are in sync»*. Solo un `dvc pull` completo lo demuestra.
+
+### Regenerar los datos procesados sin descargarlos
+
+Todo el contenido de `data/processed/` se deriva de `data/raw/` de forma determinista, por lo que puede reconstruirse sin acceder a ningún remoto:
+
+```bash
+uv run python -m src.data.make_processed        # pares supervisados
+uv run python -m src.training.export_top100     # Top-100 de candidatos TF-IDF
+```
+
+El resultado es idéntico byte a byte al versionado: al regenerarlo se obtiene el mismo hash que registra `data/processed.dvc` (`c345a8e4…`, 4 archivos, 50 247 436 bytes). Esto hace que el proyecto siga siendo reproducible aunque un remoto deje de estar disponible, algo esperable porque las cuentas de AWS Academy se desactivan al terminar el curso.
 
 ## Ejecutar el análisis exploratorio
 
