@@ -46,9 +46,6 @@ def get_top_candidates(
     split: list[dict[str, Any]],
     top_n: int = 100,
 ) -> list[dict[str, Any]]:
-
-
-
     """Genera los Top-N candidatos TF-IDF para cada contexto."""
     baseline = TfidfBaseline().fit(papers)
 
@@ -59,10 +56,23 @@ def get_top_candidates(
 
     rankings = baseline.rank(
         query_texts,
-        top_k=top_n,
+        top_k=top_n + 1,
     )
 
-    return build_candidate_records(split, rankings)
+    filtered_rankings = []
+
+    for row, ranking in zip(split, rankings, strict=True):
+        citing_id = contexts[row["context_id"]].get("citing_id")
+
+        filtered = [
+            paper_id
+            for paper_id in ranking
+            if paper_id != citing_id
+        ]
+
+        filtered_rankings.append(filtered[:top_n])
+
+    return build_candidate_records(split, filtered_rankings)
 
 def export_top100(
     papers: dict[str, dict[str, Any]],

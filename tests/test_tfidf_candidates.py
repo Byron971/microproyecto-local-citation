@@ -196,3 +196,45 @@ def test_export_split_top100(tmp_path):
 
     assert len(records) == 1
     assert len(records[0]["candidate_ids"]) == 100
+
+def test_top_candidates_excludes_citing_paper():
+    papers = {
+        "paper-citing": {
+            "title": "Neural translation with attention",
+            "abstract": "Neural translation attention methods",
+        },
+        "paper-positive": {
+            "title": "Neural translation model",
+            "abstract": "Translation model using neural methods",
+        },
+        "paper-other": {
+            "title": "Protein folding",
+            "abstract": "Biology and protein structures",
+        },
+    }
+
+    contexts = {
+        "context-1": {
+            "masked_text": "Neural translation with attention TARGETCIT",
+            "citing_id": "paper-citing",
+        }
+    }
+
+    split = [
+        {
+            "context_id": "context-1",
+            "positive_ids": ["paper-positive"],
+        }
+    ]
+
+    records = run_tfidf_baseline.get_top_candidates(
+        papers=papers,
+        contexts=contexts,
+        split=split,
+        top_n=2,
+    )
+
+    candidates = records[0]["candidate_ids"]
+
+    assert "paper-citing" not in candidates
+    assert len(candidates) == 2
