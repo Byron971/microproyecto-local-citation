@@ -1,8 +1,10 @@
 [core]
-    remote = maia-josezambrana
+    remote = publico
 ['remote "maia-josezambrana"']
     url = s3://maia-josezambrana/dvcstore
 ['remote "aws-remote"']
     url = s3://byron971-local-citation-dvcstore-20260817
 ['remote "caicedo"']
     url = s3://caicedo-local-citation-dvcstore
+['remote "publico"']
+    url = https://caicedo-local-citation-dvcstore.s3.amazonaws.com
