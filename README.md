@@ -8,7 +8,7 @@ El proyecto busca desarrollar un prototipo de recomendación local de citas acad
 
 El sistema recibe como entrada un contexto textual académico en inglés y busca generar un ranking de artículos candidatos potencialmente relevantes para ser citados.
 
-Actualmente, el proyecto incluye versionamiento de datos con DVC, análisis exploratorio del conjunto de datos y una maqueta funcional compuesta por un frontend y un backend desarrollado en FastAPI.
+Actualmente, el proyecto incluye versionamiento de datos con DVC, análisis exploratorio del conjunto de datos, una línea base TF-IDF evaluada y registrada en MLflow, y un tablero web que sirve ese modelo junto con los resultados del estudio de los datos.
 
 ## Fuente de datos
 
@@ -32,8 +32,8 @@ Los archivos utilizados son:
 - `data/raw/`: datos originales utilizados por el proyecto.
 - `data/processed/`: espacio destinado a datos procesados.
 - `notebooks/`: análisis exploratorio y experimentación.
-- `maqueta/`: frontend y backend mínimo del prototipo.
 - `src/`: código fuente del proyecto.
+- `src/app/`: tablero y backend que sirven el modelo real.
 - `reportes/`: informes y soportes del proyecto.
 - `pyproject.toml`: configuración del proyecto y declaración de dependencias.
 - `uv.lock`: versiones resueltas de las dependencias para garantizar reproducibilidad.
@@ -379,89 +379,80 @@ Es decir, sin ningún entrenamiento, el artículo correcto aparece entre los 10 
 
 Ambas métricas se calculan **truncadas a K**, como es convención en recuperación de información: el ranking se corta en las K primeras posiciones antes de evaluarlas. Por eso su valor depende de `--k`, y el `k` empleado queda registrado como parámetro de cada run de MLflow. Al comparar corridas entre sí, hay que asegurarse de que usen el mismo K.
 
-## Maqueta del prototipo
+## Tablero del prototipo
 
-La carpeta `maqueta/` contiene una maqueta funcional de la interfaz propuesta para el recomendador local de citas.
+La carpeta `src/app/` contiene el tablero del proyecto: un backend en FastAPI que **sirve el modelo real** y un frontend que muestra, además de las recomendaciones, la información obtenida en el estudio de los datos.
 
-Está compuesta por:
+### 1. Precalcular la información del tablero
 
-- frontend desarrollado con HTML, CSS y JavaScript;
-- backend mínimo desarrollado con FastAPI;
-- endpoint `POST /predict`.
-
-En el estado actual, la maqueta todavía no utiliza un modelo de recomendación entrenado.
-
-El endpoint devuelve recomendaciones fijas:
-
-- `Paper A`: 0.91
-- `Paper B`: 0.84
-- `Paper C`: 0.76
-
-Esto permite validar el flujo:
-
-```text
-Usuario
-   ↓
-Frontend
-   ↓
-POST /predict
-   ↓
-FastAPI
-   ↓
-Respuesta
-   ↓
-Frontend
-```
-
-### 1. Levantar el backend
-
-Desde la raíz del proyecto:
+El tablero muestra el análisis exploratorio, la evaluación del modelo y el diagnóstico de negativos. Calcular todo eso tarda alrededor de un minuto —  sobre todo el conteo de bigramas en los 63.768 contextos—  así que se hace una sola vez y el resultado queda en `data/processed/dashboard_insights.json`:
 
 ```bash
-uv run maqueta-back
+uv run python -m src.app.insights
 ```
 
-El backend quedará disponible en:
+Si el archivo ya existe, el comando no hace nada. Para rehacerlo tras cambiar los datos o el modelo:
+
+```bash
+uv run python -m src.app.insights --force
+```
+
+Este paso es opcional: si el archivo no está, el backend lo calcula al arrancar y lo guarda. Precalcularlo solo evita esa espera en el primer arranque.
+
+### 2. Levantar el tablero
+
+```bash
+uv run tablero
+```
+
+Equivale a:
+
+```bash
+uv run python -m uvicorn src.app.main:app --host 127.0.0.1 --port 8000
+```
+
+El arranque tarda unos segundos porque ajusta el TF-IDF sobre el corpus. Cuando la consola escribe `Backend listo`, abrir:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-### 2. Levantar el frontend
+### 3. Probar el tablero
 
-En otra terminal:
+El panel izquierdo recibe un contexto académico en inglés y devuelve los artículos más pertinentes, con su título, su resumen y la similitud calculada.
+
+El botón **«Usar un ejemplo real»** trae un contexto auténtico del corpus. Como se conoce la cita que le correspondía, el tablero marca con `✓` si el modelo la encontró e indica en qué posición quedó. Conviene tener presente el Recall@10 de 0,2541: el artículo correcto aparece entre los diez primeros en aproximadamente una de cada cuatro consultas.
+
+Las tres pestañas inferiores muestran:
+
+| Pestaña | Contenido |
+|---|---|
+| Estudio de los datos | Tamaños y particiones, nueve comprobaciones de calidad, longitudes de los textos, términos y bigramas frecuentes, señal léxica y artículos más citados. |
+| Desempeño del modelo | Recall@K y MRR@K para K entre 1 y 100, con la lectura de por qué el margen está en el reordenamiento. |
+| Diagnóstico de negativos | Similitud media y AUC de las tres poblaciones, con la explicación de por qué el muestreo aleatorio produce una tarea artificialmente fácil. |
+
+La pestaña de diagnóstico de negativos necesita los pares supervisados de `data/processed/`. Si faltan, el tablero muestra un aviso en esa pestaña y el resto sigue funcionando.
+
+### API
+
+El backend expone además una API que puede usarse sin el frontend:
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| `GET` | `/api/estado` | Indica si el modelo está listo y con qué parámetros se cargó. |
+| `POST` | `/api/recomendar` | Recibe `{"contexto": "...", "top_k": 10}` y devuelve el ranking. |
+| `GET` | `/api/insights` | Toda la información que dibuja el tablero. |
+| `GET` | `/api/ejemplo` | Un contexto real del corpus con su cita correcta. |
+
+Ejemplo:
 
 ```bash
-uv run maqueta-front
+curl -X POST http://127.0.0.1:8000/api/recomendar \
+  -H "Content-Type: application/json" \
+  -d '{"contexto": "Recent work on neural machine translation has shown that attention mechanisms improve alignment quality.", "top_k": 5}'
 ```
 
-El frontend quedará disponible en:
-
-```text
-http://localhost:3000
-```
-
-### 3. Probar la maqueta
-
-Abrir:
-
-```text
-http://localhost:3000
-```
-
-Escribir un contexto académico en inglés y presionar:
-
-```text
-Recommend citations
-```
-
-El frontend enviará el contexto al endpoint:
-
-```text
-http://localhost:8000/predict
-```
-
-y mostrará las recomendaciones devueltas por el backend.
+La documentación interactiva de FastAPI queda en `http://127.0.0.1:8000/docs`.
 
 ## Dependencias principales
 
@@ -527,12 +518,13 @@ Actualmente se encuentran implementados:
 - obtención y almacenamiento local del dataset;
 - análisis exploratorio inicial de los datos;
 - notebook reproducible de exploración;
-- maqueta del frontend;
-- backend mínimo en FastAPI;
-- comunicación funcional entre frontend y backend.
 - seguimiento de experimentos preparado con MLflow;
 - estructura inicial de pruebas automatizadas con pytest;
+- línea base TF-IDF evaluada sobre validación y registrada en MLflow;
+- diagnóstico del muestreo de negativos;
+- exportación de los Top-100 candidatos como insumo del reordenador;
+- tablero web que sirve el modelo real y publica los resultados del estudio de los datos.
 
-La maqueta permite probar el flujo completo de la aplicación, pero todavía utiliza recomendaciones fijas y no incorpora un modelo de aprendizaje automático entrenado.
+El tablero de `src/app/` ya produce recomendaciones con el modelo entrenado y muestra las métricas obtenidas. Falta el reordenador supervisado de la segunda etapa: `src/features/` y `src/models/` están preparados para alojarlo.
 
 Las siguientes etapas incorporarán procesamiento de datos, entrenamiento y evaluación del modelo, seguimiento de experimentos, empaquetado y despliegue.
