@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recomendación local de citas académicas</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="barra-titulo">
+    <h1>Recomendación local de citas académicas</h1>
+    <p>Prototipo con línea base TF-IDF sobre el corpus ACL-200</p>
+  </div>
+  <div class="estado" id="estado">
+    <span class="punto punto-cargando"></span>
+    <span id="estado-texto">Conectando con el backend…</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ Recomendador ============ -->
+  <section class="tarjeta recomendador">
+    <div class="recomendador-entrada">
+      <h2>Contexto de cita</h2>
+      <p class="ayuda">
+        Escriba o pegue el fragmento académico <strong>en inglés</strong> donde haría falta
+        la referencia. El modelo compara ese texto con los 19.776 artículos del corpus.
+      </p>
+
+      <textarea id="contexto" rows="7" spellcheck="false"
+        placeholder="Ej.: Recent work on neural machine translation has shown that attention mechanisms substantially improve alignment quality…"></textarea>
+
+      <div class="controles">
+        <button id="btn-recomendar" type="button">Recomendar citas</button>
+        <label class="control-k">
+          Resultados
+          <select id="top-k">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+          </select>
+        </label>
+        <button id="btn-ejemplo" type="button" class="secundario">Usar un ejemplo real</button>
+      </div>
+
+      <div class="mensaje" id="mensaje"></div>
+    </div>
+
+    <div class="recomendador-salida">
+      <h2>Artículos recomendados</h2>
+      <ol class="resultados" id="resultados">
+        <li class="vacio">Aún no hay consultas. Escriba un contexto y pulse «Recomendar citas».</li>
+      </ol>
+
+      <div class="detalle" id="detalle">
+        <p class="vacio">Seleccione un artículo de la lista para ver su resumen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Tablero ============ -->
+  <nav class="pestanas" id="pestanas">
+    <button class="pestana activa" data-panel="panel-datos">Estudio de los datos</button>
+    <button class="pestana" data-panel="panel-modelo">Desempeño del modelo</button>
+    <button class="pestana" data-panel="panel-negativos">Diagnóstico de negativos</button>
+  </nav>
+
+  <!-- ---- Panel: estudio de los datos ---- -->
+  <div class="panel activo" id="panel-datos">
+
+    <section class="cifras" id="cifras"></section>
+
+    <div class="rejilla">
+      <section class="tarjeta">
+        <h2>Longitud de los textos</h2>
+        <p class="ayuda">
+          Determina si hará falta truncar la entrada de modelos con ventana limitada.
+          Medida en palabras.
+        </p>
+        <div id="tabla-longitudes"></div>
+        <div class="grafica" id="hist-contextos"></div>
+        <div class="grafica" id="hist-resumenes"></div>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Calidad de los datos</h2>
+        <p class="ayuda">
+          Cada comprobación cuenta registros defectuosos, así que el valor esperado es cero.
+        </p>
+        <div id="tabla-calidad"></div>
+
+        <h2 class="separado">Integridad de las particiones</h2>
+        <p class="ayuda">
+          Documentos citantes y pares citante-citado compartidos entre particiones. Si no
+          fueran cero, el modelo se evaluaría sobre documentos ya vistos.
+        </p>
+        <div id="tabla-integridad"></div>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Términos más frecuentes en los contextos</h2>
+        <p class="ayuda">
+          Sin marcadores de cita ni palabras vacías del inglés. Revela el dominio del corpus.
+        </p>
+        <div class="grafica" id="graf-unigramas"></div>
+        <div class="grafica" id="graf-bigramas"></div>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Señal léxica: cita real frente a artículo al azar</h2>
+        <p class="ayuda" id="ayuda-similitud"></p>
+        <div class="destacado" id="destacado-similitud"></div>
+        <div class="grafica" id="graf-similitud"></div>
+      </section>
+
+      <section class="tarjeta ancha">
+        <h2>Artículos más citados</h2>
+        <p class="ayuda">
+          La distribución de citas está muy sesgada: unos pocos artículos muy influyentes
+          concentran cientos de contextos.
+        </p>
+        <div class="grafica" id="graf-citados"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ---- Panel: desempeño del modelo ---- -->
+  <div class="panel" id="panel-modelo">
+    <section class="cifras" id="cifras-modelo"></section>
+
+    <div class="rejilla">
+      <section class="tarjeta ancha">
+        <h2>Recall@K y MRR@K según la profundidad del ranking</h2>
+        <p class="ayuda">
+          El Recall mide si el artículo correcto <em>aparece</em> entre los K primeros; el MRR,
+          si además queda <em>arriba</em>. Evaluado sobre la partición de validación.
+        </p>
+        <div class="grafica" id="graf-curva"></div>
+        <div id="tabla-curva"></div>
+      </section>
+
+      <section class="tarjeta ancha">
+        <h2>Qué significan estos resultados</h2>
+        <div class="lectura" id="lectura-modelo"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ---- Panel: diagnóstico de negativos ---- -->
+  <div class="panel" id="panel-negativos">
+    <div class="rejilla" id="rejilla-negativos">
+      <section class="tarjeta">
+        <h2>Similitud media con la consulta</h2>
+        <p class="ayuda">
+          Tres poblaciones sobre las mismas consultas: el artículo citado, los negativos
+          aleatorios que genera el pipeline actual y los negativos duros del Top-100.
+        </p>
+        <div class="grafica" id="graf-similitud-negativos"></div>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Separabilidad con la similitud como único predictor</h2>
+        <p class="ayuda">
+          AUC cercano a 1 significa que la tarea se resuelve sin modelo alguno.
+        </p>
+        <div class="grafica" id="graf-auc"></div>
+      </section>
+
+      <section class="tarjeta ancha">
+        <h2>Lectura del diagnóstico</h2>
+        <div class="lectura" id="lectura-negativos"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="pie">
+    <span id="pie-texto">Cargando información…</span>
+  </footer>
+
+</main>
+
+<script src="/static/charts.js"></script>
+<script src="/static/dashboard.js"></script>
+</body>
+</html>
