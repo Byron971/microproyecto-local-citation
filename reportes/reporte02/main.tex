@@ -7,7 +7,6 @@
 % limite de 1 pagina.
 %
 % PENDIENTE por otros integrantes, marcado con % TODO en el cuerpo:
-%   - Seccion 2: resultados del modelo supervisado (issue #6)
 %   - Seccion 4: descripcion del tablero real (issues #8 y #9)
 % ============================================================================
 \documentclass[11pt]{article}
@@ -201,27 +200,40 @@ Filtro más estricto & 50.000 & 5 & 13.834 & 0,2417 \\
 
 Reducir el vocabulario en un 60\,\% cuesta apenas un 7,5\,\% de Recall, lo que indica rendimientos decrecientes y ofrece margen para acotar el consumo de memoria en el despliegue.
 
-% TODO (issue #6, Jose Zambrana): agregar aqui la subseccion del modelo
-% supervisado con sus resultados sobre las MISMAS 9.381 consultas de
-% validacion y el mismo K, para que la comparacion sea valida. Incluir la
-% tabla comparativa contra la linea base.
-%
-% ADVERTENCIA IMPORTANTE: los pares de entrenamiento generados en
-% src/data/build_pairs.py usan negativos muestreados al azar sobre los 19.776
-% articulos. En servicio el reordenador solo vera los mejores candidatos de
-% TF-IDF, todos lexicamente parecidos entre si. Entrenar con negativos
-% aleatorios produce un modelo con exactitud alta en una tarea trivial que no
-% mejora la linea base. Se requieren negativos duros (tomados del top-N de
-% TF-IDF que no son el positivo) antes de entrenar.
+\subsection{Reordenador supervisado con regresión logística}
+
+Se implementó un modelo de segunda etapa que asigna una probabilidad de relevancia a cada par contexto--artículo y reordena los 100 candidatos recuperados por TF--IDF. Sus cinco variables son la similitud TF--IDF del contexto con el título y con el resumen, y las longitudes del contexto, título y resumen. Un \texttt{Pipeline} de scikit--learn estandariza estas variables y ajusta una regresión logística. La evaluación conserva los candidatos originales: por ello Recall@100 debe permanecer constante y sirve también como control de integridad.
+
+Se compararon dos conjuntos de entrenamiento con 30.390 consultas, un positivo y dos negativos por consulta. La variante \emph{aleatoria} muestrea los negativos del catálogo completo; la variante \emph{difícil} toma los dos primeros resultados incorrectos del Top--100 TF--IDF. Ambos modelos se evaluaron sobre las mismas 9.381 consultas de validación, con la misma semilla y los mismos candidatos. Para esta comparación se recalculó TF--IDF sobre el Top--100 y se excluyó el artículo citante; este protocolo explica la pequeña diferencia frente a los valores generales de la Tabla~\ref{tab:curva}.
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Comparación del reordenamiento sobre el mismo Top--100 de validación}
+\label{tab:supervisado}
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Método} & \textbf{Recall@10} & \textbf{MRR@10} & \textbf{Recall@100} \\
+\midrule
+TF--IDF sin reordenar             & 0,2571 & 0,1339 & 0,5160 \\
+Regresión logística, aleatorios   & \textbf{0,2882} & \textbf{0,1490} & 0,5160 \\
+Regresión logística, difíciles    & 0,0629 & 0,0212 & 0,5160 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La variante aleatoria mejora 0,0311 puntos de Recall@10 (12,1\,\% relativo) y 0,0151 de MRR@10 (11,3\,\% relativo) frente a su línea base comparable. En cambio, usar exclusivamente los negativos más difíciles invierte una señal central: su similitud media con el resumen es 0,2726, frente a 0,1295 en los positivos. La regresión asigna entonces un coeficiente negativo a esa similitud ($-2{,}09$) y degrada el orden. El experimento muestra que \emph{más difícil} no significa automáticamente \emph{mejor}: con solo cinco variables, los negativos difíciles son léxicamente más parecidos que el artículo citado y el modelo no dispone de señales semánticas suficientes para distinguirlos.
+
+Como Recall@100 es 0,5160 en las tres filas, la caída no se debe a pérdida de candidatos sino únicamente al orden aprendido. Para esta entrega se selecciona la variante con negativos aleatorios. Como extensión se propone mezclar negativos aleatorios y difíciles, o incorporar representaciones semánticas, en lugar de usar exclusivamente los dos falsos positivos más altos.
 
 \subsection{Registro de experimentos en MLflow}
 
-Todas las corridas se registran en un servidor MLflow desplegado sobre una instancia EC2 (Ubuntu 24.04, \texttt{t2.medium}), accesible en el puerto 8050. La configuración está centralizada en \texttt{src/tracking/mlflow\_setup.py}, de modo que todos los experimentos comparten el mismo nombre de experimento y las mismas claves de métricas, condición necesaria para que las comparaciones sean válidas.
+El equipo dispone de un servidor MLflow desplegado sobre una instancia EC2 (Ubuntu 24.04, \texttt{t2.medium}), accesible en el puerto 8050. La configuración está centralizada en \path{src/tracking/mlflow_setup.py}, de modo que todos los experimentos comparten el mismo nombre y las mismas claves de métricas, condición necesaria para que las comparaciones sean válidas. Las corridas supervisadas completas se registraron primero en el almacén local reproducible; antes de la entrega deben repetirse con \path{MLFLOW_TRACKING_URI} apuntando al servidor para centralizar sus artefactos y actualizar la evidencia visual.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.92\textwidth]{mlflow_tabla_runs.png}
-\caption{Corridas registradas en el servidor MLflow de EC2, con sus métricas y los parámetros que las distinguen.}
+\caption{Corridas de la línea base registradas en el servidor MLflow de EC2. La captura debe actualizarse después de ejecutar allí las dos variantes supervisadas.}
 \label{fig:runs}
 \end{figure}
 
@@ -248,9 +260,7 @@ Es exactamente el escenario donde un reordenamiento supervisado aporta valor: no
   \item \textbf{Vocabulario.} Puede acotarse de forma significativa con una pérdida menor de desempeño, lo que reduce la memoria del artefacto desplegado.
 \end{itemize}
 
-% TODO (issue #7): al cerrar el modelo supervisado, agregar aqui la
-% comparacion cuantitativa contra la linea base y la justificacion de cual
-% modelo se selecciona para empaquetar en la Entrega 3.
+La comparación de la Tabla~\ref{tab:supervisado} confirma que el reordenamiento puede aprovechar parte de ese margen: la variante aleatoria supera a TF--IDF en Recall@10 y MRR@10. Por tanto, es el modelo seleccionado para empaquetar en la Entrega 3. La variante de negativos difíciles se conserva como resultado experimental y como diagnóstico de una limitación: la similitud léxica por sí sola no permite separar adecuadamente artículos temáticamente cercanos.
 
 % ============================================================================
 % 4. TABLERO DESARROLLADO
@@ -331,10 +341,8 @@ Pipeline de datos supervisados: carga de los conjuntos, generación reproducible
 Carlos Caicedo &
 Infraestructura de seguimiento de experimentos con MLflow, incluido su despliegue sobre una instancia AWS EC2 y la configuración centralizada de convenciones de experimentos y métricas. Línea base TF--IDF con similitud coseno, su evaluación sobre las 9.381 consultas de validación y el barrido de corridas registradas en el servidor. Restauración de los remotos de DVC. \\[3pt]
 
-% TODO: si cierra el issue #6 antes de la entrega, reemplazar la nota de
-% "sin commits" por la descripcion del aporte efectivamente registrado.
 José Zambrana &
-Responsable del entrenamiento y la evaluación del modelo supervisado de relevancia sobre los pares generados (\textit{issue} \#6). En la Entrega 1 aportó la exploración de datos y su cuaderno. \emph{Sin \textit{commits} registrados en la ventana de esta entrega; su último aporte es del 22 de agosto de 2026.} \\[3pt]
+Modelo supervisado de relevancia (\textit{issue} \#6): extracción de características contexto--artículo, generación reproducible de negativos difíciles, reordenador con regresión logística, comparación de estrategias mediante Recall@K y MRR, registro de modelos y resultados en MLflow, y pruebas automatizadas con pytest y Tox. En la Entrega 1 aportó la exploración de datos y su cuaderno. \\[3pt]
 
 % TODO: idem para los issues #8 y #9 (tablero).
 Carlos Duque &
