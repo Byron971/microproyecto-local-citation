@@ -7,7 +7,7 @@ negativos que hasta ahora solo existían en un notebook y en el reporte.
 
 Para ejecutarlo desde la raíz del proyecto:
 
-    python -m uvicorn src.app.main:app --host 127.0.0.1 --port 8000
+    uv run tablero
 
 Después, abrir http://127.0.0.1:8000 en el navegador.
 """
