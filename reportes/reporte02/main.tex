@@ -228,12 +228,12 @@ Como Recall@100 es 0,5160 en las tres filas, la caída no se debe a pérdida de 
 
 \subsection{Registro de experimentos en MLflow}
 
-El equipo dispone de un servidor MLflow desplegado sobre una instancia EC2 (Ubuntu 24.04, \texttt{t2.medium}), accesible en el puerto 8050. La configuración está centralizada en \path{src/tracking/mlflow_setup.py}, de modo que todos los experimentos comparten el mismo nombre y las mismas claves de métricas, condición necesaria para que las comparaciones sean válidas. Las corridas supervisadas completas se registraron primero en el almacén local reproducible; antes de la entrega deben repetirse con \path{MLFLOW_TRACKING_URI} apuntando al servidor para centralizar sus artefactos y actualizar la evidencia visual.
+El equipo dispone de un servidor MLflow desplegado sobre una instancia EC2 (Ubuntu 26.04, \texttt{t3.small}), accesible en el puerto 8050. La configuración está centralizada en \path{src/tracking/mlflow_setup.py}, de modo que todos los experimentos comparten el mismo nombre y las mismas claves de métricas, condición necesaria para que las comparaciones sean válidas. Las corridas supervisadas se repitieron con \path{MLFLOW_TRACKING_URI} apuntando a ese servidor, junto con una verificación de sensibilidad a la regularización (\texttt{c} = 0,1 / 1,0 / 10,0 para cada estrategia de negativos): el valor de \texttt{c} no cambia la conclusión en ningún caso, lo que confirma que el colapso de la variante difícil no se debe a la regularización sino a la señal invertida descrita más abajo.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.92\textwidth]{mlflow_tabla_runs.png}
-\caption{Corridas de la línea base registradas en el servidor MLflow de EC2. La captura debe actualizarse después de ejecutar allí las dos variantes supervisadas.}
+\caption{Corridas registradas en el servidor MLflow compartido: línea base y las seis combinaciones supervisadas (dos estrategias de negativos por tres valores de \texttt{c}), con Recall@10 y MRR@10 visibles para cada una.}
 \label{fig:runs}
 \end{figure}
 
