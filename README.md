@@ -293,6 +293,27 @@ notebooks/01_exploracion_datos.ipynb
 
 El notebook contiene el análisis exploratorio inicial del conjunto de datos, incluyendo características de los textos, particiones y análisis de similitud entre contextos y artículos citados.
 
+## Pruebas aisladas con Tox
+
+Además de ejecutar `pytest` dentro del entorno administrado por `uv`, el
+proyecto utiliza Tox para comprobar que las pruebas también pasan en un
+ambiente aislado y reproducible.
+
+```bash
+# Suite completa
+uv run tox
+
+# Pruebas rápidas del modelo supervisado
+uv run tox -e smoke-model
+
+# Una prueba o archivo específico
+uv run tox -e py314 -- tests/test_linear_reranker.py
+```
+
+Tox no ejecuta el entrenamiento completo sobre el corpus. Las corridas reales
+dependen de los datos versionados y de MLflow, y se lanzan explícitamente desde
+los módulos de `src/training/`.
+
 ## Seguimiento de experimentos con MLflow
 
 Todos los entrenamientos se registran en MLflow para poder comparar modelos con evidencia y no de memoria. La configuración está centralizada en `src/tracking/mlflow_setup.py`: **no se debe llamar a `mlflow` directamente desde los scripts de entrenamiento**, porque la comparación entre modelos solo funciona si todos los runs comparten experimento y nombres de métricas.
@@ -378,6 +399,85 @@ Sobre las 9.381 consultas de validación, contra los 19.776 artículos candidato
 Es decir, sin ningún entrenamiento, el artículo correcto aparece entre los 10 primeros en aproximadamente 1 de cada 4 consultas. La evaluación completa toma unos 20 segundos.
 
 Ambas métricas se calculan **truncadas a K**, como es convención en recuperación de información: el ranking se corta en las K primeras posiciones antes de evaluarlas. Por eso su valor depende de `--k`, y el `k` empleado queda registrado como parámetro de cada run de MLflow. Al comparar corridas entre sí, hay que asegurarse de que usen el mismo K.
+
+## Modelo supervisado: reordenador lineal
+
+El reordenador recibe el Top-N producido por TF-IDF y aprende una probabilidad
+de relevancia para cada par contexto-artículo. Utiliza cinco características
+interpretables: similitud con el título, similitud con el resumen y longitudes
+del contexto, título y resumen. Un `Pipeline` de scikit-learn aplica
+`StandardScaler` y luego `LogisticRegression`.
+
+La comparación principal cambia únicamente el origen de los ejemplos
+negativos:
+
+- `random`: artículos incorrectos muestreados aleatoriamente;
+- `hard`: artículos incorrectos que TF-IDF colocó entre los primeros resultados.
+
+Defina los parámetros en [config/model.yaml](config/model.yaml).
+
+### Referencia de configuración del modelo
+
+Todos los campos son obligatorios. Las rutas relativas se interpretan desde la
+raíz del repositorio. Estos son los valores iniciales:
+
+| Parámetro | Valor | Para qué sirve |
+|---|---|---|
+| `data_dir` | `data/raw` | Carpeta con artículos, contextos y particiones JSON. |
+| `output_dir` | `artifacts` | Carpeta donde se guarda cada modelo y sus resultados. |
+| `seed` | `42` | Semilla entera no negativa para repetir el muestreo y entrenamiento. |
+| `negative_strategy` | `random` | `random`: negativos al azar; `hard`: los primeros candidatos incorrectos de TF-IDF. |
+| `negatives_per_positive` | `2` | Número positivo de ejemplos negativos por cada cita correcta. |
+| `top_n` | `100` | Máximo de candidatos por consulta que se reordenan. |
+| `k` | `10` | Número de posiciones inspeccionadas para las métricas principales; debe ser positivo y no superar `top_n`. |
+| `max_features` | `50000` | Máximo de términos del vocabulario TF-IDF, compartido como configuración entre recuperador y extractor. |
+| `min_df` | `2` | Mínimo de artículos que deben contener un término para incluirlo. |
+| `c` | `1.0` | Inverso de la regularización logística: menor valor significa mayor regularización; debe ser mayor que cero. |
+
+Cada corrida guarda una copia del YAML; la evaluación usa la configuración del
+modelo guardado.
+
+### Qué significan Recall@10 y MRR@10
+
+`@10` significa que se consideran solo las primeras diez recomendaciones por
+consulta. **Recall@10** indica qué proporción de consultas tiene la cita correcta
+en esas posiciones (en este conjunto hay un positivo por consulta).
+**MRR@10** promedia el inverso de la posición del primer acierto: posición 1
+aporta 1; posición 2, 0,5; posición 10, 0,1; fuera del Top-10, 0.
+
+Por ejemplo, con cuatro citas correctas en las posiciones 1, 2, 10 y 15:
+
+```text
+Recall@10 = (1 + 1 + 1 + 0) / 4 = 0,75
+MRR@10    = (1 + 0,5 + 0,1 + 0) / 4 = 0,40
+```
+
+Recall mide si encontramos la cita; MRR también premia que aparezca arriba.
+El modelo actual obtiene Recall@10 = **0,2882** (28,82 % de consultas con
+acierto) y MRR@10 = **0,1490** (puntaje promedio, no porcentaje de aciertos).
+
+### Ejecutar el experimento
+
+Para comparar estrategias, cambie únicamente `negative_strategy` entre
+`random` y `hard` y ejecute una corrida por variante:
+
+```bash
+uv run python -m src.training.run_linear_reranker train
+```
+
+El comando entrena en `train`, evalúa en `val` y guarda un modelo completo en
+`artifacts/<run_id>/model.joblib`, junto al YAML efectivo y las métricas.
+El recuperador y el extractor usan la misma configuración TF-IDF.
+
+Para evaluar el modelo guardado, sin reentrenar:
+
+```bash
+uv run python -m src.training.run_linear_reranker evaluate \
+  --model artifacts/<run_id>/model.joblib --split val
+```
+
+Use `--split test` solo después de seleccionar la configuración con validación.
+Las pruebas automatizadas se ejecutan con `uv run tox`.
 
 ## Maqueta del prototipo
 
