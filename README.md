@@ -41,7 +41,7 @@ Si el paso 4 falla o no se tiene acceso al remoto DVC, ver [Datos](#datos) para 
 
 ```text
 src/                  código fuente (datos, features, modelos, entrenamiento, evaluación, tracking)
-maqueta/              frontend + backend FastAPI del prototipo
+src/app/              tablero y backend FastAPI que sirven el modelo real
 notebooks/            análisis exploratorio
 tests/                pruebas automatizadas (pytest)
 config/model.yaml     hiperparámetros del reordenador supervisado
@@ -98,14 +98,16 @@ uv run mlflow ui --backend-store-uri sqlite:///mlflow.db
 
 Abrir <http://localhost:5000> para comparar runs.
 
-### Maqueta del prototipo
+### Tablero del prototipo
 
-Frontend (HTML/CSS/JS) + backend FastAPI (`POST /predict`) para validar el flujo de extremo a extremo. Todavía devuelve recomendaciones fijas, no usa un modelo entrenado.
+`src/app/` sirve el modelo real: un backend FastAPI con las recomendaciones y un frontend que además muestra el estudio de datos (EDA), el desempeño del modelo y el diagnóstico de negativos.
 
 ```Shell
-uv run maqueta-back   # http://127.0.0.1:8000
-uv run maqueta-front  # http://localhost:3000
+uv run python -m src.app.insights   # opcional: precalcula el EDA (~1 min); si se omite, se calcula en el primer arranque
+uv run tablero                      # http://127.0.0.1:8000
 ```
+
+También expone una API propia (`POST /api/recomendar`, `GET /api/insights`, `GET /api/ejemplo`, `GET /api/estado`), documentada en `http://127.0.0.1:8000/docs`.
 
 ## Datos
 
