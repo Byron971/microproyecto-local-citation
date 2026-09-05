@@ -237,6 +237,13 @@ El equipo dispone de un servidor MLflow desplegado sobre una instancia EC2 (Ubun
 \label{fig:runs}
 \end{figure}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{mlflow_boxplot_estrategia.png}
+\caption{Comparación generada en MLflow (\emph{Compare Runs} $\rightarrow$ \emph{Box Plot}) de MRR@10 agrupado por estrategia de negativos sobre las seis corridas supervisadas. Los tres valores de \texttt{c} quedan agrupados dentro de cada categoría, evidenciando que la brecha depende de la estrategia y no de la regularización.}
+\label{fig:boxplot}
+\end{figure}
+
 % ============================================================================
 % 3. OBSERVACIONES Y CONCLUSIONES
 % ============================================================================
@@ -293,25 +300,22 @@ Las fuentes de los modelos están en \texttt{src/models/} y \texttt{src/training
 
 \subsection{Infraestructura de experimentación en AWS}
 
+Cada integrante trabajó desde su propia cuenta de AWS Academy; las siguientes capturas evidencian instancias EC2 reales ejecutando MLflow, con usuario e IP visibles en cada caso.
+
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{ec2_instancia.png}
-\caption{Instancia EC2 en ejecución. Son visibles el usuario de AWS Academy, la IP pública y la IP privada.}
+\includegraphics[width=0.48\textwidth]{ec2_instancia.png}
+\hfill
+\includegraphics[width=0.48\textwidth]{mlflow_ui_ip.png}
+\caption{Instancia EC2 de José Zambrana en ejecución --usuario de AWS Academy, IP pública y privada visibles-- (izquierda) y esa misma IP sirviendo la interfaz de MLflow en el navegador (derecha).}
 \label{fig:ec2}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{ec2_mlflow_servidor.png}
-\caption{Servidor de MLflow en ejecución sobre la instancia EC2, expuesto en el puerto 8050.}
+\includegraphics[width=0.65\textwidth]{ec2_mlflow_servidor.png}
+\caption{Servidor de MLflow desplegado originalmente por Carlos Caicedo sobre su propia instancia EC2, expuesto en el puerto 8050.}
 \label{fig:servidor}
-\end{figure}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.85\textwidth]{mlflow_ui_ip.png}
-\caption{Interfaz de MLflow servida desde la instancia EC2. La IP de la máquina es visible en la barra de direcciones.}
-\label{fig:ui}
 \end{figure}
 
 % ============================================================================
