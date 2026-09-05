@@ -8,3 +8,5 @@
     url = s3://caicedo-local-citation-dvcstore
 ['remote "publico"']
     url = https://caicedo-local-citation-dvcstore.s3.amazonaws.com
+['remote "ssh-team"']
+    url = ssh://ubuntu@100.53.183.142/home/ubuntu/dvcstore

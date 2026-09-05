@@ -119,6 +119,18 @@ uv run dvc status            # ver estado; un "in sync" no garantiza que el pull
 
 Los remotos `s3://` en `.dvc/config` pertenecen a cuentas AWS Academy aisladas entre sí: cada integrante escribe en la suya y `publico` es el único legible por todos. Las credenciales expiran al detener el Learner Lab (verificar con `aws sts get-caller-identity` antes de un push).
 
+> **Advertencia conocida.** `publico` no tiene `data/raw` (solo `data/processed`); un `dvc pull` desde cero no lo recupera. Mientras se corrige el remoto público, usar `uv run dvc pull -r ssh-team` (ver abajo) o la alternativa manual.
+
+### Remoto por SSH (`ssh-team`)
+
+Además de los remotos S3 hay uno por SSH sobre la instancia compartida del equipo, con los datos completos (`data/raw` y `data/processed`). Requiere la llave privada del equipo (`maia_team`, pedirla a quien la generó) y configurar su ruta localmente — no se versiona en Git porque cada quien la guarda en un lugar distinto:
+
+```Shell
+uv run dvc remote modify --local ssh-team keyfile /ruta/a/maia_team
+uv run dvc pull -r ssh-team
+uv run dvc push -r ssh-team
+```
+
 `data/processed/` se deriva de `data/raw/` de forma determinista, por lo que puede regenerarse sin ningún remoto:
 
 ```Shell
