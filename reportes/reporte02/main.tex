@@ -1,14 +1,16 @@
 % ============================================================================
 % Reporte de avance - Entrega 2 (Semana 5)
 %
-% Estructura tomada literalmente de la seccion "Entregables" de
-% maia_pds_proy_s4.pdf. Son cuatro secciones y el reporte no puede pasar de
-% 10 paginas (solo se califican las primeras 10). La seccion 1 tiene su propio
-% limite de 1 pagina.
+% BORRADOR ADELANTADO. La Entrega 2 exige modelos desarrollados, experimentos
+% soportados en MLflow, tablero de acuerdo con la maqueta, repositorio Git con
+% aportes de todos los integrantes y reporte de trabajo en equipo.
 %
-% PENDIENTE por otros integrantes, marcado con % TODO en el cuerpo:
-%   - Seccion 2: resultados del modelo supervisado (issue #6)
-%   - Seccion 4: descripcion del tablero real (issues #8 y #9)
+% Pendiente de integrar antes de entregar:
+%   - resultados finales del modelo supervisado (issue #6);
+%   - comparación final y selección de modelo (issue #7);
+%   - captura y descripción final del tablero real (issues #8 y #9);
+%   - evidencia final de commits de José Zambrana y Carlos Duque;
+%   - verificación de extensión máxima de 10 páginas.
 % ============================================================================
 \documentclass[11pt]{article}
 
@@ -37,7 +39,7 @@
 \definecolor{lightgray}{RGB}{245,246,248}
 \definecolor{midgray}{RGB}{110,110,110}
 
-% ======================= TÍTULOS DE SECCIÓN =======================
+% ======================= TÍTULOS =======================
 \titleformat{\section}
   {\Large\bfseries\color{primaryblue}}
   {\thesection.}{0.4em}{}
@@ -54,10 +56,9 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyhead[L]{\small\color{midgray} Recomendación local de citas académicas}
-\fancyhead[R]{\small\color{midgray} Semana 5 -- Reporte de avance}
+\fancyhead[R]{\small\color{midgray} Entrega 2 -- Semana 5}
 \fancyfoot[C]{\small\color{midgray} \thepage}
 
-% ======================= HYPERREF =======================
 \hypersetup{
   colorlinks=true,
   linkcolor=accentblue,
@@ -88,10 +89,10 @@
 {\Huge \bfseries \color{primaryblue} Recomendación local de citas\\ académicas mediante aprendizaje\\ automático}\\[0.6cm]
 {\color{primaryblue}\rule{\linewidth}{1.2pt}}\\[0.8cm]
 
-{\Large Reporte de avance del microproyecto -- Semana 5}\\[3cm]
+{\Large Reporte de avance del microproyecto -- Entrega 2}\\[3cm]
 
 \begin{tabular}{rl}
-\textbf{Nombres participantes:} & Carlos Duque, Carlos Caicedo, Jose Zambrana, John Arias \\[4pt]
+\textbf{Nombres participantes:} & Carlos Duque, Carlos Caicedo, José Zambrana, John Arias \\[4pt]
 \textbf{Proyecto:} & Desarrollo de Soluciones \\[4pt]
 \textbf{Docente:} & Juan Fernando Pérez \\[4pt]
 \textbf{Fecha:} & 6 de septiembre de 2026 \\
@@ -102,54 +103,54 @@
 \end{titlepage}
 
 % ============================================================================
-% 1. RESUMEN DEL PROBLEMA  (limite propio: 1 pagina)
+% 1. RESUMEN DEL PROBLEMA
 % ============================================================================
 \section{Resumen del problema}
 
 \subsection{Contexto}
 
-El crecimiento sostenido de la literatura científica dificulta que investigadores y autores identifiquen con rapidez los trabajos pertinentes para respaldar una afirmación mientras redactan. La recomendación local de citas aborda el problema usando como consulta el contexto textual próximo al lugar donde se requiere la referencia, y ordenando artículos candidatos por su relevancia frente a ese fragmento (Gu, Gao y Hahnloser, 2022).
+El crecimiento sostenido de la literatura científica dificulta que investigadores y autores identifiquen con rapidez los trabajos pertinentes para respaldar una afirmación mientras redactan. La recomendación local de citas aborda este problema usando como consulta el contexto textual próximo al lugar donde se requiere la referencia y ordenando artículos candidatos por su relevancia frente a ese fragmento (Gu, Gao y Hahnloser, 2022).
 
 \subsection{Pregunta de negocio y alcance}
 
 \notabox{¿Cómo apoyar a un autor de textos académicos en la identificación de artículos potencialmente relevantes para citar, utilizando el contexto textual local en el que requiere incluir una referencia?}
 
-El alcance del microproyecto es un prototipo funcional que recibe un contexto académico en inglés y devuelve un ranking de artículos candidatos con su puntaje de relevancia, servido por una API y consumido por un tablero interactivo.
+El alcance del microproyecto es construir un prototipo que reciba un contexto académico en inglés y produzca un ranking de artículos candidatos con un puntaje de relevancia. Para esta Entrega 2 el foco está en el desarrollo y comparación de modelos, el seguimiento de experimentos con MLflow y el tablero de acuerdo con la maqueta. El empaquetamiento del modelo, su servicio mediante API y la contenerización corresponden a las siguientes semanas del curso.
 
-\subsection{Conjuntos de datos}
+\subsection{Conjunto de datos}
 
-Se emplea el conjunto \texttt{custom} (ACL-200) del repositorio \textit{Local-Citation-Recommendation}: 63.768 contextos de cita, 19.776 artículos con título y resumen, y particiones de entrenamiento, validación y prueba con 30.390, 9.381 y 9.585 consultas respectivamente. Los datos se versionan con DVC sobre almacenamiento S3.
+Se emplea el conjunto \texttt{custom} (ACL-200) del repositorio \textit{Local-Citation-Recommendation}: 63.768 contextos de cita, 19.776 artículos con título y resumen, y particiones de entrenamiento, validación y prueba con 30.390, 9.381 y 9.585 consultas respectivamente. Los datos se mantienen reproducibles mediante DVC.
 
 \subsection{Cambios respecto a la primera entrega}
 
-% El enunciado pide explicitamente resaltar los cambios frente a la Entrega 1.
 \begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
-  \item \textbf{Arquitectura de recuperación en dos etapas.} La Entrega 1 planteaba un único modelo supervisado que estimara la relevancia de cada candidato. La medición de la línea base mostró que puntuar los 19.776 artículos por consulta es inviable en tiempo interactivo, por lo que el diseño pasó a una primera etapa de recuperación léxica que reduce a los mejores candidatos y una segunda de reordenamiento supervisado sobre ese subconjunto.
-  \item \textbf{Métricas de evaluación.} Se adoptaron Recall@K y MRR@K, propias de recuperación de información, en lugar de métricas de clasificación. Ambas se calculan truncadas a K, como es convención en el área.
-  \item \textbf{Infraestructura de experimentación.} Se incorporó MLflow sobre una instancia EC2 para registrar y comparar todas las corridas de forma centralizada.
+  \item \textbf{Arquitectura de recuperación en dos etapas.} La primera etapa recupera candidatos con TF--IDF y la segunda reordena ese subconjunto mediante un modelo supervisado.
+  \item \textbf{Métricas de evaluación.} Se adoptaron Recall@K y MRR@K, propias de recuperación de información, para evaluar el ranking y no solo la clasificación de pares.
+  \item \textbf{Infraestructura de experimentación.} Se incorporó MLflow sobre una instancia EC2 para registrar parámetros, métricas y corridas bajo una convención común.
+  \item \textbf{Candidatos reproducibles.} Se agregó la exportación determinista del Top--100 TF--IDF por contexto como insumo para el entrenamiento con negativos difíciles.
 \end{itemize}
 
 % ============================================================================
-% 2. MODELOS DESARROLLADOS Y SU EVALUACION
+% 2. MODELOS DESARROLLADOS Y SU EVALUACIÓN
 % ============================================================================
 \section{Modelos desarrollados y su evaluación}
 
 \subsection{Protocolo de evaluación}
 
-Todos los modelos se evalúan sobre las mismas 9.381 consultas de validación, contra el total de 19.776 artículos candidatos. Se reportan dos métricas, ambas truncadas a $K$:
+La comparación debe conservar el mismo conjunto de validación y la misma política de generación de candidatos. Se reportan dos métricas de ranking:
 
 \begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
-  \item \textbf{Recall@K}: proporción de consultas cuyo artículo citado aparece entre las $K$ primeras posiciones. Mide si el sistema \textit{encuentra} el artículo correcto.
-  \item \textbf{MRR@K}: inverso promedio de la posición del primer acierto. Mide si lo ubica \textit{arriba} en el ranking.
+  \item \textbf{Recall@K}: proporción de consultas cuyo artículo relevante aparece entre las $K$ primeras posiciones.
+  \item \textbf{MRR@K}: promedio del inverso de la posición del primer artículo relevante dentro del ranking truncado a $K$.
 \end{itemize}
 
-La distinción entre ambas resulta central para las conclusiones de la Sección 3.
+Estas métricas permiten separar dos preguntas: si el sistema logra recuperar el artículo correcto y qué tan arriba lo ubica.
 
-\subsection{Línea base: TF-IDF con similitud coseno}
+\subsection{Línea base: TF--IDF con similitud coseno}
 
-La línea base representa cada artículo (título más resumen) y cada contexto de cita como vectores TF-IDF, y ordena los artículos por similitud coseno con el contexto. No aprende de los ejemplos etiquetados: solo mide coincidencia léxica. Su función es fijar el piso de comparación que cualquier modelo supervisado debe superar para justificarse.
+La línea base representa cada artículo mediante la concatenación de título y resumen y representa el contexto de cita mediante el mismo espacio TF--IDF. El ranking se obtiene por similitud coseno. El modelo no aprende de las etiquetas y funciona como piso de comparación para justificar cualquier reordenador supervisado.
 
-Sobre la configuración de referencia (vocabulario de 25.305 términos, \texttt{min\_df} igual a 2) los resultados son:
+Sobre la configuración de referencia, con \texttt{max\_features}=50.000, \texttt{min\_df}=2 y un vocabulario efectivo de 25.305 términos, se obtuvieron los siguientes resultados:
 
 \begin{table}[h!]
 \centering
@@ -175,13 +176,13 @@ Sobre la configuración de referencia (vocabulario de 25.305 términos, \texttt{
 \includegraphics[width=0.48\textwidth]{mlflow_curva_recall_k.png}
 \hfill
 \includegraphics[width=0.48\textwidth]{mlflow_curva_mrr_k.png}
-\caption{Recall@K (izquierda) y MRR@K (derecha) de la línea base en función de la profundidad del ranking. El Recall crece de forma sostenida mientras el MRR se estabiliza a partir de $K=10$.}
+\caption{Recall@K (izquierda) y MRR@K (derecha) de la línea base según la profundidad del ranking.}
 \label{fig:curvas}
 \end{figure}
 
-\subsection{Efecto del tamaño del vocabulario}
+\subsection{Sensibilidad al tamaño del vocabulario}
 
-Se evaluaron dos variantes con $K=10$, modificando una sola condición cada vez:
+Se evaluaron dos variantes adicionales con $K=10$ modificando una condición cada vez:
 
 \begin{table}[h!]
 \centering
@@ -199,77 +200,84 @@ Filtro más estricto & 50.000 & 5 & 13.834 & 0,2417 \\
 \end{tabular}
 \end{table}
 
-Reducir el vocabulario en un 60\,\% cuesta apenas un 7,5\,\% de Recall, lo que indica rendimientos decrecientes y ofrece margen para acotar el consumo de memoria en el despliegue.
+La reducción del vocabulario disminuye el consumo de memoria, pero también reduce el Recall@10. Por esta razón se conserva la configuración de referencia como punto de comparación para el reordenador.
 
-% TODO (issue #6, Jose Zambrana): agregar aqui la subseccion del modelo
-% supervisado con sus resultados sobre las MISMAS 9.381 consultas de
-% validacion y el mismo K, para que la comparacion sea valida. Incluir la
-% tabla comparativa contra la linea base.
-%
-% ADVERTENCIA IMPORTANTE: los pares de entrenamiento generados en
-% src/data/build_pairs.py usan negativos muestreados al azar sobre los 19.776
-% articulos. En servicio el reordenador solo vera los mejores candidatos de
-% TF-IDF, todos lexicamente parecidos entre si. Entrenar con negativos
-% aleatorios produce un modelo con exactitud alta en una tarea trivial que no
-% mejora la linea base. Se requieren negativos duros (tomados del top-N de
-% TF-IDF que no son el positivo) antes de entrenar.
+\subsection{Top--100 reproducible y preparación de negativos difíciles}
+
+Para conectar la primera etapa con el modelo supervisado se implementó una exportación reproducible de los 100 candidatos TF--IDF mejor posicionados por contexto. El proceso solicita inicialmente un candidato adicional, elimina el artículo de origen del contexto mediante \texttt{citing\_id} y conserva los primeros 100 artículos restantes. El archivo generado mantiene, por registro, el \texttt{context\_id}, los \texttt{positive\_ids} y la lista ordenada de \texttt{candidate\_ids}.
+
+Este artefacto permite construir negativos difíciles: candidatos que TF--IDF considera temáticamente cercanos pero que no corresponden a la cita positiva. Esta estrategia aproxima mejor la tarea que enfrentará el reordenador que el muestreo uniforme de artículos aleatorios, que produce ejemplos negativos demasiado fáciles.
+
+\notabox{\textbf{Pendiente de integración del issue \#6.} Con el Top--100 ya disponible, falta incorporar los resultados del modelo supervisado entrenado con negativos aleatorios y con negativos difíciles, ambos evaluados bajo el mismo protocolo de ranking.}
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Estructura preparada para la comparación final de modelos}
+\label{tab:comparacion}
+\begin{tabular}{l c c l}
+\toprule
+\textbf{Alternativa} & \textbf{Recall@10} & \textbf{MRR@10} & \textbf{Estado} \\
+\midrule
+TF--IDF & 0,2541 & 0,1249 & Línea base registrada \\
+Supervisado + negativos aleatorios & -- & -- & Pendiente de integrar \\
+Supervisado + negativos difíciles & -- & -- & Pendiente de integrar \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Registro de experimentos en MLflow}
 
-Todas las corridas se registran en un servidor MLflow desplegado sobre una instancia EC2 (Ubuntu 24.04, \texttt{t2.medium}), accesible en el puerto 8050. La configuración está centralizada en \texttt{src/tracking/mlflow\_setup.py}, de modo que todos los experimentos comparten el mismo nombre de experimento y las mismas claves de métricas, condición necesaria para que las comparaciones sean válidas.
+Las corridas se registran en MLflow sobre una instancia EC2 y la configuración del proyecto centraliza el nombre del experimento, los parámetros y las claves de las métricas. Esta convención evita comparar corridas con nombres de métricas incompatibles y permite inspeccionar las variantes desde una misma interfaz.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.92\textwidth]{mlflow_tabla_runs.png}
-\caption{Corridas registradas en el servidor MLflow de EC2, con sus métricas y los parámetros que las distinguen.}
+\caption{Corridas de la línea base registradas en MLflow, con métricas y parámetros.}
 \label{fig:runs}
 \end{figure}
 
 % ============================================================================
-% 3. OBSERVACIONES Y CONCLUSIONES
+% 3. OBSERVACIONES Y COMPARACIÓN
 % ============================================================================
-\section{Observaciones y conclusiones sobre los modelos}
+\section{Observaciones y criterio de selección}
 
-\subsection{El techo del sistema de dos etapas}
+\subsection{Cobertura de la primera etapa}
 
-Recall@100 $=0{,}5163$ es el resultado más consecuente de esta entrega. Como la segunda etapa solo reordena los candidatos que la primera recupera, \textbf{ningún reordenador puede superar ese 51,6\,\%} mientras la recuperación siga siendo puramente léxica. Elevar ese techo exige actuar sobre la primera etapa, no sobre la segunda: representaciones semánticas basadas en \textit{embeddings} de textos científicos son la vía natural, y quedan planteadas para la Entrega 3.
+La línea base alcanza Recall@100 de 0,5163. En una arquitectura de dos etapas, el reordenador solo puede reordenar los documentos recuperados previamente; por tanto, la cobertura de la primera etapa condiciona el desempeño máximo del sistema completo. Una mejora futura de esta cobertura requerirá explorar representaciones semánticas más allá de la coincidencia léxica.
 
-\subsection{Los aciertos existen pero están mal ubicados}
+\subsection{Los aciertos existen pero muchos quedan lejos de las primeras posiciones}
 
-El contraste entre las dos curvas de la Figura~\ref{fig:curvas} es revelador. Al pasar de $K=10$ a $K=100$ el Recall se duplica (0,2541 a 0,5163) mientras el MRR apenas se mueve (0,1249 a 0,1343, un 7,5\,\%). Esto significa que los artículos recuperados entre las posiciones 10 y 100 quedan tan abajo que casi no aportan al ranking.
+Entre $K=10$ y $K=100$ el Recall aumenta de 0,2541 a 0,5163, mientras el MRR pasa de 0,1249 a 0,1343. Esto muestra que TF--IDF recupera artículos relevantes que todavía quedan demasiado abajo en el ranking, lo que justifica evaluar un reordenador supervisado sobre el Top--100.
 
-Es exactamente el escenario donde un reordenamiento supervisado aporta valor: no necesita encontrar nada nuevo, solo subir lo que la primera etapa ya recuperó. La brecha entre Recall@100 y MRR@100 cuantifica ese margen disponible.
+\subsection{Criterio de comparación final}
 
-\subsection{Implicaciones para el diseño}
+La selección del modelo no se basará únicamente en exactitud de clasificación de pares. Se compararán las alternativas usando las mismas consultas de validación, la misma primera etapa de recuperación y las mismas métricas end-to-end. El modelo seleccionado deberá mejorar la posición de los artículos relevantes sin introducir una complejidad que no esté respaldada por una ganancia medible.
 
-\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
-  \item \textbf{Profundidad de recuperación.} La ganancia de Recall se desacelera después de $K=50$. Recuperar 100 candidatos parece un punto razonable entre cobertura y costo de reordenamiento.
-  \item \textbf{Costo de la primera etapa.} La evaluación completa sobre 9.381 consultas toma unos 13 segundos en lote, pero una API debe responder una consulta en tiempo interactivo. La arquitectura en dos etapas es lo que hace viable ese requisito.
-  \item \textbf{Vocabulario.} Puede acotarse de forma significativa con una pérdida menor de desempeño, lo que reduce la memoria del artefacto desplegado.
-\end{itemize}
-
-% TODO (issue #7): al cerrar el modelo supervisado, agregar aqui la
-% comparacion cuantitativa contra la linea base y la justificacion de cual
-% modelo se selecciona para empaquetar en la Entrega 3.
+\notabox{\textbf{Pendiente del issue \#7.} Una vez José Zambrana integre los runs del modelo supervisado, se reemplazarán los guiones de la Tabla~\ref{tab:comparacion}, se identificará el modelo ganador y se actualizarán estas conclusiones con evidencia cuantitativa.}
 
 % ============================================================================
-% 4. TABLERO DESARROLLADO
+% 4. TABLERO
 % ============================================================================
-\section{Descripción del tablero desarrollado}
+\section{Tablero desarrollado de acuerdo con la maqueta}
 
-% TODO (issues #8 y #9, Carlos Duque): completar esta seccion con el tablero
-% conectado a datos reales. Debe describir:
-%   - Los dos paneles de la maqueta: recomendador y exploracion del conjunto.
-%   - Que hace cada control y que devuelve el sistema al usuario.
-%   - Como se conecta con el modelo (por ahora carga local; en la Entrega 3
-%     sera a traves de la API).
-% Incluir una captura del tablero CON UNA CONSULTA REAL RESUELTA, no la
-% pantalla inicial vacia.
+La maqueta aprobada en la Entrega 1 define dos áreas funcionales. El primer panel corresponde al recomendador: el usuario ingresa un contexto académico en inglés y solicita recomendaciones; el resultado se presenta como un ranking de artículos con su puntaje y un espacio para consultar detalles del artículo seleccionado. El segundo panel resume información del conjunto de datos mediante conteos y visualizaciones provenientes del análisis exploratorio.
 
-\notabox{\textbf{Sección pendiente.} El tablero se encuentra en desarrollo (issues \#8 y \#9). La maqueta aprobada en la Entrega 1 define dos paneles: un recomendador de citas que recibe el contexto y devuelve el ranking, y un módulo de exploración del conjunto de datos.}
+Para la Entrega 2, el tablero debe conservar esa estructura y sustituir los datos de ejemplo por información real. En particular, el panel de exploración debe mostrar los conteos reales del corpus y al menos dos gráficas del EDA, mientras el recomendador debe presentar una consulta real resuelta. La integración mediante API corresponde a una etapa posterior del curso; en esta entrega el requisito es contar con el tablero desarrollado conforme a la maqueta.
+
+\notabox{\textbf{Pendiente de los issues \#8 y \#9.} Falta insertar en este reporte la captura del tablero final ejecutándose con una consulta real, describir los controles implementados y verificar que las cifras y gráficas coincidan con el análisis reportado.}
+
+% TODO: insertar aquí la captura final del tablero cuando Carlos Duque cierre #8/#9.
+% Ejemplo esperado:
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.92\textwidth]{tablero_consulta_real.png}
+% \caption{Tablero de la Entrega 2 con una consulta real y los paneles definidos en la maqueta.}
+% \label{fig:tablero}
+% \end{figure}
 
 % ============================================================================
-% EVIDENCIAS
+% 5. EVIDENCIAS Y SOPORTES
 % ============================================================================
 \section{Evidencias y soportes}
 
@@ -279,46 +287,46 @@ Es exactamente el escenario donde un reordenamiento supervisado aporta valor: no
 \url{https://github.com/Byron971/microproyecto-local-citation}
 \end{center}
 
-Las fuentes de los modelos están en \texttt{src/models/} y \texttt{src/training/}; las del tablero en \texttt{maqueta/}. El historial de \textit{commits} y los \textit{Pull Requests} evidencian la contribución de cada integrante.
+Las fuentes de modelos y entrenamiento se encuentran en \texttt{src/models/} y \texttt{src/training/}; las métricas en \texttt{src/evaluation/}; la configuración de MLflow en \texttt{src/tracking/}; y las fuentes del prototipo de interfaz en \texttt{maqueta/}. El historial de commits y Pull Requests permite rastrear las contribuciones integradas.
+
+\subsection{Reproducibilidad de datos procesados}
+
+Los artefactos procesados están versionados con DVC. El remoto compartido por defecto es de solo lectura y permite recuperar los datos sin credenciales mediante \texttt{dvc pull}; los remotos individuales de AWS Academy se conservan para operaciones de escritura explícitas. El directorio procesado también puede regenerarse de forma determinista desde los datos fuente mediante los scripts de construcción de pares y exportación del Top--100.
 
 \subsection{Infraestructura de experimentación en AWS}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{ec2_instancia.png}
-\caption{Instancia EC2 en ejecución. Son visibles el usuario de AWS Academy, la IP pública y la IP privada.}
+\includegraphics[width=0.82\textwidth]{ec2_instancia.png}
+\caption{Instancia EC2 utilizada para el seguimiento de experimentos.}
 \label{fig:ec2}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{ec2_mlflow_servidor.png}
-\caption{Servidor de MLflow en ejecución sobre la instancia EC2, expuesto en el puerto 8050.}
+\includegraphics[width=0.82\textwidth]{ec2_mlflow_servidor.png}
+\caption{Servidor de MLflow en ejecución sobre la instancia EC2.}
 \label{fig:servidor}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{mlflow_ui_ip.png}
-\caption{Interfaz de MLflow servida desde la instancia EC2. La IP de la máquina es visible en la barra de direcciones.}
+\includegraphics[width=0.82\textwidth]{mlflow_ui_ip.png}
+\caption{Interfaz de MLflow accesible desde la instancia de experimentación.}
 \label{fig:ui}
 \end{figure}
 
 % ============================================================================
 % REPORTE DE TRABAJO EN EQUIPO
-% Va dentro de este mismo documento pero en su propia hoja, igual que en la
-% Entrega 1. \clearpage (no \newpage) coloca primero los flotantes pendientes
-% -las figuras de AWS- y despues corta la pagina, para que la seccion arranque
-% sola.
 % ============================================================================
 \clearpage
 \section{Reporte de trabajo en equipo}
 
-El equipo distribuyó las actividades de esta entrega en cuatro frentes: el pipeline de datos supervisados, la infraestructura de seguimiento de experimentos, el desarrollo y la evaluación de los modelos, y el tablero. La coordinación se realizó de forma asíncrona mediante \textit{issues} agrupados en hitos con fecha límite, y la integración a la rama principal se hizo a través de \textit{Pull Requests} revisados por los demás integrantes, con un archivo \texttt{CODEOWNERS} que solicita automáticamente la revisión de todo el equipo. La Tabla~\ref{tab:equipo} resume el aporte de cada integrante, respaldado por sus propios \textit{commits} en el historial de Git.
+El equipo organizó la Entrega 2 en cuatro frentes que pueden verificarse en el repositorio: preparación reproducible de datos y candidatos, infraestructura y línea base de experimentación, modelo supervisado y tablero. La integración se realiza mediante Pull Requests revisados por otros integrantes y los issues del hito registran criterios de aceptación y responsables.
 
 \begin{table}[h!]
 \centering
-\caption{Aportes verificables en el repositorio}
+\caption{Aportes verificables y responsabilidades de la Entrega 2}
 \label{tab:equipo}
 \small
 \begin{tabular}{p{2.9cm} p{11.4cm}}
@@ -326,28 +334,21 @@ El equipo distribuyó las actividades de esta entrega en cuatro frentes: el pipe
 \textbf{Integrante} & \textbf{Aporte y evidencia registrada} \\
 \midrule
 John Arias &
-Pipeline de datos supervisados: carga de los conjuntos, generación reproducible de pares positivos y negativos con semilla fija, y versionamiento de los conjuntos procesados con DVC. Métricas de evaluación de ranking (Recall@K y \textit{MRR}). Integración de contribuciones mediante \textit{Pull Request}. \\[3pt]
+Pipeline de datos supervisados, generación reproducible de pares positivos y negativos, métricas Recall@K y MRR, versionamiento de datos procesados con DVC y exportación reproducible del Top--100 TF--IDF. Corrección del Top--100 para excluir el artículo citante e integración mediante Pull Request. \\[3pt]
 
 Carlos Caicedo &
-Infraestructura de seguimiento de experimentos con MLflow, incluido su despliegue sobre una instancia AWS EC2 y la configuración centralizada de convenciones de experimentos y métricas. Línea base TF--IDF con similitud coseno, su evaluación sobre las 9.381 consultas de validación y el barrido de corridas registradas en el servidor. Restauración de los remotos de DVC. \\[3pt]
+Configuración centralizada de MLflow y despliegue de su servidor de experimentación en EC2; desarrollo y evaluación de la línea base TF--IDF; barrido de hiperparámetros y profundidades de ranking; diagnóstico de negativos y configuración del remoto DVC público de solo lectura. \\[3pt]
 
-% TODO: si cierra el issue #6 antes de la entrega, reemplazar la nota de
-% "sin commits" por la descripcion del aporte efectivamente registrado.
 José Zambrana &
-Responsable del entrenamiento y la evaluación del modelo supervisado de relevancia sobre los pares generados (\textit{issue} \#6). En la Entrega 1 aportó la exploración de datos y su cuaderno. \emph{Sin \textit{commits} registrados en la ventana de esta entrega; su último aporte es del 22 de agosto de 2026.} \\[3pt]
+Responsable del modelo supervisado de relevancia, la construcción y evaluación de negativos difíciles y el registro de sus corridas en MLflow. \emph{Pendiente de actualizar esta fila con los commits y resultados integrados al cerrar el issue \#6.} \\[3pt]
 
-% TODO: idem para los issues #8 y #9 (tablero).
 Carlos Duque &
-Responsable del desarrollo del tablero conforme a la maqueta aprobada y de su conexión con los resultados del análisis (\textit{issues} \#8 y \#9). En la Entrega 1 construyó la maqueta y el archivo \texttt{CODEOWNERS}. \emph{Sin \textit{commits} registrados en la ventana de esta entrega; su último aporte es del 23 de agosto de 2026.} \\
+Responsable del tablero de la Entrega 2 conforme a la maqueta aprobada y de la incorporación de los resultados reales del EDA. \emph{Pendiente de actualizar esta fila con los commits, captura y resultados integrados al cerrar los issues \#8 y \#9.} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\vspace{-4pt}
-\noindent\footnotesize\textit{Ventana considerada: del 24 de agosto al 1 de septiembre de 2026, correspondiente al periodo de trabajo de esta entrega. La verificación se hizo sobre el historial de todas las ramas del repositorio, contando únicamente los \textit{commits} autorizados por cada integrante. Los aportes anteriores a esa ventana corresponden a la Entrega 1 y fueron reportados allí.}\normalsize
-
-\vspace{6pt}
-El reparto de tareas quedó registrado en los \textit{issues} del repositorio, cada uno con su criterio de aceptación y la evidencia que lo respalda, de modo que el avance de cada integrante puede verificarse directamente sobre el repositorio. Los experimentos quedaron centralizados en un único servidor de MLflow, lo que permite comparar corridas de distintos integrantes bajo el mismo experimento y con las mismas métricas.
+La versión definitiva del reporte sustituirá las notas pendientes por evidencia concreta de los commits y Pull Requests de cada integrante. Este punto es especialmente relevante porque la evaluación del curso exige evidenciar la contribución individual tanto en el repositorio como en el reporte de trabajo en equipo.
 
 % ============================================================================
 \section*{Referencias}
