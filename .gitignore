@@ -18,6 +18,8 @@ mlruns/
 
 # Cache de pytest
 .pytest_cache/
+.tox/
+artifacts/
 
 # Variables de entorno y secretos
 .env

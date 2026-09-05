@@ -96,3 +96,21 @@ def test_build_pairs_is_reproducible_with_same_random_state():
     )
 
     assert first_result == second_result
+
+
+def test_build_pairs_excludes_additional_papers_for_context():
+    split = [{"context_id": "context-1", "positive_ids": ["paper-a"]}]
+
+    pairs = build_pairs(
+        split=split,
+        paper_ids=["paper-a", "citing-paper", "paper-b"],
+        negatives_per_positive=1,
+        random_state=42,
+        excluded_paper_ids={"context-1": {"citing-paper"}},
+    )
+
+    assert pairs[-1] == {
+        "context_id": "context-1",
+        "paper_id": "paper-b",
+        "label": 0,
+    }
