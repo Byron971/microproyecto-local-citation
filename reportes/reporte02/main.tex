@@ -1,13 +1,11 @@
 % ============================================================================
 % Reporte de avance - Entrega 2 (Semana 5)
 %
-% Estructura tomada literalmente de la seccion "Entregables" de
-% maia_pds_proy_s4.pdf. Son cuatro secciones y el reporte no puede pasar de
-% 10 paginas (solo se califican las primeras 10). La seccion 1 tiene su propio
-% limite de 1 pagina.
+% Estructura tomada de la seccion "Entregables" de la guia del microproyecto.
+% El reporte no puede superar 10 paginas (solo se califican las primeras 10).
+% La seccion 1 tiene su propio limite de 1 pagina.
 %
-% PENDIENTE por otros integrantes, marcado con % TODO en el cuerpo:
-%   - Seccion 4: descripcion del tablero real (issues #8 y #9)
+% Estado: contenido consolidado para el cierre de la Entrega 2.
 % ============================================================================
 \documentclass[11pt]{article}
 
@@ -23,7 +21,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{enumitem}
-\usepackage[table]{xcolor}
+\usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -101,7 +99,7 @@
 \end{titlepage}
 
 % ============================================================================
-% 1. RESUMEN DEL PROBLEMA  (limite propio: 1 pagina)
+% 1. RESUMEN DEL PROBLEMA
 % ============================================================================
 \section{Resumen del problema}
 
@@ -121,7 +119,6 @@ Se emplea el conjunto \texttt{custom} (ACL-200) del repositorio \textit{Local-Ci
 
 \subsection{Cambios respecto a la primera entrega}
 
-% El enunciado pide explicitamente resaltar los cambios frente a la Entrega 1.
 \begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
   \item \textbf{Arquitectura de recuperación en dos etapas.} La Entrega 1 planteaba un único modelo supervisado que estimara la relevancia de cada candidato. La medición de la línea base mostró que puntuar los 19.776 artículos por consulta es inviable en tiempo interactivo, por lo que el diseño pasó a una primera etapa de recuperación léxica que reduce a los mejores candidatos y una segunda de reordenamiento supervisado sobre ese subconjunto.
   \item \textbf{Métricas de evaluación.} Se adoptaron Recall@K y MRR@K, propias de recuperación de información, en lugar de métricas de clasificación. Ambas se calculan truncadas a K, como es convención en el área.
@@ -274,16 +271,34 @@ La comparación de la Tabla~\ref{tab:supervisado} confirma que el reordenamiento
 % ============================================================================
 \section{Descripción del tablero desarrollado}
 
-% TODO (issues #8 y #9, Carlos Duque): completar esta seccion con el tablero
-% conectado a datos reales. Debe describir:
-%   - Los dos paneles de la maqueta: recomendador y exploracion del conjunto.
-%   - Que hace cada control y que devuelve el sistema al usuario.
-%   - Como se conecta con el modelo (por ahora carga local; en la Entrega 3
-%     sera a traves de la API).
-% Incluir una captura del tablero CON UNA CONSULTA REAL RESUELTA, no la
-% pantalla inicial vacia.
+El prototipo de la Entrega 2 se implementó en \texttt{src/app/} como una aplicación web integrada. El backend utiliza FastAPI y el frontend se sirve desde el mismo proceso, permitiendo ejecutar localmente la solución mediante el comando \texttt{uv run tablero}. Durante el arranque se carga la línea base TF--IDF sobre los 19.776 artículos del corpus y se precalcula o recupera la información utilizada en las visualizaciones.
 
-\notabox{\textbf{Sección pendiente.} El tablero se encuentra en desarrollo (issues \#8 y \#9). La maqueta aprobada en la Entrega 1 define dos paneles: un recomendador de citas que recibe el contexto y devuelve el ranking, y un módulo de exploración del conjunto de datos.}
+\subsection{Recomendador de citas}
+
+El panel principal recibe un fragmento académico en inglés y permite seleccionar la cantidad de resultados que se desea recuperar. Al presionar \emph{Recomendar citas}, el frontend envía la consulta al endpoint \texttt{POST /api/recomendar}. El backend transforma el contexto con el mismo vectorizador TF--IDF empleado durante la evaluación, calcula la similitud coseno contra el corpus y devuelve el ranking de artículos.
+
+Cada recomendación presenta posición, título, identificador y puntaje de similitud. Al seleccionar un artículo, el tablero muestra además un extracto de su resumen. El botón \emph{Usar un ejemplo real} obtiene un contexto auténtico del corpus mediante \texttt{GET /api/ejemplo}, lo que permite probar la aplicación con una consulta reproducible.
+
+\notabox{\textbf{Alcance de la integración actual.} El tablero de esta entrega sirve la línea base TF--IDF, que ya produce recomendaciones reales. El reordenador supervisado con regresión logística fue desarrollado y evaluado en esta entrega, pero su integración como modelo de inferencia definitivo se deja para la Entrega 3, junto con su empaquetamiento.}
+
+\subsection{Exploración y diagnóstico}
+
+La zona inferior del tablero consolida resultados que antes se encontraban separados entre el cuaderno de exploración, las ejecuciones de evaluación y el reporte. Se organiza en tres pestañas:
+
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item \textbf{Estudio de los datos}: presenta los 63.768 contextos, los 19.776 artículos candidatos, las particiones de entrenamiento, validación y prueba, distribuciones de longitud y comprobaciones de calidad.
+  \item \textbf{Desempeño del modelo}: presenta Recall@K y MRR@K para diferentes profundidades del ranking. En validación se observan Recall@10 de 0,2541, MRR@10 de 0,1249 y Recall@100 de 0,5163.
+  \item \textbf{Diagnóstico de negativos}: compara positivos, negativos aleatorios y negativos difíciles. El análisis evidencia que los negativos aleatorios son demasiado fáciles de separar mediante similitud léxica, mientras que los negativos difíciles representan un escenario de ranking sustancialmente más exigente.
+\end{itemize}
+
+Los datos del tablero se exponen mediante \texttt{GET /api/insights}, mientras \texttt{GET /api/estado} permite comprobar que el recomendador está cargado y reporta su configuración. Durante la validación final se comprobó la comunicación completa entre interfaz y backend, obteniendo respuestas HTTP 200 tanto para la carga de información como para una recomendación real.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.95\textwidth]{tablero_recomendacion_real.png}
+\caption{Tablero del prototipo ejecutando una consulta académica real y mostrando el ranking de artículos recomendados por la línea base TF--IDF.}
+\label{fig:tablero}
+\end{figure}
 
 % ============================================================================
 % EVIDENCIAS
@@ -296,7 +311,7 @@ La comparación de la Tabla~\ref{tab:supervisado} confirma que el reordenamiento
 \url{https://github.com/Byron971/microproyecto-local-citation}
 \end{center}
 
-Las fuentes de los modelos están en \texttt{src/models/} y \texttt{src/training/}; las del tablero en \texttt{maqueta/}. El historial de \textit{commits} y los \textit{Pull Requests} evidencian la contribución de cada integrante.
+Las fuentes de los modelos se encuentran en \texttt{src/models/} y \texttt{src/training/}; la evaluación en \texttt{src/evaluation/}; el seguimiento experimental en \texttt{src/tracking/}; y el tablero funcional con su backend y frontend en \texttt{src/app/}. El historial de \textit{commits} y los \textit{Pull Requests} evidencian la contribución de cada integrante.
 
 \subsection{Infraestructura de experimentación en AWS}
 
@@ -320,10 +335,6 @@ Cada integrante trabajó desde su propia cuenta de AWS Academy; las siguientes c
 
 % ============================================================================
 % REPORTE DE TRABAJO EN EQUIPO
-% Va dentro de este mismo documento pero en su propia hoja, igual que en la
-% Entrega 1. \clearpage (no \newpage) coloca primero los flotantes pendientes
-% -las figuras de AWS- y despues corta la pagina, para que la seccion arranque
-% sola.
 % ============================================================================
 \clearpage
 \section{Reporte de trabajo en equipo}
@@ -339,26 +350,27 @@ El equipo distribuyó las actividades de esta entrega en cuatro frentes: el pipe
 \toprule
 \textbf{Integrante} & \textbf{Aporte y evidencia registrada} \\
 \midrule
+
 John Arias &
-Pipeline de datos supervisados: carga de los conjuntos, generación reproducible de pares positivos y negativos con semilla fija, y versionamiento de los conjuntos procesados con DVC. Métricas de evaluación de ranking (Recall@K y \textit{MRR}). Integración de contribuciones mediante \textit{Pull Request}. \\[3pt]
+Pipeline de datos supervisados: carga de los conjuntos, generación reproducible de pares positivos y negativos con semilla fija, versionamiento de los conjuntos procesados con DVC y métricas de evaluación de ranking (Recall@K y MRR). Integración de contribuciones y validación reproducible del flujo del proyecto. \\[3pt]
 
 Carlos Caicedo &
-Infraestructura de seguimiento de experimentos con MLflow, incluido su despliegue sobre una instancia AWS EC2 y la configuración centralizada de convenciones de experimentos y métricas. Línea base TF--IDF con similitud coseno, su evaluación sobre las 9.381 consultas de validación y el barrido de corridas registradas en el servidor. Restauración de los remotos de DVC. \\[3pt]
+Infraestructura de seguimiento de experimentos con MLflow, incluido su despliegue sobre una instancia AWS EC2 y la configuración centralizada de convenciones de experimentos y métricas. Línea base TF--IDF con similitud coseno, su evaluación sobre las 9.381 consultas de validación y el barrido de corridas registradas en el servidor. Restauración y documentación de remotos de DVC. \\[3pt]
 
 José Zambrana &
 Modelo supervisado de relevancia (\textit{issue} \#6): extracción de características contexto--artículo, generación reproducible de negativos difíciles, reordenador con regresión logística, comparación de estrategias mediante Recall@K y MRR, registro de modelos y resultados en MLflow, y pruebas automatizadas con pytest y Tox. En la Entrega 1 aportó la exploración de datos y su cuaderno. \\[3pt]
 
-% TODO: idem para los issues #8 y #9 (tablero).
 Carlos Duque &
-Responsable del desarrollo del tablero conforme a la maqueta aprobada y de su conexión con los resultados del análisis (\textit{issues} \#8 y \#9). En la Entrega 1 construyó la maqueta y el archivo \texttt{CODEOWNERS}. \emph{Sin \textit{commits} registrados en la ventana de esta entrega; su último aporte es del 23 de agosto de 2026.} \\
+Desarrollo del tablero funcional conforme a la maqueta aprobada y conexión con datos reales del EDA (\textit{issues} \#8 y \#9). Implementó el backend y frontend integrados en \texttt{src/app/}, la visualización de métricas y diagnósticos, y el flujo de recomendación basado en el modelo TF--IDF. Su contribución fue integrada a \texttt{main} mediante el Pull Request \#28 durante la ventana de esta entrega. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \vspace{-4pt}
-\noindent\footnotesize\textit{Ventana considerada: del 24 de agosto al 1 de septiembre de 2026, correspondiente al periodo de trabajo de esta entrega. La verificación se hizo sobre el historial de todas las ramas del repositorio, contando únicamente los \textit{commits} autorizados por cada integrante. Los aportes anteriores a esa ventana corresponden a la Entrega 1 y fueron reportados allí.}\normalsize
+\noindent\footnotesize\textit{Ventana considerada: del 24 de agosto al 6 de septiembre de 2026, correspondiente al periodo de trabajo de la Entrega 2. La verificación se realizó sobre el historial de ramas, commits y Pull Requests del repositorio, considerando las contribuciones integradas durante el periodo.}\normalsize
 
 \vspace{6pt}
+
 El reparto de tareas quedó registrado en los \textit{issues} del repositorio, cada uno con su criterio de aceptación y la evidencia que lo respalda, de modo que el avance de cada integrante puede verificarse directamente sobre el repositorio. Los experimentos quedaron centralizados en un único servidor de MLflow, lo que permite comparar corridas de distintos integrantes bajo el mismo experimento y con las mismas métricas.
 
 % ============================================================================
