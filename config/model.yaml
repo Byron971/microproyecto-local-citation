@@ -1,0 +1,11 @@
+# Configuración del experimento supervisado. Rutas relativas al repositorio.
+data_dir: data/raw
+output_dir: artifacts
+seed: 42
+negative_strategy: random  # random o hard
+negatives_per_positive: 2
+top_n: 100
+k: 10
+max_features: 50000
+min_df: 2
+c: 1.0

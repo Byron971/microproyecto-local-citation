@@ -583,6 +583,7 @@ pydantic==2.13.4
     #   fastapi
     #   fastapi-cloud-cli
     #   gto
+    #   microproyecto-local-citation
     #   mlflow-skinny
     #   mlflow-tracing
     #   pydantic-extra-types
@@ -651,6 +652,7 @@ pywinpty==3.0.5 ; os_name == 'nt'
 pyyaml==6.0.3
     # via
     #   jupyter-events
+    #   microproyecto-local-citation
     #   mlflow-skinny
     #   omegaconf
     #   uvicorn

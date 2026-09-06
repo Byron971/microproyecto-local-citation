@@ -1,7 +1,7 @@
 """Construcción de pares contexto-artículo para entrenamiento supervisado."""
 
 import random
-from collections.abc import Sequence
+from collections.abc import Collection, Mapping, Sequence
 
 
 def build_pairs(
@@ -9,6 +9,7 @@ def build_pairs(
     paper_ids: Sequence[str],
     negatives_per_positive: int = 1,
     random_state: int = 42,
+    excluded_paper_ids: Mapping[str, Collection[str]] | None = None,
 ) -> list[dict]:
     """Construye pares positivos y negativos para un split del dataset.
 
@@ -28,6 +29,9 @@ def build_pairs(
         Número de ejemplos negativos generados por cada ejemplo positivo.
     random_state:
         Semilla utilizada para garantizar reproducibilidad.
+    excluded_paper_ids:
+        Artículos adicionales que no pueden actuar como negativos para cada
+        contexto. Permite excluir, por ejemplo, el artículo citante.
 
     Returns
     -------
@@ -45,6 +49,7 @@ def build_pairs(
         context_id = row["context_id"]
         positive_ids = list(row["positive_ids"])
         positive_set = set(positive_ids)
+        excluded_set = set((excluded_paper_ids or {}).get(context_id, ()))
 
         for paper_id in positive_ids:
             pairs.append(
@@ -58,7 +63,7 @@ def build_pairs(
         negative_candidates = [
             paper_id
             for paper_id in all_paper_ids
-            if paper_id not in positive_set
+            if paper_id not in positive_set and paper_id not in excluded_set
         ]
 
         number_of_negatives = negatives_per_positive * len(positive_ids)

@@ -18,6 +18,8 @@ mlruns/
 
 # Cache de pytest
 .pytest_cache/
+.tox/
+artifacts/
 
 # Variables de entorno y secretos
 .env
@@ -40,3 +42,6 @@ reportes/**/*.synctex.gz
 reportes/**/*.toc
 reportes/**/*.bbl
 reportes/**/*.blg
+
+# Documentación de trabajo local
+docs/
