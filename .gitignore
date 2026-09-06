@@ -21,6 +21,15 @@ mlruns/
 .tox/
 artifacts/
 
+# Artefacto entrenado y salidas de construcción del paquete del modelo. El .pkl
+# se regenera con `tox -e train` antes de construir el wheel; pesa decenas de MB
+# y no se versiona.
+model-package/modelo_citas/trained/*.pkl
+model-package/dist/
+model-package/build/
+model-package/*.egg-info/
+model-package/.tox/
+
 # Variables de entorno y secretos
 .env
 .env.*

@@ -1,9 +1,10 @@
 """Backend del tablero: sirve el modelo real y la información del estudio de datos.
 
-Al arrancar carga la línea base TF-IDF sobre los 19.776 artículos del corpus y
-responde cada consulta ordenándolos de verdad, y expone los resultados del
-análisis exploratorio, de la evaluación del modelo y del diagnóstico de
-negativos que hasta ahora solo existían en un notebook y en el reporte.
+Al arrancar carga el modelo empaquetado en la librería ``modelo_citas``, que
+recupera candidatos con TF-IDF y los reordena con el modelo lineal supervisado,
+y expone los resultados del análisis exploratorio, de la evaluación del modelo y
+del diagnóstico de negativos que hasta ahora solo existían en un notebook y en
+el reporte.
 
 Para ejecutarlo desde la raíz del proyecto:
 
@@ -56,7 +57,7 @@ async def lifespan(app: FastAPI):
     se encuentre con una espera de varios segundos sin explicación: cuando el
     servidor dice estar listo, lo está de verdad.
     """
-    print("Cargando modelo TF-IDF sobre el corpus de artículos...")
+    print("Cargando el modelo empaquetado (TF-IDF + reordenador lineal)...")
     state["recomendador"] = Recommender().load()
 
     print("Cargando información del tablero...")
@@ -98,9 +99,8 @@ def estado() -> dict[str, Any]:
 def recomendar(consulta: ContextoConsulta) -> dict[str, Any]:
     """Devuelve los artículos más pertinentes para un contexto de cita.
 
-    A diferencia de la maqueta, el ranking sale del modelo: se vectoriza el
-    contexto con el mismo TF-IDF ajustado sobre el corpus y se ordenan los
-    artículos por similitud coseno.
+    El ranking sale del modelo empaquetado: TF-IDF recupera los candidatos y el
+    reordenador lineal los ordena por probabilidad de ser la cita correcta.
     """
     texto = consulta.contexto.strip()
 

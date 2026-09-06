@@ -1,0 +1,8 @@
+# scikit-learn va fijo: el artefacto es un pickle y un cambio de versión menor
+# puede impedir su deserialización.
+numpy>=2,<3
+scipy>=1.14,<2
+scikit-learn==1.9.0
+joblib>=1.4,<2
+pydantic>=2,<3
+pyyaml>=6,<7
