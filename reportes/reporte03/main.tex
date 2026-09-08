@@ -1,13 +1,4 @@
-% ============================================================================
-% REPORTE DE AVANCE - ENTREGA 3
-% Recomendación local de citas académicas
-% ============================================================================
-
-\documentclass[10pt]{article}
-
-% ============================================================================
-% PAQUETES
-% ============================================================================
+\documentclass[9pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -16,109 +7,91 @@
 \usepackage{geometry}
 \geometry{
     a4paper,
-    top=2.2cm,
-    bottom=2.2cm,
-    left=2.3cm,
-    right=2.3cm
+    top=1.7cm,
+    bottom=1.7cm,
+    left=1.8cm,
+    right=1.8cm
 }
 
 \usepackage{graphicx}
 \graphicspath{{./}}
-
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage{hyperref}
-\usepackage{parskip}
-\usepackage{caption}
 \usepackage{titlesec}
 \usepackage{fancyhdr}
 \usepackage{float}
-
-% ============================================================================
-% COLORES
-% ============================================================================
+\usepackage{caption}
 
 \definecolor{primaryblue}{RGB}{28,58,92}
 \definecolor{accentblue}{RGB}{47,109,161}
 \definecolor{lightgray}{RGB}{245,246,248}
-\definecolor{midgray}{RGB}{105,105,105}
-\definecolor{warningorange}{RGB}{185,105,20}
-\definecolor{successgreen}{RGB}{48,125,75}
+\definecolor{midgray}{RGB}{100,100,100}
+\definecolor{warningorange}{RGB}{180,105,20}
 
-% ============================================================================
-% FORMATO DE TITULOS
-% ============================================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+\setlist[itemize]{
+    leftmargin=1.4em,
+    itemsep=0pt,
+    topsep=2pt
+}
+
+\setlist[enumerate]{
+    leftmargin=1.5em,
+    itemsep=0pt,
+    topsep=2pt
+}
+
+\captionsetup{
+    font=footnotesize,
+    skip=2pt
+}
 
 \titleformat{\section}
-{\large\bfseries\color{primaryblue}}
+{\normalsize\bfseries\color{primaryblue}}
 {\thesection.}{0.35em}{}
 
 \titlespacing*{\section}
-{0pt}{1.0em}{0.4em}
+{0pt}{7pt}{3pt}
 
 \titleformat{\subsection}
-{\normalsize\bfseries\color{accentblue}}
+{\small\bfseries\color{accentblue}}
 {\thesubsection}{0.35em}{}
 
 \titlespacing*{\subsection}
-{0pt}{0.8em}{0.3em}
-
-% ============================================================================
-% ENCABEZADO Y PIE
-% ============================================================================
+{0pt}{5pt}{2pt}
 
 \pagestyle{fancy}
 \fancyhf{}
-
-\fancyhead[L]{
-\small\color{midgray}
-Recomendación local de citas académicas
-}
-
-\fancyhead[R]{
-\small\color{midgray}
-Entrega 3
-}
-
-\fancyfoot[C]{
-\small\color{midgray}
-\thepage
-}
-
-\renewcommand{\headrulewidth}{0.4pt}
-
-% ============================================================================
-% HIPERVINCULOS
-% ============================================================================
+\fancyhead[L]{\footnotesize\color{midgray} Recomendación local de citas académicas}
+\fancyhead[R]{\footnotesize\color{midgray} Entrega 3}
+\fancyfoot[C]{\footnotesize\color{midgray}\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
 
 \hypersetup{
     colorlinks=true,
     linkcolor=accentblue,
-    citecolor=accentblue,
     urlcolor=accentblue,
-    pdftitle={Recomendación local de citas académicas - Entrega 3},
-    pdfauthor={Maestría en Inteligencia Artificial - Universidad de los Andes}
+    pdftitle={Recomendación local de citas académicas - Entrega 3}
 }
-
-% ============================================================================
-% CAJAS
-% ============================================================================
 
 \newcommand{\notabox}[1]{
 \begin{tcolorbox}[
     colback=lightgray,
     colframe=accentblue,
-    boxrule=0.6pt,
-    left=7pt,
-    right=7pt,
-    top=5pt,
-    bottom=5pt,
-    arc=2pt
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=3pt,
+    bottom=3pt,
+    arc=1pt
 ]
-\small #1
+\footnotesize #1
 \end{tcolorbox}
 }
 
@@ -126,20 +99,16 @@ Entrega 3
 \begin{tcolorbox}[
     colback=orange!5,
     colframe=warningorange,
-    boxrule=0.6pt,
-    left=7pt,
-    right=7pt,
-    top=5pt,
-    bottom=5pt,
-    arc=2pt
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=3pt,
+    bottom=3pt,
+    arc=1pt
 ]
-\small #1
+\footnotesize #1
 \end{tcolorbox}
 }
-
-% ============================================================================
-% DOCUMENTO
-% ============================================================================
 
 \begin{document}
 
@@ -153,128 +122,76 @@ Entrega 3
 Recomendación local de citas académicas mediante aprendizaje automático
 }
 
-\vspace{4pt}
+\vspace{2pt}
 
-{\large
+{\normalsize
 Reporte de avance -- Entrega 3
 }
 
-\vspace{5pt}
-
-Maestría en Inteligencia Artificial -- Universidad de los Andes
-
 \vspace{3pt}
+
+\footnotesize
+Maestría en Inteligencia Artificial -- Universidad de los Andes
 
 Carlos Duque · Carlos Caicedo · Jose Zambrana · John Arias
 
-\vspace{3pt}
-
 Proyecto: Desarrollo de Soluciones
 
+7 de septiembre de 2026
+
 \vspace{3pt}
-
-Fecha de actualización: 7 de septiembre de 2026
-
-\vspace{6pt}
-
-{\color{primaryblue}\rule{\linewidth}{0.8pt}}
+{\color{primaryblue}\rule{\linewidth}{0.7pt}}
 
 \end{center}
 
 % ============================================================================
-% 1. RESUMEN DEL PROBLEMA
+% 1. PROBLEMA Y DATOS
 % ============================================================================
 
-\section{Resumen del problema}
+\section{Problema, datos y alcance}
 
-La producción de literatura científica crece continuamente y hace cada vez
-más difícil que un investigador identifique rápidamente qué trabajo debe
-citar para respaldar una afirmación específica.
-
-La recomendación local de citas aborda este problema usando como consulta
-el fragmento textual próximo al lugar donde se requiere incluir una
-referencia. A partir de este contexto, el sistema busca y ordena los
-artículos que podrían ser relevantes para la afirmación realizada.
+Encontrar una referencia adecuada para respaldar una afirmación académica puede
+convertirse en una tarea costosa cuando el autor debe buscar entre miles de
+publicaciones relacionadas con un mismo tema. La recomendación local de citas
+busca reducir ese esfuerzo tomando como punto de partida el fragmento de texto
+en el que se necesita incorporar la referencia.
 
 \notabox{
 \textbf{Pregunta de negocio:}
-¿Cómo apoyar a un autor de textos académicos en la identificación de
-artículos potencialmente relevantes para citar utilizando el contexto
-textual local en el que requiere incluir una referencia?
+¿Cómo apoyar a un autor de textos académicos en la identificación de artículos
+potencialmente relevantes para citar utilizando el contexto textual local?
 }
 
-El resultado esperado es un prototipo que recibe un contexto académico en
-inglés y devuelve un ranking de artículos candidatos, permitiendo consultar
-sus títulos, identificadores, resúmenes y puntajes de relevancia desde una
-interfaz web.
+El prototipo desarrollado recibe un fragmento académico en inglés y devuelve
+una lista ordenada de artículos candidatos. Para cada resultado se presentan
+el identificador del documento, el título, el resumen y las puntuaciones
+utilizadas por el recomendador.
+
+El proyecto trabaja con el conjunto \texttt{custom} (ACL-200), proveniente del
+repositorio \textit{Local-Citation-Recommendation}. El corpus utilizado contiene
+63.768 contextos de cita y 19.776 artículos candidatos. Las particiones
+empleadas incluyen 30.390 consultas de entrenamiento, 9.381 de validación y
+9.585 de prueba.
+
+Los archivos de datos se administran con DVC a través de
+\texttt{data/raw.dvc} y \texttt{data/processed.dvc}. De esta forma, Git se
+mantiene enfocado en el código, la configuración y la documentación, mientras
+DVC conserva el versionamiento de los conjuntos utilizados durante los
+experimentos.
 
 % ============================================================================
-% 2. CONJUNTO DE DATOS
+% 2. ARQUITECTURA
 % ============================================================================
 
-\section{Conjunto de datos}
+\section{Arquitectura y modelo}
 
-El proyecto utiliza el conjunto \texttt{custom} (ACL-200) proveniente del
-repositorio \textit{Local-Citation-Recommendation}.
-
-El conjunto empleado contiene:
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item 63.768 contextos de cita.
-    \item 19.776 artículos candidatos.
-    \item 30.390 consultas de entrenamiento.
-    \item 9.381 consultas de validación.
-    \item 9.585 consultas de prueba.
-\end{itemize}
-
-Los artículos contienen título y resumen, mientras las consultas representan
-fragmentos de texto académico asociados con la referencia que fue utilizada
-en el documento original.
-
-Los datos no son almacenados directamente en Git debido a su tamaño.
-El versionamiento se realiza mediante DVC utilizando
-\texttt{data/raw.dvc} y \texttt{data/processed.dvc}.
-
-De esta manera se mantiene separado el control de versiones del código y
-el control de versiones de los datos, conservando la trazabilidad necesaria
-para reproducir los experimentos.
-
-% ============================================================================
-% 3. ARQUITECTURA
-% ============================================================================
-
-\section{Arquitectura desarrollada}
-
-La solución utiliza una arquitectura de recuperación y reordenamiento en
-dos etapas.
-
-\subsection{Primera etapa: recuperación TF--IDF}
-
-El contexto de cita se representa mediante TF--IDF y se compara contra los
-19.776 artículos del corpus mediante similitud coseno.
-
-La primera etapa selecciona los 100 candidatos con mayor similitud.
-
-\subsection{Segunda etapa: reordenador supervisado}
-
-Los 100 candidatos son posteriormente evaluados mediante una regresión
-logística que aprende a distinguir entre artículos relevantes y no
-relevantes.
-
-El modelo utiliza cinco características:
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item similitud TF--IDF contexto--título;
-    \item similitud TF--IDF contexto--resumen;
-    \item longitud del contexto;
-    \item longitud del título;
-    \item longitud del resumen.
-\end{itemize}
-
-El flujo completo puede resumirse como:
+La solución se organizó en dos etapas. Primero, TF--IDF recupera los artículos
+más parecidos al contexto de consulta. Después, un modelo supervisado vuelve a
+ordenar esos candidatos tratando de ubicar la cita correcta en las primeras
+posiciones.
 
 \begin{center}
-\small
+\footnotesize
 Contexto
 $\rightarrow$
 TF--IDF
@@ -285,90 +202,73 @@ Regresión logística
 $\rightarrow$
 Top--K
 $\rightarrow$
-API
+paquete
 $\rightarrow$
-Tablero
+FastAPI
+$\rightarrow$
+tablero
 \end{center}
 
-Esta arquitectura evita aplicar el reordenador supervisado a los 19.776
-artículos para cada consulta y permite conservar tiempos de respuesta
-compatibles con un prototipo interactivo.
+La primera etapa compara el contexto con los 19.776 artículos del corpus
+mediante similitud coseno y conserva los 100 candidatos con mayor puntaje.
 
-% ============================================================================
-% 4. MODELO SUPERVISADO
-% ============================================================================
+Sobre esos candidatos se aplica una regresión logística que utiliza cinco
+características:
 
-\section{Entrenamiento del modelo supervisado}
-
-El modelo supervisado se entrenó empleando una consulta positiva y dos
-ejemplos negativos por consulta.
-
-Con las 30.390 consultas de entrenamiento se construyeron aproximadamente
-91.170 pares contexto--artículo.
-
-Se analizaron dos estrategias diferentes para seleccionar los negativos.
-
-\subsection{Negativos aleatorios}
-
-La estrategia \texttt{random} selecciona artículos incorrectos de manera
-aleatoria dentro del catálogo.
-
-Esta estrategia representa ejemplos relativamente sencillos, pero permite
-al modelo aprender una frontera estable entre positivos y negativos.
-
-La Figura~\ref{fig:train-random} presenta la ejecución del entrenamiento
-realizada desde el repositorio.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{entrenamiento_random_terminal.png}
-\caption{Ejecución del entrenamiento de la variante con negativos aleatorios.}
-\label{fig:train-random}
-\end{figure}
-
-\subsection{Negativos difíciles}
-
-La estrategia \texttt{hard} selecciona como negativos artículos incorrectos
-que aparecen entre los primeros candidatos recuperados mediante TF--IDF.
-
-Estos ejemplos son considerablemente más parecidos léxicamente al contexto.
-
-La Figura~\ref{fig:train-hard} muestra la ejecución de esta segunda variante.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{entrenamiento_hard_terminal.png}
-\caption{Ejecución del entrenamiento de la variante con negativos difíciles.}
-\label{fig:train-hard}
-\end{figure}
-
-% ============================================================================
-% 5. RESULTADOS
-% ============================================================================
-
-\section{Comparación de los modelos}
-
-Las variantes se evaluaron utilizando las mismas consultas de validación,
-la misma semilla, los mismos 100 candidatos recuperados y los mismos
-hiperparámetros.
-
-Las métricas principales fueron Recall@K y MRR@K.
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item \textbf{Recall@K}: mide si el artículo correcto se encuentra entre
-    las primeras $K$ posiciones.
-    \item \textbf{MRR@K}: considera además qué tan arriba aparece el primer
-    resultado correcto.
+\begin{itemize}
+    \item similitud TF--IDF entre el contexto y el título;
+    \item similitud TF--IDF entre el contexto y el resumen;
+    \item longitud del contexto;
+    \item longitud del título;
+    \item longitud del resumen.
 \end{itemize}
 
-Los principales resultados se presentan en la
-Tabla~\ref{tab:resultados}.
+Para entrenar el reordenador se construyeron aproximadamente 91.170 pares
+contexto--artículo. Cada consulta aporta una cita positiva y dos ejemplos
+negativos.
+
+Se probaron dos formas de seleccionar esos negativos. En la primera,
+\texttt{random}, los artículos incorrectos se escogen aleatoriamente. En la
+segunda, \texttt{hard}, se utilizan artículos incorrectos que TF--IDF considera
+muy parecidos al contexto.
+
+Las siguientes capturas corresponden a las ejecuciones utilizadas para entrenar
+ambas variantes.
+
+\begin{figure}[H]
+\centering
+
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{entrenamiento_random_terminal.png}
+\caption*{(a) Entrenamiento con negativos aleatorios}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{entrenamiento_hard_terminal.png}
+\caption*{(b) Entrenamiento con negativos difíciles}
+\end{minipage}
+
+\caption{Evidencias de entrenamiento de las dos estrategias evaluadas.}
+\end{figure}
+
+% ============================================================================
+% 3. RESULTADOS
+% ============================================================================
+
+\section{Resultados experimentales}
+
+Las dos variantes se evaluaron con las mismas particiones de datos, la misma
+semilla y los mismos parámetros generales. La única diferencia controlada fue
+la estrategia utilizada para escoger los negativos.
+
+Los resultados principales fueron los siguientes:
 
 \begin{table}[H]
 \centering
-\small
-\caption{Resultados de las estrategias Random y Hard}
-\label{tab:resultados}
+\footnotesize
+\caption{Resultados obtenidos con las estrategias Random y Hard}
 
 \begin{tabular}{lccc}
 \toprule
@@ -378,12 +278,12 @@ Tabla~\ref{tab:resultados}.
 \textbf{Recall@100} \\
 \midrule
 
-Regresión logística -- Random &
+Random &
 \textbf{0,2882} &
 \textbf{0,1490} &
 0,5160 \\
 
-Regresión logística -- Hard &
+Hard &
 0,0629 &
 0,0212 &
 0,5160 \\
@@ -392,228 +292,169 @@ Regresión logística -- Hard &
 \end{tabular}
 \end{table}
 
-La estrategia Random presenta un desempeño claramente superior en las
-primeras posiciones del ranking.
+La diferencia entre las dos estrategias es considerable en las primeras
+posiciones del ranking. Con negativos aleatorios, Recall@10 alcanza 0,2882,
+mientras que con negativos difíciles baja a 0,0629. El mismo comportamiento
+aparece en MRR@10, que pasa de 0,1490 a 0,0212.
 
-Recall@10 aumenta de 0,0629 a 0,2882 y MRR@10 aumenta de 0,0212 a
-0,1490.
-
-Las Figuras~\ref{fig:recall-comparison} y
-\ref{fig:mrr-comparison} muestran gráficamente esta diferencia.
+Las gráficas siguientes permiten observar esta diferencia de manera directa.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.72\textwidth]{comparacion_random_hard_recall10.png}
-\caption{Comparación de Recall@10 entre negativos aleatorios y difíciles.}
-\label{fig:recall-comparison}
-\end{figure}
 
-\begin{figure}[H]
+\begin{minipage}{0.49\textwidth}
 \centering
-\includegraphics[width=0.72\textwidth]{comparacion_random_hard_mrr10.png}
-\caption{Comparación de MRR@10 entre negativos aleatorios y difíciles.}
-\label{fig:mrr-comparison}
+\includegraphics[width=\linewidth]{comparacion_random_hard_recall10.png}
+\caption*{(a) Comparación de Recall@10}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{comparacion_random_hard_mrr10.png}
+\caption*{(b) Comparación de MRR@10}
+\end{minipage}
+
+\caption{Desempeño de las estrategias Random y Hard en las primeras posiciones del ranking.}
 \end{figure}
 
-El hecho de que Recall@100 permanezca aproximadamente en 0,516 para ambas
-variantes demuestra que los modelos reciben el mismo conjunto de candidatos.
-La diferencia observada se produce por la manera en la que cada reordenador
-organiza esos candidatos.
+Recall@100 permanece alrededor de 0,516 en las dos configuraciones porque
+ambas reciben exactamente los mismos 100 candidatos recuperados por TF--IDF.
+Esto indica que la diferencia entre los experimentos está en el ordenamiento y
+no en la recuperación inicial.
 
-El experimento con negativos difíciles muestra además que utilizar ejemplos
-más difíciles no garantiza automáticamente un mejor modelo. Los candidatos
-difíciles presentan alta similitud léxica con el contexto y el conjunto
-actual de cinco características no contiene suficiente información
-semántica para distinguirlos adecuadamente.
+El resultado de la estrategia \texttt{hard} también fue útil para entender una
+limitación del modelo. Los negativos difíciles son artículos que ya presentan
+una gran similitud léxica con el contexto y, utilizando únicamente cinco
+características, el reordenador tiene poca información adicional para
+distinguirlos correctamente.
 
-Como resultado de esta comparación se seleccionó la estrategia
-\texttt{random} para el modelo empaquetado.
-
-La configuración seleccionada actualmente en
-\texttt{config/model.yaml} corresponde a:
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item semilla: 42;
-    \item estrategia de negativos: random;
-    \item negativos por positivo: 2;
-    \item Top--N: 100;
-    \item $K$: 10;
-    \item \texttt{max\_features}: 50.000;
-    \item \texttt{min\_df}: 2;
-    \item $C$: 1,0.
-\end{itemize}
+Por este motivo se seleccionó la estrategia \texttt{random} como configuración
+del modelo empaquetado. La versión actual utiliza semilla 42, dos negativos por
+positivo, Top--100, $K=10$, \texttt{max\_features=50000},
+\texttt{min\_df=2} y $C=1.0$.
 
 % ============================================================================
-% 6. MLFLOW
+% 4. MLFLOW
 % ============================================================================
 
 \section{Seguimiento de experimentos con MLflow}
 
-La experimentación fue integrada con MLflow para registrar métricas,
-parámetros y artefactos de las diferentes ejecuciones.
+Para evitar que los resultados quedaran únicamente registrados en las
+terminales de cada integrante, el entrenamiento se integró con MLflow. Cada
+corrida conserva sus parámetros, métricas de ranking, tiempos de procesamiento
+y artefactos asociados.
 
-La configuración del tracking se encuentra centralizada en
-\texttt{src/tracking/mlflow\_setup.py}.
+La configuración se centralizó en
+\texttt{src/tracking/mlflow\_setup.py}, de manera que todos los experimentos
+utilicen la misma estructura de seguimiento.
 
-Esto permite utilizar las mismas convenciones de nombres y métricas para los
-diferentes experimentos y facilita su comparación.
-
-La Figura~\ref{fig:mlflow-runs} muestra las ejecuciones Random y Hard
-registradas en el servidor MLflow.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{mlflow_runs_random_hard.png}
-\caption{Corridas de entrenamiento Random y Hard registradas en MLflow.}
-\label{fig:mlflow-runs}
-\end{figure}
-
-\subsection{Detalle de la variante Random}
-
-La corrida seleccionada con negativos aleatorios registró las métricas
-de ranking, tiempos y parámetros del experimento.
+A continuación se muestran las dos corridas registradas en MLflow y una de las
+comparaciones de tiempo utilizadas durante el análisis.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth]{mlflow_run_random_detalle.png}
-\caption{Detalle en MLflow de la corrida entrenada con negativos aleatorios.}
-\label{fig:mlflow-random}
+
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{mlflow_runs_random_hard.png}
+\caption*{(a) Corridas Random y Hard registradas en MLflow}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{mlflow_comparacion_tiempo_features.png}
+\caption*{(b) Comparación del tiempo de generación de características}
+\end{minipage}
+
+\caption{Seguimiento y comparación de los experimentos realizados.}
 \end{figure}
 
-\subsection{Detalle de la variante Hard}
-
-La segunda corrida utiliza negativos difíciles bajo el mismo protocolo
-experimental.
+Las siguientes capturas muestran el detalle de métricas y parámetros almacenado
+para cada una de las dos ejecuciones.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth]{mlflow_run_hard_detalle.png}
-\caption{Detalle en MLflow de la corrida entrenada con negativos difíciles.}
-\label{fig:mlflow-hard}
-\end{figure}
 
-\subsection{Comparación de tiempo de procesamiento}
-
-Además de las métricas de calidad, MLflow permitió revisar variables
-operacionales relacionadas con el tiempo requerido para construir las
-características.
-
-\begin{figure}[H]
+\begin{minipage}{0.49\textwidth}
 \centering
-\includegraphics[width=0.80\textwidth]{mlflow_comparacion_tiempo_features.png}
-\caption{Comparación de tiempos de generación de características registrada en MLflow.}
-\label{fig:mlflow-time}
+\includegraphics[width=\linewidth]{mlflow_run_random_detalle.png}
+\caption*{(a) Detalle de la corrida Random}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{mlflow_run_hard_detalle.png}
+\caption*{(b) Detalle de la corrida Hard}
+\end{minipage}
+
+\caption{Detalle de las dos variantes de entrenamiento almacenadas en MLflow.}
 \end{figure}
 
-El registro centralizado permite conservar trazabilidad entre configuración,
-resultados y artefactos, evitando depender exclusivamente de resultados
-copiados manualmente desde la terminal.
+El uso de MLflow permitió comparar los experimentos sobre una misma base y
+conservar evidencia de cómo se obtuvieron los resultados utilizados para
+seleccionar el modelo.
 
 % ============================================================================
-% 7. MLFLOW EN AWS
+% 5. AWS
 % ============================================================================
 
-\section{Infraestructura de MLflow en AWS}
+\section{MLflow en AWS}
 
-Para compartir los experimentos entre integrantes se desplegó un servidor
-MLflow sobre una instancia EC2 de AWS Academy.
+Para que el seguimiento de experimentos no dependiera de una sola máquina
+local, se instaló MLflow 3.15.1 en una instancia EC2 de AWS Academy con Ubuntu
+24.04 LTS.
 
-El servidor utiliza:
+La instancia utiliza SQLite para guardar los metadatos de MLflow y un
+directorio local para los artefactos. El servicio escucha por el puerto 8050 y
+se configuró con \texttt{systemd} para que vuelva a iniciarse automáticamente
+cuando la máquina arranque.
 
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item Ubuntu Server 24.04 LTS;
-    \item MLflow 3.15.1;
-    \item SQLite como backend de metadatos;
-    \item almacenamiento local de artefactos;
-    \item puerto TCP 8050;
-    \item un proceso worker para mantener estabilidad dentro de los recursos
-    disponibles en la instancia.
-\end{itemize}
+Uno de los inconvenientes de AWS Academy es que la dirección IP pública puede
+cambiar al detener y volver a iniciar la instancia. Para evitar tener que
+actualizar esta dirección manualmente cada vez, se creó el script
+\texttt{scripts/conectar\_mlflow\_aws.ps1}.
 
-El servicio de MLflow quedó configurado mediante \texttt{systemd}, lo cual
-permite iniciarlo automáticamente cada vez que la instancia se reinicia.
+El script consulta la IP pública actual mediante AWS CLI, configura
+\texttt{MLFLOW\_TRACKING\_URI} y comprueba que el puerto 8050 sea accesible
+desde el equipo local.
 
-La Figura~\ref{fig:mlflow-service} muestra la evidencia del servicio
-funcionando en la instancia.
+Las siguientes imágenes muestran el servicio funcionando en EC2 y la conexión
+automática desde PowerShell.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.88\textwidth]{aws_mlflow_servicio_activo.png}
-\caption{Servicio MLflow activo y administrado mediante systemd en la instancia EC2.}
-\label{fig:mlflow-service}
-\end{figure}
 
-\subsection{Conexión automática desde el entorno local}
-
-AWS Academy utiliza credenciales temporales y la dirección pública de una
-instancia puede cambiar después de detenerla e iniciarla.
-
-Para evitar actualizar manualmente la dirección del servidor dentro del
-proyecto se desarrolló el script:
-
-\begin{center}
-\texttt{scripts/conectar\_mlflow\_aws.ps1}
-\end{center}
-
-El script consulta AWS mediante CLI, obtiene la IP pública actual de la
-instancia EC2, configura la variable:
-
-\begin{center}
-\texttt{MLFLOW\_TRACKING\_URI}
-\end{center}
-
-y finalmente verifica si el puerto 8050 está disponible.
-
-La Figura~\ref{fig:mlflow-auto} evidencia este procedimiento funcionando.
-
-\begin{figure}[H]
+\begin{minipage}{0.49\textwidth}
 \centering
-\includegraphics[width=0.82\textwidth]{mlflow_conexion_aws_automatica.png}
-\caption{Detección automática de la IP pública de EC2 y configuración de la conexión a MLflow.}
-\label{fig:mlflow-auto}
+\includegraphics[width=\linewidth]{aws_mlflow_servicio_activo.png}
+\caption*{(a) Servicio MLflow activo en EC2}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{mlflow_conexion_aws_automatica.png}
+\caption*{(b) Detección de la IP y conexión desde el equipo local}
+\end{minipage}
+
+\caption{Funcionamiento de la infraestructura de MLflow en AWS.}
 \end{figure}
 
-Esta automatización reduce los pasos manuales necesarios para continuar la
-experimentación después de reiniciar el laboratorio de AWS Academy.
-
 % ============================================================================
-% 8. EMPAQUETAMIENTO DEL MODELO
+% 6. EMPAQUETAMIENTO
 % ============================================================================
 
-\section{Empaquetamiento del modelo}
+\section{Empaquetamiento e integración del modelo}
 
-Uno de los objetivos principales de esta etapa fue separar el modelo de
-inferencia del código de experimentación.
+Otro avance importante de esta entrega fue convertir el recomendador en una
+librería Python instalable. El paquete se encuentra en
+\texttt{model-package/} y se distribuye con el nombre
+\texttt{modelo-citas}. La versión utilizada actualmente es la 0.1.0.
 
-Para ello se creó el módulo:
+El wheel incluye el recuperador TF--IDF, el reordenador lineal, la
+configuración, el modelo entrenado y la información necesaria para devolver
+los artículos recomendados.
 
-\begin{center}
-\texttt{model-package/}
-\end{center}
-
-que transforma el recomendador en una librería Python instalable denominada:
-
-\begin{center}
-\texttt{modelo-citas}
-\end{center}
-
-La versión validada actualmente es la 0.1.0.
-
-El paquete incorpora:
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item recuperador TF--IDF;
-    \item reordenador lineal;
-    \item configuración del modelo;
-    \item modelo entrenado;
-    \item metadatos de los artículos;
-    \item función pública de inferencia.
-\end{itemize}
-
-El objetivo es que el consumidor del modelo no necesite importar
-\texttt{src/}, descargar el dataset ni conocer el pipeline de entrenamiento.
-
-La interfaz pública puede utilizarse de la siguiente forma:
+La interfaz pública del paquete puede utilizarse de esta forma:
 
 \begin{verbatim}
 from modelo_citas import make_prediction
@@ -622,505 +463,269 @@ resultado = make_prediction(
     context="Recent work on neural machine translation with attention",
     top_k=5,
 )
-
-print(resultado["predictions"])
 \end{verbatim}
 
-\subsection{Validación del wheel}
+Para comprobar que el paquete no funcionara únicamente por encontrarse dentro
+del repositorio, se construyó el wheel y se instaló en un entorno virtual limpio.
+Desde ese entorno se importó \texttt{modelo\_citas} directamente desde
+\texttt{site-packages} y se ejecutó una predicción real.
 
-Durante la integración se realizaron las siguientes comprobaciones:
-
-\begin{enumerate}[leftmargin=1.5em, itemsep=1pt]
-    \item Entrenamiento del modelo desde el paquete.
-    \item Ejecución de las pruebas específicas mediante Tox.
-    \item Construcción del wheel.
-    \item Instalación del wheel en un entorno virtual limpio.
-    \item Importación de \texttt{modelo\_citas} desde
-    \texttt{site-packages}.
-    \item Ejecución de una predicción real desde el entorno limpio.
-\end{enumerate}
-
-Estas pruebas permiten demostrar que el wheel no funciona únicamente por
-estar dentro del repositorio de desarrollo, sino como una dependencia
-instalable independiente.
-
-Posteriormente, el cambio fue revisado mediante Pull Request e integrado a
-la rama principal.
-
-Después de sincronizar nuevamente la rama de la Entrega 3 con
-\texttt{main}, se ejecutó la suite completa:
+También se ejecutaron las pruebas específicas del paquete mediante Tox y,
+después de integrarlo con la rama principal, se volvió a ejecutar la suite
+completa del proyecto.
 
 \notabox{
-\textbf{96 pruebas aprobadas.}
+\textbf{Resultado de las pruebas: 96 pruebas aprobadas.}
 
-No se presentaron fallos funcionales después de integrar el paquete del
-modelo con el resto del proyecto.
+La integración del modelo empaquetado no produjo fallos funcionales en la suite
+del proyecto. Permanecen advertencias de deprecación relacionadas con
+NumPy/Joblib que no impiden la ejecución actual.
 }
 
-Las advertencias observadas corresponden principalmente a cambios deprecados
-en NumPy/Joblib y se consideran deuda técnica no bloqueante.
-
 % ============================================================================
-% 9. API
+% 7. API Y TABLERO
 % ============================================================================
 
-\section{API del recomendador}
+\section{API y tablero}
 
-El modelo empaquetado fue integrado con un backend desarrollado mediante
-FastAPI.
+El paquete \texttt{modelo-citas} se integró posteriormente con un backend
+desarrollado en FastAPI. Al iniciar la aplicación, el backend carga el modelo
+empaquetado y queda disponible para responder las consultas enviadas desde la
+API o desde el tablero.
 
-El backend carga el paquete \texttt{modelo-citas} durante el inicio de la
-aplicación y permite realizar predicciones desde una interfaz HTTP.
+Los endpoints principales son:
 
-Los principales endpoints son:
-
-\begin{table}[H]
-\centering
-\small
-
+\begin{center}
+\footnotesize
 \begin{tabular}{lll}
 \toprule
-\textbf{Método} & \textbf{Endpoint} & \textbf{Función} \\
+\textbf{Método} & \textbf{Ruta} & \textbf{Función} \\
 \midrule
-GET &
-\texttt{/api/estado} &
-Información del modelo cargado \\
-
-POST &
-\texttt{/api/recomendar} &
-Generación de recomendaciones \\
-
-GET &
-\texttt{/api/insights} &
-Información analítica para el tablero \\
-
-GET &
-\texttt{/api/ejemplo} &
-Consulta real del corpus \\
-
-GET &
-\texttt{/docs} &
-Documentación Swagger/OpenAPI \\
+GET  & \texttt{/api/estado} & Estado del modelo \\
+POST & \texttt{/api/recomendar} & Generar recomendaciones \\
+GET  & \texttt{/api/insights} & Información analítica \\
+GET  & \texttt{/api/ejemplo} & Ejemplo real del corpus \\
+GET  & \texttt{/docs} & Documentación Swagger/OpenAPI \\
 \bottomrule
 \end{tabular}
-
-\caption{Endpoints principales del backend FastAPI.}
-\end{table}
-
-El endpoint \texttt{/api/recomendar} recibe un contexto y un número
-\texttt{top\_k} y devuelve artículos ordenados junto con su información.
-
-Durante las pruebas manuales se verificó mediante Swagger que el endpoint
-devuelve código HTTP 200 y recomendaciones reales.
-
-El endpoint \texttt{/api/estado} reportó correctamente que el modelo servido
-corresponde a:
-
-\begin{center}
-\texttt{TF-IDF + reordenador lineal}
 \end{center}
 
-con 19.776 artículos disponibles.
+Las pruebas realizadas desde Swagger devolvieron código HTTP 200 y resultados
+reales para el endpoint de recomendación. El endpoint
+\texttt{/api/estado} también confirmó que el modelo cargado corresponde a
+TF--IDF más reordenador lineal, versión 0.1.0, sobre un catálogo de 19.776
+artículos.
+
+El tablero se encuentra en \texttt{src/app/}. Desde la interfaz, el usuario
+puede escribir un contexto, escoger cuántas recomendaciones desea recibir y
+consultar el ranking generado. Al seleccionar un artículo también puede revisar
+su resumen.
+
+Además del recomendador, la interfaz presenta tres apartados de análisis:
+estudio de los datos, desempeño del modelo y diagnóstico de negativos. De esta
+forma, el prototipo reúne tanto la funcionalidad de recomendación como parte de
+la información utilizada durante el desarrollo del modelo.
 
 % ============================================================================
-% 10. TABLERO
+% 8. USO E INSTALACION
 % ============================================================================
 
-\section{Tablero desarrollado}
+\section{Uso, instalación y reproducibilidad}
 
-La aplicación web se encuentra en:
+\subsection{Uso del prototipo}
 
-\begin{center}
-\texttt{src/app/}
-\end{center}
+El flujo para utilizar el tablero es sencillo:
 
-y se sirve desde el mismo proceso FastAPI.
-
-El tablero puede ejecutarse localmente mediante:
-
-\begin{center}
-\texttt{uv run tablero}
-\end{center}
-
-y posteriormente abrirse en:
-
-\begin{center}
-\texttt{http://127.0.0.1:8000}
-\end{center}
-
-El componente principal permite:
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item escribir un contexto académico en inglés;
-    \item escoger la cantidad de resultados;
-    \item solicitar recomendaciones;
-    \item observar el ranking generado;
-    \item revisar el resumen de un artículo seleccionado;
-    \item cargar un ejemplo real conocido del corpus.
-\end{itemize}
-
-El tablero ya consume el modelo empaquetado TF--IDF más reordenador lineal
-a través del backend.
-
-También dispone de tres secciones analíticas:
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item Estudio de los datos.
-    \item Desempeño del modelo.
-    \item Diagnóstico de negativos.
-\end{itemize}
-
-Estas vistas integran en un único prototipo información que anteriormente
-se encontraba distribuida entre notebooks, scripts de evaluación y
-resultados experimentales.
-
-% ============================================================================
-% 11. MANUAL DE USUARIO
-% ============================================================================
-
-\section{Manual de usuario}
-
-El flujo básico para utilizar el tablero es el siguiente:
-
-\begin{enumerate}[leftmargin=1.5em, itemsep=1pt]
-
-    \item Abrir el tablero en el navegador.
-
-    \item Escribir o pegar un fragmento académico en inglés dentro del campo
-    \textit{Contexto de cita}.
-
-    \item Seleccionar el número de artículos que se desean recuperar.
-
-    \item Presionar \textit{Recomendar citas}.
-
-    \item Revisar el ranking presentado en la zona
-    \textit{Artículos recomendados}.
-
-    \item Seleccionar uno de los resultados para visualizar su resumen.
-
-    \item Para probar una consulta conocida, utilizar
-    \textit{Usar un ejemplo real}.
-
-    \item Consultar las pestañas inferiores para analizar datos, métricas
-    y comportamiento de las estrategias de negativos.
-
+\begin{enumerate}
+    \item abrir la aplicación en el navegador;
+    \item escribir o pegar un fragmento académico en inglés;
+    \item escoger el número de recomendaciones;
+    \item pulsar \textit{Recomendar citas};
+    \item revisar los artículos recuperados y sus resúmenes.
 \end{enumerate}
 
-Los resultados constituyen recomendaciones y no reemplazan la revisión
-académica del usuario. Antes de utilizar una referencia debe verificarse que
-el contenido del artículo realmente respalde la afirmación realizada.
+También puede utilizarse la opción \textit{Usar un ejemplo real} para cargar
+una consulta conocida del conjunto de datos y observar el comportamiento del
+recomendador.
 
-% ============================================================================
-% 12. MANUAL DE INSTALACION
-% ============================================================================
+Los resultados deben entenderse como apoyo a la búsqueda bibliográfica. La
+pertinencia de una referencia debe revisarse antes de utilizarla en un documento
+académico.
 
-\section{Manual de instalación}
+\subsection{Instalación}
 
-El proyecto utiliza \texttt{uv} para administrar el entorno Python y sus
-dependencias.
-
-El flujo principal de instalación es:
+El flujo principal para preparar el proyecto es:
 
 \begin{verbatim}
 git clone https://github.com/Byron971/microproyecto-local-citation.git
 cd microproyecto-local-citation
-
 uv sync
 uv run dvc pull
-
 uv run pytest
-
 uv run tox -c model-package -e train
 uv sync --reinstall-package modelo-citas
-
 uv run tablero
 \end{verbatim}
 
-Después de iniciar la aplicación se puede acceder al tablero en:
+Una vez iniciado el servicio, el tablero queda disponible en
+\texttt{http://127.0.0.1:8000} y la documentación de la API en
+\texttt{http://127.0.0.1:8000/docs}.
 
-\begin{center}
-\texttt{http://127.0.0.1:8000}
-\end{center}
-
-y a la documentación interactiva de FastAPI en:
-
-\begin{center}
-\texttt{http://127.0.0.1:8000/docs}
-\end{center}
-
-Si el remoto DVC no estuviera disponible, los archivos originales del
-conjunto \texttt{custom} pueden recuperarse desde el repositorio público
-\textit{Local-Citation-Recommendation}.
+La reproducibilidad del proyecto se apoya en Git y GitHub para el código, DVC
+para los datos, MLflow para los experimentos, uv para las dependencias, Tox
+para las pruebas del paquete y pytest para la suite general.
 
 % ============================================================================
-% 13. REPRODUCIBILIDAD
+% 9. ESTADO
 % ============================================================================
 
-\section{Versionamiento y reproducibilidad}
+\section{Estado actual de la Entrega 3}
 
-La solución utiliza diferentes herramientas para controlar cada elemento
-del ciclo de desarrollo.
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-
-    \item \textbf{Git/GitHub}: código, configuración, documentación y
-    colaboración.
-
-    \item \textbf{DVC}: versiones de los datos.
-
-    \item \textbf{MLflow}: parámetros, resultados, métricas y artefactos de
-    los experimentos.
-
-    \item \textbf{uv}: resolución reproducible del entorno Python.
-
-    \item \textbf{Tox}: validación del paquete dentro de entornos aislados.
-
-    \item \textbf{pytest}: pruebas automatizadas del proyecto.
-
-\end{itemize}
-
-La configuración final seleccionada permanece explícita dentro de
-\texttt{config/model.yaml} y utiliza una semilla fija de 42.
-
-El modelo empaquetado mantiene además su versión dentro de:
-
-\begin{center}
-\texttt{model-package/modelo\_citas/VERSION}
-\end{center}
-
-Esta separación permite mantener trazabilidad entre el código experimental,
-el modelo seleccionado y la versión distribuida para inferencia.
-
-% ============================================================================
-% 14. ESTADO FRENTE A ENTREGA 3
-% ============================================================================
-
-\section{Estado actual frente a la Entrega 3}
-
-La guía del microproyecto establece para la Entrega 3 los repositorios,
-versionamiento de datos, modelos, MLflow, empaquetamiento y API,
-contenedores, manuales, reporte de trabajo en equipo y video final.
-
-El estado actual es:
+Hasta el momento se han completado los componentes asociados con datos,
+experimentación, selección del modelo, empaquetamiento e integración local con
+la API y el tablero.
 
 \begin{table}[H]
 \centering
-\small
+\footnotesize
 
-\begin{tabular}{p{9.2cm}p{3.0cm}}
+\begin{tabular}{p{9cm}p{3cm}}
 \toprule
-\textbf{Requisito} & \textbf{Estado} \\
+\textbf{Componente} & \textbf{Estado} \\
 \midrule
-
-Repositorio Git con código y aportes del equipo &
-Realizado \\
-
-Datos versionados mediante DVC &
-Realizado \\
-
-Modelos desarrollados &
-Realizado \\
-
-Comparación de modelos &
-Realizado \\
-
-Experimentos soportados mediante MLflow &
-Realizado \\
-
-Modelo seleccionado &
-Realizado \\
-
-Modelo empaquetado &
-Realizado \\
-
-Modelo consumido desde FastAPI &
-Realizado localmente \\
-
-Tablero integrado con backend &
-Realizado localmente \\
-
-Manual de usuario &
-Incluido \\
-
-Manual de instalación &
-Incluido \\
-
-Artefactos Docker &
-Pendiente \\
-
-Despliegue mediante contenedores &
-Pendiente \\
-
-Validación final en entorno de despliegue &
-Pendiente \\
-
-Video final de máximo diez minutos &
-Pendiente \\
-
-Reporte final de trabajo en equipo &
-En actualización \\
-
+Repositorio Git y colaboración & Realizado \\
+Datos versionados con DVC & Realizado \\
+Modelos y comparación experimental & Realizado \\
+Seguimiento con MLflow & Realizado \\
+Modelo seleccionado & Realizado \\
+Modelo empaquetado & Realizado \\
+API con modelo empaquetado & Realizado localmente \\
+Tablero integrado & Realizado localmente \\
+Pruebas automatizadas & 96 aprobadas \\
+Manual de usuario e instalación & Incluido \\
+Dockerización & Pendiente \\
+Despliegue mediante contenedores & Pendiente \\
+Validación final del despliegue & Pendiente \\
+Video final & Pendiente \\
+Reporte final de aportes & En actualización \\
 \bottomrule
 \end{tabular}
 
-\caption{Estado de los elementos requeridos para la Entrega 3.}
+\caption{Estado de los componentes trabajados hasta el momento.}
 \end{table}
 
 \pendingbox{
-\textbf{Trabajo pendiente para cerrar la Entrega 3:}
-
-La versión actual todavía debe incorporar los artefactos de contenerización
-del modelo, API y tablero, validar el despliegue de esos contenedores,
-incorporar las evidencias correspondientes, actualizar los aportes del equipo
-y preparar el video final.
+Para completar la Entrega 3 todavía deben desarrollarse y probarse los
+contenedores del modelo, la API y el tablero. Después será necesario validar el
+despliegue completo, recopilar las evidencias correspondientes, actualizar los
+aportes del equipo y preparar el video final.
 }
 
 % ============================================================================
-% 15. TRABAJO EN EQUIPO
+% 10. EQUIPO
 % ============================================================================
 
-\section{Reporte de trabajo en equipo}
+\section{Trabajo en equipo}
 
-El desarrollo del microproyecto se realiza mediante ramas individuales,
-\textit{issues}, commits y Pull Requests.
+El trabajo se ha organizado mediante ramas, issues, commits y Pull Requests.
+Los cambios de mayor impacto se revisan antes de incorporarse a
+\texttt{main}. El repositorio también cuenta con \texttt{CODEOWNERS}, lo que
+permite solicitar revisión a otros integrantes antes de aceptar determinados
+cambios.
 
-Los cambios se integran a \texttt{main} después de revisión por otros
-integrantes. El repositorio utiliza además \texttt{CODEOWNERS} para solicitar
-revisiones sobre cambios relevantes.
-
-Durante el proceso de esta entrega se realizó una revisión explícita del
-Pull Request que incorporó \texttt{model-package}.
-
-Antes de aprobarlo se verificó:
-
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-    \item entrenamiento correcto del modelo;
-    \item ejecución de las pruebas del paquete;
-    \item construcción del wheel;
-    \item instalación dentro de un entorno limpio;
-    \item inferencia desde \texttt{site-packages};
-    \item integración con FastAPI;
-    \item integración con el tablero;
-    \item ejecución completa de pytest.
-\end{itemize}
-
-El Pull Request fue aprobado después de estas verificaciones e integrado
-a la rama principal.
+Durante esta fase se revisó especialmente el Pull Request que incorporó
+\texttt{model-package}. Antes de aprobarlo se comprobó el entrenamiento, las
+pruebas del paquete, la construcción del wheel, su instalación en un entorno
+limpio y la integración con FastAPI y el tablero.
 
 \begin{table}[H]
 \centering
-\small
+\scriptsize
 
-\begin{tabular}{p{2.8cm}p{10.3cm}}
+\begin{tabular}{p{2.5cm}p{10.6cm}}
 \toprule
 \textbf{Integrante} & \textbf{Aportes principales} \\
 \midrule
 
 John Arias &
-Validación e integración de la Entrega 3; ejecución y comparación de
-entrenamientos Random y Hard; registro y análisis en MLflow; configuración
-del servicio MLflow en EC2; automatización de la conexión desde el entorno
-local; recopilación de evidencias; pruebas del wheel en entorno limpio;
-validación de API y tablero; revisión del Pull Request de empaquetamiento y
-sincronización de la rama \texttt{feature/entrega3-modelo-final}. \\[4pt]
+Ejecución y comparación de las variantes Random y Hard; seguimiento de
+experimentos en MLflow; configuración y automatización de MLflow en AWS;
+recopilación de evidencias; pruebas del wheel; revisión de la integración con
+FastAPI y tablero; revisión e integración del Pull Request del paquete. \\
 
 Carlos Duque &
-Empaquetamiento del modelo como dependencia instalable
-\texttt{modelo-citas}; estructura del paquete, configuración, proceso de
-entrenamiento, pruebas y construcción mediante Tox; generación del wheel e
-integración mediante Pull Request. \\[4pt]
+Empaquetamiento del modelo como \texttt{modelo-citas}; configuración del
+entrenamiento y pruebas mediante Tox; construcción del wheel e integración del
+paquete mediante Pull Request. \\
 
 José Zambrana &
-Desarrollo del modelo supervisado, extracción de características,
-reordenador de regresión logística, generación de negativos difíciles,
-evaluación mediante Recall@K y MRR y pruebas automatizadas del flujo
-supervisado. \\[4pt]
+Desarrollo del reordenador supervisado, extracción de características,
+regresión logística, generación de negativos difíciles, evaluación mediante
+Recall@K y MRR y pruebas del flujo de entrenamiento. \\
 
 Carlos Caicedo &
-Desarrollo y evaluación de la línea base TF--IDF, soporte de la
-infraestructura inicial de MLflow y trabajo sobre configuración y
-documentación del versionamiento de datos mediante DVC. \\
+Desarrollo y evaluación de la línea base TF--IDF, apoyo en la infraestructura
+inicial de MLflow y trabajo sobre la configuración y documentación del
+versionamiento de datos mediante DVC. \\
 
 \bottomrule
 \end{tabular}
 
-\caption{Resumen de aportes acumulados hasta el estado actual de la Entrega 3.}
+\caption{Resumen de los aportes realizados hasta esta etapa del proyecto.}
 \end{table}
 
-La tabla deberá actualizarse antes de la entrega definitiva para incorporar
-el trabajo correspondiente a contenedores, despliegue, documentación y
-preparación del video final.
+Esta distribución se actualizará antes de la entrega definitiva para incluir
+las tareas que aún faltan, especialmente contenerización, despliegue,
+documentación y preparación del video.
 
 % ============================================================================
-% 16. CONCLUSIONES
+% 11. CONCLUSIONES
 % ============================================================================
 
 \section{Conclusiones}
 
-Los resultados obtenidos muestran que el reordenamiento supervisado puede
-mejorar el ranking generado por TF--IDF cuando se utiliza una estrategia
-adecuada de construcción de pares de entrenamiento.
+La comparación realizada permitió escoger una configuración concreta para el
+reordenador. La estrategia con negativos aleatorios alcanzó Recall@10 de
+0,2882 y MRR@10 de 0,1490, mientras que la variante con negativos difíciles
+obtuvo resultados considerablemente menores.
 
-La variante con negativos aleatorios obtuvo Recall@10 de 0,2882 y MRR@10
-de 0,1490, claramente superiores a los valores obtenidos por la variante de
-negativos difíciles.
+El experimento también permitió identificar una limitación importante. Al
+mantenerse Recall@100 cerca de 0,516 en ambas variantes, aproximadamente la
+mitad de las citas correctas quedan fuera del conjunto inicial de 100
+candidatos. Por esta razón, una mejora futura no debería concentrarse únicamente
+en el reordenador, sino también en la etapa de recuperación.
 
-La igualdad aproximada de Recall@100 entre ambas configuraciones confirma
-que el principal efecto del modelo supervisado ocurre sobre el orden y no
-sobre la recuperación de candidatos.
+En términos de ingeniería, el proyecto avanzó desde un flujo principalmente
+experimental hacia una solución más reutilizable. Los datos están versionados
+con DVC, los experimentos quedan registrados en MLflow, el modelo puede
+instalarse como wheel y ya es consumido por FastAPI y por el tablero.
 
-El comportamiento de los negativos difíciles muestra una limitación del
-modelo actual: la similitud léxica no ofrece suficiente información para
-separar artículos temáticamente muy cercanos cuando se utilizan solamente
-cinco características.
-
-Desde el punto de vista de ingeniería, el proyecto también evolucionó desde
-un conjunto de scripts experimentales hacia una solución reutilizable.
-El modelo puede empaquetarse como un wheel, instalarse de manera independiente
-y ser consumido directamente por la API y el tablero.
-
-El seguimiento mediante MLflow permite mantener trazabilidad de las
-ejecuciones, mientras Git, DVC, uv, pytest y Tox soportan la reproducibilidad
-del código, los datos, las dependencias y las pruebas.
-
-El siguiente paso del proyecto es completar la contenerización y el
-despliegue reproducible de la API y el tablero, incorporar sus evidencias al
-repositorio y cerrar los demás soportes requeridos para la Entrega 3.
+El siguiente paso es completar la contenerización y probar el despliegue de la
+solución completa. Estas actividades permitirán cerrar los componentes que aún
+están pendientes para la Entrega 3.
 
 % ============================================================================
 % REFERENCIAS
 % ============================================================================
 
 \section*{Referencias}
-\addcontentsline{toc}{section}{Referencias}
 
-\begin{list}{}{
-    \setlength{\leftmargin}{1.2cm}
-    \setlength{\itemindent}{-1.2cm}
-    \setlength{\itemsep}{7pt}
-}
+\footnotesize
 
-\item
 Gu, N. (2022).
 \textit{Local-Citation-Recommendation} [Computer software].
 GitHub.
 \url{https://github.com/nianlonggu/Local-Citation-Recommendation}
 
-\item
 Gu, N., Gao, Y., \& Hahnloser, R. H. R. (2022).
 Local citation recommendation with hierarchical-attention text encoder and
 SciBERT-based reranking.
-In M. Hagen et al. (Eds.),
-\textit{Advances in Information Retrieval}
-(pp. 274--288).
-Springer International Publishing.
+\textit{Advances in Information Retrieval}, 274--288.
+Springer.
 \url{https://doi.org/10.1007/978-3-030-99736-6_19}
 
-\item
 Treveil, M., \& Dataiku Team. (2021).
 \textit{Introducing MLOps: How to scale machine learning in the enterprise}.
 O'Reilly Media.
-
-\end{list}
 
 \end{document}
