@@ -1,0 +1,23 @@
+# Configuración del paquete. Replica config/model.yaml del repositorio.
+package_name: modelo-citas
+pipeline_save_file: modelo-citas-output
+
+# Solo se usa al entrenar; en inferencia el artefacto ya trae todo.
+data_dir: data/raw
+
+# Recuperación y reordenamiento
+top_n: 100
+k: 10
+max_features: 50000
+min_df: 2
+
+# Regresión logística
+c: 1.0
+seed: 42
+
+# Construcción de pares de entrenamiento
+negative_strategy: random  # random o hard
+negatives_per_positive: 2
+
+# Longitud del resumen que se guarda en el artefacto y se devuelve al cliente.
+abstract_preview_chars: 600
