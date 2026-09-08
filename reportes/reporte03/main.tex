@@ -153,8 +153,13 @@ Proyecto: Desarrollo de Soluciones
 Encontrar una referencia adecuada para respaldar una afirmación académica puede
 convertirse en una tarea costosa cuando el autor debe buscar entre miles de
 publicaciones relacionadas con un mismo tema. La recomendación local de citas
-busca reducir ese esfuerzo tomando como punto de partida el fragmento de texto
-en el que se necesita incorporar la referencia.
+busca reducir ese esfuerzo utilizando como punto de partida el fragmento de
+texto en el que se necesita incorporar una referencia.
+
+Este problema ha sido abordado mediante modelos que utilizan el contexto local
+de la cita para recuperar y ordenar artículos relevantes. En particular, Gu,
+Gao y Hahnloser (2022) proponen una arquitectura de recomendación local de citas
+que combina recuperación y reordenamiento de candidatos.
 
 \notabox{
 \textbf{Pregunta de negocio:}
@@ -168,10 +173,10 @@ el identificador del documento, el título, el resumen y las puntuaciones
 utilizadas por el recomendador.
 
 El proyecto trabaja con el conjunto \texttt{custom} (ACL-200), proveniente del
-repositorio \textit{Local-Citation-Recommendation}. El corpus utilizado contiene
-63.768 contextos de cita y 19.776 artículos candidatos. Las particiones
-empleadas incluyen 30.390 consultas de entrenamiento, 9.381 de validación y
-9.585 de prueba.
+repositorio \textit{Local-Citation-Recommendation} publicado por Gu (2022).
+El corpus utilizado contiene 63.768 contextos de cita y 19.776 artículos
+candidatos. Las particiones empleadas incluyen 30.390 consultas de entrenamiento,
+9.381 de validación y 9.585 de prueba.
 
 Los archivos de datos se administran con DVC a través de
 \texttt{data/raw.dvc} y \texttt{data/processed.dvc}. De esta forma, Git se
@@ -187,7 +192,7 @@ experimentos.
 
 La solución se organizó en dos etapas. Primero, TF--IDF recupera los artículos
 más parecidos al contexto de consulta. Después, un modelo supervisado vuelve a
-ordenar esos candidatos tratando de ubicar la cita correcta en las primeras
+ordenar esos candidatos para intentar ubicar la cita correcta entre las primeras
 posiciones.
 
 \begin{center}
@@ -261,7 +266,7 @@ ambas variantes.
 
 Las dos variantes se evaluaron con las mismas particiones de datos, la misma
 semilla y los mismos parámetros generales. La única diferencia controlada fue
-la estrategia utilizada para escoger los negativos.
+la estrategia utilizada para seleccionar los ejemplos negativos.
 
 Los resultados principales fueron los siguientes:
 
@@ -319,13 +324,13 @@ Las gráficas siguientes permiten observar esta diferencia de manera directa.
 
 Recall@100 permanece alrededor de 0,516 en las dos configuraciones porque
 ambas reciben exactamente los mismos 100 candidatos recuperados por TF--IDF.
-Esto indica que la diferencia entre los experimentos está en el ordenamiento y
-no en la recuperación inicial.
+Esto indica que la diferencia entre los experimentos se encuentra en el
+ordenamiento y no en la recuperación inicial.
 
-El resultado de la estrategia \texttt{hard} también fue útil para entender una
+El resultado de la estrategia \texttt{hard} también permitió identificar una
 limitación del modelo. Los negativos difíciles son artículos que ya presentan
 una gran similitud léxica con el contexto y, utilizando únicamente cinco
-características, el reordenador tiene poca información adicional para
+características, el reordenador dispone de poca información adicional para
 distinguirlos correctamente.
 
 Por este motivo se seleccionó la estrategia \texttt{random} como configuración
@@ -339,17 +344,21 @@ positivo, Top--100, $K=10$, \texttt{max\_features=50000},
 
 \section{Seguimiento de experimentos con MLflow}
 
-Para evitar que los resultados quedaran únicamente registrados en las
-terminales de cada integrante, el entrenamiento se integró con MLflow. Cada
-corrida conserva sus parámetros, métricas de ranking, tiempos de procesamiento
-y artefactos asociados.
+Para llevar un registro común de los experimentos realizados por el equipo, el
+entrenamiento se integró con MLflow. Cada corrida conserva sus parámetros,
+métricas de ranking, tiempos de procesamiento y artefactos asociados.
 
 La configuración se centralizó en
-\texttt{src/tracking/mlflow\_setup.py}, de manera que todos los experimentos
-utilicen la misma estructura de seguimiento.
+\texttt{src/tracking/mlflow\_setup.py} para que todas las ejecuciones siguieran
+la misma estructura de seguimiento.
 
-A continuación se muestran las dos corridas registradas en MLflow y una de las
-comparaciones de tiempo utilizadas durante el análisis.
+Este tipo de organización es coherente con las prácticas de MLOps, en las que
+se busca mantener trazabilidad sobre datos, experimentos, modelos y
+configuraciones durante el desarrollo de una solución de aprendizaje automático
+(Treveil \& Dataiku Team, 2021).
+
+Las siguientes capturas muestran las corridas Random y Hard registradas en
+MLflow y la comparación de sus tiempos de procesamiento.
 
 \begin{figure}[H]
 \centering
@@ -369,8 +378,8 @@ comparaciones de tiempo utilizadas durante el análisis.
 \caption{Seguimiento y comparación de los experimentos realizados.}
 \end{figure}
 
-Las siguientes capturas muestran el detalle de métricas y parámetros almacenado
-para cada una de las dos ejecuciones.
+Las siguientes capturas muestran el detalle de las métricas y los parámetros
+guardados para cada ejecución.
 
 \begin{figure}[H]
 \centering
@@ -390,9 +399,9 @@ para cada una de las dos ejecuciones.
 \caption{Detalle de las dos variantes de entrenamiento almacenadas en MLflow.}
 \end{figure}
 
-El uso de MLflow permitió comparar los experimentos sobre una misma base y
-conservar evidencia de cómo se obtuvieron los resultados utilizados para
-seleccionar el modelo.
+El uso de MLflow permitió comparar las dos variantes sobre una misma base y
+conservar evidencia de los resultados utilizados para escoger la configuración
+final del modelo.
 
 % ============================================================================
 % 5. AWS
@@ -409,10 +418,10 @@ directorio local para los artefactos. El servicio escucha por el puerto 8050 y
 se configuró con \texttt{systemd} para que vuelva a iniciarse automáticamente
 cuando la máquina arranque.
 
-Uno de los inconvenientes de AWS Academy es que la dirección IP pública puede
-cambiar al detener y volver a iniciar la instancia. Para evitar tener que
-actualizar esta dirección manualmente cada vez, se creó el script
-\texttt{scripts/conectar\_mlflow\_aws.ps1}.
+Uno de los inconvenientes encontrados durante el trabajo con AWS Academy fue
+el cambio de la dirección IP pública después de detener y volver a iniciar la
+instancia. Para evitar tener que actualizar esta dirección manualmente cada vez,
+se creó el script \texttt{scripts/conectar\_mlflow\_aws.ps1}.
 
 El script consulta la IP pública actual mediante AWS CLI, configura
 \texttt{MLFLOW\_TRACKING\_URI} y comprueba que el puerto 8050 sea accesible
@@ -445,14 +454,14 @@ automática desde PowerShell.
 
 \section{Empaquetamiento e integración del modelo}
 
-Otro avance importante de esta entrega fue convertir el recomendador en una
-librería Python instalable. El paquete se encuentra en
-\texttt{model-package/} y se distribuye con el nombre
-\texttt{modelo-citas}. La versión utilizada actualmente es la 0.1.0.
+Otro avance de esta entrega fue convertir el recomendador en una librería
+Python instalable. El paquete se encuentra en \texttt{model-package/} y se
+distribuye con el nombre \texttt{modelo-citas}. La versión utilizada actualmente
+es la 0.1.0.
 
 El wheel incluye el recuperador TF--IDF, el reordenador lineal, la
-configuración, el modelo entrenado y la información necesaria para devolver
-los artículos recomendados.
+configuración, el modelo entrenado y la información necesaria para generar las
+recomendaciones.
 
 La interfaz pública del paquete puede utilizarse de esta forma:
 
@@ -466,13 +475,13 @@ resultado = make_prediction(
 \end{verbatim}
 
 Para comprobar que el paquete no funcionara únicamente por encontrarse dentro
-del repositorio, se construyó el wheel y se instaló en un entorno virtual limpio.
-Desde ese entorno se importó \texttt{modelo\_citas} directamente desde
+del repositorio, se construyó el wheel y se instaló en un entorno virtual
+limpio. Desde ese entorno se importó \texttt{modelo\_citas} directamente desde
 \texttt{site-packages} y se ejecutó una predicción real.
 
-También se ejecutaron las pruebas específicas del paquete mediante Tox y,
-después de integrarlo con la rama principal, se volvió a ejecutar la suite
-completa del proyecto.
+También se ejecutaron las pruebas específicas del paquete mediante Tox.
+Después de integrar el cambio con la rama principal, se volvió a ejecutar la
+suite completa del proyecto.
 
 \notabox{
 \textbf{Resultado de las pruebas: 96 pruebas aprobadas.}
@@ -488,10 +497,10 @@ NumPy/Joblib que no impiden la ejecución actual.
 
 \section{API y tablero}
 
-El paquete \texttt{modelo-citas} se integró posteriormente con un backend
-desarrollado en FastAPI. Al iniciar la aplicación, el backend carga el modelo
-empaquetado y queda disponible para responder las consultas enviadas desde la
-API o desde el tablero.
+El paquete \texttt{modelo-citas} se integró con el backend desarrollado en
+FastAPI. Al iniciar la aplicación, el backend carga el modelo empaquetado y
+queda disponible para responder las consultas enviadas desde la API o desde el
+tablero.
 
 Los endpoints principales son:
 
@@ -522,9 +531,9 @@ consultar el ranking generado. Al seleccionar un artículo también puede revisa
 su resumen.
 
 Además del recomendador, la interfaz presenta tres apartados de análisis:
-estudio de los datos, desempeño del modelo y diagnóstico de negativos. De esta
-forma, el prototipo reúne tanto la funcionalidad de recomendación como parte de
-la información utilizada durante el desarrollo del modelo.
+estudio de los datos, desempeño del modelo y diagnóstico de negativos. Así,
+desde una misma interfaz es posible probar el recomendador y consultar
+información sobre los datos y el desempeño obtenido durante los experimentos.
 
 % ============================================================================
 % 8. USO E INSTALACION
@@ -534,7 +543,7 @@ la información utilizada durante el desarrollo del modelo.
 
 \subsection{Uso del prototipo}
 
-El flujo para utilizar el tablero es sencillo:
+El flujo para utilizar el tablero es el siguiente:
 
 \begin{enumerate}
     \item abrir la aplicación en el navegador;
@@ -581,9 +590,9 @@ para las pruebas del paquete y pytest para la suite general.
 
 \section{Estado actual de la Entrega 3}
 
-Hasta el momento se han completado los componentes asociados con datos,
-experimentación, selección del modelo, empaquetamiento e integración local con
-la API y el tablero.
+Hasta el momento se han completado los componentes relacionados con los datos,
+la experimentación, la selección del modelo, el empaquetamiento y la integración
+local con la API y el tablero.
 
 \begin{table}[H]
 \centering
@@ -634,8 +643,8 @@ permite solicitar revisión a otros integrantes antes de aceptar determinados
 cambios.
 
 Durante esta fase se revisó especialmente el Pull Request que incorporó
-\texttt{model-package}. Antes de aprobarlo se comprobó el entrenamiento, las
-pruebas del paquete, la construcción del wheel, su instalación en un entorno
+\texttt{model-package}. Antes de aprobarlo se comprobaron el entrenamiento,
+las pruebas del paquete, la construcción del wheel, su instalación en un entorno
 limpio y la integración con FastAPI y el tablero.
 
 \begin{table}[H]
@@ -695,10 +704,11 @@ mitad de las citas correctas quedan fuera del conjunto inicial de 100
 candidatos. Por esta razón, una mejora futura no debería concentrarse únicamente
 en el reordenador, sino también en la etapa de recuperación.
 
-En términos de ingeniería, el proyecto avanzó desde un flujo principalmente
-experimental hacia una solución más reutilizable. Los datos están versionados
-con DVC, los experimentos quedan registrados en MLflow, el modelo puede
-instalarse como wheel y ya es consumido por FastAPI y por el tablero.
+Además de mejorar el modelo, durante esta entrega se avanzó en la construcción
+de una solución que pueda reproducirse y reutilizarse fuera del entorno de
+experimentación. Los datos están versionados con DVC, los experimentos quedan
+registrados en MLflow, el modelo puede instalarse como wheel y ya es consumido
+por FastAPI y por el tablero.
 
 El siguiente paso es completar la contenerización y probar el despliegue de la
 solución completa. Estas actividades permitirán cerrar los componentes que aún
