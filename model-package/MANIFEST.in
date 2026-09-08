@@ -1,0 +1,10 @@
+include README.md
+include modelo_citas/VERSION
+include modelo_citas/config.yml
+include modelo_citas/trained/*.pkl
+
+include requirements/requirements.txt
+include requirements/test_requirements.txt
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

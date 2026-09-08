@@ -28,12 +28,15 @@ uv run dvc pull
 # 5. Verificar que todo funciona
 uv run pytest
 
-# 6. Ejecutar la línea base TF-IDF
-uv run python -m src.training.run_tfidf_baseline
+# 6. Entrenar el modelo del paquete e instalarlo con el artefacto dentro
+uv run tox -c model-package -e train
+uv sync --reinstall-package modelo-citas
 
-# 7. Entrenar el reordenador supervisado
-uv run python -m src.training.run_linear_reranker train
+# 7. Levantar el tablero
+uv run tablero   # http://127.0.0.1:8000
 ```
+
+El paso 6 es obligatorio antes de usar el tablero: el artefacto entrenado viaja dentro del wheel de `modelo-citas` y no se versiona en Git (ver [Paquete del modelo](#paquete-del-modelo-modelo-citas)).
 
 Si el paso 4 falla o no se tiene acceso al remoto DVC, ver [Datos](#datos) para la alternativa manual.
 
@@ -41,7 +44,8 @@ Si el paso 4 falla o no se tiene acceso al remoto DVC, ver [Datos](#datos) para 
 
 ```text
 src/                  código fuente (datos, features, modelos, entrenamiento, evaluación, tracking)
-src/app/              tablero y backend FastAPI que sirven el modelo real
+src/app/              tablero y backend FastAPI que consumen el paquete del modelo
+model-package/        librería instalable `modelo-citas` con el modelo entrenado
 notebooks/            análisis exploratorio
 tests/                pruebas automatizadas (pytest)
 config/model.yaml     hiperparámetros del reordenador supervisado
@@ -86,7 +90,7 @@ uv run python -m src.training.run_linear_reranker train
 uv run python -m src.training.run_linear_reranker evaluate --model artifacts/<run_id>/model.joblib --split val
 ```
 
-Cada corrida entrena en `train`, evalúa en `val` y guarda modelo + configuración + métricas en `artifacts/<run_id>/`. Usar `--split test` solo tras elegir configuración con validación.
+Cada corrida entrena en `train`, evalúa en `val` y guarda modelo + configuración + métricas en `artifacts/<run_id>/`. Usar `--split test` solo tras elegir configuración con validación. Esta es la vía de experimentación, con seguimiento en MLflow; el modelo que sirve el tablero se construye con el [paquete](#paquete-del-modelo-modelo-citas).
 
 ### Seguimiento de experimentos con MLflow
 
@@ -98,9 +102,41 @@ uv run mlflow ui --backend-store-uri sqlite:///mlflow.db
 
 Abrir <http://localhost:5000> para comparar runs.
 
+### Paquete del modelo (`modelo-citas`)
+
+El modelo se distribuye como librería instalable en [`model-package/`](model-package/). El wheel incluye el modelo entrenado y los metadatos de los artículos, así que instalarlo basta para predecir: no hace falta el dataset ni el repositorio.
+
+```python
+from modelo_citas import make_prediction
+
+resultado = make_prediction(
+    context="Recent work on neural machine translation with attention",
+    top_k=5,
+)
+print(resultado["predictions"])
+```
+
+`make_prediction` devuelve `{"predictions": [...], "version": ..., "errors": None}`. Cada recomendación trae `posicion`, `paper_id`, `titulo`, `resumen`, `similitud` (probabilidad del reordenador) y `similitud_tfidf` (coseno del recuperador). `load_model()` carga el artefacto en memoria de forma explícita —útil al arrancar un servidor— y `describe()` devuelve la ficha técnica del modelo servido.
+
+```Shell
+uv run tox -c model-package -e train   # entrena y guarda modelo_citas/trained/modelo-citas-output<VERSION>.pkl
+uv run tox -c model-package            # pruebas del paquete
+uv run tox -c model-package -e build   # wheel en model-package/dist/
+```
+
+El artefacto `.pkl` no se versiona en Git: se regenera con `tox -e train` y se instala con `uv sync --reinstall-package modelo-citas`, que reconstruye el wheel con el modelo dentro. La versión vive en `model-package/modelo_citas/VERSION` y da nombre al artefacto, así que al subirla hay que reentrenar antes de construir el wheel.
+
+Para comprobar que el wheel es autocontenido, instalarlo en un entorno limpio fuera del repositorio:
+
+```Shell
+uv run tox -c model-package -e build
+pip install model-package/dist/modelo_citas-<VERSION>-py3-none-any.whl
+python -c "from modelo_citas import make_prediction; print(make_prediction(context='neural machine translation attention', top_k=5))"
+```
+
 ### Tablero del prototipo
 
-`src/app/` sirve el modelo real: un backend FastAPI con las recomendaciones y un frontend que además muestra el estudio de datos (EDA), el desempeño del modelo y el diagnóstico de negativos.
+`src/app/` sirve las recomendaciones del paquete `modelo-citas`: un backend FastAPI y un frontend que además muestra el estudio de datos (EDA), el desempeño del modelo y el diagnóstico de negativos.
 
 ```Shell
 uv run python -m src.app.insights   # opcional: precalcula el EDA (~1 min); si se omite, se calcula en el primer arranque
@@ -160,6 +196,8 @@ uv sync                # instalar/actualizar el entorno tras un pull
 uv lock                # re-resolver el lockfile
 ```
 
+`modelo-citas` se resuelve desde la carpeta local `model-package/` mediante `[tool.uv.sources]`; sus propias dependencias se declaran en `model-package/requirements/requirements.txt`.
+
 `requirements.txt` es un artefacto congelado para herramientas que aún esperan ese formato; se regenera, nunca se edita a mano:
 
 ```Shell
@@ -168,4 +206,4 @@ uv export --locked --no-dev --format requirements.txt --no-hashes --output-file 
 
 ## Tecnologías
 
-Python · uv · Git · DVC (Amazon S3) · scikit-learn · pandas · MLflow · FastAPI · Jupyter · pytest / tox
+Python · uv · Git · DVC (Amazon S3) · scikit-learn · pandas · MLflow · FastAPI · setuptools · Jupyter · pytest / tox

@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+addopts = "-ra --strict-markers"
+python_files = ["test_*.py"]
+testpaths = ["tests"]
+xfail_strict = true
