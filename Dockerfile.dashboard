@@ -1,0 +1,10 @@
+FROM nginx:alpine
+
+# Configuración de Nginx:
+# sirve el tablero y envía las peticiones /api al contenedor de FastAPI.
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# El tablero actual se conserva sin modificaciones visuales.
+COPY src/app/static/ /usr/share/nginx/html/
+
+EXPOSE 80

@@ -51,6 +51,3 @@ reportes/**/*.synctex.gz
 reportes/**/*.toc
 reportes/**/*.bbl
 reportes/**/*.blg
-
-# Documentación de trabajo local
-docs/
