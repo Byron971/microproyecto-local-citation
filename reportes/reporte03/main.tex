@@ -20,6 +20,7 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
+\usepackage{xurl}
 \usepackage{hyperref}
 \usepackage{titlesec}
 \usepackage{fancyhdr}
@@ -125,7 +126,7 @@ Recomendación local de citas académicas mediante aprendizaje automático
 \vspace{2pt}
 
 {\normalsize
-Reporte de avance -- Entrega 3
+Reporte técnico -- Entrega 3
 }
 
 \vspace{3pt}
@@ -137,7 +138,7 @@ Carlos Duque · Carlos Caicedo · Jose Zambrana · John Arias
 
 Proyecto: Desarrollo de Soluciones
 
-7 de septiembre de 2026
+9 de septiembre de 2026
 
 \vspace{3pt}
 {\color{primaryblue}\rule{\linewidth}{0.7pt}}
@@ -404,7 +405,7 @@ conservar evidencia de los resultados utilizados para escoger la configuración
 final del modelo.
 
 % ============================================================================
-% 5. AWS
+% 5. AWS PARA MLFLOW
 % ============================================================================
 
 \section{MLflow en AWS}
@@ -480,15 +481,15 @@ limpio. Desde ese entorno se importó \texttt{modelo\_citas} directamente desde
 \texttt{site-packages} y se ejecutó una predicción real.
 
 También se ejecutaron las pruebas específicas del paquete mediante Tox.
-Después de integrar el cambio con la rama principal, se volvió a ejecutar la
-suite completa del proyecto.
+Después de integrar los cambios de la Entrega 3 con la rama principal, se
+volvió a ejecutar la suite completa del proyecto.
 
 \notabox{
 \textbf{Resultado de las pruebas: 96 pruebas aprobadas.}
 
-La integración del modelo empaquetado no produjo fallos funcionales en la suite
-del proyecto. Permanecen advertencias de deprecación relacionadas con
-NumPy/Joblib que no impiden la ejecución actual.
+La integración del modelo empaquetado y del flujo de despliegue no produjo
+fallos funcionales en la suite del proyecto. Permanecen advertencias de
+deprecación relacionadas con NumPy/Joblib que no impiden la ejecución actual.
 }
 
 % ============================================================================
@@ -536,7 +537,87 @@ desde una misma interfaz es posible probar el recomendador y consultar
 información sobre los datos y el desempeño obtenido durante los experimentos.
 
 % ============================================================================
-% 8. USO E INSTALACION
+% 8. DESPLIEGUE CONTENERIZADO
+% ============================================================================
+
+\section{Despliegue contenerizado en AWS EC2}
+
+La API y el tablero se contenerizaron y se orquestaron mediante Docker Compose.
+La infraestructura utilizada para la validación final fue una instancia EC2 de
+AWS Academy con Ubuntu Server 24.04 LTS, arquitectura x86\_64, tipo
+\texttt{t3.small}, 20 GiB de almacenamiento \texttt{gp3} e IP pública habilitada.
+
+El archivo \texttt{docker-compose.yml} define dos servicios. El servicio
+\texttt{api} construye la imagen del backend, publica el puerto 8000 y ejecuta un
+\textit{healthcheck} sobre \texttt{/api/estado}. El servicio
+\texttt{dashboard} construye la imagen
+\texttt{microproyecto-citas-dashboard:0.1.0}, publica el puerto 8080 hacia el
+puerto 80 de Nginx y espera a que la API alcance el estado saludable.
+
+Durante la construcción de la imagen de la API se recuperan los datos mediante
+DVC, se genera el artefacto entrenado y se instala nuevamente el paquete
+\texttt{modelo-citas}. Esto evita que el contenedor dependa de un modelo creado
+manualmente fuera del proceso de construcción.
+
+Nginx sirve la interfaz web y redirige las solicitudes con prefijo
+\texttt{/api/} al servicio \texttt{api:8000} dentro de la red de Docker. Por
+esta razón, el puerto 8000 no necesita estar expuesto públicamente para que el
+tablero funcione; el acceso externo del usuario se realiza a través del puerto
+8080.
+
+La validación del despliegue confirmó que la API se encontraba en estado
+\texttt{healthy}, el tablero permanecía activo y una consulta realizada desde
+un navegador externo produjo una recomendación real. Los logs del backend
+registraron la solicitud \texttt{POST /api/recomendar} con respuesta HTTP 200.
+
+Las evidencias de infraestructura y ejecución se muestran a continuación.
+
+\begin{figure}[H]
+\centering
+\begingroup
+\catcode`\#=12
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{issue#31_aws_ec2_infraestructura.png}
+\caption*{(a) Instancia EC2 utilizada para el despliegue}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{issue#31_aws_contenedores_activos.png}
+\caption*{(b) API y dashboard activos mediante Docker Compose}
+\end{minipage}
+\endgroup
+\caption{Infraestructura y contenedores del despliegue en AWS EC2.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begingroup
+\catcode`\#=12
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{issue#31_aws_logs_post_recomendacion.png}
+\caption*{(a) Log de inferencia con respuesta HTTP 200}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{issue#31_aws_recomendacion_real.png}
+\caption*{(b) Recomendación real desde un navegador externo}
+\end{minipage}
+\endgroup
+\caption{Validación funcional del flujo desplegado.}
+\end{figure}
+
+La configuración de despliegue, los puertos, las variables de entorno y los
+comandos reproducibles quedaron documentados en el \texttt{README.md}. Las
+credenciales de AWS, archivos \texttt{.env} y claves privadas no forman parte
+del repositorio; adicionalmente, \texttt{.gitignore} excluye archivos
+\texttt{*.pem} y \texttt{*.ppk}.
+
+% ============================================================================
+% 9. USO E INSTALACION
 % ============================================================================
 
 \section{Uso, instalación y reproducibilidad}
@@ -561,7 +642,7 @@ Los resultados deben entenderse como apoyo a la búsqueda bibliográfica. La
 pertinencia de una referencia debe revisarse antes de utilizarla en un documento
 académico.
 
-\subsection{Instalación}
+\subsection{Instalación rápida}
 
 El flujo principal para preparar el proyecto es:
 
@@ -576,29 +657,43 @@ uv sync --reinstall-package modelo-citas
 uv run tablero
 \end{verbatim}
 
-Una vez iniciado el servicio, el tablero queda disponible en
+Una vez iniciado el servicio local, el tablero queda disponible en
 \texttt{http://127.0.0.1:8000} y la documentación de la API en
 \texttt{http://127.0.0.1:8000/docs}.
 
+Para el despliegue contenerizado se utiliza:
+
+\begin{verbatim}
+docker compose config --quiet
+docker compose build
+docker compose up -d
+docker compose ps
+\end{verbatim}
+
+En EC2, el dashboard se consulta desde
+\texttt{http://<IP\_PUBLICA\_EC2>:8080}. El manual de instalación detallado
+continúa como actividad pendiente de cierre de la Entrega 3.
+
 La reproducibilidad del proyecto se apoya en Git y GitHub para el código, DVC
 para los datos, MLflow para los experimentos, uv para las dependencias, Tox
-para las pruebas del paquete y pytest para la suite general.
+para las pruebas del paquete, pytest para la suite general y Docker Compose
+para el despliegue de servicios.
 
 % ============================================================================
-% 9. ESTADO
+% 10. ESTADO
 % ============================================================================
 
 \section{Estado actual de la Entrega 3}
 
-Hasta el momento se han completado los componentes relacionados con los datos,
-la experimentación, la selección del modelo, el empaquetamiento y la integración
-local con la API y el tablero.
+A la fecha se encuentran completados los componentes técnicos principales de
+la solución: datos versionados, experimentación, selección y empaquetamiento del
+modelo, API, tablero, contenerización y despliegue externo en AWS EC2.
 
 \begin{table}[H]
 \centering
 \footnotesize
 
-\begin{tabular}{p{9cm}p{3cm}}
+\begin{tabular}{p{8.2cm}p{3.8cm}}
 \toprule
 \textbf{Componente} & \textbf{Estado} \\
 \midrule
@@ -608,30 +703,32 @@ Modelos y comparación experimental & Realizado \\
 Seguimiento con MLflow & Realizado \\
 Modelo seleccionado & Realizado \\
 Modelo empaquetado & Realizado \\
-API con modelo empaquetado & Realizado localmente \\
-Tablero integrado & Realizado localmente \\
+API con modelo empaquetado & Realizado y desplegado \\
+Tablero integrado & Realizado y desplegado \\
 Pruebas automatizadas & 96 aprobadas \\
-Manual de usuario e instalación & Incluido \\
-Dockerización & Pendiente \\
-Despliegue mediante contenedores & Pendiente \\
-Validación final del despliegue & Pendiente \\
+Manual de usuario & Completado \\
+Manual de instalación & Pendiente \\
+Dockerización & Completada \\
+Despliegue mediante contenedores & Completado en AWS EC2 \\
+Validación final del despliegue & Completada \\
 Video final & Pendiente \\
 Reporte final de aportes & En actualización \\
 \bottomrule
 \end{tabular}
 
-\caption{Estado de los componentes trabajados hasta el momento.}
+\caption{Estado de los componentes de la Entrega 3.}
 \end{table}
 
 \pendingbox{
-Para completar la Entrega 3 todavía deben desarrollarse y probarse los
-contenedores del modelo, la API y el tablero. Después será necesario validar el
-despliegue completo, recopilar las evidencias correspondientes, actualizar los
-aportes del equipo y preparar el video final.
+Los componentes técnicos de contenerización y despliegue ya fueron completados
+y validados. Para cerrar administrativamente la Entrega 3 permanecen pendientes
+el manual de instalación detallado, la actualización final del reporte de
+aportes del equipo, la preparación del video de síntesis y la auditoría final
+desde un entorno limpio.
 }
 
 % ============================================================================
-% 10. EQUIPO
+% 11. EQUIPO
 % ============================================================================
 
 \section{Trabajo en equipo}
@@ -645,7 +742,8 @@ cambios.
 Durante esta fase se revisó especialmente el Pull Request que incorporó
 \texttt{model-package}. Antes de aprobarlo se comprobaron el entrenamiento,
 las pruebas del paquete, la construcción del wheel, su instalación en un entorno
-limpio y la integración con FastAPI y el tablero.
+limpio y la integración con FastAPI y el tablero. Posteriormente se integraron
+la contenerización, el despliegue en AWS EC2 y la documentación asociada.
 
 \begin{table}[H]
 \centering
@@ -660,7 +758,9 @@ John Arias &
 Ejecución y comparación de las variantes Random y Hard; seguimiento de
 experimentos en MLflow; configuración y automatización de MLflow en AWS;
 recopilación de evidencias; pruebas del wheel; revisión de la integración con
-FastAPI y tablero; revisión e integración del Pull Request del paquete. \\
+FastAPI y tablero; validación del despliegue contenerizado en AWS EC2;
+corrección y verificación del build de la API; documentación de despliegue y
+manual de usuario. \\
 
 Carlos Duque &
 Empaquetamiento del modelo como \texttt{modelo-citas}; configuración del
@@ -683,12 +783,11 @@ versionamiento de datos mediante DVC. \\
 \caption{Resumen de los aportes realizados hasta esta etapa del proyecto.}
 \end{table}
 
-Esta distribución se actualizará antes de la entrega definitiva para incluir
-las tareas que aún faltan, especialmente contenerización, despliegue,
-documentación y preparación del video.
+Esta distribución se actualizará antes de la entrega definitiva para incorporar
+las actividades restantes de documentación, auditoría y preparación del video.
 
 % ============================================================================
-% 11. CONCLUSIONES
+% 12. CONCLUSIONES
 % ============================================================================
 
 \section{Conclusiones}
@@ -704,15 +803,18 @@ mitad de las citas correctas quedan fuera del conjunto inicial de 100
 candidatos. Por esta razón, una mejora futura no debería concentrarse únicamente
 en el reordenador, sino también en la etapa de recuperación.
 
-Además de mejorar el modelo, durante esta entrega se avanzó en la construcción
-de una solución que pueda reproducirse y reutilizarse fuera del entorno de
-experimentación. Los datos están versionados con DVC, los experimentos quedan
-registrados en MLflow, el modelo puede instalarse como wheel y ya es consumido
-por FastAPI y por el tablero.
+Durante la Entrega 3 el recomendador dejó de ser únicamente un experimento
+local. Los datos permanecen versionados con DVC, los experimentos se registran
+en MLflow, el modelo se distribuye como un paquete Python, FastAPI expone la
+inferencia, el tablero consume la API y ambos servicios pueden ejecutarse de
+forma reproducible mediante Docker Compose.
 
-El siguiente paso es completar la contenerización y probar el despliegue de la
-solución completa. Estas actividades permitirán cerrar los componentes que aún
-están pendientes para la Entrega 3.
+Finalmente, la solución fue desplegada y validada en una instancia AWS EC2. La
+API alcanzó estado saludable, el tablero fue accesible desde un navegador
+externo y una recomendación real produjo una respuesta HTTP 200 en el backend.
+Con ello queda completado el componente técnico de despliegue de la Entrega 3.
+Las actividades restantes corresponden al cierre documental, el video de
+síntesis y la auditoría final de reproducibilidad.
 
 % ============================================================================
 % REFERENCIAS
