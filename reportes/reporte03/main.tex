@@ -273,7 +273,7 @@ Los resultados principales fueron los siguientes:
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Resultados obtenidos con las estrategias Random y Hard}
+\caption{Comparación de los modelos sobre las 9.381 consultas de validación}
 
 \begin{tabular}{lccc}
 \toprule
@@ -283,19 +283,45 @@ Los resultados principales fueron los siguientes:
 \textbf{Recall@100} \\
 \midrule
 
-Random &
-\textbf{0,2882} &
-\textbf{0,1490} &
+TF--IDF sin reordenar &
+0,2571 &
+0,1339 &
 0,5160 \\
 
-Hard &
+v1 · Random &
+0,2882 &
+0,1490 &
+0,5160 \\
+
+v1 · Hard &
 0,0629 &
 0,0212 &
+0,5160 \\
+
+\textbf{v2 · Random} &
+\textbf{0,3793} &
+\textbf{0,2166} &
+0,5160 \\
+
+v2 · Hard &
+0,2288 &
+0,0995 &
 0,5160 \\
 
 \bottomrule
 \end{tabular}
 \end{table}
+
+El \emph{Recall@100} se mantiene en 0,5160 en las cinco filas. Esa invariancia
+comprueba que el reordenador opera efectivamente como segunda etapa --recibe el
+mismo conjunto recuperado y solo altera el orden-- y marca a la vez el techo del
+sistema: mientras la primera etapa no recupere el artículo correcto, ningún
+reordenamiento puede corregirlo.
+
+La línea base de comparación es 0,2571 / 0,1339 y no 0,2541 / 0,1249, porque
+excluye el artículo citante igual que lo hace el conjunto de candidatos que
+consume el reordenador. Compararlo contra la versión que sí lo incluye inflaría
+la mejora atribuida al modelo.
 
 La diferencia entre las dos estrategias es considerable en las primeras
 posiciones del ranking. Con negativos aleatorios, Recall@10 alcanza 0,2882,
@@ -321,6 +347,59 @@ Las gráficas siguientes permiten observar esta diferencia de manera directa.
 
 \caption{Desempeño de las estrategias Random y Hard en las primeras posiciones del ranking.}
 \end{figure}
+
+\subsection{Segunda versión: ampliación de las características}
+
+La comparación anterior mostró que el cuello de botella estaba en la
+representación y no en el algoritmo. Entrenado con negativos difíciles, el
+reordenador aprendía un coeficiente de $-2{,}09$ sobre la similitud con el
+resumen: prefería lo \emph{menos} parecido. No es un error de implementación,
+sino un ajuste fiel a su señal, porque el área bajo la curva ROC de positivos
+frente a negativos difíciles usando solo similitud coseno es $0{,}4053$, por
+debajo de $0{,}5$. Con cinco características léxicas, separar un positivo de los
+cien candidatos más parecidos es una tarea que el vector no puede resolver.
+
+La segunda versión amplía el vector a diez características. Las cinco nuevas se
+derivan de los metadatos que codifica el identificador del ACL Anthology
+--tipo de publicación, año y número, formato que cumplen los 19.776 artículos
+del corpus-- y del conjunto de entrenamiento:
+
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item \texttt{year\_diff}: años entre el artículo citante y el candidato.
+  \item \texttt{is\_future}: candidato publicado después del citante, es decir
+        una cita imposible.
+  \item \texttt{same\_venue}: coincidencia en el tipo de publicación.
+  \item \texttt{title\_overlap}: fracción del título presente en el contexto.
+  \item \texttt{citation\_prior}: logaritmo de las veces que el candidato se
+        cita en entrenamiento.
+\end{itemize}
+
+La restricción temporal resultó la señal más valiosa. Antes de incorporarla, el
+11,1\,\% de los cupos del \emph{Top}--100 se gastaba en artículos posteriores al
+citante, y de las 9.381 consultas de validación \textbf{ninguna} tiene un
+positivo posterior, de modo que la restricción es exacta y descartarlos no puede
+eliminar un acierto legítimo.
+
+Los coeficientes de la variante ganadora confirman su peso: sobre
+características estandarizadas, \texttt{is\_future} obtiene $-3{,}0790$ y
+\texttt{citation\_prior} $+2{,}6889$, ambos por encima de
+\texttt{similarity\_abstract} ($+2{,}4954$). El modelo aprendió la restricción
+temporal por sí solo, sin que se le impusiera como filtro.
+
+\medskip
+
+El \textbf{modelo seleccionado es la versión 2 con negativos aleatorios}, por
+métricas de ranking y no por \emph{accuracy}: frente a la línea base comparable
+mejora un 47,5\,\% en Recall@10 y un 61,8\,\% en MRR@10; frente a la primera
+versión, un 31,6\,\% y un 45,4\,\%. La ganancia es mayor en MRR que en Recall,
+que es justamente el comportamiento esperado de una segunda etapa: no encuentra
+artículos nuevos, sube los que ya estaban.
+
+Con el vector ampliado, la variante de negativos difíciles mejora 3,6 veces en
+Recall@10 (de 0,0629 a 0,2288) pero sigue perdiendo. La suma de los coeficientes
+de similitud permanece negativa, de modo que las características nuevas
+compensan la señal invertida sin corregirla. Explotar negativos difíciles
+exigiría una representación densa, no más señales tabulares.
 
 Recall@100 permanece alrededor de 0,516 en las dos configuraciones porque
 ambas reciben exactamente los mismos 100 candidatos recuperados por TF--IDF.
@@ -608,13 +687,14 @@ Modelos y comparación experimental & Realizado \\
 Seguimiento con MLflow & Realizado \\
 Modelo seleccionado & Realizado \\
 Modelo empaquetado & Realizado \\
-API con modelo empaquetado & Realizado localmente \\
-Tablero integrado & Realizado localmente \\
-Pruebas automatizadas & 96 aprobadas \\
+API con modelo empaquetado & Realizado \\
+Tablero integrado & Realizado \\
+Pruebas automatizadas & 113 aprobadas \\
 Manual de usuario e instalación & Incluido \\
-Dockerización & Pendiente \\
-Despliegue mediante contenedores & Pendiente \\
-Validación final del despliegue & Pendiente \\
+Dockerización & Realizado \\
+Despliegue mediante contenedores & Realizado \\
+Despliegue en AWS & Realizado \\
+Validación final del despliegue & Verificada desde entorno limpio \\
 Video final & Pendiente \\
 Reporte final de aportes & En actualización \\
 \bottomrule
@@ -623,11 +703,19 @@ Reporte final de aportes & En actualización \\
 \caption{Estado de los componentes trabajados hasta el momento.}
 \end{table}
 
+La validación del despliegue se realizó sobre un clon nuevo del repositorio, sin
+credenciales de AWS, reproduciendo el recorrido de una persona ajena al equipo:
+\texttt{dvc pull} recuperó los 117,6~MB de datos sin pedir autenticación, las
+pruebas pasaron, el paquete del modelo se instaló y entrenó, y
+\texttt{docker compose build} construyó las dos imágenes desde cero en 287
+segundos. La API quedó en estado \emph{healthy} a los diez segundos y el tablero
+devolvió, a través de Nginx, el mismo ranking que la ejecución local. El
+procedimiento completo y sus tiempos están en \texttt{docs/manual\_instalacion.md}.
+
 \pendingbox{
-Para completar la Entrega 3 todavía deben desarrollarse y probarse los
-contenedores del modelo, la API y el tablero. Después será necesario validar el
-despliegue completo, recopilar las evidencias correspondientes, actualizar los
-aportes del equipo y preparar el video final.
+Para cerrar la Entrega 3 queda grabar el video de síntesis y actualizar el
+reporte de aportes del equipo con las contribuciones definitivas de cada
+integrante.
 }
 
 % ============================================================================
@@ -710,9 +798,17 @@ experimentación. Los datos están versionados con DVC, los experimentos quedan
 registrados en MLflow, el modelo puede instalarse como wheel y ya es consumido
 por FastAPI y por el tablero.
 
-El siguiente paso es completar la contenerización y probar el despliegue de la
-solución completa. Estas actividades permitirán cerrar los componentes que aún
-están pendientes para la Entrega 3.
+La contenerización y el despliegue quedaron completados y verificados: las
+imágenes de la API y del tablero se construyen desde cero sin intervención
+manual, y la solución se probó tanto en local como sobre AWS. La reproducción
+desde un clon limpio confirmó que una persona ajena al equipo puede levantar el
+sistema completo sin credenciales propias.
+
+Queda pendiente únicamente el video de síntesis. De cara a la continuación del
+trabajo, el techo del sistema está en la primera etapa: con un Recall@100 de
+0,5160, la mitad de las consultas no tiene solución posible por reordenamiento,
+de modo que el margen de mejora está en la recuperación de candidatos --por
+ejemplo mediante representaciones densas-- antes que en el reordenador.
 
 % ============================================================================
 % REFERENCIAS
