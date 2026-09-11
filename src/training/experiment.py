@@ -146,7 +146,15 @@ def train(config: ModelConfig) -> Path:
                 "n_train_queries": len(split),
                 "n_val_queries": len(validation),
                 "n_training_pairs": len(pairs),
-                "feature_version": "pair_features_v1",
+                # Se deriva de la configuración en vez de fijarse a mano: con
+                # un literal, las corridas con metadatos seguían anunciándose
+                # como v1 y la evidencia en MLflow quedaba engañosa.
+                "feature_version": (
+                    "pair_features_v2"
+                    if config.include_metadata
+                    else "pair_features_v1"
+                ),
+                "n_features": len(extractor.feature_names),
                 "candidate_policy": "top_n_excluding_citing_paper",
             }
         )
