@@ -16,8 +16,11 @@ El objetivo no fue comprobar que el código está, sino que **alguien ajeno al e
 | Paquete probado | ⚠️ | Instala, pero **requiere entrenar y un paso extra no documentado** |
 | API y tablero levantan | ✅ | API en 6 s; `GET /` responde 200 |
 | Flujo contexto → API → ranking | ✅ | Paquete y API devuelven rankings idénticos |
-| Docker/Compose construye desde cero | ⏸️ | **No verificado**: el motor de Docker no respondía |
+| Docker/Compose construye desde cero | ✅ | Dos imágenes construidas en 287 s; API `healthy` en 10 s |
+| Flujo completo dentro de contenedores | ✅ | `auditoria_docker_tablero.png` |
 | Sin secretos ni temporales versionados | ✅ | Cero coincidencias de `.pem`, `.key`, `credentials`, `.joblib`, `mlflow.db` |
+
+**Los diez criterios se cumplen.**
 
 ## Tiempos medidos
 
@@ -75,15 +78,26 @@ Para el contexto *«we use neural machine translation with attention mechanisms�
 
 Las cinco primeras posiciones coinciden exactamente entre la llamada directa al paquete y la respuesta de `/api/recomendar`, lo que confirma que la API no introduce ninguna transformación propia sobre el ranking del modelo.
 
-## Pendiente
+## Despliegue con contenedores
 
-Repetir los criterios de Docker cuando el motor esté disponible:
+`docker compose build` construyó las dos imágenes desde cero en **287 s**, sin intervención manual. El `Dockerfile` resuelve por su cuenta lo que en la instalación local exige pasos extra: ejecuta `dvc pull -r publico`, entrena el modelo y reconstruye el entorno para que el artefacto quede dentro del paquete instalado.
 
-```bash
-docker compose up --build
-```
+| Contenedor | Estado | Puerto |
+|---|---|---|
+| `microproyecto-citas-api` | `healthy` a los 10 s | 8000 |
+| `microproyecto-citas-dashboard` | activo | 8080 |
 
-Y comprobar el flujo desde <http://localhost:8080>.
+Verificado a través de Nginx, que es el camino del usuario real:
+
+- `GET http://localhost:8080/` → 200, con el tablero completo
+- `GET /api/estado` → `"TF-IDF + reordenador lineal"`, entrenado durante el build
+- `POST /api/recomendar` → mismo ranking que la ejecución local y que la llamada directa al paquete
+
+`auditoria_docker_tablero.png` muestra el tablero servido por los contenedores, con la consulta escrita y **«Effective Approaches to Attention-based Neural Machine Translation»** en la primera posición.
+
+### Nota sobre el entorno del auditor
+
+El primer intento no pudo completarse porque el motor de Docker de la máquina no arrancaba: la distribución `docker-desktop` de WSL fallaba con `0xc00000fd` durante su arranque interno. Se descartaron por separado los procesos duplicados, la distribución de sistema y el disco de datos; la causa estaba en la instalación de Docker Desktop, y se resolvió reinstalándola. **Era un problema del equipo del auditor, no del entregable.**
 
 ## Nota sobre un error de esta auditoría
 
