@@ -13,7 +13,7 @@ El objetivo no fue comprobar que el código está, sino que **alguien ajeno al e
 | `dvc pull` recupera los datos | ✅ | 11 archivos, 117,6 MB, **sin credenciales** |
 | Suite de pruebas completa | ✅ | 96 aprobadas en 113 s |
 | Paquete del modelo instalable | ✅ | `uv pip install -e model-package` |
-| Paquete probado | ⚠️ | Instala, pero **requiere entrenar y un paso extra no documentado** |
+| Paquete probado | ✅ | Predice tras entrenar; la causa del fallo inicial quedó identificada y corregida |
 | API y tablero levantan | ✅ | API en 6 s; `GET /` responde 200 |
 | Flujo contexto → API → ranking | ✅ | Paquete y API devuelven rankings idénticos |
 | Docker/Compose construye desde cero | ✅ | Dos imágenes construidas en 287 s; API `healthy` en 10 s |
@@ -39,20 +39,29 @@ Una instalación completa desde cero, sin contenedores, toma **unos 4,5 minutos*
 
 ## Hallazgos
 
-### 1. Falta un paso indispensable en la documentación (corregido)
+### 1. El entrenamiento guardaba el modelo donde la API no lo busca (resuelto)
 
-El paquete viaja sin modelo entrenado: `modelo_citas/trained/` solo contiene `__init__.py`. Hay que generarlo con `train_pipeline`, pero **eso no basta**: el entrenamiento escribe el artefacto en el árbol de fuentes mientras que `modelo_citas.predict` lo busca dentro del entorno virtual.
-
-Un `uv sync` normal no lo resuelve: detecta que el paquete no cambió de versión y no lo vuelve a copiar. El síntoma aparece después, al pedir una predicción:
+El paquete viaja sin modelo entrenado: `modelo_citas/trained/` solo contiene `__init__.py`, porque el artefacto pesa 49 MB. Hay que generarlo con `train_pipeline`, y al hacerlo siguiendo la instrucción que se venía usando la API no arrancaba:
 
 ```
 FileNotFoundError: No se encontró el modelo entrenado en
 .venv/Lib/site-packages/modelo_citas/trained/modelo-citas-output0.1.0.pkl
 ```
 
-El comando que faltaba es `uv sync --reinstall-package modelo-citas`. Sin él, **quien clone el repositorio no puede levantar la API**. Ya está documentado en `docs/manual_instalacion.md`.
+**Causa.** `TRAINED_MODEL_DIR` se deriva de la ubicación del módulo importado:
 
-El `Dockerfile` no sufre el problema porque reconstruye el entorno tras entrenar (línea 31).
+```python
+PACKAGE_ROOT = Path(modelo_citas.__file__).resolve().parent
+TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained"
+```
+
+Entrenar con `PYTHONPATH=model-package` hace que Python cargue el paquete desde el árbol de fuentes, de modo que el artefacto se guarda ahí. La API, en cambio, importa el paquete instalado y lo busca en el entorno virtual. Escriben y leen en carpetas distintas.
+
+**Solución.** Basta con no anteponer `PYTHONPATH` al entrenamiento: el artefacto queda directamente donde la API lo lee, y desaparece el paso de reinstalación.
+
+Verificado ejecutándolo: borrando el artefacto de ambas ubicaciones y entrenando con `uv run --no-sync python -m modelo_citas.train_pipeline --data-dir data/raw`, el archivo aparece en `site-packages` y la predicción funciona sin ningún paso intermedio.
+
+**Oportunidad de mejora en el `Dockerfile`.** La imagen evita el problema por otro camino: entrena con `PYTHONPATH=/app/model-package` (línea 30) y luego vuelve a ejecutar `uv sync --frozen --no-dev` (línea 31) para copiar el artefacto al entorno. Quitando la variable de la línea 30 se podría suprimir la 31 y ahorrar ese paso del build. No se modificó aquí porque la imagen actual funciona y está desplegada.
 
 ### 2. Las pruebas del paquete no ejercitan una predicción real
 

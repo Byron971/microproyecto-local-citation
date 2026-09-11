@@ -82,29 +82,19 @@ El paquete `model-package` **no incluye un modelo entrenado**: la carpeta `model
 
 ```bash
 uv pip install -e model-package
-PYTHONPATH=model-package .venv/bin/python -m modelo_citas.train_pipeline --data-dir data/raw
+uv run --no-sync python -m modelo_citas.train_pipeline --data-dir data/raw
 ```
 
-En Windows (PowerShell):
+*Tiempo medido: 76 s.* Genera `modelo-citas-output0.1.0.pkl` (49.308.404 bytes) **dentro del entorno virtual**, que es donde `modelo_citas.predict` lo busca.
 
-```powershell
-uv pip install -e model-package
-$env:PYTHONPATH="model-package"; .venv\Scripts\python.exe -m modelo_citas.train_pipeline --data-dir data/raw
-```
-
-*Tiempo medido: 76 s.* Genera `model-package/modelo_citas/trained/modelo-citas-output0.1.0.pkl` (49.308.404 bytes).
-
-### Paso indispensable: refrescar el paquete instalado
-
-```bash
-uv sync --reinstall-package modelo-citas
-```
-
-**Sin este comando la API no arranca.** El entrenamiento escribe el artefacto en el árbol de fuentes, pero `modelo_citas.predict` lo busca dentro del entorno virtual. Un `uv sync` normal no basta: detecta que el paquete no cambió de versión y no lo vuelve a copiar, de modo que el fallo aparece más tarde como:
-
-```
-FileNotFoundError: No se encontró el modelo entrenado en .venv/Lib/site-packages/modelo_citas/trained/...
-```
+> **No anteponer `PYTHONPATH=model-package` al comando de entrenamiento.** `TRAINED_MODEL_DIR` se deriva de la ubicación del módulo importado: con esa variable, Python carga `modelo_citas` desde el árbol de fuentes y el artefacto se guarda ahí, mientras que la API lo lee desde el entorno virtual. El síntoma aparece más tarde, al pedir una predicción:
+>
+> ```
+> FileNotFoundError: No se encontró el modelo entrenado en
+> .venv/Lib/site-packages/modelo_citas/trained/modelo-citas-output0.1.0.pkl
+> ```
+>
+> Si ya ocurrió, se arregla con `uv sync --reinstall-package modelo-citas`, que copia el artefacto al entorno. Un `uv sync` normal no basta: detecta que el paquete no cambió de versión y no lo vuelve a copiar.
 
 Para confirmar que quedó bien:
 
@@ -184,4 +174,4 @@ El `Dockerfile` hace por su cuenta el `dvc pull -r publico` y el entrenamiento d
 | Variable | Por omisión | Efecto |
 |---|---|---|
 | `MLFLOW_TRACKING_URI` | sin definir | Servidor de MLflow para registrar experimentos. Sin ella se usa SQLite local (`mlflow.db`). No es necesaria para la API ni para el tablero |
-| `PYTHONPATH` | sin definir | Solo hace falta apuntarlo a `model-package` durante el entrenamiento |
+| `PYTHONPATH` | sin definir | **Dejarla sin definir.** Apuntarla a `model-package` hace que el entrenamiento guarde el modelo en el árbol de fuentes en vez del entorno virtual, y la API no lo encuentra (ver paso 6) |
