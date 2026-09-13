@@ -26,6 +26,12 @@ class ModelConfig(BaseModel):
     min_df: int = Field(gt=0)
     c: float = Field(gt=0, allow_inf_nan=False)
 
+    # Versión 2 del reordenador: añade las cinco señales de metadatos. Viaja en
+    # la configuración, y no como argumento del script, para que MLflow la
+    # registre junto al resto de parámetros y la comparación entre versiones
+    # quede documentada en el experimento y no en la memoria de quien lo corrió.
+    include_metadata: bool = False
+
     @model_validator(mode="after")
     def check_ranking_limits(self) -> Self:
         if self.k > self.top_n:

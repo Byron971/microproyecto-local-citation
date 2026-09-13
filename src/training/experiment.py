@@ -27,6 +27,23 @@ def file_hash(path: Path) -> str:
         return hashlib.file_digest(file, "sha256").hexdigest()
 
 
+def citation_counts_from_split(split: list[dict]) -> dict[str, int]:
+    """Cuenta cuántas veces se cita cada artículo dentro de un split.
+
+    Alimenta la característica ``citation_prior``. Se le pasa **siempre** el
+    split de entrenamiento: contarlo sobre validación le filtraría al modelo la
+    respuesta que después se le pregunta, y el resultado se vería mejor de lo
+    que es.
+    """
+    counts: dict[str, int] = {}
+
+    for record in split:
+        for paper_id in record.get("positive_ids", ()):
+            counts[paper_id] = counts.get(paper_id, 0) + 1
+
+    return counts
+
+
 def labels_from_pairs(pairs: list[dict]) -> np.ndarray:
     return np.asarray([int(pair["label"]) for pair in pairs], dtype=int)
 
@@ -91,7 +108,10 @@ def train(config: ModelConfig) -> Path:
             max_features=config.max_features, min_df=config.min_df
         ).fit(papers)
         extractor = PairFeatureExtractor(
-            max_features=config.max_features, min_df=config.min_df
+            max_features=config.max_features,
+            min_df=config.min_df,
+            include_metadata=config.include_metadata,
+            citation_counts=citation_counts_from_split(split),
         ).fit(papers)
         pairs = training_pairs(config, retriever, papers, contexts, split)
         features = extractor.transform(pairs, contexts)
@@ -126,7 +146,15 @@ def train(config: ModelConfig) -> Path:
                 "n_train_queries": len(split),
                 "n_val_queries": len(validation),
                 "n_training_pairs": len(pairs),
-                "feature_version": "pair_features_v1",
+                # Se deriva de la configuración en vez de fijarse a mano: con
+                # un literal, las corridas con metadatos seguían anunciándose
+                # como v1 y la evidencia en MLflow quedaba engañosa.
+                "feature_version": (
+                    "pair_features_v2"
+                    if config.include_metadata
+                    else "pair_features_v1"
+                ),
+                "n_features": len(extractor.feature_names),
                 "candidate_policy": "top_n_excluding_citing_paper",
             }
         )
