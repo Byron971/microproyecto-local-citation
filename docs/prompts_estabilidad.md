@@ -126,6 +126,19 @@ reintentan.
 
 ## Recomendación de prompt(s) finalista(s)
 
-Pendiente: se completa una vez se corran las repeticiones necesarias contra
-`gpt-4o-mini` con una API key real. El criterio de selección es: menor
-`avg_format_error_rate`, y entre empates, mayor `avg_label_stability`.
+Corrida real contra `gpt-4o-mini`: 20 casos piloto × 3 prompts × 5
+repeticiones (300 llamadas). Resultado:
+
+| Prompt | `avg_format_error_rate` | `avg_label_stability` | `avg_latency_ms` |
+|---|---:|---:|---:|
+| `zero_shot_generic` | 0.0 | 0.53 | 1296 |
+| `zero_shot_detailed` | 0.0 | 0.66 | 1318 |
+| `few_shot` | 0.0 | **0.81** | 1843 |
+
+Los tres prompts formatean perfecto (`gpt-4o-mini` nunca falló en devolver el
+arreglo de 9 números), así que el desempate lo decide `avg_label_stability`.
+**`few_shot` es el prompt finalista**: es notablemente más estable entre
+repeticiones que las variantes zero-shot (0.81 vs. 0.66 y 0.53), a costa de
+~40% más latencia por los ejemplos adicionales en el prompt — un costo
+razonable dado que la estabilidad es justamente lo que este issue busca
+maximizar.
