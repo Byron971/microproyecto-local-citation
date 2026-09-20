@@ -1,0 +1,10 @@
+model,prompt,coverage,f1_macro,f1_micro,accuracy,avg_latency_seconds,provider_error_runs,format_error_runs
+qwen3:8b,few_shot,1.0,0.17419617419617417,0.3,0.3,56.59799185,0,0
+qwen3:8b,zero_shot_detailed,1.0,0.15408048741382074,0.3,0.3,59.354543545,0,0
+qwen3:8b,zero_shot_generic,1.0,0.044444444444444446,0.1,0.1,64.99438902,0,0
+gemini-3.5-flash-lite,few_shot,1.0,0.3287037037037037,0.65,0.65,1.488782265,0,0
+gemini-3.5-flash-lite,zero_shot_detailed,1.0,0.267948717948718,0.45,0.45,1.197895055,0,0
+gemini-3.5-flash-lite,zero_shot_generic,1.0,0.1884920634920635,0.45,0.45,1.16365637,0,0
+command-a-plus-05-2026,few_shot,1.0,0.2606060606060606,0.5,0.5,19.955519865,0,0
+command-a-plus-05-2026,zero_shot_detailed,1.0,0.2613756613756614,0.45,0.45,9.270122745,0,0
+command-a-plus-05-2026,zero_shot_generic,1.0,0.06666666666666667,0.3,0.3,10.65344004,0,0
