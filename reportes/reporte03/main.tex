@@ -788,9 +788,25 @@ tres estrategias de \emph{prompting}, el parser común de nueve puntajes y el
 pipeline de métricas con Precision, Recall, F1 Macro/Micro y matrices de
 confusión. También se completó una primera validación manual por parte del
 equipo sobre 20 casos piloto. Este conjunto se conserva como evaluación
-provisional: todavía requiere una segunda validación manual independiente,
-cálculo de acuerdo interanotador y reconciliación antes de denominarlo
-\emph{Test Gold} definitivo.
+provisional hasta completar una segunda validación manual independiente.
+
+Dicha segunda validación se realizó sobre los mismos 20 casos, sin consultar la
+primera hoja ni las sugerencias automáticas del piloto. El acuerdo entre ambos
+anotadores fue de 12 coincidencias y 8 desacuerdos, es decir una tasa de acuerdo
+de 0,60 y un \emph{Cohen Kappa} de 0,4839, valor que corresponde a un acuerdo
+moderado y se ubica dentro del rango habitual para taxonomías de función de cita
+con nueve clases. Tras reconciliar los desacuerdos se congeló el \emph{Test
+Gold} definitivo, que difiere del provisional en un único caso.
+
+Tres limitaciones deben acompañar esa cifra. Primero, el Kappa compara una
+anotación asistida con explicaciones contra una independiente, no dos
+anotaciones ciegas. Segundo, la reconciliación de los ocho desacuerdos también
+fue asistida, y siete de ellos se resolvieron hacia la etiqueta del primer
+anotador. Tercero, el conjunto definitivo cubre solo 5 de las 9 categorías
+---Background, Application, Evidence, Improvement y Further Reading---, por lo
+que el F1 Macro sobre las nueve clases permanece penalizado por las cuatro
+ausentes. Ampliar el piloto más allá de 20 casos es la vía para levantar esa
+restricción.
 
 % ============================================================================
 % 11. CONCLUSIONES
@@ -824,9 +840,9 @@ sistema completo sin credenciales propias.
 
 Para cerrar la Entrega 3 queda pendiente el video de síntesis y la actualización
 final de los aportes del equipo. En la extensión de clasificación de función de
-cita todavía se requiere una segunda validación manual independiente y las
-corridas reales de los modelos configurados antes de reportar resultados
-definitivos. De cara a la continuación del trabajo, el techo del recomendador
+cita ya se completó la segunda validación manual independiente y quedó congelado
+el \emph{Test Gold} definitivo; resta repetir sobre él las corridas de los
+modelos configurados para reportar resultados definitivos. De cara a la continuación del trabajo, el techo del recomendador
 está en la primera etapa: con un Recall@100 de 0,5160, la mitad de las consultas
 no tiene solución posible por reordenamiento, de modo que el margen de mejora
 está en la recuperación de candidatos --por ejemplo mediante representaciones
