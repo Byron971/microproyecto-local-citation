@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -17,6 +16,7 @@ from .io import (
     write_summary_csv,
 )
 from .metrics import evaluate_records, write_evaluation_artifacts
+from .providers_gemini import GeminiClient
 from .providers_openai import OpenAIClient
 from .providers_openweight import OpenWeightClient
 from .runner import run_evaluation
@@ -43,25 +43,34 @@ def is_provisional_gold(path: str | Path) -> bool:
     return "provisional" in path.name.casefold()
 
 
-def _safe_model_name(value: str) -> str:
-    return re.sub(r"[^A-Za-z0-9._-]+", "-", value).strip("-") or "unknown"
-
-
 def build_clients(mode: str) -> list[object]:
     clients: list[object] = []
-    if mode in {"openai", "both"}:
+    if mode in {"openai", "commercial", "all"}:
         clients.append(OpenAIClient())
-    if mode in {"openweight", "both"}:
+    if mode in {"gemini", "commercial", "all"}:
+        clients.append(GeminiClient())
+    if mode in {"openweight", "all"}:
         clients.append(OpenWeightClient())
     return clients
 
 
 def validate_environment(mode: str) -> list[str]:
     errors: list[str] = []
-    if mode in {"openai", "both"} and not os.environ.get("OPENAI_API_KEY"):
-        errors.append("Falta OPENAI_API_KEY para la corrida comercial.")
-    if mode in {"openweight", "both"} and not os.environ.get("OPENWEIGHT_MODEL"):
-        errors.append("Falta OPENWEIGHT_MODEL para la corrida open-weight.")
+
+    if mode in {"openai", "commercial", "all"}:
+        if not os.environ.get("OPENAI_API_KEY"):
+            errors.append("Falta OPENAI_API_KEY para la corrida OpenAI.")
+
+    if mode in {"gemini", "commercial", "all"}:
+        if not os.environ.get("GEMINI_API_KEY"):
+            errors.append("Falta GEMINI_API_KEY para la corrida Gemini.")
+        if not os.environ.get("GEMINI_MODEL"):
+            errors.append("Falta GEMINI_MODEL para la corrida Gemini.")
+
+    if mode in {"openweight", "all"}:
+        if not os.environ.get("OPENWEIGHT_MODEL"):
+            errors.append("Falta OPENWEIGHT_MODEL para la corrida open-weight.")
+
     return errors
 
 
@@ -110,14 +119,18 @@ def write_run_metadata(
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Ejecuta de punta a punta la evaluación de función de cita "
-            "con modelos comercial/open-weight."
+            "Ejecuta de punta a punta la evaluación de función de cita con "
+            "OpenAI, Gemini y/o un modelo open-weight."
         )
     )
     parser.add_argument(
         "--mode",
-        choices=["openai", "openweight", "both"],
+        choices=["openai", "gemini", "openweight", "commercial", "all"],
         required=True,
+        help=(
+            "commercial ejecuta OpenAI+Gemini; all ejecuta "
+            "OpenAI+Gemini+open-weight."
+        ),
     )
     parser.add_argument(
         "--gold",
@@ -191,15 +204,11 @@ def main(argv: list[str] | None = None) -> int:
     if env_errors:
         for error in env_errors:
             print(f"Configuración: {error}", file=sys.stderr)
-        if args.check_only:
-            return 2
+        return 2
 
     if args.check_only:
         print("Preflight completado sin llamadas de red.")
         return 0
-
-    if env_errors:
-        return 2
 
     try:
         pricing = _load_pricing(args.pricing)
