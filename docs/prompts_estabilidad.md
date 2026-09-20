@@ -69,21 +69,33 @@ uv run python -m src.evaluation.commercial.stability \
   --output artifacts/commercial_eval/stability_summary.csv
 ```
 
-## Decisión pendiente
+## Modelo de prueba
 
-No hay todavía un modelo de prueba configurado. `src/evaluation/commercial/providers_local.py`
-lanza `LocalProviderNotConfiguredError` en vez de intentar una llamada real,
-hasta que el equipo decida entre:
+Se eligió **OpenAI `gpt-4o-mini`** vía API como modelo de prueba, implementado
+en `src/evaluation/commercial/providers_openai.py` (`OpenAIClient`, contrato
+`CommercialModelClient`). La API key se lee de la variable de entorno
+`OPENAI_API_KEY`; nunca se versiona en el repositorio. Si la variable no está
+configurada, `generate()` lanza `OpenAIProviderNotConfiguredError` sin
+intentar ninguna llamada de red.
 
-- **Open-weight local vía Ollama**: gratis, sin cuentas ni facturación,
-  instalable en minutos.
-- **API comercial (OpenAI/Gemini/Anthropic) con cuenta propia**: más
-  representativo del modelo final, pero requiere gestionar credenciales y
-  posible costo.
+Uso:
+
+```bash
+export OPENAI_API_KEY="sk-..."
+uv run python -m src.evaluation.commercial.cli \
+  --gold tests/fixtures/citation_function_pilot.jsonl \
+  --prompts config/prompts/citation_function_prompts.json \
+  --client src.evaluation.commercial.providers_openai:build_client \
+  --output-dir artifacts/commercial_eval
+```
+
+Los errores transitorios del proveedor (rate limit, timeout, conexión, error
+interno del servidor) se reintentan automáticamente según `--max-retries` del
+runner; los errores permanentes (autenticación, solicitud inválida) no se
+reintentan.
 
 ## Recomendación de prompt(s) finalista(s)
 
-Pendiente: se completa una vez se resuelva la decisión anterior y se
-corran las repeticiones necesarias contra un modelo real. El criterio de
-selección es: menor `avg_format_error_rate`, y entre empates, mayor
-`avg_label_stability`.
+Pendiente: se completa una vez se corran las repeticiones necesarias contra
+`gpt-4o-mini` con una API key real. El criterio de selección es: menor
+`avg_format_error_rate`, y entre empates, mayor `avg_label_stability`.

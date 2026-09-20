@@ -18,6 +18,7 @@ dependencies = [
     "pyyaml>=6,<7",
     "pydantic>=2,<3",
     "modelo-citas",
+    "openai>=3.16.2",
 ]
 
 [project.scripts]
