@@ -14,5 +14,8 @@ data/processed/
 notebooks
 reportes
 
+# El modelo se instala desde el wheel publicado en S3, no desde el fuente.
+model-package
+
 *.pdf
 *.log

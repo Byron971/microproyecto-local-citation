@@ -11,17 +11,13 @@ RUN pip install --no-cache-dir uv
 
 # Copiar primero los archivos necesarios para resolver dependencias
 COPY pyproject.toml uv.lock README.md ./
-COPY model-package ./model-package
 
-# El artefacto se entrena antes de construir la imagen (uv run tox -c
-# model-package -e train), no dentro del build: la imagen instala el paquete
-# ya entrenado y no necesita ni el dataset ni las dependencias de entrenamiento.
-RUN test -f model-package/modelo_citas/trained/*.pkl || (echo "Falta el artefacto: ejecute tox -c model-package -e train" && exit 1)
-
-# Instalar dependencias antes de copiar el resto del c�digo
+# El modelo llega como wheel publicado en S3, con el .pkl dentro y el hash
+# fijado en uv.lock. La imagen no necesita model-package/, ni el dataset, ni
+# las dependencias de entrenamiento: solo descargar e instalar el paquete.
 RUN uv sync --frozen --no-dev --no-install-project
 
-# Copiar el c�digo y los archivos de configuraci�n del proyecto
+# Copiar el código y los archivos de configuración del proyecto
 COPY . .
 
 # Instalar el proyecto completo
@@ -30,4 +26,3 @@ RUN uv sync --frozen --no-dev
 EXPOSE 8000
 
 CMD ["uv", "run", "uvicorn", "src.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-

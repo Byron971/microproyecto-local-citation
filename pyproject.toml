@@ -18,9 +18,16 @@ maqueta-front = "maqueta.front:run_frontend"
 tablero = "src.app.main:run_backend"
 
 # El modelo entrenado se consume como librería instalable, no como artefacto
-# suelto: el paquete vive en model-package/ y trae el .pkl dentro del wheel.
+# suelto: el wheel publicado trae el .pkl dentro. Se descarga del bucket S3 del
+# proyecto, de modo que ni la imagen de la API ni un clon del repositorio
+# necesitan model-package/, el dataset ni las dependencias de entrenamiento.
+#
+# Publicar una versión nueva del modelo: subir VERSION, entrenar, construir el
+# wheel, subirlo a s3://ceduque-modelo-citas-wheels/wheels/ y actualizar la URL
+# de abajo junto con `uv lock`. Un wheel publicado nunca se sobrescribe: el hash
+# queda fijado en uv.lock y un cambio silencioso haría fallar la instalación.
 [tool.uv.sources]
-modelo-citas = { path = "model-package", editable = true }
+modelo-citas = { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" }
 
 [build-system]
 requires = ["hatchling"]
