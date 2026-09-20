@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from time import perf_counter
+from time import perf_counter, sleep
 from typing import Any, Callable, Iterable, Mapping
 
 from .providers import CommercialModelClient, ProviderCallError
@@ -32,9 +32,12 @@ def run_evaluation(
     max_retries: int = 2,
     parser: Callable[[str], Any] | None = None,
     pricing: Mapping[tuple[str, str], ModelPricing] | None = None,
+    request_delay_seconds: float = 0.0,
 ) -> list[RunRecord]:
     if max_retries < 0:
         raise ValueError("max_retries must be >= 0")
+    if request_delay_seconds < 0:
+        raise ValueError("request_delay_seconds must be >= 0")
 
     records: list[RunRecord] = []
     prices = pricing or {}
@@ -82,6 +85,8 @@ def run_evaluation(
                             gold=case.gold,
                         )
                     )
+                    if request_delay_seconds:
+                        sleep(request_delay_seconds)
                     continue
 
                 parsed_output: Any | None = response.text
@@ -117,5 +122,7 @@ def run_evaluation(
                         gold=case.gold,
                     )
                 )
+                if request_delay_seconds:
+                    sleep(request_delay_seconds)
 
     return records

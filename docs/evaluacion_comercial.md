@@ -204,3 +204,14 @@ results.jsonl conserva cada respuesta cruda y la telemetría. evaluation_summary
 ## Estado actual
 
 Los prompts, el parser, el runner, el pipeline de métricas, los clientes configurables de OpenAI, Gemini y Cohere, el cliente open-weight y el orquestador de punta a punta están implementados. La corrida definitiva sigue dependiendo de dos insumos externos al código: la segunda validación manual independiente que permita congelar el Test Gold y las credenciales/modelos reales que el equipo use para ejecutar los proveedores.
+
+
+## Límites de tasa en planes gratuitos
+
+Algunos proveedores gratuitos imponen límites de solicitudes por minuto. El orquestador admite una pausa explícita entre ejecuciones:
+
+```bash
+--request-delay-seconds 5
+```
+
+Para Gemini Free Tier con un límite observado de 15 solicitudes por minuto, se recomienda usar 5 segundos entre ejecuciones (aprox. 12 solicitudes/minuto) y, si una corrida previa agotó temporalmente la cuota, esperar al menos un minuto antes de reiniciar. Para evitar reintentos inmediatos innecesarios durante la prueba controlada puede combinarse con `--max-retries 0`.
