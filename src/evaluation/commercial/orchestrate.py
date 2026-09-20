@@ -16,6 +16,7 @@ from .io import (
     write_summary_csv,
 )
 from .metrics import evaluate_records, write_evaluation_artifacts
+from .providers_cohere import CohereClient
 from .providers_gemini import GeminiClient
 from .providers_openai import OpenAIClient
 from .providers_openweight import OpenWeightClient
@@ -49,6 +50,8 @@ def build_clients(mode: str) -> list[object]:
         clients.append(OpenAIClient())
     if mode in {"gemini", "commercial", "all"}:
         clients.append(GeminiClient())
+    if mode == "cohere":
+        clients.append(CohereClient())
     if mode in {"openweight", "all"}:
         clients.append(OpenWeightClient())
     return clients
@@ -66,6 +69,10 @@ def validate_environment(mode: str) -> list[str]:
             errors.append("Falta GEMINI_API_KEY para la corrida Gemini.")
         if not os.environ.get("GEMINI_MODEL"):
             errors.append("Falta GEMINI_MODEL para la corrida Gemini.")
+
+    if mode == "cohere":
+        if not os.environ.get("COHERE_API_KEY"):
+            errors.append("Falta COHERE_API_KEY para la corrida Cohere.")
 
     if mode in {"openweight", "all"}:
         if not os.environ.get("OPENWEIGHT_MODEL"):
@@ -120,16 +127,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
             "Ejecuta de punta a punta la evaluación de función de cita con "
-            "OpenAI, Gemini y/o un modelo open-weight."
+            "OpenAI, Gemini, Cohere y/o un modelo open-weight."
         )
     )
     parser.add_argument(
         "--mode",
-        choices=["openai", "gemini", "openweight", "commercial", "all"],
+        choices=["openai", "gemini", "cohere", "openweight", "commercial", "all"],
         required=True,
         help=(
-            "commercial ejecuta OpenAI+Gemini; all ejecuta "
-            "OpenAI+Gemini+open-weight."
+            "cohere ejecuta Cohere de forma independiente; commercial ejecuta "
+            "OpenAI+Gemini; all conserva OpenAI+Gemini+open-weight."
         ),
     )
     parser.add_argument(
