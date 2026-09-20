@@ -20,13 +20,18 @@ Para OpenAI:
 OPENAI_API_KEY=...
 OPENAI_MODEL=nombre-del-modelo
 
+Para Gemini:
+
+GEMINI_API_KEY=...
+GEMINI_MODEL=nombre-del-modelo
+
 Para open-weight:
 
 OPENWEIGHT_BASE_URL=http://localhost:11434/v1
 OPENWEIGHT_MODEL=nombre-del-modelo-local
 OPENWEIGHT_API_KEY=local
 
-No se deben versionar credenciales reales. OPENAI_MODEL permite cambiar el modelo comercial sin modificar código.
+No se deben versionar credenciales reales. OPENAI_MODEL y GEMINI_MODEL permiten cambiar los modelos comerciales sin modificar código. El cliente Gemini usa la capa oficial de compatibilidad con OpenAI de Google.
 
 ## Formato del Test Gold
 
@@ -67,11 +72,19 @@ uv run python -m src.evaluation.commercial.orchestrate \
   --check-only
 ```
 
-Para verificar ambas:
+Para verificar ambos modelos comerciales:
 
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
-  --mode both \
+  --mode commercial \
+  --check-only
+```
+
+Para verificar OpenAI, Gemini y open-weight en una sola configuración:
+
+```bash
+uv run python -m src.evaluation.commercial.orchestrate \
+  --mode all \
   --check-only
 ```
 
@@ -96,7 +109,7 @@ Cuando exista annotations/citation_function/test_gold.jsonl:
 
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
-  --mode both \
+  --mode all \
   --output-dir artifacts/citation_function_eval/final
 ```
 
@@ -168,4 +181,4 @@ results.jsonl conserva cada respuesta cruda y la telemetría. evaluation_summary
 
 ## Estado actual
 
-Los prompts, el parser, el runner, el pipeline de métricas, el cliente OpenAI configurable, el cliente open-weight y el orquestador de punta a punta están implementados. La corrida definitiva sigue dependiendo de dos insumos externos al código: la segunda validación manual independiente que permita congelar el Test Gold y las credenciales/modelos reales que el equipo use para ejecutar los proveedores.
+Los prompts, el parser, el runner, el pipeline de métricas, los clientes configurables de OpenAI y Gemini, el cliente open-weight y el orquestador de punta a punta están implementados. La corrida definitiva sigue dependiendo de dos insumos externos al código: la segunda validación manual independiente que permita congelar el Test Gold y las credenciales/modelos reales que el equipo use para ejecutar los proveedores.
