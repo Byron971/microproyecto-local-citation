@@ -122,3 +122,12 @@ El reparto es una propuesta para asegurar participación identificable; puede ca
 - reportes/reporte03/issue#31_aws_recomendacion_real.png
 - docs/manual_usuario.md
 - docs/manual_instalacion.md
+
+
+## Plan B si los demás integrantes no alcanzan a grabar
+
+La guía oficial exige que el video presente una síntesis del problema, su relevancia, los modelos construidos, la solución, los principales resultados y las conclusiones, con una duración máxima de 10 minutos. No establece de forma explícita que cada integrante deba hablar dentro del video.
+
+Si el equipo no alcanza a coordinar una grabación conjunta, John puede grabar la narración completa siguiendo este mismo guion y mostrar en la sección de trabajo en equipo la tabla de aportes verificables. La contribución individual de cada integrante sigue sustentada en commits, Pull Requests, reporte de trabajo en equipo y la sustentación.
+
+Para este plan, mantenga el video entre 7:30 y 8:30 minutos y elimine el reparto por integrante. Use una sola voz continua y conserve las mismas evidencias de pantalla.
