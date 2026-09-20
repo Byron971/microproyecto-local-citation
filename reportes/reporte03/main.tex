@@ -782,13 +782,13 @@ las tareas que aún faltan, especialmente contenerización, despliegue,
 documentación y preparación del video.
 
 Como preparación adicional para la evaluación de función de cita se versionaron
-tres estrategias de emph{prompting}, el parser común de nueve puntajes y el
+tres estrategias de \emph{prompting}, el parser común de nueve puntajes y el
 pipeline de métricas con Precision, Recall, F1 Macro/Micro y matrices de
 confusión. También se completó una primera validación manual por parte del
 equipo sobre 20 casos piloto. Este conjunto se conserva como evaluación
 provisional: todavía requiere una segunda validación manual independiente,
 cálculo de acuerdo interanotador y reconciliación antes de denominarlo
-emph{Test Gold} definitivo.
+\emph{Test Gold} definitivo.
 
 % ============================================================================
 % 11. CONCLUSIONES
@@ -797,9 +797,10 @@ emph{Test Gold} definitivo.
 \section{Conclusiones}
 
 La comparación realizada permitió escoger una configuración concreta para el
-reordenador. La estrategia con negativos aleatorios alcanzó Recall@10 de
-0,2882 y MRR@10 de 0,1490, mientras que la variante con negativos difíciles
-obtuvo resultados considerablemente menores.
+reordenador. La versión 2 con negativos aleatorios alcanzó Recall@10 de
+0,3793 y MRR@10 de 0,2166, mientras que la versión 2 con negativos difíciles
+obtuvo 0,2288 y 0,0995, respectivamente. Por esta razón se seleccionó la
+versión 2 con negativos aleatorios como modelo final.
 
 El experimento también permitió identificar una limitación importante. Al
 mantenerse Recall@100 cerca de 0,516 en ambas variantes, aproximadamente la
@@ -819,11 +820,15 @@ manual, y la solución se probó tanto en local como sobre AWS. La reproducción
 desde un clon limpio confirmó que una persona ajena al equipo puede levantar el
 sistema completo sin credenciales propias.
 
-Queda pendiente únicamente el video de síntesis. De cara a la continuación del
-trabajo, el techo del sistema está en la primera etapa: con un Recall@100 de
-0,5160, la mitad de las consultas no tiene solución posible por reordenamiento,
-de modo que el margen de mejora está en la recuperación de candidatos --por
-ejemplo mediante representaciones densas-- antes que en el reordenador.
+Para cerrar la Entrega 3 queda pendiente el video de síntesis y la actualización
+final de los aportes del equipo. En la extensión de clasificación de función de
+cita todavía se requiere una segunda validación manual independiente y las
+corridas reales de los modelos configurados antes de reportar resultados
+definitivos. De cara a la continuación del trabajo, el techo del recomendador
+está en la primera etapa: con un Recall@100 de 0,5160, la mitad de las consultas
+no tiene solución posible por reordenamiento, de modo que el margen de mejora
+está en la recuperación de candidatos --por ejemplo mediante representaciones
+densas-- antes que en el reordenador.
 
 % ============================================================================
 % REFERENCIAS
