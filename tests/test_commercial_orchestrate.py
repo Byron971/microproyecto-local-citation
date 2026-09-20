@@ -13,29 +13,51 @@ def test_is_provisional_gold_by_filename():
 
 
 def test_validate_environment_reports_missing_values(monkeypatch):
-    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
-    monkeypatch.delenv("OPENWEIGHT_MODEL", raising=False)
+    for name in (
+        "OPENAI_API_KEY",
+        "GEMINI_API_KEY",
+        "GEMINI_MODEL",
+        "OPENWEIGHT_MODEL",
+    ):
+        monkeypatch.delenv(name, raising=False)
 
-    errors = orchestrate.validate_environment("both")
+    errors = orchestrate.validate_environment("all")
 
     assert any("OPENAI_API_KEY" in error for error in errors)
+    assert any("GEMINI_API_KEY" in error for error in errors)
+    assert any("GEMINI_MODEL" in error for error in errors)
     assert any("OPENWEIGHT_MODEL" in error for error in errors)
 
 
-def test_validate_environment_accepts_configured_values(monkeypatch):
-    monkeypatch.setenv("OPENAI_API_KEY", "fake")
-    monkeypatch.setenv("OPENWEIGHT_MODEL", "local-model")
+def test_validate_environment_accepts_commercial_configuration(monkeypatch):
+    monkeypatch.setenv("OPENAI_API_KEY", "fake-openai")
+    monkeypatch.setenv("GEMINI_API_KEY", "fake-gemini")
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-model")
 
-    assert orchestrate.validate_environment("both") == []
+    assert orchestrate.validate_environment("commercial") == []
 
 
-def test_build_clients_uses_environment_model_names(monkeypatch):
-    monkeypatch.setenv("OPENAI_MODEL", "commercial-model")
-    monkeypatch.setenv("OPENWEIGHT_MODEL", "local-model")
+def test_build_clients_for_commercial_mode(monkeypatch):
+    monkeypatch.setenv("OPENAI_MODEL", "openai-model")
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-model")
 
-    clients = orchestrate.build_clients("both")
+    clients = orchestrate.build_clients("commercial")
 
     assert [(client.provider, client.model) for client in clients] == [
-        ("openai", "commercial-model"),
+        ("openai", "openai-model"),
+        ("gemini", "gemini-model"),
+    ]
+
+
+def test_build_clients_for_all_mode(monkeypatch):
+    monkeypatch.setenv("OPENAI_MODEL", "openai-model")
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-model")
+    monkeypatch.setenv("OPENWEIGHT_MODEL", "local-model")
+
+    clients = orchestrate.build_clients("all")
+
+    assert [(client.provider, client.model) for client in clients] == [
+        ("openai", "openai-model"),
+        ("gemini", "gemini-model"),
         ("openweight", "local-model"),
     ]
