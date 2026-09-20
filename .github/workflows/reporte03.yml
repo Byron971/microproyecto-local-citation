@@ -10,8 +10,7 @@ on:
       - ".github/workflows/reporte03.yml"
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   build-report:
@@ -50,20 +49,3 @@ jobs:
           name: reporte-entrega-3
           path: reportes/reporte03/main.pdf
 
-      - name: Crear Pull Request con PDF final
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          branch="automation/reporte-pdf-${{ github.run_id }}"
-          git checkout -b "$branch"
-          git add -f reportes/reporte03/main.pdf
-          git commit -m "docs: genera PDF final de Entrega 3"
-          git push -u origin "$branch"
-          gh pr create \
-            --base main \
-            --head "$branch" \
-            --title "docs: genera PDF final de Entrega 3" \
-            --body "PDF compilado automáticamente desde reportes/reporte03/main.tex. La compilación pasó y el reporte cumple el máximo de 10 páginas."
