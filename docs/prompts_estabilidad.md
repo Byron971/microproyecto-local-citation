@@ -81,7 +81,10 @@ en `src/evaluation/commercial/providers_openai.py` (`OpenAIClient`, contrato
 configurada, `generate()` lanza `OpenAIProviderNotConfiguredError` sin
 intentar ninguna llamada de red.
 
-Uso:
+### Configurar la API key
+
+**Opción A — variable de entorno en la sesión de terminal** (se pierde al
+cerrarla):
 
 ```bash
 export OPENAI_API_KEY="sk-..."
@@ -90,6 +93,30 @@ uv run python -m src.evaluation.commercial.cli \
   --prompts config/prompts/citation_function_prompts.json \
   --client src.evaluation.commercial.providers_openai:build_client \
   --output-dir artifacts/commercial_eval
+```
+
+**Opción B — archivo `.env` en la raíz del proyecto** (persiste entre
+sesiones; `.env` ya está en `.gitignore`, nunca se versiona):
+
+```bash
+echo 'OPENAI_API_KEY=sk-...' >> .env
+```
+
+El cliente lee `os.environ` directamente (no carga `.env` por sí mismo), así
+que hay que decirle a `uv` que lo cargue con su flag nativo `--env-file`:
+
+```bash
+uv run --env-file .env python -m src.evaluation.commercial.cli \
+  --gold tests/fixtures/citation_function_pilot.jsonl \
+  --prompts config/prompts/citation_function_prompts.json \
+  --client src.evaluation.commercial.providers_openai:build_client \
+  --output-dir artifacts/commercial_eval
+```
+
+Verificar que la key quedó cargada sin gastar llamadas reales:
+
+```bash
+uv run --env-file .env python -c "import os; print('OPENAI_API_KEY' in os.environ)"
 ```
 
 Los errores transitorios del proveedor (rate limit, timeout, conexión, error
