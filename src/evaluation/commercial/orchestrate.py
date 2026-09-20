@@ -158,6 +158,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--pricing", help="JSON opcional de tarifas explícitas.")
     parser.add_argument("--max-retries", type=int, default=2)
     parser.add_argument(
+        "--request-delay-seconds",
+        type=float,
+        default=0.0,
+        help="Pausa entre ejecuciones para respetar límites de solicitudes por minuto.",
+    )
+    parser.add_argument(
         "--allow-provisional",
         action="store_true",
         help=(
@@ -226,6 +232,7 @@ def main(argv: list[str] | None = None) -> int:
             max_retries=args.max_retries,
             parser=parse_score_array,
             pricing=pricing,
+            request_delay_seconds=args.request_delay_seconds,
         )
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"Error de ejecución: {exc}", file=sys.stderr)
