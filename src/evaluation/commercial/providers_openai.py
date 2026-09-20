@@ -1,10 +1,8 @@
-"""Cliente de OpenAI para las pruebas de estabilidad del issue #43.
+"""Cliente de OpenAI para la evaluación de función de cita.
 
-Implementa el contrato `CommercialModelClient` (ver `providers.py`) usando el
-SDK oficial de OpenAI. La API key se lee de la variable de entorno
-`OPENAI_API_KEY`; nunca se versiona ni se hardcodea en este archivo. Ver
-"Decision pendiente" en docs/prompts_estabilidad.md para el contexto de esta
-decision (modelo gpt-4o-mini, via variable de entorno).
+Implementa el contrato CommercialModelClient usando el SDK oficial de OpenAI.
+La API key se lee de OPENAI_API_KEY y el modelo puede seleccionarse con
+OPENAI_MODEL. Ninguna credencial se versiona en el repositorio.
 """
 from __future__ import annotations
 
@@ -24,7 +22,12 @@ from .schema import ProviderResponse
 
 DEFAULT_MODEL = "gpt-4o-mini"
 
-_TRANSIENT_ERRORS = (RateLimitError, APITimeoutError, APIConnectionError, InternalServerError)
+_TRANSIENT_ERRORS = (
+    RateLimitError,
+    APITimeoutError,
+    APIConnectionError,
+    InternalServerError,
+)
 
 
 class OpenAIProviderNotConfiguredError(RuntimeError):
@@ -34,8 +37,8 @@ class OpenAIProviderNotConfiguredError(RuntimeError):
 class OpenAIClient:
     provider = "openai"
 
-    def __init__(self, model: str = DEFAULT_MODEL) -> None:
-        self.model = model
+    def __init__(self, model: str | None = None) -> None:
+        self.model = model or os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)
         self._client: OpenAI | None = None
 
     def _get_client(self) -> OpenAI:
@@ -46,8 +49,6 @@ class OpenAIClient:
                     "Falta la variable de entorno OPENAI_API_KEY. Configura tu "
                     "API key de OpenAI antes de ejecutar corridas reales."
                 )
-            # max_retries=0: los reintentos ya los controla run_evaluation
-            # (--max-retries), no queremos que el SDK reintente por su cuenta.
             self._client = OpenAI(api_key=api_key, max_retries=0)
         return self._client
 
@@ -64,10 +65,10 @@ class OpenAIClient:
             raise ProviderCallError(str(exc), transient=False) from exc
 
         if not response.choices:
-            # Puede pasar con respuestas filtradas por moderacion de
-            # contenido (finish_reason="content_filter" sin choices). No es
-            # un error de proveedor transitorio: reintentar no lo arregla.
-            raise ProviderCallError("respuesta sin choices (posible filtro de contenido)", transient=False)
+            raise ProviderCallError(
+                "respuesta sin choices (posible filtro de contenido)",
+                transient=False,
+            )
 
         text = response.choices[0].message.content or ""
         usage = response.usage
