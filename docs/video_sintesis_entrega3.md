@@ -95,12 +95,16 @@ Pantalla:
 Voz:
 "El resultado principal es una solución de recomendación local de citas que mejora el ordenamiento de candidatos y queda integrada en un flujo MLOps reproducible. La principal limitación sigue estando en la recuperación inicial: si el artículo correcto no aparece en el Top-100, el reordenador no puede recuperarlo. El trabajo se coordinó mediante issues, ramas, pull requests y revisiones, con aportes diferenciados en recuperación, reordenamiento, empaquetamiento, experimentación, despliegue y documentación."
 
-## 8:20–8:40 — Extensión opcional de función de cita
+## 8:20–8:50 — Extensión opcional de función de cita
 
 Mostrar esta parte solo si hay tiempo.
 
+Pantalla:
+- docs/evaluacion_comparativa_provisional_20sep.md
+- Tabla con Qwen3:8B, Gemini 3.5 Flash-Lite y Cohere Command A+.
+
 Voz:
-"Como extensión, se está preparando clasificación de función de cita con nueve categorías, prompts versionados y evaluación comparable. Ya existe una primera validación manual por parte del equipo sobre veinte casos piloto, pero los resultados se mantienen como provisionales hasta completar una segunda validación independiente y el acuerdo interanotador."
+"Como extensión, evaluamos clasificación de función de cita en nueve categorías usando tres estrategias de prompting sobre veinte casos piloto. En este conjunto provisional, Gemini con few-shot obtuvo F1 Macro de 0,329 y accuracy de 0,65; Cohere alcanzó F1 Macro de 0,261 y Qwen local 0,174 en sus mejores configuraciones comparables. Estos resultados son preliminares porque el conjunto contiene solo cinco de las nueve clases y no se contó con un segundo anotador humano independiente. Por ello no reportamos acuerdo interanotador ni presentamos este piloto como Test Gold definitivo."
 
 ## Reparto sugerido
 
@@ -122,6 +126,7 @@ El reparto es una propuesta para asegurar participación identificable; puede ca
 - reportes/reporte03/issue#31_aws_recomendacion_real.png
 - docs/manual_usuario.md
 - docs/manual_instalacion.md
+- docs/evaluacion_comparativa_provisional_20sep.md
 
 
 ## Plan B si los demás integrantes no alcanzan a grabar
