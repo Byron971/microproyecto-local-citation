@@ -1,0 +1,20 @@
+{"id":"P15-1029_W13-0109_0","suggested_label":"Background","confidence":"medium","rationale":"La cita sitúa la composicionalidad semántica dentro de literatura previa."}
+{"id":"S15-1023_P08-1028_0","suggested_label":"Background","confidence":"medium","rationale":"Describe tareas y evaluaciones previas de modelos composicionales."}
+{"id":"S15-2047_S15-2044_0","suggested_label":"Further Reading","confidence":"low","rationale":"La referencia parece remitir al artículo del sistema participante para detalles."}
+{"id":"D15-1032_P05-1012_0","suggested_label":"Application","confidence":"high","rationale":"El texto indica uso de un parser y algoritmos de dependencia citados."}
+{"id":"P15-1169_N13-1090_0","suggested_label":"Evidence","confidence":"medium","rationale":"La cita respalda la afirmación de que embeddings capturan regularidades sintácticas."}
+{"id":"D15-1299_P13-2088_1","suggested_label":"Application","confidence":"medium","rationale":"El trabajo reutiliza el esquema experimental presentado en el trabajo citado."}
+{"id":"D15-1105_W02-1020_0","suggested_label":"Background","confidence":"high","rationale":"Resume trabajo previo de predicción para asistir traducción humana."}
+{"id":"D15-1294_P14-2085_4","suggested_label":"Application","confidence":"high","rationale":"Se incorporan características propuestas por trabajos citados."}
+{"id":"W15-4314_P14-2111_4","suggested_label":"Improvement / Modification","confidence":"high","rationale":"El texto dice explícitamente que extiende plantillas de características citadas."}
+{"id":"P15-1020_P03-1021_0","suggested_label":"Application","confidence":"high","rationale":"Se usa MERT del trabajo citado para ajustar modelos de traducción."}
+{"id":"P15-1156_P14-2029_2","suggested_label":"Application","confidence":"high","rationale":"El texto dice que toma prestada una característica del modelo citado."}
+{"id":"P15-1086_W03-0203_0","suggested_label":"Background","confidence":"high","rationale":"Presenta antecedentes del área de generación automática de preguntas."}
+{"id":"W15-3060_D08-1088_0","suggested_label":"Evidence","confidence":"high","rationale":"La referencia sustenta la afirmación concreta de complejidad NP-hard."}
+{"id":"S15-1021_N13-1090_0","suggested_label":"Background","confidence":"high","rationale":"Resume usos previos de embeddings para relaciones semánticas."}
+{"id":"P15-1122_W11-0908_0","suggested_label":"Background","confidence":"medium","rationale":"Describe método y resultados de un trabajo previo sobre argumentos implícitos."}
+{"id":"W15-3037_D14-1162_0","suggested_label":"Evidence","confidence":"medium","rationale":"La cita apoya una afirmación sobre desempeño de representaciones vectoriales."}
+{"id":"P15-1089_W10-0513_0","suggested_label":"Evidence","confidence":"high","rationale":"Se cita un corpus como fuente de la cifra de tokens OOV."}
+{"id":"W15-0807_P08-1090_0","suggested_label":"Background","confidence":"high","rationale":"Enumera líneas recientes de investigación sobre eventos y scripts."}
+{"id":"J15-3004_P02-1026_0","suggested_label":"Background","confidence":"medium","rationale":"Resume antecedentes y posiciones previas sobre constancia de tasa de entropía."}
+{"id":"P15-1148_P10-1110_2","suggested_label":"Improvement / Modification","confidence":"medium","rationale":"Adapta un algoritmo de parsing de dependencias para parsing constituyente."}
