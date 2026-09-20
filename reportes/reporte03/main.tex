@@ -745,31 +745,34 @@ limpio y la integración con FastAPI y el tablero.
 \midrule
 
 John Arias &
-Ejecución y comparación de las variantes Random y Hard; seguimiento de
-experimentos en MLflow; configuración y automatización de MLflow en AWS;
-recopilación de evidencias; pruebas del wheel; revisión de la integración con
-FastAPI y tablero; revisión e integración del Pull Request del paquete;
-coordinación de la evaluación global para el corte del 20 de septiembre;
-integración del pipeline de métricas de clasificación y primera validación
-manual por parte del equipo sobre 20 casos piloto. \\
+Comparación Random vs. Hard y evidencias de MLflow; automatización de conexión
+a MLflow en AWS; preparación reproducible de DVC; integración del tablero con
+la API; dockerización de API y tablero, Docker Compose y documentación del
+despliegue en AWS; manual de usuario y consolidación del reporte. Para el corte
+del 20 de septiembre coordinó además la evaluación global, integró el pipeline
+de métricas, los clientes de modelos comerciales/open-weight y realizó la
+primera validación manual por parte del equipo sobre 20 casos piloto. \\
 
 Carlos Duque &
-Empaquetamiento del modelo como \texttt{modelo-citas}; configuración del
-entrenamiento y pruebas mediante Tox; construcción del wheel e integración del
-paquete mediante Pull Request. \\
+Desarrollo de la maqueta inicial en HTML y FastAPI; implementación de una
+aplicación simple para servir el tablero y predicciones; empaquetamiento del
+modelo como \texttt{modelo-citas}; construcción del paquete instalable y apoyo
+en la integración del backend/tablero. \\
 
 José Zambrana &
 Desarrollo del reordenador supervisado, extracción de características,
 regresión logística, generación de negativos difíciles, evaluación mediante
-Recall@K y MRR y pruebas del flujo de entrenamiento. Diseño y versionado de
-los tres prompts de clasificación de función de cita (zero-shot genérico,
-zero-shot detallado, few-shot); generador reproducible del conjunto piloto;
-análisis de estabilidad y errores de formato (issue \#43). \\
+Recall@K y MRR y documentación de resultados; apoyo en DVC y actualización de
+evidencias de MLflow. También diseñó y versionó los tres prompts de función de
+cita (zero-shot genérico, zero-shot detallado y few-shot), el conjunto piloto y
+el análisis de estabilidad y errores de formato. \\
 
 Carlos Caicedo &
-Desarrollo y evaluación de la línea base TF--IDF, apoyo en la infraestructura
-inicial de MLflow y trabajo sobre la configuración y documentación del
-versionamiento de datos mediante DVC. \\
+Desarrollo y evaluación de la línea base TF--IDF; configuración inicial de
+MLflow y remotos DVC; diagnóstico de negativos; implementación y evaluación del
+reordenador versión 2 con características de metadatos; documentación del
+modelo final; creación y verificación del manual de instalación y auditoría
+desde entorno limpio, incluida evidencia de Docker y despliegue. \\
 
 \bottomrule
 \end{tabular}
@@ -777,9 +780,9 @@ versionamiento de datos mediante DVC. \\
 \caption{Resumen de los aportes realizados hasta esta etapa del proyecto.}
 \end{table}
 
-Esta distribución se actualizará antes de la entrega definitiva para incluir
-las tareas que aún faltan, especialmente contenerización, despliegue,
-documentación y preparación del video.
+La tabla resume contribuciones verificables en el historial del repositorio,
+issues y Pull Requests. El video final debe mantener participación identificable
+de los integrantes y reflejar esta distribución de trabajo.
 
 Como preparación adicional para la evaluación de función de cita se versionaron
 tres estrategias de \emph{prompting}, el parser común de nueve puntajes y el
