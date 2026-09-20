@@ -748,7 +748,10 @@ John Arias &
 Ejecución y comparación de las variantes Random y Hard; seguimiento de
 experimentos en MLflow; configuración y automatización de MLflow en AWS;
 recopilación de evidencias; pruebas del wheel; revisión de la integración con
-FastAPI y tablero; revisión e integración del Pull Request del paquete. \\
+FastAPI y tablero; revisión e integración del Pull Request del paquete;
+coordinación de la evaluación global para el corte del 20 de septiembre;
+integración del pipeline de métricas de clasificación y primera validación
+manual por parte del equipo sobre 20 casos piloto. \\
 
 Carlos Duque &
 Empaquetamiento del modelo como \texttt{modelo-citas}; configuración del
@@ -777,6 +780,15 @@ versionamiento de datos mediante DVC. \\
 Esta distribución se actualizará antes de la entrega definitiva para incluir
 las tareas que aún faltan, especialmente contenerización, despliegue,
 documentación y preparación del video.
+
+Como preparación adicional para la evaluación de función de cita se versionaron
+tres estrategias de emph{prompting}, el parser común de nueve puntajes y el
+pipeline de métricas con Precision, Recall, F1 Macro/Micro y matrices de
+confusión. También se completó una primera validación manual por parte del
+equipo sobre 20 casos piloto. Este conjunto se conserva como evaluación
+provisional: todavía requiere una segunda validación manual independiente,
+cálculo de acuerdo interanotador y reconciliación antes de denominarlo
+emph{Test Gold} definitivo.
 
 % ============================================================================
 % 11. CONCLUSIONES
