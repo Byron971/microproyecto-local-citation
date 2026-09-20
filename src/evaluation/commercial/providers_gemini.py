@@ -1,8 +1,7 @@
-"""Cliente de OpenAI para la evaluación de función de cita.
+"""Cliente de Gemini mediante la capa oficial de compatibilidad con OpenAI.
 
-Implementa el contrato CommercialModelClient usando el SDK oficial de OpenAI.
-La API key se lee de OPENAI_API_KEY y el modelo puede seleccionarse con
-OPENAI_MODEL. Ninguna credencial se versiona en el repositorio.
+La API key se lee de GEMINI_API_KEY y el modelo de GEMINI_MODEL. El endpoint
+se configura con la URL de compatibilidad documentada por Google.
 """
 from __future__ import annotations
 
@@ -20,7 +19,7 @@ from openai import (
 from .providers import ProviderCallError
 from .schema import ProviderResponse
 
-DEFAULT_MODEL = "gpt-4o-mini"
+GEMINI_OPENAI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 _TRANSIENT_ERRORS = (
     RateLimitError,
@@ -30,26 +29,34 @@ _TRANSIENT_ERRORS = (
 )
 
 
-class OpenAIProviderNotConfiguredError(RuntimeError):
-    """Se lanza si falta la variable de entorno OPENAI_API_KEY."""
+class GeminiProviderNotConfiguredError(RuntimeError):
+    pass
 
 
-class OpenAIClient:
-    provider = "openai"
+class GeminiClient:
+    provider = "gemini"
 
     def __init__(self, model: str | None = None) -> None:
-        self.model = model or os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)
+        self.model = model or os.environ.get("GEMINI_MODEL", "")
         self._client: OpenAI | None = None
 
     def _get_client(self) -> OpenAI:
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            raise GeminiProviderNotConfiguredError(
+                "Falta GEMINI_API_KEY para ejecutar corridas reales de Gemini."
+            )
+        if not self.model:
+            raise GeminiProviderNotConfiguredError(
+                "Falta GEMINI_MODEL. Define el identificador de modelo Gemini "
+                "que se usará en la evaluación."
+            )
         if self._client is None:
-            api_key = os.environ.get("OPENAI_API_KEY")
-            if not api_key:
-                raise OpenAIProviderNotConfiguredError(
-                    "Falta la variable de entorno OPENAI_API_KEY. Configura tu "
-                    "API key de OpenAI antes de ejecutar corridas reales."
-                )
-            self._client = OpenAI(api_key=api_key, max_retries=0)
+            self._client = OpenAI(
+                api_key=api_key,
+                base_url=GEMINI_OPENAI_BASE_URL,
+                max_retries=0,
+            )
         return self._client
 
     def generate(self, prompt: str) -> ProviderResponse:
@@ -66,7 +73,7 @@ class OpenAIClient:
 
         if not response.choices:
             raise ProviderCallError(
-                "respuesta sin choices (posible filtro de contenido)",
+                "respuesta sin choices del proveedor Gemini",
                 transient=False,
             )
 
@@ -79,5 +86,5 @@ class OpenAIClient:
         )
 
 
-def build_client() -> OpenAIClient:
-    return OpenAIClient()
+def build_client() -> GeminiClient:
+    return GeminiClient()

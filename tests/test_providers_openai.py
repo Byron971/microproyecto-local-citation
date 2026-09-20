@@ -44,11 +44,24 @@ class _FakeOpenAI:
         self.chat = _FakeChat(completions)
 
 
-def test_build_client_returns_openai_client_with_default_model():
+def test_build_client_returns_openai_client_with_default_model(monkeypatch):
+    monkeypatch.delenv("OPENAI_MODEL", raising=False)
     client = build_client()
     assert isinstance(client, OpenAIClient)
     assert client.provider == "openai"
     assert client.model == "gpt-4o-mini"
+
+
+def test_build_client_reads_model_from_environment(monkeypatch):
+    monkeypatch.setenv("OPENAI_MODEL", "model-from-env")
+    client = build_client()
+    assert client.model == "model-from-env"
+
+
+def test_explicit_model_overrides_environment(monkeypatch):
+    monkeypatch.setenv("OPENAI_MODEL", "model-from-env")
+    client = OpenAIClient(model="explicit-model")
+    assert client.model == "explicit-model"
 
 
 def test_generate_raises_without_api_key(monkeypatch):
@@ -149,18 +162,18 @@ def test_generate_wraps_empty_choices_as_non_transient_error(monkeypatch):
 
 def test_generate_uses_configured_model(monkeypatch):
     monkeypatch.setenv("OPENAI_API_KEY", "fake-key")
-    client = OpenAIClient(model="gpt-4o")
+    client = OpenAIClient(model="explicit-model")
     captured_kwargs = {}
 
     class _CapturingCompletions:
         def create(self, **kwargs):
             captured_kwargs.update(kwargs)
-            return _fake_completion("[0.0]*9")
+            return _fake_completion("[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]")
 
     monkeypatch.setattr(
         client, "_get_client", lambda: _FakeOpenAI(_CapturingCompletions())
     )
 
     client.generate("hola")
-    assert captured_kwargs["model"] == "gpt-4o"
+    assert captured_kwargs["model"] == "explicit-model"
     assert captured_kwargs["messages"] == [{"role": "user", "content": "hola"}]
