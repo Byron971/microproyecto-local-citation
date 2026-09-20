@@ -25,13 +25,18 @@ Para Gemini:
 GEMINI_API_KEY=...
 GEMINI_MODEL=nombre-del-modelo
 
+Para Cohere:
+
+COHERE_API_KEY=...
+COHERE_MODEL=command-a-plus-05-2026
+
 Para open-weight:
 
 OPENWEIGHT_BASE_URL=http://localhost:11434/v1
 OPENWEIGHT_MODEL=nombre-del-modelo-local
 OPENWEIGHT_API_KEY=local
 
-No se deben versionar credenciales reales. OPENAI_MODEL y GEMINI_MODEL permiten cambiar los modelos comerciales sin modificar código. El cliente Gemini usa la capa oficial de compatibilidad con OpenAI de Google.
+No se deben versionar credenciales reales. OPENAI_MODEL, GEMINI_MODEL y COHERE_MODEL permiten cambiar los modelos sin modificar código. Gemini y Cohere usan sus capas oficiales de compatibilidad con OpenAI.
 
 ## Formato del Test Gold
 
@@ -61,6 +66,14 @@ El orquestador valida datos, prompts y variables de entorno antes de llamar prov
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode openai \
+  --check-only
+```
+
+Para verificar Cohere:
+
+```bash
+uv run python -m src.evaluation.commercial.orchestrate \
+  --mode cohere \
   --check-only
 ```
 
@@ -99,6 +112,15 @@ uv run python -m src.evaluation.commercial.orchestrate \
   --mode openai \
   --allow-provisional \
   --output-dir artifacts/citation_function_eval/openai_provisional
+```
+
+Para una corrida preliminar de Cohere:
+
+```bash
+uv run python -m src.evaluation.commercial.orchestrate \
+  --mode cohere \
+  --allow-provisional \
+  --output-dir artifacts/citation_function_eval/cohere_provisional
 ```
 
 El flag --allow-provisional es obligatorio para una corrida real sobre el conjunto provisional. El archivo run_metadata.json queda marcado con provisional_gold=true para evitar que esos resultados se presenten como finales.
@@ -181,4 +203,4 @@ results.jsonl conserva cada respuesta cruda y la telemetría. evaluation_summary
 
 ## Estado actual
 
-Los prompts, el parser, el runner, el pipeline de métricas, los clientes configurables de OpenAI y Gemini, el cliente open-weight y el orquestador de punta a punta están implementados. La corrida definitiva sigue dependiendo de dos insumos externos al código: la segunda validación manual independiente que permita congelar el Test Gold y las credenciales/modelos reales que el equipo use para ejecutar los proveedores.
+Los prompts, el parser, el runner, el pipeline de métricas, los clientes configurables de OpenAI, Gemini y Cohere, el cliente open-weight y el orquestador de punta a punta están implementados. La corrida definitiva sigue dependiendo de dos insumos externos al código: la segunda validación manual independiente que permita congelar el Test Gold y las credenciales/modelos reales que el equipo use para ejecutar los proveedores.
