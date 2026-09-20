@@ -72,9 +72,12 @@ def test_evaluate_records_perfect_predictions():
     summaries, predictions, matrices = evaluate_records(records)
 
     summary = summaries[0]
-    assert summary["precision_macro"] == pytest.approx(1.0)
-    assert summary["recall_macro"] == pytest.approx(1.0)
-    assert summary["f1_macro"] == pytest.approx(1.0)
+    assert summary["precision_macro"] == pytest.approx(3 / 9)
+    assert summary["recall_macro"] == pytest.approx(3 / 9)
+    assert summary["f1_macro"] == pytest.approx(3 / 9)
+    assert summary["precision_macro_observed"] == pytest.approx(1.0)
+    assert summary["recall_macro_observed"] == pytest.approx(1.0)
+    assert summary["f1_macro_observed"] == pytest.approx(1.0)
     assert summary["f1_micro"] == pytest.approx(1.0)
     assert summary["classification_coverage"] == pytest.approx(1.0)
     assert len(predictions) == 3
@@ -160,4 +163,5 @@ def test_write_evaluation_artifacts(tmp_path):
 
     with (tmp_path / "evaluation_summary.csv").open(encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
-    assert rows[0]["f1_macro"] == "1.0"
+    assert float(rows[0]["f1_macro"]) == pytest.approx(2 / 9)
+    assert rows[0]["f1_macro_observed"] == "1.0"

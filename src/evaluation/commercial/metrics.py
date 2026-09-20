@@ -203,13 +203,23 @@ def evaluate_records(
             predictions.append(row)
 
         if y_true:
-            labels_for_macro = sorted(set(y_true))
+            all_labels = list(range(len(CATEGORIES)))
+            observed_labels = sorted(set(y_true) | set(y_pred))
             p_macro, r_macro, f_macro, _ = precision_recall_fscore_support(
                 y_true,
                 y_pred,
-                labels=labels_for_macro,
+                labels=all_labels,
                 average="macro",
                 zero_division=0,
+            )
+            p_macro_observed, r_macro_observed, f_macro_observed, _ = (
+                precision_recall_fscore_support(
+                    y_true,
+                    y_pred,
+                    labels=observed_labels,
+                    average="macro",
+                    zero_division=0,
+                )
             )
             p_micro, r_micro, f_micro, _ = precision_recall_fscore_support(
                 y_true, y_pred, average="micro", zero_division=0
@@ -220,6 +230,7 @@ def evaluate_records(
             ).tolist()
         else:
             p_macro = r_macro = f_macro = None
+            p_macro_observed = r_macro_observed = f_macro_observed = None
             p_micro = r_micro = f_micro = None
             acc = None
             matrix = [[0 for _ in CATEGORIES] for _ in CATEGORIES]
@@ -237,6 +248,8 @@ def evaluate_records(
                     len(y_true) / n_labeled_cases if n_labeled_cases else None
                 ),
                 "n_gold_classes": len(set(y_true)),
+                "n_pred_classes": len(set(y_pred)),
+                "n_eval_classes": len(CATEGORIES),
                 "n_runs": len(group),
                 "provider_error_runs": provider_errors,
                 "format_error_runs": format_errors,
@@ -249,6 +262,9 @@ def evaluate_records(
                 "precision_macro": p_macro,
                 "recall_macro": r_macro,
                 "f1_macro": f_macro,
+                "precision_macro_observed": p_macro_observed,
+                "recall_macro_observed": r_macro_observed,
+                "f1_macro_observed": f_macro_observed,
                 "precision_micro": p_micro,
                 "recall_micro": r_micro,
                 "f1_micro": f_micro,
