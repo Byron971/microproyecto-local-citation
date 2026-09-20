@@ -1,0 +1,43 @@
+name: Evaluacion funcion de cita
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/evaluation/**"
+      - "src/data/build_citation_function_pilot.py"
+      - "tests/test_commercial*.py"
+      - "tests/test_providers*.py"
+      - "tests/test_annotation.py"
+      - "tests/test_build_citation_function_pilot.py"
+      - "config/prompts/citation_function_prompts.json"
+      - ".github/workflows/evaluacion-citas.yml"
+  pull_request:
+    paths:
+      - "src/evaluation/**"
+      - "src/data/build_citation_function_pilot.py"
+      - "tests/test_commercial*.py"
+      - "tests/test_providers*.py"
+      - "tests/test_annotation.py"
+      - "tests/test_build_citation_function_pilot.py"
+      - "config/prompts/citation_function_prompts.json"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+
+      - name: Instalar dependencias
+        run: uv sync --group dev
+
+      - name: Ejecutar pruebas de evaluación
+        run: |
+          uv run pytest -q             tests/test_commercial_cli.py             tests/test_commercial_io.py             tests/test_commercial_metrics.py             tests/test_commercial_orchestrate.py             tests/test_commercial_runner.py             tests/test_commercial_schema.py             tests/test_providers_openai.py             tests/test_providers_gemini.py             tests/test_providers_openweight.py             tests/test_annotation.py             tests/test_build_citation_function_pilot.py
