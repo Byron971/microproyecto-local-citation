@@ -102,3 +102,36 @@ def test_runner_cost_is_only_computed_with_explicit_pricing():
     )[0]
     assert without_price.estimated_cost_usd is None
     assert with_price.estimated_cost_usd == 0.0004
+
+
+def test_runner_applies_request_delay_without_real_wait(monkeypatch):
+    waits = []
+    monkeypatch.setattr(
+        "src.evaluation.commercial.runner.sleep",
+        lambda seconds: waits.append(seconds),
+    )
+    records = run_evaluation(
+        [
+            EvaluationCase(id="c1", input="x", gold="A"),
+            EvaluationCase(id="c2", input="y", gold="A"),
+        ],
+        [PromptTemplate(name="zero", template="{input}")],
+        [SuccessClient()],
+        request_delay_seconds=0.25,
+    )
+    assert len(records) == 2
+    assert waits == [0.25, 0.25]
+
+
+def test_runner_rejects_negative_request_delay():
+    try:
+        run_evaluation(
+            [EvaluationCase(id="c1", input="x", gold="A")],
+            [PromptTemplate(name="zero", template="{input}")],
+            [SuccessClient()],
+            request_delay_seconds=-1,
+        )
+    except ValueError as exc:
+        assert "request_delay_seconds" in str(exc)
+    else:
+        raise AssertionError("expected ValueError")
