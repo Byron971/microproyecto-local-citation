@@ -2441,7 +2441,6 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "modelo-citas" },
     { name = "openai" },
-    { name = "pandas" },
     { name = "pydantic" },
 ]
 
@@ -2465,14 +2464,8 @@ research = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = "==0.141.1" },
-    { name = "ipykernel", specifier = "==7.3.0" },
-    { name = "jupyter", specifier = "==1.1.1" },
-    { name = "matplotlib", specifier = "==3.11.1" },
-    { name = "mlflow", specifier = "==3.15.1" },
-    { name = "modelo-citas", directory = "model-package" },
-    { name = "openai", specifier = ">=3.16.2" },
-    { name = "pandas", specifier = "==2.3.3" },
     { name = "modelo-citas", editable = "model-package" },
+    { name = "openai", specifier = ">=3.16.2" },
     { name = "pydantic", specifier = ">=2,<3" },
 ]
 

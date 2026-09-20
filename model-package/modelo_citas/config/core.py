@@ -27,7 +27,14 @@ class AppConfig(BaseModel):
 
 
 class ModelConfig(BaseModel):
-    """Decisiones del modelo: recuperación, características y clasificador."""
+    """Decisiones del modelo: recuperación, características y clasificador.
+
+    Es la única definición de los hiperparámetros en el proyecto. El
+    experimento del repositorio la extiende en ``src/config.py`` con sus rutas
+    en vez de repetir estos campos: entrenar para producción y entrenar para
+    medir deben aceptar exactamente las mismas decisiones, y con dos esquemas
+    paralelos nada impedía que se separaran sin que ninguna prueba fallara.
+    """
 
     model_config = ConfigDict(frozen=True)
 
@@ -39,6 +46,11 @@ class ModelConfig(BaseModel):
     seed: int = Field(ge=0)
     negative_strategy: Literal["random", "hard"]
     negatives_per_positive: int = Field(gt=0)
+
+    # Versión 2 del reordenador: añade las cinco señales de metadatos. Viaja en
+    # la configuración, y no como argumento del script, para que MLflow la
+    # registre junto al resto de parámetros y la comparación entre versiones
+    # quede documentada en el experimento y no en la memoria de quien lo corrió.
     include_metadata: bool = False
 
     @model_validator(mode="after")
