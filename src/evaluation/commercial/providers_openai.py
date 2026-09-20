@@ -63,6 +63,12 @@ class OpenAIClient:
         except OpenAIError as exc:
             raise ProviderCallError(str(exc), transient=False) from exc
 
+        if not response.choices:
+            # Puede pasar con respuestas filtradas por moderacion de
+            # contenido (finish_reason="content_filter" sin choices). No es
+            # un error de proveedor transitorio: reintentar no lo arregla.
+            raise ProviderCallError("respuesta sin choices (posible filtro de contenido)", transient=False)
+
         text = response.choices[0].message.content or ""
         usage = response.usage
         return ProviderResponse(

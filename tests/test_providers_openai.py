@@ -134,6 +134,19 @@ def test_generate_wraps_authentication_error_as_non_transient(monkeypatch):
     assert exc_info.value.transient is False
 
 
+def test_generate_wraps_empty_choices_as_non_transient_error(monkeypatch):
+    monkeypatch.setenv("OPENAI_API_KEY", "fake-key")
+    client = OpenAIClient()
+    empty_completion = SimpleNamespace(choices=[], usage=None)
+    monkeypatch.setattr(
+        client, "_get_client", lambda: _FakeOpenAI(_FakeCompletions(result=empty_completion))
+    )
+
+    with pytest.raises(ProviderCallError) as exc_info:
+        client.generate("prompt de prueba")
+    assert exc_info.value.transient is False
+
+
 def test_generate_uses_configured_model(monkeypatch):
     monkeypatch.setenv("OPENAI_API_KEY", "fake-key")
     client = OpenAIClient(model="gpt-4o")

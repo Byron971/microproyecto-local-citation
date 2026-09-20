@@ -30,16 +30,19 @@ por `(case_id, prompt_name, provider, model)` y calcula, por cada
 combinación prompt+proveedor+modelo:
 
 - `avg_format_error_rate`: fracción de respuestas que no parsean como
-  arreglo válido de 9 números entre 0.0 y 1.0 (excluyendo errores de
-  proveedor, contados aparte).
-- `avg_provider_error_rate`: fracción de ejecuciones que fallaron por
+  arreglo válido de 9 números entre 0.0 y 1.0. Excluye por completo los
+  registros y los casos con error de proveedor: un caso donde el proveedor
+  falló las 5 veces no cuenta como "formato perfecto" (0.0) ni se
+  promedia, porque no dice nada sobre el formato del prompt.
+- `provider_error_rate`: fracción de ejecuciones que fallaron por
   error del proveedor (reintentos agotados), no por formato.
 - `avg_label_stability`: fracción de repeticiones parseables cuyo argmax
   coincide con la moda del caso, promediada sobre los casos con al menos
   una respuesta parseable.
-- `n_cases_with_valid_responses`: cuántos de los casos piloto tuvieron al
-  menos una respuesta parseable, para no confundir "sin datos" con
-  "estable".
+- `n_cases_with_format_data` / `n_cases_with_valid_responses`: cuántos de
+  los casos piloto tuvieron al menos una respuesta no-error-de-proveedor /
+  al menos una respuesta parseable, respectivamente, para no confundir
+  "sin datos" con "perfecto" o "estable".
 - `avg_latency_ms`, `avg_retry_count`: agregados de la telemetría que ya
   registra el runner.
 

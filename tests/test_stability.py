@@ -128,6 +128,19 @@ def test_compute_group_metrics_provider_error_mixed_with_format_error():
     assert metrics["provider_error_rate"] == pytest.approx(1 / 3)
 
 
+def test_compute_group_metrics_all_provider_error_format_rate_is_none():
+    group = [
+        _record("c1", "p1", None, status="provider_error"),
+        _record("c1", "p1", None, status="provider_error"),
+    ]
+    metrics = compute_group_metrics(group)
+    # Sin ningun registro no-provider_error no hay nada que decir sobre
+    # formato: None, no 0.0 (0.0 leeria como "formato perfecto").
+    assert metrics["format_error_rate"] is None
+    assert metrics["label_stability"] is None
+    assert metrics["provider_error_rate"] == pytest.approx(1.0)
+
+
 def test_group_records_keeps_different_providers_separate():
     records = [
         _record("c1", "p1", VALID_ARRAY, provider="fake", model="fake-model"),
@@ -166,6 +179,22 @@ def test_aggregate_by_prompt_averages_across_cases():
     assert aggregated[key]["n_cases_with_valid_responses"] == 1
     assert aggregated[key]["avg_format_error_rate"] == pytest.approx(0.5)
     assert aggregated[key]["avg_label_stability"] == pytest.approx(1.0)
+
+
+def test_aggregate_by_prompt_excludes_all_provider_error_case_from_format_average():
+    records = [
+        # c1: formato perfecto.
+        *[_record("c1", "p1", VALID_ARRAY) for _ in range(5)],
+        # c2: enteramente error de proveedor, sin datos de formato.
+        *[_record("c2", "p1", None, status="provider_error") for _ in range(5)],
+    ]
+    aggregated = aggregate_by_prompt(records)
+    key = ("p1", "fake", "fake-model")
+    # Si c2 contara como format_error_rate=0.0, el promedio seguiria dando
+    # 0.0 por casualidad; se verifica ademas que c2 quedo fuera del conteo.
+    assert aggregated[key]["n_cases"] == 2
+    assert aggregated[key]["n_cases_with_format_data"] == 1
+    assert aggregated[key]["avg_format_error_rate"] == pytest.approx(0.0)
 
 
 def test_write_stability_summary_csv(tmp_path):

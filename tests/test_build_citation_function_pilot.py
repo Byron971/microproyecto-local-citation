@@ -68,8 +68,10 @@ def test_build_pilot_cases_removes_fused_citation_markers(tmp_path):
     # Verify no citation markers appear anywhere, including fused ones
     assert "TARGETCIT" not in case["input"], "TARGETCIT should not appear as substring"
     assert "OTHERCIT" not in case["input"], "OTHERCIT should not appear as substring"
-    # The original text had "McOTHERCIT" which should be cleaned to "Mc  " and then whitespace normalized
+    # The original text had "McOTHERCIT" which should be cleaned to "Mc" and
+    # the leftover double space collapsed, not left visible in the prompt.
     assert "McOTHERCIT" not in case["input"], "Fused marker McOTHERCIT should be removed"
+    assert "  " not in case["input"], "no debe quedar doble espacio tras quitar el marcador"
 
 
 def test_write_pilot_jsonl_is_loadable_by_commercial_io(tmp_path):

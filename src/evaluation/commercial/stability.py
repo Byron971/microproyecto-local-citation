@@ -20,6 +20,7 @@ FIELDNAMES = [
     "provider",
     "model",
     "n_cases",
+    "n_cases_with_format_data",
     "n_cases_with_valid_responses",
     "avg_format_error_rate",
     "avg_label_stability",
@@ -125,8 +126,13 @@ def compute_group_metrics(group: list[dict]) -> dict[str, float | int | None]:
     # fallas de infraestructura, no de formato del prompt: se excluyen del
     # numerador y del denominador de format_error_rate para no corromper
     # la comparacion de prompts. Si un grupo es enteramente errores de
-    # proveedor no hay nada que evaluar en formato, por eso 0.0.
-    format_error_rate = (n_considered - n_valid) / n_considered if n_considered else 0.0
+    # proveedor no hay nada que evaluar en formato: format_error_rate queda
+    # en None (no 0.0) para que aggregate_by_prompt lo excluya del promedio,
+    # igual que ya hace con label_stability. Promediar un 0.0 falso ahi
+    # sesgaria avg_format_error_rate a favor de un prompt que simplemente
+    # tuvo mala suerte de infraestructura, no buen formato.
+    format_error_rate: float | None
+    format_error_rate = (n_considered - n_valid) / n_considered if n_considered else None
 
     if labels:
         mode_label = max(set(labels), key=labels.count)
@@ -160,18 +166,22 @@ def aggregate_by_prompt(
     aggregated: dict[tuple[str, str, str], dict[str, float | int | None]] = {}
     for key, metric_list in per_prompt.items():
         n_cases = len(metric_list)
-        # avg_format_error_rate se promedia sobre TODOS los casos; una caso
-        # sin ninguna respuesta parseable cuenta con format_error_rate=1.0
-        # (o 0.0 si el caso completo fue error de proveedor). En cambio,
-        # avg_label_stability y n_cases_with_valid_responses solo
-        # consideran casos con al menos una respuesta parseable, porque la
-        # estabilidad de etiqueta no esta definida sin etiquetas.
+        # avg_format_error_rate y avg_label_stability excluyen los casos sin
+        # datos relevantes en vez de rellenarlos con 0.0: un caso enteramente
+        # de errores de proveedor no dice nada sobre el formato del prompt, y
+        # un caso sin ninguna respuesta parseable no dice nada sobre
+        # estabilidad de etiqueta. Promediarlos como 0.0/None inflaria el
+        # resultado a favor de un prompt con mala suerte de infraestructura.
+        format_error_rates = [m["format_error_rate"] for m in metric_list if m["format_error_rate"] is not None]
         stabilities = [m["label_stability"] for m in metric_list if m["label_stability"] is not None]
         n_cases_with_valid_responses = len(stabilities)
         aggregated[key] = {
             "n_cases": n_cases,
+            "n_cases_with_format_data": len(format_error_rates),
             "n_cases_with_valid_responses": n_cases_with_valid_responses,
-            "avg_format_error_rate": sum(m["format_error_rate"] for m in metric_list) / n_cases,
+            "avg_format_error_rate": (
+                sum(format_error_rates) / len(format_error_rates) if format_error_rates else None
+            ),
             "avg_label_stability": (sum(stabilities) / len(stabilities)) if stabilities else None,
             "provider_error_rate": sum(m["provider_error_rate"] for m in metric_list) / n_cases,
             "avg_latency_ms": sum(m["avg_latency_ms"] for m in metric_list) / n_cases,

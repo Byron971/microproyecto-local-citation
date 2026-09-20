@@ -26,7 +26,9 @@ def _remove_citation_markers_no_word_boundary(text: str) -> str:
     """
     text = re.sub(r"TARGETCIT", " ", text)
     text = re.sub(r"OTHERCIT", " ", text)
-    return text.strip()
+    # Colapsa los espacios dobles que deja el reemplazo (p.ej. "McOTHERCIT)"
+    # -> "Mc  )"), para no enviar artefactos visibles de limpieza al prompt.
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def build_pilot_cases(
