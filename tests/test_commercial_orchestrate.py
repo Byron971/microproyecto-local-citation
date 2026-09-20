@@ -17,6 +17,7 @@ def test_validate_environment_reports_missing_values(monkeypatch):
         "OPENAI_API_KEY",
         "GEMINI_API_KEY",
         "GEMINI_MODEL",
+        "COHERE_API_KEY",
         "OPENWEIGHT_MODEL",
     ):
         monkeypatch.delenv(name, raising=False)
@@ -60,4 +61,18 @@ def test_build_clients_for_all_mode(monkeypatch):
         ("openai", "openai-model"),
         ("gemini", "gemini-model"),
         ("openweight", "local-model"),
+    ]
+
+
+def test_validate_environment_reports_missing_cohere_key(monkeypatch):
+    monkeypatch.delenv("COHERE_API_KEY", raising=False)
+    errors = orchestrate.validate_environment("cohere")
+    assert any("COHERE_API_KEY" in error for error in errors)
+
+
+def test_build_clients_for_cohere_mode(monkeypatch):
+    monkeypatch.setenv("COHERE_MODEL", "cohere-model")
+    clients = orchestrate.build_clients("cohere")
+    assert [(client.provider, client.model) for client in clients] == [
+        ("cohere", "cohere-model"),
     ]
