@@ -1,0 +1,63 @@
+name: Reporte Entrega 3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "reportes/reporte03/main.tex"
+      - "reportes/reporte03/*.png"
+      - ".github/workflows/reporte03.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compilar LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: reportes/reporte03
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Instalar herramienta de inspección PDF
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Verificar máximo de 10 páginas
+        shell: bash
+        run: |
+          pages=$(pdfinfo reportes/reporte03/main.pdf | awk '/^Pages:/ {print $2}')
+          echo "Páginas generadas: $pages"
+          if [ -z "$pages" ]; then
+            echo "No fue posible determinar el número de páginas."
+            exit 1
+          fi
+          if [ "$pages" -gt 10 ]; then
+            echo "El reporte supera el máximo de 10 páginas."
+            exit 1
+          fi
+
+      - name: Publicar PDF como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-entrega-3
+          path: reportes/reporte03/main.pdf
+
+      - name: Versionar PDF final
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reportes/reporte03/main.pdf
+          if git diff --cached --quiet; then
+            echo "El PDF no cambió."
+          else
+            git commit -m "docs: genera PDF final de Entrega 3"
+            git push
+          fi
