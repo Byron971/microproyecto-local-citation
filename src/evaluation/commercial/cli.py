@@ -93,7 +93,7 @@ def main(argv: list[str] | None = None) -> int:
             parser=response_parser,
             pricing=pricing,
         )
-    except (AttributeError, ImportError, KeyError, TypeError, ValueError) as exc:
+    except (AttributeError, ImportError, KeyError, TypeError, ValueError, RuntimeError) as exc:
         print(f"Error de configuración: {exc}", file=sys.stderr)
         return 2
 
