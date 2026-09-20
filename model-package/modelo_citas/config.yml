@@ -19,5 +19,8 @@ seed: 42
 negative_strategy: random  # random o hard
 negatives_per_positive: 2
 
+# Activa las cinco señales de metadatos (v2) en PairFeatureExtractor.
+include_metadata: false
+
 # Longitud del resumen que se guarda en el artefacto y se devuelve al cliente.
 abstract_preview_chars: 600

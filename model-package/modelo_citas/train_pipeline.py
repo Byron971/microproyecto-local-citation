@@ -9,6 +9,7 @@ siendo responsabilidad del repositorio; aquí solo se produce el artefacto.
 import argparse
 import hashlib
 import os
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -39,6 +40,39 @@ def file_hash(path: Path) -> str:
     """Huella sha256 del archivo de datos, para trazar de dónde salió el modelo."""
     with path.open("rb") as data_file:
         return hashlib.file_digest(data_file, "sha256").hexdigest()
+
+
+def current_git_sha() -> str | None:
+    """Commit desde el que se entrenó, o ``None`` fuera de un repositorio git."""
+    try:
+        return (
+            subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                capture_output=True,
+                check=True,
+                text=True,
+            )
+            .stdout.strip()
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+
+
+def citation_counts_from_split(split: list[dict]) -> dict[str, int]:
+    """Cuenta cuántas veces se cita cada artículo dentro de un split.
+
+    Alimenta la característica ``citation_prior``. Se le pasa **siempre** el
+    split de entrenamiento: contarlo sobre validación le filtraría al modelo la
+    respuesta que después se le pregunta, y el resultado se vería mejor de lo
+    que es.
+    """
+    counts: dict[str, int] = {}
+
+    for record in split:
+        for paper_id in record.get("positive_ids", ()):
+            counts[paper_id] = counts.get(paper_id, 0) + 1
+
+    return counts
 
 
 def training_pairs(
@@ -86,7 +120,10 @@ def run_training(data_dir: Path | None = None) -> Path:
         max_features=settings.max_features, min_df=settings.min_df
     ).fit(papers)
     extractor = PairFeatureExtractor(
-        max_features=settings.max_features, min_df=settings.min_df
+        max_features=settings.max_features,
+        min_df=settings.min_df,
+        include_metadata=settings.include_metadata,
+        citation_counts=citation_counts_from_split(split),
     ).fit(papers)
 
     print("Construyendo pares de entrenamiento...", flush=True)
@@ -106,6 +143,8 @@ def run_training(data_dir: Path | None = None) -> Path:
         papers=paper_metadata(papers),
         settings=settings.model_dump(mode="json"),
         metadata={
+            "run_id": None,
+            "git_sha": current_git_sha(),
             "entrenado_en": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "n_pares_entrenamiento": len(pairs),
             "n_consultas_entrenamiento": len(split),

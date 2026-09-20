@@ -14,10 +14,10 @@ from typing import Any
 
 import json
 import mlflow
+from modelo_citas.models.tfidf_baseline import TfidfBaseline
 
 from src.data.load_data import load_json
 from src.evaluation.ranking_metrics import mean_reciprocal_rank, recall_at_k
-from src.models.tfidf_baseline import TfidfBaseline
 from src.tracking.mlflow_setup import (
     configure_mlflow,
     log_ranking_metrics,

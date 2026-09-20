@@ -1,6 +1,5 @@
 import pytest
-
-from src.models.tfidf_baseline import (
+from modelo_citas.models.tfidf_baseline import (
     TfidfBaseline,
     build_paper_text,
     clean_context_text,

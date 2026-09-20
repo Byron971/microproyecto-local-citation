@@ -5,8 +5,9 @@ from time import perf_counter
 
 import numpy as np
 
+from modelo_citas.models.citation_model import CitationArtifact
+
 from src.evaluation.ranking_metrics import mean_reciprocal_rank, recall_at_k
-from src.models.citation_model import CitationModel
 
 DEFAULT_KS = (1, 5, 10, 20, 50, 100)
 
@@ -41,7 +42,7 @@ def evaluate_rankings(
     return metrics
 
 
-def evaluate_model(model: CitationModel, contexts: dict, split: list[dict]) -> dict:
+def evaluate_model(model: CitationArtifact, contexts: dict, split: list[dict]) -> dict:
     """Baseline y reordenador comparten exactamente los mismos candidatos."""
     if not split:
         raise ValueError("La partición de evaluación está vacía.")
@@ -52,8 +53,7 @@ def evaluate_model(model: CitationModel, contexts: dict, split: list[dict]) -> d
     rankings = model.rank(records, contexts)
     inference_seconds = perf_counter() - start
     relevant = [set(row["positive_ids"]) for row in records]
-    config = model.config
-    ks = sorted({k for k in DEFAULT_KS if k <= config.top_n} | {config.k, config.top_n})
+    ks = sorted({k for k in DEFAULT_KS if k <= model.top_n} | {model.k, model.top_n})
     return {
         "baseline_metrics": evaluate_rankings(
             [row["candidate_ids"] for row in records], relevant, ks

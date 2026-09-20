@@ -1,11 +1,11 @@
 import pytest
+from modelo_citas.models.tfidf_baseline import TfidfBaseline
 
 from src.evaluation.diagnose_negatives import (
     hard_negatives_from_ranking,
     random_negatives_by_context,
     separability_auc,
 )
-from src.models.tfidf_baseline import TfidfBaseline
 
 
 # --------------------------------------------------------------------------

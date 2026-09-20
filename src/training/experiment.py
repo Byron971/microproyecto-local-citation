@@ -2,6 +2,8 @@
 
 import hashlib
 import json
+import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 from time import perf_counter
 
@@ -9,22 +11,38 @@ import joblib
 import mlflow
 import numpy as np
 import yaml
+from modelo_citas.models.citation_model import CitationArtifact
+from modelo_citas.models.linear_reranker import LinearReranker
+from modelo_citas.models.tfidf_baseline import TfidfBaseline
+from modelo_citas.processing.data_manager import paper_metadata
+from modelo_citas.processing.features import PairFeatureExtractor
+from modelo_citas.processing.pairs import build_hard_pairs, build_pairs, retrieve_candidates
 
 from src.config import ModelConfig
-from src.data.build_hard_pairs import build_hard_pairs
-from src.data.build_pairs import build_pairs
 from src.data.load_data import load_json
 from src.evaluation.evaluate_reranker import evaluate_model
-from src.features.pair_features import PairFeatureExtractor
-from src.models.citation_model import CitationModel, retrieve_candidates
-from src.models.linear_reranker import LinearReranker
-from src.models.tfidf_baseline import TfidfBaseline
 from src.tracking.mlflow_setup import configure_mlflow, log_ranking_metrics, start_run
 
 
 def file_hash(path: Path) -> str:
     with path.open("rb") as file:
         return hashlib.file_digest(file, "sha256").hexdigest()
+
+
+def current_git_sha() -> str | None:
+    """Commit desde el que se entrenó, o ``None`` fuera de un repositorio git."""
+    try:
+        return (
+            subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                capture_output=True,
+                check=True,
+                text=True,
+            )
+            .stdout.strip()
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
 
 
 def citation_counts_from_split(split: list[dict]) -> dict[str, int]:
@@ -121,12 +139,30 @@ def train(config: ModelConfig) -> Path:
             features, labels_from_pairs(pairs)
         )
         mlflow.log_metric("training_seconds", perf_counter() - start)
-        model = CitationModel(
-            config, retriever, extractor, reranker, hashes, run.info.run_id
+        classifier = reranker.pipeline.named_steps["classifier"]
+        model = CitationArtifact(
+            retriever=retriever,
+            extractor=extractor,
+            reranker=reranker,
+            papers=paper_metadata(papers),
+            settings=config.model_dump(mode="json"),
+            metadata={
+                "run_id": run.info.run_id,
+                "git_sha": current_git_sha(),
+                "hashes_datos": hashes,
+                "entrenado_en": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "coeficientes": dict(
+                    zip(
+                        extractor.feature_names,
+                        classifier.coef_[0].tolist(),
+                        strict=True,
+                    )
+                ),
+                "intercepto": float(classifier.intercept_[0]),
+            },
         )
         print("Evaluando en val...", flush=True)
         summary = evaluate_model(model, contexts, validation)
-        classifier = reranker.pipeline.named_steps["classifier"]
         summary.update(
             {
                 "feature_names": list(extractor.feature_names),
@@ -180,11 +216,12 @@ def evaluate_saved(model_path: Path, split_name: str) -> dict:
     """Usa la configuración guardada; nunca vuelve a ajustar el modelo."""
     if split_name not in {"val", "test"}:
         raise ValueError("Solo se permite evaluar val o test.")
-    model: CitationModel = joblib.load(model_path)
-    config = model.config
+    model: CitationArtifact = joblib.load(model_path)
+    config = ModelConfig.model_validate(model.settings)
+    hashes_datos = model.metadata.get("hashes_datos", {})
     raw = config.resolve_path(config.data_dir)
     for name in ("papers", "contexts", split_name):
-        expected = model.data_hashes.get(name)
+        expected = hashes_datos.get(name)
         if expected and file_hash(raw / f"{name}.json") != expected:
             raise ValueError(f"Los datos de {name} cambiaron desde el entrenamiento.")
     contexts = load_json(raw / "contexts.json")
@@ -194,7 +231,7 @@ def evaluate_saved(model_path: Path, split_name: str) -> dict:
         "regresion-logistica",
         config.negative_strategy,
         {
-            "source_run_id": model.training_run_id,
+            "source_run_id": model.metadata.get("run_id"),
             "split": split_name,
             "top_n": config.top_n,
             "n_eval_queries": len(split),

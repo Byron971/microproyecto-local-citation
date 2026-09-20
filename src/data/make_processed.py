@@ -3,7 +3,8 @@
 import json
 from pathlib import Path
 
-from src.data.build_pairs import build_pairs
+from modelo_citas.processing.pairs import build_pairs
+
 from src.data.load_data import load_dataset
 
 

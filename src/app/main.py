@@ -23,7 +23,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from src.app.insights import load_or_build
+from src.app.insights import load_insights
 from src.app.recommender import Recommender
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -61,7 +61,7 @@ async def lifespan(app: FastAPI):
     state["recomendador"] = Recommender().load()
 
     print("Cargando información del tablero...")
-    state["insights"] = load_or_build()
+    state["insights"] = load_insights()
 
     print("Backend listo en http://127.0.0.1:8000")
 

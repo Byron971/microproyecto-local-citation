@@ -107,6 +107,21 @@ def build_hard_pairs(
     return pairs
 
 
+def build_candidate_pairs(
+    candidate_records: Sequence[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Aplana candidatos para construir características de evaluación."""
+    return [
+        {
+            "context_id": record["context_id"],
+            "paper_id": paper_id,
+            "label": int(paper_id in set(record["positive_ids"])),
+        }
+        for record in candidate_records
+        for paper_id in record["candidate_ids"]
+    ]
+
+
 def retrieve_candidates(
     retriever: Any,
     contexts: dict[str, dict[str, Any]],

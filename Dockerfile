@@ -13,21 +13,18 @@ RUN pip install --no-cache-dir uv
 COPY pyproject.toml uv.lock README.md ./
 COPY model-package ./model-package
 
-# Instalar dependencias antes de copiar el resto del código
+# El artefacto se entrena antes de construir la imagen (uv run tox -c
+# model-package -e train), no dentro del build: la imagen instala el paquete
+# ya entrenado y no necesita ni el dataset ni las dependencias de entrenamiento.
+RUN test -f model-package/modelo_citas/trained/*.pkl || (echo "Falta el artefacto: ejecute tox -c model-package -e train" && exit 1)
+
+# Instalar dependencias antes de copiar el resto del cï¿½digo
 RUN uv sync --frozen --no-dev --no-install-project
 
-# Copiar el código y los archivos de configuración del proyecto
+# Copiar el cï¿½digo y los archivos de configuraciï¿½n del proyecto
 COPY . .
 
 # Instalar el proyecto completo
-RUN uv sync --frozen --no-dev
-
-# Recuperar los datos versionados desde el remoto público de DVC
-RUN uv run dvc config core.no_scm true
-RUN uv run dvc pull -r publico
-
-# Generar el artefacto entrenado para la API
-RUN PYTHONPATH=/app/model-package /app/.venv/bin/python -m modelo_citas.train_pipeline --data-dir /app/data/raw
 RUN uv sync --frozen --no-dev
 
 EXPOSE 8000

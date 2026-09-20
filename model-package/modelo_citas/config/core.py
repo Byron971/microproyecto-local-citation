@@ -39,6 +39,7 @@ class ModelConfig(BaseModel):
     seed: int = Field(ge=0)
     negative_strategy: Literal["random", "hard"]
     negatives_per_positive: int = Field(gt=0)
+    include_metadata: bool = False
 
     @model_validator(mode="after")
     def check_ranking_limits(self) -> Self:
