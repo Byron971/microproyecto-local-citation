@@ -1,18 +1,21 @@
 # Manual de instalación
 
-Procedimiento verificado sobre un **clon limpio** de `main` en Windows 11, sin credenciales de AWS. Cada comando de este documento se ejecutó realmente y los tiempos son los medidos; no son estimaciones.
+Este manual describe la arquitectura actual de la Entrega 3. La ejecución de producción ya no entrena el modelo durante el arranque ni durante el build de Docker: la API instala `modelo-citas` 0.2.0 como wheel versionado desde S3, con el modelo entrenado incluido y su hash fijado en `uv.lock`.
+
+La validación posterior al refactor se realizó en Windows 11 con WSL2 y Docker Desktop. La suite completa ejecutó 202 pruebas sin fallos y la ejecución contenerizada respondió correctamente en la API y en el tablero con una recomendación real.
 
 ## Requisitos previos
 
-| Herramienta | Versión verificada | Para qué |
-|---|---|---|
-| Git | 2.40 | Clonar el repositorio |
-| [uv](https://docs.astral.sh/uv/) | 0.12.7 | Entorno y dependencias. Administra Python por su cuenta |
-| Docker Desktop | 29.6 | Solo para la ejecución en contenedores (opcional) |
+| Herramienta | Uso |
+|---|---|
+| Git | Clonar y actualizar el repositorio |
+| uv | Crear el entorno e instalar dependencias |
+| Docker Desktop + Docker Compose | Ejecución contenerizada recomendada |
+| WSL2 en Windows | Backend Linux utilizado por Docker Desktop |
 
-No hace falta instalar Python: `uv` descarga la versión que el proyecto declara.
+No es necesario instalar Python manualmente: `uv` descarga la versión declarada por el proyecto.
 
-**No se requieren credenciales de AWS.** El remoto de datos por omisión es `publico`, servido por HTTPS y de solo lectura.
+Para ejecutar la API y el tablero no se necesitan credenciales de AWS, DVC ni un entrenamiento local del modelo. El wheel de `modelo-citas` se descarga desde una URL pública de S3 definida en `pyproject.toml` y bloqueada en `uv.lock`.
 
 ---
 
@@ -23,6 +26,12 @@ git clone https://github.com/Byron971/microproyecto-local-citation.git
 cd microproyecto-local-citation
 ```
 
+Si el repositorio ya existe:
+
+```bash
+git pull origin main
+```
+
 ## 2. Instalar uv
 
 Linux o macOS:
@@ -31,147 +40,293 @@ Linux o macOS:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Windows (PowerShell):
+Windows PowerShell:
 
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-## 3. Crear el entorno e instalar dependencias
+Cerrar y volver a abrir la terminal si `uv` no aparece inmediatamente en el `PATH`.
+
+## 3. Instalación para ejecutar la aplicación
 
 ```bash
 uv sync
 ```
 
-*Tiempo medido: 30 s.* Crea `.venv` con la versión de Python declarada en `pyproject.toml`.
+Este comando instala las dependencias de producción y descarga `modelo-citas` 0.2.0 desde el wheel publicado. El wheel ya contiene el artefacto entrenado; no se requiere ejecutar `train_pipeline`, copiar archivos `.pkl` ni reinstalar manualmente el paquete.
 
-## 4. Descargar los datos versionados
-
-```bash
-uv run dvc pull
-```
-
-*Tiempo medido: 41 s.* Recupera 11 archivos **sin pedir credenciales**:
-
-| Carpeta | Contenido | Tamaño |
-|---|---|---|
-| `data/raw/` | `contexts.json`, `papers.json`, `train.json`, `val.json`, `test.json` | 67.374.876 bytes |
-| `data/processed/` | `train_pairs.json`, `val_pairs.json`, `test_pairs.json`, `train_tfidf_top100.json` | 50.247.436 bytes |
-
-Para comprobar el estado:
+Comprobación opcional:
 
 ```bash
-uv run dvc status
+uv run python -c "import modelo_citas; print('modelo-citas importado correctamente')"
 ```
 
-> **Advertencia.** `dvc status -c` no prueba que los datos se puedan recuperar: contra un remoto sin permisos de lectura llega a informar *«Cache and remote are in sync»*. Solo un `dvc pull` completo lo demuestra.
+## 4. Ejecución local sin Docker
 
-## 5. Ejecutar las pruebas
+Iniciar FastAPI:
 
 ```bash
-uv run pytest
+uv run uvicorn src.app.main:app --host 127.0.0.1 --port 8000
 ```
 
-*Tiempo medido: 113 s — 96 pruebas.*
+Comprobar el estado:
+
+```text
+http://127.0.0.1:8000/api/estado
+```
+
+La respuesta debe incluir, entre otros datos:
+
+```text
+"listo": true
+"modelo": "TF-IDF + reordenador lineal"
+"version": "0.2.0"
+```
+
+La documentación Swagger/OpenAPI queda disponible en:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+El archivo `data/processed/dashboard_insights.json` ya está precalculado y versionado. La API lo lee durante la ejecución; no vuelve a generar el análisis científico al arrancar.
 
 ---
 
-## 6. Entrenar y publicar el modelo
+## 5. Ejecución recomendada con Docker Compose
 
-El paquete `model-package` **no incluye un modelo entrenado**: la carpeta `modelo_citas/trained/` viaja vacía a propósito, porque el artefacto pesa 49 MB. Hay que generarlo antes de levantar la API.
-
-```bash
-uv pip install -e model-package
-uv run --no-sync python -m modelo_citas.train_pipeline --data-dir data/raw
-```
-
-*Tiempo medido: 76 s.* Genera `modelo-citas-output0.1.0.pkl` (49.308.404 bytes) **dentro del entorno virtual**, que es donde `modelo_citas.predict` lo busca.
-
-> **No anteponer `PYTHONPATH=model-package` al comando de entrenamiento.** `TRAINED_MODEL_DIR` se deriva de la ubicación del módulo importado: con esa variable, Python carga `modelo_citas` desde el árbol de fuentes y el artefacto se guarda ahí, mientras que la API lo lee desde el entorno virtual. El síntoma aparece más tarde, al pedir una predicción:
->
-> ```
-> FileNotFoundError: No se encontró el modelo entrenado en
-> .venv/Lib/site-packages/modelo_citas/trained/modelo-citas-output0.1.0.pkl
-> ```
->
-> Si ya ocurrió, se arregla con `uv sync --reinstall-package modelo-citas`, que copia el artefacto al entorno. Un `uv sync` normal no basta: detecta que el paquete no cambió de versión y no lo vuelve a copiar.
-
-Para confirmar que quedó bien:
-
-```bash
-uv run --no-sync python -c "from modelo_citas.predict import make_prediction; print(make_prediction(context='neural machine translation with attention', top_k=3)['predictions'][0]['titulo'])"
-```
-
-Debe imprimir `Effective Approaches to Attention-based Neural Machine Translation`.
-
----
-
-## 7. Levantar la API y el tablero
-
-```bash
-uv run --no-sync uvicorn src.app.main:app --host 127.0.0.1 --port 8000
-```
-
-*Tiempo medido hasta responder: 6 s.* Después, abrir <http://127.0.0.1:8000>.
-
-La primera vez el backend construye `data/processed/dashboard_insights.json` a partir de los datos; en los arranques siguientes lo reutiliza.
-
-Para comprobar que sirve el modelo correcto:
-
-```bash
-curl http://127.0.0.1:8000/api/estado
-```
-
-Debe responder `"modelo": "TF-IDF + reordenador lineal"` junto con los coeficientes aprendidos. Si dijera solo `"TF-IDF + similitud coseno"`, estaría sirviendo la línea base y no el modelo supervisado.
-
-### Endpoints
-
-| Ruta | Método | Descripción |
-|---|---|---|
-| `/` | GET | Tablero web |
-| `/api/estado` | GET | Modelo cargado, tamaño del corpus y coeficientes |
-| `/api/recomendar` | POST | `{"contexto": "...", "top_k": 10}` devuelve el ranking |
-| `/api/insights` | GET | Indicadores del análisis exploratorio |
-| `/api/ejemplo` | GET | Un contexto de ejemplo para probar |
-
----
-
-## 8. Ejecución con contenedores
+Con Docker Desktop funcionando:
 
 ```bash
 docker compose up --build
 ```
 
-Levanta dos servicios:
+Compose levanta dos servicios:
 
-| Contenedor | Puerto del host | Contenido |
-|---|---|---|
-| `microproyecto-citas-api` | 8000 | FastAPI con el paquete `modelo-citas` |
-| `microproyecto-citas-dashboard` | 8080 | Nginx sirviendo el tablero |
+| Contenedor | Puerto | Función |
+|---|---:|---|
+| `microproyecto-citas-api` | 8000 | FastAPI + wheel `modelo-citas` |
+| `microproyecto-citas-dashboard` | 8080 | Nginx + interfaz web |
 
-El tablero queda en <http://localhost:8080>. Nginx redirige `/api/*` hacia `http://api:8000` por la red interna de Compose, de modo que **no hay que exponer la IP de la máquina**.
+Abrir el tablero:
 
-El `Dockerfile` hace por su cuenta el `dvc pull -r publico` y el entrenamiento del modelo, así que no hay que ejecutar el paso 6 antes: el primer build tarda varios minutos.
+```text
+http://localhost:8080
+```
+
+Comprobar la API:
+
+```text
+http://localhost:8000/api/estado
+```
+
+El dashboard se comunica con la API por la red interna de Docker Compose. Nginx redirige las solicitudes `/api/*` hacia el servicio `api:8000`.
+
+Importante: el `Dockerfile` actual no ejecuta DVC ni entrenamiento. Durante el build instala el wheel publicado desde S3 y después copia únicamente el código necesario de la aplicación.
+
+### Validación funcional
+
+El flujo validado para la Entrega 3 fue:
+
+1. `docker compose up --build`.
+2. `/api/estado` respondió HTTP 200 con `listo=true`.
+3. La API cargó `modelo-citas` versión 0.2.0 y un catálogo de 19.776 artículos.
+4. El tablero abrió en `localhost:8080`.
+5. Se utilizó `Usar un ejemplo real`.
+6. `Recomendar citas` devolvió un ranking de artículos y permitió consultar el resumen del resultado seleccionado.
+
+Que la cita correcta no aparezca en el Top-K de un ejemplo particular no indica un fallo de infraestructura; representa el resultado del modelo para esa consulta.
 
 ---
 
-## Solución de problemas
+## 6. Entorno de investigación, DVC y pruebas
 
-**`uv : The term 'uv' is not recognized`** — `uv` no quedó en el `PATH`. Cerrar y volver a abrir la terminal después de instalarlo.
+DVC, MLflow, scikit-learn, pandas, Jupyter y las demás dependencias científicas están separadas en el grupo `research`.
 
-**`FileNotFoundError: No se encontró el modelo entrenado`** — falta `uv sync --reinstall-package modelo-citas` después de entrenar (ver paso 6).
+Instalarlo:
 
-**`[Errno 10048] only one usage of each socket address`** — el puerto ya está ocupado por otro proceso. Elegir otro con `--port`, o liberar el que está en uso. En Windows: `Get-NetTCPConnection -LocalPort 8000 -State Listen`.
+```bash
+uv sync --group research
+```
 
-**`request returned 500 Internal Server Error ... /_ping`** — Docker Desktop está abierto pero su motor no arrancó. Reiniciar Docker Desktop por completo.
+Descargar los datos versionados:
 
-**`ExpiredToken` o `InvalidClientTokenId` en AWS** — solo afecta a quien publique datos con `dvc push`. Para instalar y ejecutar el proyecto no se necesitan credenciales.
+```bash
+uv run --group research dvc pull
+```
+
+Comprobar DVC:
+
+```bash
+uv run --group research dvc status
+```
+
+Ejecutar la suite completa:
+
+```bash
+uv run --group research pytest
+```
+
+Validación más reciente del refactor:
+
+```text
+202 passed
+```
+
+También aparecieron advertencias de deprecación de NumPy/Joblib, pero no hubo fallos de pruebas.
+
+Los datos son necesarios para reproducir entrenamiento, notebooks y análisis; no son necesarios para construir o ejecutar la imagen de producción de la API.
 
 ---
 
-## Variables de entorno
+## 7. Entrenamiento y publicación de una nueva versión del modelo
 
-| Variable | Por omisión | Efecto |
+Este paso es solo para desarrollo del modelo, no para utilizar la aplicación.
+
+El código de entrenamiento vive en `model-package/`. La frontera de producción se mantiene mediante un wheel versionado:
+
+```text
+model-package / entrenamiento
+        ↓
+wheel modelo-citas
+        ↓
+S3 público + hash en uv.lock
+        ↓
+FastAPI / Docker
+```
+
+Cuando se publique una versión nueva, se debe:
+
+1. entrenar y validar el modelo desde el entorno de investigación;
+2. actualizar la versión del paquete;
+3. construir un wheel que incluya el artefacto entrenado;
+4. publicar un archivo nuevo en el bucket S3 de wheels;
+5. actualizar la URL de `[tool.uv.sources]` en `pyproject.toml`;
+6. ejecutar `uv lock`;
+7. volver a ejecutar pruebas y validación Docker.
+
+Un wheel publicado no debe sobrescribirse silenciosamente, porque `uv.lock` fija su identidad mediante hash.
+
+---
+
+## 8. Endpoints principales
+
+| Ruta | Método | Descripción |
 |---|---|---|
-| `MLFLOW_TRACKING_URI` | sin definir | Servidor de MLflow para registrar experimentos. Sin ella se usa SQLite local (`mlflow.db`). No es necesaria para la API ni para el tablero |
-| `PYTHONPATH` | sin definir | **Dejarla sin definir.** Apuntarla a `model-package` hace que el entrenamiento guarde el modelo en el árbol de fuentes en vez del entorno virtual, y la API no lo encuentra (ver paso 6) |
+| `/api/estado` | GET | Estado y metadatos del modelo |
+| `/api/recomendar` | POST | Genera el ranking de recomendaciones |
+| `/api/insights` | GET | Indicadores precalculados del análisis |
+| `/api/ejemplo` | GET | Carga un ejemplo real para la demostración |
+| `/docs` | GET | Swagger/OpenAPI |
+
+Ejemplo de cuerpo para recomendar:
+
+```json
+{
+  "contexto": "Recent work on neural machine translation with attention...",
+  "top_k": 10
+}
+```
+
+---
+
+## 9. Solución de problemas
+
+### Docker instalado, pero no aparece la sección Server en `docker info`
+
+Abrir Docker Desktop y esperar a que el motor esté en ejecución:
+
+```powershell
+docker desktop start
+docker desktop status
+docker info
+```
+
+No ejecutar `docker compose up` hasta que `docker info` muestre correctamente la sección `Server`.
+
+### WSL2 indica que la virtualización no está disponible
+
+Comprobar:
+
+```powershell
+wsl --status
+wsl --version
+```
+
+En PowerShell como Administrador, si Windows todavía no tiene habilitados los componentes:
+
+```powershell
+wsl.exe --install --no-distribution
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+bcdedit /set hypervisorlaunchtype auto
+```
+
+Reiniciar Windows. La virtualización por hardware también debe estar habilitada en BIOS/UEFI.
+
+### `uv : The term 'uv' is not recognized`
+
+Cerrar y volver a abrir la terminal después de instalar `uv`.
+
+### Puerto 8000 o 8080 ocupado
+
+En Windows:
+
+```powershell
+Get-NetTCPConnection -LocalPort 8000 -State Listen
+Get-NetTCPConnection -LocalPort 8080 -State Listen
+```
+
+Detener el proceso que ocupa el puerto o modificar temporalmente el mapeo.
+
+### Problemas al descargar datos con DVC
+
+Recordar que DVC pertenece al entorno de investigación:
+
+```bash
+uv sync --group research
+uv run --group research dvc pull
+```
+
+Los problemas de credenciales de un remoto privado de escritura no impiden ejecutar la aplicación; el runtime de producción no usa DVC.
+
+---
+
+## 10. Variables de entorno
+
+| Variable | Uso |
+|---|---|
+| `MLFLOW_TRACKING_URI` | Servidor de MLflow durante experimentación |
+| `OPENAI_API_KEY` | Evaluación opcional con OpenAI |
+| `GEMINI_API_KEY` | Evaluación opcional con Gemini |
+| `COHERE_API_KEY` | Evaluación opcional con Cohere |
+
+Las credenciales no deben almacenarse en Git ni dentro de las imágenes Docker.
+
+---
+
+## Resumen de instalación para la entrega
+
+Para demostrar la aplicación:
+
+```bash
+git pull origin main
+docker compose up --build
+```
+
+Después abrir:
+
+```text
+Dashboard: http://localhost:8080
+API:       http://localhost:8000/api/estado
+Swagger:   http://localhost:8000/docs
+```
+
+Para reproducir experimentación y pruebas:
+
+```bash
+uv sync --group research
+uv run --group research dvc pull
+uv run --group research pytest
+```

@@ -534,13 +534,17 @@ automática desde PowerShell.
 \section{Empaquetamiento e integración del modelo}
 
 Otro avance de esta entrega fue convertir el recomendador en una librería
-Python instalable. El paquete se encuentra en \texttt{model-package/} y se
-distribuye con el nombre \texttt{modelo-citas}. La versión utilizada actualmente
-es la 0.1.0.
+Python instalable. El código de desarrollo y entrenamiento permanece en
+\texttt{model-package/}, pero la capa de producción consume
+\texttt{modelo-citas} como un wheel versionado. La versión utilizada actualmente
+es la 0.2.0, publicada en un bucket S3 de solo lectura y fijada por URL y hash
+en \texttt{pyproject.toml} y \texttt{uv.lock}.
 
 El wheel incluye el recuperador TF--IDF, el reordenador lineal, la
 configuración, el modelo entrenado y la información necesaria para generar las
-recomendaciones.
+recomendaciones. Por esta separación, FastAPI y las imágenes Docker no necesitan
+entrenar el modelo, copiar \texttt{model-package/} ni descargar el dataset para
+servir inferencias.
 
 La interfaz pública del paquete puede utilizarse de esta forma:
 
@@ -563,11 +567,11 @@ Después de integrar el cambio con la rama principal, se volvió a ejecutar la
 suite completa del proyecto.
 
 \notabox{
-\textbf{Resultado de las pruebas: 96 pruebas aprobadas.}
+\textbf{Resultado de la validación posterior al refactor: 202 pruebas aprobadas.}
 
-La integración del modelo empaquetado no produjo fallos funcionales en la suite
-del proyecto. Permanecen advertencias de deprecación relacionadas con
-NumPy/Joblib que no impiden la ejecución actual.
+La suite completa se ejecutó con el grupo de dependencias de investigación y no
+produjo fallos funcionales. Se observaron advertencias de deprecación asociadas
+con NumPy/Joblib, pero no impidieron la ejecución actual.
 }
 
 % ============================================================================
@@ -601,7 +605,7 @@ GET  & \texttt{/docs} & Documentación Swagger/OpenAPI \\
 Las pruebas realizadas desde Swagger devolvieron código HTTP 200 y resultados
 reales para el endpoint de recomendación. El endpoint
 \texttt{/api/estado} también confirmó que el modelo cargado corresponde a
-TF--IDF más reordenador lineal, versión 0.1.0, sobre un catálogo de 19.776
+TF--IDF más reordenador lineal, versión 0.2.0, sobre un catálogo de 19.776
 artículos.
 
 El tablero se encuentra en \texttt{src/app/}. Desde la interfaz, el usuario
@@ -648,20 +652,28 @@ El flujo principal para preparar el proyecto es:
 git clone https://github.com/Byron971/microproyecto-local-citation.git
 cd microproyecto-local-citation
 uv sync
-uv run dvc pull
-uv run pytest
-uv run tox -c model-package -e train
-uv sync --reinstall-package modelo-citas
-uv run tablero
+docker compose up --build
 \end{verbatim}
 
-Una vez iniciado el servicio, el tablero queda disponible en
-\texttt{http://127.0.0.1:8000} y la documentación de la API en
-\texttt{http://127.0.0.1:8000/docs}.
+Con Docker Compose, el tablero queda disponible en
+\texttt{http://localhost:8080}, la API en
+\texttt{http://localhost:8000/api/estado} y Swagger/OpenAPI en
+\texttt{http://localhost:8000/docs}. El build instala directamente el wheel
+\texttt{modelo-citas} 0.2.0; no ejecuta DVC ni entrenamiento.
+
+Para reproducir experimentos, datos y pruebas se utiliza el grupo
+\texttt{research}:
+
+\begin{verbatim}
+uv sync --group research
+uv run --group research dvc pull
+uv run --group research pytest
+\end{verbatim}
 
 La reproducibilidad del proyecto se apoya en Git y GitHub para el código, DVC
-para los datos, MLflow para los experimentos, uv para las dependencias, Tox
-para las pruebas del paquete y pytest para la suite general.
+para los datos de investigación, MLflow para los experimentos, uv para las
+dependencias y pytest/Tox para las pruebas. La capa de producción queda
+desacoplada del entrenamiento mediante el wheel versionado.
 
 % ============================================================================
 % 9. ESTADO
@@ -689,12 +701,12 @@ Modelo seleccionado & Realizado \\
 Modelo empaquetado & Realizado \\
 API con modelo empaquetado & Realizado \\
 Tablero integrado & Realizado \\
-Pruebas automatizadas & Suite incluida y ampliada \\
-Manual de usuario e instalación & Incluido \\
+Pruebas automatizadas & 202 pruebas aprobadas \\
+Manual de usuario e instalación & Actualizado \\
 Dockerización & Realizado \\
 Despliegue mediante contenedores & Realizado \\
 Despliegue en AWS & Realizado \\
-Validación final del despliegue & Verificada desde entorno limpio \\
+Validación final del despliegue & Verificada después del refactor \\
 Video final & Pendiente \\
 Reporte final de aportes & Realizado \\
 \bottomrule
@@ -703,18 +715,22 @@ Reporte final de aportes & Realizado \\
 \caption{Estado de los componentes trabajados hasta el momento.}
 \end{table}
 
-La validación del despliegue se realizó sobre un clon nuevo del repositorio, sin
-credenciales de AWS, reproduciendo el recorrido de una persona ajena al equipo:
-\texttt{dvc pull} recuperó los 117,6~MB de datos sin pedir autenticación, las
-pruebas pasaron, el paquete del modelo se instaló y entrenó, y
-\texttt{docker compose build} construyó las dos imágenes desde cero en 287
-segundos. La API quedó en estado \emph{healthy} a los diez segundos y el tablero
-devolvió, a través de Nginx, el mismo ranking que la ejecución local. El
-procedimiento completo y sus tiempos están en \texttt{docs/manual\_instalacion.md}.
+Después del refactor de responsabilidades se repitió la validación del sistema.
+La suite completa finalizó con 202 pruebas aprobadas. En Windows 11 se habilitó
+WSL2, Docker Desktop construyó y levantó los servicios con
+\texttt{docker compose up --build}, y el healthcheck de la API respondió
+correctamente. El endpoint \texttt{/api/estado} reportó
+\texttt{listo=true}, el modelo TF--IDF más reordenador lineal versión 0.2.0 y
+19.776 artículos. Desde \texttt{localhost:8080} se cargó un ejemplo real y el
+tablero devolvió un ranking de recomendaciones con sus resúmenes. Esta
+validación confirma que la arquitectura de producción ya no depende de DVC ni
+de reentrenar el modelo durante el build. El procedimiento actualizado se
+encuentra en \texttt{docs/manual\_instalacion.md}.
 
 \pendingbox{
-Para cerrar la Entrega 3 queda grabar el video de síntesis, incorporar su
-enlace en la entrega y realizar la revisión final del PDF generado.
+Para cerrar la Entrega 3 queda grabar y publicar el video de síntesis e
+incorporar su enlace en la entrega. Los manuales y la arquitectura descrita en
+este reporte ya fueron actualizados después de la validación final con Docker.
 }
 
 % ============================================================================
@@ -754,9 +770,12 @@ primera validación manual por parte del equipo sobre 20 casos piloto. \\
 
 Carlos Duque &
 Desarrollo de la maqueta inicial en HTML y FastAPI; implementación de una
-aplicación simple para servir el tablero y predicciones; empaquetamiento del
-modelo como \texttt{modelo-citas}; construcción del paquete instalable y apoyo
-en la integración del backend/tablero. \\
+aplicación para servir el tablero y predicciones; empaquetamiento del modelo
+como \texttt{modelo-citas}; construcción del paquete instalable y refactor
+final para separar entrenamiento y producción. Esta última arquitectura
+publica el modelo como wheel versionado en S3 y permite que FastAPI y Docker lo
+consuman sin copiar \texttt{model-package/}, sin DVC y sin entrenar durante el
+build. \\
 
 José Zambrana &
 Desarrollo del reordenador supervisado, extracción de características,
@@ -816,17 +835,19 @@ experimentación. Los datos están versionados con DVC, los experimentos quedan
 registrados en MLflow, el modelo puede instalarse como wheel y ya es consumido
 por FastAPI y por el tablero.
 
-La contenerización y el despliegue quedaron completados y verificados: las
-imágenes de la API y del tablero se construyen desde cero sin intervención
-manual, y la solución se probó tanto en local como sobre AWS. La reproducción
-desde un clon limpio confirmó que una persona ajena al equipo puede levantar el
-sistema completo sin credenciales propias.
+La contenerización y el despliegue quedaron completados y verificados. Tras el
+refactor, la imagen de la API instala el wheel \texttt{modelo-citas} 0.2.0
+publicado en S3 y no incorpora dependencias de entrenamiento ni necesita
+descargar los datos durante el build. La solución fue validada localmente con
+Docker Compose, API saludable y una recomendación real desde el tablero; las
+evidencias previas de despliegue en AWS se mantienen como parte de la Entrega 3.
 
-Para cerrar la Entrega 3 queda pendiente el video de síntesis y la actualización
-final de los aportes del equipo. En la extensión de clasificación de función de
-cita todavía se requiere una segunda validación manual independiente y las
-corridas reales de los modelos configurados antes de reportar resultados
-definitivos. De cara a la continuación del trabajo, el techo del recomendador
+Para cerrar la Entrega 3 queda pendiente el video de síntesis y su enlace final.
+En la extensión de clasificación de función de cita ya se realizaron corridas
+reales provisionales con Qwen3:8B, Gemini y Cohere. Sin embargo, todavía se
+requiere una segunda validación manual independiente, cálculo de acuerdo,
+reconciliación y repetición de la evaluación sobre un Test Gold definitivo antes
+de presentar esos resultados como definitivos. De cara a la continuación del trabajo, el techo del recomendador
 está en la primera etapa: con un Recall@100 de 0,5160, la mitad de las consultas
 no tiene solución posible por reordenamiento, de modo que el margen de mejora
 está en la recuperación de candidatos --por ejemplo mediante representaciones
