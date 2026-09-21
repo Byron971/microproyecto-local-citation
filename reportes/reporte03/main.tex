@@ -842,10 +842,27 @@ Recall, F1 Macro/Micro y matrices de confusión. Se completó una primera
 validación manual sobre 20 casos piloto y se ejecutaron corridas provisionales
 con Qwen3:8B, Gemini y Cohere; OpenAI quedó implementado, pero sin predicciones
 por falta de saldo disponible. El detalle se conserva en
-\texttt{docs/evaluacion\_comparativa\_provisional\_20sep.md}. El conjunto
-sigue siendo provisional: falta una segunda validación humana independiente,
-cálculo de acuerdo y reconciliación antes de denominarlo \emph{Test Gold}
-definitivo.
+\texttt{docs/evaluacion\_comparativa\_provisional\_20sep.md}.
+
+Posteriormente se completó la segunda validación humana independiente sobre los
+mismos 20 casos, realizada sin consultar la primera hoja ni las sugerencias
+automáticas. El acuerdo fue de 12 coincidencias y 8 desacuerdos, es decir una
+tasa de 0,60 y un \emph{Cohen Kappa} de 0,4839, valor que corresponde a un
+acuerdo moderado y se ubica dentro del rango habitual para taxonomías de función
+de cita con nueve clases. Tras reconciliar los desacuerdos quedó congelado el
+\emph{Test Gold} definitivo en
+\texttt{annotations/citation\_function/test\_gold.jsonl}, que difiere del
+conjunto provisional en un único caso.
+
+Tres limitaciones acompañan esa cifra. Primero, el Kappa compara una anotación
+asistida con explicaciones contra una independiente, no dos anotaciones ciegas.
+Segundo, la reconciliación de los ocho desacuerdos también fue asistida, y siete
+se resolvieron hacia la etiqueta del primer anotador. Tercero, el conjunto
+definitivo cubre solo 5 de las 9 categorías ---Background, Application,
+Evidence, Improvement y Further Reading---, por lo que el F1 Macro sobre las
+nueve clases permanece penalizado por las cuatro ausentes; ampliar el piloto más
+allá de 20 casos es la vía para levantar esa restricción. Las corridas de los
+modelos sobre este conjunto definitivo quedan pendientes.
 
 % ============================================================================
 % 11. CONCLUSIONES
@@ -884,10 +901,10 @@ conservan como soporte histórico de la Entrega 3.
 Para cerrar la Entrega 3 queda pendiente el video de síntesis y su enlace final.
 Si se desea desplegar también la mejor variante experimental, el siguiente paso
 es publicar un nuevo wheel con v2 y repetir la prueba contenerizada. En la
-extensión de clasificación de función de cita todavía se requiere una segunda
-validación humana independiente, cálculo de acuerdo, reconciliación y repetición
-de la evaluación sobre un Test Gold definitivo antes de presentar esos
-resultados como definitivos. En el recomendador principal, el Recall@100 de
+extensión de clasificación de función de cita ya se completaron la segunda
+validación humana independiente, el cálculo de acuerdo y la reconciliación, con
+un Cohen Kappa de 0,4839; resta repetir la evaluación de los modelos sobre el
+Test Gold definitivo antes de presentar esos resultados como definitivos. En el recomendador principal, el Recall@100 de
 0,5160 muestra que un margen importante de mejora está en la recuperación de
 candidatos, por ejemplo mediante representaciones semánticas más ricas.
 

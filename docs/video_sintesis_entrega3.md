@@ -104,7 +104,7 @@ Pantalla:
 - Tabla con Qwen3:8B, Gemini 3.5 Flash-Lite y Cohere Command A+.
 
 Voz:
-"Como extensión, evaluamos clasificación de función de cita en nueve categorías usando tres estrategias de prompting sobre veinte casos piloto. En este conjunto provisional, Gemini con few-shot obtuvo F1 Macro de 0,329 y accuracy de 0,65; Cohere alcanzó F1 Macro de 0,261 y Qwen local 0,174 en sus mejores configuraciones comparables. Estos resultados son preliminares porque el conjunto contiene solo cinco de las nueve clases y no se contó con un segundo anotador humano independiente. Por ello no reportamos acuerdo interanotador ni presentamos este piloto como Test Gold definitivo."
+"Como extensión, evaluamos clasificación de función de cita en nueve categorías usando tres estrategias de prompting sobre veinte casos piloto. En este conjunto provisional, Gemini con few-shot obtuvo F1 Macro de 0,329 y accuracy de 0,65; Cohere alcanzó F1 Macro de 0,261 y Qwen local 0,174 en sus mejores configuraciones comparables. Completamos además una segunda validación humana independiente sobre esos veinte casos, con un acuerdo del sesenta por ciento y un Cohen Kappa de cero coma cuarenta y ocho, que corresponde a un acuerdo moderado. Tras reconciliar los desacuerdos congelamos el Test Gold definitivo. Los resultados de los modelos siguen siendo preliminares por dos razones: se calcularon sobre el conjunto provisional y aún deben repetirse sobre el definitivo, y el conjunto cubre solo cinco de las nueve clases."
 
 ## Reparto sugerido
 
