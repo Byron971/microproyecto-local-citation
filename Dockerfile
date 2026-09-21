@@ -11,26 +11,18 @@ RUN pip install --no-cache-dir uv
 
 # Copiar primero los archivos necesarios para resolver dependencias
 COPY pyproject.toml uv.lock README.md ./
-COPY model-package ./model-package
 
-# Instalar dependencias antes de copiar el resto del código
+# El modelo llega como wheel publicado en S3, con el .pkl dentro y el hash
+# fijado en uv.lock. La imagen no necesita model-package/, ni el dataset, ni
+# las dependencias de entrenamiento: solo descargar e instalar el paquete.
 RUN uv sync --frozen --no-dev --no-install-project
 
-# Copiar el código y los archivos de configuración del proyecto
+# Copiar el cÃ³digo y los archivos de configuraciÃ³n del proyecto
 COPY . .
 
 # Instalar el proyecto completo
 RUN uv sync --frozen --no-dev
 
-# Recuperar los datos versionados desde el remoto público de DVC
-RUN uv run dvc config core.no_scm true
-RUN uv run dvc pull -r publico
-
-# Generar el artefacto entrenado para la API
-RUN PYTHONPATH=/app/model-package /app/.venv/bin/python -m modelo_citas.train_pipeline --data-dir /app/data/raw
-RUN uv sync --frozen --no-dev
-
 EXPOSE 8000
 
 CMD ["uv", "run", "uvicorn", "src.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-

@@ -1,7 +1,6 @@
 import numpy as np
 import pytest
-
-from src.features.pair_features import FEATURE_NAMES, PairFeatureExtractor, word_count
+from modelo_citas.processing.features import FEATURE_NAMES, PairFeatureExtractor, word_count
 
 
 PAPERS = {

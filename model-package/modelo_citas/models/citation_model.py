@@ -6,6 +6,7 @@ from typing import Any
 from modelo_citas.models.linear_reranker import LinearReranker, rerank_candidate_records
 from modelo_citas.models.tfidf_baseline import TfidfBaseline, clean_context_text
 from modelo_citas.processing.features import PairFeatureExtractor
+from modelo_citas.processing.pairs import retrieve_candidates
 
 # Identificador sintético del contexto que llega por API: el extractor trabaja
 # con pares (context_id, paper_id) y una sola consulta no tiene ID propio.
@@ -27,6 +28,23 @@ class CitationArtifact:
     def top_n(self) -> int:
         """Cantidad de candidatos que recupera la primera etapa."""
         return int(self.settings["top_n"])
+
+    @property
+    def k(self) -> int:
+        """Cantidad de resultados que se devuelven tras reordenar."""
+        return int(self.settings["k"])
+
+    def candidates(self, contexts: dict, split: list[dict]) -> list[dict]:
+        return retrieve_candidates(self.retriever, contexts, split, self.top_n)
+
+    def rank(self, records: list[dict], contexts: dict) -> list[list[str]]:
+        pairs = [
+            {"context_id": row["context_id"], "paper_id": paper_id}
+            for row in records
+            for paper_id in row["candidate_ids"]
+        ]
+        scores = self.reranker.predict_scores(self.extractor.transform(pairs, contexts))
+        return rerank_candidate_records(records, scores)
 
     def recommend(self, context: str, top_k: int = 10) -> list[dict[str, Any]]:
         """Recupera candidatos con TF-IDF y los reordena con el modelo lineal."""

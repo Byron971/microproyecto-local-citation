@@ -2438,19 +2438,10 @@ name = "microproyecto-local-citation"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "dvc", extra = ["s3", "ssh"] },
     { name = "fastapi", extra = ["standard"] },
-    { name = "ipykernel" },
-    { name = "jupyter" },
-    { name = "matplotlib" },
-    { name = "mlflow" },
     { name = "modelo-citas" },
     { name = "openai" },
-    { name = "pandas" },
     { name = "pydantic" },
-    { name = "pyyaml" },
-    { name = "scikit-learn" },
-    { name = "seaborn" },
 ]
 
 [package.dev-dependencies]
@@ -2458,28 +2449,41 @@ dev = [
     { name = "pytest" },
     { name = "tox" },
 ]
+research = [
+    { name = "dvc", extra = ["s3", "ssh"] },
+    { name = "ipykernel" },
+    { name = "jupyter" },
+    { name = "matplotlib" },
+    { name = "mlflow" },
+    { name = "pandas" },
+    { name = "pyyaml" },
+    { name = "scikit-learn" },
+    { name = "seaborn" },
+]
 
 [package.metadata]
 requires-dist = [
-    { name = "dvc", extras = ["s3", "ssh"], specifier = "==3.67.1" },
     { name = "fastapi", extras = ["standard"], specifier = "==0.141.1" },
-    { name = "ipykernel", specifier = "==7.3.0" },
-    { name = "jupyter", specifier = "==1.1.1" },
-    { name = "matplotlib", specifier = "==3.11.1" },
-    { name = "mlflow", specifier = "==3.15.1" },
-    { name = "modelo-citas", directory = "model-package" },
+    { name = "modelo-citas", url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" },
     { name = "openai", specifier = ">=3.16.2" },
-    { name = "pandas", specifier = "==2.3.3" },
     { name = "pydantic", specifier = ">=2,<3" },
-    { name = "pyyaml", specifier = ">=6,<7" },
-    { name = "scikit-learn", specifier = "==1.9.0" },
-    { name = "seaborn", specifier = "==0.13.2" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "tox", specifier = ">=4,<5" },
+]
+research = [
+    { name = "dvc", extras = ["s3", "ssh"], specifier = "==3.67.1" },
+    { name = "ipykernel", specifier = "==7.3.0" },
+    { name = "jupyter", specifier = "==1.1.1" },
+    { name = "matplotlib", specifier = "==3.11.1" },
+    { name = "mlflow", specifier = "==3.15.1" },
+    { name = "pandas", specifier = "==2.3.3" },
+    { name = "pyyaml", specifier = ">=6,<7" },
+    { name = "scikit-learn", specifier = "==1.9.0" },
+    { name = "seaborn", specifier = "==0.13.2" },
 ]
 
 [[package]]
@@ -2574,8 +2578,8 @@ wheels = [
 
 [[package]]
 name = "modelo-citas"
-version = "0.1.0"
-source = { directory = "model-package" }
+version = "0.2.0"
+source = { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" }
 dependencies = [
     { name = "joblib" },
     { name = "numpy" },
@@ -2583,6 +2587,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "scikit-learn" },
     { name = "scipy" },
+]
+wheels = [
+    { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl", hash = "sha256:a04de33c977baf7d7b9acccadde87cae1fe2ff379593be6a849d34d7a25977f7" },
 ]
 
 [package.metadata]

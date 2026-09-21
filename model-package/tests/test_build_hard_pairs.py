@@ -1,6 +1,5 @@
 import pytest
-
-from src.data.build_hard_pairs import build_candidate_pairs, build_hard_pairs
+from modelo_citas.processing.pairs import build_candidate_pairs, build_hard_pairs
 
 
 RECORDS = [
