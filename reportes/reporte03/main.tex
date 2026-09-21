@@ -133,7 +133,7 @@ Reporte final -- Entrega 3
 \footnotesize
 Maestría en Inteligencia Artificial -- Universidad de los Andes
 
-Carlos Duque · Carlos Caicedo · Jose Zambrana · John Arias
+Carlos Duque · Carlos Caicedo · José Zambrana · John Arias
 
 Proyecto: Desarrollo de Soluciones
 
@@ -663,11 +663,16 @@ cd microproyecto-local-citation
 docker compose up --build
 \end{verbatim}
 
-Con Docker Compose, el tablero queda disponible en
-\texttt{http://localhost:8080}, la API en
-\texttt{http://localhost:8000/api/estado} y Swagger/OpenAPI en
-\texttt{http://localhost:8000/docs}. El build instala directamente el wheel
-\texttt{modelo-citas} 0.2.0; no ejecuta DVC ni entrenamiento.
+Con Docker Compose, los puntos de acceso son:
+
+\begin{itemize}[leftmargin=1.4em, itemsep=0pt, topsep=1pt]
+  \item tablero: \url{http://localhost:8080};
+  \item estado de la API: \url{http://localhost:8000/api/estado};
+  \item Swagger/OpenAPI: \url{http://localhost:8000/docs}.
+\end{itemize}
+
+El build instala directamente el wheel \texttt{modelo-citas} 0.2.0; no ejecuta
+DVC ni entrenamiento.
 
 Para reproducir experimentos, datos y pruebas se utiliza el grupo
 \texttt{research}:
