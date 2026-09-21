@@ -14,6 +14,8 @@ El sistema utiliza una arquitectura de dos etapas:
 
 El resultado final se presenta como un ranking de artículos recomendados.
 
+La versión validada para la Entrega 3 utiliza el paquete `modelo-citas` 0.2.0. En la arquitectura actual, el modelo llega a la API como un wheel versionado; el usuario no necesita entrenarlo ni descargar los datos para utilizar el tablero.
+
 ---
 
 ### 2. Acceso al tablero
@@ -21,8 +23,16 @@ El resultado final se presenta como un ranking de artículos recomendados.
 Cuando la aplicación se ejecuta mediante Docker Compose, el tablero está disponible en:
 
 ```text
-http://127.0.0.1:8080
+http://localhost:8080
 ```
+
+La API puede comprobarse directamente en:
+
+```text
+http://localhost:8000/api/estado
+```
+
+Una instalación correcta devuelve `"listo": true` y reporta el modelo `TF-IDF + reordenador lineal`, versión 0.2.0.
 
 En la parte superior derecha de la interfaz aparece el estado del modelo.
 
@@ -166,13 +176,13 @@ Si no aparece dentro del número de resultados seleccionado, se muestra un mensa
 La cita correcta no quedó entre los 10 primeros resultados.
 ```
 
-Esto no representa un error de funcionamiento del sistema. Significa que, para esa consulta concreta, el modelo no logró ubicar la referencia correcta dentro del Top-K seleccionado.
+Esto no representa un error de funcionamiento del sistema. Significa que, para esa consulta concreta, el modelo no logró ubicar la referencia correcta dentro del Top-K seleccionado. La infraestructura puede estar funcionando correctamente aunque la referencia esperada quede fuera de los primeros resultados.
 
 ---
 
 ### 7. Ejemplo completo de uso
 
-La siguiente imagen muestra una consulta real ejecutada desde el tablero contenerizado mediante Docker Compose.
+La siguiente imagen muestra una consulta real ejecutada desde el tablero contenerizado mediante Docker Compose. Este flujo fue revalidado después del refactor de la arquitectura: Docker levantó la API y el dashboard, `/api/estado` respondió correctamente y el tablero generó un ranking real sobre el catálogo de 19.776 artículos.
 
 ![Ejemplo real de recomendación](img/manual_usuario_recomendacion_real.png)
 
