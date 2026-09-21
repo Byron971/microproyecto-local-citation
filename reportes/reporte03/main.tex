@@ -184,6 +184,34 @@ mantiene enfocado en el código, la configuración y la documentación, mientras
 DVC conserva el versionamiento de los conjuntos utilizados durante los
 experimentos.
 
+\subsection{Cambios respecto a la segunda entrega}
+
+\begin{itemize}
+    \item \textbf{Segunda versión del reordenador.} El vector de características
+    pasó de cinco a diez señales, incorporando metadatos derivados del
+    identificador del ACL Anthology. El Recall@10 subió de 0,2882 a 0,3793 y el
+    MRR@10 de 0,1490 a 0,2166 sobre las mismas 9.381 consultas de validación.
+    \item \textbf{Empaquetamiento del modelo.} El modelo seleccionado se publicó
+    como el wheel \texttt{modelo-citas} 0.2.0 en un bucket S3 público. La
+    instalación ya no requiere entrenar localmente ni disponer de credenciales de
+    AWS.
+    \item \textbf{Del proceso único a los contenedores.} En la Entrega 2 el
+    tablero ya producía recomendaciones reales, pero servía la línea base TF--IDF
+    desde un solo proceso local lanzado con \texttt{uv run tablero}. Ahora la API
+    y el tablero son servicios separados, el modelo que se sirve es el reordenador
+    empaquetado, y ambos se orquestan con Docker Compose detrás de Nginx.
+    \item \textbf{Separación de responsabilidades.} El código de
+    experimentación en \texttt{src/} se separó del paquete distribuible en
+    \texttt{model-package/}, de modo que la imagen de producción no arrastra
+    dependencias de investigación.
+    \item \textbf{Extensión de clasificación de función de cita.} Se añadió una
+    línea de trabajo que clasifica la función retórica de cada cita en nueve
+    categorías, con validación humana por dos anotadores y acuerdo medido.
+    \item \textbf{Remoto DVC público.} El remoto por omisión pasó a ser una URL
+    HTTPS de solo lectura, para que la recuperación de los datos no dependa de
+    credenciales del equipo.
+\end{itemize}
+
 % ============================================================================
 % 2. ARQUITECTURA
 % ============================================================================
@@ -764,6 +792,10 @@ manuales en \texttt{docs/manual\_usuario.md} y
 % ============================================================================
 % 10. EQUIPO
 % ============================================================================
+
+% El reporte de trabajo en equipo es un entregable aparte de maximo 1 pagina
+% segun la rubrica; va en su propia hoja, como en las entregas 1 y 2.
+\clearpage
 
 \section{Trabajo en equipo}
 
