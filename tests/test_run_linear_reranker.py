@@ -1,7 +1,8 @@
 import pytest
 
+from modelo_citas.processing.pairs import labels_from_pairs
+
 from src.evaluation.evaluate_reranker import evaluate_rankings
-from src.training.experiment import labels_from_pairs
 
 
 def test_evaluate_rankings_reports_recall_and_truncated_mrr():

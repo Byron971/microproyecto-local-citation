@@ -8,6 +8,8 @@ Este proyecto implementa un prototipo de recomendación local de citas académic
 
 La solución fue desarrollada para la materia Proyecto: Desarrollo de Soluciones y combina procesamiento de lenguaje natural, aprendizaje automático, seguimiento experimental, empaquetamiento de modelos, API, tablero web, contenedores y despliegue en AWS.
 
+El repositorio incluye además un segundo frente de trabajo: la evaluación comparativa de modelos de lenguaje comerciales y open-weight para la clasificación de la **función de cita** en nueve categorías. Ese frente tiene su propio pipeline de prompts, ejecución, métricas y anotación, y se documenta más abajo.
+
 Datos de origen:
 
 [Local-Citation-Recommendation](https://github.com/nianlonggu/Local-Citation-Recommendation)
@@ -68,41 +70,61 @@ http://api:8000
 ```text
 src/
     app/
-        backend FastAPI y archivos estáticos del tablero
+        backend FastAPI, lectura de insights y archivos estáticos del tablero
     data/
-        procesamiento de datos
+        procesamiento de datos y construcción del piloto de función de cita
     evaluation/
-        métricas y evaluación
-    features/
-        construcción de características
-    models/
-        lógica de modelos
+        métricas de ranking, diagnóstico de negativos, anotación
+        commercial/
+            evaluación de LLM comerciales y open-weight
     tracking/
         configuración centralizada de MLflow
     training/
-        scripts de entrenamiento
+        scripts de entrenamiento y cálculo de insights del tablero
+    config.py
+        configuración del experimento
 
 model-package/
     paquete instalable modelo-citas
+        models/        TF-IDF, reordenador lineal, modelo de citas
+        processing/    features, pares de entrenamiento, validación
+        config/        hiperparámetros del modelo
+        train_pipeline.py
+    tests/
+        pruebas del modelo empaquetado
 
 config/
-    configuración de modelos
+    model.yaml                    hiperparámetros del modelo
+    citation_eval.env.example     variables de entorno de los proveedores
+    prompts/                      prompts versionados de función de cita
+
+annotations/
+    citation_function/
+        artefactos de validación manual y gold provisional
 
 data/
     raw/
     processed/
+        dashboard_insights.json   único archivo procesado versionado en Git
 
 notebooks/
     análisis exploratorio
 
+scripts/
+    utilidades de corrida (por ejemplo, open-weight local)
+
 tests/
-    pruebas automatizadas
+    pruebas del repositorio: API, evaluación, proveedores, anotación
 
 docs/
-    documentación de usuario
+    documentación de usuario y de los frentes de evaluación
 
 reportes/
     reportes y evidencias del proyecto
+
+.github/workflows/
+    reporte03.yml            compila y valida el PDF del reporte
+    evaluacion-citas.yml     ejecuta las pruebas del frente de evaluación
 
 Dockerfile
 Dockerfile.dashboard
@@ -110,6 +132,41 @@ docker-compose.yml
 nginx.conf
 pyproject.toml
 uv.lock
+```
+
+---
+
+## Separación de responsabilidades
+
+La lógica del modelo vive en un único lugar: el paquete `modelo-citas`. El repositorio no duplica esa lógica, sino que la consume.
+
+```text
+model-package/modelo_citas/     lo que se entrena y se despliega
+    models/tfidf_baseline.py    recuperación TF-IDF
+    models/linear_reranker.py   reordenador lineal
+    models/citation_model.py    modelo de extremo a extremo
+    processing/features.py      features de pares contexto-artículo
+    processing/pairs.py         pares de entrenamiento (random y hard)
+    config/core.py              ModelConfig, hiperparámetros validados
+
+src/                            lo que experimenta, mide y sirve
+    config.py                   ExperimentConfig hereda de ModelConfig
+                                y añade data_dir y output_dir
+    training/                   corridas, MLflow, comparación de variantes
+    evaluation/                 métricas de ranking y diagnóstico
+    app/                        API y tablero
+```
+
+Dos consecuencias prácticas de esta separación:
+
+- `src/config.ExperimentConfig` **hereda** de `modelo_citas.config.core.ModelConfig` en lugar de repetir sus campos, de modo que el artefacto que se mide y el que se despliega aceptan exactamente los mismos hiperparámetros.
+- Los indicadores del tablero se calculan fuera de la API. `src/training/build_insights.py` genera `data/processed/dashboard_insights.json` (requiere `data/raw` y scikit-learn), y `src/app/insights.py` solamente lee ese archivo. Por eso la imagen de la API no necesita el dataset ni las dependencias de cómputo científico.
+- El modelo cruza esa frontera como **wheel publicado**, no como código compartido. `model-package/` es donde se desarrolla y entrena; producción instala el paquete ya construido desde S3 y nunca ve ese directorio.
+
+Para regenerar los insights del tablero:
+
+```bash
+uv run --group research python -m src.training.build_insights
 ```
 
 ---
@@ -159,11 +216,19 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 uv sync
 ```
 
+`uv sync` instala únicamente lo necesario para ejecutar la API y el tablero. Incluye la descarga del wheel `modelo-citas` desde S3, de unos 60 MB, que ya trae el modelo entrenado. Las herramientas de investigación (DVC, MLflow, Jupyter, pandas, scikit-learn, matplotlib) están en el grupo opcional `research`:
+
+```bash
+uv sync --group research
+```
+
+Este grupo es necesario para recuperar datos con DVC, entrenar, evaluar y regenerar los insights del tablero.
+
 ---
 
 ## 4. Recuperar los datos con DVC
 
-El proyecto utiliza DVC para versionar los datos.
+El proyecto utiliza DVC para versionar los datos. Requiere el grupo `research`.
 
 El remoto predeterminado es:
 
@@ -199,11 +264,26 @@ test.json
 
 ## 5. Ejecutar pruebas
 
-```bash
-uv run pytest
+Las pruebas están repartidas según la separación de responsabilidades:
+
+```text
+model-package/tests/   pruebas del modelo empaquetado
+tests/                 pruebas del repositorio: API, evaluación, proveedores
 ```
 
-También puede utilizarse tox:
+Ejecutar toda la suite desde la raíz recoge ambos directorios y requiere el grupo `research`, porque las pruebas de entrenamiento importan MLflow y scikit-learn:
+
+```bash
+uv run --group research pytest
+```
+
+Solo las pruebas del paquete del modelo:
+
+```bash
+uv run tox -c model-package -e test_package
+```
+
+Suite completa en un entorno aislado:
 
 ```bash
 uv run tox
@@ -402,11 +482,16 @@ El modelo utilizado por la aplicación se distribuye como un paquete instalable 
 modelo-citas
 ```
 
-ubicado en:
+Su código fuente vive en `model-package/`, pero el proyecto **no lo instala desde ahí**: lo descarga como wheel ya entrenado desde el bucket S3 del proyecto.
 
-```text
-model-package/
+```toml
+[tool.uv.sources]
+modelo-citas = { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" }
 ```
+
+El wheel lleva el `.pkl` dentro, y `uv.lock` fija su hash SHA-256. Como consecuencia, para ejecutar la API no hacen falta `model-package/`, ni el dataset, ni DVC, ni las dependencias de entrenamiento: basta `pyproject.toml` y `uv.lock`.
+
+El bucket concede únicamente `s3:GetObject` sobre el prefijo `wheels/`, así que la descarga no requiere credenciales.
 
 Ejemplo de uso:
 
@@ -434,49 +519,71 @@ similitud_tfidf
 
 ---
 
-## Entrenamiento del paquete
+## Publicar una versión nueva del modelo
 
-Para generar manualmente el artefacto:
+Entrenar es responsabilidad de quien produce el modelo, no de quien lo consume. El ciclo completo es:
+
+**1. Subir la versión.** Cada reentrenamiento es una versión nueva; un wheel publicado nunca se sobrescribe.
 
 ```bash
+echo "0.3.0" > model-package/modelo_citas/VERSION
+```
+
+**2. Entrenar.** Lee `papers.json`, `contexts.json` y `train.json` desde `data/raw/`, así que los datos deben estar recuperados con DVC.
+
+```bash
+uv run --group research dvc pull
 uv run tox -c model-package -e train
 ```
 
-Después puede reinstalarse el paquete con:
+También puede apuntarse a otra ubicación de los datos:
 
 ```bash
-uv sync --reinstall-package modelo-citas
+uv run tox -c model-package -e train -- /ruta/a/data/raw
 ```
 
-El modelo entrenado se almacena dentro de:
+El artefacto queda en `model-package/modelo_citas/trained/`, con el nombre de la versión del paquete (por ejemplo `modelo-citas-output0.3.0.pkl`). Ese `.pkl` no se versiona en Git.
 
-```text
-model-package/modelo_citas/trained/
-```
-
-con un nombre basado en la versión del paquete.
-
-Ejemplo:
-
-```text
-modelo-citas-output0.1.0.pkl
-```
-
-El archivo `.pkl` no se versiona en Git.
-
----
-
-## Construcción del wheel
+**3. Construir el wheel.** `MANIFEST.in` incluye `trained/*.pkl`, de modo que el modelo viaja dentro.
 
 ```bash
 uv run tox -c model-package -e build
+unzip -l model-package/dist/modelo_citas-0.3.0-py3-none-any.whl | grep pkl
 ```
 
-El wheel resultante queda en:
+**4. Publicar en S3.**
 
-```text
-model-package/dist/
+```bash
+aws s3 cp model-package/dist/modelo_citas-0.3.0-py3-none-any.whl \
+  s3://ceduque-modelo-citas-wheels/wheels/ \
+  --content-type application/zip
 ```
+
+**5. Apuntar el proyecto a la versión nueva.** Actualizar la URL en `[tool.uv.sources]` de `pyproject.toml` y volver a fijar el hash:
+
+```bash
+uv lock
+```
+
+A partir de ahí, cualquier `uv sync` o `docker compose build` toma el modelo nuevo.
+
+---
+
+## Trabajar sobre el código del modelo
+
+Mientras se modifica `model-package/`, conviene instalarlo en modo editable para no tener que publicar un wheel en cada iteración:
+
+```bash
+uv pip install -e model-package
+```
+
+Las pruebas del paquete corren directamente sobre el fuente y no dependen de la URL:
+
+```bash
+uv run tox -c model-package -e test_package
+```
+
+El bucket es de lectura pública, así que cualquiera con la URL puede descargar el modelo. Para un modelo que deba permanecer privado, el camino es dejar el bucket cerrado y darle a la instancia un rol IAM con `GetObject`, lo que ya no se resuelve con una URL directa en `pyproject.toml`.
 
 ---
 
@@ -516,11 +623,189 @@ El tablero permite:
 - visualizar desempeño del modelo;
 - consultar diagnóstico de negativos.
 
+Los indicadores que muestra el tablero no se calculan en cada solicitud: `/api/insights` lee `data/processed/dashboard_insights.json`, generado previamente con `src/training/build_insights.py`.
+
 El manual de usuario se encuentra en:
 
 ```text
 docs/manual_usuario.md
 ```
+
+---
+
+# Evaluación de función de cita con modelos de lenguaje
+
+Además del recomendador, el repositorio incluye un frente de evaluación comparativa de modelos de lenguaje para clasificar la **función de una cita** dentro de nueve categorías:
+
+```text
+1. Background
+2. Gap
+3. Basis
+4. Comparison
+5. Application
+6. Improvement / Modification
+7. Evidence
+8. Identification of the Originator
+9. Further Reading
+```
+
+Cada modelo responde un arreglo JSON de nueve puntajes, en ese mismo orden, para que el parseo y las métricas sean idénticos entre proveedores.
+
+---
+
+## Componentes
+
+```text
+config/prompts/citation_function_prompts.json
+    tres estrategias versionadas: zero_shot_generic, zero_shot_detailed, few_shot
+
+src/evaluation/commercial/
+    providers_openai.py       OpenAI
+    providers_gemini.py       Gemini (capa compatible con OpenAI)
+    providers_cohere.py       Cohere (capa compatible con OpenAI)
+    providers_openweight.py   cualquier servidor OpenAI-compatible (por ejemplo Ollama)
+    runner.py                 ejecución con reintentos, latencia, tokens y errores
+    metrics.py                Precision, Recall, F1 Macro/Micro y matrices de confusión
+    stability.py              parseo común y estabilidad entre repeticiones
+    orchestrate.py            orquestador de punta a punta
+    cli.py                    ejecución de un solo proveedor
+
+src/evaluation/annotation.py         preparación, acuerdo y consolidación del gold
+src/data/build_citation_function_pilot.py   piloto reproducible de 20 casos
+annotations/citation_function/       validación manual y gold provisional
+```
+
+---
+
+## Configuración de proveedores
+
+Las variables de ejemplo están en:
+
+```text
+config/citation_eval.env.example
+```
+
+```text
+OPENAI_API_KEY / OPENAI_MODEL
+GEMINI_API_KEY / GEMINI_MODEL
+COHERE_API_KEY / COHERE_MODEL
+OPENWEIGHT_BASE_URL / OPENWEIGHT_MODEL / OPENWEIGHT_API_KEY
+```
+
+Nunca deben versionarse credenciales reales. El identificador del modelo se controla por variable de entorno para no modificar código al cambiar de versión.
+
+---
+
+## Test Gold
+
+```text
+annotations/citation_function/provisional_test_gold.jsonl
+    20 casos, primera validación manual por parte del equipo, uso preliminar
+
+annotations/citation_function/test_gold.jsonl
+    nombre reservado para el conjunto definitivo, después de la segunda
+    validación independiente, el acuerdo entre anotadores y la reconciliación
+```
+
+El orquestador usa `test_gold.jsonl` cuando existe. Si solo hay conjunto provisional, exige el indicador `--allow-provisional` y marca los artefactos como preliminares, para impedir que un piloto se reporte como resultado final.
+
+---
+
+## Ejecutar una evaluación
+
+Validar datos, prompts y configuración sin llamar a ningún proveedor:
+
+```bash
+uv run python -m src.evaluation.commercial.orchestrate --mode all --check-only
+```
+
+Ejecutar sobre el conjunto provisional:
+
+```bash
+uv run python -m src.evaluation.commercial.orchestrate \
+    --mode commercial \
+    --allow-provisional \
+    --request-delay-seconds 5 \
+    --output-dir artifacts/citation_function_eval
+```
+
+Modos disponibles:
+
+```text
+openai      gemini      cohere      openweight
+commercial  OpenAI + Gemini
+all         OpenAI + Gemini + open-weight
+```
+
+`--request-delay-seconds` respeta los límites de solicitudes por minuto de las capas gratuitas; en el piloto se usaron 5 segundos para Gemini y 4 para Cohere.
+
+Cada corrida genera, en el directorio de salida:
+
+```text
+results.jsonl
+summary.csv
+run_metadata.json
+metrics/
+    evaluation_summary.csv
+    predictions.csv
+    confusion_matrices/
+```
+
+Esos artefactos quedan bajo `artifacts/`, ignorado por Git.
+
+---
+
+## Resultados provisionales, corte 20 de septiembre de 2026
+
+Sobre los 20 casos del gold provisional y los tres prompts:
+
+| Modelo | Mejor prompt | F1 Macro | Accuracy | Latencia media |
+|---|---|---:|---:|---:|
+| Gemini 3.5 Flash-Lite | few_shot | 0,3287 | 0,65 | 1,49 s |
+| Cohere Command A+ | zero_shot_detailed | 0,2614 | 0,45 | 9,27 s |
+| Qwen3:8B (local, Ollama) | few_shot | 0,1742 | 0,30 | 56,60 s |
+
+Todas las corridas tuvieron cobertura de clasificación del 100 %, sin errores de proveedor ni de formato. OpenAI quedó implementado y con preflight exitoso, pero la corrida real no produjo predicciones por `credit_balance_exhausted`; por eso no se le atribuyen métricas.
+
+Estos números son preliminares: el conjunto tiene 20 casos, solo 5 de las 9 clases aparecen en las etiquetas, y falta la segunda validación manual independiente. El detalle está en:
+
+```text
+docs/evaluacion_comparativa_provisional_20sep.md
+docs/evaluacion_comparativa_provisional_20sep.csv
+```
+
+---
+
+## Documentación del frente
+
+```text
+docs/evaluacion_comercial.md                      proveedores y contrato de datos
+docs/evaluacion_metricas.md                       pipeline de métricas
+docs/openweight_local.md                          ejecución de modelos locales
+docs/prompts_estabilidad.md                       prompts y medición de estabilidad
+docs/guia_anotacion_funcion_cita.md               guía de anotación
+docs/control_calidad_etiquetas_provisional.md     control de calidad asistido
+docs/evaluacion_comparativa_provisional_20sep.md  resultados preliminares
+```
+
+---
+
+# Integración continua
+
+El repositorio tiene dos flujos de GitHub Actions:
+
+```text
+.github/workflows/evaluacion-citas.yml
+    ejecuta las pruebas del frente de evaluación de función de cita
+    en push a main y en pull requests que tocan src/evaluation/, los
+    prompts o sus pruebas
+
+.github/workflows/reporte03.yml
+    compila reportes/reporte03/main.tex, verifica que el PDF no supere
+    las 10 páginas y lo publica como artefacto de la corrida
+```
+
+El PDF final también está versionado en `reportes/reporte03/main.pdf`.
 
 ---
 
@@ -547,14 +832,22 @@ microproyecto-citas-api:0.1.0
 El Dockerfile:
 
 1. instala `uv`;
-2. instala las dependencias;
-3. copia el proyecto;
-4. recupera los datos mediante DVC;
-5. genera el artefacto entrenado de `modelo-citas`;
-6. vuelve a sincronizar el paquete para incluir el artefacto;
-7. inicia FastAPI mediante Uvicorn.
+2. copia `pyproject.toml`, `uv.lock` y `README.md`;
+3. instala las dependencias de ejecución (`uv sync --frozen --no-dev`), lo que descarga el wheel `modelo-citas` desde S3 con el modelo dentro;
+4. copia el código del proyecto;
+5. inicia FastAPI mediante Uvicorn.
 
-El entrenamiento del modelo durante el build es importante porque el archivo `.pkl` no se almacena en Git.
+Ni el entrenamiento ni la recuperación de datos ocurren en el build. `model-package/` está excluido en `.dockerignore`: la imagen no contiene el código fuente del modelo, solo el paquete instalado desde el wheel publicado.
+
+Esto mantiene la imagen pequeña y sin credenciales: el contenedor no necesita DVC, ni el dataset crudo, ni las dependencias de entrenamiento. La única condición es que la URL declarada en `pyproject.toml` esté publicada y que `uv.lock` esté sincronizado con ella.
+
+El único archivo procesado que sí viaja en Git y dentro de la imagen es:
+
+```text
+data/processed/dashboard_insights.json
+```
+
+que alimenta el endpoint `/api/insights` sin recalcular nada en tiempo de ejecución.
 
 La API escucha dentro del contenedor en:
 
@@ -626,6 +919,8 @@ por lo que Docker Compose espera a que la API esté saludable antes de iniciar e
 ---
 
 ## Construir las imágenes
+
+No hay pasos previos: el modelo se descarga del wheel publicado durante el build.
 
 ```bash
 docker compose build
@@ -898,31 +1193,42 @@ Primero comprobar la configuración:
 docker compose config --quiet
 ```
 
+La instancia no necesita datos, ni DVC, ni entrenar. Solo requiere salida HTTPS hacia S3 para descargar el wheel.
+
 Construir:
 
 ```bash
 docker compose build
 ```
 
-El Dockerfile de la API ejecuta durante la construcción:
+El flujo que deja lista la imagen es:
 
 ```text
-DVC pull
+máquina de entrenamiento
+    data/raw (DVC)
         |
         v
-data/raw
+    tox -c model-package -e train
         |
         v
-train_pipeline
+    tox -c model-package -e build
         |
         v
-modelo-citas-output<VERSION>.pkl
+    wheel publicado en S3
+        |
+--------|--------------------------
+        v
+EC2
+    docker compose build
         |
         v
-paquete modelo-citas instalado
+    uv sync --frozen  (descarga el wheel, verifica el hash)
+        |
+        v
+    paquete modelo-citas instalado en la imagen
 ```
 
-Esto permite que la imagen final sea capaz de iniciar la API con el modelo entrenado disponible.
+Si la URL no está publicada o el archivo cambió, `uv sync --frozen` falla por desajuste de hash en lugar de producir una imagen que no puede servir recomendaciones.
 
 ---
 
@@ -1040,9 +1346,11 @@ api
 dashboard
 ```
 
-El modelo y la configuración necesaria se construyen dentro de la imagen.
+El modelo y la configuración necesaria quedan dentro de la imagen, junto con `data/processed/dashboard_insights.json`.
 
-Los datos utilizados durante el build se recuperan mediante el remoto DVC público.
+El modelo se instala desde el wheel publicado en S3, cuya lectura es pública, por lo que el build no requiere credenciales de AWS ni acceso al remoto DVC. Sí requiere salida HTTPS hacia el bucket.
+
+Las variables de los proveedores de LLM (`OPENAI_API_KEY`, `GEMINI_API_KEY`, `COHERE_API_KEY`, `OPENWEIGHT_*`) pertenecen al frente de evaluación de función de cita y no las usa la API desplegada.
 
 ---
 
@@ -1083,13 +1391,15 @@ Las credenciales temporales de AWS Academy se utilizan únicamente en el entorno
 
 El despliegue de este proyecto no requiere almacenar credenciales AWS dentro de las imágenes Docker.
 
-El remoto DVC utilizado durante el build es:
+Tampoco deben versionarse las llaves de los proveedores de LLM usados en la evaluación de función de cita. `config/citation_eval.env.example` contiene únicamente nombres de variables, sin valores.
+
+El remoto DVC utilizado para recuperar los datos es:
 
 ```text
 publico
 ```
 
-y es de solo lectura.
+y es de solo lectura. El build de la imagen ya no lo utiliza.
 
 ---
 
@@ -1155,9 +1465,17 @@ Las credenciales de esos remotos no deben versionarse.
 ## Regenerar datos procesados
 
 ```bash
-uv run python -m src.data.make_processed
-uv run python -m src.training.export_top100
+uv run --group research python -m src.data.make_processed
+uv run --group research python -m src.training.export_top100
 ```
+
+Regenerar la información precalculada del tablero:
+
+```bash
+uv run --group research python -m src.training.build_insights --force
+```
+
+Este comando escribe `data/processed/dashboard_insights.json`, que sí se versiona en Git porque lo consume la API.
 
 ---
 
@@ -1189,6 +1507,20 @@ y sus versiones resueltas se fijan en:
 
 ```text
 uv.lock
+```
+
+Las dependencias están separadas por grupo según la responsabilidad de cada capa:
+
+```text
+principales   FastAPI, pydantic, modelo-citas, openai
+dev           pytest, tox
+research      DVC, MLflow, Jupyter, pandas, scikit-learn, matplotlib, seaborn
+```
+
+El grupo `research` no entra en la imagen de la API. Se instala solo cuando se va a entrenar, evaluar o explorar:
+
+```bash
+uv sync --group research
 ```
 
 Agregar una dependencia:
@@ -1254,6 +1586,12 @@ Jupyter
 pytest
 tox
 setuptools
+GitHub Actions
+LaTeX
+OpenAI API
+Google Gemini
+Cohere
+Ollama
 ```
 
 ---
@@ -1266,9 +1604,9 @@ setuptools
 git clone https://github.com/Byron971/microproyecto-local-citation.git
 cd microproyecto-local-citation
 
-uv sync
+uv sync --group research
 uv run dvc pull
-uv run pytest
+uv run --group research pytest
 ```
 
 ---
@@ -1334,6 +1672,20 @@ La solución implementa actualmente:
 - comunicación interna mediante Nginx;
 - despliegue funcional en Amazon EC2;
 - acceso desde navegador externo;
-- evidencia reproducible del flujo de inferencia.
+- evidencia reproducible del flujo de inferencia;
+- separación de responsabilidades entre el paquete del modelo y el repositorio de experimentación;
+- distribución del modelo como wheel versionado y publicado en S3, con hash fijado en `uv.lock`;
+- imagen de API sin código del modelo, sin dependencias de entrenamiento y sin acceso a datos;
+- integración continua para las pruebas de evaluación y la compilación del reporte;
+- pipeline de evaluación de función de cita con prompts versionados, cuatro proveedores de modelos, métricas comparables y medición de estabilidad;
+- validación manual del piloto de anotación y gold provisional de 20 casos.
+
+Pendiente en el frente de función de cita:
+
+- segunda validación manual independiente;
+- cálculo del acuerdo entre anotadores;
+- reconciliación de desacuerdos y congelamiento de `test_gold.jsonl`;
+- repetición de las corridas sobre el Test Gold definitivo;
+- consolidación de las métricas finales en el reporte.
 
 El sistema debe considerarse un prototipo académico. Las recomendaciones dependen del corpus utilizado, de la etapa de recuperación y del modelo entrenado, y no sustituyen la revisión académica de las referencias por parte del usuario.

@@ -21,60 +21,20 @@ Requiere ``data/raw/`` y ``data/processed/`` (ver el README, o ``dvc pull``).
 
 import argparse
 import random
-from collections.abc import Iterable, Sequence
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+from modelo_citas.models.tfidf_baseline import TfidfBaseline, clean_context_text
+from modelo_citas.processing.pairs import hard_negatives_from_ranking
 from sklearn.metrics import roc_auc_score
 
 from src.data.load_data import load_json
-from src.models.tfidf_baseline import TfidfBaseline, clean_context_text
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_RAW_DIR = REPO_ROOT / "data" / "raw"
 DEFAULT_PROCESSED_DIR = REPO_ROOT / "data" / "processed"
-
-
-def hard_negatives_from_ranking(
-    ranking: Sequence[str],
-    positive_ids: Iterable[str],
-    n_hard: int | None = None,
-) -> list[str]:
-    """Extrae negativos duros de un ranking ya calculado.
-
-    Un negativo duro es un artículo que la primera etapa colocó arriba pero que
-    no es una cita correcta: justamente el tipo de candidato que el reordenador
-    tendrá que descartar en producción. Se obtienen recorriendo el ranking en
-    orden y descartando los positivos, de modo que conserven la posición
-    relativa que TF-IDF les asignó.
-
-    Parameters
-    ----------
-    ranking:
-        Identificadores de artículo ordenados de mayor a menor similitud, tal
-        como los devuelve ``TfidfBaseline.rank()``.
-    positive_ids:
-        Identificadores que sí son citas correctas para esa consulta.
-    n_hard:
-        Cantidad máxima de negativos a devolver. ``None`` devuelve todos los
-        del ranking que no sean positivos.
-
-    Returns
-    -------
-    list[str]
-        Negativos duros, del más al menos similar a la consulta.
-    """
-    if n_hard is not None and n_hard < 0:
-        raise ValueError("n_hard debe ser mayor o igual a 0.")
-
-    # Se convierte a conjunto una sola vez: la pertenencia se consulta una vez
-    # por elemento del ranking, y con listas eso sería cuadrático.
-    positives = set(positive_ids)
-
-    negatives = [paper_id for paper_id in ranking if paper_id not in positives]
-
-    return negatives if n_hard is None else negatives[:n_hard]
 
 
 def separability_auc(

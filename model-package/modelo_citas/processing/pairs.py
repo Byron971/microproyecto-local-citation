@@ -4,6 +4,8 @@ import random
 from collections.abc import Collection, Mapping, Sequence
 from typing import Any
 
+import numpy as np
+
 
 def build_pairs(
     split: Sequence[dict],
@@ -105,6 +107,30 @@ def build_hard_pairs(
         )
 
     return pairs
+
+
+def labels_from_pairs(pairs: Sequence[dict[str, Any]]) -> np.ndarray:
+    """Etiquetas de los pares, en el mismo orden en que se construyeron.
+
+    El orden importa: las características se extraen de la misma lista, y una
+    reordenación silenciosa desalinearía etiquetas y filas.
+    """
+    return np.asarray([int(pair["label"]) for pair in pairs], dtype=int)
+
+
+def build_candidate_pairs(
+    candidate_records: Sequence[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Aplana candidatos para construir características de evaluación."""
+    return [
+        {
+            "context_id": record["context_id"],
+            "paper_id": paper_id,
+            "label": int(paper_id in set(record["positive_ids"])),
+        }
+        for record in candidate_records
+        for paper_id in record["candidate_ids"]
+    ]
 
 
 def retrieve_candidates(

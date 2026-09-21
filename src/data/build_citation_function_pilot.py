@@ -11,8 +11,9 @@ import random
 import re
 from pathlib import Path
 
+from modelo_citas.models.tfidf_baseline import clean_context_text
+
 from src.data.load_data import load_json
-from src.models.tfidf_baseline import clean_context_text
 
 DEFAULT_OUTPUT_PATH = Path("tests/fixtures/citation_function_pilot.jsonl")
 

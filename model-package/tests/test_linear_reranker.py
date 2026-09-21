@@ -1,7 +1,6 @@
 import numpy as np
 import pytest
-
-from src.models.linear_reranker import LinearReranker, rerank_candidate_records
+from modelo_citas.models.linear_reranker import LinearReranker, rerank_candidate_records
 
 
 def test_linear_reranker_assigns_higher_score_to_learned_positive_pattern():

@@ -1,4 +1,4 @@
-from src.data.build_pairs import build_pairs
+from modelo_citas.processing.pairs import build_pairs
 
 
 def test_build_pairs_preserves_positive_example():

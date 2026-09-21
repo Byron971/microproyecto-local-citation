@@ -1,2 +1,3 @@
 /raw
-/processed
+/processed/*
+!/processed/dashboard_insights.json

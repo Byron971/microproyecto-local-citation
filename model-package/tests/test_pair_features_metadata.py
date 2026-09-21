@@ -9,8 +9,7 @@ popularidad no se calcule sobre datos que el modelo no deberia ver.
 
 import numpy as np
 import pytest
-
-from src.features.pair_features import (
+from modelo_citas.processing.features import (
     FEATURE_NAMES,
     METADATA_FEATURE_NAMES,
     PairFeatureExtractor,
