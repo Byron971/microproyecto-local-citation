@@ -747,8 +747,8 @@ Pruebas automatizadas & 202 pruebas aprobadas \\
 Manual de usuario e instalación & Actualizado \\
 Dockerización & Realizado \\
 Despliegue mediante contenedores & Realizado \\
-Evidencia de despliegue en AWS & Previa al refactor final \\
-Validación post-refactor & Local con Docker Compose \\
+Despliegue en AWS EC2 (post-refactor) & Realizado \\
+Validación post-refactor & Local y en la nube \\
 Video final & Pendiente \\
 Reporte final de aportes & Realizado \\
 \bottomrule
@@ -768,6 +768,35 @@ ranking de recomendaciones con sus resúmenes. Esta validación confirma la
 arquitectura de producción posterior al refactor, pero no implica que la
 variante v2 experimental ya esté publicada en el wheel. El procedimiento
 actualizado se encuentra en \texttt{docs/manual\_instalacion.md}.
+
+El mismo sistema se desplegó sobre una instancia EC2 de AWS Academy
+(\texttt{t2.medium}, Ubuntu 24.04) con la arquitectura posterior al refactor.
+Sobre la instancia se instalaron Docker y Compose, se clonó el repositorio y se
+levantaron los dos servicios con \texttt{docker compose up -d --build}. El
+\emph{security group} expone únicamente el puerto 8080, por el que Nginx sirve
+el tablero y enruta las peticiones hacia la API por la red interna de Compose.
+No se requieren credenciales de AWS en la instancia: el wheel
+\texttt{modelo-citas} 0.2.0 se descarga desde una URL pública de S3.
+
+\begin{figure}[H]
+\centering
+
+\begin{minipage}{0.56\textwidth}
+\centering
+\includegraphics[width=\linewidth]{despliegue_aws_postrefactor_tablero.png}
+\caption*{(a) Tablero servido desde la IP pública de EC2}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\centering
+\includegraphics[width=\linewidth]{despliegue_aws_postrefactor_contenedores.png}
+\caption*{(b) Contenedores activos en la instancia}
+\end{minipage}
+
+\caption{Despliegue en la nube posterior al refactor: el tablero responde desde
+la IP pública y los dos contenedores permanecen activos, con la API en estado
+\emph{healthy}.}
+\end{figure}
 
 \pendingbox{
 Para cerrar la entrega queda grabar y publicar el video de síntesis e incorporar
@@ -926,9 +955,8 @@ La contenerización quedó completada y verificada después del refactor. La
 imagen de la API instala el wheel \texttt{modelo-citas} 0.2.0 publicado en S3 y
 no incorpora dependencias de entrenamiento ni necesita descargar los datos
 durante el build. La arquitectura final fue validada localmente con Docker
-Compose, API saludable y una recomendación real desde el tablero. Las evidencias
-en AWS corresponden al despliegue realizado antes del refactor final y se
-conservan como soporte histórico de la Entrega 3.
+Compose y desplegada sobre una instancia EC2 de AWS Academy, con API saludable y
+una recomendación real devuelta desde el tablero servido por la IP pública.
 
 Para cerrar la Entrega 3 queda pendiente el video de síntesis y su enlace final.
 Si se desea desplegar también la mejor variante experimental, el siguiente paso
