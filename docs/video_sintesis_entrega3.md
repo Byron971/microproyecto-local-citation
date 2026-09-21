@@ -2,7 +2,7 @@
 
 Objetivo interno: 8 a 9 minutos. El límite de la entrega es 10 minutos.
 
-Este guion cubre únicamente resultados y componentes que ya están documentados en el repositorio. La extensión de clasificación de función de cita debe mostrarse como trabajo adicional en curso mientras no exista Test Gold definitivo y corridas reales.
+Este guion cubre únicamente resultados y componentes que ya están documentados en el repositorio. La extensión de clasificación de función de cita ya cuenta con Test Gold definitivo y acuerdo interanotador medido, pero debe presentarse como trabajo en curso mientras las corridas de los modelos no se repitan sobre ese conjunto.
 
 ## 0:00–0:45 — Problema y objetivo
 
@@ -70,11 +70,12 @@ Voz:
 Pantalla:
 - docker-compose.yml.
 - issue#15_compose_servicios_activos.png.
-- issue#31_aws_contenedores_activos.png.
-- issue#31_aws_recomendacion_real.png.
+- despliegue_aws_postrefactor_tablero.png.
+- despliegue_aws_postrefactor_contenedores.png.
+- despliegue_aws_postrefactor_consola_ec2.png.
 
 Voz:
-"La API y el tablero se dockerizaron y se integraron mediante Docker Compose. Después se desplegaron en AWS. La auditoría desde un clon limpio verificó que DVC recupera los datos, el paquete puede entrenarse e instalarse y los contenedores se construyen sin depender del entorno de desarrollo original."
+"La API y el tablero se dockerizaron y se integraron mediante Docker Compose. Después se desplegaron sobre una instancia EC2 de AWS, donde el tablero responde desde la IP pública y la API reporta estado saludable. La auditoría desde un clon limpio verificó que DVC recupera los datos, el paquete puede entrenarse e instalarse y los contenedores se construyen sin depender del entorno de desarrollo original."
 
 ## 6:50–7:30 — Manuales y reproducibilidad
 
@@ -122,8 +123,9 @@ El reparto es una propuesta para asegurar participación identificable; puede ca
 - reportes/reporte03/mlflow_v2_tabla_corridas.png
 - reportes/reporte03/issue#14_funcionamiento_API.png
 - reportes/reporte03/issue#15_compose_servicios_activos.png
-- reportes/reporte03/issue#31_aws_contenedores_activos.png
-- reportes/reporte03/issue#31_aws_recomendacion_real.png
+- reportes/reporte03/despliegue_aws_postrefactor_tablero.png
+- reportes/reporte03/despliegue_aws_postrefactor_contenedores.png
+- reportes/reporte03/despliegue_aws_postrefactor_consola_ec2.png
 - docs/manual_usuario.md
 - docs/manual_instalacion.md
 - docs/evaluacion_comparativa_provisional_20sep.md
