@@ -203,15 +203,15 @@ TF--IDF
 $\rightarrow$
 Top--100
 $\rightarrow$
-Regresión logística
+reordenador lineal
 $\rightarrow$
 Top--K
 $\rightarrow$
-paquete
+wheel \texttt{modelo-citas}
 $\rightarrow$
 FastAPI
 $\rightarrow$
-tablero
+Nginx/tablero
 \end{center}
 
 La primera etapa compara el contexto con los 19.776 artículos del corpus
@@ -323,10 +323,10 @@ excluye el artículo citante igual que lo hace el conjunto de candidatos que
 consume el reordenador. Compararlo contra la versión que sí lo incluye inflaría
 la mejora atribuida al modelo.
 
-La diferencia entre las dos estrategias es considerable en las primeras
-posiciones del ranking. Con negativos aleatorios, Recall@10 alcanza 0,2882,
-mientras que con negativos difíciles baja a 0,0629. El mismo comportamiento
-aparece en MRR@10, que pasa de 0,1490 a 0,0212.
+En la primera versión (v1), la diferencia entre las dos estrategias es
+considerable en las primeras posiciones del ranking. Con negativos aleatorios,
+Recall@10 alcanza 0,2882, mientras que con negativos difíciles baja a 0,0629.
+El mismo comportamiento aparece en MRR@10, que pasa de 0,1490 a 0,0212.
 
 Las gráficas siguientes permiten observar esta diferencia de manera directa.
 
@@ -350,14 +350,14 @@ Las gráficas siguientes permiten observar esta diferencia de manera directa.
 
 \subsection{Segunda versión: ampliación de las características}
 
-La comparación anterior mostró que el cuello de botella estaba en la
-representación y no en el algoritmo. Entrenado con negativos difíciles, el
-reordenador aprendía un coeficiente de $-2{,}09$ sobre la similitud con el
-resumen: prefería lo \emph{menos} parecido. No es un error de implementación,
-sino un ajuste fiel a su señal, porque el área bajo la curva ROC de positivos
-frente a negativos difíciles usando solo similitud coseno es $0{,}4053$, por
-debajo de $0{,}5$. Con cinco características léxicas, separar un positivo de los
-cien candidatos más parecidos es una tarea que el vector no puede resolver.
+La comparación anterior sugirió que una parte importante del cuello de botella
+estaba en la representación disponible para el reordenador. Entrenado con
+negativos difíciles, el modelo asignaba un coeficiente de $-2{,}09$ a la
+similitud con el resumen. Ese signo es consistente con la señal observada en
+este conjunto: el área bajo la curva ROC de positivos frente a negativos
+difíciles usando solo similitud coseno es $0{,}4053$, por debajo de $0{,}5$.
+Con únicamente cinco características léxicas, distinguir un positivo entre
+candidatos ya muy parecidos resulta especialmente difícil.
 
 La segunda versión amplía el vector a diez características. Las cinco nuevas se
 derivan de los metadatos que codifica el identificador del ACL Anthology
@@ -374,32 +374,35 @@ del corpus-- y del conjunto de entrenamiento:
         cita en entrenamiento.
 \end{itemize}
 
-La restricción temporal resultó la señal más valiosa. Antes de incorporarla, el
-11,1\,\% de los cupos del \emph{Top}--100 se gastaba en artículos posteriores al
-citante, y de las 9.381 consultas de validación \textbf{ninguna} tiene un
-positivo posterior, de modo que la restricción es exacta y descartarlos no puede
-eliminar un acierto legítimo.
+La señal temporal resultó especialmente útil. Antes de incorporarla, el
+11,1\,\% de los cupos del \emph{Top}--100 correspondía a artículos posteriores
+al citante. En las 9.381 consultas de validación no se observó ningún positivo
+posterior al artículo citante; por tanto, en esa partición la señal permite
+penalizar candidatos temporalmente incompatibles sin perder un positivo
+observado.
 
-Los coeficientes de la variante ganadora confirman su peso: sobre
-características estandarizadas, \texttt{is\_future} obtiene $-3{,}0790$ y
-\texttt{citation\_prior} $+2{,}6889$, ambos por encima de
-\texttt{similarity\_abstract} ($+2{,}4954$). El modelo aprendió la restricción
-temporal por sí solo, sin que se le impusiera como filtro.
+Los coeficientes de la mejor variante experimental muestran el peso de estas
+señales: sobre características estandarizadas, \texttt{is\_future} obtiene
+$-3{,}0790$ y \texttt{citation\_prior} $+2{,}6889$, ambos con magnitud
+comparable o superior a \texttt{similarity\_abstract} ($+2{,}4954$). La
+regresión asigna así una penalización fuerte a los candidatos posteriores al
+artículo citante, sin aplicar un filtro temporal determinista.
 
 \medskip
 
-El \textbf{modelo seleccionado es la versión 2 con negativos aleatorios}, por
-métricas de ranking y no por \emph{accuracy}: frente a la línea base comparable
-mejora un 47,5\,\% en Recall@10 y un 61,8\,\% en MRR@10; frente a la primera
-versión, un 31,6\,\% y un 45,4\,\%. La ganancia es mayor en MRR que en Recall,
-que es justamente el comportamiento esperado de una segunda etapa: no encuentra
-artículos nuevos, sube los que ya estaban.
+La \textbf{mejor variante experimental es la versión 2 con negativos
+aleatorios}, de acuerdo con las métricas de ranking: frente a la línea base
+comparable mejora un 47,5\,\% en Recall@10 y un 61,8\,\% en MRR@10; frente a
+la primera versión, un 31,6\,\% y un 45,4\,\%. La ganancia es mayor en MRR
+que en Recall, un comportamiento coherente con una segunda etapa que reordena
+candidatos ya recuperados.
 
 Con el vector ampliado, la variante de negativos difíciles mejora 3,6 veces en
-Recall@10 (de 0,0629 a 0,2288) pero sigue perdiendo. La suma de los coeficientes
-de similitud permanece negativa, de modo que las características nuevas
-compensan la señal invertida sin corregirla. Explotar negativos difíciles
-exigiría una representación densa, no más señales tabulares.
+Recall@10 (de 0,0629 a 0,2288), aunque permanece por debajo de la variante
+aleatoria. La suma de los coeficientes de similitud continúa siendo negativa, de
+modo que las características nuevas compensan parte de esa señal. Aprovechar
+mejor los negativos difíciles probablemente requiera una representación
+semántica más rica, por ejemplo densa, además de las señales tabulares.
 
 Recall@100 permanece alrededor de 0,516 en las dos configuraciones porque
 ambas reciben exactamente los mismos 100 candidatos recuperados por TF--IDF.
@@ -412,10 +415,14 @@ una gran similitud léxica con el contexto y, utilizando únicamente cinco
 características, el reordenador dispone de poca información adicional para
 distinguirlos correctamente.
 
-Por este motivo se seleccionó la estrategia \texttt{random} como configuración
-del modelo empaquetado. La versión actual utiliza semilla 42, dos negativos por
-positivo, Top--100, $K=10$, \texttt{max\_features=50000},
-\texttt{min\_df=2} y $C=1.0$.
+Por métricas se priorizó la estrategia \texttt{random}. Es importante
+distinguir entre el mejor resultado experimental y la versión actualmente
+servida: el wheel \texttt{modelo-citas} 0.2.0 validado en Docker conserva
+\texttt{include\_metadata=false}, por lo que el modelo desplegado corresponde a
+la versión 1 con negativos aleatorios y cinco características. Esa versión
+obtuvo Recall@10 de 0,2882 y MRR@10 de 0,1490. La versión 2 queda documentada
+como la mejor variante experimental y requiere publicarse en un nuevo wheel
+para convertirse en la versión desplegada.
 
 % ============================================================================
 % 4. MLFLOW
@@ -542,9 +549,13 @@ en \texttt{pyproject.toml} y \texttt{uv.lock}.
 
 El wheel incluye el recuperador TF--IDF, el reordenador lineal, la
 configuración, el modelo entrenado y la información necesaria para generar las
-recomendaciones. Por esta separación, FastAPI y las imágenes Docker no necesitan
-entrenar el modelo, copiar \texttt{model-package/} ni descargar el dataset para
-servir inferencias.
+recomendaciones. En el artefacto 0.2.0 actualmente publicado,
+\texttt{include\_metadata=false}; por ello el runtime sirve la variante v1
+\texttt{Random} de cinco características. La variante v2 permanece como mejor
+resultado experimental, pero no se presenta en este reporte como ya desplegada.
+Por esta separación, FastAPI y las imágenes Docker no necesitan entrenar el
+modelo, copiar \texttt{model-package/} ni descargar el dataset para servir
+inferencias.
 
 La interfaz pública del paquete puede utilizarse de esta forma:
 
@@ -557,14 +568,11 @@ resultado = make_prediction(
 )
 \end{verbatim}
 
-Para comprobar que el paquete no funcionara únicamente por encontrarse dentro
-del repositorio, se construyó el wheel y se instaló en un entorno virtual
-limpio. Desde ese entorno se importó \texttt{modelo\_citas} directamente desde
-\texttt{site-packages} y se ejecutó una predicción real.
-
-También se ejecutaron las pruebas específicas del paquete mediante Tox.
-Después de integrar el cambio con la rama principal, se volvió a ejecutar la
-suite completa del proyecto.
+La validación posterior al refactor comprobó la frontera de producción:
+\texttt{uv sync} instaló \texttt{modelo-citas} 0.2.0 desde S3 y Docker construyó
+la API sin copiar \texttt{model-package/}, sin descargar el dataset y sin
+reentrenar. También se ejecutaron las pruebas del paquete y la suite completa
+del proyecto.
 
 \notabox{
 \textbf{Resultado de la validación posterior al refactor: 202 pruebas aprobadas.}
@@ -604,9 +612,10 @@ GET  & \texttt{/docs} & Documentación Swagger/OpenAPI \\
 
 Las pruebas realizadas desde Swagger devolvieron código HTTP 200 y resultados
 reales para el endpoint de recomendación. El endpoint
-\texttt{/api/estado} también confirmó que el modelo cargado corresponde a
-TF--IDF más reordenador lineal, versión 0.2.0, sobre un catálogo de 19.776
-artículos.
+\texttt{/api/estado} confirmó que el paquete cargado es
+\texttt{modelo-citas} 0.2.0 sobre un catálogo de 19.776 artículos. La ficha
+técnica expuesta por ese endpoint reporta cinco coeficientes del reordenador,
+coherentes con la variante v1 \texttt{Random} actualmente empaquetada.
 
 El tablero se encuentra en \texttt{src/app/}. Desde la interfaz, el usuario
 puede escribir un contexto, escoger cuántas recomendaciones desea recibir y
@@ -651,7 +660,6 @@ El flujo principal para preparar el proyecto es:
 \begin{verbatim}
 git clone https://github.com/Byron971/microproyecto-local-citation.git
 cd microproyecto-local-citation
-uv sync
 docker compose up --build
 \end{verbatim}
 
@@ -679,11 +687,12 @@ desacoplada del entrenamiento mediante el wheel versionado.
 % 9. ESTADO
 % ============================================================================
 
-\section{Estado actual de la Entrega 3}
+\section{Estado al cierre de la Entrega 3}
 
-Hasta el momento se han completado los componentes relacionados con los datos,
-la experimentación, la selección del modelo, el empaquetamiento y la integración
-local con la API y el tablero.
+Al cierre de este reporte se encuentran implementados los componentes de datos,
+experimentación, empaquetamiento, API, tablero y contenedores. El estado se
+presenta separando explícitamente la mejor variante experimental del modelo que
+se encuentra empaquetado y demostrado en la API.
 
 \begin{table}[H]
 \centering
@@ -697,40 +706,54 @@ Repositorio Git y colaboración & Realizado \\
 Datos versionados con DVC & Realizado \\
 Modelos y comparación experimental & Realizado \\
 Seguimiento con MLflow & Realizado \\
-Modelo seleccionado & Realizado \\
-Modelo empaquetado & Realizado \\
+Mejor variante experimental (v2 Random) & Realizado \\
+Modelo empaquetado (v1 Random, wheel 0.2.0) & Realizado \\
 API con modelo empaquetado & Realizado \\
 Tablero integrado & Realizado \\
 Pruebas automatizadas & 202 pruebas aprobadas \\
 Manual de usuario e instalación & Actualizado \\
 Dockerización & Realizado \\
 Despliegue mediante contenedores & Realizado \\
-Despliegue en AWS & Realizado \\
-Validación final del despliegue & Verificada después del refactor \\
+Evidencia de despliegue en AWS & Previa al refactor final \\
+Validación post-refactor & Local con Docker Compose \\
 Video final & Pendiente \\
 Reporte final de aportes & Realizado \\
 \bottomrule
 \end{tabular}
 
-\caption{Estado de los componentes trabajados hasta el momento.}
+\caption{Estado de los componentes al cierre de la Entrega 3.}
 \end{table}
 
 Después del refactor de responsabilidades se repitió la validación del sistema.
-La suite completa finalizó con 202 pruebas aprobadas. En Windows 11 se habilitó
-WSL2, Docker Desktop construyó y levantó los servicios con
+La suite completa finalizó con 202 pruebas aprobadas. En Windows 11, Docker
+Desktop sobre WSL2 construyó y levantó los servicios con
 \texttt{docker compose up --build}, y el healthcheck de la API respondió
 correctamente. El endpoint \texttt{/api/estado} reportó
-\texttt{listo=true}, el modelo TF--IDF más reordenador lineal versión 0.2.0 y
-19.776 artículos. Desde \texttt{localhost:8080} se cargó un ejemplo real y el
-tablero devolvió un ranking de recomendaciones con sus resúmenes. Esta
-validación confirma que la arquitectura de producción ya no depende de DVC ni
-de reentrenar el modelo durante el build. El procedimiento actualizado se
-encuentra en \texttt{docs/manual\_instalacion.md}.
+\texttt{listo=true}, paquete \texttt{modelo-citas} 0.2.0 y 19.776 artículos.
+Desde \texttt{localhost:8080} se cargó un ejemplo real y el tablero devolvió un
+ranking de recomendaciones con sus resúmenes. Esta validación confirma la
+arquitectura de producción posterior al refactor, pero no implica que la
+variante v2 experimental ya esté publicada en el wheel. El procedimiento
+actualizado se encuentra en \texttt{docs/manual\_instalacion.md}.
 
 \pendingbox{
-Para cerrar la Entrega 3 queda grabar y publicar el video de síntesis e
-incorporar su enlace en la entrega. Los manuales y la arquitectura descrita en
-este reporte ya fueron actualizados después de la validación final con Docker.
+Para cerrar la entrega queda grabar y publicar el video de síntesis e incorporar
+su enlace. Si el equipo decide que la variante v2 debe ser también la versión
+servida, será necesario publicar un nuevo wheel con
+\texttt{include\_metadata=true} y repetir la validación de Docker. Mientras eso
+no ocurra, este reporte diferencia explícitamente entre v2 experimental y v1
+desplegada.
+}
+
+\notabox{
+\textbf{Soportes principales de la entrega:}
+repositorio GitHub \url{https://github.com/Byron971/microproyecto-local-citation};
+datos en \texttt{data/raw.dvc} y \texttt{data/processed.dvc};
+manuales en \texttt{docs/manual\_usuario.md} y
+\texttt{docs/manual\_instalacion.md}; artefactos de contenedores
+\texttt{Dockerfile}, \texttt{Dockerfile.dashboard} y
+\texttt{docker-compose.yml}; evidencias de MLflow y despliegue en
+\texttt{reportes/reporte03/}.
 }
 
 % ============================================================================
@@ -745,10 +768,14 @@ Los cambios de mayor impacto se revisan antes de incorporarse a
 permite solicitar revisión a otros integrantes antes de aceptar determinados
 cambios.
 
-Durante esta fase se revisó especialmente el Pull Request que incorporó
-\texttt{model-package}. Antes de aprobarlo se comprobaron el entrenamiento,
-las pruebas del paquete, la construcción del wheel, su instalación en un entorno
-limpio y la integración con FastAPI y el tablero.
+Durante esta fase se revisó la integración final del modelo y el refactor que
+separó entrenamiento y producción. El código de investigación quedó en
+\texttt{model-package/}, mientras la API instala un wheel versionado desde S3.
+Después del refactor se ejecutaron 202 pruebas y se validó el flujo
+Docker $\rightarrow$ API $\rightarrow$ modelo $\rightarrow$ tablero mediante
+una recomendación real. La revisión también permitió identificar que el wheel
+0.2.0 mantiene la configuración v1 de cinco características, mientras v2 sigue
+siendo la mejor variante experimental.
 
 \begin{table}[H]
 \centering
@@ -795,21 +822,25 @@ desde entorno limpio, incluida evidencia de Docker y despliegue. \\
 \bottomrule
 \end{tabular}
 
-\caption{Resumen de los aportes realizados hasta esta etapa del proyecto.}
+\caption{Resumen de los aportes realizados durante la Entrega 3.}
 \end{table}
 
 La tabla resume contribuciones verificables en el historial del repositorio,
-issues y Pull Requests. El video final debe mantener participación identificable
-de los integrantes y reflejar esta distribución de trabajo.
+issues y Pull Requests. De acuerdo con la guía del curso, la contribución
+individual se respalda mediante commits, el reporte de trabajo en equipo y la
+sustentación; el video puede apoyarse en esta distribución para presentar el
+trabajo realizado.
 
-Como preparación adicional para la evaluación de función de cita se versionaron
-tres estrategias de \emph{prompting}, el parser común de nueve puntajes y el
-pipeline de métricas con Precision, Recall, F1 Macro/Micro y matrices de
-confusión. También se completó una primera validación manual por parte del
-equipo sobre 20 casos piloto. Este conjunto se conserva como evaluación
-provisional: todavía requiere una segunda validación manual independiente,
-cálculo de acuerdo interanotador y reconciliación antes de denominarlo
-\emph{Test Gold} definitivo.
+Como extensión adicional se versionaron tres estrategias de \emph{prompting},
+el parser común de nueve puntajes y el pipeline de métricas con Precision,
+Recall, F1 Macro/Micro y matrices de confusión. Se completó una primera
+validación manual sobre 20 casos piloto y se ejecutaron corridas provisionales
+con Qwen3:8B, Gemini y Cohere; OpenAI quedó implementado, pero sin predicciones
+por falta de saldo disponible. El detalle se conserva en
+\texttt{docs/evaluacion\_comparativa\_provisional\_20sep.md}. El conjunto
+sigue siendo provisional: falta una segunda validación humana independiente,
+cálculo de acuerdo y reconciliación antes de denominarlo \emph{Test Gold}
+definitivo.
 
 % ============================================================================
 % 11. CONCLUSIONES
@@ -817,17 +848,19 @@ cálculo de acuerdo interanotador y reconciliación antes de denominarlo
 
 \section{Conclusiones}
 
-La comparación realizada permitió escoger una configuración concreta para el
-reordenador. La versión 2 con negativos aleatorios alcanzó Recall@10 de
-0,3793 y MRR@10 de 0,2166, mientras que la versión 2 con negativos difíciles
-obtuvo 0,2288 y 0,0995, respectivamente. Por esta razón se seleccionó la
-versión 2 con negativos aleatorios como modelo final.
+La comparación experimental identificó a la versión 2 con negativos aleatorios
+como la mejor variante medida: alcanzó Recall@10 de 0,3793 y MRR@10 de 0,2166,
+mientras que la versión 2 con negativos difíciles obtuvo 0,2288 y 0,0995. Sin
+embargo, la versión actualmente empaquetada y demostrada en la API es v1
+\texttt{Random}, incluida en \texttt{modelo-citas} 0.2.0. Esta distinción evita
+atribuir al sistema desplegado métricas que corresponden a una variante todavía
+no publicada en el wheel.
 
-El experimento también permitió identificar una limitación importante. Al
-mantenerse Recall@100 cerca de 0,516 en ambas variantes, aproximadamente la
-mitad de las citas correctas quedan fuera del conjunto inicial de 100
-candidatos. Por esta razón, una mejora futura no debería concentrarse únicamente
-en el reordenador, sino también en la etapa de recuperación.
+El experimento también permitió identificar una limitación importante. Con
+Recall@100 de 0,5160, cerca del 48,4\,\% de las consultas de validación no tiene
+la cita correcta dentro de los cien candidatos iniciales. Por ello, además de
+mejorar el reordenador, una línea prioritaria de trabajo es fortalecer la etapa
+de recuperación.
 
 Además de mejorar el modelo, durante esta entrega se avanzó en la construcción
 de una solución que pueda reproducirse y reutilizarse fuera del entorno de
@@ -835,23 +868,23 @@ experimentación. Los datos están versionados con DVC, los experimentos quedan
 registrados en MLflow, el modelo puede instalarse como wheel y ya es consumido
 por FastAPI y por el tablero.
 
-La contenerización y el despliegue quedaron completados y verificados. Tras el
-refactor, la imagen de la API instala el wheel \texttt{modelo-citas} 0.2.0
-publicado en S3 y no incorpora dependencias de entrenamiento ni necesita
-descargar los datos durante el build. La solución fue validada localmente con
-Docker Compose, API saludable y una recomendación real desde el tablero; las
-evidencias previas de despliegue en AWS se mantienen como parte de la Entrega 3.
+La contenerización quedó completada y verificada después del refactor. La
+imagen de la API instala el wheel \texttt{modelo-citas} 0.2.0 publicado en S3 y
+no incorpora dependencias de entrenamiento ni necesita descargar los datos
+durante el build. La arquitectura final fue validada localmente con Docker
+Compose, API saludable y una recomendación real desde el tablero. Las evidencias
+en AWS corresponden al despliegue realizado antes del refactor final y se
+conservan como soporte histórico de la Entrega 3.
 
 Para cerrar la Entrega 3 queda pendiente el video de síntesis y su enlace final.
-En la extensión de clasificación de función de cita ya se realizaron corridas
-reales provisionales con Qwen3:8B, Gemini y Cohere. Sin embargo, todavía se
-requiere una segunda validación manual independiente, cálculo de acuerdo,
-reconciliación y repetición de la evaluación sobre un Test Gold definitivo antes
-de presentar esos resultados como definitivos. De cara a la continuación del trabajo, el techo del recomendador
-está en la primera etapa: con un Recall@100 de 0,5160, la mitad de las consultas
-no tiene solución posible por reordenamiento, de modo que el margen de mejora
-está en la recuperación de candidatos --por ejemplo mediante representaciones
-densas-- antes que en el reordenador.
+Si se desea desplegar también la mejor variante experimental, el siguiente paso
+es publicar un nuevo wheel con v2 y repetir la prueba contenerizada. En la
+extensión de clasificación de función de cita todavía se requiere una segunda
+validación humana independiente, cálculo de acuerdo, reconciliación y repetición
+de la evaluación sobre un Test Gold definitivo antes de presentar esos
+resultados como definitivos. En el recomendador principal, el Recall@100 de
+0,5160 muestra que un margen importante de mejora está en la recuperación de
+candidatos, por ejemplo mediante representaciones semánticas más ricas.
 
 % ============================================================================
 % REFERENCIAS
@@ -859,7 +892,7 @@ densas-- antes que en el reordenador.
 
 \section*{Referencias}
 
-\footnotesize
+\scriptsize
 
 Gu, N. (2022).
 \textit{Local-Citation-Recommendation} [Computer software].
