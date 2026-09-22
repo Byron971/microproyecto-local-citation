@@ -46,13 +46,13 @@ Este frente adicional ya tiene:
 - formulario vacío para una segunda validación independiente;
 - gold provisional protegido para evitar reportarlo como definitivo.
 
-Todavía falta completar la segunda validación manual independiente, calcular acuerdo interanotador, reconciliar desacuerdos y ejecutar corridas reales con los modelos configurados.
+La segunda validación manual independiente quedó completada el 20 de septiembre: acuerdo del 0,60, Cohen Kappa de 0,4839, desacuerdos reconciliados y Test Gold definitivo congelado en annotations/citation_function/test_gold.jsonl. Falta únicamente ejecutar corridas reales con los modelos configurados sobre ese conjunto.
 
 ## Orden de cierre recomendado
 
-1. Obtener annotator_b_blank.csv completado por un segundo validador.
-2. Ejecutar el cálculo de acuerdo y reconciliar desacuerdos.
-3. Generar annotations/citation_function/test_gold.jsonl.
+1. ~~Obtener annotator_b_blank.csv completado por un segundo validador.~~ Hecho: annotator_b_carlos.csv.
+2. ~~Ejecutar el cálculo de acuerdo y reconciliar desacuerdos.~~ Hecho: acuerdo/ con Kappa 0,4839.
+3. ~~Generar annotations/citation_function/test_gold.jsonl.~~ Hecho.
 4. Configurar modelos y credenciales localmente; nunca versionarlas.
 5. Ejecutar el orquestador sobre el Test Gold definitivo.
 6. Incorporar resultados definitivos al reporte si entran dentro del alcance de la entrega.

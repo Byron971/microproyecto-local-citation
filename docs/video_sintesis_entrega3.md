@@ -2,7 +2,7 @@
 
 Objetivo interno: 8 a 9 minutos. El límite de la entrega es 10 minutos.
 
-Este guion cubre únicamente resultados y componentes que ya están documentados en el repositorio. La extensión de clasificación de función de cita debe mostrarse como trabajo adicional en curso mientras no exista Test Gold definitivo y corridas reales.
+Este guion cubre únicamente resultados y componentes que ya están documentados en el repositorio. La extensión de clasificación de función de cita ya cuenta con Test Gold definitivo y acuerdo interanotador medido, pero debe presentarse como trabajo en curso mientras las corridas de los modelos no se repitan sobre ese conjunto.
 
 ## 0:00–0:45 — Problema y objetivo
 
@@ -70,11 +70,12 @@ Voz:
 Pantalla:
 - docker-compose.yml.
 - issue#15_compose_servicios_activos.png.
-- issue#31_aws_contenedores_activos.png.
-- issue#31_aws_recomendacion_real.png.
+- despliegue_aws_postrefactor_tablero.png.
+- despliegue_aws_postrefactor_contenedores.png.
+- despliegue_aws_postrefactor_consola_ec2.png.
 
 Voz:
-"La API y el tablero se dockerizaron y se integraron mediante Docker Compose. Después se desplegaron en AWS. La auditoría desde un clon limpio verificó que DVC recupera los datos, el paquete puede entrenarse e instalarse y los contenedores se construyen sin depender del entorno de desarrollo original."
+"La API y el tablero se dockerizaron y se integraron mediante Docker Compose. Después se desplegaron sobre una instancia EC2 de AWS, donde el tablero responde desde la IP pública y la API reporta estado saludable. La auditoría desde un clon limpio verificó que DVC recupera los datos, el paquete puede entrenarse e instalarse y los contenedores se construyen sin depender del entorno de desarrollo original."
 
 ## 6:50–7:30 — Manuales y reproducibilidad
 
@@ -104,7 +105,7 @@ Pantalla:
 - Tabla con Qwen3:8B, Gemini 3.5 Flash-Lite y Cohere Command A+.
 
 Voz:
-"Como extensión, evaluamos clasificación de función de cita en nueve categorías usando tres estrategias de prompting sobre veinte casos piloto. En este conjunto provisional, Gemini con few-shot obtuvo F1 Macro de 0,329 y accuracy de 0,65; Cohere alcanzó F1 Macro de 0,261 y Qwen local 0,174 en sus mejores configuraciones comparables. Estos resultados son preliminares porque el conjunto contiene solo cinco de las nueve clases y no se contó con un segundo anotador humano independiente. Por ello no reportamos acuerdo interanotador ni presentamos este piloto como Test Gold definitivo."
+"Como extensión, evaluamos clasificación de función de cita en nueve categorías usando tres estrategias de prompting sobre veinte casos piloto. En este conjunto provisional, Gemini con few-shot obtuvo F1 Macro de 0,329 y accuracy de 0,65; Cohere alcanzó F1 Macro de 0,261 y Qwen local 0,174 en sus mejores configuraciones comparables. Completamos además una segunda validación humana independiente sobre esos veinte casos, con un acuerdo del sesenta por ciento y un Cohen Kappa de cero coma cuarenta y ocho, que corresponde a un acuerdo moderado. Tras reconciliar los desacuerdos congelamos el Test Gold definitivo. Los resultados de los modelos siguen siendo preliminares por dos razones: se calcularon sobre el conjunto provisional y aún deben repetirse sobre el definitivo, y el conjunto cubre solo cinco de las nueve clases."
 
 ## Reparto sugerido
 
@@ -122,8 +123,9 @@ El reparto es una propuesta para asegurar participación identificable; puede ca
 - reportes/reporte03/mlflow_v2_tabla_corridas.png
 - reportes/reporte03/issue#14_funcionamiento_API.png
 - reportes/reporte03/issue#15_compose_servicios_activos.png
-- reportes/reporte03/issue#31_aws_contenedores_activos.png
-- reportes/reporte03/issue#31_aws_recomendacion_real.png
+- reportes/reporte03/despliegue_aws_postrefactor_tablero.png
+- reportes/reporte03/despliegue_aws_postrefactor_contenedores.png
+- reportes/reporte03/despliegue_aws_postrefactor_consola_ec2.png
 - docs/manual_usuario.md
 - docs/manual_instalacion.md
 - docs/evaluacion_comparativa_provisional_20sep.md

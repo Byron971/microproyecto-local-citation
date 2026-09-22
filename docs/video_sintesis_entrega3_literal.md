@@ -108,7 +108,7 @@ Como extensión del trabajo también preparamos un flujo para clasificar la func
 
 Se versionaron tres estrategias de prompting, un parser común, métricas de evaluación y una primera validación manual por parte del equipo sobre veinte casos piloto.
 
-Este resultado todavía se mantiene como provisional, porque falta una segunda validación manual independiente y el cálculo de acuerdo interanotador antes de denominarlo Test Gold definitivo.
+Completamos además una segunda validación manual independiente sobre esos veinte casos. El acuerdo fue del sesenta por ciento, con un Cohen Kappa de cero coma cuarenta y ocho, un acuerdo moderado, y tras reconciliar los desacuerdos congelamos el Test Gold definitivo. Los resultados de los modelos siguen siendo preliminares porque se calcularon sobre el conjunto provisional y deben repetirse sobre el definitivo.
 
 ## 7:45–8:15 — Cierre
 

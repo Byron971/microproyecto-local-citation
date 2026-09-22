@@ -1,0 +1,10 @@
+{
+  "n_source": 20,
+  "n_annotator_a": 20,
+  "n_annotator_b": 20,
+  "n_common": 20,
+  "n_agreements": 12,
+  "n_disagreements": 8,
+  "agreement_rate": 0.6,
+  "cohen_kappa": 0.4838709677419355
+}

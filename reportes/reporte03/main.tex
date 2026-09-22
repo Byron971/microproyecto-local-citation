@@ -184,6 +184,34 @@ mantiene enfocado en el código, la configuración y la documentación, mientras
 DVC conserva el versionamiento de los conjuntos utilizados durante los
 experimentos.
 
+\subsection{Cambios respecto a la segunda entrega}
+
+\begin{itemize}
+    \item \textbf{Segunda versión del reordenador.} El vector de características
+    pasó de cinco a diez señales, incorporando metadatos derivados del
+    identificador del ACL Anthology. El Recall@10 subió de 0,2882 a 0,3793 y el
+    MRR@10 de 0,1490 a 0,2166 sobre las mismas 9.381 consultas de validación.
+    \item \textbf{Empaquetamiento del modelo.} El modelo seleccionado se publicó
+    como el wheel \texttt{modelo-citas} 0.2.0 en un bucket S3 público. La
+    instalación ya no requiere entrenar localmente ni disponer de credenciales de
+    AWS.
+    \item \textbf{Del proceso único a los contenedores.} En la Entrega 2 el
+    tablero ya producía recomendaciones reales, pero servía la línea base TF--IDF
+    desde un solo proceso local lanzado con \texttt{uv run tablero}. Ahora la API
+    y el tablero son servicios separados, el modelo que se sirve es el reordenador
+    empaquetado, y ambos se orquestan con Docker Compose detrás de Nginx.
+    \item \textbf{Separación de responsabilidades.} El código de
+    experimentación en \texttt{src/} se separó del paquete distribuible en
+    \texttt{model-package/}, de modo que la imagen de producción no arrastra
+    dependencias de investigación.
+    \item \textbf{Extensión de clasificación de función de cita.} Se añadió una
+    línea de trabajo que clasifica la función retórica de cada cita en nueve
+    categorías, con validación humana por dos anotadores y acuerdo medido.
+    \item \textbf{Remoto DVC público.} El remoto por omisión pasó a ser una URL
+    HTTPS de solo lectura, para que la recuperación de los datos no dependa de
+    credenciales del equipo.
+\end{itemize}
+
 % ============================================================================
 % 2. ARQUITECTURA
 % ============================================================================
@@ -719,8 +747,8 @@ Pruebas automatizadas & 202 pruebas aprobadas \\
 Manual de usuario e instalación & Actualizado \\
 Dockerización & Realizado \\
 Despliegue mediante contenedores & Realizado \\
-Evidencia de despliegue en AWS & Previa al refactor final \\
-Validación post-refactor & Local con Docker Compose \\
+Despliegue en AWS EC2 (post-refactor) & Realizado \\
+Validación post-refactor & Local y en la nube \\
 Video final & Pendiente \\
 Reporte final de aportes & Realizado \\
 \bottomrule
@@ -740,6 +768,43 @@ ranking de recomendaciones con sus resúmenes. Esta validación confirma la
 arquitectura de producción posterior al refactor, pero no implica que la
 variante v2 experimental ya esté publicada en el wheel. El procedimiento
 actualizado se encuentra en \texttt{docs/manual\_instalacion.md}.
+
+El mismo sistema se desplegó sobre una instancia EC2 de AWS Academy
+(\texttt{t2.medium}, Ubuntu 24.04) con la arquitectura posterior al refactor.
+Sobre la instancia se instalaron Docker y Compose, se clonó el repositorio y se
+levantaron los dos servicios con \texttt{docker compose up -d --build}. El
+\emph{security group} expone únicamente el puerto 8080, por el que Nginx sirve
+el tablero y enruta las peticiones hacia la API por la red interna de Compose.
+No se requieren credenciales de AWS en la instancia: el wheel
+\texttt{modelo-citas} 0.2.0 se descarga desde una URL pública de S3.
+
+\begin{figure}[H]
+\centering
+
+\begin{minipage}{0.56\textwidth}
+\centering
+\includegraphics[width=\linewidth]{despliegue_aws_postrefactor_tablero.png}
+\caption*{(a) Tablero servido desde la IP pública de EC2}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\centering
+\includegraphics[width=\linewidth]{despliegue_aws_postrefactor_contenedores.png}
+\caption*{(b) Contenedores activos en la instancia}
+\end{minipage}
+
+\caption{Despliegue en la nube posterior al refactor: el tablero responde desde
+la IP pública y los dos contenedores permanecen activos, con la API en estado
+\emph{healthy}.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\linewidth]{despliegue_aws_postrefactor_consola_ec2.png}
+\caption{Ficha de la instancia en la consola de EC2. La IP pública 3.235.175.77
+coincide con la del tablero y la IP privada 172.31.66.17 con el \emph{prompt} de
+la sesión SSH, de modo que las tres evidencias corresponden a la misma máquina.}
+\end{figure}
 
 \pendingbox{
 Para cerrar la entrega queda grabar y publicar el video de síntesis e incorporar
@@ -764,6 +829,10 @@ manuales en \texttt{docs/manual\_usuario.md} y
 % ============================================================================
 % 10. EQUIPO
 % ============================================================================
+
+% El reporte de trabajo en equipo es un entregable aparte de maximo 1 pagina
+% segun la rubrica; va en su propia hoja, como en las entregas 1 y 2.
+\clearpage
 
 \section{Trabajo en equipo}
 
@@ -842,10 +911,27 @@ Recall, F1 Macro/Micro y matrices de confusión. Se completó una primera
 validación manual sobre 20 casos piloto y se ejecutaron corridas provisionales
 con Qwen3:8B, Gemini y Cohere; OpenAI quedó implementado, pero sin predicciones
 por falta de saldo disponible. El detalle se conserva en
-\texttt{docs/evaluacion\_comparativa\_provisional\_20sep.md}. El conjunto
-sigue siendo provisional: falta una segunda validación humana independiente,
-cálculo de acuerdo y reconciliación antes de denominarlo \emph{Test Gold}
-definitivo.
+\texttt{docs/evaluacion\_comparativa\_provisional\_20sep.md}.
+
+Posteriormente se completó la segunda validación humana independiente sobre los
+mismos 20 casos, realizada sin consultar la primera hoja ni las sugerencias
+automáticas. El acuerdo fue de 12 coincidencias y 8 desacuerdos, es decir una
+tasa de 0,60 y un \emph{Cohen Kappa} de 0,4839, valor que corresponde a un
+acuerdo moderado y se ubica dentro del rango habitual para taxonomías de función
+de cita con nueve clases. Tras reconciliar los desacuerdos quedó congelado el
+\emph{Test Gold} definitivo en
+\texttt{annotations/citation\_function/test\_gold.jsonl}, que difiere del
+conjunto provisional en un único caso.
+
+Tres limitaciones acompañan esa cifra. Primero, el Kappa compara una anotación
+asistida con explicaciones contra una independiente, no dos anotaciones ciegas.
+Segundo, la reconciliación de los ocho desacuerdos también fue asistida, y siete
+se resolvieron hacia la etiqueta del primer anotador. Tercero, el conjunto
+definitivo cubre solo 5 de las 9 categorías ---Background, Application,
+Evidence, Improvement y Further Reading---, por lo que el F1 Macro sobre las
+nueve clases permanece penalizado por las cuatro ausentes; ampliar el piloto más
+allá de 20 casos es la vía para levantar esa restricción. Las corridas de los
+modelos sobre este conjunto definitivo quedan pendientes.
 
 % ============================================================================
 % 11. CONCLUSIONES
@@ -877,17 +963,16 @@ La contenerización quedó completada y verificada después del refactor. La
 imagen de la API instala el wheel \texttt{modelo-citas} 0.2.0 publicado en S3 y
 no incorpora dependencias de entrenamiento ni necesita descargar los datos
 durante el build. La arquitectura final fue validada localmente con Docker
-Compose, API saludable y una recomendación real desde el tablero. Las evidencias
-en AWS corresponden al despliegue realizado antes del refactor final y se
-conservan como soporte histórico de la Entrega 3.
+Compose y desplegada sobre una instancia EC2 de AWS Academy, con API saludable y
+una recomendación real devuelta desde el tablero servido por la IP pública.
 
 Para cerrar la Entrega 3 queda pendiente el video de síntesis y su enlace final.
 Si se desea desplegar también la mejor variante experimental, el siguiente paso
 es publicar un nuevo wheel con v2 y repetir la prueba contenerizada. En la
-extensión de clasificación de función de cita todavía se requiere una segunda
-validación humana independiente, cálculo de acuerdo, reconciliación y repetición
-de la evaluación sobre un Test Gold definitivo antes de presentar esos
-resultados como definitivos. En el recomendador principal, el Recall@100 de
+extensión de clasificación de función de cita ya se completaron la segunda
+validación humana independiente, el cálculo de acuerdo y la reconciliación, con
+un Cohen Kappa de 0,4839; resta repetir la evaluación de los modelos sobre el
+Test Gold definitivo antes de presentar esos resultados como definitivos. En el recomendador principal, el Recall@100 de
 0,5160 muestra que un margen importante de mejora está en la recuperación de
 candidatos, por ejemplo mediante representaciones semánticas más ricas.
 
