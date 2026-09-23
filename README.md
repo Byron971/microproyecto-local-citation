@@ -16,6 +16,18 @@ Datos de origen:
 
 ---
 
+## Video de síntesis
+
+Presentación del proyecto en 9 minutos: problema y contexto, modelos construidos,
+demostración del tablero, despliegue y conclusiones.
+
+**[Ver el video](reportes/reporte03/video_sintesis_entrega3.mp4)** — GitHub lo reproduce
+directamente en el navegador al abrir el archivo.
+
+El guion narrado se conserva en [`docs/video_sintesis_entrega3_literal.md`](docs/video_sintesis_entrega3_literal.md).
+
+---
+
 ## Arquitectura general
 
 El sistema está compuesto por las siguientes capas:
