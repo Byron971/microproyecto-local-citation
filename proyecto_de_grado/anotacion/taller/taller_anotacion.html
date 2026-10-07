@@ -1,0 +1,831 @@
+<title>Taller de anotación de citas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una sola columna de lectura (máx. 780px) bajo una barra fija con pestañas; el caso se lee como una hoja de manuscrito y las 9 funciones van debajo como botones grandes. */
+:root{
+  --paper:#eef2f1; --sheet:#ffffff; --ink:#17212b; --muted:#56636f; --line:#d3dbe0;
+  --accent:#2a56ad; --accent-soft:#e3ebf8; --accent-ink:#ffffff;
+  --hl:#e2f264; --hl-ink:#17212b; --otra:#e9edf0; --otra-ink:#5f6c78;
+  --ok:#2a7348; --ok-bg:#e2f1e7; --bad:#ac3e2a; --bad-bg:#f7e5e0; --warn:#85600a; --warn-bg:#f6edd3;
+  --c1:#66727f; --c2:#bf432b; --c3:#946515; --c4:#7a4dc2; --c5:#1d8576; --c6:#2e6bcc; --c7:#3a852c; --c8:#c96d16; --c9:#bf3d7b;
+  --f-read:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-ui:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0e1317; --sheet:#161e24; --ink:#e4eaee; --muted:#95a3ae; --line:#2a3640;
+  --accent:#86aefc; --accent-soft:#1d2b44; --accent-ink:#0e1317;
+  --hl:#cfe04a; --hl-ink:#10161a; --otra:#232e36; --otra-ink:#a3b0ba;
+  --ok:#69c98f; --ok-bg:#16301f; --bad:#f2907a; --bad-bg:#3a1d17; --warn:#e8c063; --warn-bg:#33290f;
+  --c1:#9ba7b3; --c2:#f07b63; --c3:#d9a64c; --c4:#b18ef1; --c5:#4fc5b1; --c6:#73a3f6; --c7:#7fc66d; --c8:#f2a252; --c9:#ef82b5;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#0e1317; --sheet:#161e24; --ink:#e4eaee; --muted:#95a3ae; --line:#2a3640;
+  --accent:#86aefc; --accent-soft:#1d2b44; --accent-ink:#0e1317;
+  --hl:#cfe04a; --hl-ink:#10161a; --otra:#232e36; --otra-ink:#a3b0ba;
+  --ok:#69c98f; --ok-bg:#16301f; --bad:#f2907a; --bad-bg:#3a1d17; --warn:#e8c063; --warn-bg:#33290f;
+  --c1:#9ba7b3; --c2:#f07b63; --c3:#d9a64c; --c4:#b18ef1; --c5:#4fc5b1; --c6:#73a3f6; --c7:#7fc66d; --c8:#f2a252; --c9:#ef82b5;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.top-in{max-width:780px;margin:0 auto;padding:10px 16px 0;display:flex;flex-direction:column;gap:6px}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{margin:0;font-family:var(--f-read);font-size:1.25rem;font-weight:600;letter-spacing:-.01em}
+.brand small{color:var(--muted);font-size:.8rem}
+.tabs{display:flex;gap:4px;overflow-x:auto}
+.tab{white-space:nowrap;background:none;border:0;border-bottom:3px solid transparent;padding:8px 10px 9px;font-weight:600;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+
+main{max-width:780px;margin:0 auto;padding-inline:16px;padding-block:20px 56px}
+section{display:flex;flex-direction:column;gap:18px}
+h2{font-family:var(--f-read);font-size:1.35rem;font-weight:600;margin:0;text-wrap:balance}
+h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;font-weight:600}
+p{margin:0}
+.lead{color:var(--muted);max-width:62ch}
+
+/* bloques de la guía */
+.panel{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.steps{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px}
+.steps li{padding-left:.2em}
+.steps b{font-weight:600}
+.arrow{color:var(--muted)}
+.tag{font-family:var(--f-mono);font-size:.78rem;padding:1px 6px;border-radius:5px;white-space:nowrap}
+.tree li{line-height:1.45}
+.note{font-size:.84rem;color:var(--muted)}
+.classes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px}
+.cls{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.cls-h{display:flex;align-items:center;gap:8px}
+.cls-h strong{font-size:1rem}
+.cls-h span{color:var(--muted);font-size:.85rem}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-family:var(--f-mono);font-size:.75rem;background:var(--otra);color:var(--ink);padding:2px 7px;border-radius:5px}
+.nc{font-size:.86rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.nc b{color:var(--ink);font-weight:600}
+.rules{display:grid;gap:10px}
+.rule{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;padding:10px 0;border-top:1px solid var(--line)}
+.rule:first-child{border-top:0;padding-top:0}
+.rule b{font-weight:600}
+
+/* el caso */
+.levels{display:flex;flex-wrap:wrap;gap:8px}
+.lvl{background:var(--sheet);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.88rem;display:flex;gap:6px;align-items:center}
+.lvl[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.lvl .cnt{font-variant-numeric:tabular-nums;opacity:.8}
+.progress{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.sheet-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.passage{font-family:var(--f-read);font-size:1.08rem;line-height:1.7;margin:0;overflow-wrap:anywhere}
+.passage .cut{color:var(--muted)}
+mark.cita{background:var(--hl);color:var(--hl-ink);font-family:var(--f-mono);font-size:.8rem;font-weight:500;padding:2px 6px;border-radius:4px;letter-spacing:.04em;white-space:nowrap}
+.otra{background:var(--otra);color:var(--otra-ink);font-family:var(--f-mono);font-size:.72rem;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.sig{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;background:var(--accent-soft);border-radius:3px}
+.es-box{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.es-box h3{font-size:.7rem}
+.passage.es{font-size:1rem;line-height:1.65}
+.toggle{align-self:flex-start;background:none;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:.8rem;cursor:pointer;color:var(--muted)}
+.cited{font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.cited .tr{display:block;color:var(--muted)}
+.cited em{color:var(--ink);font-style:italic;font-family:var(--f-read)}
+.ask{font-weight:600}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,168px),1fr));gap:8px}
+.opt{display:flex;align-items:flex-start;gap:9px;text-align:left;background:var(--sheet);border:1.5px solid var(--line);border-radius:9px;padding:10px 11px;cursor:pointer;min-height:56px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .dot{margin-top:6px}
+.opt span{display:flex;flex-direction:column;min-width:0}
+.opt strong{font-weight:600;font-size:.92rem;line-height:1.25}
+.opt small{color:var(--muted);font-size:.78rem}
+.opt:disabled{cursor:default}
+.opt.is-ref{border-color:var(--ok);background:var(--ok-bg)}
+.opt.is-wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.dim{opacity:.55}
+.fb{border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);background:var(--sheet)}
+.verdict{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1rem}
+.verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)} .verdict.disc{color:var(--warn)}
+.why{max-width:68ch}
+.meta-row{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:.76rem;padding:3px 9px;border-radius:999px;background:var(--otra);color:var(--ink)}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.dist{display:flex;flex-direction:column;gap:5px}
+.dist-row{display:grid;grid-template-columns:minmax(0,11rem) 1fr 2ch;gap:8px;align-items:center;font-size:.84rem}
+.dist-row span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dist-bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.dist-bar i{display:block;height:100%;background:var(--c)}
+.dist-row b{font-variant-numeric:tabular-nums;text-align:right;font-weight:600}
+.nav{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.btn{background:var(--sheet);border:1px solid var(--line);border-radius:8px;padding:9px 14px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:default}
+details.help{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
+details.help summary{cursor:pointer;font-weight:600}
+details.help ol{margin:10px 0 2px}
+.done{text-align:left}
+
+/* calibración */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:5px}
+.cnum{height:34px;border:1px solid var(--line);background:var(--sheet);border-radius:6px;font-variant-numeric:tabular-nums;font-size:.8rem;cursor:pointer}
+.cnum.done{background:var(--accent-soft);border-color:var(--accent)}
+.cnum.cur{outline:2px solid var(--accent);outline-offset:1px}
+.opt.is-pick{border-color:var(--accent);background:var(--accent-soft)}
+.dud{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.big{font-family:var(--f-read);font-size:2rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.disc-item{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-top:1px solid var(--line)}
+.disc-item:first-child{border-top:0;padding-top:0}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:600;cursor:pointer;text-align:left}
+/* resultados */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.kpi{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.kpi b{display:block;font-family:var(--f-read);font-size:1.6rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi span{font-size:.8rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;background:var(--sheet);border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:.9rem;padding:14px}
+.status{font-size:.82rem;color:var(--muted);display:flex;gap:6px;align-items:center}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}
+.status.sync i{background:var(--ok)}
+.status.ro i{background:var(--warn)}
+textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:.78rem;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+@media (prefers-reduced-motion:no-preference){ .bar i,.dist-bar i{transition:width .3s ease} }
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><h1>Taller de anotación de citas</h1><small>Grupo 19 · Tema 1 · 9 funciones</small></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" id="t-guia" data-v="guia" aria-selected="true">Guía</button>
+      <button class="tab" role="tab" id="t-practicar" data-v="practicar" aria-selected="false">Practicar</button>
+      <button class="tab" role="tab" id="t-calibracion" data-v="calibracion" aria-selected="false">Calibración</button>
+      <button class="tab" role="tab" id="t-resultados" data-v="resultados" aria-selected="false">Resultados</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- GUÍA -->
+  <section id="v-guia">
+    <div class="panel">
+      <h2>Qué se anota</h2>
+      <p class="lead">Para cada fragmento se decide qué función cumple <b>una</b> cita dentro del texto del artículo citante. La pregunta siempre es la misma: ¿qué hace el autor con este trabajo?</p>
+    </div>
+
+    <div class="panel">
+      <h3>Cómo leer un caso</h3>
+      <ol class="steps">
+        <li>La cita a clasificar aparece como <mark class="cita">CITA</mark>. Las demás aparecen como <span class="otra">otra</span> y se ignoran.</li>
+        <li>El fragmento viene cortado a ventana fija: empieza y termina a mitad de frase. Lee la oración que contiene la cita y la siguiente.</li>
+        <li>El título del artículo citado ayuda a entender el tema, pero la función la define lo que el autor hace con la cita.</li>
+        <li>Una sola etiqueta por caso. Si hay dos funciones, elige la dominante.</li>
+        <li>Decide antes de mirar cualquier sugerencia de un modelo. Las sugerencias solo se usan en la reconciliación.</li>
+      </ol>
+    </div>
+
+    <div class="panel tree">
+      <h3>Orden de decisión (propuesto para acordar en el equipo)</h3>
+      <p class="note">Recorrer las preguntas en este orden y quedarse con la primera que se cumpla reduce los desacuerdos entre anotadores.</p>
+      <ol class="steps" id="tree"></ol>
+    </div>
+
+    <div class="classes" id="classes"></div>
+
+    <div class="panel">
+      <h3>Reglas para casos ambiguos (guía del equipo)</h3>
+      <div class="rules" id="rules"></div>
+    </div>
+
+    <div class="row"><button class="btn primary" data-go="practicar">Empezar a practicar</button></div>
+  </section>
+
+  <!-- PRACTICAR -->
+  <section id="v-practicar" hidden>
+    <div class="levels" id="levels"></div>
+    <p class="note" id="level-desc"></p>
+    <div class="progress"><span id="prog-txt"></span><div class="bar"><i id="prog-bar" style="width:0"></i></div></div>
+    <div id="case"></div>
+    <details class="help"><summary>Ver el orden de decisión</summary><ol class="steps" id="tree2"></ol></details>
+    <p class="status" id="status1"><i></i><span></span></p>
+  </section>
+
+  <!-- CALIBRACIÓN -->
+  <section id="v-calibracion" hidden>
+    <div class="panel">
+      <h2>Ronda de calibración</h2>
+      <p class="lead">36 casos nuevos que cada integrante anota por separado. No hay respuesta correcta a la vista: se mide cuánto coincidimos antes de anotar el Test Gold.</p>
+      <ol class="steps">
+        <li>Anota por tu cuenta, sin hablar con el equipo. Puedes consultar la Guía.</li>
+        <li>Si el fragmento es una tabla o texto ilegible, marca <b>No válido</b>.</li>
+        <li>Marca <b>Tengo dudas</b> cuando dudes entre dos funciones; esos casos se discuten primero.</li>
+        <li>Puedes cambiar respuestas hasta pulsar <b>Terminar ronda</b>. Después se muestran los resultados del equipo.</li>
+      </ol>
+    </div>
+    <div class="cgrid" id="cgrid"></div>
+    <div id="ccase"></div>
+    <div id="cresults"></div>
+    <p class="status" id="status3"><i></i><span></span></p>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section id="v-resultados" hidden>
+    <h2>Tus resultados</h2>
+    <div class="kpis" id="kpis"></div>
+    <div><h3>Por función (según la referencia)</h3></div>
+    <div class="tbl-wrap"><table id="t-class"></table></div>
+    <div><h3>Dónde te confundes</h3></div>
+    <div class="panel" id="confusions"></div>
+
+    <h2>Equipo</h2>
+    <p class="status" id="status2"><i></i><span></span></p>
+    <div class="tbl-wrap"><table id="t-team"></table></div>
+    <div><h3>Casos con más desacuerdo en el equipo</h3></div>
+    <div class="panel" id="hard"></div>
+
+    <div class="panel">
+      <h3>Copiar mis respuestas</h3>
+      <p class="note">Si tus respuestas no se comparten con el equipo, cópialas y pégalas en el chat del grupo.</p>
+      <textarea id="export" readonly></textarea>
+      <div class="row"><button class="btn" id="copy">Copiar</button><span class="note" id="copy-msg"></span></div>
+    </div>
+
+    <div class="panel">
+      <h3>Reiniciar</h3>
+      <p class="note">Borra tus respuestas para practicar de nuevo desde cero.</p>
+      <div class="row" id="reset-row"><button class="btn danger" id="reset">Reiniciar mi práctica</button></div>
+    </div>
+  </section>
+</main>
+
+<script>
+const ITEMS = [{"id": "N10-1073_D08-1037_0", "n": 1, "label": "Background", "alt": "Gap", "sig": "have been studied", "why": "La oración enumera técnicas ya estudiadas para minar transliteraciones; la cita objetivo es una de cinco en la lista. No se usa, no se contrasta y no se critica: solo ubica el trabajo dentro de la literatura.", "text": "non-trivial crosslanguage name search algorithm in the literature. However, several techniques for mining name transliterations from monolingual and comparable corpora have been studied (OTHERCIT), ( TARGETCIT , (OTHERCIT), (OTHERCIT), (OTHERCIT). These techniques employ various transliteration similarity models. Character unigrams and bigrams were used as features to learn a discriminative transliteration", "title": "Transliteration as Constrained Optimization", "es": "algoritmo no trivial de búsqueda de nombres entre idiomas en la literatura. Sin embargo, se han estudiado varias técnicas para extraer transliteraciones de nombres a partir de corpus monolingües y comparables (OTHERCIT), (TARGETCIT), (OTHERCIT), (OTHERCIT), (OTHERCIT). Estas técnicas emplean diversos modelos de similitud de transliteración. Se usaron unigramas y bigramas de caracteres como atributos para aprender un modelo discriminativo de transliteración", "sig_es": "se han estudiado varias técnicas", "title_es": "La transliteración como optimización con restricciones"}, {"id": "P07-1072_P06-2064_0", "n": 1, "label": "Background", "alt": "Gap", "sig": "focus on the lexical similarity", "why": "Describe qué hacen los trabajos previos. El «However» que sigue critica la solución basada en web, que es otra línea de trabajo; sobre la cita objetivo solo se informa. Describir sin juzgar es Background.", "text": "than from a large standard corpus. Other researchers (OTHERCIT), (OTHERCIT) use clustering techniques coupled with syntactic dependency features to identify IS-A relations in large text collections. ( TARGETCIT and (OTHERCIT) focus on the lexical similarity of unseen noun compounds with those found in training. However, although the web-based solution might overcome the data sparseness problem, the current p", "title": "Interpreting Semantic Relations in Noun Compounds via Verb Semantics", "es": "que a partir de un corpus estándar grande. Otros investigadores (OTHERCIT), (OTHERCIT) usan técnicas de agrupamiento combinadas con atributos de dependencias sintácticas para identificar relaciones ES-UN en grandes colecciones de texto. (TARGETCIT) y (OTHERCIT) se centran en la similitud léxica de compuestos nominales no vistos con los que aparecen en el entrenamiento. Sin embargo, aunque la solución basada en la web podría superar el problema de la escasez de datos, el actual", "sig_es": "se centran en la similitud léxica", "title_es": "Interpretación de relaciones semánticas en compuestos nominales mediante la semántica verbal"}, {"id": "J01-3003_W99-0632_3", "n": 1, "label": "Gap", "alt": "Background", "sig": "using only subcategorization frequencies", "why": "La cita está en la frase que dice que esos trabajos usan «only subcategorization frequencies», y la siguiente remata: «have not explicitly addressed». La función es mostrar la limitación que justifica el estudio actual.", "text": "993]; Sanfilippo and Poznanski [1992]; Manning [1993]; Collins [1997]). Others have tackled the problem of lexical semantic classification, but using only subcategorization frequencies as input data ( TARGETCIT ; Schulte im Walde 2000). Specifically, these researchers have not explicitly addressed the definition of features to tap directly into thematic role differences that are not reflected in subcategoriz", "title": "Using Subcategorization to Resolve Verb Class Ambiguity", "es": "Sanfilippo y Poznanski [1992]; Manning [1993]; Collins [1997]). Otros han abordado el problema de la clasificación semántica léxica, pero usando solo frecuencias de subcategorización como datos de entrada (TARGETCIT; Schulte im Walde 2000). En concreto, estos investigadores no han abordado explícitamente la definición de atributos que capten directamente las diferencias de rol temático que no se reflejan en la subcategorización", "sig_es": "usando solo frecuencias de subcategorización", "title_es": "Uso de la subcategorización para resolver la ambigüedad de clase verbal"}, {"id": "P09-1070_P06-1101_0", "n": 1, "label": "Gap", "alt": "Background", "sig": "these methods do not address attributes directly", "why": "Primero reconoce el trabajo previo y en la misma oración marca su límite: «these methods do not address attributes directly». Ese límite es justo lo que el artículo va a cubrir.", "text": "it for organization and food. ated for LDA or nCRP, because they are not mapped to WN. 6 Related Work A large body of previous work exists on extending WORDNET with additional concepts and instances ( TARGETCIT ; OTHERCIT); these methods do not address attributes directly. Previous literature in attribute extraction takes advantage of a range of data sources and extraction procedures (OTHERCIT; Pas¸ca and OT", "title": "Semantic Taxonomy Induction from Heterogenous Evidence", "es": "para organización y comida. … para LDA o nCRP, porque no están mapeados a WordNet. 6 Trabajo relacionado. Existe un gran volumen de trabajo previo sobre cómo extender WORDNET con conceptos e instancias adicionales (TARGETCIT; OTHERCIT); estos métodos no abordan directamente los atributos. La literatura previa sobre extracción de atributos aprovecha diversas fuentes de datos y procedimientos de extracción (OTHERCIT; Paşca y", "sig_es": "estos métodos no abordan directamente los atributos", "title_es": "Inducción de taxonomías semánticas a partir de evidencia heterogénea"}, {"id": "W02-1027_P88-1012_1", "n": 1, "label": "Gap", "alt": "Background", "sig": "do not report any numerical results", "why": "La cita ilustra a los investigadores que «use constructed examples only» y «do not report any numerical results»: una debilidad metodológica que el autor dice superar con su evaluación.", "text": "or all algorithms, where our algorithm performed best. We also evaluate our approach more rigorously than other metonymy resolution algorithms Some researchers use constructed examples only (OTHERCIT; TARGETCIT ; OTHERCIT), and do not report any numerical results. Others (OTHERCIT) use naturallyoccurring data that, however, seem to be analysed according to subjective intuitions of one individual only, not as", "title": "Interpretation as Abduction", "es": "para todos los algoritmos, donde nuestro algoritmo tuvo el mejor desempeño. También evaluamos nuestro enfoque con más rigor que otros algoritmos de resolución de metonimia. Algunos investigadores usan solo ejemplos construidos (OTHERCIT; TARGETCIT; OTHERCIT) y no reportan ningún resultado numérico. Otros (OTHERCIT) usan datos reales que, sin embargo, parecen analizados según las intuiciones subjetivas de una sola persona, y no como", "sig_es": "no reportan ningún resultado numérico", "title_es": "La interpretación como abducción"}, {"id": "D15-1187_D10-1036_0", "n": 1, "label": "Basis", "alt": "Application", "sig": "Our work is originally inspired by", "why": "«Our work is originally inspired by» declara una dependencia conceptual: el trabajo nuevo parte de la idea del citado. No dice que lo use tal cual (Application) ni que modifique su método (Improvement).", "text": "d the PageRank algorithm in this paper. In recent years, many algorithms are widely used to incorporate word graph models and topical information within random walk. Our work is originally inspired by TARGETCIT . Their method runs decomposed Topical PageRank (TPR) for each topic separately, and then calculates the word scores with respect to different topics. When setting the edge weights, only word co-occur", "title": "Automatic Keyphrase Extraction via Topic Decomposition", "es": "el algoritmo PageRank en este artículo. En los últimos años se usan ampliamente muchos algoritmos para incorporar modelos de grafos de palabras e información temática en la caminata aleatoria. Nuestro trabajo está inspirado originalmente en TARGETCIT. Su método ejecuta un Topical PageRank (TPR) descompuesto para cada tema por separado y luego calcula los puntajes de las palabras respecto a los distintos temas. Al fijar los pesos de las aristas, solo la coocurrencia de palabras", "sig_es": "Nuestro trabajo está inspirado originalmente en", "title_es": "Extracción automática de frases clave mediante descomposición en temas"}, {"id": "P15-1127_P08-1039_0", "n": 1, "label": "Basis", "alt": "Application", "sig": "We build on insights from", "why": "«We build on insights from» indica que el estudio se apoya en las ideas del citado. Son ideas, no una herramienta que se ejecuta; por eso es Basis y no Application.", "text": "n the challenge of modeling implicit arguments introduced by nominal predicates. In a manual study, we discovered that the 65% of our noun phrases contain implicit relations. We build on insights from TARGETCIT , who studied how to model the syntactic structure of noun phrases in CCGBank. While we are, to the best of our knowledge, the first to study compound noun phrases for semantic parsing to knowledgebas", "title": "Parsing Noun Phrase Structure with CCG", "es": "el reto de modelar los argumentos implícitos que introducen los predicados nominales. En un estudio manual descubrimos que el 65 % de nuestros sintagmas nominales contienen relaciones implícitas. Nos apoyamos en las ideas de TARGETCIT, quienes estudiaron cómo modelar la estructura sintáctica de los sintagmas nominales en CCGBank. Aunque somos, hasta donde sabemos, los primeros en estudiar sintagmas nominales compuestos para el análisis semántico hacia bases de conocimiento", "sig_es": "Nos apoyamos en las ideas de", "title_es": "Análisis de la estructura de sintagmas nominales con CCG"}, {"id": "Q13-1005_P09-1010_0", "n": 1, "label": "Basis", "alt": "Improvement / Modification", "sig": "inspired by the reinforcement learning (RL) approach of", "why": "«Our learning is inspired by the RL approach of [CITA]… but uses latent variable model updates». Toma la idea como punto de partida y construye un método propio; no toma el algoritmo del citado para cambiarlo.", "text": "inally, we report accuracy on recovering correct logical forms zi on a manually annotated subset of the test set. 3 Related Work Our learning is inspired by the reinforcement learning (RL) approach of TARGETCIT , and related methods (OTHERCIT), but uses latent variable model updates within a semantic parser. OTHERCIT extended their RL approach to model high-level instructions, which correspond to implicit ac", "title": "Reinforcement Learning for Mapping Instructions to Actions", "es": "finalmente, reportamos la exactitud al recuperar las formas lógicas correctas zi en un subconjunto del conjunto de prueba anotado a mano. 3 Trabajo relacionado. Nuestro aprendizaje está inspirado en el enfoque de aprendizaje por refuerzo (RL) de TARGETCIT y en métodos relacionados (OTHERCIT), pero usa actualizaciones de un modelo de variables latentes dentro de un analizador semántico. OTHERCIT extendieron su enfoque de RL para modelar instrucciones de alto nivel, que corresponden a acciones implícitas", "sig_es": "está inspirado en el enfoque de aprendizaje por refuerzo (RL) de", "title_es": "Aprendizaje por refuerzo para mapear instrucciones a acciones"}, {"id": "D14-1066_N13-1133_2", "n": 1, "label": "Comparison", "alt": "Background", "sig": "In contrast to", "why": "«In contrast to [CITA], which uses WordNet…, we use UMLS» contrasta explícitamente una decisión del trabajo actual con la del citado. Contraste explícito con el trabajo propio es Comparison.", "text": "reating the gold standard and therefore is the main resource to provide substitute candidates. 4.2 UMLS The Unified Medical Language System (UMLS) is an ontology for the medical domain. In contrast to TARGETCIT , which uses WordNet (OTHERCIT) to generate substitute candidates and also for generating features, we use UMLS solely for feature generation. 4.3 Google Web1T We use the Google Web1T to generate n-gr", "title": "Supervised All-Words Lexical Substitution using Delexicalized Features", "es": "crear el estándar de oro y, por tanto, es el recurso principal para proponer candidatos sustitutos. 4.2 UMLS. El Unified Medical Language System (UMLS) es una ontología del dominio médico. A diferencia de TARGETCIT, que usa WordNet (OTHERCIT) para generar candidatos sustitutos y también para generar atributos, nosotros usamos UMLS únicamente para generar atributos. 4.3 Google Web1T. Usamos Google Web1T para generar n-gramas", "sig_es": "A diferencia de", "title_es": "Sustitución léxica supervisada de todas las palabras con atributos deslexicalizados"}, {"id": "N07-1051_P05-1022_5", "n": 1, "label": "Comparison", "alt": "Gap", "sig": "outperformed only by the reranking parser of", "why": "Compara el desempeño del parser propio con el del citado: «outperformed only by the reranking parser of [CITA]». Es un contraste directo de resultados con el trabajo actual.", "text": "a technique that generalizes well across language boundaries and results in state of the art performance for Chinese and German. On English, the parser is outperformed only by the reranking parser of TARGETCIT , which has access to a variety of features which cannot be captured by a generative model. Space does not permit a thorough exposition of our analysis, but as in the case of English (OTHERCIT), the l", "title": "Coarse-to-fine n-best parsing and MaxEnt discriminative reranking", "es": "una técnica que generaliza bien entre idiomas y logra un desempeño del estado del arte en chino y alemán. En inglés, el analizador solo es superado por el analizador con reordenamiento de TARGETCIT, que tiene acceso a una variedad de atributos que un modelo generativo no puede capturar. El espacio no permite exponer todo nuestro análisis, pero, como en el caso del inglés (OTHERCIT), la", "sig_es": "solo es superado por el analizador con reordenamiento de", "title_es": "Análisis sintáctico n-best de grueso a fino y reordenamiento discriminativo MaxEnt"}, {"id": "W11-2912_P09-2056_0", "n": 1, "label": "Comparison", "alt": "Background", "sig": "In contrast to other recent annotation efforts", "why": "«In contrast to other recent annotation efforts (…; [CITA])» contrasta el método de anotación del Quranic Treebank con el de los citados: los anotadores del corpus coránico verificaron contra obras históricas.", "text": "This website is a useful study aid for understanding the Quran through grammatical annotation, and is used by 100,000 people monthly. In contrast to other recent annotation efforts for MSA (OTHERCIT; TARGETCIT , Quranic Treebank annotators have cross-checked their analyses against historical works based on the traditional Arabic grammar known as iÕrāb (بﺏاﺍﺮﻋj) (OTHERCIT). To provide annotation that closely", "title": "CATiB: The Columbia Arabic Treebank", "es": "Este sitio web es una ayuda útil para estudiar el Corán mediante anotación gramatical, y lo usan 100.000 personas al mes. A diferencia de otros esfuerzos recientes de anotación para el árabe estándar moderno (OTHERCIT; TARGETCIT), los anotadores del Quranic Treebank contrastaron sus análisis con obras históricas basadas en la gramática árabe tradicional, conocida como iʿrāb (OTHERCIT). Para ofrecer una anotación que se ajuste de cerca", "sig_es": "A diferencia de otros esfuerzos recientes de anotación", "title_es": "CATiB: el Treebank árabe de Columbia"}, {"id": "P13-1135_W02-0109_0", "n": 1, "label": "Application", "alt": "Basis", "sig": "We use the Punkt sentence splitter from NLTK", "why": "«We use the Punkt sentence splitter from NLTK» es uso directo de una herramienta del citado, sin modificarla. Es el caso típico de Application.", "text": "tation The text chunks from the previous step may contain several sentences, so before the sentence alignment step we must perform sentence segmentation. We use the Punkt sentence splitter from NLTK ( TARGETCIT to perform both sentence and word segmentation on each text chunk. Sentence Alignment For each aligned text chunk pair, we perform sentence alignment using the algorithm of OTHERCIT. Sentence Filterin", "title": "NLTK: The Natural Language Toolkit", "es": "Los fragmentos de texto del paso anterior pueden contener varias oraciones, así que antes de alinear oraciones debemos segmentar el texto en oraciones. Usamos el segmentador de oraciones Punkt de NLTK (TARGETCIT) para segmentar tanto oraciones como palabras en cada fragmento. Alineamiento de oraciones: para cada par de fragmentos alineados, alineamos las oraciones con el algoritmo de OTHERCIT. Filtrado de oraciones", "sig_es": "Usamos el segmentador de oraciones Punkt de NLTK", "title_es": "NLTK: el kit de herramientas de lenguaje natural"}, {"id": "P11-1110_N04-1019_1", "n": 1, "label": "Application", "alt": "Basis", "sig": "We use the Pyramid model", "why": "«We use the Pyramid model ([CITA]) to value different summary factoids» aplica el método del citado tal como está para una tarea del trabajo actual.", "text": "ent the same piece of information: the red sox team. Therefore, different summaries that use these nuggets to refer to the red sox team should not be seen as very different. We use the Pyramid model ( TARGETCIT to value different summary factoids. Intuitively, factoids that are mentioned more frequently are more salient aspects of the story. Therefore, our pyramid model uses the normalized frequency at which", "title": "Evaluating Content Selection in Summarization: The Pyramid Method", "es": "representan la misma información: el equipo de los Red Sox. Por lo tanto, resúmenes distintos que usan estos fragmentos para referirse al equipo de los Red Sox no deberían considerarse muy diferentes. Usamos el modelo Pyramid (TARGETCIT) para valorar los distintos hechos del resumen. Intuitivamente, los hechos que se mencionan con más frecuencia son los aspectos más destacados de la historia. Por eso, nuestro modelo pirámide usa la frecuencia normalizada con la que", "sig_es": "Usamos el modelo Pyramid", "title_es": "Evaluación de la selección de contenido en resúmenes: el método Pyramid"}, {"id": "W10-1724_P07-2045_0", "n": 1, "label": "Application", "alt": "Background", "sig": "computed with the GIZA++ tool", "why": "El modelo «is computed with the GIZA++ tool and the Moses toolkit ([CITA])»: uso directo de software del citado.", "text": "nslation model based on bidirectional IBM- (OTHERCIT) and HMMmodels (OTHERCIT) combined with the grow-diag-final-and heuristic. This is computed with the GIZA++ tool (OTHERCIT) and the Moses toolkit ( TARGETCIT . The language model was a 5-gram SRILM (OTHERCIT). Parameters in the final translation system were determined with Minimum Error-Rate Training (OTHERCIT), and translation quality was assessed with th", "title": "Moses: Open Source Toolkit for Statistical Machine Translation", "es": "modelo de traducción basado en modelos IBM bidireccionales (OTHERCIT) y modelos HMM (OTHERCIT), combinados con la heurística grow-diag-final-and. Esto se calcula con la herramienta GIZA++ (OTHERCIT) y el kit de herramientas Moses (TARGETCIT). El modelo de lenguaje fue un 5-grama de SRILM (OTHERCIT). Los parámetros del sistema final se fijaron con Minimum Error-Rate Training (OTHERCIT), y la calidad de la traducción se evaluó con", "sig_es": "se calcula con la herramienta GIZA++", "title_es": "Moses: kit de código abierto para traducción automática estadística"}, {"id": "E06-1012_P96-1025_2", "n": 1, "label": "Improvement / Modification", "alt": "Application", "sig": "This is a modified version of", "why": "«This is a modified version of the backed-off smoothing used by [CITA]». La palabra clave es «modified»: se toma el método del citado y se cambia.", "text": "nces larger than k are assigned the same probability. If even after interpolation, the probability is 0, then a very small value is used. This is a modified version of the backed-off smoothing used by TARGETCIT to alleviate sparse data problems. A similar interpolation is used for the first component on the right hand side of Equation 3 by removing the head and the dependent contextual information all at onc", "title": "A New Statistical Parser Based on Bigram Lexical Dependencies", "es": "distancias mayores que k reciben la misma probabilidad. Si aun después de la interpolación la probabilidad es 0, se usa un valor muy pequeño. Esta es una versión modificada del suavizado por retroceso (backed-off) que usa TARGETCIT para aliviar los problemas de escasez de datos. Se usa una interpolación similar para el primer componente del lado derecho de la Ecuación 3, quitando a la vez la información contextual del núcleo y del dependiente", "sig_es": "Esta es una versión modificada", "title_es": "Un nuevo analizador estadístico basado en dependencias léxicas de bigramas"}, {"id": "Q13-1005_D11-1039_1", "n": 1, "label": "Improvement / Modification", "alt": "Application", "sig": "we adapt the loss-sensitive Perceptron algorithm", "why": "«We adapt the loss-sensitive Perceptron algorithm (…; [CITA]) to use a validation function and coarse-to-fine inference»: adapta el algoritmo agregándole componentes nuevos.", "text": "13) 49–62. Action Editor: Jason Eisner. Submitted 11/2012; Published 3/2013. c2013 Association for Computational Linguistics. that purpose, we adapt the loss-sensitive Perceptron algorithm (OTHERCIT; TARGETCIT to use a validation function and coarse-to-fine inference for lexical induction. The joint nature of this approach provides crucial benefits in that it allows situated cues, such as the set of visible", "title": "Bootstrapping Semantic Parsers from Conversations", "es": "[datos editoriales de la revista: 2013, páginas 49–62, enviado 11/2012, publicado 3/2013]. Con ese fin, adaptamos el algoritmo Perceptron sensible a la pérdida (OTHERCIT; TARGETCIT) para que use una función de validación e inferencia de grueso a fino en la inducción léxica. La naturaleza conjunta de este enfoque aporta beneficios cruciales, porque permite que pistas del entorno, como el conjunto de objetos visibles", "sig_es": "adaptamos el algoritmo Perceptron sensible a la pérdida", "title_es": "Arranque de analizadores semánticos a partir de conversaciones"}, {"id": "P15-1128_D14-1002_0", "n": 1, "label": "Improvement / Modification", "alt": "Application", "sig": "we adapt a convolutional neural network (CNN) framework", "why": "«We adapt a CNN framework (…; [CITA]) to this matching problem» lleva el método a un problema distinto, lo que exige cambiarlo. Adaptar es Improvement, usar tal cual es Application.", "text": "nswering (OTHERCIT) and has shown better results compared to lexical matching approaches (e.g., word-alignment models). In this work, we adapt a convolutional neural network (CNN) framework (OTHERCIT; TARGETCIT to this matching problem. The network architecture is illustrated in Fig. 6. The CNN model first applies a word hashing technique (OTHERCIT) that breaks a word into a vector of letter-trigrams (xt → f", "title": "Modeling Interestingness with Deep Neural Networks", "es": "respuesta a preguntas (OTHERCIT) y ha mostrado mejores resultados que los enfoques de coincidencia léxica (por ejemplo, los modelos de alineamiento de palabras). En este trabajo adaptamos un marco de red neuronal convolucional (CNN) (OTHERCIT; TARGETCIT) a este problema de emparejamiento. La arquitectura de la red se ilustra en la Fig. 6. El modelo CNN primero aplica una técnica de hashing de palabras (OTHERCIT) que descompone cada palabra en un vector de trigramas de letras", "sig_es": "adaptamos un marco de red neuronal convolucional (CNN)", "title_es": "Modelado del interés con redes neuronales profundas"}, {"id": "N04-1026_P01-1048_1", "n": 1, "label": "Evidence", "alt": "Background", "sig": "has been shown to improve", "why": "«Lexical information has been shown to improve… ([CITA])» y luego «so our first feature…». La cita es la prueba que justifica una decisión de diseño concreta.", "text": "prosodic features address how something is said, features representing what is said are also important. Lexical information has been shown to improve speech-based emotion prediction in other domains ( TARGETCIT ; OTHERCIT), so our first non-acoustic-prosodic feature represents the transcription3 of each student turn as a word occurrence vector (indicating the lexical items that are present in the turn). The", "title": "Predicting User Reactions to System Error", "es": "los atributos prosódicos capturan cómo se dice algo, pero los que representan qué se dice también son importantes. Se ha demostrado que la información léxica mejora la predicción de emociones a partir del habla en otros dominios (TARGETCIT; OTHERCIT), así que nuestro primer atributo no prosódico representa la transcripción de cada turno del estudiante como un vector de ocurrencia de palabras (que indica qué palabras aparecen en el turno).", "sig_es": "Se ha demostrado que la información léxica mejora", "title_es": "Predicción de las reacciones del usuario ante errores del sistema"}, {"id": "P10-1049_P08-2007_0", "n": 1, "label": "Evidence", "alt": "Gap", "sig": "this has been shown to be infeasible", "why": "«This has been shown to be infeasible for real-world data ([CITA])» sostiene una afirmación concreta (que es inviable) con un resultado del citado. No critica al citado: lo usa como respaldo.", "text": "hat this leads to a better translation quality. Ideally, we would produce all possible segmentations and alignments during training. However, this has been shown to be infeasible for real-world data ( TARGETCIT . As training uses a modified version of the translation decoder, it is straightforward to apply pruning as in regular decoding. Additionally, we consider three ways of approximating the full search s", "title": "The Complexity of Phrase Alignment Problems", "es": "que esto conduce a una mejor calidad de traducción. Idealmente, produciríamos todas las segmentaciones y alineamientos posibles durante el entrenamiento. Sin embargo, se ha demostrado que esto es inviable con datos reales (TARGETCIT). Como el entrenamiento usa una versión modificada del decodificador de traducción, es sencillo aplicar poda como en la decodificación normal. Además, consideramos tres formas de aproximar la búsqueda completa", "sig_es": "se ha demostrado que esto es inviable", "title_es": "La complejidad de los problemas de alineamiento de frases"}, {"id": "D13-1174_P12-2063_0", "n": 1, "label": "Evidence", "alt": "Background", "sig": "show that an unsupervised approach", "why": "La afirmación es «unsupervised morphology has begun to play a role»; la frase siguiente la respalda con lo que el citado mostró: «show that an unsupervised approach… performs as well as a supervised segmenter».", "text": "orms directly, even when evidence for a direct translation is available in the parallel data. Unsupervised morphology has begun to play a role in translation between morphologically complex languages. TARGETCIT show that an unsupervised approach to Arabic segmentation performs as well as a supervised segmenter for sourceside preprocessing (in terms of English translation quality). For translation into morpho", "title": "Unsupervised Morphology Rivals Supervised Morphology for Arabic MT", "es": "las formas directamente, incluso cuando hay evidencia de una traducción directa en los datos paralelos. La morfología no supervisada ha empezado a tener un papel en la traducción entre lenguas morfológicamente complejas. TARGETCIT muestran que un enfoque no supervisado de segmentación del árabe funciona tan bien como un segmentador supervisado para preprocesar el lado fuente (medido por la calidad de la traducción al inglés). Para traducir hacia lenguas morfológicamente complejas", "sig_es": "muestran que un enfoque no supervisado", "title_es": "La morfología no supervisada rivaliza con la supervisada en traducción automática del árabe"}, {"id": "W11-2128_N06-1003_1", "n": 1, "label": "Identification of the Originator", "alt": "Background", "sig": "was introduced by", "why": "«…was introduced by [CITA], and was adopted practically as-is in consequent work». Atribuye explícitamente el origen de la técnica y la distingue de quienes la adoptaron después.", "text": "ed added inflection variation) form our list of negators. 4 Paraphrase-Augmented SMT Augmenting the source side of SMT phrase tables with paraphrases of out-of-vocabulary (OOV) items was introduced by TARGETCIT , and was adopted practically ‘as-is’ in consequent work (OTHERCIT). Given an OOV source-side phrase f, if the translation model has a rule (f, e) whose source side is a paraphrase f of f, then a ne", "title": "Improved Statistical Machine Translation Using Paraphrases", "es": "con variación flexiva añadida) forman nuestra lista de negadores. 4 SMT aumentada con paráfrasis. Aumentar el lado fuente de las tablas de frases de SMT con paráfrasis de los elementos fuera del vocabulario (OOV) fue introducido por TARGETCIT, y fue adoptado prácticamente «tal cual» en trabajos posteriores (OTHERCIT). Dada una frase fuente OOV f, si el modelo de traducción tiene una regla (f′, e) cuyo lado fuente f′ es una paráfrasis de f, entonces", "sig_es": "fue introducido por", "title_es": "Traducción automática estadística mejorada mediante paráfrasis"}, {"id": "W15-2104_N06-1058_0", "n": 1, "label": "Identification of the Originator", "alt": "Background", "sig": "Targeted paraphrasing for MT evaluation was introduced by", "why": "«Targeted paraphrasing for MT evaluation was introduced by [CITA]». La oración existe para decir quién creó la idea.", "text": "s that we can choose among many traditional metrics for evaluation on our new references while eliminating some shortcomings of these metrics. Targeted paraphrasing for MT evaluation was introduced by TARGETCIT . Their algorithm creates new reference sentences by one-word substitution based on WordNet (OTHERCIT) synonymy and contextual evaluation. This solution is not readily applicable to the Czech language", "title": "Paraphrasing for Automatic Evaluation", "es": "que podemos elegir entre muchas métricas tradicionales para evaluar con nuestras nuevas referencias, y a la vez eliminar algunas deficiencias de esas métricas. El parafraseo dirigido para evaluar traducción automática fue introducido por TARGETCIT. Su algoritmo crea nuevas oraciones de referencia sustituyendo una palabra, con base en la sinonimia de WordNet (OTHERCIT) y en una evaluación del contexto. Esta solución no se puede aplicar directamente al checo", "sig_es": "fue introducido por", "title_es": "Parafraseo para evaluación automática"}, {"id": "W01-0712_W95-0107_0", "n": 1, "label": "Identification of the Originator", "alt": "Application", "sig": "the one first used by", "why": "«The data set that has become standard… is the one first used by [CITA]». «first used» establece prioridad: reconoce quién lo usó primero.", "text": "the base noun phrases. The first work on this topic was done back in the eighties (OTHERCIT). The data set that has become standard for evaluation machine learning approaches is the one first used by TARGETCIT . It consists of the same training and test data segments of the Penn Treebank as the chunking task (respectively sections 15-18 and section 20). However, since the data sets have been generated with", "title": "Text Chunking using Transformation-Based Learning", "es": "los sintagmas nominales base. El primer trabajo sobre este tema se hizo en los años ochenta (OTHERCIT). El conjunto de datos que se volvió estándar para evaluar enfoques de aprendizaje automático es el que usó por primera vez TARGETCIT. Está formado por los mismos segmentos de entrenamiento y prueba del Penn Treebank que la tarea de chunking (secciones 15-18 y sección 20, respectivamente). Sin embargo, como los conjuntos de datos se generaron con", "sig_es": "el que usó por primera vez", "title_es": "Segmentación sintáctica (chunking) con aprendizaje basado en transformaciones"}, {"id": "S13-2014_P12-1010_1", "n": 1, "label": "Further Reading", "alt": "Background", "sig": "For further details", "why": "«For further details… we refer the reader to ([CITA])» es la forma canónica: remite a detalles que el texto actual no desarrolla.", "text": "013-02, or PXY for P5Y) and timex granularity (e.g. DAY-OF-MONTH for Friday, MONTH-OF-YEAR for February etc.); 1For further details on the deterministic temporal parsing model we refer the reader to ( TARGETCIT . 84 Training Test P R F1 TimeBank TimeBank 0.907 0.99 0.947 10-fold AQUAINT 0.755 0.972 0.850 Silver 0.736 0.963 0.834 AQUAINT TimeBank 0.918 0.986 0.951 AQUAINT 0.795 0.970 0.874 10-fold Silver 0.74", "title": "Extracting Narrative Timelines as Temporal Dependency Structures", "es": "o PXY para P5Y) y la granularidad de la expresión temporal (por ejemplo, DAY-OF-MONTH para viernes, MONTH-OF-YEAR para febrero, etc.); [nota al pie 1] Para más detalles sobre el modelo determinista de análisis temporal, remitimos al lector a (TARGETCIT). [Sigue una tabla de resultados con columnas Entrenamiento, Prueba, P, R y F1 para TimeBank, AQUAINT y Silver.]", "sig_es": "Para más detalles", "title_es": "Extracción de líneas de tiempo narrativas como estructuras de dependencia temporal"}, {"id": "P12-2056_W08-0336_1", "n": 1, "label": "Further Reading", "alt": "Evidence", "sig": "for detail", "why": "«(see [CITA] for detail)»: la cita va entre paréntesis y solo ofrece más detalle sobre un punto que ya se afirmó.", "text": "knowledge that the four characters convey a specific meaning different from the characters has been lost, which cannot always be totally recovered even by using phrase in phrase-based SMT systems (see TARGETCIT for detail). OTHERCIT and Paul et al., (2010) further pointed out that coarser-grained segmentation of the source sentence do help capture more contexts in translation. Therefore, rather than using ch", "title": "Optimizing Chinese Word Segmentation for Machine Translation Performance", "es": "se pierde el conocimiento de que los cuatro caracteres transmiten un significado específico distinto del de cada carácter, y no siempre puede recuperarse del todo ni siquiera usando frases en sistemas de SMT basados en frases (véase TARGETCIT para más detalle). OTHERCIT y Paul et al. (2010) señalaron además que segmentar la oración fuente en unidades más grandes sí ayuda a capturar más contexto en la traducción. Por eso, en lugar de usar caracteres", "sig_es": "para más detalle", "title_es": "Optimización de la segmentación de palabras en chino para el desempeño de la traducción automática"}, {"id": "P10-1142_D09-1101_1", "n": 1, "label": "Further Reading", "alt": "Background", "sig": "different methods have been proposed (see", "why": "«different methods have been proposed (see [CITA] and …)» remite a dónde encontrar esos métodos sin describirlos. Si el texto los describiera, sería Background.", "text": "ly been defined for the case where the key partition has the same set of NPs as the response partition. To apply these scorers to automatically extracted NPs, different methods have been proposed (see TARGETCIT and OTHERCIT). Since coreference is a clustering task, any general-purpose method for evaluating a response partition against a key partition (e.g., Kappa (OTHERCIT)) can be used for coreference scor1", "title": "Supervised Models for Coreference Resolution", "es": "se han definido para el caso en que la partición clave tiene el mismo conjunto de sintagmas nominales que la partición de respuesta. Para aplicar estas métricas a sintagmas extraídos automáticamente, se han propuesto distintos métodos (véase TARGETCIT y OTHERCIT). Como la correferencia es una tarea de agrupamiento, cualquier método general para evaluar una partición de respuesta frente a una partición clave (por ejemplo, Kappa (OTHERCIT)) puede usarse para puntuar la correferencia", "sig_es": "se han propuesto distintos métodos (véase", "title_es": "Modelos supervisados para resolución de correferencia"}, {"id": "W14-4407_W13-2117_1", "n": 2, "label": "Background", "alt": "Identification of the Originator", "sig": "One of them includes the system proposed by", "why": "Trampa de «proposed by». Está en Related Work y describe uno de varios sistemas. «proposed by» solo dice de quién es el sistema; no reclama prioridad (no hay «first» ni «introduced»). Es Background.", "text": "tes informative and readable summaries. 2. Related Work Several studies have been conducted on creating automatic abstractive meeting summarization systems. One of them includes the system proposed by TARGETCIT . Their approach first clusters human utterances into communities (OTHERCIT) and then builds an entailment graph over each of the latter in order to select the salient utterances. It then applies a se", "title": "Abstractive Meeting Summarization with Entailment and Fusion", "es": "genera resúmenes informativos y legibles. 2. Trabajo relacionado. Se han realizado varios estudios sobre sistemas automáticos de resumen abstractivo de reuniones. Uno de ellos es el sistema propuesto por TARGETCIT. Su enfoque primero agrupa las intervenciones de las personas en comunidades (OTHERCIT) y luego construye un grafo de implicación sobre cada una para seleccionar las intervenciones más relevantes. Después aplica", "sig_es": "Uno de ellos es el sistema propuesto por", "title_es": "Resumen abstractivo de reuniones con implicación textual y fusión"}, {"id": "P10-1076_W04-3250_0", "n": 2, "label": "Application", "alt": "Identification of the Originator", "sig": "using the bootstrap resampling method proposed by", "why": "Trampa de «proposed by». El verbo que manda es «using»: el autor aplica el método del citado para su prueba de significancia. «proposed by» es solo atribución.", "text": ", MT05 and MT06. The translation quality is evaluated in terms of case-insensitive NIST version BLEU metric. Statistical significant test is conducted using the bootstrap resampling method proposed by TARGETCIT . Beam search and cube pruning (OTHERCIT) are used to prune the search space in all the three baseline systems. By default, both of the beam size and the size of n-best list are set to 20. In the sett", "title": "Statistical Significance Tests for Machine Translation Evaluation", "es": "MT05 y MT06. La calidad de la traducción se evalúa con la métrica BLEU, versión NIST, sin distinguir mayúsculas. La prueba de significancia estadística se realiza usando el método de remuestreo bootstrap propuesto por TARGETCIT. La búsqueda en haz y la poda por cubos (OTHERCIT) se usan para reducir el espacio de búsqueda en los tres sistemas base. Por defecto, tanto el tamaño del haz como el de la lista n-best se fijan en 20.", "sig_es": "usando el método de remuestreo bootstrap propuesto por", "title_es": "Pruebas de significancia estadística para la evaluación de traducción automática"}, {"id": "P13-3025_W11-2103_0", "n": 2, "label": "Evidence", "alt": "Further Reading", "sig": "see e.g.", "why": "Trampa de «see». «SMT is the current state-of-the-art approach – see e.g. [CITA]»: el «see e.g.» acompaña una afirmación central y la cita la respalda. La guía dice que «see» no basta para Further Reading.", "text": "ent of the translation quality when helped by deep linguistic knowledge. 1 Introduction Statistical machine translation (SMT) is the current state-of-the-art approach to machine translation – see e.g. TARGETCIT . However, its outputs are still typically significantly worse than human translations, containing various types of errors (OTHERCIT), both in lexical choices and in grammar. As shown by many research", "title": "Findings of the 2011 Workshop on Statistical Machine Translation", "es": "de la calidad de traducción cuando se apoya en conocimiento lingüístico profundo. 1 Introducción. La traducción automática estadística (SMT) es el enfoque actual del estado del arte en traducción automática; véase p. ej. TARGETCIT. Sin embargo, sus salidas siguen siendo, por lo general, bastante peores que las traducciones humanas, con diversos tipos de errores (OTHERCIT), tanto en la elección de palabras como en la gramática. Como han mostrado muchas investigaciones", "sig_es": "véase p. ej.", "title_es": "Resultados del Taller de Traducción Automática Estadística de 2011"}, {"id": "P06-1122_N03-1017_0", "n": 2, "label": "Evidence", "alt": "Comparison", "sig": "have been shown to outperform", "why": "Trampa de «outperform». La comparación es entre enfoques ajenos (phrase-based contra word-based), no con el trabajo actual. La cita sirve de prueba para justificar que el autor use phrase-based SMT.", "text": "ior used in the marginal likelihood, p(DIC), and Q which determines the contribution of pMRF(C) to Eq. (1). 4 Experiments Phrase-based SMT systems have been shown to outperform word-based approaches ( TARGETCIT . We evaluate the effects of lexicon model selection on translation quality by considering two applications within a phrase-based SMT system. 4.1 Applications to phrase-based SMT A phrase-based transl", "title": "Statistical Phrase-Based Translation", "es": "la distribución previa usada en la verosimilitud marginal, p(DIC), y Q, que determina la contribución de pMRF(C) a la Ec. (1). 4 Experimentos. Se ha demostrado que los sistemas de SMT basados en frases superan a los enfoques basados en palabras (TARGETCIT). Evaluamos el efecto de elegir el modelo de léxico sobre la calidad de la traducción, con dos aplicaciones dentro de un sistema de SMT basado en frases. 4.1 Aplicaciones a SMT basada en frases", "sig_es": "Se ha demostrado que los sistemas de SMT basados en frases superan", "title_es": "Traducción estadística basada en frases"}, {"id": "P14-2008_N13-1067_2", "n": 2, "label": "Comparison", "alt": "Gap", "sig": "not quite as high as other published results", "why": "Trampa de la negación. «they are not quite as high as other published results ([CITA])» no critica al citado: compara los resultados propios con los suyos. El «not» habla del trabajo actual, no de una limitación del citado.", "text": "ment when using all of the unlabeled data with mSDA (F1 = 54.9). 4.3 Discussion These results are very promising. Although they are not quite as high as other published results for citation polarity ( TARGETCIT 7, we have shown that you can improve citation polarity classification by leveraging large amounts of annotated data from other domains and using a simple set of features. mSDA and fully supervised ap", "title": "Purpose and Polarity of Citation: Towards NLP-based Bibliometrics", "es": "mejora al usar todos los datos no etiquetados con mSDA (F1 = 54,9). 4.3 Discusión. Estos resultados son muy prometedores. Aunque no son tan altos como otros resultados publicados para la polaridad de citas (TARGETCIT), hemos mostrado que se puede mejorar la clasificación de polaridad de citas aprovechando grandes cantidades de datos anotados de otros dominios y un conjunto simple de atributos.", "sig_es": "no son tan altos como otros resultados publicados", "title_es": "Propósito y polaridad de las citas: hacia una bibliometría basada en PLN"}, {"id": "P10-1110_P04-1015_0", "n": 2, "label": "Application", "alt": "Basis", "sig": "we also use the “early-update” strategy", "why": "Trampa de «following». «Following [CITA] we also use the early-update strategy» suena a Basis, pero lo que se toma es una técnica concreta que se usa tal cual. Uso directo es Application.", "text": "b resulting states for the next step. Our dynamic programming algorithm also runs on top of beam search in practice. To train the model, we use the averaged perceptron algorithm (OTHERCIT). Following TARGETCIT we also use the “early-update” strategy, where an update happens whenever the gold-standard action-sequence falls off the beam, with the rest of the sequence neglected.3 The intuition behind this stra", "title": "Incremental Parsing with the Perceptron Algorithm", "es": "los estados resultantes para el siguiente paso. En la práctica, nuestro algoritmo de programación dinámica también corre sobre una búsqueda en haz. Para entrenar el modelo usamos el algoritmo de perceptrón promediado (OTHERCIT). Siguiendo a TARGETCIT, también usamos la estrategia de «actualización temprana» (early-update), en la que se actualiza cada vez que la secuencia de acciones correcta se cae del haz, y se descarta el resto de la secuencia.", "sig_es": "también usamos la estrategia de «actualización temprana»", "title_es": "Análisis sintáctico incremental con el algoritmo perceptrón"}, {"id": "W15-3012_N03-1017_0", "n": 2, "label": "Background", "alt": "Improvement / Modification", "sig": "is a variant of the phrase-based approach", "why": "Trampa de «variant». «The n-gram-based approach… is a variant of the phrase-based approach ([CITA])» describe la relación entre dos enfoques que ya existen; el trabajo actual no modifica nada. Es contexto.", "text": "on in order to estimate continuous-space translation models (CTMs) (OTHERCIT) 3.1 n-gram Translation Models The n-gram-based approach in machine translation is a variant of the phrase-based approach ( TARGETCIT . Introduced in (OTHERCIT), and extended in (Mari˜no et al., 2006; Crego and Mari˜no, 2006), this approach is based on a specific factorization of the joint probability of parallel sentence pairs, whe", "title": "Statistical Phrase-Based Translation", "es": "para estimar modelos de traducción en espacio continuo (CTM) (OTHERCIT). 3.1 Modelos de traducción de n-gramas. El enfoque basado en n-gramas en traducción automática es una variante del enfoque basado en frases (TARGETCIT). Introducido en (OTHERCIT) y extendido en (Mariño et al., 2006; Crego y Mariño, 2006), este enfoque se basa en una factorización específica de la probabilidad conjunta de los pares de oraciones paralelas", "sig_es": "es una variante del enfoque basado en frases", "title_es": "Traducción estadística basada en frases"}, {"id": "P15-1029_W13-0109_0", "n": 3, "label": "Background", "a": "Background", "b": "Further Reading", "sig": "see, e.g.,", "why": "«is also actively discussed in the distributional semantics literature (see, e.g., (…; [CITA]; …))». El «see, e.g.» introduce ejemplos de que el tema se discute, no remite a detalles. Con la marca visible queda claro que la cita objetivo es una de tres en una enumeración. En la hoja del piloto esa marca no se veía.", "text": "rface to more traditional ways of composition (see Section 3 above). The issue of semantic compositionality is also actively discussed in the distributional semantics literature (see, e.g., (OTHERCIT; TARGETCIT ; OTHERCIT)), investigating how to combine vectors. This could be seen as composition on the level of intensions (if one sees distributional representations as intensions, as is variously hinted at, e", "title": "Towards a semantics for distributional representations", "es": "interfaz con formas más tradicionales de composición (véase la Sección 3). La cuestión de la composicionalidad semántica también se discute activamente en la literatura de semántica distribucional (véase, p. ej., (OTHERCIT; TARGETCIT; OTHERCIT)), que investiga cómo combinar vectores. Esto podría verse como composición al nivel de las intensiones (si uno considera las representaciones distribucionales como intensiones, como se insinúa de varias formas", "sig_es": "véase, p. ej.,", "title_es": "Hacia una semántica para las representaciones distribucionales"}, {"id": "S15-2047_S15-2044_0", "n": 3, "label": "Further Reading", "a": "Further Reading", "b": "Evidence", "sig": "", "why": "Es una tabla de equipos participantes, no prosa: la cita indica dónde leer la descripción del sistema CoMiC y no respalda ninguna afirmación. Propuesta para el equipo: acordar si los contextos que vienen de tablas se excluyen del dataset.", "text": "classification accuracy. Team ID Affiliation and reference Al-Bayan Alexandria University, Egypt (OTHERCIT) CICBUAPnlp Instituto Polit´ecnico Nacional, Mexico CoMiC University of T¨ubingen, Germany ( TARGETCIT ECNU East China Normal University, China (OTHERCIT) FBK-HLT Fondazione Bruno Kessler, Italy (OTHERCIT) HITSZ-ICRC Harbin Institute of Technology, China (OTHERCIT) ICRC-HIT Harbin Institute of Technolo", "title": "CoMiC: Adapting a Short Answer Assessment System for Answer Selection", "es": "exactitud de clasificación. [Tabla de equipos participantes] Equipo · Afiliación y referencia: Al-Bayan, Universidad de Alejandría, Egipto (OTHERCIT) · CICBUAPnlp, Instituto Politécnico Nacional, México · CoMiC, Universidad de Tubinga, Alemania (TARGETCIT) · ECNU, Universidad Normal de China Oriental (OTHERCIT) · FBK-HLT, Fondazione Bruno Kessler, Italia (OTHERCIT) · HITSZ-ICRC, Instituto de Tecnología de Harbin, China (OTHERCIT) · ICRC-HIT, Instituto de Tecnología de Harbin", "sig_es": "", "title_es": "CoMiC: adaptación de un sistema de evaluación de respuestas cortas para seleccionar respuestas"}, {"id": "D15-1294_P14-2085_4", "n": 3, "label": "Application", "a": "Application", "b": "Improvement / Modification", "sig": "the ones proposed by", "why": "«This feature set comprises… the ones proposed by [CITA]»: se incorporan las características tal como las definió el citado. Agregar otras propias después («In addition, we use…») no modifica las del citado.", "text": "ures, which we call CONTEXT-BASED as they are extracted from the context of each verb occurrence that we classify. This feature set comprises the features proposed by OTHERCIT and the ones proposed by TARGETCIT . In addition, we use the features modal and negated. We extract these features from syntactic dependency parses created using the Stanford parser (OTHERCIT). Tense and voice are extracted following t", "title": "Automatic prediction of aspectual class of verbs in context", "es": "atributos, que llamamos CONTEXT-BASED porque se extraen del contexto de cada ocurrencia del verbo que clasificamos. Este conjunto de atributos reúne los atributos propuestos por OTHERCIT y los que propuso TARGETCIT. Además, usamos los atributos modal y negación. Extraemos estos atributos de análisis de dependencias sintácticas generados con el analizador de Stanford (OTHERCIT). El tiempo verbal y la voz se extraen siguiendo", "sig_es": "los que propuso", "title_es": "Predicción automática de la clase aspectual de los verbos en contexto"}, {"id": "S15-1021_N13-1090_0", "n": 3, "label": "Background", "a": "Background", "b": "Evidence", "sig": "Extensive experiments have leveraged word embeddings", "why": "«Extensive experiments have leveraged word embeddings to find general semantic relations ([CITA]; …)» resume una línea de trabajo. La frase siguiente («Nevertheless, only one work…») abre una brecha, pero con otra cita. Para la cita objetivo es contexto.", "text": "s. The second approach presented in this paper, relies on word embeddings to create word pair representations. Extensive experiments have leveraged word embeddings to find general semantic relations ( TARGETCIT a; OTHERCIT). Nevertheless, only one work has applied word embeddings for classifying instances of a lexical semantic relation, specifically the relation hyponymyhypernymy (OTHERCIT). This relation is", "title": "Linguistic Regularities in Continuous Space Word Representations", "es": "El segundo enfoque presentado en este artículo se apoya en embeddings de palabras para crear representaciones de pares de palabras. Numerosos experimentos han aprovechado los embeddings de palabras para encontrar relaciones semánticas generales (TARGETCIT; OTHERCIT). Sin embargo, solo un trabajo ha aplicado embeddings de palabras para clasificar instancias de una relación semántica léxica, en concreto la relación hiponimia-hiperonimia (OTHERCIT). Esta relación es", "sig_es": "Numerosos experimentos han aprovechado los embeddings de palabras", "title_es": "Regularidades lingüísticas en representaciones de palabras en espacio continuo"}, {"id": "W15-3037_D14-1162_0", "n": 3, "label": "Background", "a": "Evidence", "b": "Background", "disc": true, "sig": "inter alia", "why": "Texto con ruido de extracción (restos de una figura). Se lee que los embeddings demostraron su utilidad «…(Miko[lov]; [CITA] inter alia)». La reconciliación eligió Background, pero con la regla Background vs Evidence hay argumentos para Evidence: la cita respalda que los embeddings funcionan. Caso para la sesión de calibración.", "text": "n for Computational Linguistics. \"OK\" \"BAD\" dwrd target t1 t2 t3 t4 t5 s1 s2 s3 s4 s5 |V| concatenate tanh(W1 +b1) tanh(W2 +b2) t2 t3 t4 s3 s4 s5 align source representations (Miko TARGETCIT inter alia), or by producing stateof-the-art performance in applications such as language modeling (OTHERCIT, inter alia) or statistical machine translation (OTHERCIT, inter alia). The property that m", "title": "GloVe: Global Vectors for Word Representation", "es": "[Restos de una figura que se colaron en el texto: «OK», «BAD», objetivo t1…t5, fuente s1…s5, |V|, concatenar, tanh(W1+b1), tanh(W2+b2)] … alinear representaciones de la fuente (Miko[lov…]; TARGETCIT, entre otros), o produciendo un desempeño del estado del arte en aplicaciones como el modelado del lenguaje (OTHERCIT, entre otros) o la traducción automática estadística (OTHERCIT, entre otros). La propiedad de que", "sig_es": "entre otros", "title_es": "GloVe: vectores globales para la representación de palabras"}, {"id": "W15-0807_P08-1090_0", "n": 3, "label": "Background", "a": "Background", "b": "Gap", "sig": "Recent work has covered several areas", "why": "«Recent work has covered several areas… script understanding ([CITA]; …)» es una enumeración. La brecha aparece después («However, downstream event researches often make minimal effort…») y no habla de este trabajo.", "text": "attracted a lot of attention in the community. Recent work has covered several areas about events, such as event mention detection(OTHERCIT) , event coreference (OTHERCIT), and script understanding ( TARGETCIT ; OTHERCIT). Event Mention detection is the fundamental preprocessing step for these tasks. However, downstream event researches often make minimal effort for event mention detection. For example, in", "title": "Unsupervised Learning of Narrative Event Chains", "es": "ha atraído mucha atención en la comunidad. El trabajo reciente ha cubierto varias áreas sobre eventos, como la detección de menciones de eventos (OTHERCIT), la correferencia de eventos (OTHERCIT) y la comprensión de guiones o scripts (TARGETCIT; OTHERCIT). La detección de menciones de eventos es el paso de preprocesamiento fundamental para estas tareas. Sin embargo, las investigaciones posteriores sobre eventos suelen dedicar un esfuerzo mínimo a esa detección. Por ejemplo, en", "sig_es": "El trabajo reciente ha cubierto varias áreas", "title_es": "Aprendizaje no supervisado de cadenas narrativas de eventos"}, {"id": "J15-3004_P02-1026_0", "n": 3, "label": "Background", "a": "Background", "b": "Comparison", "disc": true, "sig": "On the one hand", "why": "«On the one hand, there have been indications of entropy rate constancy ([CITA]; …)», y después viene el otro lado. La reconciliación eligió Background. Hay argumento para Evidence (la cita respalda «indications of constancy») y para Comparison si se lee como contraste entre trabajos citados. Caso para la sesión de calibración.", "text": ": h* = lim H(Xn1) n-+oo (8) n Theoretically, the behavior of the entropy rate with respect to text size has been controversial. On the one hand, there have been indications of entropy rate constancy ( TARGETCIT ; OTHERCIT). These reports argue that the entropy rate of natural language could be constant. Due to the inherent difficulty in obtaining the true value of h* from a text, however, these arguments are", "title": "Entropy Rate Constancy in Text", "es": "[Ecuación (8): la tasa de entropía h* definida como un límite.] En teoría, el comportamiento de la tasa de entropía con respecto al tamaño del texto ha sido controvertido. Por un lado, ha habido indicios de que la tasa de entropía es constante (TARGETCIT; OTHERCIT). Esos trabajos sostienen que la tasa de entropía del lenguaje natural podría ser constante. Sin embargo, por la dificultad de obtener el valor real de h* a partir de un texto, esos argumentos son", "sig_es": "Por un lado", "title_es": "Constancia de la tasa de entropía en el texto"}, {"id": "P15-1148_P10-1110_2", "n": 3, "label": "Improvement / Modification", "a": "Improvement / Modification", "b": "Application", "sig": "This modification also makes it easy to apply", "why": "Se toma un algoritmo de dependency parsing ([CITA]) y se lleva a constituent parsing gracias a «this modification». Cambiar de dominio exige adaptarlo, por eso es Improvement / Modification y no Application.", "text": "arieties of shift and reduce actions. This modification also makes it easy to apply an algorithm developed for dependency parsing to constituent parsing, such as dynamic programming with beam search ( TARGETCIT , which has not been applied into constituent parsing until quite recently (OTHERCIT) (See Section 7). Algorithm 1 BFS for Constituent Parsing; Only differences from OTHERCIT 1: procedure SHIFT(x, Q)", "title": "Dynamic Programming for Linear-Time Incremental Parsing", "es": "variedades de acciones shift y reduce. Esta modificación también facilita aplicar al análisis de constituyentes un algoritmo desarrollado para el análisis de dependencias, como la programación dinámica con búsqueda en haz (TARGETCIT), que no se había aplicado al análisis de constituyentes hasta hace muy poco (OTHERCIT) (véase la Sección 7). Algoritmo 1: búsqueda BFS para análisis de constituyentes; solo se muestran las diferencias con OTHERCIT", "sig_es": "Esta modificación también facilita aplicar", "title_es": "Programación dinámica para análisis sintáctico incremental en tiempo lineal"}];
+
+// Las 9 funciones de la guía del equipo, con señales típicas y la confusión más común.
+// sig: pares [señal en inglés, significado en español]
+const CLASSES = [
+  {k:"Background", es:"Antecedente", c:"--c1",
+   def:"Aporta contexto general, resume literatura previa o describe el estado de un área.",
+   sig:[["previous work","trabajo previo"],["several studies","varios estudios"],["has been studied","se ha estudiado"],["Related Work","sección de trabajo relacionado"]],
+   nc:"Si respalda una afirmación concreta, es <b>Evidencia</b>. Si hay contraste explícito, es <b>Comparación</b>."},
+  {k:"Gap", es:"Brecha", c:"--c2",
+   def:"Señala algo que no se ha hecho, una limitación de trabajos previos o una brecha que justifica el estudio.",
+   sig:[["however … not","sin embargo … no"],["do not address","no abordan"],["only","solo"],["lack","carecen de"],["has not been","no se ha"]],
+   nc:"La limitación tiene que ser del trabajo citado. Si el «not» (no) habla de los resultados propios, suele ser <b>Comparación</b>."},
+  {k:"Basis", es:"Base conceptual", c:"--c3",
+   def:"El trabajo citado es base intelectual directa: la propuesta se construye sobre sus ideas.",
+   sig:[["inspired by","inspirado en"],["we build on","nos apoyamos en"],["builds upon","se construye sobre"],["grounded in","fundamentado en"]],
+   nc:"Si se ejecuta un método, herramienta o dato tal cual, es <b>Uso directo</b>, aunque diga «following» (siguiendo a)."},
+  {k:"Comparison", es:"Comparación", c:"--c4",
+   def:"Compara explícitamente métodos, resultados, datos o enfoques entre el trabajo actual y el citado, o entre citados.",
+   sig:[["in contrast to","a diferencia de"],["unlike","a diferencia de"],["outperforms","supera a"],["similar to","similar a"],["compared with","comparado con"]],
+   nc:"«X has been shown to outperform Y» (se ha demostrado que X supera a Y) sin el trabajo actual suele ser <b>Evidencia</b>. Una simple enumeración es <b>Antecedente</b>."},
+  {k:"Application", es:"Uso directo", c:"--c5",
+   def:"Usa un método, algoritmo, herramienta, dataset o procedimiento del citado sin modificación sustancial.",
+   sig:[["we use","usamos"],["using the … toolkit","usando la herramienta …"],["computed with","calculado con"],["we apply","aplicamos"]],
+   nc:"Si se adapta o extiende, es <b>Adaptación</b>. «proposed by» (propuesto por) no lo vuelve Origen de la idea."},
+  {k:"Improvement / Modification", es:"Adaptación", c:"--c6",
+   def:"Adapta, amplía, modifica o mejora un método o herramienta del citado para un nuevo objetivo o condición.",
+   sig:[["we adapt","adaptamos"],["we extend","extendemos"],["modified version of","versión modificada de"],["to this problem","a este problema"]],
+   nc:"«variant of» (variante de) que relaciona dos enfoques ajenos no es una modificación del trabajo actual: es <b>Antecedente</b>."},
+  {k:"Evidence", es:"Evidencia", c:"--c7",
+   def:"Respalda una afirmación, hipótesis, decisión metodológica, dato o interpretación concreta del texto citante.",
+   sig:[["has been shown","se ha demostrado"],["X showed that","X mostró que"],["demonstrated that","demostró que"],["…, so we","…, así que nosotros"]],
+   nc:"Prueba rápida: si se quita la cita, ¿queda una afirmación sin respaldo? Si la frase solo describe el área, es <b>Antecedente</b>."},
+  {k:"Identification of the Originator", es:"Origen de la idea", c:"--c8",
+   def:"Reconoce a quien introdujo originalmente una idea, método, concepto o teoría, o establece prioridad intelectual.",
+   sig:[["was introduced by","fue introducido por"],["first proposed","propuesto por primera vez"],["first used by","usado por primera vez por"],["originally developed","desarrollado originalmente"]],
+   nc:"No basta con que la referencia sea antigua ni con «proposed by» (propuesto por). Tiene que atribuir el origen de forma explícita."},
+  {k:"Further Reading", es:"Lectura adicional", c:"--c9",
+   def:"Dirige al lector a una fuente con detalles que el texto actual no desarrolla.",
+   sig:[["for further details","para más detalles"],["we refer the reader to","remitimos al lector a"],["see X for details","véase X para detalles"],["for an overview","para una visión general"]],
+   nc:"No basta con «see» (véase). Si la cita sostiene una afirmación central, es <b>Evidencia</b> o <b>Antecedente</b>."}
+];
+const CLS = Object.fromEntries(CLASSES.map(c => [c.k, c]));
+// nombre para mostrar: español primero, etiqueta oficial en inglés entre paréntesis
+const nm = k => CLS[k] ? `${CLS[k].es} (${k})` : k;
+
+const TREE = [
+  ["¿El trabajo actual <b>usa</b> el método, herramienta o dato del citado?", "Sin cambios → Uso directo (Application) · con cambios → Adaptación (Improvement / Modification)"],
+  ["¿El trabajo actual se <b>construye sobre las ideas</b> del citado?", "Base conceptual (Basis)"],
+  ["¿La cita es uno de los términos de un <b>contraste explícito</b> (frente al trabajo actual o a otro citado)?", "Comparación (Comparison)"],
+  ["¿Se señala una <b>limitación</b> o algo que el citado no hizo?", "Brecha (Gap)"],
+  ["¿La frase le atribuye <b>haber introducido</b> la idea primero?", "Origen de la idea (Identification of the Originator)"],
+  ["¿La cita <b>remite al lector</b> a más detalle?", "Lectura adicional (Further Reading)"],
+  ["¿La cita <b>respalda una afirmación</b> concreta?", "Evidencia (Evidence)"],
+  ["Si nada de lo anterior aplica", "Antecedente (Background)"]
+];
+const RULES = [
+  ["Antecedente vs Evidencia", "El Antecedente sitúa el trabajo dentro de la literatura. La Evidencia respalda una afirmación específica. Pregunta si la oración seguiría siendo una descripción general del campo o si usa la referencia como soporte de una proposición concreta."],
+  ["Base conceptual vs Uso directo", "La Base conceptual describe una dependencia de ideas. El Uso directo implica usar en la práctica un método, algoritmo, herramienta o dato."],
+  ["Uso directo vs Adaptación", "Si se usa el método citado tal como está, es Uso directo. Si se adapta, extiende o modifica, es Adaptación."],
+  ["Antecedente vs Comparación", "Una enumeración de trabajos anteriores suele ser Antecedente. Es Comparación solo cuando hay contraste explícito de similitudes, diferencias, desempeño o propiedades."],
+  ["Origen de la idea", "No uses esta clase solo porque la referencia sea antigua. Tiene que haber atribución explícita del origen: «introduced» (introdujo), «first proposed» (propuso por primera vez), «originally developed» (desarrolló originalmente) o equivalente."],
+  ["Lectura adicional", "No la marques solo porque aparezca «see» (véase). Tiene que remitir principalmente a detalles adicionales, no sostener una afirmación central."]
+];
+const LEVELS = {
+  1:{name:"Casos claros", desc:"Un ejemplo limpio de cada función, unos tres por clase. Sirve para fijar las señales típicas."},
+  2:{name:"Trampas", desc:"Palabras que engañan: «proposed by» (propuesto por), «see» (véase), «outperform» (superar), «following» (siguiendo a), «variant» (variante). La palabra apunta a una clase y la función real es otra."},
+  3:{name:"Desacuerdos del piloto", desc:"Los 8 casos reales en que los dos anotadores del piloto no coincidieron. Ahora con la cita objetivo marcada, que en la hoja del piloto no se veía."}
+};
+
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+function hash(s){ let h = 2166136261; for (const ch of s){ h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+const dot = k => `<i class="dot" style="--c:var(${CLS[k].c})"></i>`;
+const counts = n => ITEMS.filter(i => !n || i.n === n).length;
+// orden fijo pero mezclado dentro de cada nivel, para que las clases no salgan en fila
+const LIST = {1:[],2:[],3:[]};
+ITEMS.forEach(i => LIST[i.n].push(i));
+Object.values(LIST).forEach(l => l.sort((a,b) => hash(a.id) - hash(b.id)));
+
+/* ---------- estado ---------- */
+const LS = "anotacion-citas-v1";
+let answers = {};
+try { answers = JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch(e){ answers = {}; }
+function saveLocal(){ try { localStorage.setItem(LS, JSON.stringify(answers)); } catch(e){} }
+let level = 1, idx = {1:0, 2:0, 3:0};
+function firstOpen(n){ const l = LIST[n]; const k = l.findIndex(i => !answers[i.id]); return k === -1 ? l.length - 1 : k; }
+[1,2,3].forEach(n => idx[n] = firstOpen(n));
+
+/* ---------- respuestas del equipo (db) ---------- */
+let db = null, userNs = null, me = null, team = {}, mode = "local", firstSnap = true;
+let writing = false, again = false;
+async function pushMine(){
+  if (!db || !me || mode !== "sync") return;
+  if (writing){ again = true; return; }
+  writing = true;
+  try { await db.doc("respuestas/" + me).set({a: answers, v: 1}); }
+  catch(e){
+    if (e && (e.code === "invalid_argument" || e.code === "not_granted" || e.code === "revoked")){ mode = "readonly"; renderStatus(); }
+    else if (e && e.code === "unavailable"){ setTimeout(pushMine, 1200 + Math.random() * 1200); }
+  }
+  writing = false;
+  if (again){ again = false; pushMine(); }
+}
+async function initDb(){
+  if (!window.claude || typeof window.claude.use !== "function") return;
+  try {
+    const [d, u] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+    if (!d || !u) return;
+    const id = await u.id();
+    if (!id) return;
+    db = d; userNs = u; me = id; mode = "sync"; renderStatus(); subCal();
+    db.collection("respuestas").onSnapshot(snap => {
+      const t = {};
+      snap.docs.forEach(doc => { if (doc.exists){ const v = doc.data(); if (v && v.a) t[doc.id] = v.a; } });
+      team = t;
+      if (firstSnap){
+        firstSnap = false;
+        const remote = t[me] || {};
+        let changed = false;
+        for (const [k, v] of Object.entries(remote)) if (!answers[k]){ answers[k] = v; changed = true; }
+        if (changed){ saveLocal(); [1,2,3].forEach(n => idx[n] = firstOpen(n)); }
+        if (Object.keys(answers).some(k => !remote[k])) pushMine();
+      }
+      renderPractice(); renderResults();
+    }, () => { mode = "local"; renderStatus(); });
+  } catch(e){ /* sin capacidad: se queda en modo local */ }
+}
+function teamView(){ const t = {...team}; if (me) t[me] = answers; return t; }
+function renderStatus(){
+  const txt = {
+    local:"Tus respuestas se guardan solo en este dispositivo.",
+    sync:"Tus respuestas se comparten con el equipo en esta página.",
+    readonly:"No tienes permiso para guardar respuestas del equipo; quedan en este dispositivo. Cópialas desde Resultados."
+  }[mode];
+  ["#status1", "#status2", "#status3"].forEach(s => { const el = $(s); el.className = "status " + (mode === "sync" ? "sync" : mode === "readonly" ? "ro" : ""); el.querySelector("span").textContent = txt; });
+}
+
+/* ---------- guía ---------- */
+function treeHtml(){ return TREE.map(([q, a]) => `<li>${q} <span class="arrow">→</span> <b>${a}</b></li>`).join(""); }
+function renderGuide(){
+  $("#tree").innerHTML = treeHtml();
+  $("#tree2").innerHTML = treeHtml();
+  $("#classes").innerHTML = CLASSES.map(c => `
+    <article class="cls">
+      <div class="cls-h">${dot(c.k)}<strong>${esc(c.es)}</strong><span>${esc(c.k)}</span></div>
+      <p>${esc(c.def)}</p>
+      <h3>Señales en el texto (inglés → español)</h3>
+      <div class="chips">${c.sig.map(([en, es]) => `<span class="chip">${esc(en)} → ${esc(es)}</span>`).join("")}</div>
+      <p class="nc"><b>No confundir:</b> ${c.nc}</p>
+    </article>`).join("");
+  $("#rules").innerHTML = RULES.map(([t, d]) => `<div class="rule"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join("");
+}
+
+/* ---------- práctica ---------- */
+let showEs = true;
+try { showEs = localStorage.getItem(LS + "-es") !== "0"; } catch(e){}
+// pinta un texto con la CITA resaltada, las otras citas atenuadas y, si ya se respondió, la frase clave subrayada
+function marked(raw, sig, reveal, extra){
+  let parts = [raw];
+  if (reveal && sig){
+    const i = raw.toLowerCase().indexOf(sig.toLowerCase());
+    if (i >= 0) parts = [raw.slice(0, i), raw.slice(i, i + sig.length), raw.slice(i + sig.length)];
+  }
+  const tok = s => esc(s).replace(/TARGETCIT/g, '<mark class="cita">CITA</mark>').replace(/OTHERCIT/g, '<span class="otra">otra</span>');
+  const body = parts.length === 3 ? tok(parts[0]) + `<span class="sig">${tok(parts[1])}</span>` + tok(parts[2]) : tok(parts[0]);
+  return `<p class="passage ${extra || ""}"><span class="cut">…</span>${body}<span class="cut">…</span></p>`;
+}
+function passage(item, reveal){
+  const en = marked(item.text, item.sig, reveal);
+  const es = showEs
+    ? `<div class="es-box"><h3>Traducción al español</h3>${marked(item.es, item.sig_es, reveal, "es")}</div>`
+    : "";
+  return `${en}<button class="toggle" data-act="toggle-es">${showEs ? "Ocultar traducción" : "Mostrar traducción al español"}</button>${es}`;
+}
+function renderLevels(){
+  $("#levels").innerHTML = [1,2,3].map(n => {
+    const done = LIST[n].filter(i => answers[i.id]).length;
+    return `<button class="lvl" data-l="${n}" aria-pressed="${n === level}">Nivel ${n} · ${LEVELS[n].name} <span class="cnt">${done}/${LIST[n].length}</span></button>`;
+  }).join("");
+  $("#level-desc").textContent = LEVELS[level].desc;
+}
+function distHtml(item){
+  const tv = teamView();
+  const votes = Object.entries(tv).filter(([u, a]) => a && a[item.id]).map(([u, a]) => a[item.id].l);
+  if (votes.length < 2) return "";
+  const c = {}; votes.forEach(v => c[v] = (c[v] || 0) + 1);
+  const rows = Object.entries(c).sort((a, b) => b[1] - a[1]).map(([k, n]) =>
+    `<div class="dist-row"><span>${esc(CLS[k] ? CLS[k].es : k)}</span><div class="dist-bar" style="--c:var(${CLS[k] ? CLS[k].c : "--c1"})"><i style="width:${(n / votes.length * 100).toFixed(0)}%"></i></div><b>${n}</b></div>`).join("");
+  return `<div><h3>Cómo respondió el equipo (${votes.length})</h3></div><div class="dist">${rows}</div>`;
+}
+function renderPractice(){
+  renderLevels();
+  const list = LIST[level];
+  const done = list.filter(i => answers[i.id]).length;
+  $("#prog-txt").textContent = `${done} de ${list.length} respondidos`;
+  $("#prog-bar").style.width = (done / list.length * 100).toFixed(1) + "%";
+  const item = list[idx[level]];
+  const ans = answers[item.id];
+  const reveal = !!ans;
+  const ref = item.label;
+  const opts = CLASSES.map(c => {
+    let cls = "opt";
+    if (reveal){
+      if (c.k === ref) cls += " is-ref";
+      else if (c.k === ans.l) cls += " is-wrong";
+      else cls += " dim";
+    }
+    return `<button class="${cls}" data-k="${esc(c.k)}" ${reveal ? "disabled" : ""}>${dot(c.k)}<span><strong>${esc(c.es)}</strong><small>${esc(c.k)}</small></span></button>`;
+  }).join("");
+  let fb = "";
+  if (reveal){
+    const ok = ans.l === ref;
+    const verdict = item.disc
+      ? `<div class="verdict disc">Caso en discusión</div>`
+      : ok ? `<div class="verdict ok">✓ Coincide con la referencia</div>`
+           : `<div class="verdict bad">✗ La referencia es ${esc(nm(ref))}</div>`;
+    const pills = [];
+    pills.push(`<span class="pill">Tu respuesta: ${esc(nm(ans.l))}</span>`);
+    if (item.disc) pills.push(`<span class="pill warn">Etiqueta reconciliada: ${esc(nm(ref))} · revisar en calibración</span>`);
+    if (item.n === 3) pills.push(`<span class="pill">Piloto: A → ${esc(nm(item.a))} · B → ${esc(nm(item.b))}</span>`);
+    if (item.n === 3 && !item.disc) pills.push(`<span class="pill ok">Reconciliado por el equipo</span>`);
+    if (item.n < 3) pills.push(`<span class="pill warn">Referencia propuesta · pendiente de validar con el equipo</span>`);
+    if (item.alt && item.n < 3) pills.push(`<span class="pill">Confusión típica: ${esc(nm(item.alt))}</span>`);
+    fb = `<div class="fb">${verdict}<p class="why">${esc(item.why).replace(/\[CITA\]/g, '<mark class="cita">CITA</mark>')}</p><div class="meta-row">${pills.join("")}</div>${distHtml(item)}</div>`;
+  }
+  const allDone = done === list.length;
+  $("#case").innerHTML = `
+    <article class="sheet">
+      <div class="sheet-meta"><span>Caso ${idx[level] + 1} de ${list.length} · Nivel ${level}</span><span>${esc(item.id)}</span></div>
+      ${passage(item, reveal)}
+      <p class="cited">Artículo citado: <em>${esc(item.title || "sin título")}</em><span class="tr">En español: ${esc(item.title_es || "")}</span></p>
+    </article>
+    <p class="ask">${reveal ? "Tu elección y la referencia" : "¿Qué función cumple la CITA?"}</p>
+    <div class="opts">${opts}</div>
+    ${fb}
+    <div class="nav">
+      <button class="btn" id="prev" ${idx[level] === 0 ? "disabled" : ""}>← Anterior</button>
+      ${reveal ? (idx[level] < list.length - 1
+        ? `<button class="btn primary" id="next">Siguiente caso →</button>`
+        : (level < 3 ? `<button class="btn primary" id="next-level">Ir al nivel ${level + 1} →</button>` : `<button class="btn primary" data-go="resultados">Ver resultados →</button>`))
+        : `<button class="btn" id="skip" ${idx[level] === list.length - 1 ? "disabled" : ""}>Saltar →</button>`}
+    </div>
+    ${allDone && !reveal ? "" : ""}`;
+}
+function choose(k){
+  const item = LIST[level][idx[level]];
+  if (answers[item.id]) return;
+  answers[item.id] = {l: k, t: Date.now()};
+  saveLocal(); pushMine();
+  renderPractice(); renderResults();
+}
+
+/* ---------- resultados ---------- */
+function score(a){
+  let n = 0, ok = 0;
+  ITEMS.forEach(i => { if (i.disc || !a[i.id]) return; n++; if (a[i.id].l === i.label) ok++; });
+  return {n, ok};
+}
+async function renderResults(){
+  const answered = ITEMS.filter(i => answers[i.id]).length;
+  const s = score(answers);
+  const pct = s.n ? Math.round(s.ok / s.n * 100) + "%" : "—";
+  $("#kpis").innerHTML = `
+    <div class="kpi"><b>${answered}/${ITEMS.length}</b><span>casos respondidos</span></div>
+    <div class="kpi"><b>${pct}</b><span>coincidencia con la referencia</span></div>
+    <div class="kpi"><b>${s.ok}</b><span>aciertos de ${s.n} evaluables</span></div>`;
+  // por clase
+  const rows = CLASSES.map(c => {
+    const its = ITEMS.filter(i => i.label === c.k && !i.disc && answers[i.id]);
+    const ok = its.filter(i => answers[i.id].l === c.k).length;
+    const tot = ITEMS.filter(i => i.label === c.k && !i.disc).length;
+    return `<tr><td>${dot(c.k)} ${esc(nm(c.k))}</td><td class="num">${its.length}/${tot}</td><td class="num">${its.length ? Math.round(ok / its.length * 100) + "%" : "—"}</td></tr>`;
+  }).join("");
+  $("#t-class").innerHTML = `<thead><tr><th>Función</th><th class="num">Respondidos</th><th class="num">Aciertos</th></tr></thead><tbody>${rows}</tbody>`;
+  // confusiones
+  const conf = {};
+  ITEMS.forEach(i => { const a = answers[i.id]; if (!a || i.disc || a.l === i.label) return; const key = a.l + "|" + i.label; conf[key] = (conf[key] || 0) + 1; });
+  const cl = Object.entries(conf).sort((a, b) => b[1] - a[1]);
+  $("#confusions").innerHTML = cl.length
+    ? cl.map(([k, n]) => { const [mine, ref] = k.split("|"); return `<p>Elegiste <b>${esc(nm(mine))}</b> cuando la referencia era <b>${esc(nm(ref))}</b> <span class="note">(${n} ${n === 1 ? "vez" : "veces"})</span></p>`; }).join("")
+    : `<p class="note">${answered ? "Sin confusiones hasta ahora." : "Responde algunos casos en Practicar y aquí verás qué pares de funciones confundes."}</p>`;
+  // equipo
+  const tv = teamView();
+  const ids = Object.keys(tv).filter(u => Object.keys(tv[u] || {}).length);
+  if (!ids.length){
+    $("#t-team").innerHTML = `<tbody><tr><td class="empty">${mode === "sync" ? "Todavía nadie del equipo ha respondido." : "Las respuestas del equipo aparecen aquí cuando se abre la página con la cuenta de claude.ai y permiso para participar."}</td></tr></tbody>`;
+  } else {
+    let names = {};
+    try { if (userNs) names = await userNs.profiles(ids); } catch(e){}
+    const body = ids.map(u => {
+      const a = tv[u] || {}; const sc = score(a); const n = ITEMS.filter(i => a[i.id]).length;
+      return {u, n, sc};
+    }).sort((x, y) => y.n - x.n);
+    $("#t-team").innerHTML = `<thead><tr><th>Persona</th><th class="num">Respondidos</th><th class="num">Coincidencia</th></tr></thead><tbody>${body.map(r => `<tr><td data-u="${esc(r.u)}"></td><td class="num">${r.n}/${ITEMS.length}</td><td class="num">${r.sc.n ? Math.round(r.sc.ok / r.sc.n * 100) + "%" : "—"}</td></tr>`).join("")}</tbody>`;
+    $("#t-team").querySelectorAll("td[data-u]").forEach(td => {
+      const u = td.getAttribute("data-u");
+      const p = names[u];
+      td.textContent = (p && p.name) ? p.name + (u === me ? " (tú)" : "") : (u === me ? "Tú" : "Integrante");
+    });
+  }
+  // casos con más desacuerdo
+  const hard = ITEMS.map(i => {
+    const v = ids.map(u => tv[u][i.id] && tv[u][i.id].l).filter(Boolean);
+    if (v.length < 2) return null;
+    const c = {}; v.forEach(x => c[x] = (c[x] || 0) + 1);
+    const top = Math.max(...Object.values(c));
+    return {i, n: v.length, agree: top / v.length, labels: Object.keys(c)};
+  }).filter(Boolean).filter(h => h.agree < 1).sort((a, b) => a.agree - b.agree).slice(0, 6);
+  $("#hard").innerHTML = hard.length
+    ? hard.map(h => `<p><span class="tag" style="background:var(--otra)">${esc(h.i.id)}</span> ${Math.round(h.agree * 100)}% de acuerdo entre ${h.n}: ${h.labels.map(l => esc(nm(l))).join(" · ")}</p>`).join("")
+    : `<p class="note">Aparecen cuando al menos dos personas respondieron el mismo caso con etiquetas distintas. Son los casos para revisar juntos en la sesión de calibración.</p>`;
+  // exportar
+  $("#export").value = "# Taller de anotación de citas — mis respuestas\n# id\tetiqueta\n" +
+    ITEMS.filter(i => answers[i.id]).map(i => i.id + "\t" + answers[i.id].l).join("\n");
+}
+
+/* ---------- ronda de calibración ---------- */
+const CALIB = [{"id": "S15-2025_S13-1005_2", "text": "her, if one appears frequently in glosses of the other, or if they are derivationally related. For the exact cases covered and a description of how the boost is calculated, the reader is referred to ( TARGETCIT . In our submissions we only used this boost on word similarity scores obtained from word embeddings. The similarity score may be reduced by a variety of penalties, which we only enabled for Task 1 ru", "title": "UMBC EBIQUITY-CORE: Semantic Textual Similarity Systems", "es": "otra, si una aparece con frecuencia en las definiciones de la otra o si están relacionadas por derivación. Para los casos exactos que se cubren y una descripción de cómo se calcula el refuerzo, se remite al lector a (TARGETCIT). En nuestros envíos solo usamos este refuerzo en los puntajes de similitud de palabras obtenidos con embeddings. El puntaje de similitud puede reducirse con distintas penalizaciones, que solo activamos para la Tarea 1", "title_es": "UMBC EBIQUITY-CORE: sistemas de similitud textual semántica"}, {"id": "E06-1040_E06-1045_0", "text": "resting. However, this behaviour (variation for variation’s sake) will always reduce a system’s score under corpus-similarity metrics, even if it enhances text quality from the perspective of readers. TARGETCIT , in their study of facial gestures, have also noted that humans do not mind and indeed in some cases prefer variation, whereas corpus-based evaluations give higher ratings to systems which follow cor", "title": "Data-driven Generation of Emphatic Facial Displays", "es": "interesante. Sin embargo, este comportamiento (variar por variar) siempre reducirá el puntaje de un sistema en las métricas de similitud con el corpus, aunque mejore la calidad del texto desde el punto de vista de los lectores. TARGETCIT, en su estudio sobre gestos faciales, también observaron que a las personas no les molesta la variación, e incluso en algunos casos la prefieren, mientras que las evaluaciones basadas en corpus califican mejor a los sistemas que siguen el corpus", "title_es": "Generación basada en datos de expresiones faciales enfáticas"}, {"id": "W15-2117_P05-1013_0", "text": "nprojective dependency. English translation: ‘Abhay’s spectacles got lost yesterday.’ Formally, an arc i → j is projective if and only if there is no word k between i and j that i does not dominate1 ( TARGETCIT . While some parsing paradigms can handle such dependencies, others either cannot or have special mechanisms to process them (e.g., OTHERCIT). Many theoretical approaches have special mechanisms to ac", "title": "Pseudo-Projective Dependency Parsing", "es": "dependencia no proyectiva. Traducción al inglés: «Las gafas de Abhay se perdieron ayer». Formalmente, un arco i → j es proyectivo si y solo si no hay ninguna palabra k entre i y j que i no domine (TARGETCIT). Mientras que algunos paradigmas de análisis pueden manejar estas dependencias, otros no pueden o tienen mecanismos especiales para procesarlas (p. ej., OTHERCIT). Muchos enfoques teóricos tienen mecanismos especiales para", "title_es": "Análisis de dependencias pseudoproyectivo"}, {"id": "N10-1120_W96-0213_0", "text": "Study fine-grained POS tag of the k-th word in the i-th phrase. We used the morphological analysis system JUMAN and the dependency parser KNP2 for processing Japanese data, and the POS tagger MXPOST ( TARGETCIT and the dependency parser MaltParser3 for English data. KNP outputs phrase-based dependency trees, but MaltParser outputs word-based dependency trees, and we converted the word-based ones to phrase-ba", "title": "A Maximum Entropy Model for Part-Of-Speech Tagging", "es": "etiqueta POS detallada de la k-ésima palabra de la i-ésima frase. Usamos el sistema de análisis morfológico JUMAN y el analizador de dependencias KNP para procesar los datos en japonés, y el etiquetador gramatical MXPOST (TARGETCIT) y el analizador de dependencias MaltParser para los datos en inglés. KNP produce árboles de dependencias basados en frases, pero MaltParser produce árboles basados en palabras, y convertimos los basados en palabras a basados en frases", "title_es": "Un modelo de máxima entropía para el etiquetado gramatical"}, {"id": "E14-1037_D11-1140_1", "text": "l possible lexical entries to produce a set of promising candidates, and adds them to the lexicon. Our second baseline is an extension of this work, called Factored Unification Based Learning (FUBL) ( TARGETCIT . Again, source code is freely available. FUBL factors the lexicon into a set of base lexical entries, and a set of templates that can construct more complex lexical entries from the base entries. Thi", "title": "Lexical Generalization in CCG Grammar Induction for Semantic Parsing", "es": "todas las entradas léxicas posibles para producir un conjunto de candidatos prometedores, y los añade al lexicón. Nuestra segunda línea base es una extensión de este trabajo, llamada Factored Unification Based Learning (FUBL) (TARGETCIT). De nuevo, el código fuente está disponible libremente. FUBL descompone el lexicón en un conjunto de entradas léxicas base y un conjunto de plantillas que pueden construir entradas léxicas más complejas a partir de las base.", "title_es": "Generalización léxica en la inducción de gramáticas CCG para análisis semántico"}, {"id": "W15-2212_S14-2082_2", "text": "the averaged-perceptron version of which was presented first in (OTHERCIT), in three key ways. First, edge features are taken from entire digraphs, rather than just trees. These features, unlike in ( TARGETCIT , do not account for multiple heads in digraphs, because we need to use the scoring function on trees rather than digraphs. Secondly, the error is minimised between the original graphs and the maximum", "title": "Priberam: A Turbo Semantic Parser with Second Order Features", "es": "cuya versión con perceptrón promediado se presentó primero en (OTHERCIT), en tres aspectos clave. Primero, los atributos de las aristas se toman de grafos dirigidos completos, y no solo de árboles. Estos atributos, a diferencia de los de (TARGETCIT), no tienen en cuenta múltiples núcleos en los grafos dirigidos, porque necesitamos usar la función de puntuación sobre árboles y no sobre grafos. Segundo, el error se minimiza entre los grafos originales y el máximo", "title_es": "Priberam: un analizador semántico Turbo con atributos de segundo orden"}, {"id": "W11-2402_E09-1064_1", "text": "hreshold for each length. Finally, most of the above systems do not differentiate between the various lexical resources they use, even though it is known that resources reliability vary considerably ( TARGETCIT b). Our probabilistic model, on the other hand, learns a unique reliability parameter for each resource it utilizes. As mentioned above, this work extends the base model in (OTHERCIT), which is descri", "title": "Evaluating the Inferential Utility of Lexical-Semantic Resources", "es": "un umbral para cada longitud. Por último, la mayoría de los sistemas anteriores no distingue entre los distintos recursos léxicos que usa, aunque se sabe que la fiabilidad de los recursos varía considerablemente (TARGETCIT). Nuestro modelo probabilístico, en cambio, aprende un parámetro de fiabilidad propio para cada recurso que usa. Como se mencionó, este trabajo extiende el modelo base de (OTHERCIT), que se describe", "title_es": "Evaluación de la utilidad inferencial de los recursos léxico-semánticos"}, {"id": "P14-3013_P13-2054_1", "text": "xamples: we have taken a corpusassisted approach to speed-up the process of providing usage examples for each aligned synset. To this end, we: (i) extract all sentences (820,203) of the Pewan corpus ( TARGETCIT , (ii) lemmatize the corpus to extract all the lemmas (278,873), and (iii) construct a lemma-to-sentence inverted index. In the current version of KurdNet, for each synset we build a pool of sentences", "title": "Sorani Kurdish versus Kurmanji Kurdish: An Empirical Comparison", "es": "ejemplos: adoptamos un enfoque asistido por corpus para acelerar la tarea de dar ejemplos de uso de cada synset alineado. Para ello: (i) extraemos todas las oraciones (820.203) del corpus Pewan (TARGETCIT), (ii) lematizamos el corpus para obtener todos los lemas (278.873) y (iii) construimos un índice invertido de lema a oración. En la versión actual de KurdNet, para cada synset construimos un conjunto de oraciones", "title_es": "Kurdo sorani frente a kurdo kurmanji: una comparación empírica"}, {"id": "D14-1209_D13-1201_0", "text": "any tuning methods have been proposed for SMT so far. These methods differ by the objective function or training mode: their objective functions are based on either evaluation-directed loss (OTHERCIT; TARGETCIT or surrogate loss (OTHERCIT); they are either batch (OTHERCIT) or online mode (OTHERCIT). These methods share a common characteristic: they learn a weight by iteratively reranking a set of complete tr", "title": "Regularized Minimum Error Rate Training", "es": "se han propuesto muchos métodos de ajuste para SMT. Estos métodos difieren por la función objetivo o por el modo de entrenamiento: sus funciones objetivo se basan en una pérdida dirigida por la evaluación (OTHERCIT; TARGETCIT) o en una pérdida sustituta (OTHERCIT); y funcionan en modo por lotes (OTHERCIT) o en línea (OTHERCIT). Estos métodos comparten una característica común: aprenden un peso reordenando de forma iterativa un conjunto de traducciones completas", "title_es": "Entrenamiento con tasa mínima de error regularizado"}, {"id": "D13-1057_P12-1041_0", "text": "ational clustering techniques. We also compare with (OTHERCIT) and the publicly available Stanford coreference system (OTHERCIT), a state-of-theart rule-based system. Finally, some research (OTHERCIT; TARGETCIT ; OTHERCIT) has tried to integrate world knowledge from webbased statistics or knowledge bases into a coreference system. World knowledge is potentially useful for resolving coreference and can be inj", "title": "Coreference Semantics from Web Features", "es": "técnicas de agrupamiento racional. También comparamos con (OTHERCIT) y con el sistema de correferencia de Stanford, de libre acceso (OTHERCIT), un sistema basado en reglas del estado del arte. Por último, algunas investigaciones (OTHERCIT; TARGETCIT; OTHERCIT) han intentado integrar conocimiento del mundo, obtenido de estadísticas web o de bases de conocimiento, en un sistema de correferencia. El conocimiento del mundo es potencialmente útil para resolver la correferencia y puede incorporarse", "title_es": "Semántica de la correferencia a partir de atributos de la web"}, {"id": "W05-0638_W04-3212_0", "text": "xtremely long. Besides, noisy information from unrelated parts of a sentence could also affect the training of machine learning models. Therefore, our system exploits the heuristic rules introduced by TARGETCIT to filter out simple constituents that are unlikely to be arguments. Applying pruning heuristics to the output of Charniak’s parser effectively eliminates 61% of the training data and 61.3% of the dev", "title": "Calibrating Features for Semantic Role Labeling", "es": "extremadamente largas. Además, la información ruidosa de partes no relacionadas de una oración también podría afectar el entrenamiento de los modelos de aprendizaje automático. Por eso, nuestro sistema aprovecha las reglas heurísticas introducidas por TARGETCIT para filtrar los constituyentes simples que probablemente no sean argumentos. Aplicar heurísticas de poda a la salida del analizador de Charniak elimina el 61 % de los datos de entrenamiento y el 61,3 % de los de desarrollo", "title_es": "Calibración de atributos para el etiquetado de roles semánticos"}, {"id": "Q15-1006_N07-1055_0", "text": "sed to create baselines for system comparison. Likelihood We created a Hidden Markov Model based on the sample from the posterior of our models (for a similar HMM approximation of a Bayesian model see TARGETCIT ). For our model, the HMM has L states, and each state sm corresponds to a complexity level dm. We used the complexity language models φm estimated from the posterior as the emission probability distr", "title": "A Unified Local and Global Model for Discourse Coherence", "es": "se usan para crear líneas base para comparar sistemas. Verosimilitud. Creamos un modelo oculto de Markov (HMM) a partir de la muestra de la distribución posterior de nuestros modelos (para una aproximación HMM similar de un modelo bayesiano, véase TARGETCIT). En nuestro modelo, el HMM tiene L estados, y cada estado sm corresponde a un nivel de complejidad dm. Usamos los modelos de lenguaje de complejidad φm estimados de la posterior como distribución de emisión", "title_es": "Un modelo local y global unificado para la coherencia del discurso"}, {"id": "W05-0620_W04-3212_1", "text": "constituents that are not likely to be arguments. As in feature development, the related bibliography has been followed for pruning. For instance, many systems used the pruning strategy described in ( TARGETCIT (“x&p”) and other systems used the soft pruning rules described in (OTHERCIT) (“softp”). Remarkably, OTHERCIT parametrize the pruning procedure and then study the effect of being more or less aggressi", "title": "Calibrating Features for Semantic Role Labeling", "es": "constituyentes que probablemente no sean argumentos. Igual que en el desarrollo de atributos, para la poda se ha seguido la bibliografía relacionada. Por ejemplo, muchos sistemas usaron la estrategia de poda descrita en (TARGETCIT) («x&p») y otros sistemas usaron las reglas de poda suave descritas en (OTHERCIT) («softp»). Llama la atención que OTHERCIT parametrizan el procedimiento de poda y luego estudian el efecto de ser más o menos agresivo", "title_es": "Calibración de atributos para el etiquetado de roles semánticos"}, {"id": "E12-1050_P07-1096_1", "text": ": (1) locality vs. non-locality of grammatical features, (2) interdependence of grammatical features, and (3) domain-specific preferences. 4 Method We used the guided learning framework described in ( TARGETCIT , which has yielded state-ofthe-art results for English and has been successfully applied to other morphologically complex languages such as Icelandic (OTHERCIT); we found it quite suitable for Bulgar", "title": "Guided Learning for Bidirectional Sequence Classification", "es": "(1) localidad frente a no localidad de los rasgos gramaticales, (2) interdependencia de los rasgos gramaticales y (3) preferencias propias del dominio. 4 Método. Usamos el marco de aprendizaje guiado descrito en (TARGETCIT), que ha logrado resultados del estado del arte para el inglés y se ha aplicado con éxito a otras lenguas morfológicamente complejas como el islandés (OTHERCIT); nos pareció bastante adecuado para el búlgaro", "title_es": "Aprendizaje guiado para clasificación bidireccional de secuencias"}, {"id": "K15-1029_P96-1025_0", "text": "entral use of lexical dependencies. An alternative approach is to view the combined representation as a dependency structure augmented with constituent information. This approach was first explored by TARGETCIT , who defined a dependency-based probabilistic model that associates a triple of constituents with each dependency. In our case, we follow the representations proposed by OTHERCIT, which we call spina", "title": "A New Statistical Parser Based on Bigram Lexical Dependencies", "es": "uso central de las dependencias léxicas. Un enfoque alternativo es ver la representación combinada como una estructura de dependencias enriquecida con información de constituyentes. Este enfoque fue explorado por primera vez por TARGETCIT, quien definió un modelo probabilístico basado en dependencias que asocia una tripleta de constituyentes a cada dependencia. En nuestro caso, seguimos las representaciones propuestas por OTHERCIT, que llamamos spina", "title_es": "Un nuevo analizador estadístico basado en dependencias léxicas de bigramas"}, {"id": "W13-3720_E06-1010_1", "text": "ncidence of non-projective edges, if one considers the different conditions of relaxation of projectivity, AG data seem to reflect the same tendencies already observed in other languages (Kuhlmann and TARGETCIT ; OTHERCIT). Non-planarity does not prove to mark a significant relaxation. On the contrary, well-nestedness is a very effective constraint in AG too. Although the absolute rate is higher than in the", "title": "Constraints on Non-Projective Dependency Parsing", "es": "la incidencia de aristas no proyectivas; si se consideran las distintas condiciones de relajación de la proyectividad, los datos del griego antiguo parecen reflejar las mismas tendencias ya observadas en otros idiomas (Kuhlmann y TARGETCIT; OTHERCIT). La no planaridad no resulta ser una relajación significativa. Por el contrario, la restricción de buen anidamiento también es muy eficaz en griego antiguo. Aunque la tasa absoluta es mayor que en", "title_es": "Restricciones en el análisis de dependencias no proyectivo"}, {"id": "W12-1614_P02-1047_2", "text": "xisting features enhances the performance. Below, we discuss the primary observations gleaned from the experiments. Word pairs as features. Starting with earlier works that proposed them as features ( TARGETCIT , some form of word pairs has generally been part of feature sets for implicit discourse relation recognition. According to our research, however, these features provide little or no additional gain,", "title": "An Unsupervised Approach to Recognizing Discourse Relations", "es": "los atributos existentes mejora el desempeño. A continuación discutimos las principales observaciones de los experimentos. Pares de palabras como atributos. Desde los primeros trabajos que los propusieron como atributos (TARGETCIT), alguna forma de pares de palabras ha formado parte de los conjuntos de atributos para reconocer relaciones discursivas implícitas. Según nuestra investigación, sin embargo, estos atributos aportan poca o ninguna ganancia adicional", "title_es": "Un enfoque no supervisado para reconocer relaciones discursivas"}, {"id": "W09-1401_W04-1213_0", "text": "d ACE (OTHERCIT) events, have significantly contributed to the progress of their respective fields. This has also been the case in bio-TM. Examples include the TREC Genomics track (OTHERCIT), JNLPBA ( TARGETCIT , LLL (N´edellec, 2005), and BioCreative (OTHERCIT). While the first two addressed bio-IR (information retrieval) and bio-NER (named entity recognition), respectively, the last two focused on bio-IE (", "title": "Introduction to the Bio-Entity Recognition Task at JNLPBA", "es": "y los eventos de ACE (OTHERCIT), han contribuido de manera significativa al avance de sus respectivos campos. Lo mismo ha ocurrido en la minería de textos biomédicos. Algunos ejemplos son la competencia TREC Genomics (OTHERCIT), JNLPBA (TARGETCIT), LLL (Nédellec, 2005) y BioCreative (OTHERCIT). Mientras que las dos primeras abordaron la recuperación de información biomédica y el reconocimiento de entidades biomédicas, respectivamente, las dos últimas se centraron en la extracción de información biomédica", "title_es": "Introducción a la tarea de reconocimiento de bioentidades en JNLPBA"}, {"id": "W11-2102_D10-1092_2", "text": "atistical machine translation between two languages (OTHERCIT) hence BLEU scores may be most unreliable precisely for those language pairs for which statistical machine translation is most difficult ( TARGETCIT . There have been many results showing that metrics that account for reordering are better correlated with human judgements of translation quality (OTHERCIT). Examples given in OTHERCIT where object a", "title": "Automatic Evaluation of Translation Quality for Distant Language Pairs", "es": "la traducción automática estadística entre dos idiomas (OTHERCIT); por eso, los puntajes BLEU pueden ser más poco fiables precisamente para los pares de idiomas en los que la traducción automática estadística es más difícil (TARGETCIT). Muchos resultados han mostrado que las métricas que tienen en cuenta el reordenamiento se correlacionan mejor con los juicios humanos sobre la calidad de la traducción (OTHERCIT). Los ejemplos dados en OTHERCIT, donde el objeto", "title_es": "Evaluación automática de la calidad de traducción para pares de idiomas distantes"}, {"id": "D15-1104_N03-1028_0", "text": "The gradient of L(T, w) is derived as, As shown in Figure 1, our model’s factor graph is a tree, which means the calculation of the gradient is tractable. Inspired by the forward backward algorithm ( TARGETCIT and Semi-CRF (OTHERCIT), we leverage dynamic programming techniques to compute the normalization factor Zw and marginal probability P(a0j|xt, w) when w is given.(Sutton and McOTHERCIT) The parameter e", "title": "Shallow Parsing with Conditional Random Fields", "es": "El gradiente de L(T, w) se deriva así: como se muestra en la Figura 1, el grafo de factores de nuestro modelo es un árbol, lo que significa que el cálculo del gradiente es tratable. Inspirados en el algoritmo forward-backward (TARGETCIT) y en Semi-CRF (OTHERCIT), aprovechamos técnicas de programación dinámica para calcular el factor de normalización Zw y la probabilidad marginal P(a0j|xt, w) dado w. (Sutton y OTHERCIT) El parámetro", "title_es": "Análisis sintáctico superficial con campos aleatorios condicionales"}, {"id": "W14-1005_W11-2126_1", "text": "nd Hindi verbal complexes. The discontiguity of verbal complexes rules out this approach for translation into German. Our model adopts a similar constraint-based extension of SCFG to that described in TARGETCIT . In that work, constraints are used to enforce target-side agreement between nouns and modifiers and between subjects and verbs. Whilst that constraint model operates purely on the targetside, our ve", "title": "Agreement Constraints for Statistical Machine Translation into German", "es": "y los complejos verbales del hindi. La discontinuidad de los complejos verbales descarta este enfoque para traducir al alemán. Nuestro modelo adopta una extensión de SCFG basada en restricciones, similar a la descrita en TARGETCIT. En ese trabajo, las restricciones se usan para imponer la concordancia en el lado destino entre sustantivos y modificadores y entre sujetos y verbos. Mientras que ese modelo de restricciones opera solo en el lado destino, nuestro", "title_es": "Restricciones de concordancia para la traducción automática estadística al alemán"}, {"id": "P14-1135_P09-1110_0", "text": "We build on a number of existing algorithmic ideas, including using CCGs to build meaning representations (OTHERCIT), building derivations to transform the output of the CCG parser based on context ( TARGETCIT , and using weakly supervised parameter updates (OTHERCIT). However, we are the first to use a semantic parsing grammar within a mention detection algorithm, thereby avoiding the need to represent the", "title": "Learning Context-Dependent Mappings from Sentences to Logical Form", "es": "Nos apoyamos en varias ideas algorítmicas existentes, como usar CCG para construir representaciones del significado (OTHERCIT), construir derivaciones que transforman la salida del analizador CCG según el contexto (TARGETCIT) y usar actualizaciones de parámetros con supervisión débil (OTHERCIT). Sin embargo, somos los primeros en usar una gramática de análisis semántico dentro de un algoritmo de detección de menciones, con lo que evitamos tener que representar", "title_es": "Aprendizaje de mapeos dependientes del contexto de oraciones a forma lógica"}, {"id": "P14-1066_D13-1176_0", "text": "In contrast, our model learns jointly the representations of a phrase in the source language as well as its translation in the target language. The recurrent continuous translation models proposed by TARGETCIT also adopt the recurrent language model (OTHERCIT). But unlike the n-gram translation models above, they make no Markov assumptions about the dependency of the words in the target sentence. Continuous", "title": "Recurrent Continuous Translation Models", "es": "En cambio, nuestro modelo aprende de forma conjunta las representaciones de una frase en el idioma fuente y de su traducción en el idioma destino. Los modelos recurrentes continuos de traducción propuestos por TARGETCIT también adoptan el modelo de lenguaje recurrente (OTHERCIT). Pero, a diferencia de los modelos de traducción de n-gramas anteriores, no hacen supuestos de Markov sobre la dependencia de las palabras en la oración destino. Continuos", "title_es": "Modelos recurrentes continuos de traducción"}, {"id": "D14-1101_E14-4030_0", "text": "d to also provide clues for the POS tagging. We used two types of supertags: One is the dependency relation label of the head of the word and the other is that of the dependents of the word. Following TARGETCIT , we added the relative position, left (L) or right (R), to the supertags. For example, a word has its dependents in the left direction with a label “nn” and in the right direction with a label “amod”", "title": "Improving Dependency Parsers with Supertags", "es": "para dar también pistas al etiquetado gramatical (POS). Usamos dos tipos de superetiquetas: una es la etiqueta de relación de dependencia del núcleo de la palabra y la otra es la de sus dependientes. Siguiendo a TARGETCIT, añadimos a las superetiquetas la posición relativa, izquierda (L) o derecha (R). Por ejemplo, una palabra tiene dependientes hacia la izquierda con la etiqueta «nn» y hacia la derecha con la etiqueta «amod»", "title_es": "Mejora de analizadores de dependencias con superetiquetas"}, {"id": "W13-3602_D10-1094_2", "text": "miner errors’ interchangeably: article errors constitute the majority of deform and subject-verb agreement errors. Our article and preposition modules build on the elements of the systems described in TARGETCIT b), OTHERCIT and OTHERCIT. The article system is trained using the Averaged Perceptron (AP) algorithm (OTHERCIT), implemented within Learning Based Java (OTHERCIT). The AP system is trained using the", "title": "Generating Confusion Sets for Context-Sensitive Error Correction", "es": "«errores de determinantes» se usan como sinónimos: los errores de artículo constituyen la mayoría […] y los errores de concordancia sujeto-verbo. Nuestros módulos de artículos y preposiciones se basan en elementos de los sistemas descritos en TARGETCIT, OTHERCIT y OTHERCIT. El sistema de artículos se entrena con el algoritmo de perceptrón promediado (AP) (OTHERCIT), implementado en Learning Based Java (OTHERCIT). El sistema AP se entrena usando", "title_es": "Generación de conjuntos de confusión para la corrección de errores sensible al contexto"}, {"id": "J13-3003_W09-2413_0", "text": "onstitute an approach to word meaning that avoids many of the drawbacks of more traditional sense distinction and annotation. Some cross-linguistic approaches group translations into disjoint senses ( TARGETCIT , whereas others do not (Mihalcea, Sinha, and McCarthy 2010). 2.3.2 Distributional Approaches. Recently there have been a growing number of distributional approaches to representing word meaning in co", "title": "SemEval-2010 Task 3: Cross-lingual Word Sense Disambiguation", "es": "constituyen un enfoque del significado de las palabras que evita muchas de las desventajas de la distinción y anotación de sentidos más tradicional. Algunos enfoques entre idiomas agrupan las traducciones en sentidos separados (TARGETCIT), mientras que otros no lo hacen (Mihalcea, Sinha y McCarthy 2010). 2.3.2 Enfoques distribucionales. Recientemente ha crecido el número de enfoques distribucionales para representar el significado de las palabras en contexto", "title_es": "SemEval-2010, tarea 3: desambiguación del sentido de las palabras entre idiomas"}, {"id": "E09-1061_J07-2003_3", "text": "relevant to parsing, such as boolean semirings and cyclicity. Our work focuses on concerns common for translation, including a general view of non-local parameterizations and cube pruning. 13Huang and TARGETCIT give an informal example, but do not elaborate on it. 9 Conclusions and Future Work We have described a general framework that synthesizes and extends deductive parsing and semiring parsing, and adapt", "title": "Hierarchical Phrase-Based Translation", "es": "relevantes para el análisis sintáctico, como los semianillos booleanos y la ciclicidad. Nuestro trabajo se centra en preocupaciones comunes en traducción, como una visión general de las parametrizaciones no locales y la poda por cubos. [Nota 13] Huang y TARGETCIT dan un ejemplo informal, pero no lo desarrollan. 9 Conclusiones y trabajo futuro. Hemos descrito un marco general que sintetiza y extiende el análisis deductivo y el análisis con semianillos, y adapta", "title_es": "Traducción jerárquica basada en frases"}, {"id": "D13-1129_P08-1068_1", "text": "vert the data into dependency structures with the English head rules of OTHERCIT and the Chinese head rules of OTHERCIT. We followed the standard data splits as shown in Table 3. Following the work of TARGETCIT , we used a tagger trained on training data to provide part-of-speech (POS) tags for the development and test sets, and used 10-way jackknifing to generate part-of-speech tags for the training set. We", "title": "Simple Semi-supervised Dependency Parsing", "es": "convertimos los datos a estructuras de dependencias con las reglas de núcleo del inglés de OTHERCIT y las del chino de OTHERCIT. Seguimos las particiones estándar de los datos que se muestran en la Tabla 3. Siguiendo el trabajo de TARGETCIT, usamos un etiquetador entrenado con los datos de entrenamiento para asignar las etiquetas gramaticales (POS) en los conjuntos de desarrollo y prueba, y usamos jackknifing de 10 particiones para generarlas en el conjunto de entrenamiento.", "title_es": "Análisis de dependencias semisupervisado simple"}, {"id": "W11-0507_N09-1041_0", "text": "ROUGE (OTHERCIT). The use of structured probabilistic topic models has made it possible to represent document set content with increasing complexity (Daum´e & OTHERCIT; Celikyilmaz & HakkaniOTHERCIT). TARGETCIT demonstrated that these models can improve the quality of generic multi-document summaries over simpler surface models. Their most complex hierarchial model improves summary content by teasing out the", "title": "Exploring Content Models for Multi-Document Summarization", "es": "ROUGE (OTHERCIT). El uso de modelos probabilísticos de temas estructurados ha permitido representar el contenido de un conjunto de documentos con complejidad creciente (Daumé y OTHERCIT; Celikyilmaz y OTHERCIT). TARGETCIT demostraron que estos modelos pueden mejorar la calidad de los resúmenes genéricos de múltiples documentos frente a modelos superficiales más simples. Su modelo jerárquico más complejo mejora el contenido del resumen al separar", "title_es": "Exploración de modelos de contenido para resumen de múltiples documentos"}, {"id": "P13-1009_N12-1049_5", "text": "his approach; however, empirically the approximation yields a significant efficiency improvement without noticeable loss in performance. Training We adopt an EM-style bootstrapping approach similar to TARGETCIT , in order to handle the task of parsing the temporal expression without annotations for the latent parses. Each training instance is a tuple consisting of the words in the temporal phrase, the annota", "title": "Parsing Time: Learning to Interpret Time Expressions", "es": "este enfoque; sin embargo, en la práctica la aproximación logra una mejora significativa de eficiencia sin una pérdida notable de desempeño. Entrenamiento. Adoptamos un enfoque de bootstrapping tipo EM similar al de TARGETCIT, para abordar la tarea de analizar la expresión temporal sin anotaciones de los análisis latentes. Cada instancia de entrenamiento es una tupla formada por las palabras de la frase temporal, la anotación", "title_es": "Analizar el tiempo: aprender a interpretar expresiones temporales"}, {"id": "P15-1043_N09-1066_0", "text": "dels are an essential component of any system for automatic survey article generation. Earlier work in the area of survey article generation has investigated content models based on lexical networks ( TARGETCIT ; OTHERCIT). These models take as input citing sentences that describe important papers on the topic and assign them a salience score based on centrality in a lexical network formed by the input citin", "title": "Using Citations to Generate Surveys of Scientific Paradigms", "es": "los modelos son un componente esencial de cualquier sistema de generación automática de artículos de revisión. El trabajo previo sobre generación de artículos de revisión ha investigado modelos de contenido basados en redes léxicas (TARGETCIT; OTHERCIT). Estos modelos reciben como entrada oraciones citantes que describen artículos importantes del tema y les asignan un puntaje de relevancia según su centralidad en una red léxica formada por las oraciones citantes de entrada", "title_es": "Uso de citas para generar revisiones de paradigmas científicos"}, {"id": "S07-1072_P97-1023_0", "text": "mple in Section 4. A discussion of the obtained results can be found in Section 5 and finally we conclude in Section 6. 2 Related work Our approach for emotion classification is based on the idea of ( TARGETCIT and is similar to those of (OTHERCIT) and (OTHERCIT). According to Hatzivassiloglou and McOTHERCIT, adjectives with the same polarity tended to appear together. For example the negative adjectives “co", "title": "Predicting the Semantic Orientation of Adjectives", "es": "un ejemplo en la Sección 4. En la Sección 5 se discuten los resultados obtenidos y finalmente concluimos en la Sección 6. 2 Trabajo relacionado. Nuestro enfoque de clasificación de emociones se basa en la idea de (TARGETCIT) y es similar a los de (OTHERCIT) y (OTHERCIT). Según Hatzivassiloglou y OTHERCIT, los adjetivos con la misma polaridad tienden a aparecer juntos. Por ejemplo, los adjetivos negativos", "title_es": "Predicción de la orientación semántica de los adjetivos"}, {"id": "W06-3121_P05-1066_0", "text": "le of the output. The second enhancement tries to improve the quality of the translation by rearranging the words in the source sentence to better match the correct word order in the target language ( TARGETCIT . We focused on a very specific pattern – based on the part-of-speech tags, changing the order of NN-ADJ phrases in the non-English sentences. This process was also applied to the input dev/test files", "title": "Clause Restructuring for Statistical Machine Translation", "es": "de la salida. La segunda mejora intenta aumentar la calidad de la traducción reordenando las palabras de la oración fuente para que se ajusten mejor al orden correcto de las palabras en el idioma destino (TARGETCIT). Nos centramos en un patrón muy específico: con base en las etiquetas gramaticales, cambiar el orden de las frases sustantivo-adjetivo en las oraciones que no están en inglés. Este proceso también se aplicó a los archivos de entrada de desarrollo y prueba", "title_es": "Reestructuración de cláusulas para la traducción automática estadística"}, {"id": "N01-1003_W98-1415_1", "text": "6 Related Work Previous work in sentence planning in the natural language generation (NLG) community uses hand-written rules to approximate the distribution of linguistic phenomena in a corpus (see ( TARGETCIT for a recent example with further references). This approach is difficult to scale due to the nonrobustness of rules and unexpected interactions (OTHERCIT), and it is difficult to develop new applicat", "title": "Clause Aggregation Using Linguistic Knowledge", "es": "6 Trabajo relacionado. El trabajo previo sobre planificación de oraciones en la comunidad de generación de lenguaje natural (NLG) usa reglas escritas a mano para aproximar la distribución de fenómenos lingüísticos en un corpus (véase (TARGETCIT) para un ejemplo reciente con más referencias). Este enfoque es difícil de escalar por la fragilidad de las reglas y por interacciones inesperadas (OTHERCIT), y es difícil desarrollar nuevas aplicaciones", "title_es": "Agregación de cláusulas mediante conocimiento lingüístico"}, {"id": "W15-4641_W14-4337_1", "text": "trated the power of statistical approaches, such as Maximum Entropy (MaxEnt) (OTHERCIT), Conditional Random Field (OTHERCIT), Deep Neural Network (DNN) (OTHERCIT), and Recurrent Neural Network (RNN) ( TARGETCIT d). However, statistical approaches have some disadvantages. For example, statistical approaches sometimes show large variation in performance and poor generalisation ability because of lack of data (", "title": "The Second Dialog State Tracking Challenge", "es": "demostraron el potencial de los enfoques estadísticos, como Máxima Entropía (MaxEnt) (OTHERCIT), los campos aleatorios condicionales (OTHERCIT), las redes neuronales profundas (DNN) (OTHERCIT) y las redes neuronales recurrentes (RNN) (TARGETCIT). Sin embargo, los enfoques estadísticos tienen algunas desventajas. Por ejemplo, a veces muestran gran variación en el desempeño y poca capacidad de generalización por falta de datos", "title_es": "El segundo desafío de seguimiento del estado del diálogo"}, {"id": "P13-1137_W12-1642_0", "text": "nvestigated to identify key phrases or utterances for inclusion in the decision summary (Fern´andez et al., 2008; OTHERCIT). Based on Fern´andez et al. (2008), a relation representation is proposed by TARGETCIT to form structured summaries; we adopt this representation here for content selection. Our research is also in line with generating abstractive summaries for conversations. Extractive approaches (OTHE", "title": "Focused Meeting Summarization via Unsupervised Relation Extraction", "es": "se investigaron para identificar frases o intervenciones clave que incluir en el resumen de decisiones (Fernández et al., 2008; OTHERCIT). Con base en Fernández et al. (2008), TARGETCIT propone una representación de relaciones para formar resúmenes estructurados; aquí adoptamos esa representación para seleccionar el contenido. Nuestra investigación también va en la línea de generar resúmenes abstractivos de conversaciones. Los enfoques extractivos (OTHERCIT", "title_es": "Resumen enfocado de reuniones mediante extracción de relaciones no supervisada"}];
+// α de Krippendorff (nominal): admite varios anotadores y casos sin todas las respuestas.
+// units: arreglo de casos; cada caso es la lista de etiquetas que le dieron los anotadores.
+function kAlpha(units){
+  const o = {}; let n = 0;
+  units.forEach(vals => {
+    const m = vals.length; if (m < 2) return;          // un caso con una sola respuesta no aporta pares
+    for (let i = 0; i < m; i++) for (let j = 0; j < m; j++) if (i !== j){
+      const key = vals[i] + "|" + vals[j]; o[key] = (o[key] || 0) + 1 / (m - 1);
+    }
+    n += m;
+  });
+  if (n < 2) return null;
+  const nc = {}; for (const [k, v] of Object.entries(o)){ const c = k.split("|")[0]; nc[c] = (nc[c] || 0) + v; }
+  let Do = 0; for (const [k, v] of Object.entries(o)){ const [a, b] = k.split("|"); if (a !== b) Do += v; } Do /= n;
+  let De = 0; const cs = Object.keys(nc); for (const a of cs) for (const b of cs) if (a !== b) De += nc[a] * nc[b]; De /= n * (n - 1);
+  return De === 0 ? 1 : 1 - Do / De;
+}
+// κ de Cohen entre dos anotadores, sobre los casos que ambos respondieron.
+function cKappa(a, b){
+  const ids = Object.keys(a).filter(k => b[k]);
+  if (ids.length < 2) return null;
+  let agree = 0; const ma = {}, mb = {};
+  ids.forEach(k => { const x = a[k], y = b[k]; if (x === y) agree++; ma[x] = (ma[x] || 0) + 1; mb[y] = (mb[y] || 0) + 1; });
+  const N = ids.length, po = agree / N;
+  let pe = 0; for (const c of new Set([...Object.keys(ma), ...Object.keys(mb)])) pe += ((ma[c] || 0) / N) * ((mb[c] || 0) / N);
+  return pe === 1 ? 1 : (po - pe) / (1 - pe);
+}
+
+const NV = "No válido";
+const LSC = LS + "-cal";
+let cal = {a: {}, fin: false};                      // mis respuestas: id -> {l, t, ms, d}
+try { const v = JSON.parse(localStorage.getItem(LSC) || "null"); if (v && v.a) cal = v; } catch(e){}
+function saveCal(){ try { localStorage.setItem(LSC, JSON.stringify(cal)); } catch(e){} }
+let cidx = Math.max(0, CALIB.findIndex(i => !cal.a[i.id]));
+let shownAt = Date.now(), lastShown = null;
+let calTeam = {}, calFirst = true, cWriting = false, cAgain = false;
+
+async function pushCal(){
+  if (!db || !me || mode !== "sync") return;
+  if (cWriting){ cAgain = true; return; }
+  cWriting = true;
+  try { await db.doc("calibracion/" + me).set({a: cal.a, fin: !!cal.fin, v: 1}); }
+  catch(e){
+    if (e && (e.code === "invalid_argument" || e.code === "not_granted" || e.code === "revoked")){ mode = "readonly"; renderStatus(); }
+    else if (e && e.code === "unavailable"){ setTimeout(pushCal, 1200 + Math.random() * 1200); }
+  }
+  cWriting = false;
+  if (cAgain){ cAgain = false; pushCal(); }
+}
+function subCal(){
+  db.collection("calibracion").onSnapshot(snap => {
+    const t = {};
+    snap.docs.forEach(d => { if (d.exists){ const v = d.data(); if (v && v.a) t[d.id] = v; } });
+    calTeam = t;
+    if (calFirst){
+      calFirst = false;
+      const r = t[me]; let ch = false;
+      if (r){
+        for (const [k, v] of Object.entries(r.a || {})) if (!cal.a[k]){ cal.a[k] = v; ch = true; }
+        if (r.fin && !cal.fin){ cal.fin = true; ch = true; }
+      }
+      if (ch) saveCal();
+      const remote = (r && r.a) || {};
+      if (Object.keys(cal.a).some(k => !remote[k]) || (cal.fin && !(r && r.fin))) pushCal();
+    }
+    renderCal();
+  }, () => {});
+}
+function calView(){ const t = {...calTeam}; if (me) t[me] = {a: cal.a, fin: cal.fin}; return t; }
+function median(xs){ if (!xs.length) return null; const s = [...xs].sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; }
+
+function calDist(it, fin){
+  const votes = fin.map(([u, v]) => v.a[it.id] && v.a[it.id].l).filter(Boolean);
+  const c = {}; votes.forEach(v => c[v] = (c[v] || 0) + 1);
+  return {votes, c, rows: Object.entries(c).sort((a, b) => b[1] - a[1]).map(([k, n]) =>
+    `<div class="dist-row"><span>${esc(k === NV ? NV : CLS[k].es)}</span><div class="dist-bar" style="--c:var(${CLS[k] ? CLS[k].c : "--c1"})"><i style="width:${(n / votes.length * 100).toFixed(0)}%"></i></div><b>${n}</b></div>`).join("")};
+}
+function renderCal(){
+  if (!CALIB.length) return;
+  $("#cgrid").innerHTML = CALIB.map((it, i) =>
+    `<button class="cnum${cal.a[it.id] ? " done" : ""}${i === cidx ? " cur" : ""}" data-ci="${i}" aria-label="Caso ${i + 1}">${i + 1}</button>`).join("");
+  const it = CALIB[cidx], a = cal.a[it.id];
+  if (lastShown !== it.id){ shownAt = Date.now(); lastShown = it.id; }   // el tiempo cuenta desde que se abre el caso
+  const dis = cal.fin ? "disabled" : "";
+  const opts = CLASSES.map(c => `<button class="opt${a && a.l === c.k ? " is-pick" : ""}" data-ck="${esc(c.k)}" ${dis}>${dot(c.k)}<span><strong>${esc(c.es)}</strong><small>${esc(c.k)}</small></span></button>`).join("")
+    + `<button class="opt${a && a.l === NV ? " is-pick" : ""}" data-ck="${NV}" ${dis}><i class="dot" style="--c:var(--line)"></i><span><strong>No válido</strong><small>tabla, ruido o sin sentido</small></span></button>`;
+  const done = CALIB.filter(i => cal.a[i.id]).length;
+  let team = "";
+  if (cal.fin){
+    const fin = Object.entries(calView()).filter(([u, v]) => v && v.fin);
+    const d = calDist(it, fin);
+    if (d.votes.length >= 2) team = `<div class="fb"><h3>Respuestas del equipo en este caso (${d.votes.length})</h3><div class="dist">${d.rows}</div></div>`;
+  }
+  $("#ccase").innerHTML = `
+    <div class="progress"><span>${done} de ${CALIB.length} respondidos</span><div class="bar"><i style="width:${(done / CALIB.length * 100).toFixed(1)}%"></i></div></div>
+    <article class="sheet">
+      <div class="sheet-meta"><span>Caso ${cidx + 1} de ${CALIB.length} · Calibración</span><span>${esc(it.id)}</span></div>
+      ${passage({text: it.text, es: it.es}, false)}
+      <p class="cited">Artículo citado: <em>${esc(it.title || "sin título")}</em><span class="tr">En español: ${esc(it.title_es || "")}</span></p>
+    </article>
+    <p class="ask">${cal.fin ? "Tu respuesta (la ronda está cerrada)" : "¿Qué función cumple la CITA?"}</p>
+    <div class="opts">${opts}</div>
+    <label class="dud"><input type="checkbox" id="c-dud" ${a && a.d ? "checked" : ""} ${(!a || cal.fin) ? "disabled" : ""}> Tengo dudas con este caso</label>
+    ${team}
+    <div class="nav">
+      <button class="btn" id="c-prev" ${cidx === 0 ? "disabled" : ""}>← Anterior</button>
+      <button class="btn${a ? " primary" : ""}" id="c-next" ${cidx === CALIB.length - 1 ? "disabled" : ""}>Siguiente →</button>
+    </div>
+    ${cal.fin ? "" : `<div class="panel"><p>${done < CALIB.length ? `Te faltan ${CALIB.length - done} casos. Cuando los completes podrás terminar la ronda.` : "Ya respondiste los 36. Al terminar, tus respuestas quedan fijas y se muestran los resultados del equipo."}</p><div class="row" id="c-fin-row"><button class="btn primary" id="c-fin" ${done < CALIB.length ? "disabled" : ""}>Terminar ronda</button></div></div>`}`;
+  renderCalResults();
+}
+function calChoose(k){
+  if (cal.fin) return;
+  const it = CALIB[cidx], prev = cal.a[it.id];
+  // el tiempo se guarda solo en la primera respuesta, con tope de 10 minutos
+  const ms = prev ? prev.ms : Math.min(Date.now() - shownAt, 600000);
+  cal.a[it.id] = {l: k, t: Date.now(), ms, d: prev ? !!prev.d : false};
+  saveCal(); pushCal(); renderCal();
+}
+async function renderCalResults(){
+  const el = $("#cresults");
+  if (!cal.fin){ el.innerHTML = `<p class="note">Los resultados del equipo aparecen cuando termines la ronda, para que nadie se deje influir por las respuestas de los demás.</p>`; return; }
+  const fin = Object.entries(calView()).filter(([u, v]) => v && v.fin);
+  const units = CALIB.map(it => fin.map(([u, v]) => v.a[it.id] && v.a[it.id].l).filter(Boolean));
+  const alpha = fin.length >= 2 ? kAlpha(units) : null;
+  const lectura = alpha === null ? "Hace falta que al menos dos personas terminen la ronda."
+    : alpha >= 0.8 ? "Confiable: el equipo puede anotar el Test Gold."
+    : alpha >= 0.7 ? "Alcanza la meta de la propuesta (0,70), pero conviene discutir los casos con desacuerdo."
+    : "Por debajo de la meta de 0,70: discutir los desacuerdos, ajustar la guía y repetir con casos nuevos.";
+  // κ de Cohen por pareja
+  const pares = [];
+  for (let i = 0; i < fin.length; i++) for (let j = i + 1; j < fin.length; j++){
+    const A = {}, B = {};
+    Object.entries(fin[i][1].a).forEach(([k, v]) => A[k] = v.l);
+    Object.entries(fin[j][1].a).forEach(([k, v]) => B[k] = v.l);
+    pares.push({u: fin[i][0], w: fin[j][0], k: cKappa(A, B)});
+  }
+  // tiempo por caso (mediana de todas las respuestas)
+  const tiempos = [];
+  fin.forEach(([u, v]) => Object.values(v.a).forEach(x => { if (x && x.ms > 0) tiempos.push(x.ms); }));
+  const med = median(tiempos);
+  const horas = med ? (med * 180 / 3600000) : null;   // 180 juicios por persona en el escenario de 450 casos
+  // casos con menos acuerdo o con dudas
+  const casos = CALIB.map((it, i) => {
+    const d = calDist(it, fin); const top = d.votes.length ? Math.max(...Object.values(d.c)) : 0;
+    const dudas = fin.filter(([u, v]) => v.a[it.id] && v.a[it.id].d).length;
+    return {it, i, d, agree: d.votes.length ? top / d.votes.length : 1, dudas};
+  }).filter(x => x.d.votes.length >= 2 && (x.agree < 1 || x.dudas)).sort((a, b) => a.agree - b.agree || b.dudas - a.dudas);
+  const nv = units.flat().filter(l => l === NV).length;
+  let names = {};
+  const ids = fin.map(([u]) => u);
+  try { if (userNs && ids.length) names = await userNs.profiles(ids); } catch(e){}
+  const who = u => (names[u] && names[u].name) ? names[u].name + (u === me ? " (tú)" : "") : (u === me ? "Tú" : "Integrante");
+  const coma = x => x.toFixed(2).replace(".", ",");
+  el.innerHTML = `
+    <h2>Resultados de la calibración</h2>
+    <div class="kpis">
+      <div class="kpi"><b>${alpha === null ? "—" : coma(alpha)}</b><span>α de Krippendorff · meta 0,70</span></div>
+      <div class="kpi"><b>${fin.length}</b><span>personas terminaron</span></div>
+      <div class="kpi"><b>${med ? Math.round(med / 1000) + " s" : "—"}</b><span>mediana por caso${horas ? ` · ≈ ${horas.toFixed(1).replace(".", ",")} h para 180 casos` : ""}</span></div>
+    </div>
+    <div class="panel"><p>${esc(lectura)}</p>${nv ? `<p class="note">${nv} respuestas marcaron «No válido».</p>` : ""}</div>
+    <div><h3>Acuerdo por pareja (κ de Cohen)</h3></div>
+    <div class="tbl-wrap"><table>${pares.length
+      ? `<thead><tr><th>Pareja</th><th class="num">κ</th></tr></thead><tbody>${pares.map(p => `<tr><td data-pair="${esc(p.u)}|${esc(p.w)}"></td><td class="num">${p.k === null ? "—" : coma(p.k)}</td></tr>`).join("")}</tbody>`
+      : `<tbody><tr><td class="empty">Aparece cuando terminen al menos dos personas.</td></tr></tbody>`}</table></div>
+    <div><h3>Casos para discutir (${casos.length})</h3></div>
+    <div class="panel">${casos.length ? casos.slice(0, 15).map(x => `
+      <div class="disc-item">
+        <button class="linkbtn" data-ci="${x.i}">Caso ${x.i + 1} · ${Math.round(x.agree * 100)}% de acuerdo${x.dudas ? ` · ${x.dudas} con dudas` : ""}</button>
+        <div class="dist">${x.d.rows}</div>
+      </div>`).join("") : `<p class="note">Sin desacuerdos por ahora.</p>`}</div>
+    <div class="panel">
+      <h3>Copiar mis respuestas de calibración</h3>
+      <textarea readonly>${esc("# Calibración — mis respuestas\n# id\tetiqueta\tsegundos\tdudas\n" + CALIB.filter(i => cal.a[i.id]).map(i => { const x = cal.a[i.id]; return `${i.id}\t${x.l}\t${Math.round((x.ms || 0) / 1000)}\t${x.d ? "sí" : "no"}`; }).join("\n"))}</textarea>
+    </div>`;
+  el.querySelectorAll("td[data-pair]").forEach(td => { const [u, w] = td.getAttribute("data-pair").split("|"); td.textContent = who(u) + " · " + who(w); });
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.ci !== undefined){ cidx = +t.dataset.ci; renderCal(); return $("#ccase").scrollIntoView({block: "start"}); }
+  if (t.dataset.ck) return calChoose(t.dataset.ck);
+  if (t.id === "c-prev"){ cidx = Math.max(0, cidx - 1); return renderCal(); }
+  if (t.id === "c-next"){ cidx = Math.min(CALIB.length - 1, cidx + 1); return renderCal(); }
+  if (t.id === "c-fin"){ $("#c-fin-row").innerHTML = `<span class="note">Tus respuestas quedarán fijas.</span><button class="btn primary" id="c-fin-yes">Sí, terminar</button><button class="btn" id="c-fin-no">Seguir revisando</button>`; return; }
+  if (t.id === "c-fin-no") return renderCal();
+  if (t.id === "c-fin-yes"){ cal.fin = true; saveCal(); pushCal(); return renderCal(); }
+});
+document.addEventListener("change", e => {
+  if (e.target.id !== "c-dud") return;
+  const it = CALIB[cidx]; if (!cal.a[it.id] || cal.fin) return;
+  cal.a[it.id].d = e.target.checked; saveCal(); pushCal();
+});
+
+/* ---------- navegación ---------- */
+function show(v){
+  ["guia", "practicar", "calibracion", "resultados"].forEach(x => {
+    $("#v-" + x).hidden = x !== v;
+    $("#t-" + x).setAttribute("aria-selected", String(x === v));
+  });
+  try { history.replaceState(null, "", "#" + v); } catch(e){}
+  window.scrollTo(0, 0);
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.v) return show(t.dataset.v);
+  if (t.dataset.go) return show(t.dataset.go);
+  if (t.dataset.l){ level = +t.dataset.l; idx[level] = firstOpen(level); return renderPractice(); }
+  if (t.dataset.k) return choose(t.dataset.k);
+  if (t.dataset.act === "toggle-es"){ showEs = !showEs; try { localStorage.setItem(LS + "-es", showEs ? "1" : "0"); } catch(e){} renderPractice(); return renderCal(); }
+  if (t.id === "next" || t.id === "skip"){ idx[level] = Math.min(idx[level] + 1, LIST[level].length - 1); renderPractice(); return $("#case").scrollIntoView({block:"start"}); }
+  if (t.id === "prev"){ idx[level] = Math.max(idx[level] - 1, 0); return renderPractice(); }
+  if (t.id === "next-level"){ level = level + 1; idx[level] = firstOpen(level); renderPractice(); return $("#case").scrollIntoView({block:"start"}); }
+  if (t.id === "copy"){
+    const ta = $("#export");
+    navigator.clipboard.writeText(ta.value).then(() => { $("#copy-msg").textContent = "Copiado."; })
+      .catch(() => { ta.focus(); ta.select(); $("#copy-msg").textContent = "Texto seleccionado: cópialo con Ctrl+C o mantén presionado en el celular."; });
+    return;
+  }
+  if (t.id === "reset"){
+    $("#reset-row").innerHTML = `<span class="note">Se borran ${Object.keys(answers).length} respuestas tuyas.</span><button class="btn danger" id="reset-yes">Sí, borrar</button><button class="btn" id="reset-no">Cancelar</button>`;
+    return;
+  }
+  if (t.id === "reset-no"){ $("#reset-row").innerHTML = `<button class="btn danger" id="reset">Reiniciar mi práctica</button>`; return; }
+  if (t.id === "reset-yes"){
+    answers = {}; saveLocal(); pushMine(); [1,2,3].forEach(n => idx[n] = 0); level = 1;
+    $("#reset-row").innerHTML = `<button class="btn danger" id="reset">Reiniciar mi práctica</button>`;
+    renderPractice(); renderResults(); return show("practicar");
+  }
+});
+
+renderGuide(); renderStatus(); renderPractice(); renderResults(); renderCal();
+const h = (location.hash || "").replace("#", "");
+if (["guia", "practicar", "calibracion", "resultados"].includes(h)) show(h);
+initDb();
+</script>

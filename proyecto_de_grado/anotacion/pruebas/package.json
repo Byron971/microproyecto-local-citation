@@ -1,0 +1,8 @@
+{
+  "name": "pruebas-taller-anotacion",
+  "private": true,
+  "description": "Pruebas de la página de anotación: navegador simulado con jsdom y verificación del acuerdo entre anotadores",
+  "devDependencies": {
+    "jsdom": "^24.1.3"
+  }
+}

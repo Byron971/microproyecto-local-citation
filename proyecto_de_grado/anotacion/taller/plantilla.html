@@ -1,0 +1,804 @@
+<title>Taller de anotación de citas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una sola columna de lectura (máx. 780px) bajo una barra fija con pestañas; el caso se lee como una hoja de manuscrito y las 9 funciones van debajo como botones grandes. */
+:root{
+  --paper:#eef2f1; --sheet:#ffffff; --ink:#17212b; --muted:#56636f; --line:#d3dbe0;
+  --accent:#2a56ad; --accent-soft:#e3ebf8; --accent-ink:#ffffff;
+  --hl:#e2f264; --hl-ink:#17212b; --otra:#e9edf0; --otra-ink:#5f6c78;
+  --ok:#2a7348; --ok-bg:#e2f1e7; --bad:#ac3e2a; --bad-bg:#f7e5e0; --warn:#85600a; --warn-bg:#f6edd3;
+  --c1:#66727f; --c2:#bf432b; --c3:#946515; --c4:#7a4dc2; --c5:#1d8576; --c6:#2e6bcc; --c7:#3a852c; --c8:#c96d16; --c9:#bf3d7b;
+  --f-read:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-ui:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0e1317; --sheet:#161e24; --ink:#e4eaee; --muted:#95a3ae; --line:#2a3640;
+  --accent:#86aefc; --accent-soft:#1d2b44; --accent-ink:#0e1317;
+  --hl:#cfe04a; --hl-ink:#10161a; --otra:#232e36; --otra-ink:#a3b0ba;
+  --ok:#69c98f; --ok-bg:#16301f; --bad:#f2907a; --bad-bg:#3a1d17; --warn:#e8c063; --warn-bg:#33290f;
+  --c1:#9ba7b3; --c2:#f07b63; --c3:#d9a64c; --c4:#b18ef1; --c5:#4fc5b1; --c6:#73a3f6; --c7:#7fc66d; --c8:#f2a252; --c9:#ef82b5;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#0e1317; --sheet:#161e24; --ink:#e4eaee; --muted:#95a3ae; --line:#2a3640;
+  --accent:#86aefc; --accent-soft:#1d2b44; --accent-ink:#0e1317;
+  --hl:#cfe04a; --hl-ink:#10161a; --otra:#232e36; --otra-ink:#a3b0ba;
+  --ok:#69c98f; --ok-bg:#16301f; --bad:#f2907a; --bad-bg:#3a1d17; --warn:#e8c063; --warn-bg:#33290f;
+  --c1:#9ba7b3; --c2:#f07b63; --c3:#d9a64c; --c4:#b18ef1; --c5:#4fc5b1; --c6:#73a3f6; --c7:#7fc66d; --c8:#f2a252; --c9:#ef82b5;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.top-in{max-width:780px;margin:0 auto;padding:10px 16px 0;display:flex;flex-direction:column;gap:6px}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{margin:0;font-family:var(--f-read);font-size:1.25rem;font-weight:600;letter-spacing:-.01em}
+.brand small{color:var(--muted);font-size:.8rem}
+.tabs{display:flex;gap:4px;overflow-x:auto}
+.tab{white-space:nowrap;background:none;border:0;border-bottom:3px solid transparent;padding:8px 10px 9px;font-weight:600;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+
+main{max-width:780px;margin:0 auto;padding-inline:16px;padding-block:20px 56px}
+section{display:flex;flex-direction:column;gap:18px}
+h2{font-family:var(--f-read);font-size:1.35rem;font-weight:600;margin:0;text-wrap:balance}
+h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;font-weight:600}
+p{margin:0}
+.lead{color:var(--muted);max-width:62ch}
+
+/* bloques de la guía */
+.panel{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.steps{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px}
+.steps li{padding-left:.2em}
+.steps b{font-weight:600}
+.arrow{color:var(--muted)}
+.tag{font-family:var(--f-mono);font-size:.78rem;padding:1px 6px;border-radius:5px;white-space:nowrap}
+.tree li{line-height:1.45}
+.note{font-size:.84rem;color:var(--muted)}
+.classes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px}
+.cls{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.cls-h{display:flex;align-items:center;gap:8px}
+.cls-h strong{font-size:1rem}
+.cls-h span{color:var(--muted);font-size:.85rem}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-family:var(--f-mono);font-size:.75rem;background:var(--otra);color:var(--ink);padding:2px 7px;border-radius:5px}
+.nc{font-size:.86rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.nc b{color:var(--ink);font-weight:600}
+.rules{display:grid;gap:10px}
+.rule{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;padding:10px 0;border-top:1px solid var(--line)}
+.rule:first-child{border-top:0;padding-top:0}
+.rule b{font-weight:600}
+
+/* el caso */
+.levels{display:flex;flex-wrap:wrap;gap:8px}
+.lvl{background:var(--sheet);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.88rem;display:flex;gap:6px;align-items:center}
+.lvl[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.lvl .cnt{font-variant-numeric:tabular-nums;opacity:.8}
+.progress{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.sheet-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.passage{font-family:var(--f-read);font-size:1.08rem;line-height:1.7;margin:0;overflow-wrap:anywhere}
+.passage .cut{color:var(--muted)}
+mark.cita{background:var(--hl);color:var(--hl-ink);font-family:var(--f-mono);font-size:.8rem;font-weight:500;padding:2px 6px;border-radius:4px;letter-spacing:.04em;white-space:nowrap}
+.otra{background:var(--otra);color:var(--otra-ink);font-family:var(--f-mono);font-size:.72rem;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.sig{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;background:var(--accent-soft);border-radius:3px}
+.es-box{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.es-box h3{font-size:.7rem}
+.passage.es{font-size:1rem;line-height:1.65}
+.toggle{align-self:flex-start;background:none;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:.8rem;cursor:pointer;color:var(--muted)}
+.cited{font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.cited .tr{display:block;color:var(--muted)}
+.cited em{color:var(--ink);font-style:italic;font-family:var(--f-read)}
+.ask{font-weight:600}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,168px),1fr));gap:8px}
+.opt{display:flex;align-items:flex-start;gap:9px;text-align:left;background:var(--sheet);border:1.5px solid var(--line);border-radius:9px;padding:10px 11px;cursor:pointer;min-height:56px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .dot{margin-top:6px}
+.opt span{display:flex;flex-direction:column;min-width:0}
+.opt strong{font-weight:600;font-size:.92rem;line-height:1.25}
+.opt small{color:var(--muted);font-size:.78rem}
+.opt:disabled{cursor:default}
+.opt.is-ref{border-color:var(--ok);background:var(--ok-bg)}
+.opt.is-wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.dim{opacity:.55}
+.fb{border-radius:var(--r);padding:16px 18px;display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);background:var(--sheet)}
+.verdict{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1rem}
+.verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)} .verdict.disc{color:var(--warn)}
+.why{max-width:68ch}
+.meta-row{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:.76rem;padding:3px 9px;border-radius:999px;background:var(--otra);color:var(--ink)}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.dist{display:flex;flex-direction:column;gap:5px}
+.dist-row{display:grid;grid-template-columns:minmax(0,11rem) 1fr 2ch;gap:8px;align-items:center;font-size:.84rem}
+.dist-row span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dist-bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.dist-bar i{display:block;height:100%;background:var(--c)}
+.dist-row b{font-variant-numeric:tabular-nums;text-align:right;font-weight:600}
+.nav{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.btn{background:var(--sheet);border:1px solid var(--line);border-radius:8px;padding:9px 14px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:default}
+details.help{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
+details.help summary{cursor:pointer;font-weight:600}
+details.help ol{margin:10px 0 2px}
+.done{text-align:left}
+
+/* calibración */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:5px}
+.cnum{height:34px;border:1px solid var(--line);background:var(--sheet);border-radius:6px;font-variant-numeric:tabular-nums;font-size:.8rem;cursor:pointer}
+.cnum.done{background:var(--accent-soft);border-color:var(--accent)}
+.cnum.cur{outline:2px solid var(--accent);outline-offset:1px}
+.opt.is-pick{border-color:var(--accent);background:var(--accent-soft)}
+.dud{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.big{font-family:var(--f-read);font-size:2rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.disc-item{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-top:1px solid var(--line)}
+.disc-item:first-child{border-top:0;padding-top:0}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:600;cursor:pointer;text-align:left}
+/* resultados */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.kpi{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.kpi b{display:block;font-family:var(--f-read);font-size:1.6rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi span{font-size:.8rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;background:var(--sheet);border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:.9rem;padding:14px}
+.status{font-size:.82rem;color:var(--muted);display:flex;gap:6px;align-items:center}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}
+.status.sync i{background:var(--ok)}
+.status.ro i{background:var(--warn)}
+textarea{width:100%;min-height:120px;font-family:var(--f-mono);font-size:.78rem;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+@media (prefers-reduced-motion:no-preference){ .bar i,.dist-bar i{transition:width .3s ease} }
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><h1>Taller de anotación de citas</h1><small>Grupo 19 · Tema 1 · 9 funciones</small></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" id="t-guia" data-v="guia" aria-selected="true">Guía</button>
+      <button class="tab" role="tab" id="t-practicar" data-v="practicar" aria-selected="false">Practicar</button>
+      <button class="tab" role="tab" id="t-calibracion" data-v="calibracion" aria-selected="false">Calibración</button>
+      <button class="tab" role="tab" id="t-resultados" data-v="resultados" aria-selected="false">Resultados</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- GUÍA -->
+  <section id="v-guia">
+    <div class="panel">
+      <h2>Qué se anota</h2>
+      <p class="lead">Para cada fragmento se decide qué función cumple <b>una</b> cita dentro del texto del artículo citante. La pregunta siempre es la misma: ¿qué hace el autor con este trabajo?</p>
+    </div>
+
+    <div class="panel">
+      <h3>Cómo leer un caso</h3>
+      <ol class="steps">
+        <li>La cita a clasificar aparece como <mark class="cita">CITA</mark>. Las demás aparecen como <span class="otra">otra</span> y se ignoran.</li>
+        <li>El fragmento viene cortado a ventana fija: empieza y termina a mitad de frase. Lee la oración que contiene la cita y la siguiente.</li>
+        <li>El título del artículo citado ayuda a entender el tema, pero la función la define lo que el autor hace con la cita.</li>
+        <li>Una sola etiqueta por caso. Si hay dos funciones, elige la dominante.</li>
+        <li>Decide antes de mirar cualquier sugerencia de un modelo. Las sugerencias solo se usan en la reconciliación.</li>
+      </ol>
+    </div>
+
+    <div class="panel tree">
+      <h3>Orden de decisión (propuesto para acordar en el equipo)</h3>
+      <p class="note">Recorrer las preguntas en este orden y quedarse con la primera que se cumpla reduce los desacuerdos entre anotadores.</p>
+      <ol class="steps" id="tree"></ol>
+    </div>
+
+    <div class="classes" id="classes"></div>
+
+    <div class="panel">
+      <h3>Reglas para casos ambiguos (guía del equipo)</h3>
+      <div class="rules" id="rules"></div>
+    </div>
+
+    <div class="row"><button class="btn primary" data-go="practicar">Empezar a practicar</button></div>
+  </section>
+
+  <!-- PRACTICAR -->
+  <section id="v-practicar" hidden>
+    <div class="levels" id="levels"></div>
+    <p class="note" id="level-desc"></p>
+    <div class="progress"><span id="prog-txt"></span><div class="bar"><i id="prog-bar" style="width:0"></i></div></div>
+    <div id="case"></div>
+    <details class="help"><summary>Ver el orden de decisión</summary><ol class="steps" id="tree2"></ol></details>
+    <p class="status" id="status1"><i></i><span></span></p>
+  </section>
+
+  <!-- CALIBRACIÓN -->
+  <section id="v-calibracion" hidden>
+    <div class="panel">
+      <h2>Ronda de calibración</h2>
+      <p class="lead">36 casos nuevos que cada integrante anota por separado. No hay respuesta correcta a la vista: se mide cuánto coincidimos antes de anotar el Test Gold.</p>
+      <ol class="steps">
+        <li>Anota por tu cuenta, sin hablar con el equipo. Puedes consultar la Guía.</li>
+        <li>Si el fragmento es una tabla o texto ilegible, marca <b>No válido</b>.</li>
+        <li>Marca <b>Tengo dudas</b> cuando dudes entre dos funciones; esos casos se discuten primero.</li>
+        <li>Puedes cambiar respuestas hasta pulsar <b>Terminar ronda</b>. Después se muestran los resultados del equipo.</li>
+      </ol>
+    </div>
+    <div class="cgrid" id="cgrid"></div>
+    <div id="ccase"></div>
+    <div id="cresults"></div>
+    <p class="status" id="status3"><i></i><span></span></p>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section id="v-resultados" hidden>
+    <h2>Tus resultados</h2>
+    <div class="kpis" id="kpis"></div>
+    <div><h3>Por función (según la referencia)</h3></div>
+    <div class="tbl-wrap"><table id="t-class"></table></div>
+    <div><h3>Dónde te confundes</h3></div>
+    <div class="panel" id="confusions"></div>
+
+    <h2>Equipo</h2>
+    <p class="status" id="status2"><i></i><span></span></p>
+    <div class="tbl-wrap"><table id="t-team"></table></div>
+    <div><h3>Casos con más desacuerdo en el equipo</h3></div>
+    <div class="panel" id="hard"></div>
+
+    <div class="panel">
+      <h3>Copiar mis respuestas</h3>
+      <p class="note">Si tus respuestas no se comparten con el equipo, cópialas y pégalas en el chat del grupo.</p>
+      <textarea id="export" readonly></textarea>
+      <div class="row"><button class="btn" id="copy">Copiar</button><span class="note" id="copy-msg"></span></div>
+    </div>
+
+    <div class="panel">
+      <h3>Reiniciar</h3>
+      <p class="note">Borra tus respuestas para practicar de nuevo desde cero.</p>
+      <div class="row" id="reset-row"><button class="btn danger" id="reset">Reiniciar mi práctica</button></div>
+    </div>
+  </section>
+</main>
+
+<script>
+const ITEMS = /*__ITEMS__*/[];
+
+// Las 9 funciones de la guía del equipo, con señales típicas y la confusión más común.
+// sig: pares [señal en inglés, significado en español]
+const CLASSES = [
+  {k:"Background", es:"Antecedente", c:"--c1",
+   def:"Aporta contexto general, resume literatura previa o describe el estado de un área.",
+   sig:[["previous work","trabajo previo"],["several studies","varios estudios"],["has been studied","se ha estudiado"],["Related Work","sección de trabajo relacionado"]],
+   nc:"Si respalda una afirmación concreta, es <b>Evidencia</b>. Si hay contraste explícito, es <b>Comparación</b>."},
+  {k:"Gap", es:"Brecha", c:"--c2",
+   def:"Señala algo que no se ha hecho, una limitación de trabajos previos o una brecha que justifica el estudio.",
+   sig:[["however … not","sin embargo … no"],["do not address","no abordan"],["only","solo"],["lack","carecen de"],["has not been","no se ha"]],
+   nc:"La limitación tiene que ser del trabajo citado. Si el «not» (no) habla de los resultados propios, suele ser <b>Comparación</b>."},
+  {k:"Basis", es:"Base conceptual", c:"--c3",
+   def:"El trabajo citado es base intelectual directa: la propuesta se construye sobre sus ideas.",
+   sig:[["inspired by","inspirado en"],["we build on","nos apoyamos en"],["builds upon","se construye sobre"],["grounded in","fundamentado en"]],
+   nc:"Si se ejecuta un método, herramienta o dato tal cual, es <b>Uso directo</b>, aunque diga «following» (siguiendo a)."},
+  {k:"Comparison", es:"Comparación", c:"--c4",
+   def:"Compara explícitamente métodos, resultados, datos o enfoques entre el trabajo actual y el citado, o entre citados.",
+   sig:[["in contrast to","a diferencia de"],["unlike","a diferencia de"],["outperforms","supera a"],["similar to","similar a"],["compared with","comparado con"]],
+   nc:"«X has been shown to outperform Y» (se ha demostrado que X supera a Y) sin el trabajo actual suele ser <b>Evidencia</b>. Una simple enumeración es <b>Antecedente</b>."},
+  {k:"Application", es:"Uso directo", c:"--c5",
+   def:"Usa un método, algoritmo, herramienta, dataset o procedimiento del citado sin modificación sustancial.",
+   sig:[["we use","usamos"],["using the … toolkit","usando la herramienta …"],["computed with","calculado con"],["we apply","aplicamos"]],
+   nc:"Si se adapta o extiende, es <b>Adaptación</b>. «proposed by» (propuesto por) no lo vuelve Origen de la idea."},
+  {k:"Improvement / Modification", es:"Adaptación", c:"--c6",
+   def:"Adapta, amplía, modifica o mejora un método o herramienta del citado para un nuevo objetivo o condición.",
+   sig:[["we adapt","adaptamos"],["we extend","extendemos"],["modified version of","versión modificada de"],["to this problem","a este problema"]],
+   nc:"«variant of» (variante de) que relaciona dos enfoques ajenos no es una modificación del trabajo actual: es <b>Antecedente</b>."},
+  {k:"Evidence", es:"Evidencia", c:"--c7",
+   def:"Respalda una afirmación, hipótesis, decisión metodológica, dato o interpretación concreta del texto citante.",
+   sig:[["has been shown","se ha demostrado"],["X showed that","X mostró que"],["demonstrated that","demostró que"],["…, so we","…, así que nosotros"]],
+   nc:"Prueba rápida: si se quita la cita, ¿queda una afirmación sin respaldo? Si la frase solo describe el área, es <b>Antecedente</b>."},
+  {k:"Identification of the Originator", es:"Origen de la idea", c:"--c8",
+   def:"Reconoce a quien introdujo originalmente una idea, método, concepto o teoría, o establece prioridad intelectual.",
+   sig:[["was introduced by","fue introducido por"],["first proposed","propuesto por primera vez"],["first used by","usado por primera vez por"],["originally developed","desarrollado originalmente"]],
+   nc:"No basta con que la referencia sea antigua ni con «proposed by» (propuesto por). Tiene que atribuir el origen de forma explícita."},
+  {k:"Further Reading", es:"Lectura adicional", c:"--c9",
+   def:"Dirige al lector a una fuente con detalles que el texto actual no desarrolla.",
+   sig:[["for further details","para más detalles"],["we refer the reader to","remitimos al lector a"],["see X for details","véase X para detalles"],["for an overview","para una visión general"]],
+   nc:"No basta con «see» (véase). Si la cita sostiene una afirmación central, es <b>Evidencia</b> o <b>Antecedente</b>."}
+];
+const CLS = Object.fromEntries(CLASSES.map(c => [c.k, c]));
+// nombre para mostrar: español primero, etiqueta oficial en inglés entre paréntesis
+const nm = k => CLS[k] ? `${CLS[k].es} (${k})` : k;
+
+const TREE = [
+  ["¿El trabajo actual <b>usa</b> el método, herramienta o dato del citado?", "Sin cambios → Uso directo (Application) · con cambios → Adaptación (Improvement / Modification)"],
+  ["¿El trabajo actual se <b>construye sobre las ideas</b> del citado?", "Base conceptual (Basis)"],
+  ["¿La cita es uno de los términos de un <b>contraste explícito</b> (frente al trabajo actual o a otro citado)?", "Comparación (Comparison)"],
+  ["¿Se señala una <b>limitación</b> o algo que el citado no hizo?", "Brecha (Gap)"],
+  ["¿La frase le atribuye <b>haber introducido</b> la idea primero?", "Origen de la idea (Identification of the Originator)"],
+  ["¿La cita <b>remite al lector</b> a más detalle?", "Lectura adicional (Further Reading)"],
+  ["¿La cita <b>respalda una afirmación</b> concreta?", "Evidencia (Evidence)"],
+  ["Si nada de lo anterior aplica", "Antecedente (Background)"]
+];
+const RULES = [
+  ["Antecedente vs Evidencia", "El Antecedente sitúa el trabajo dentro de la literatura. La Evidencia respalda una afirmación específica. Pregunta si la oración seguiría siendo una descripción general del campo o si usa la referencia como soporte de una proposición concreta."],
+  ["Base conceptual vs Uso directo", "La Base conceptual describe una dependencia de ideas. El Uso directo implica usar en la práctica un método, algoritmo, herramienta o dato."],
+  ["Uso directo vs Adaptación", "Si se usa el método citado tal como está, es Uso directo. Si se adapta, extiende o modifica, es Adaptación."],
+  ["Antecedente vs Comparación", "Una enumeración de trabajos anteriores suele ser Antecedente. Es Comparación solo cuando hay contraste explícito de similitudes, diferencias, desempeño o propiedades."],
+  ["Origen de la idea", "No uses esta clase solo porque la referencia sea antigua. Tiene que haber atribución explícita del origen: «introduced» (introdujo), «first proposed» (propuso por primera vez), «originally developed» (desarrolló originalmente) o equivalente."],
+  ["Lectura adicional", "No la marques solo porque aparezca «see» (véase). Tiene que remitir principalmente a detalles adicionales, no sostener una afirmación central."]
+];
+const LEVELS = {
+  1:{name:"Casos claros", desc:"Un ejemplo limpio de cada función, unos tres por clase. Sirve para fijar las señales típicas."},
+  2:{name:"Trampas", desc:"Palabras que engañan: «proposed by» (propuesto por), «see» (véase), «outperform» (superar), «following» (siguiendo a), «variant» (variante). La palabra apunta a una clase y la función real es otra."},
+  3:{name:"Desacuerdos del piloto", desc:"Los 8 casos reales en que los dos anotadores del piloto no coincidieron. Ahora con la cita objetivo marcada, que en la hoja del piloto no se veía."}
+};
+
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+function hash(s){ let h = 2166136261; for (const ch of s){ h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+const dot = k => `<i class="dot" style="--c:var(${CLS[k].c})"></i>`;
+const counts = n => ITEMS.filter(i => !n || i.n === n).length;
+// orden fijo pero mezclado dentro de cada nivel, para que las clases no salgan en fila
+const LIST = {1:[],2:[],3:[]};
+ITEMS.forEach(i => LIST[i.n].push(i));
+Object.values(LIST).forEach(l => l.sort((a,b) => hash(a.id) - hash(b.id)));
+
+/* ---------- estado ---------- */
+const LS = "anotacion-citas-v1";
+let answers = {};
+try { answers = JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch(e){ answers = {}; }
+function saveLocal(){ try { localStorage.setItem(LS, JSON.stringify(answers)); } catch(e){} }
+let level = 1, idx = {1:0, 2:0, 3:0};
+function firstOpen(n){ const l = LIST[n]; const k = l.findIndex(i => !answers[i.id]); return k === -1 ? l.length - 1 : k; }
+[1,2,3].forEach(n => idx[n] = firstOpen(n));
+
+/* ---------- respuestas del equipo (db) ---------- */
+let db = null, userNs = null, me = null, team = {}, mode = "local", firstSnap = true;
+let writing = false, again = false;
+async function pushMine(){
+  if (!db || !me || mode !== "sync") return;
+  if (writing){ again = true; return; }
+  writing = true;
+  try { await db.doc("respuestas/" + me).set({a: answers, v: 1}); }
+  catch(e){
+    if (e && (e.code === "invalid_argument" || e.code === "not_granted" || e.code === "revoked")){ mode = "readonly"; renderStatus(); }
+    else if (e && e.code === "unavailable"){ setTimeout(pushMine, 1200 + Math.random() * 1200); }
+  }
+  writing = false;
+  if (again){ again = false; pushMine(); }
+}
+async function initDb(){
+  if (!window.claude || typeof window.claude.use !== "function") return;
+  try {
+    const [d, u] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+    if (!d || !u) return;
+    const id = await u.id();
+    if (!id) return;
+    db = d; userNs = u; me = id; mode = "sync"; renderStatus(); subCal();
+    db.collection("respuestas").onSnapshot(snap => {
+      const t = {};
+      snap.docs.forEach(doc => { if (doc.exists){ const v = doc.data(); if (v && v.a) t[doc.id] = v.a; } });
+      team = t;
+      if (firstSnap){
+        firstSnap = false;
+        const remote = t[me] || {};
+        let changed = false;
+        for (const [k, v] of Object.entries(remote)) if (!answers[k]){ answers[k] = v; changed = true; }
+        if (changed){ saveLocal(); [1,2,3].forEach(n => idx[n] = firstOpen(n)); }
+        if (Object.keys(answers).some(k => !remote[k])) pushMine();
+      }
+      renderPractice(); renderResults();
+    }, () => { mode = "local"; renderStatus(); });
+  } catch(e){ /* sin capacidad: se queda en modo local */ }
+}
+function teamView(){ const t = {...team}; if (me) t[me] = answers; return t; }
+function renderStatus(){
+  const txt = {
+    local:"Tus respuestas se guardan solo en este dispositivo.",
+    sync:"Tus respuestas se comparten con el equipo en esta página.",
+    readonly:"No tienes permiso para guardar respuestas del equipo; quedan en este dispositivo. Cópialas desde Resultados."
+  }[mode];
+  ["#status1", "#status2", "#status3"].forEach(s => { const el = $(s); el.className = "status " + (mode === "sync" ? "sync" : mode === "readonly" ? "ro" : ""); el.querySelector("span").textContent = txt; });
+}
+
+/* ---------- guía ---------- */
+function treeHtml(){ return TREE.map(([q, a]) => `<li>${q} <span class="arrow">→</span> <b>${a}</b></li>`).join(""); }
+function renderGuide(){
+  $("#tree").innerHTML = treeHtml();
+  $("#tree2").innerHTML = treeHtml();
+  $("#classes").innerHTML = CLASSES.map(c => `
+    <article class="cls">
+      <div class="cls-h">${dot(c.k)}<strong>${esc(c.es)}</strong><span>${esc(c.k)}</span></div>
+      <p>${esc(c.def)}</p>
+      <h3>Señales en el texto (inglés → español)</h3>
+      <div class="chips">${c.sig.map(([en, es]) => `<span class="chip">${esc(en)} → ${esc(es)}</span>`).join("")}</div>
+      <p class="nc"><b>No confundir:</b> ${c.nc}</p>
+    </article>`).join("");
+  $("#rules").innerHTML = RULES.map(([t, d]) => `<div class="rule"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join("");
+}
+
+/* ---------- práctica ---------- */
+let showEs = true;
+try { showEs = localStorage.getItem(LS + "-es") !== "0"; } catch(e){}
+// pinta un texto con la CITA resaltada, las otras citas atenuadas y, si ya se respondió, la frase clave subrayada
+function marked(raw, sig, reveal, extra){
+  let parts = [raw];
+  if (reveal && sig){
+    const i = raw.toLowerCase().indexOf(sig.toLowerCase());
+    if (i >= 0) parts = [raw.slice(0, i), raw.slice(i, i + sig.length), raw.slice(i + sig.length)];
+  }
+  const tok = s => esc(s).replace(/TARGETCIT/g, '<mark class="cita">CITA</mark>').replace(/OTHERCIT/g, '<span class="otra">otra</span>');
+  const body = parts.length === 3 ? tok(parts[0]) + `<span class="sig">${tok(parts[1])}</span>` + tok(parts[2]) : tok(parts[0]);
+  return `<p class="passage ${extra || ""}"><span class="cut">…</span>${body}<span class="cut">…</span></p>`;
+}
+function passage(item, reveal){
+  const en = marked(item.text, item.sig, reveal);
+  const es = showEs
+    ? `<div class="es-box"><h3>Traducción al español</h3>${marked(item.es, item.sig_es, reveal, "es")}</div>`
+    : "";
+  return `${en}<button class="toggle" data-act="toggle-es">${showEs ? "Ocultar traducción" : "Mostrar traducción al español"}</button>${es}`;
+}
+function renderLevels(){
+  $("#levels").innerHTML = [1,2,3].map(n => {
+    const done = LIST[n].filter(i => answers[i.id]).length;
+    return `<button class="lvl" data-l="${n}" aria-pressed="${n === level}">Nivel ${n} · ${LEVELS[n].name} <span class="cnt">${done}/${LIST[n].length}</span></button>`;
+  }).join("");
+  $("#level-desc").textContent = LEVELS[level].desc;
+}
+function distHtml(item){
+  const tv = teamView();
+  const votes = Object.entries(tv).filter(([u, a]) => a && a[item.id]).map(([u, a]) => a[item.id].l);
+  if (votes.length < 2) return "";
+  const c = {}; votes.forEach(v => c[v] = (c[v] || 0) + 1);
+  const rows = Object.entries(c).sort((a, b) => b[1] - a[1]).map(([k, n]) =>
+    `<div class="dist-row"><span>${esc(CLS[k] ? CLS[k].es : k)}</span><div class="dist-bar" style="--c:var(${CLS[k] ? CLS[k].c : "--c1"})"><i style="width:${(n / votes.length * 100).toFixed(0)}%"></i></div><b>${n}</b></div>`).join("");
+  return `<div><h3>Cómo respondió el equipo (${votes.length})</h3></div><div class="dist">${rows}</div>`;
+}
+function renderPractice(){
+  renderLevels();
+  const list = LIST[level];
+  const done = list.filter(i => answers[i.id]).length;
+  $("#prog-txt").textContent = `${done} de ${list.length} respondidos`;
+  $("#prog-bar").style.width = (done / list.length * 100).toFixed(1) + "%";
+  const item = list[idx[level]];
+  const ans = answers[item.id];
+  const reveal = !!ans;
+  const ref = item.label;
+  const opts = CLASSES.map(c => {
+    let cls = "opt";
+    if (reveal){
+      if (c.k === ref) cls += " is-ref";
+      else if (c.k === ans.l) cls += " is-wrong";
+      else cls += " dim";
+    }
+    return `<button class="${cls}" data-k="${esc(c.k)}" ${reveal ? "disabled" : ""}>${dot(c.k)}<span><strong>${esc(c.es)}</strong><small>${esc(c.k)}</small></span></button>`;
+  }).join("");
+  let fb = "";
+  if (reveal){
+    const ok = ans.l === ref;
+    const verdict = item.disc
+      ? `<div class="verdict disc">Caso en discusión</div>`
+      : ok ? `<div class="verdict ok">✓ Coincide con la referencia</div>`
+           : `<div class="verdict bad">✗ La referencia es ${esc(nm(ref))}</div>`;
+    const pills = [];
+    pills.push(`<span class="pill">Tu respuesta: ${esc(nm(ans.l))}</span>`);
+    if (item.disc) pills.push(`<span class="pill warn">Etiqueta reconciliada: ${esc(nm(ref))} · revisar en calibración</span>`);
+    if (item.n === 3) pills.push(`<span class="pill">Piloto: A → ${esc(nm(item.a))} · B → ${esc(nm(item.b))}</span>`);
+    if (item.n === 3 && !item.disc) pills.push(`<span class="pill ok">Reconciliado por el equipo</span>`);
+    if (item.n < 3) pills.push(`<span class="pill warn">Referencia propuesta · pendiente de validar con el equipo</span>`);
+    if (item.alt && item.n < 3) pills.push(`<span class="pill">Confusión típica: ${esc(nm(item.alt))}</span>`);
+    fb = `<div class="fb">${verdict}<p class="why">${esc(item.why).replace(/\[CITA\]/g, '<mark class="cita">CITA</mark>')}</p><div class="meta-row">${pills.join("")}</div>${distHtml(item)}</div>`;
+  }
+  const allDone = done === list.length;
+  $("#case").innerHTML = `
+    <article class="sheet">
+      <div class="sheet-meta"><span>Caso ${idx[level] + 1} de ${list.length} · Nivel ${level}</span><span>${esc(item.id)}</span></div>
+      ${passage(item, reveal)}
+      <p class="cited">Artículo citado: <em>${esc(item.title || "sin título")}</em><span class="tr">En español: ${esc(item.title_es || "")}</span></p>
+    </article>
+    <p class="ask">${reveal ? "Tu elección y la referencia" : "¿Qué función cumple la CITA?"}</p>
+    <div class="opts">${opts}</div>
+    ${fb}
+    <div class="nav">
+      <button class="btn" id="prev" ${idx[level] === 0 ? "disabled" : ""}>← Anterior</button>
+      ${reveal ? (idx[level] < list.length - 1
+        ? `<button class="btn primary" id="next">Siguiente caso →</button>`
+        : (level < 3 ? `<button class="btn primary" id="next-level">Ir al nivel ${level + 1} →</button>` : `<button class="btn primary" data-go="resultados">Ver resultados →</button>`))
+        : `<button class="btn" id="skip" ${idx[level] === list.length - 1 ? "disabled" : ""}>Saltar →</button>`}
+    </div>
+    ${allDone && !reveal ? "" : ""}`;
+}
+function choose(k){
+  const item = LIST[level][idx[level]];
+  if (answers[item.id]) return;
+  answers[item.id] = {l: k, t: Date.now()};
+  saveLocal(); pushMine();
+  renderPractice(); renderResults();
+}
+
+/* ---------- resultados ---------- */
+function score(a){
+  let n = 0, ok = 0;
+  ITEMS.forEach(i => { if (i.disc || !a[i.id]) return; n++; if (a[i.id].l === i.label) ok++; });
+  return {n, ok};
+}
+async function renderResults(){
+  const answered = ITEMS.filter(i => answers[i.id]).length;
+  const s = score(answers);
+  const pct = s.n ? Math.round(s.ok / s.n * 100) + "%" : "—";
+  $("#kpis").innerHTML = `
+    <div class="kpi"><b>${answered}/${ITEMS.length}</b><span>casos respondidos</span></div>
+    <div class="kpi"><b>${pct}</b><span>coincidencia con la referencia</span></div>
+    <div class="kpi"><b>${s.ok}</b><span>aciertos de ${s.n} evaluables</span></div>`;
+  // por clase
+  const rows = CLASSES.map(c => {
+    const its = ITEMS.filter(i => i.label === c.k && !i.disc && answers[i.id]);
+    const ok = its.filter(i => answers[i.id].l === c.k).length;
+    const tot = ITEMS.filter(i => i.label === c.k && !i.disc).length;
+    return `<tr><td>${dot(c.k)} ${esc(nm(c.k))}</td><td class="num">${its.length}/${tot}</td><td class="num">${its.length ? Math.round(ok / its.length * 100) + "%" : "—"}</td></tr>`;
+  }).join("");
+  $("#t-class").innerHTML = `<thead><tr><th>Función</th><th class="num">Respondidos</th><th class="num">Aciertos</th></tr></thead><tbody>${rows}</tbody>`;
+  // confusiones
+  const conf = {};
+  ITEMS.forEach(i => { const a = answers[i.id]; if (!a || i.disc || a.l === i.label) return; const key = a.l + "|" + i.label; conf[key] = (conf[key] || 0) + 1; });
+  const cl = Object.entries(conf).sort((a, b) => b[1] - a[1]);
+  $("#confusions").innerHTML = cl.length
+    ? cl.map(([k, n]) => { const [mine, ref] = k.split("|"); return `<p>Elegiste <b>${esc(nm(mine))}</b> cuando la referencia era <b>${esc(nm(ref))}</b> <span class="note">(${n} ${n === 1 ? "vez" : "veces"})</span></p>`; }).join("")
+    : `<p class="note">${answered ? "Sin confusiones hasta ahora." : "Responde algunos casos en Practicar y aquí verás qué pares de funciones confundes."}</p>`;
+  // equipo
+  const tv = teamView();
+  const ids = Object.keys(tv).filter(u => Object.keys(tv[u] || {}).length);
+  if (!ids.length){
+    $("#t-team").innerHTML = `<tbody><tr><td class="empty">${mode === "sync" ? "Todavía nadie del equipo ha respondido." : "Las respuestas del equipo aparecen aquí cuando se abre la página con la cuenta de claude.ai y permiso para participar."}</td></tr></tbody>`;
+  } else {
+    let names = {};
+    try { if (userNs) names = await userNs.profiles(ids); } catch(e){}
+    const body = ids.map(u => {
+      const a = tv[u] || {}; const sc = score(a); const n = ITEMS.filter(i => a[i.id]).length;
+      return {u, n, sc};
+    }).sort((x, y) => y.n - x.n);
+    $("#t-team").innerHTML = `<thead><tr><th>Persona</th><th class="num">Respondidos</th><th class="num">Coincidencia</th></tr></thead><tbody>${body.map(r => `<tr><td data-u="${esc(r.u)}"></td><td class="num">${r.n}/${ITEMS.length}</td><td class="num">${r.sc.n ? Math.round(r.sc.ok / r.sc.n * 100) + "%" : "—"}</td></tr>`).join("")}</tbody>`;
+    $("#t-team").querySelectorAll("td[data-u]").forEach(td => {
+      const u = td.getAttribute("data-u");
+      const p = names[u];
+      td.textContent = (p && p.name) ? p.name + (u === me ? " (tú)" : "") : (u === me ? "Tú" : "Integrante");
+    });
+  }
+  // casos con más desacuerdo
+  const hard = ITEMS.map(i => {
+    const v = ids.map(u => tv[u][i.id] && tv[u][i.id].l).filter(Boolean);
+    if (v.length < 2) return null;
+    const c = {}; v.forEach(x => c[x] = (c[x] || 0) + 1);
+    const top = Math.max(...Object.values(c));
+    return {i, n: v.length, agree: top / v.length, labels: Object.keys(c)};
+  }).filter(Boolean).filter(h => h.agree < 1).sort((a, b) => a.agree - b.agree).slice(0, 6);
+  $("#hard").innerHTML = hard.length
+    ? hard.map(h => `<p><span class="tag" style="background:var(--otra)">${esc(h.i.id)}</span> ${Math.round(h.agree * 100)}% de acuerdo entre ${h.n}: ${h.labels.map(l => esc(nm(l))).join(" · ")}</p>`).join("")
+    : `<p class="note">Aparecen cuando al menos dos personas respondieron el mismo caso con etiquetas distintas. Son los casos para revisar juntos en la sesión de calibración.</p>`;
+  // exportar
+  $("#export").value = "# Taller de anotación de citas — mis respuestas\n# id\tetiqueta\n" +
+    ITEMS.filter(i => answers[i.id]).map(i => i.id + "\t" + answers[i.id].l).join("\n");
+}
+
+/* ---------- ronda de calibración ---------- */
+const CALIB = /*__CALIB__*/[];
+/*__ACUERDO__*/
+const NV = "No válido";
+const LSC = LS + "-cal";
+let cal = {a: {}, fin: false};                      // mis respuestas: id -> {l, t, ms, d}
+try { const v = JSON.parse(localStorage.getItem(LSC) || "null"); if (v && v.a) cal = v; } catch(e){}
+function saveCal(){ try { localStorage.setItem(LSC, JSON.stringify(cal)); } catch(e){} }
+let cidx = Math.max(0, CALIB.findIndex(i => !cal.a[i.id]));
+let shownAt = Date.now(), lastShown = null;
+let calTeam = {}, calFirst = true, cWriting = false, cAgain = false;
+
+async function pushCal(){
+  if (!db || !me || mode !== "sync") return;
+  if (cWriting){ cAgain = true; return; }
+  cWriting = true;
+  try { await db.doc("calibracion/" + me).set({a: cal.a, fin: !!cal.fin, v: 1}); }
+  catch(e){
+    if (e && (e.code === "invalid_argument" || e.code === "not_granted" || e.code === "revoked")){ mode = "readonly"; renderStatus(); }
+    else if (e && e.code === "unavailable"){ setTimeout(pushCal, 1200 + Math.random() * 1200); }
+  }
+  cWriting = false;
+  if (cAgain){ cAgain = false; pushCal(); }
+}
+function subCal(){
+  db.collection("calibracion").onSnapshot(snap => {
+    const t = {};
+    snap.docs.forEach(d => { if (d.exists){ const v = d.data(); if (v && v.a) t[d.id] = v; } });
+    calTeam = t;
+    if (calFirst){
+      calFirst = false;
+      const r = t[me]; let ch = false;
+      if (r){
+        for (const [k, v] of Object.entries(r.a || {})) if (!cal.a[k]){ cal.a[k] = v; ch = true; }
+        if (r.fin && !cal.fin){ cal.fin = true; ch = true; }
+      }
+      if (ch) saveCal();
+      const remote = (r && r.a) || {};
+      if (Object.keys(cal.a).some(k => !remote[k]) || (cal.fin && !(r && r.fin))) pushCal();
+    }
+    renderCal();
+  }, () => {});
+}
+function calView(){ const t = {...calTeam}; if (me) t[me] = {a: cal.a, fin: cal.fin}; return t; }
+function median(xs){ if (!xs.length) return null; const s = [...xs].sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; }
+
+function calDist(it, fin){
+  const votes = fin.map(([u, v]) => v.a[it.id] && v.a[it.id].l).filter(Boolean);
+  const c = {}; votes.forEach(v => c[v] = (c[v] || 0) + 1);
+  return {votes, c, rows: Object.entries(c).sort((a, b) => b[1] - a[1]).map(([k, n]) =>
+    `<div class="dist-row"><span>${esc(k === NV ? NV : CLS[k].es)}</span><div class="dist-bar" style="--c:var(${CLS[k] ? CLS[k].c : "--c1"})"><i style="width:${(n / votes.length * 100).toFixed(0)}%"></i></div><b>${n}</b></div>`).join("")};
+}
+function renderCal(){
+  if (!CALIB.length) return;
+  $("#cgrid").innerHTML = CALIB.map((it, i) =>
+    `<button class="cnum${cal.a[it.id] ? " done" : ""}${i === cidx ? " cur" : ""}" data-ci="${i}" aria-label="Caso ${i + 1}">${i + 1}</button>`).join("");
+  const it = CALIB[cidx], a = cal.a[it.id];
+  if (lastShown !== it.id){ shownAt = Date.now(); lastShown = it.id; }   // el tiempo cuenta desde que se abre el caso
+  const dis = cal.fin ? "disabled" : "";
+  const opts = CLASSES.map(c => `<button class="opt${a && a.l === c.k ? " is-pick" : ""}" data-ck="${esc(c.k)}" ${dis}>${dot(c.k)}<span><strong>${esc(c.es)}</strong><small>${esc(c.k)}</small></span></button>`).join("")
+    + `<button class="opt${a && a.l === NV ? " is-pick" : ""}" data-ck="${NV}" ${dis}><i class="dot" style="--c:var(--line)"></i><span><strong>No válido</strong><small>tabla, ruido o sin sentido</small></span></button>`;
+  const done = CALIB.filter(i => cal.a[i.id]).length;
+  let team = "";
+  if (cal.fin){
+    const fin = Object.entries(calView()).filter(([u, v]) => v && v.fin);
+    const d = calDist(it, fin);
+    if (d.votes.length >= 2) team = `<div class="fb"><h3>Respuestas del equipo en este caso (${d.votes.length})</h3><div class="dist">${d.rows}</div></div>`;
+  }
+  $("#ccase").innerHTML = `
+    <div class="progress"><span>${done} de ${CALIB.length} respondidos</span><div class="bar"><i style="width:${(done / CALIB.length * 100).toFixed(1)}%"></i></div></div>
+    <article class="sheet">
+      <div class="sheet-meta"><span>Caso ${cidx + 1} de ${CALIB.length} · Calibración</span><span>${esc(it.id)}</span></div>
+      ${passage({text: it.text, es: it.es}, false)}
+      <p class="cited">Artículo citado: <em>${esc(it.title || "sin título")}</em><span class="tr">En español: ${esc(it.title_es || "")}</span></p>
+    </article>
+    <p class="ask">${cal.fin ? "Tu respuesta (la ronda está cerrada)" : "¿Qué función cumple la CITA?"}</p>
+    <div class="opts">${opts}</div>
+    <label class="dud"><input type="checkbox" id="c-dud" ${a && a.d ? "checked" : ""} ${(!a || cal.fin) ? "disabled" : ""}> Tengo dudas con este caso</label>
+    ${team}
+    <div class="nav">
+      <button class="btn" id="c-prev" ${cidx === 0 ? "disabled" : ""}>← Anterior</button>
+      <button class="btn${a ? " primary" : ""}" id="c-next" ${cidx === CALIB.length - 1 ? "disabled" : ""}>Siguiente →</button>
+    </div>
+    ${cal.fin ? "" : `<div class="panel"><p>${done < CALIB.length ? `Te faltan ${CALIB.length - done} casos. Cuando los completes podrás terminar la ronda.` : "Ya respondiste los 36. Al terminar, tus respuestas quedan fijas y se muestran los resultados del equipo."}</p><div class="row" id="c-fin-row"><button class="btn primary" id="c-fin" ${done < CALIB.length ? "disabled" : ""}>Terminar ronda</button></div></div>`}`;
+  renderCalResults();
+}
+function calChoose(k){
+  if (cal.fin) return;
+  const it = CALIB[cidx], prev = cal.a[it.id];
+  // el tiempo se guarda solo en la primera respuesta, con tope de 10 minutos
+  const ms = prev ? prev.ms : Math.min(Date.now() - shownAt, 600000);
+  cal.a[it.id] = {l: k, t: Date.now(), ms, d: prev ? !!prev.d : false};
+  saveCal(); pushCal(); renderCal();
+}
+async function renderCalResults(){
+  const el = $("#cresults");
+  if (!cal.fin){ el.innerHTML = `<p class="note">Los resultados del equipo aparecen cuando termines la ronda, para que nadie se deje influir por las respuestas de los demás.</p>`; return; }
+  const fin = Object.entries(calView()).filter(([u, v]) => v && v.fin);
+  const units = CALIB.map(it => fin.map(([u, v]) => v.a[it.id] && v.a[it.id].l).filter(Boolean));
+  const alpha = fin.length >= 2 ? kAlpha(units) : null;
+  const lectura = alpha === null ? "Hace falta que al menos dos personas terminen la ronda."
+    : alpha >= 0.8 ? "Confiable: el equipo puede anotar el Test Gold."
+    : alpha >= 0.7 ? "Alcanza la meta de la propuesta (0,70), pero conviene discutir los casos con desacuerdo."
+    : "Por debajo de la meta de 0,70: discutir los desacuerdos, ajustar la guía y repetir con casos nuevos.";
+  // κ de Cohen por pareja
+  const pares = [];
+  for (let i = 0; i < fin.length; i++) for (let j = i + 1; j < fin.length; j++){
+    const A = {}, B = {};
+    Object.entries(fin[i][1].a).forEach(([k, v]) => A[k] = v.l);
+    Object.entries(fin[j][1].a).forEach(([k, v]) => B[k] = v.l);
+    pares.push({u: fin[i][0], w: fin[j][0], k: cKappa(A, B)});
+  }
+  // tiempo por caso (mediana de todas las respuestas)
+  const tiempos = [];
+  fin.forEach(([u, v]) => Object.values(v.a).forEach(x => { if (x && x.ms > 0) tiempos.push(x.ms); }));
+  const med = median(tiempos);
+  const horas = med ? (med * 180 / 3600000) : null;   // 180 juicios por persona en el escenario de 450 casos
+  // casos con menos acuerdo o con dudas
+  const casos = CALIB.map((it, i) => {
+    const d = calDist(it, fin); const top = d.votes.length ? Math.max(...Object.values(d.c)) : 0;
+    const dudas = fin.filter(([u, v]) => v.a[it.id] && v.a[it.id].d).length;
+    return {it, i, d, agree: d.votes.length ? top / d.votes.length : 1, dudas};
+  }).filter(x => x.d.votes.length >= 2 && (x.agree < 1 || x.dudas)).sort((a, b) => a.agree - b.agree || b.dudas - a.dudas);
+  const nv = units.flat().filter(l => l === NV).length;
+  let names = {};
+  const ids = fin.map(([u]) => u);
+  try { if (userNs && ids.length) names = await userNs.profiles(ids); } catch(e){}
+  const who = u => (names[u] && names[u].name) ? names[u].name + (u === me ? " (tú)" : "") : (u === me ? "Tú" : "Integrante");
+  const coma = x => x.toFixed(2).replace(".", ",");
+  el.innerHTML = `
+    <h2>Resultados de la calibración</h2>
+    <div class="kpis">
+      <div class="kpi"><b>${alpha === null ? "—" : coma(alpha)}</b><span>α de Krippendorff · meta 0,70</span></div>
+      <div class="kpi"><b>${fin.length}</b><span>personas terminaron</span></div>
+      <div class="kpi"><b>${med ? Math.round(med / 1000) + " s" : "—"}</b><span>mediana por caso${horas ? ` · ≈ ${horas.toFixed(1).replace(".", ",")} h para 180 casos` : ""}</span></div>
+    </div>
+    <div class="panel"><p>${esc(lectura)}</p>${nv ? `<p class="note">${nv} respuestas marcaron «No válido».</p>` : ""}</div>
+    <div><h3>Acuerdo por pareja (κ de Cohen)</h3></div>
+    <div class="tbl-wrap"><table>${pares.length
+      ? `<thead><tr><th>Pareja</th><th class="num">κ</th></tr></thead><tbody>${pares.map(p => `<tr><td data-pair="${esc(p.u)}|${esc(p.w)}"></td><td class="num">${p.k === null ? "—" : coma(p.k)}</td></tr>`).join("")}</tbody>`
+      : `<tbody><tr><td class="empty">Aparece cuando terminen al menos dos personas.</td></tr></tbody>`}</table></div>
+    <div><h3>Casos para discutir (${casos.length})</h3></div>
+    <div class="panel">${casos.length ? casos.slice(0, 15).map(x => `
+      <div class="disc-item">
+        <button class="linkbtn" data-ci="${x.i}">Caso ${x.i + 1} · ${Math.round(x.agree * 100)}% de acuerdo${x.dudas ? ` · ${x.dudas} con dudas` : ""}</button>
+        <div class="dist">${x.d.rows}</div>
+      </div>`).join("") : `<p class="note">Sin desacuerdos por ahora.</p>`}</div>
+    <div class="panel">
+      <h3>Copiar mis respuestas de calibración</h3>
+      <textarea readonly>${esc("# Calibración — mis respuestas\n# id\tetiqueta\tsegundos\tdudas\n" + CALIB.filter(i => cal.a[i.id]).map(i => { const x = cal.a[i.id]; return `${i.id}\t${x.l}\t${Math.round((x.ms || 0) / 1000)}\t${x.d ? "sí" : "no"}`; }).join("\n"))}</textarea>
+    </div>`;
+  el.querySelectorAll("td[data-pair]").forEach(td => { const [u, w] = td.getAttribute("data-pair").split("|"); td.textContent = who(u) + " · " + who(w); });
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.ci !== undefined){ cidx = +t.dataset.ci; renderCal(); return $("#ccase").scrollIntoView({block: "start"}); }
+  if (t.dataset.ck) return calChoose(t.dataset.ck);
+  if (t.id === "c-prev"){ cidx = Math.max(0, cidx - 1); return renderCal(); }
+  if (t.id === "c-next"){ cidx = Math.min(CALIB.length - 1, cidx + 1); return renderCal(); }
+  if (t.id === "c-fin"){ $("#c-fin-row").innerHTML = `<span class="note">Tus respuestas quedarán fijas.</span><button class="btn primary" id="c-fin-yes">Sí, terminar</button><button class="btn" id="c-fin-no">Seguir revisando</button>`; return; }
+  if (t.id === "c-fin-no") return renderCal();
+  if (t.id === "c-fin-yes"){ cal.fin = true; saveCal(); pushCal(); return renderCal(); }
+});
+document.addEventListener("change", e => {
+  if (e.target.id !== "c-dud") return;
+  const it = CALIB[cidx]; if (!cal.a[it.id] || cal.fin) return;
+  cal.a[it.id].d = e.target.checked; saveCal(); pushCal();
+});
+
+/* ---------- navegación ---------- */
+function show(v){
+  ["guia", "practicar", "calibracion", "resultados"].forEach(x => {
+    $("#v-" + x).hidden = x !== v;
+    $("#t-" + x).setAttribute("aria-selected", String(x === v));
+  });
+  try { history.replaceState(null, "", "#" + v); } catch(e){}
+  window.scrollTo(0, 0);
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.v) return show(t.dataset.v);
+  if (t.dataset.go) return show(t.dataset.go);
+  if (t.dataset.l){ level = +t.dataset.l; idx[level] = firstOpen(level); return renderPractice(); }
+  if (t.dataset.k) return choose(t.dataset.k);
+  if (t.dataset.act === "toggle-es"){ showEs = !showEs; try { localStorage.setItem(LS + "-es", showEs ? "1" : "0"); } catch(e){} renderPractice(); return renderCal(); }
+  if (t.id === "next" || t.id === "skip"){ idx[level] = Math.min(idx[level] + 1, LIST[level].length - 1); renderPractice(); return $("#case").scrollIntoView({block:"start"}); }
+  if (t.id === "prev"){ idx[level] = Math.max(idx[level] - 1, 0); return renderPractice(); }
+  if (t.id === "next-level"){ level = level + 1; idx[level] = firstOpen(level); renderPractice(); return $("#case").scrollIntoView({block:"start"}); }
+  if (t.id === "copy"){
+    const ta = $("#export");
+    navigator.clipboard.writeText(ta.value).then(() => { $("#copy-msg").textContent = "Copiado."; })
+      .catch(() => { ta.focus(); ta.select(); $("#copy-msg").textContent = "Texto seleccionado: cópialo con Ctrl+C o mantén presionado en el celular."; });
+    return;
+  }
+  if (t.id === "reset"){
+    $("#reset-row").innerHTML = `<span class="note">Se borran ${Object.keys(answers).length} respuestas tuyas.</span><button class="btn danger" id="reset-yes">Sí, borrar</button><button class="btn" id="reset-no">Cancelar</button>`;
+    return;
+  }
+  if (t.id === "reset-no"){ $("#reset-row").innerHTML = `<button class="btn danger" id="reset">Reiniciar mi práctica</button>`; return; }
+  if (t.id === "reset-yes"){
+    answers = {}; saveLocal(); pushMine(); [1,2,3].forEach(n => idx[n] = 0); level = 1;
+    $("#reset-row").innerHTML = `<button class="btn danger" id="reset">Reiniciar mi práctica</button>`;
+    renderPractice(); renderResults(); return show("practicar");
+  }
+});
+
+renderGuide(); renderStatus(); renderPractice(); renderResults(); renderCal();
+const h = (location.hash || "").replace("#", "");
+if (["guia", "practicar", "calibracion", "resultados"].includes(h)) show(h);
+initDb();
+</script>
