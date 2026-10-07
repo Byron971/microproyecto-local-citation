@@ -5,18 +5,18 @@ subtitle: "Informe de avance — borrador de secciones ajustadas según la retro
 
 **Integrantes:** Carlos Eduardo Duque Lugo, John Byron Arias Sanz, Gabriel Gustavo Pinzón Páez, José María Zambrana Arze, Carlos Alfredo Caicedo Bermúdez.
 
-> **Nota para el equipo (borrar antes de entregar).** Este borrador reúne los ajustes a los criterios donde la propuesta V3 perdió puntos (metodología, datos y evaluación) y la corrección de los objetivos. Las marcas **[PENDIENTE: …]** indican lo que falta medir o confirmar. Todas las cifras se recalcularon el 6 de octubre de 2026 desde los datos de ACL-200 y desde los resultados del estudio de enlace de datos (`Proyecto_de_grado/spike_enlace_datos/`).
+> **Nota para el equipo (borrar antes de entregar).** Este borrador reúne los ajustes a los criterios donde la propuesta V3 perdió puntos (metodología, datos y evaluación) y la corrección de los objetivos. Las marcas **[PENDIENTE: …]** indican lo que falta medir o confirmar. Todas las cifras se recalcularon el 6 de octubre de 2026 desde los datos de ACL-200 y desde los resultados del estudio de enlace de datos (`proyecto_de_grado/docs/spike_enlace_datos/`). El 7 de octubre se incorporó la respuesta del experto de dominio sobre las fuentes de datos y sobre la recuperación del Top-3.
 
 # 1. Descripción breve de la propuesta de solución
 
-El proyecto aborda dos tareas conectadas sobre artículos científicos en inglés del área de *Computer Science*: la recuperación de la evidencia que respalda una cita dentro del artículo citado y la clasificación de la función retórica de esa cita en nueve categorías (*Background*, *Gap*, *Basis*, *Comparison*, *Application*, *Improvement / Modification*, *Evidence*, *Identification of the Originator* y *Further Reading*). Frente a la propuesta, este avance precisa la fuente de texto completo, el protocolo de anotación humana y la definición operativa de las métricas de recuperación.
+El proyecto aborda dos tareas conectadas sobre artículos científicos en inglés del área de *Computer Science*: la recuperación de la evidencia que respalda una cita dentro del artículo citado y la clasificación de la función retórica de esa cita en nueve categorías (*Background*, *Gap*, *Basis*, *Comparison*, *Application*, *Improvement / Modification*, *Evidence*, *Identification of the Originator* y *Further Reading*). Frente a la propuesta, este avance precisa la fuente de texto completo, el protocolo de anotación humana y el papel de la recuperación como insumo de la clasificación, con la forma de evaluarla.
 
 **Objetivo general.** Desarrollar, en seis semanas, un sistema reproducible de PLN que integre la recuperación local de evidencia y la clasificación de nueve funciones de cita en artículos científicos en inglés, desplegado como demostrador interactivo.
 
 **Objetivos específicos** (un verbo de acción por objetivo):
 
 1. Construir, antes de finalizar la semana 2, un corpus integrado de ACL-200 y ACL OCL enlazado por el identificador de ACL Anthology, con secciones del documento y particiones sin fuga de información.
-2. Implementar, antes de finalizar la semana 2, un recuperador denso basado en SciBERT que obtenga los tres fragmentos más cercanos del artículo citado, con Recall@K y MRR reportados frente a BM25.
+2. Implementar, antes de finalizar la semana 2, un recuperador denso basado en SciBERT que entregue al clasificador los tres fragmentos más cercanos del artículo citado con su sección, y cuyo aporte se mide por la mejora en F1 Macro frente a clasificar sin fragmentos.
 3. Generar, antes de finalizar la semana 3, un conjunto de entrenamiento pre-etiquetado por jueces *open-weight*, con meta de 2.000 ejemplos por clase y la cantidad lograda documentada en las clases escasas.
 4. Validar, antes de finalizar la semana 4, un conjunto de prueba humano (*Test Gold*) de 450 casos, 50 por clase, con doble anotación independiente y α de Krippendorff ≥ 0,70. **[DECISIÓN DEL EQUIPO: tamaño del Test Gold; la propuesta V3 planteaba el 15 % de 18.000.]**
 5. Comparar, durante la semana 5, un encoder científico ajustado, un modelo *open-weight* de 1–8B y un modelo comercial sobre el mismo Test Gold, con F1 Macro como métrica principal.
@@ -28,7 +28,7 @@ El proyecto aborda dos tareas conectadas sobre artículos científicos en inglé
 
 El proyecto construye **un único conjunto de datos integrado**; no compara conjuntos de datos entre sí. ACL-200 aporta los contextos de cita y los pares artículo citante–artículo citado; ACL OCL (Rohatgi et al., 2023) aporta el texto completo de ambos artículos. Las dos fuentes comparten el identificador de ACL Anthology (por ejemplo, P15-2138), de modo que el enlace es directo y no requiere emparejamiento difuso. MultiCite e ILCiteR no se fusionan con el corpus: se usan solo como referencia externa para contrastar la taxonomía y los casos ambiguos.
 
-Esta decisión corrige la propuesta, que planteaba el enlace con unarXive por identificador de arXiv. Un estudio sobre 500 contextos aleatorios de ACL-200 (semilla 42) mostró que esa ruta no es viable: solo el 0,2 % de los pares tendría ambos artículos en arXiv, porque el 99,5 % de los artículos citados es anterior a 2015 y fue publicado en ACL Anthology. Con ACL OCL, en cambio, el 82,2 % de los pares queda completo. **[PENDIENTE: confirmación del experto de dominio sobre el uso de ACL OCL.]**
+Esta decisión corrige la propuesta, que planteaba el enlace con unarXive por identificador de arXiv. Un estudio sobre 500 contextos aleatorios de ACL-200 (semilla 42) mostró que esa ruta no es viable: solo el 0,2 % de los pares tendría ambos artículos en arXiv, porque el 99,5 % de los artículos citados es anterior a 2015 y fue publicado en ACL Anthology. Con ACL OCL, en cambio, el 82,2 % de los pares queda completo. El experto de dominio confirmó que el conjunto puede combinar las fuentes que el equipo elija, siempre que cumpla las características del enunciado (texto científico en inglés del área de *Computer Science*) y alcance las cuotas propuestas o se aproxime lo suficiente a ellas.
 
 El texto de ACL OCL proviene de PDF y fue extraído con GROBID, no de fuentes LaTeX como preveía la propuesta: para los artículos de ACL anteriores a 2015 no existe fuente LaTeX. Esto introduce ruido de extracción en algunos caracteres, que se trata en la limpieza (sección 2.4).
 
@@ -112,9 +112,14 @@ Si C3 supera a C2 y C3-barajada no, la sección aporta información real. Si amb
 
 **[PENDIENTE: describir el entrenamiento de la primera versión (TF-IDF con regresión logística sobre el pre-etiquetado) y del recuperador.]**
 
-## 3.4 Definición de las métricas de recuperación
+## 3.4 Evaluación de la recuperación
 
-Sea $Q$ el conjunto de contextos evaluados y, para cada contexto $q$, sea $G(q)$ el conjunto de fragmentos del artículo citado que respaldan la afirmación (la referencia). Entonces:
+La recuperación del Top-3 no es un fin en sí misma: su objetivo es darle al clasificador la información del artículo citado que necesita para decidir la función de la cita. Así lo precisó el experto de dominio, que indicó que esta tarea no exige un cálculo de métricas propio. Por eso la recuperación se evalúa en dos niveles:
+
+1. **Evaluación principal, por su efecto en la clasificación.** Se compara el F1 Macro del clasificador sin fragmentos (C0 y C1) contra el F1 Macro con los fragmentos recuperados (C2), usando el mismo Test Gold. Si C2 no supera a C1, los fragmentos no aportan información útil y se revisa la fragmentación o el recuperador. La misma comparación se hace con los fragmentos de BM25 en lugar de los de SciBERT.
+2. **Evaluación complementaria, sobre un conjunto curado pequeño.** Siguiendo la sugerencia del experto, el equipo cura un conjunto de 100 contextos para medir la recuperación de forma directa y ajustar la fragmentación. Ese conjunto también puede servir de ejemplos para los modelos.
+
+En el conjunto curado, sea $Q$ el conjunto de contextos y, para cada contexto $q$, sea $G(q)$ el conjunto de fragmentos del artículo citado que respaldan la afirmación (la referencia). Entonces:
 
 $$\mathrm{Recall}@K = \frac{1}{|Q|}\sum_{q \in Q} \mathbf{1}\left[\mathrm{Top}_K(q) \cap G(q) \neq \emptyset\right]$$
 
@@ -122,7 +127,7 @@ $$\mathrm{MRR} = \frac{1}{|Q|}\sum_{q \in Q} \frac{1}{r_q}$$
 
 donde $\mathbf{1}[\cdot]$ vale 1 si la condición se cumple y 0 si no, $\mathrm{Top}_K(q)$ son los $K$ fragmentos mejor puntuados y $r_q$ es la posición del primer fragmento relevante en la lista ordenada (el término $1/r_q$ vale 0 si ninguno aparece).
 
-**Referencia (*ground truth*).** ACL-200 no indica qué fragmento del artículo citado respalda cada cita, así que la referencia se construye. Se toman 200 contextos del conjunto de prueba; para cada uno se juntan los diez mejores fragmentos de BM25 y de SciBERT, y dos anotadores marcan cuáles respaldan la afirmación. Juntar los candidatos de ambos sistemas evita que la referencia favorezca a uno de ellos. Los desacuerdos los resuelve un tercero y se reporta el acuerdo. **[PENDIENTE: confirmación del experto sobre esta referencia.]** Las diferencias entre sistemas se reportan con intervalos de confianza por *bootstrap*.
+**Referencia (*ground truth*).** ACL-200 no indica qué fragmento del artículo citado respalda cada cita, así que la referencia se construye. Para cada uno de los 100 contextos se juntan los diez mejores fragmentos de BM25 y de SciBERT, y dos anotadores marcan cuáles respaldan la afirmación. Juntar los candidatos de ambos sistemas evita que la referencia favorezca a uno de ellos. Los desacuerdos los resuelve un tercero y se reporta el acuerdo. Las diferencias entre sistemas se reportan con intervalos de confianza por *bootstrap*.
 
 # 4. Resultados obtenidos
 
@@ -130,7 +135,7 @@ donde $\mathbf{1}[\cdot]$ vale 1 si la condición se cumple y 0 si no, $\mathrm{
 - **Partición temporal:** verificada (2009–2013 / 2014 / 2015), sin artículos citantes compartidos.
 - **Piloto de anotación:** 20 casos con dos anotadores: 60 % de acuerdo y κ de Cohen = 0,48, por debajo de la meta de 0,70. La primera anotación fue asistida con explicaciones y no fue ciega, y los 20 casos solo cubrieron 5 de las 9 clases.
 - **[PENDIENTE: α de la ronda de calibración y tiempo mediano por caso.]**
-- **[PENDIENTE: primeras cifras de Recall@K y MRR, y F1 Macro de la línea base de clasificación.]**
+- **[PENDIENTE: F1 Macro de la línea base de clasificación en las configuraciones C0 a C2, y Recall@3 y MRR sobre el conjunto curado de 100 contextos.]**
 
 # 5. Análisis de los resultados obtenidos
 
@@ -153,7 +158,7 @@ Las tres se corrigieron con la guía ampliada, los casos de práctica y la ronda
 1. Correr la ronda de calibración con los cinco integrantes.
 2. Entrenar la línea base de clasificación sobre el pre-etiquetado.
 3. Construir el índice de recuperación sobre los artículos citados.
-4. Anotar la referencia de recuperación.
+4. Curar el conjunto de 100 contextos con los fragmentos que respaldan cada cita.
 
 # Referencias (adiciones a las de la propuesta)
 

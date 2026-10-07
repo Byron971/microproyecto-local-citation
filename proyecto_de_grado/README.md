@@ -9,8 +9,8 @@ Esta carpeta reúne los avances del **proyecto de grado** del Grupo 19 (Tema 1),
 | Frente | Estado |
 |---|---|
 | Propuesta V3 | Calificada con 86/100. Los 14 puntos perdidos están en metodología, datos y evaluación ([retroalimentación](docs/retroalimentacion_propuesta_V3.md)). |
-| Fuente de texto completo | Decidida con evidencia: ACL OCL, enlazado por el ID de ACL Anthology, deja completo el 82,2 % de los pares; unarXive por ID de arXiv, el 0,2 % ([estudio](docs/spike_enlace_datos/README.md)). Falta la confirmación del experto. |
-| Informe de avance | Borrador con las secciones ajustadas a la retroalimentación ([Markdown](docs/informe_avance/borrador_ajustes_informe_avance.md) · [Word](docs/informe_avance/borrador_ajustes_informe_avance.docx)). Tiene 10 marcas de pendiente. |
+| Fuente de texto completo | Decidida con evidencia: ACL OCL, enlazado por el ID de ACL Anthology, deja completo el 82,2 % de los pares; unarXive por ID de arXiv, el 0,2 % ([estudio](docs/spike_enlace_datos/README.md)). El experto confirmó que se pueden combinar fuentes si se cumplen las características del enunciado y las cuotas. |
+| Informe de avance | Borrador con las secciones ajustadas a la retroalimentación ([Markdown](docs/informe_avance/borrador_ajustes_informe_avance.md) · [Word](docs/informe_avance/borrador_ajustes_informe_avance.docx)). Tiene 6 marcas de pendiente. |
 | Anotación | Hay una página de práctica y calibración ([fuentes](anotacion/taller/)). La ronda de calibración está pendiente de correr con el equipo. |
 | Modelos, API y tablero | Sin empezar. |
 
@@ -77,7 +77,7 @@ node prueba.js ..\taller\taller_anotacion.html ..\taller\acuerdo.js
 
 ## Pendientes
 
-- Confirmación del experto sobre ACL OCL y sobre la referencia de recuperación (200 contextos anotados por relevancia).
+- Curar el conjunto de 100 contextos con los fragmentos que respaldan cada cita. Según el experto, el Top-3 es un insumo para la clasificación y no requiere métricas propias, así que su evaluación principal es la mejora en F1 Macro (C2 frente a C1).
 - Decisión del equipo sobre el tamaño del Test Gold: 450 casos (recomendado) o 2.700 (propuesta V3).
 - Ronda de calibración con los cinco integrantes hasta alcanzar α ≥ 0,70.
 - Línea base de clasificación y primeras cifras de Recall@K y MRR para el informe de avance.
