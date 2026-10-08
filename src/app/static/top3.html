@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top-3 de evidencia | Proyecto de grado</title>
+  <link rel="stylesheet" href="/static/top3.css">
+  <script src="/static/top3.js" defer></script>
+</head>
+<body>
+  <header class="banner">
+    <a href="/" class="volver">← Volver al recomendador original</a>
+    <h1>Recuperación Top-3 de fragmentos académicos</h1>
+    <p>Primera versión funcional · Baseline BM25 · Un artículo citado por consulta</p>
+  </header>
+  <main>
+    <section class="aviso" aria-label="Alcance de esta versión">
+      <strong>Prototipo de recuperación, no evaluación científica.</strong>
+      Introduce el contexto y los párrafos del artículo citado. El sistema compara
+      solo esos fragmentos; todavía no consulta automáticamente el corpus ACL OCL
+      ni clasifica funciones de cita. La demo precargada usa contenido sintético.
+    </section>
+    <section class="panel">
+      <h2>Datos de entrada</h2>
+      <form id="form-top3">
+        <label for="contexto">Contexto académico que contiene la cita objetivo</label>
+        <textarea id="contexto" rows="3" maxlength="4000" required
+          placeholder="This method builds on neural graph representations TARGETCIT."></textarea>
+        <label for="cited-id">ID ACL del artículo citado</label>
+        <input id="cited-id" required maxlength="120" placeholder="P14-1011">
+        <label for="parrafos">Párrafos del artículo citado</label>
+        <p class="ayuda">Separa los párrafos con una línea en blanco. Esta versión admite entre 1 y 100; se generan IDs p1, p2, etc.</p>
+        <textarea id="parrafos" rows="10" required placeholder="Primer párrafo del artículo citado.
+
+Segundo párrafo del mismo artículo citado."></textarea>
+        <div class="controles">
+          <button type="button" id="ejemplo" class="secundario">Cargar ejemplo sintético</button>
+          <button type="submit" id="buscar">Buscar evidencia Top-3</button>
+        </div>
+      </form>
+    </section>
+    <section class="panel" aria-live="polite">
+      <h2>Fragmentos recuperados</h2>
+      <p id="estado">Completa los datos o carga el ejemplo para comenzar.</p>
+      <ol id="lista-resultados"></ol>
+      <p id="clasificacion" class="ayuda">Función de cita: no evaluada en esta versión.</p>
+    </section>
+  </main>
+  <footer>
+    <p>Los puntajes BM25 no son probabilidades. Su calidad se evaluará posteriormente con relevancia de fragmentos validada por humanos.</p>
+  </footer>
+</body>
+</html>
