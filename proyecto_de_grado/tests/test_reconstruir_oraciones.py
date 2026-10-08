@@ -1,6 +1,6 @@
 """G1.2: conservacion del contexto, abstenciones y oraciones candidatas."""
 from proyecto_de_grado.src.data.reconstruir_oraciones import (
-    grupo_ambiguo, limites_oracion, reconstruir_caso,
+    enmascarar_span_de_cita, grupo_ambiguo, limites_oracion, reconstruir_caso,
 )
 
 
@@ -39,6 +39,8 @@ def test_unica_referencia_con_evidencia_da_candidato_para_revision():
     assert r["estado"] == "reconstruccion_candidata_revision_humana"
     assert "Feng and Hirst" in r["oracion_ocl_original"]
     assert r["oracion_con_targetcit"].count("TARGETCIT") == 1
+    assert r["oracion_con_targetcit"].endswith("system (TARGETCIT).")
+    assert r["oracion_ocl_original"].endswith("(Feng and Hirst, 2012) .")
     assert "Feng and Hirst" not in r["oracion_con_targetcit"]
     assert r["contexto_acl200"] == ctx[fila["context_id"]]["masked_text"]
     assert "requiere" in r["nota"]
@@ -103,3 +105,29 @@ def test_detector_de_grupo_no_confunde_otras_citas_distantes():
 def test_sin_doc_ocl_obliga_revision():
     fila, ctx, papers, _ = ejemplo()
     assert reconstruir_caso(fila, ctx, papers, None)["estado"] == "revision_manual"
+
+
+def test_enmascarado_preserva_parentesis_sin_inventar_segunda_cita():
+    assert enmascarar_span_de_cita("(Feng and Hirst, 2012)") == "(TARGETCIT)"
+    assert enmascarar_span_de_cita("(Evans & Gazdar 1989)") == "(TARGETCIT)"
+    assert enmascarar_span_de_cita("Smith 2012") == "TARGETCIT"
+
+
+def test_enmascarado_rechaza_grupo_y_parentesis_incompletos():
+    assert enmascarar_span_de_cita("(Smith, 2011; Jones, 2012)") is None
+    assert enmascarar_span_de_cita("Jones, 2012)") is None
+    assert enmascarar_span_de_cita("(Jones, 2012") is None
+    assert enmascarar_span_de_cita("") is None
+
+
+def test_cita_ambigua_por_span_grupal_es_revision_manual():
+    fila, ctx, papers, doc = ejemplo()
+    span = doc["pdf_parse"]["body_text"][0]["cite_spans"][0]
+    texto = doc["pdf_parse"]["body_text"][0]["text"]
+    texto_nuevo = texto.replace("(Feng and Hirst, 2012)", "(Feng and Hirst, 2012; Smith, 2013)")
+    doc["pdf_parse"]["body_text"][0]["text"] = texto_nuevo
+    span["text"] = "(Feng and Hirst, 2012; Smith, 2013)"
+    span["end"] = span["start"] + len(span["text"])
+    res = reconstruir_caso(fila, ctx, papers, doc)
+    assert res["estado"] == "revision_manual"
+    assert res["oracion_con_targetcit"] is None
