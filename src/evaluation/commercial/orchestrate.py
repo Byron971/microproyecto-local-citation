@@ -189,7 +189,7 @@ def main(argv: list[str] | None = None) -> int:
         gold_path = resolve_gold(args.gold)
         cases = load_gold_jsonl(gold_path)
         prompts = load_prompts_json(prompts_path)
-        audit = inspect_gold(gold_path, cases)
+        audit = inspect_gold(gold_path, cases, raw_dir=Path("data/raw"))
     except (OSError, ValueError) as exc:
         print(f"Error de entrada: {exc}", file=sys.stderr)
         return 2
