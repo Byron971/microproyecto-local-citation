@@ -136,7 +136,7 @@ def reconstruir_caso(fila: dict, contextos: dict, papers: dict, doc: dict | None
         ).strip()
         # GROBID suele dejar un espacio antes del punto final.
         # Solo se ajusta la copia enmascarada, nunca la evidencia OCL original.
-        enmascarada = re.sub(r"\\s+([.!?])$", r"\\1", enmascarada)
+        enmascarada = re.sub(r"\s+([.!?])$", r"\1", enmascarada)
     except (KeyError, TypeError, IndexError, ValueError, AttributeError) as exc:
         result["motivo"] = "reconstruccion_no_confiable_" + type(exc).__name__
         return result
