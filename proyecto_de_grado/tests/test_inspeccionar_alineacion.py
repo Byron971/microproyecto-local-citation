@@ -88,4 +88,4 @@ def test_dos_contextos_del_mismo_par_no_se_fusionan(tmp_path):
 
 def test_extracto_no_inventa_texto():
     assert extracto("", caracteres=20) == ""
-    assert extracto("ABCDEFGHIJK", 3, caracteres=5) == "BCDEF"
+    assert extracto("ABCDEFGHIJK", 3, caracteres=5) == "...BCDEF..."
