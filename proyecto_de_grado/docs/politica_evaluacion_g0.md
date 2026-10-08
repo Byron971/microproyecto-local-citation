@@ -64,6 +64,8 @@ Se verificó que solo 8 de los 20 están en la lista previa `proyecto_de_grado/a
 
 Los 20 casos siguen disponibles como ejemplos **históricos/de desarrollo**, no como muestra final independiente.
 
+**Actualización G1.1 (2026-10-08):** se inspeccionaron cinco contextos adicionales, incluidos dos de test, para diseñar la reconstrucción de citas. Sus IDs se añadieron a `ids_excluir_test_gold.txt` (que pasa de 77 a 82) y quedan fuera del nuevo Test Gold independiente. La unión de esta lista con los 20 IDs del piloto histórico pasa de **89 a 94 identificadores únicos**. Esta inspección no les atribuye etiquetas de función de cita.
+
 ## 5. Anotación humana y Test Gold nuevo
 
 - Congelar la guía, calibrar anotadores con ejemplos **fuera** del nuevo Test Gold y registrar una función principal por TARGETCIT.
