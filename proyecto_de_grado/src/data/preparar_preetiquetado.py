@@ -12,6 +12,11 @@ import json
 from pathlib import Path
 import random
 
+from proyecto_de_grado.src.data.validar_splits import (
+    build_split_index,
+    check_train_candidates,
+)
+
 ETIQUETAS = (
     "Background",
     "Gap",
@@ -132,19 +137,27 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--raw", type=Path, default=Path("data/raw"))
     parser.add_argument("--exclude", type=Path, default=Path("proyecto_de_grado/anotacion/ids_excluir_test_gold.txt"))
+    parser.add_argument(
+        "--exclude-history", type=Path,
+        default=Path("proyecto_de_grado/anotacion/ids_piloto_historico_no_test_final.txt"),
+    )
     parser.add_argument("--out", type=Path, default=Path("proyecto_de_grado/artifacts/preetiquetado"))
     parser.add_argument("--limit", type=int, default=300)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args(argv)
     data = args.raw
+    contextos = leer_json(data / "contexts.json")
+    papers = leer_json(data / "papers.json")
+    splits = {name: leer_json(data / f"{name}.json") for name in ("train", "val", "test")}
+    index = build_split_index(contextos, splits)
+    excluidos = leer_exclusiones(args.exclude) | leer_exclusiones(args.exclude_history)
     candidatos, resumen = construir_candidatos(
-        leer_json(data / "contexts.json"),
-        leer_json(data / "papers.json"),
-        leer_json(data / "train.json"),
-        leer_exclusiones(args.exclude),
-        limite=args.limit,
-        semilla=args.seed,
+        contextos, papers, splits["train"], excluidos,
+        limite=args.limit, semilla=args.seed,
     )
+    errores = check_train_candidates(candidatos, index)
+    if errores:
+        raise ValueError("Candidatos invalidos: " + "; ".join(errores))
     ruta, info = guardar(candidatos, resumen, args.out)
     print("=== PREPARACION PARA PRE-ETIQUETADO (SIN MODELOS) ===")
     print("Particion:", resumen["split"])
