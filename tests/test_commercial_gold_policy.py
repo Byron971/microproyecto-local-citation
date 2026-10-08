@@ -66,3 +66,27 @@ def test_ids_duplicados_se_rechazan(tmp_path):
     root = _root(tmp_path)
     with pytest.raises(ValueError, match="duplicados"):
         inspect_gold("nuevo.jsonl", [_case("N"), _case("N")], root=root)
+
+def test_integracion_gold_rechaza_contexto_en_train(tmp_path):
+    import json
+    root = _root(tmp_path)
+    raw = root / "data" / "raw"
+    raw.mkdir(parents=True)
+    ctx = {"ctx-train": {"citing_id": "P12-1", "refid": "P10-2",
+                         "masked_text": "We use TARGETCIT."}}
+    (raw / "contexts.json").write_text(json.dumps(ctx), encoding="utf-8")
+    for name in ("train", "val", "test"):
+        rows = [{"context_id": "ctx-train", "positive_ids": ["P10-2"]}] if name == "train" else []
+        (raw / f"{name}.json").write_text(json.dumps(rows), encoding="utf-8")
+    result = inspect_gold("nuevo_gold.jsonl", [_case("ctx-train")], root=root, raw_dir=raw)
+    assert result.provisional
+    assert "particion test" in " ".join(result.reasons)
+
+
+def test_integracion_gold_falla_cerrado_si_faltan_datos(tmp_path):
+    root = _root(tmp_path)
+    result = inspect_gold(
+        "nuevo_gold.jsonl", [_case("ejemplo")], root=root, raw_dir=tmp_path / "no-existe"
+    )
+    assert result.provisional
+    assert "No se pudo verificar particion" in " ".join(result.reasons)
