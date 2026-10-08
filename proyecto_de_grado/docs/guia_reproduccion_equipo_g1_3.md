@@ -12,6 +12,12 @@ Disponibles y versionados:
 - Reproductor independiente `proyecto_de_grado/scripts/reproducir_g1_3_equipo.py`.
 - Protocolo `proyecto_de_grado/docs/protocolo_validacion_reconstruccion_g1_3.md`.
 - Plantilla `proyecto_de_grado/anotacion/plantilla_revision_reconstruccion_g1_3.csv`.
+- Evidencias originales compartidas por el equipo, en `proyecto_de_grado/docs/evidencias_g1/`:
+  `g1_1_inspeccion_cinco_casos.txt`, `g1_2_reconstruccion_inicial.txt` y
+  `g1_2_reconstruccion_corregida.txt`. Son reportes históricos **de desarrollo**
+  y contienen extractos de publicaciones académicas; no son etiquetas Gold.
+  Se conservan para transparencia y comparación, con fines académicos
+  y respetando los derechos de las fuentes ACL/ACL OCL.
 
 No publicados intencionalmente:
 - `data/raw/` (se recupera con DVC, descriptor `data/raw.dvc`).
