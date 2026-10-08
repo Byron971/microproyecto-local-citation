@@ -44,6 +44,7 @@ def inspect_gold(
     cases: Iterable[object],
     *,
     root: Path = REPO_ROOT,
+    raw_dir: Path | None = None,
 ) -> GoldAudit:
     """Separa material historico/insuficiente de posibles candidatos a Gold.
 
@@ -78,5 +79,18 @@ def inspect_gold(
     without_label = sum(getattr(c, "gold", None) is None for c in cases)
     if without_label:
         reasons.append(f"{without_label} registros sin etiqueta humana de referencia")
+
+    if raw_dir is not None:
+        from proyecto_de_grado.src.data.validar_splits import (
+            check_gold_membership, load_split_index,
+        )
+        try:
+            index = load_split_index(raw_dir)
+        except (OSError, ValueError, TypeError) as exc:
+            reasons.append(
+                f"No se pudo verificar particion ACL-200: {type(exc).__name__}: {exc}"
+            )
+        else:
+            reasons.extend(check_gold_membership(cases, index))
 
     return GoldAudit(bool(reasons), tuple(reasons), len(banned))
