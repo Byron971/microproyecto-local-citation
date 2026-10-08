@@ -1,0 +1,7 @@
+# Dependencias de las pruebas de la página (se instalan con npm install)
+node_modules/
+package-lock.json
+
+# Archivos intermedios que generan los scripts
+anotacion/taller/calib_textos.txt
+scripts/spike_enlace_datos/cache_ocl/
