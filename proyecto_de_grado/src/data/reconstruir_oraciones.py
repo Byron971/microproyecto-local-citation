@@ -57,6 +57,27 @@ def limites_oracion(texto: str, inicio_cita: int, fin_cita: int) -> tuple[int, i
     return limites[0]
 
 
+def enmascarar_span_de_cita(texto_span: str) -> str | None:
+    """Conserva parentesis externos solo si abarcan UNA referencia.
+
+    Si los offsets capturan un grupo o parentesis incompletos, abstenerse.
+    La salida es una representacion de trabajo, NO una adjudicacion humana.
+    """
+    if not isinstance(texto_span, str):
+        return None
+    fragmento = texto_span.strip()
+    if not fragmento or "TARGETCIT" in fragmento or "OTHERCIT" in fragmento:
+        return None
+    if fragmento.startswith("(") and fragmento.endswith(")"):
+        interior = fragmento[1:-1].strip()
+        if not interior or any(c in interior for c in "();"):
+            return None
+        return "(TARGETCIT)"
+    if any(c in fragmento for c in "();"):
+        return None
+    return "TARGETCIT"
+
+
 def reconstruir_caso(fila: dict, contextos: dict, papers: dict, doc: dict | None) -> dict:
     """Construye evidencia auditable; nunca certifica la reconstruccion."""
     evidencia = inspeccionar_caso(fila, contextos, papers, doc)
@@ -93,6 +114,10 @@ def reconstruir_caso(fila: dict, contextos: dict, papers: dict, doc: dict | None
     if not span["posicion_valida"]:
         result["motivo"] = "offset_de_cita_invalido"
         return result
+    marcador = enmascarar_span_de_cita(span["texto_en_posicion"])
+    if marcador is None:
+        result["motivo"] = "grupo_o_envoltura_de_cita_no_segura"
+        return result
     try:
         idx = int(fila["parrafo_texto"])
         coincidencia = ubicar_contexto(texto_masked, doc)
@@ -107,8 +132,11 @@ def reconstruir_caso(fila: dict, contextos: dict, papers: dict, doc: dict | None
         a, b = limites_oracion(cuerpo, inicio, fin)
         oracion = cuerpo[a:b].strip()
         enmascarada = (
-            cuerpo[a:inicio] + "TARGETCIT" + cuerpo[fin:b]
+            cuerpo[a:inicio] + marcador + cuerpo[fin:b]
         ).strip()
+        # GROBID suele dejar un espacio antes del punto final.
+        # Solo se ajusta la copia enmascarada, nunca la evidencia OCL original.
+        enmascarada = re.sub(r"\\s+([.!?])$", r"\\1", enmascarada)
     except (KeyError, TypeError, IndexError, ValueError, AttributeError) as exc:
         result["motivo"] = "reconstruccion_no_confiable_" + type(exc).__name__
         return result
