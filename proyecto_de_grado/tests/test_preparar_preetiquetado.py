@@ -60,3 +60,36 @@ def test_salida_jsonl_y_resumen(tmp_path):
     contenido = json.loads(info.read_text(encoding="utf-8"))
     assert contenido["seleccionados"] == 3
     assert len(contenido["sha256_candidatos"]) == 64
+
+def test_main_aplica_union_exclusiones_y_valida_particiones(tmp_path):
+    from proyecto_de_grado.src.data.preparar_preetiquetado import main
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    contexts = {
+        name: {"masked_text": "Paper TARGETCIT is useful.", "refid": "REF-" + name,
+               "citing_id": "CIT-" + name}
+        for name in ("train_ok", "train_practica", "train_piloto", "val", "test")
+    }
+    papers = {"REF-" + k: {"title": "Title " + k, "abstract": ""} for k in contexts}
+    (raw / "contexts.json").write_text(json.dumps(contexts), encoding="utf-8")
+    (raw / "papers.json").write_text(json.dumps(papers), encoding="utf-8")
+    def rows(names):
+        return [{"context_id": name, "positive_ids": ["REF-" + name]} for name in names]
+    for split, names in (
+        ("train", ("train_ok", "train_practica", "train_piloto")),
+        ("val", ("val",)), ("test", ("test",))
+    ):
+        (raw / f"{split}.json").write_text(json.dumps(rows(names)), encoding="utf-8")
+    exclude = tmp_path / "practice.txt"
+    exclude.write_text("train_practica\n", encoding="utf-8")
+    historical = tmp_path / "historical.txt"
+    historical.write_text("train_piloto\n", encoding="utf-8")
+    output = tmp_path / "output"
+    status = main([
+        "--raw", str(raw), "--exclude", str(exclude),
+        "--exclude-history", str(historical), "--out", str(output), "--limit", "10",
+    ])
+    assert status == 0
+    selected = [json.loads(line) for line in (output / "candidatos_train_1.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert [row["id"] for row in selected] == ["train_ok"]
