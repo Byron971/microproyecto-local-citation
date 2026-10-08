@@ -3,9 +3,11 @@ name: Evaluacion funcion de cita
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, docs/correcciones-haydemar-v4, audit/preetiquetado-g0]
     paths:
       - "src/evaluation/**"
+      - "proyecto_de_grado/**"
+      - "tests/test_commercial_gold_policy.py"
       - "src/data/build_citation_function_pilot.py"
       - "tests/test_commercial*.py"
       - "tests/test_providers*.py"
@@ -16,6 +18,8 @@ on:
   pull_request:
     paths:
       - "src/evaluation/**"
+      - "proyecto_de_grado/**"
+      - "tests/test_commercial_gold_policy.py"
       - "src/data/build_citation_function_pilot.py"
       - "tests/test_commercial*.py"
       - "tests/test_providers*.py"
@@ -40,4 +44,17 @@ jobs:
 
       - name: Ejecutar pruebas de evaluación
         run: |
-          uv run pytest -q             tests/test_commercial_cli.py             tests/test_commercial_io.py             tests/test_commercial_metrics.py             tests/test_commercial_orchestrate.py             tests/test_commercial_runner.py             tests/test_commercial_schema.py             tests/test_providers_openai.py             tests/test_providers_gemini.py             tests/test_providers_openweight.py             tests/test_annotation.py             tests/test_build_citation_function_pilot.py
+          uv run pytest -q \
+            tests/test_commercial_cli.py \
+            tests/test_commercial_io.py \
+            tests/test_commercial_metrics.py \
+            tests/test_commercial_gold_policy.py \
+            tests/test_commercial_orchestrate.py \
+            tests/test_commercial_runner.py \
+            tests/test_commercial_schema.py \
+            tests/test_providers_openai.py \
+            tests/test_providers_gemini.py \
+            tests/test_providers_openweight.py \
+            tests/test_annotation.py \
+            tests/test_build_citation_function_pilot.py \
+            proyecto_de_grado/tests
