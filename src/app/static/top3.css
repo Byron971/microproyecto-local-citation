@@ -1,0 +1,26 @@
+:root { color-scheme:light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background:#f5f7fa; color:#142436; }
+* { box-sizing:border-box; }
+body { margin:0; }
+.banner { padding:28px max(24px, calc((100vw - 1000px)/2)); background:#153453; color:#fff; }
+.banner h1 { font-size:clamp(1.35rem,2.8vw,2rem); margin:12px 0 8px; }
+.banner p { opacity:.85; margin:0; }
+.volver { color:#d6efff; font-size:.92rem; }
+main { width:min(960px,calc(100% - 32px)); margin:24px auto; display:grid; gap:18px; }
+.panel, .aviso { padding:24px; border-radius:12px; background:white; box-shadow:0 2px 8px #0e263a12; }
+.aviso { border-left:4px solid #37689b; line-height:1.65; }
+h2 { font-size:1.2rem; margin:0 0 16px; }
+label { display:block; margin:18px 0 6px; font-weight:650; }
+textarea, input { display:block; width:100%; min-width:0; padding:12px; border:1px solid #c6d1dc; border-radius:8px; color:#142436; font:inherit; resize:vertical; }
+textarea:focus, input:focus { outline:2px solid #2673af; outline-offset:1px; }
+.ayuda { color:#485c6b; font-size:.9rem; line-height:1.5; }
+.controles { display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; margin-top:18px; }
+button { cursor:pointer; background:#205b86; color:white; border:0; border-radius:8px; padding:12px 18px; font:inherit; font-weight:600; }
+button.secundario { background:#e8eff5; color:#173c5b; }
+button:disabled { cursor:wait; opacity:.65; }
+#estado { color:#405264; }
+#estado.error { color:#a52a2a; font-weight:600; }
+#lista-resultados { padding-left:24px; }
+#lista-resultados li { padding:12px; margin:12px 0; background:#f6f9fc; border-radius:8px; }
+.puntaje { font-size:.85rem; color:#48677e; margin-top:6px; }
+p.fragmento { white-space:pre-wrap; line-height:1.55; }
+footer { color:#51616e; font-size:.82rem; width:min(960px,calc(100% - 32px)); margin:16px auto 32px; }
