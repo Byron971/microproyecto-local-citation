@@ -5,3 +5,6 @@ package-lock.json
 # Archivos intermedios que generan los scripts
 anotacion/taller/calib_textos.txt
 scripts/spike_enlace_datos/cache_ocl/
+
+# Reportes locales de auditoria
+artifacts/auditoria_acl_ocl/
