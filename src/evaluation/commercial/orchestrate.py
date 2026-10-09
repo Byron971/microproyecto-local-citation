@@ -16,6 +16,7 @@ from .io import (
     write_summary_csv,
 )
 from .metrics import evaluate_records, write_evaluation_artifacts
+from .gold_policy import LEGACY_GOLD_NAMES, inspect_gold
 from .providers_cohere import CohereClient
 from .providers_gemini import GeminiClient
 from .providers_openai import OpenAIClient
@@ -32,16 +33,19 @@ DEFAULT_PROVISIONAL_GOLD = Path(
 
 
 def resolve_gold(explicit: str | None) -> Path:
-    if explicit:
-        return Path(explicit)
-    if DEFAULT_FINAL_GOLD.exists():
-        return DEFAULT_FINAL_GOLD
-    return DEFAULT_PROVISIONAL_GOLD
+    """No escoger automaticamente el piloto historico como Test Gold final."""
+    if not explicit:
+        raise ValueError(
+            "Debes proporcionar --gold explicitamente. "
+            "No existe un Test Gold final validado en este repositorio."
+        )
+    return Path(explicit)
 
 
 def is_provisional_gold(path: str | Path) -> bool:
-    path = Path(path)
-    return "provisional" in path.name.casefold()
+    """Compatibilidad con llamadas antiguas: nunca confiar solo en el nombre."""
+    name = Path(path).name.casefold()
+    return name in LEGACY_GOLD_NAMES or "provisional" in name
 
 
 def build_clients(mode: str) -> list[object]:
@@ -142,8 +146,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--gold",
         help=(
-            "Test Gold JSONL. Si se omite, usa test_gold.jsonl cuando exista; "
-            "de lo contrario usa provisional_test_gold.jsonl."
+            "Ruta JSONL explicita. El piloto historico no es un Test Gold final."
         ),
     )
     parser.add_argument(
@@ -181,21 +184,29 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    gold_path = resolve_gold(args.gold)
     prompts_path = Path(args.prompts)
-    provisional = is_provisional_gold(gold_path)
-
     try:
+        gold_path = resolve_gold(args.gold)
         cases = load_gold_jsonl(gold_path)
         prompts = load_prompts_json(prompts_path)
+        audit = inspect_gold(gold_path, cases, raw_dir=Path("data/raw"))
     except (OSError, ValueError) as exc:
         print(f"Error de entrada: {exc}", file=sys.stderr)
         return 2
 
-    if provisional and not args.allow_provisional and not args.check_only:
+    # G0.6: ningun conjunto esta certificado todavia como Test Gold final.
+    # Superar las comprobaciones basicas NO equivale a doble anotacion y adjudicacion.
+    provisional = True
+    if audit.reasons:
+        print("Advertencias de integridad del conjunto:", file=sys.stderr)
+        for reason in audit.reasons:
+            print(f" - {reason}", file=sys.stderr)
+
+    if not args.allow_provisional and not args.check_only:
         print(
-            "El conjunto seleccionado es provisional. Usa --allow-provisional "
-            "solo para corridas preliminares o espera el Test Gold definitivo.",
+            "Evaluacion final bloqueada: falta un Test Gold nuevo, "
+            "adjudicado y sellado. Usa --allow-provisional SOLO para "
+            "experimentos de desarrollo.",
             file=sys.stderr,
         )
         return 2
@@ -206,7 +217,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Gold: {gold_path}")
     print(f"Casos: {len(cases)}")
     print(f"Prompts: {len(prompts)}")
-    print(f"Provisional: {'sí' if provisional else 'no'}")
+    print("Provisional: sí (no existe un Test Gold final certificado)")
+    print(f"Exclusiones de desarrollo registradas: {audit.excluded_ids}")
     for client in clients:
         print(
             "Cliente: "

@@ -1,0 +1,63 @@
+INSPECCION G1.1 | 5 contextos | SOLO LECTURA
+
+============================================================
+ID: D15-1288_P09-2086_0 | test
+Citante: D15-1288 | citado: P09-2086
+Parrafo: 1 | similitud: 1.0
+Estado: cita_bibliografica_candidata_en_parrafo | seccion: Introduction
+Contexto ACL-200: f between accuracy, space, and time, with recent papers considering small but approximate lossy LMs (OTHERCIT), or loss-less LMs backed by tries (OTHERCIT), or related compressed structures (OTHERCIT; TARGETCIT . However, none of these approaches scale well to very high-order m or very large corpora, due to their high memory and time requirements. An important exception is OTHERCIT, who also propose a langua
+Ref(s) candidata(s): ['BIBREF28']
+Ref(s) en parrafo: ['BIBREF0', 'BIBREF11', 'BIBREF18', 'BIBREF2', 'BIBREF23', 'BIBREF24', 'BIBREF26', 'BIBREF28', 'BIBREF6', 'BIBREF8', 'BIBREF9']
+Total cite_spans: 11
+SPAN: BIBREF28 | 'Watanabe et al., 2009)' | offsets_validos: True | texto: 'Watanabe et al., 2009)'
+Parrafo alrededor de la cita: ... (Stolcke et al., 2011) , or related compressed structures (Germann et al., 2009; Heafield, 2011; Pauls and Klein, 2011; Sorensen and Allauzen, 2011; Watanabe et al., 2009) . However, none of these approaches scale well to very high-order m or very large corpora, due to their high memory and time re...
+
+============================================================
+ID: P14-1048_P12-1007_0 | val
+Citante: P14-1048 | citado: P12-1007
+Parrafo: 8 | similitud: 0.7778
+Estado: cita_bibliografica_candidata_en_parrafo | seccion: HILDA discourse parser
+Contexto ACL-200: exploded.]e4 wsj 1146 e1:4 sequence e1:2 e3:4 strategy is its efficiency in practice. Also, the employment of SVM classifiers allows the incorporation of rich features for better data representation ( TARGETCIT . However, HILDAÆs approach also has obvious weakness: the greedy algorithm may lead to poor performance due to local optima, and more importantly, the SVM classifiers are not well-suited for solving 
+Ref(s) candidata(s): ['BIBREF4']
+Ref(s) en parrafo: ['BIBREF4']
+Total cite_spans: 1
+SPAN: BIBREF4 | '(Feng and Hirst, 2012)' | offsets_validos: True | texto: '(Feng and Hirst, 2012)'
+Parrafo alrededor de la cita: ...ategy is its efficiency in practice. Also, the employment of SVM classifiers allows the incorporation of rich features for better data representation (Feng and Hirst, 2012) . However, HILDA's approach also has obvious weakness: the greedy algorithm may lead to poor performance due to local optima, a...
+
+============================================================
+ID: P14-1048_P12-1007_2 | val
+Citante: P14-1048 | citado: P12-1007
+Parrafo: 72 | similitud: 1.0
+Estado: cita_bibliografica_candidata_en_parrafo | seccion: Experiments
+Contexto ACL-200: arge corpus annotated in the framework of RST. The RST-DT consists of 385 documents (347 for training and 38 for testing) from the Wall Street Journal. Following previous work on the RST-DT (OTHERCIT; TARGETCIT ; OTHERCIT), we use 18 coarsegrained relation classes, and with nuclearity attached, we have a total set of 41 distinct relations. Non-binary relations are converted into a cascade of right-branching 
+Ref(s) candidata(s): ['BIBREF4']
+Ref(s) en parrafo: ['BIBREF2', 'BIBREF4', 'BIBREF5', 'BIBREF6', 'BIBREF7']
+Total cite_spans: 5
+SPAN: BIBREF4 | 'Feng and Hirst, 2012;' | offsets_validos: True | texto: 'Feng and Hirst, 2012;'
+Parrafo alrededor de la cita: ...ts of 385 documents (347 for training and 38 for testing) from the Wall Street Journal. Following previous work on the RST-DT (Hernault et al., 2010; Feng and Hirst, 2012; Joty et al., 2012; Joty et al., 2013) , we use 18 coarsegrained relation classes, and with nuclearity attached, we have a total ...
+
+============================================================
+ID: W09-0704_E89-1009_0 | train
+Citante: W09-0704 | citado: E89-1009
+Parrafo: 3 | similitud: 0.6471
+Estado: cita_bibliografica_candidata_en_parrafo | seccion: Introduction
+Contexto ACL-200: l analysis of SY in the KATR formalism (Finkel, Shen, OTHERCIT). KATR is based on DATR, a formal language for representing lexical knowledge designed and implemented by Roger Evans and Gerald Gazdar ( TARGETCIT . Our information about SY is primarily due to the expertise of the second author. This research is part of a larger effort aimed at elucidating the morphological structure of natural languages. In pa
+Ref(s) candidata(s): ['BIBREF4']
+Ref(s) en parrafo: ['BIBREF4', 'BIBREF5']
+Total cite_spans: 2
+SPAN: BIBREF4 | '(Evans & Gazdar 1989)' | offsets_validos: True | texto: '(Evans & Gazdar 1989)'
+Parrafo alrededor de la cita: ... in the KATR formalism (Finkel, Shen, Stump & Thesayi 2002) . KATR is based on DATR, a formal language for representing lexical knowledge designed and implemented by Roger Evans and Gerald Gazdar (Evans & Gazdar 1989) . Our information about SY is primarily due to the expertise of the second author.
+
+============================================================
+ID: W15-2710_P11-1082_0 | test
+Citante: W15-2710 | citado: P11-1082
+Parrafo: 8 | similitud: 1.0
+Estado: cita_bibliografica_candidata_en_parrafo | seccion: Related Work
+Contexto ACL-200:  There is an increasing body of research on using world knowledge and inference in high-level text processing tasks such as textual entailment, coreference resolution and question answering (OTHERCIT; TARGETCIT ; OTHERCIT). However, most of the existing approaches use ôstaticö knowledge that is typically expressed as a collection of n-ary relations between entities, and there is little work that attempts to 
+Ref(s) candidata(s): ['BIBREF8']
+Ref(s) en parrafo: ['BIBREF0', 'BIBREF10', 'BIBREF11', 'BIBREF12', 'BIBREF3', 'BIBREF5', 'BIBREF6', 'BIBREF7', 'BIBREF8']
+Total cite_spans: 9
+SPAN: BIBREF8 | 'Rahman and Ng, 2011;' | offsets_validos: True | texto: 'Rahman and Ng, 2011;'
+Parrafo alrededor de la cita: ...-level text processing tasks such as textual entailment, coreference resolution and question answering (Tatu and Moldovan, 2005; Fowler et al., 2005; Rahman and Ng, 2011; Peng et al., 2015; Berant et al., 2015) . However, most of the existing approaches use "static" knowledge that is typically expre...
+
+AVISO: la similitud y bibliografia solo generan candidatos; falta adjudicar TARGETCIT.

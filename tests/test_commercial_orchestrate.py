@@ -9,7 +9,55 @@ def test_resolve_gold_prefers_explicit_path():
 
 def test_is_provisional_gold_by_filename():
     assert orchestrate.is_provisional_gold("x/provisional_test_gold.jsonl")
-    assert not orchestrate.is_provisional_gold("x/test_gold.jsonl")
+    assert orchestrate.is_provisional_gold("x/test_gold.jsonl")
+
+
+def test_resolve_gold_requires_explicit_path():
+    import pytest
+
+    with pytest.raises(ValueError, match="--gold"):
+        orchestrate.resolve_gold(None)
+
+
+def test_main_blocks_historical_gold_without_inference(tmp_path, monkeypatch, capsys):
+    import json
+
+    gold = tmp_path / "test_gold.jsonl"
+    gold.write_text(
+        json.dumps({"id": "nuevo-ejemplo", "input": "We use TARGETCIT.", "gold": "Application"}) + "\n",
+        encoding="utf-8",
+    )
+    prompts = tmp_path / "prompts.json"
+    prompts.write_text(json.dumps({"one": "Classify {input}"}), encoding="utf-8")
+    monkeypatch.setenv("OPENWEIGHT_MODEL", "no-inferir")
+    code = orchestrate.main([
+        "--mode", "openweight",
+        "--gold", str(gold),
+        "--prompts", str(prompts),
+    ])
+    assert code == 2
+    assert "Evaluacion final bloqueada" in capsys.readouterr().err
+
+
+def test_main_check_only_marks_historical_gold_as_preliminary(tmp_path, monkeypatch, capsys):
+    import json
+
+    gold = tmp_path / "test_gold.jsonl"
+    gold.write_text(
+        json.dumps({"id": "ejemplo-prueba", "input": "TARGETCIT", "gold": "Application"}) + "\n",
+        encoding="utf-8",
+    )
+    prompts = tmp_path / "prompts.json"
+    prompts.write_text(json.dumps({"one": "Classify {input}"}), encoding="utf-8")
+    monkeypatch.setenv("OPENWEIGHT_MODEL", "modelo-simulado-no-consultado")
+    code = orchestrate.main([
+        "--mode", "openweight",
+        "--gold", str(gold),
+        "--prompts", str(prompts),
+        "--check-only",
+    ])
+    assert code == 0
+    assert "Provisional: sí" in capsys.readouterr().out
 
 
 def test_validate_environment_reports_missing_values(monkeypatch):

@@ -1,5 +1,7 @@
 # Evaluación de modelos comerciales — corte 20 de septiembre
 
+> **Nota de compatibilidad (octubre 2026):** el flujo de la Entrega 3 ya fue calificado y sus manuales/vídeo representan el comportamiento histórico. La rama del proyecto de grado cambió deliberadamente el orquestador: `--gold` es obligatorio incluso en `--check-only`, no se elige automáticamente el archivo llamado `test_gold.jsonl`, y cualquier ejecución real requiere `--allow-provisional`. Esta documentación actualiza los ejemplos operativos; los resultados antiguos siguen siendo históricos y provisionales.
+
 Este módulo corresponde al frente del issue #40. Su responsabilidad es ejecutar modelos comerciales sobre el mismo Test Gold y los mismos prompts que usa el resto del equipo, registrar latencia, uso, costo cuando exista una tarifa explícita, reintentos y errores, y producir archivos comparables para el pipeline global de métricas.
 
 ## Dependencias con el equipo
@@ -48,8 +50,9 @@ Archivo JSONL, una observación por línea:
 
 El repositorio mantiene dos estados posibles:
 
-- annotations/citation_function/provisional_test_gold.jsonl: conjunto provisional de 20 casos, construido a partir de la primera validación manual por parte del equipo. Sirve para pruebas técnicas, no para resultados definitivos.
-- annotations/citation_function/test_gold.jsonl: nombre reservado para el conjunto definitivo después de la segunda validación manual independiente, acuerdo interanotador y reconciliación.
+- `annotations/citation_function/provisional_test_gold.jsonl`: piloto histórico de 20 casos; solo desarrollo.
+- `annotations/citation_function/test_gold.jsonl`: **también** contiene 20 casos del piloto histórico, ya usados para comparar prompts/modelos; **no** es un Test Gold final, pese a su nombre.
+- El nuevo Test Gold requiere otros IDs elegibles del split test, doble anotación independiente, adjudicación, manifiesto y controles de fugas. No puede certificarse solo cambiando un nombre de archivo.
 
 ## Formato de prompts
 
@@ -61,11 +64,12 @@ Cada modelo debe devolver un arreglo JSON de nueve puntajes en el mismo orden de
 
 ## Preflight sin consumir APIs
 
-El orquestador valida datos, prompts y variables de entorno antes de llamar proveedores:
+El orquestador valida datos, prompts y variables de entorno antes de llamar proveedores. **Todos los comandos deben pasar `--gold` explícitamente**, aunque solo se utilice `--check-only`. Los ejemplos siguientes usan el piloto histórico **solo para pruebas técnicas**; se deben configurar las variables de entorno del modo seleccionado, pero `--check-only` no hace peticiones a los proveedores:
 
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode openai \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
   --check-only
 ```
 
@@ -74,6 +78,7 @@ Para verificar Cohere:
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode cohere \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
   --check-only
 ```
 
@@ -82,6 +87,7 @@ Para verificar la configuración open-weight:
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode openweight \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
   --check-only
 ```
 
@@ -90,6 +96,7 @@ Para verificar ambos modelos comerciales:
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode commercial \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
   --check-only
 ```
 
@@ -98,6 +105,7 @@ Para verificar OpenAI, Gemini y open-weight en una sola configuración:
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode all \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
   --check-only
 ```
 
@@ -110,6 +118,7 @@ Solo para comprobar el pipeline técnico:
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode openai \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
   --allow-provisional \
   --output-dir artifacts/citation_function_eval/openai_provisional
 ```
@@ -119,23 +128,18 @@ Para una corrida preliminar de Cohere:
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
   --mode cohere \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
   --allow-provisional \
   --output-dir artifacts/citation_function_eval/cohere_provisional
 ```
 
-El flag --allow-provisional es obligatorio para una corrida real sobre el conjunto provisional. El archivo run_metadata.json queda marcado con provisional_gold=true para evitar que esos resultados se presenten como finales.
+El flag --allow-provisional es obligatorio para cualquier corrida real del estado actual (el conjunto histórico es provisional). El archivo run_metadata.json queda marcado con provisional_gold=true para evitar que esos resultados se presenten como finales.
 
-## Corrida final
+## Corrida final: todavía bloqueada
 
-Cuando exista annotations/citation_function/test_gold.jsonl:
+**No existe en este repositorio un Test Gold final certificado.** El archivo histórico `annotations/citation_function/test_gold.jsonl` ya se utilizó en desarrollo y está excluido de esa función. Por eso el orquestador no selecciona ningún Gold automáticamente y bloquea las inferencias cuando falta `--allow-provisional`.
 
-```bash
-uv run python -m src.evaluation.commercial.orchestrate \
-  --mode all \
-  --output-dir artifacts/citation_function_eval/final
-```
-
-El orquestador usa automáticamente el Test Gold definitivo cuando existe.
+Cuando el equipo disponga de un nuevo conjunto independiente, con anotación humana, adjudicación, particiones y manifestación de procedencia verificadas, deberá aprobarse e implementarse la ruta de certificación del Test Gold antes de generar un informe final. **No utilizar `--allow-provisional` para etiquetar resultados como definitivos.**
 
 ## Parser y métricas
 

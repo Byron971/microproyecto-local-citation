@@ -708,27 +708,32 @@ Nunca deben versionarse credenciales reales. El identificador del modelo se cont
 
 ---
 
-## Test Gold
+## Test Gold — actualización del proyecto de grado (octubre de 2026)
 
 ```text
 annotations/citation_function/provisional_test_gold.jsonl
-    20 casos, primera validación manual por parte del equipo, uso preliminar
+    piloto HISTÓRICO de 20 casos: únicamente desarrollo
 
 annotations/citation_function/test_gold.jsonl
-    nombre reservado para el conjunto definitivo, después de la segunda
-    validación independiente, el acuerdo entre anotadores y la reconciliación
+    archivo HISTÓRICO de 20 casos también usado para elegir prompts/modelos;
+    NO es un Test Gold definitivo por llamarse test_gold.jsonl
 ```
 
-El orquestador usa `test_gold.jsonl` cuando existe. Si solo hay conjunto provisional, exige el indicador `--allow-provisional` y marca los artefactos como preliminares, para impedir que un piloto se reporte como resultado final.
+La Entrega 3 del microproyecto se realizó con el flujo anterior. **El nuevo código cambia deliberadamente ese comportamiento**: `src.evaluation.commercial.orchestrate` ya **no selecciona automáticamente** `test_gold.jsonl`. Ahora exige siempre `--gold RUTA`, incluso con `--check-only`, y bloquea las corridas reales sin `--allow-provisional`. En el estado actual, **toda corrida queda marcada como provisional** porque aún no hay Test Gold nuevo, doblemente anotado, adjudicado y sellado. Esto no modifica ni invalida retroactivamente el video, los manuales o los resultados históricos de la Entrega 3; sus instrucciones de ejecución reflejaban la versión entonces entregada.
+
+Este bloqueo preserva la independencia de futuras evaluaciones. No renombrar el piloto para eludirlo: hay listas de IDs excluidos, verificaciones de TARGETCIT y particiones. Para resultados finales todavía faltan controles humanos y científicos adicionales (ver `proyecto_de_grado/docs/politica_evaluacion_g0.md`).
 
 ---
 
 ## Ejecutar una evaluación
 
-Validar datos, prompts y configuración sin llamar a ningún proveedor:
+Validar datos, prompts y configuración sin llamar a ningún proveedor (requiere configurar las variables de entorno correspondientes al modo `all`; no consume créditos):
 
 ```bash
-uv run python -m src.evaluation.commercial.orchestrate --mode all --check-only
+uv run python -m src.evaluation.commercial.orchestrate \
+    --mode all \
+    --gold annotations/citation_function/provisional_test_gold.jsonl \
+    --check-only
 ```
 
 Ejecutar sobre el conjunto provisional:
@@ -736,6 +741,7 @@ Ejecutar sobre el conjunto provisional:
 ```bash
 uv run python -m src.evaluation.commercial.orchestrate \
     --mode commercial \
+    --gold annotations/citation_function/provisional_test_gold.jsonl \
     --allow-provisional \
     --request-delay-seconds 5 \
     --output-dir artifacts/citation_function_eval
@@ -1694,10 +1700,11 @@ La solución implementa actualmente:
 
 Pendiente en el frente de función de cita:
 
-- segunda validación manual independiente;
-- cálculo del acuerdo entre anotadores;
-- reconciliación de desacuerdos y congelamiento de `test_gold.jsonl`;
-- repetición de las corridas sobre el Test Gold definitivo;
+- diseñar y completar una **nueva** anotación humana independiente, distinta del piloto histórico;
+- calcular el acuerdo entre anotadores y adjudicar desacuerdos;
+- crear un **nuevo** Test Gold independiente (no reutilizar ni renombrar `test_gold.jsonl` histórico), con validación de splits, manifiesto y exclusiones;
+- aprobar una vía futura de evaluación final: a octubre de 2026 el orquestador solo autoriza resultados provisionales;
+- repetir las corridas sobre el nuevo Test Gold una vez aprobado el protocolo;
 - consolidación de las métricas finales en el reporte.
 
 El sistema debe considerarse un prototipo académico. Las recomendaciones dependen del corpus utilizado, de la etapa de recuperación y del modelo entrenado, y no sustituyen la revisión académica de las referencias por parte del usuario.
