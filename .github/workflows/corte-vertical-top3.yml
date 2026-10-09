@@ -6,6 +6,7 @@ on:
     branches: [feature/corte-vertical-top3-s2]
     paths:
       - "src/app/**"
+      - "tests/test_top3_corpus_real.py"
       - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
       - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
       - "tests/test_top3_fragmentos.py"
@@ -13,6 +14,7 @@ on:
   pull_request:
     paths:
       - "src/app/**"
+      - "tests/test_top3_corpus_real.py"
       - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
       - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
       - "tests/test_top3_fragmentos.py"
@@ -31,4 +33,4 @@ jobs:
       - name: Instalar dependencias de la API y pruebas
         run: uv sync --group dev
       - name: Probar corte vertical sin inferencias externas
-        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py
+        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py
