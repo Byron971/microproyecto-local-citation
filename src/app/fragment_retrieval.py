@@ -66,12 +66,15 @@ def recuperar_top3(contexto: str, parrafos: list[dict[str, Any]]) -> list[dict[s
             )
             puntuacion += idf * frecuencia * (_K1 + 1) / denominador
         if puntuacion > 0:
-            resultados.append({
+            registro = {
                 "chunk_id": p["chunk_id"],
                 "texto": p["texto"],
                 "seccion": p.get("seccion"),
                 "puntaje_bm25": round(puntuacion, 6),
-            })
+            }
+            if "paragraph_indices" in p:
+                registro["paragraph_indices"] = list(p["paragraph_indices"])
+            resultados.append(registro)
 
     resultados.sort(key=lambda p: (-p["puntaje_bm25"], p["chunk_id"]))
     return [
