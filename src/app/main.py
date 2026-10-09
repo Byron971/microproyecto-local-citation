@@ -21,9 +21,11 @@ from typing import Any
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from src.app.insights import load_insights
+from src.app.fragment_retrieval import recuperar_top3
+from src.app.corpus_adapter import CorpusError, ejemplos_disponibles, leer_corpus, top3_de_corpus
 from src.app.recommender import Recommender
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -47,6 +49,37 @@ class ContextoConsulta(BaseModel):
         le=100,
         description="Cantidad de artículos a devolver.",
     )
+
+
+
+class ParrafoCitado(BaseModel):
+    """Fragmento proporcionado del articulo citado; no se toma de otros papers."""
+
+    chunk_id: str = Field(..., min_length=1, max_length=120)
+    texto: str = Field(..., min_length=1, max_length=5000)
+    seccion: str | None = Field(default=None, max_length=200)
+
+
+# Limite de contenido textual para la ruta manual; no sustituye un limite
+# de tamano de peticion a nivel de proxy en despliegue publico.
+MAX_CARACTERES_TOP3_MANUAL = 60_000
+
+
+class ConsultaTop3(BaseModel):
+    """Corte vertical inicial; corpus externo aun no enlazado a esta API."""
+
+    contexto: str = Field(..., min_length=1, max_length=4000)
+    cited_id: str = Field(..., min_length=1, max_length=120)
+    parrafos: list[ParrafoCitado] = Field(..., min_length=1, max_length=100)
+
+    @model_validator(mode="after")
+    def limitar_texto_total(self) -> "ConsultaTop3":
+        total = len(self.contexto) + sum(len(p.texto) for p in self.parrafos)
+        if total > MAX_CARACTERES_TOP3_MANUAL:
+            raise ValueError(
+                f"Texto total supera el maximo de {MAX_CARACTERES_TOP3_MANUAL} caracteres."
+            )
+        return self
 
 
 @asynccontextmanager
@@ -114,6 +147,74 @@ def recomendar(consulta: ContextoConsulta) -> dict[str, Any]:
         "total": len(recomendaciones),
         "recomendaciones": recomendaciones,
     }
+
+
+
+@app.post("/api/top3-fragmentos")
+def top3_fragmentos(consulta: ConsultaTop3) -> dict[str, Any]:
+    """Baseline sin inferencia: BM25 sobre fragmentos de UN articulo citado.
+
+    Los fragmentos se suministran explicitamente en esta primera version.
+    La consulta NO estima la funcion retorica ni la calidad del ranking.
+    """
+    texto = consulta.contexto.strip()
+    cited_id = consulta.cited_id.strip()
+    if not texto or not cited_id:
+        raise HTTPException(status_code=422, detail="Contexto y cited_id son obligatorios.")
+
+    ids = [p.chunk_id.strip() for p in consulta.parrafos]
+    if any(not cid for cid in ids) or len(ids) != len(set(ids)):
+        raise HTTPException(status_code=422, detail="chunk_id no puede estar vacio ni repetido.")
+    if any(not p.texto.strip() for p in consulta.parrafos):
+        raise HTTPException(status_code=422, detail="No se admiten fragmentos sin texto.")
+
+    fragmentos = [
+        {"chunk_id": p.chunk_id.strip(), "texto": p.texto.strip(),
+         "seccion": p.seccion}
+        for p in consulta.parrafos
+    ]
+    ranking = recuperar_top3(texto, fragmentos)
+    return {
+        "contexto": texto,
+        "cited_id": cited_id,
+        "metodo": "BM25_lexico_baseline",
+        "alcance": "solo_fragmentos_aportados_del_articulo_citado",
+        "total_fragmentos_analizados": len(fragmentos),
+        "total_resultados": len(ranking),
+        "fragmentos": ranking,
+        "clasificacion": {
+            "estado": "no_ejecutada",
+            "motivo": "Aun no se dispone de un clasificador de nueve funciones validado.",
+        },
+        "aviso": (
+            "Puntajes BM25 no son probabilidades ni metricas de calidad; "
+            "requieren referencia humana para evaluar relevancia."
+        ),
+    }
+
+
+
+@app.get("/api/top3-corpus/ejemplos")
+def ejemplos_corpus_top3() -> dict[str, Any]:
+    """Casos reales de desarrollo, disponibles solo si existe artefacto local."""
+    try:
+        datos = leer_corpus()
+    except CorpusError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    return {"total": len(datos["casos"]), "ejemplos": ejemplos_disponibles(datos)}
+
+
+@app.get("/api/top3-corpus/{context_id}")
+def recomendar_top3_corpus(context_id: str) -> dict[str, Any]:
+    """Recupera exclusivamente fragmentos documentados del cited_id original."""
+    try:
+        datos = leer_corpus()
+    except CorpusError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    resultado = top3_de_corpus(datos, context_id)
+    if resultado is None:
+        raise HTTPException(status_code=404, detail="Contexto no incluido en la muestra train.")
+    return resultado
 
 
 @app.get("/api/insights")
