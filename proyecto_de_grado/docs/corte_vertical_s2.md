@@ -37,16 +37,18 @@ La respuesta incluye `metodo="BM25_lexico_baseline"`, `alcance`, `fragmentos` y 
 ## Restricciones conscientemente adoptadas
 
 - No se altera `src/app/recommender.py`, el modelo empaquetado ni su wheel de S3.
-- No se descargan pesos de modelos nuevos; BM25 usa biblioteca estándar de Python.
+- No se descargan pesos de modelos nuevos; BM25 usa biblioteca estándar de Python. La versión actual aplica tokenización por palabras, minúsculas y lista fija de stopwords, **sin stemming, lematización ni normalización morfológica**. Ejemplos como `word/words` y `embedding/embeddings` no coinciden por sí solos. Esta es una limitación experimental, no evidencia de irrelevancia de un fragmento.
 - La interfaz y el endpoint pueden funcionar sin `data/raw` ni `cache_ocl` en el contenedor, porque los párrafos se aportan por petición. En la versión siguiente un adaptador externo tomará los párrafos de un dataset versionado (sin incorporarlo a la imagen).
 - No se ejecuta clasificación de nueve categorías hasta disponer de un modelo suficiente y un protocolo claro de incertidumbre. Se informa explícitamente que no se ejecutó.
 - No declarar `Recall@3`, `MRR@3` ni `F1 Macro` con los ejemplos sintéticos. Requieren anotación humana y evaluación controlada.
 - Top-3 no implica devolver siempre tres resultados: cuando no hay señal léxica no se inventan coincidencias.
+- El endpoint manual valida **máximo 60.000 caracteres de texto** entre contexto y párrafos y **máximo 5.000 por párrafo**; no equivale todavía a un límite HTTP de bytes a nivel del proxy de producción. La interfaz verifica los mismos límites y muestra un error entendible si el servidor devuelve un fallo no JSON.
+- Para comparar con SciBERT sin favorecer artificialmente al modelo neuronal, se deberá evaluar además **una variante BM25 normalizada morfológicamente**, usando el mismo conjunto, chunks, protocolo y criterios de relevancia. No se cambiará en silencio el baseline actual ni se supondrá que SciBERT lo supera sin medición.
 - Esta demo es una etapa **intermedia** hacia el flujo científico completo, no una sustitución de BM25/SciBERT y Top-3 anotado del proyecto.
 
 ## Puertas de aceptación
 
-1. Pruebas: ranking positivo, top-3 máximo, resultados vacíos, desempate estable, marcadores excluidos, controles de entrada 422, rutas antiguas conservadas.
+1. Pruebas: ranking positivo, top-3 máximo, resultados vacíos, desempate estable, marcadores excluidos, controles de entrada 422, rutas antiguas conservadas; además **puntajes BM25 numéricos de referencia (IDF, K1, B)**, rareza léxica, límite agregado de texto y manejo de error no JSON en interfaz.
 2. CI de rama aprobado.
 3. Prueba local mediante FastAPI o Docker Compose del endpoint y la página, con enlace desde `/`.
 4. Explicar en el informe de avance diferencias entre ranking de artículos del MVP y Top-3 de fragmentos.
