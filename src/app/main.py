@@ -21,7 +21,7 @@ from typing import Any
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from src.app.insights import load_insights
 from src.app.fragment_retrieval import recuperar_top3
@@ -60,12 +60,26 @@ class ParrafoCitado(BaseModel):
     seccion: str | None = Field(default=None, max_length=200)
 
 
+# Limite de contenido textual para la ruta manual; no sustituye un limite
+# de tamano de peticion a nivel de proxy en despliegue publico.
+MAX_CARACTERES_TOP3_MANUAL = 60_000
+
+
 class ConsultaTop3(BaseModel):
     """Corte vertical inicial; corpus externo aun no enlazado a esta API."""
 
     contexto: str = Field(..., min_length=1, max_length=4000)
     cited_id: str = Field(..., min_length=1, max_length=120)
     parrafos: list[ParrafoCitado] = Field(..., min_length=1, max_length=100)
+
+    @model_validator(mode="after")
+    def limitar_texto_total(self) -> "ConsultaTop3":
+        total = len(self.contexto) + sum(len(p.texto) for p in self.parrafos)
+        if total > MAX_CARACTERES_TOP3_MANUAL:
+            raise ValueError(
+                f"Texto total supera el maximo de {MAX_CARACTERES_TOP3_MANUAL} caracteres."
+            )
+        return self
 
 
 @asynccontextmanager
