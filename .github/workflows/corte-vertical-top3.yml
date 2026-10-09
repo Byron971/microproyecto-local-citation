@@ -34,3 +34,5 @@ jobs:
         run: uv sync --group dev
       - name: Probar corte vertical sin inferencias externas
         run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py
+      - name: Verificar sintaxis JavaScript de la demo
+        run: node --check src/app/static/top3.js
