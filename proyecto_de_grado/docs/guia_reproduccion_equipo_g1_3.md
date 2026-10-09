@@ -28,12 +28,14 @@ No publicados intencionalmente:
 
 ## Para la persona encargada de reproducir
 
-Desde la raíz del repositorio, con entorno Python activo:
+Desde la raíz del repositorio, con entorno Python activo y el árbol de trabajo sin cambios locales pendientes. **No asumir que `origin` apunta al repositorio del equipo**: en los forks suele apuntar a la copia personal, mientras que el repositorio compartido se llama `upstream`. Para reproducir sin configurar ni modificar remotos, se obtiene la rama directamente desde la URL canónica:
 
 ```powershell
-git fetch origin
-git switch -c audit/preetiquetado-g0 --track origin/audit/preetiquetado-g0
-# Si la rama ya existe: git switch audit/preetiquetado-g0
+git status -sb
+# Si hay cambios locales, detenerse y guardarlos antes de cambiar de rama.
+git fetch https://github.com/Byron971/microproyecto-local-citation.git audit/preetiquetado-g0
+git switch -c revision-g1-3 FETCH_HEAD
+# Si revision-g1-3 ya existe, elegir otro nombre de rama local de revisión.
 # Recuperar data/raw desde el remoto DVC autorizado, si no está presente:
 dvc pull data/raw.dvc
 # Ejecutar pruebas locales sin proveedor de IA:
@@ -41,6 +43,8 @@ python -m pytest -q proyecto_de_grado/tests/test_reproducir_g1_3_equipo.py proye
 # Descargar SOLO los 8 JSON citantes/citados necesarios si no hay caché:
 python -m proyecto_de_grado.scripts.reproducir_g1_3_equipo --descargar-faltantes
 ```
+
+El paso `git fetch` usa una URL pública de GitHub y no necesita que el `origin` del clon apunte a John; el nombre `revision-g1-3` es solo una rama local para esta tarea. Si se prefiere trabajar con el remoto compartido, verificar primero `git remote -v` y usar `upstream` únicamente cuando apunte a `Byron971/microproyecto-local-citation`. No ejecutar un `git switch` con cambios locales sin guardar.
 
 El comando final no utiliza el CSV local ni los resultados de la máquina original; reconstruye la ubicación de cada contexto desde ACL-200, aplica el mismo código G1.2 y compara cada registro con el baseline. **Requiere acceso al remoto DVC del proyecto.** La descarga de hasta ocho documentos de ACL OCL es explícita; si ya están en caché se reutilizan.
 
