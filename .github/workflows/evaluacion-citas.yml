@@ -8,6 +8,7 @@ on:
       - "src/evaluation/**"
       - "proyecto_de_grado/**"
       - "tests/test_commercial_gold_policy.py"
+      - "tests/test_commercial_doc_contract.py"
       - "src/data/build_citation_function_pilot.py"
       - "tests/test_commercial*.py"
       - "tests/test_providers*.py"
@@ -20,6 +21,7 @@ on:
       - "src/evaluation/**"
       - "proyecto_de_grado/**"
       - "tests/test_commercial_gold_policy.py"
+      - "tests/test_commercial_doc_contract.py"
       - "src/data/build_citation_function_pilot.py"
       - "tests/test_commercial*.py"
       - "tests/test_providers*.py"
@@ -49,6 +51,7 @@ jobs:
             tests/test_commercial_io.py \
             tests/test_commercial_metrics.py \
             tests/test_commercial_gold_policy.py \
+            tests/test_commercial_doc_contract.py \
             tests/test_commercial_orchestrate.py \
             tests/test_commercial_runner.py \
             tests/test_commercial_schema.py \
