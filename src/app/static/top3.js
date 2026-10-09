@@ -1,6 +1,25 @@
 "use strict";
 /* Interfaz aislada del tablero anterior; siempre trata las entradas como texto. */
 const $ = (id) => document.getElementById(id);
+const MAX_CARACTERES_MANUAL = 60000;
+
+async function leerRespuestaJSON(respuesta) {
+  let datos;
+  try {
+    datos = await respuesta.json();
+  } catch {
+    throw new Error(respuesta.ok
+      ? "El servidor devolvió una respuesta que no es JSON."
+      : `El servidor no pudo procesar la solicitud (HTTP ${respuesta.status}).`);
+  }
+  if (!respuesta.ok) {
+    const detalle = typeof datos?.detail === "string"
+      ? datos.detail
+      : "Revisa los datos de entrada o consulta la consola del servidor.";
+    throw new Error(`HTTP ${respuesta.status}: ${detalle}`);
+  }
+  return datos;
+}
 const ejemplo = {
   cited_id: "DEMO-SINTETICO",
   contexto: "The proposed graph neural architecture learns node representations TARGETCIT.",
@@ -48,6 +67,12 @@ $("form-top3").addEventListener("submit", async (evento) => {
     $("estado").textContent = "Escribe un contexto, un identificador y entre 1 y 100 párrafos.";
     return;
   }
+  if (partes.some(texto => texto.length > 5000) ||
+      contexto.length + partes.reduce((n, texto) => n + texto.length, 0) > MAX_CARACTERES_MANUAL) {
+    $("estado").className = "error";
+    $("estado").textContent = "La entrada excede el límite: 5.000 caracteres por párrafo y 60.000 caracteres de texto en total.";
+    return;
+  }
   const parrafos = partes.map((texto,i)=>({chunk_id:`p${i+1}`,texto,seccion:null}));
   const boton = $("buscar");
   boton.disabled = true;
@@ -59,11 +84,7 @@ $("form-top3").addEventListener("submit", async (evento) => {
       method:"POST", headers:{"Content-Type":"application/json"},
       body:JSON.stringify({contexto,cited_id,parrafos})
     });
-    const cuerpo = await respuesta.json();
-    if (!respuesta.ok) {
-      const detalle = typeof cuerpo.detail === "string" ? cuerpo.detail : "Revisa los límites y textos de entrada.";
-      throw new Error(`HTTP ${respuesta.status}: ${detalle}`);
-    }
+    const cuerpo = await leerRespuestaJSON(respuesta);
     if (!cuerpo.fragmentos.length) {
       $("estado").textContent = "No hay coincidencias léxicas suficientes. No se inventaron fragmentos relevantes.";
     } else {
@@ -87,16 +108,13 @@ $("ejemplo-real").addEventListener("click", async () => {
   $("lista-resultados").replaceChildren();
   try {
     const listado = await fetch("/api/top3-corpus/ejemplos");
-    const catalogo = await listado.json();
-    if (!listado.ok || !catalogo.ejemplos?.length) {
-      throw new Error(typeof catalogo.detail === "string" ? catalogo.detail : "No hay casos reales preparados.");
+    const catalogo = await leerRespuestaJSON(listado);
+    if (!catalogo.ejemplos?.length) {
+      throw new Error("El artefacto local no contiene casos disponibles.");
     }
     const id = catalogo.ejemplos[0].context_id;
     const respuesta = await fetch(`/api/top3-corpus/${encodeURIComponent(id)}`);
-    const caso = await respuesta.json();
-    if (!respuesta.ok) {
-      throw new Error(typeof caso.detail === "string" ? caso.detail : "No se pudo leer la muestra real.");
-    }
+    const caso = await leerRespuestaJSON(respuesta);
     $("contexto").value = caso.contexto;
     $("cited-id").value = caso.cited_id;
     $("parrafos").value = "";
