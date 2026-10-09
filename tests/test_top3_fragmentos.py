@@ -116,11 +116,11 @@ def test_bm25_puntajes_esperados_de_ejemplo_resuelto_a_mano():
 def test_idf_raro_mayor_que_termino_ubicuo_misma_frecuencia():
     """Con tf y longitud iguales, un termino en 1/3 supera uno en 3/3."""
     docs = [
-        {"chunk_id": "raro", "texto": "rare extra"},
+        {"chunk_id": "raro", "texto": "rare common"},
         {"chunk_id": "comun1", "texto": "common common"},
         {"chunk_id": "comun2", "texto": "common common"},
     ]
-    # El documento 'raro' es el unico con rare y suma una señal menos frecuente.
+    # Todos contienen common; solo el documento 'raro' contiene rare.
     ranking = recuperar_top3("rare common", docs)
     assert ranking[0]["chunk_id"] == "raro"
     assert ranking[0]["puntaje_bm25"] > ranking[1]["puntaje_bm25"]
