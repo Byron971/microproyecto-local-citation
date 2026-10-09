@@ -18,7 +18,7 @@
       <strong>Prototipo de recuperación, no evaluación científica.</strong>
       Introduce el contexto y los párrafos del artículo citado. El sistema compara
       solo esos fragmentos; todavía no consulta automáticamente el corpus ACL OCL
-      ni clasifica funciones de cita. La demo precargada usa contenido sintético.
+      ni clasifica funciones de cita. La demo precargada usa contenido sintético. El botón de caso real utiliza una muestra local y exclusiva de entrenamiento, que se debe preparar previamente.
     </section>
     <section class="panel">
       <h2>Datos de entrada</h2>
@@ -35,6 +35,7 @@
 Segundo párrafo del mismo artículo citado."></textarea>
         <div class="controles">
           <button type="button" id="ejemplo" class="secundario">Cargar ejemplo sintético</button>
+          <button type="button" id="ejemplo-real" class="secundario">Consultar caso real ACL OCL</button>
           <button type="submit" id="buscar">Buscar evidencia Top-3</button>
         </div>
       </form>
