@@ -66,6 +66,30 @@ Los 20 casos siguen disponibles como ejemplos **históricos/de desarrollo**, no 
 
 **Actualización G1.1 (2026-10-08):** se inspeccionaron cinco contextos adicionales, incluidos dos de test, para diseñar la reconstrucción de citas. Sus IDs se añadieron a `ids_excluir_test_gold.txt` (que pasa de 77 a 82) y quedan fuera del nuevo Test Gold independiente. La unión de esta lista con los 20 IDs del piloto histórico pasa de **89 a 94 identificadores únicos**. Esta inspección no les atribuye etiquetas de función de cita.
 
+### Riesgo de selección por citas agrupadas — revisión del PR #80 (9-oct-2026)
+
+Un revisor del equipo (`CaicedoBz`, [revisión del PR #80](https://github.com/Byron971/microproyecto-local-citation/pull/80#pullrequestreview-5474938421)) reportó haber ejecutado la regla `grupo_ambiguo` de abstención basada en distancia entre `OTHERCIT` y `TARGETCIT`:
+
+| Filtro exploratorio | Contextos abstinentes comunicados | Interpretación |
+| --- | ---: | --- |
+| Distancia menor de 38 caracteres | 28.535 de 63.768 (44,7 %) | Estimación sobre contextos originales ACL-200, **no** cobertura de integración real |
+| Umbral de 20 caracteres | 37,6 % | Sensibilidad al umbral |
+| Umbral de 60 caracteres | 50,6 % | Sensibilidad al umbral |
+
+El mismo revisor estimó abstención por partición: train 44,6 %, val 47,8 % y test 48,8 %. Aplicar 48,8 % al split test de 9.585 contextos deja **aproximadamente** 4.900 casos antes de comprobar disponibilidad de documentos, identidad de la cita, deduplicación y relevancia; esto **no es** el Test Gold disponible. Estas cifras son **mediciones comunicadas en revisión de código**, pendientes de reproducción versionada por el equipo. Tampoco debe multiplicarse directamente ese filtro por una tasa global de enlazado estimada sobre una muestra diferente: las exclusiones pueden ser dependientes.
+
+**Riesgo científico:** no es exclusión al azar. Los grupos como `(OTHERCIT; TARGETCIT; OTHERCIT)` pueden ser frecuentes en **Background** y **Further Reading**. Entrenar o evaluar solo citas fáciles/aisladas puede cambiar distribución de clases y exagerar la capacidad del sistema para representar la población.
+
+**Controles requeridos antes de seleccionar Gold o afirmar viabilidad de 2.000 casos por clase:**
+
+1. Reproducir tasas de abstención por split, tipo de agrupación y umbral usando un script/artefacto auditable (con denominadores).
+2. Mantener muestra estratificada de revisión manual **de casos aceptados y rechazados**, sin imputarles etiquetas automáticas ni convertir contextos no resueltos en etiquetas Gold.
+3. Medir distribución de nueve funciones, cobertura de enlace ACL OCL y acuerdos humanos **con y sin** el filtro. La clase de cita no se deduce únicamente de que esté agrupada.
+4. Implementar G1.4 para desambiguar referencias agrupadas cuando la procedencia y el `cite_span` lo permitan, conservando abstención si no se puede verificar `TARGETCIT`.
+5. Congelar el nuevo Test Gold solo después de decidir cómo se representarán casos agrupados, clases raras y citas no recuperables; reportar limitaciones y sesgo de selección.
+
+Esto no desactiva las salvaguardas actuales de `TARGETCIT` ni autoriza entrenar sobre referencias inciertas.
+
 ## 5. Anotación humana y Test Gold nuevo
 
 - Congelar la guía, calibrar anotadores con ejemplos **fuera** del nuevo Test Gold y registrar una función principal por TARGETCIT.
