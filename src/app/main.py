@@ -25,6 +25,7 @@ from pydantic import BaseModel, Field
 
 from src.app.insights import load_insights
 from src.app.fragment_retrieval import recuperar_top3
+from src.app.corpus_adapter import CorpusError, ejemplos_disponibles, leer_corpus, top3_de_corpus
 from src.app.recommender import Recommender
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -176,6 +177,30 @@ def top3_fragmentos(consulta: ConsultaTop3) -> dict[str, Any]:
             "requieren referencia humana para evaluar relevancia."
         ),
     }
+
+
+
+@app.get("/api/top3-corpus/ejemplos")
+def ejemplos_corpus_top3() -> dict[str, Any]:
+    """Casos reales de desarrollo, disponibles solo si existe artefacto local."""
+    try:
+        datos = leer_corpus()
+    except CorpusError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    return {"total": len(datos["casos"]), "ejemplos": ejemplos_disponibles(datos)}
+
+
+@app.get("/api/top3-corpus/{context_id}")
+def recomendar_top3_corpus(context_id: str) -> dict[str, Any]:
+    """Recupera exclusivamente fragmentos documentados del cited_id original."""
+    try:
+        datos = leer_corpus()
+    except CorpusError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    resultado = top3_de_corpus(datos, context_id)
+    if resultado is None:
+        raise HTTPException(status_code=404, detail="Contexto no incluido en la muestra train.")
+    return resultado
 
 
 @app.get("/api/insights")
