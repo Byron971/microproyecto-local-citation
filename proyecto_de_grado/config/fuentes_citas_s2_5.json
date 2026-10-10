@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "status": "auditoria_metodologica_no_fusionada",
+  "as_of": "2026-10-10",
+  "task": "recuperacion_local_top3_y_clasificacion_de_funcion_principal",
+  "taxonomia_proyecto": [
+    "Background",
+    "Gap",
+    "Basis",
+    "Comparison",
+    "Application",
+    "Improvement / Modification",
+    "Evidence",
+    "Identification of the Originator",
+    "Further Reading"
+  ],
+  "regla_global": "Las etiquetas externas nunca se convierten automaticamente a nueve clases ni cuentan para cuotas de 2000 o validacion humana 15%.",
+  "fuentes": [
+    {
+      "id": "ACL-200",
+      "tipo": "dataset_principal",
+      "unidad": "contexto_cita_TARGETCIT",
+      "rol": "contexto_citante_y_metadatos",
+      "url": "https://github.com/nianlonggu/Local-Citation-Recommendation",
+      "etiquetas_funcion": [],
+      "modo_etiquetado": "ninguno_de_las_nueve",
+      "licencia_dataset": "pendiente_de_verificar_para_redistribucion_de_registros_derivados",
+      "estado_homologacion": "fuente_documental_aceptada",
+      "importacion_automatica_etiquetas": false,
+      "mapeos_automaticos": {}
+    },
+    {
+      "id": "ACL-OCL",
+      "tipo": "corpus_documental",
+      "unidad": "parrafos_del_articulo_citado",
+      "rol": "evidencia_textual_candidata_top3",
+      "url": "https://github.com/acl-org/acl-anthology",
+      "etiquetas_funcion": [],
+      "modo_etiquetado": "ninguno_de_las_nueve",
+      "licencia_dataset": "revisar_licencia_de_cada_documento_y_materiales_de_terceros",
+      "estado_homologacion": "fuente_documental_aceptada",
+      "importacion_automatica_etiquetas": false,
+      "mapeos_automaticos": {}
+    },
+    {
+      "id": "MULTICITE",
+      "tipo": "dataset_externo",
+      "unidad": "contexto_multioracion_con_multiples_intenciones",
+      "rol": "referencia_anotacion_y_posible_candidato_a_homologacion_humana",
+      "url": "https://github.com/allenai/multicite",
+      "articulo": "https://aclanthology.org/2022.naacl-main.137/",
+      "etiquetas_funcion": [
+        "@BACK@",
+        "@MOT@",
+        "@FUT@",
+        "@SIM@",
+        "@DIF@",
+        "@USE@",
+        "@EXT@",
+        "@UNSURE@"
+      ],
+      "modo_etiquetado": "multilabel",
+      "licencia_dataset": "CC BY-NC 2.0",
+      "estado_homologacion": "no_homologado",
+      "importacion_automatica_etiquetas": false,
+      "mapeos_automaticos": {},
+      "relaciones_candidatas_no_homologadas": {
+        "@BACK@": [
+          "Background"
+        ],
+        "@MOT@": [
+          "Gap",
+          "Basis"
+        ],
+        "@FUT@": [],
+        "@SIM@": [
+          "Comparison"
+        ],
+        "@DIF@": [
+          "Comparison",
+          "Gap"
+        ],
+        "@USE@": [
+          "Application"
+        ],
+        "@EXT@": [
+          "Improvement / Modification"
+        ],
+        "@UNSURE@": []
+      },
+      "advertencia": "Las relaciones son hipotesis semanticas, no reglas de conversión; no cargar anotaciones ni realizar joins sin auditoria manual."
+    },
+    {
+      "id": "ILCITER",
+      "tipo": "metodo_y_dataset_evidencia",
+      "unidad": "consulta_evidence_span_articulo_recomendado",
+      "rol": "referencia_para_recuperacion_de_evidencia",
+      "url": "https://aclanthology.org/2024.lrec-main.757/",
+      "etiquetas_funcion": [],
+      "modo_etiquetado": "sin_taxonomia_nueve_verificada",
+      "licencia_dataset": "no_verificada_para_un_dataset_descargable_de_funciones",
+      "estado_homologacion": "no_homologado",
+      "importacion_automatica_etiquetas": false,
+      "mapeos_automaticos": {}
+    }
+  ]
+}
