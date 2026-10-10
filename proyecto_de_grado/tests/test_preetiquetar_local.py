@@ -201,7 +201,7 @@ def _casos_con_ocl():
                  "texto": "Experiment methods and systematic results for experiments.",
                  "seccion": "Methods", "paragraph_indices": [1], "palabras": 8},
                 {"chunk_id": "p00002-p00002",
-                 "texto": "Unrelated historical overview of research.",
+                 "texto": "Historical overview of the research field.",
                  "seccion": "Related Work", "paragraph_indices": [2], "palabras": 6},
                 {"chunk_id": "p00003-p00003",
                  "texto": "Experiment three demonstrates reproducible experiment design.",
