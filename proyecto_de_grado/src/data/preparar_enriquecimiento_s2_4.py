@@ -46,7 +46,10 @@ def _analizar_citado(cited_id: str, cache: Path, papers: dict) -> dict:
         documento = json.loads(datos.decode("utf-8-sig"))
         if not isinstance(documento, dict) or documento.get("paper_id") != cited_id:
             return {"estado": "id_ocl_incorrecto"}
-        cuerpo = (documento.get("pdf_parse") or {}).get("body_text")
+        pdf_parse = documento.get("pdf_parse")
+        if not isinstance(pdf_parse, dict):
+            return {"estado": "estructura_ocl_invalida"}
+        cuerpo = pdf_parse.get("body_text")
         if not isinstance(cuerpo, list) or not cuerpo:
             return {"estado": "sin_parrafos"}
         parrafos = []
