@@ -87,6 +87,31 @@ Los nombres exactos de las nueve categorías permanecen en `ETIQUETAS` de `prepa
 - No se han resuelto citas agrupadas ni demostrado ausencia de casi duplicados entre particiones.
 - La selección balanceada por documento es una medida de ingeniería del **primer lote**, no un muestreo estadísticamente representativo.
 
+## Evidencia local del primer lote (10-oct-2026)
+
+En la máquina del equipo, la auditoría S2.4 terminó con **9 pruebas locales aprobadas** y estos datos:
+
+| Observación | Conteo | Qué significa |
+| --- | ---: | --- |
+| Contextos supervisados ACL-200 | 49.356 | Universo original supervisado |
+| Documentos citados utilizables en la caché actual | 3 | Documentos distintos, **no** contextos |
+| Candidatos de entrenamiento elegibles | 5 | Casos tras filtros, con esa caché |
+| Candidatos exportados | 5 | Lote local, no dataset final |
+| Textos normalizados idénticos compartidos entre splits | 6 | Huellas distintas; no son 6 pares demostrados con fuga |
+| Contextos con documento citado no descargado, train | 30.320 | Casos, no artículos distintos |
+| Contextos con fragmentación inválida, train/val/test | 64 / 27 / 16 | **107 contextos** vinculados a artículos problemáticos, no 107 documentos |
+
+Esta evidencia muestra un cuello de botella fuerte: la disponibilidad/fragmentación del texto completo. **No multiplicar** 49.356 por porcentajes derivados de la caché pequeña. Tampoco interpretar 107 contextos con fragmentación fallida como 107 artículos distintos.
+
+Para diagnosticar sin modificar el corpus se añadió `diagnosticar_cache_s2_4.py`. Lee solo metadatos técnicos y longitudes del contenido, muestra cuántos **documentos distintos** están detrás de los rechazos y prioriza archivos citados ausentes usando únicamente contextos de `train` no excluidos. No incluye textos ni IDs de validación/prueba.
+
+```powershell
+python -m pytest -q proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py
+python -m proyecto_de_grado.src.data.diagnosticar_cache_s2_4 --top 12
+```
+
+Informe local generado: `proyecto_de_grado/artifacts/enriquecimiento_s2_4/diagnostico_cache_train.json`. **No descargar** automáticamente lo que aparece priorizado: primero decidir estrategia de lotes, límites, fuente autorizada y tamaño.
+
 ## Puerta de salida para siguiente incremento
 
 1. Ejecutar en `data/raw` real y documentar cobertura por split, total utilizable en caché y número de candidatos `train` generado.
