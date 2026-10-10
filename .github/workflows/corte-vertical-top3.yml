@@ -12,6 +12,8 @@ on:
       - "tests/test_top3_fragmentos.py"
       - "proyecto_de_grado/src/evaluation/top3_humano.py"
       - "proyecto_de_grado/src/data/preparar_enriquecimiento_s2_4.py"
+      - "proyecto_de_grado/src/data/preetiquetar_local.py"
+      - "proyecto_de_grado/tests/test_preetiquetar_local.py"
       - "proyecto_de_grado/src/data/diagnosticar_cache_s2_4.py"
       - "proyecto_de_grado/src/data/adquirir_ocl_incremental_s2_4.py"
       - "proyecto_de_grado/tests/test_adquirir_ocl_incremental_s2_4.py"
@@ -30,6 +32,8 @@ on:
       - "tests/test_top3_fragmentos.py"
       - "proyecto_de_grado/src/evaluation/top3_humano.py"
       - "proyecto_de_grado/src/data/preparar_enriquecimiento_s2_4.py"
+      - "proyecto_de_grado/src/data/preetiquetar_local.py"
+      - "proyecto_de_grado/tests/test_preetiquetar_local.py"
       - "proyecto_de_grado/src/data/diagnosticar_cache_s2_4.py"
       - "proyecto_de_grado/src/data/adquirir_ocl_incremental_s2_4.py"
       - "proyecto_de_grado/tests/test_adquirir_ocl_incremental_s2_4.py"
@@ -53,6 +57,6 @@ jobs:
       - name: Instalar dependencias de la API y pruebas
         run: uv sync --group dev
       - name: Probar corte vertical sin inferencias externas
-        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py proyecto_de_grado/tests/test_preparar_enriquecimiento_s2_4.py proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py proyecto_de_grado/tests/test_adquirir_ocl_incremental_s2_4.py
+        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py proyecto_de_grado/tests/test_preparar_enriquecimiento_s2_4.py proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py proyecto_de_grado/tests/test_adquirir_ocl_incremental_s2_4.py proyecto_de_grado/tests/test_preetiquetar_local.py
       - name: Verificar sintaxis JavaScript de la demo
         run: node --check src/app/static/top3.js
