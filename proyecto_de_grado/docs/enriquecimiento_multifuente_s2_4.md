@@ -194,6 +194,30 @@ python -m proyecto_de_grado.src.data.preetiquetar_local --format label --evidenc
 
 **Siguiente puerta de calidad:** comparar por `id` el resultado directo previo vs resultado con ACL OCL; contar cambios, errores y casos sin evidencia; inspeccionar qué fragmentos se usaron. Mantener siempre “comparación de salidas automáticas, sin Gold”, **no** proclamar aumento o reducción de precisión. Antes de ampliarlo, planificar una pequeña validación humana ciega de funciones para juzgar si los cambios son correctos.
 
+## Resultado observado de la ablación A/B, cinco casos train (10-oct-2026)
+
+Se completó el piloto pareado con el **mismo conjunto de cinco IDs**, `qwen3:4b-instruct` y un solo cambio experimental: presencia o ausencia de dos fragmentos recuperados del artículo citado por BM25.
+
+| Resultado descriptivo | Sin OCL (A) | Con OCL (B) |
+| --- | ---: | ---: |
+| Background | 1 | 0 |
+| Gap | 0 | 1 |
+| Basis | 2 | 2 |
+| Application | 2 | 2 |
+| Total predicciones | 5 | 5 |
+
+La comparación por ID confirmó **4 etiquetas iguales y 1 etiqueta diferente**: `Background → Gap` (80 % de coincidencia entre configuraciones, **NO exactitud**). En los cinco casos se pudieron usar dos fragmentos OCL por BM25. Los puntajes BM25 son valores de ranking no calibrados, **no** probabilidades de que la función propuesta sea correcta.
+
+### Inspección cualitativa del único desacuerdo
+
+El caso que el baseline clasificaba como Background corresponde a `W11-1015_N03-1017_1`, cuya fuente citada es *Statistical Phrase-Based Translation* (`N03-1017`). En la captura local se inspeccionaron dos fragmentos del **citado**, uno de los resultados/experimentos de traducción de frases y otro de `Conclusion`, que explica que ciertos modelos sintácticos no capturan adecuadamente alineaciones importantes entre frases. El texto del artículo **citante** menciona problemas de cobertura gramatical y propone mejorar la cobertura mediante alineaciones alternativas.
+
+Según `docs/guia_anotacion_funcion_cita.md`, **Gap** requiere que la cita señale una limitación o brecha de trabajos anteriores que justifique el estudio; **Background** significa antecedentes generales. **Gap resulta una interpretación provisional plausible**, pero el contexto contiene citas agrupadas `TARGETCIT` / `OTHERCIT`, por lo que **no se ha verificado qué limitación se atribuye específicamente al artículo objetivo**. Los párrafos de OCL apoyan la interpretación, pero no convierten una salida automática en Gold ni prueban mejor rendimiento.
+
+**Pendiente bloqueante para evaluación científica:** un anotador humano independiente debe juzgar la función en el contexto citante identificado, usando el protocolo establecido (contexto + título + resumen, **sin mostrar predicciones ni fragmentos BM25**), y resolver de forma documentada las citas agrupadas. Esto evita sesgar la adjudicación hacia la etiqueta sugerida por el modelo con OCL. No se contabiliza la revisión cualitativa del asistente como parte del 15 % humano.
+
+La decisión actual es **conservar ambos resultados como evidencia exploratoria**, no seguir ajustando prompts contra este mismo caso y no concluir superioridad de B frente a A. El siguiente trabajo de ingeniería debe fortalecer diversidad y trazabilidad del corpus y planear la homologación real de fuentes de anotación para las nueve clases antes de procesar miles de ejemplos.
+
 ## Puerta de salida para siguiente incremento
 
 1. Ejecutar en `data/raw` real y documentar cobertura por split, total utilizable en caché y número de candidatos `train` generado.
