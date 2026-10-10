@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from proyecto_de_grado.src.data.preparar_enriquecimiento_s2_4 import (
-    auditar_y_seleccionar, ejecutar, huella_contexto,
+    _analizar_citado, auditar_y_seleccionar, ejecutar, huella_contexto,
 )
 from proyecto_de_grado.src.data.validar_splits import load_split_index
 
@@ -166,3 +166,25 @@ def test_no_selecciona_datos_val_test_si_train_no_tiene_cache(tmp_path):
 def test_huella_exacta_no_sustituye_deduplicacion_semantica():
     assert huella_contexto("HELLO   TARGETCIT") == huella_contexto("hello TARGETCIT")
     assert huella_contexto("HELLO TARGETCIT") != huella_contexto("Hello, TARGETCIT")
+
+
+def test_articulo_con_parrafos_largos_se_recupera_para_enriquecimiento_s2_4(tmp_path):
+    raw, cache, splits = _corpus(tmp_path)
+    ruta = cache / "P11-1000.json"
+    doc = json.loads(ruta.read_text(encoding="utf-8"))
+    texto_largo = " ".join(f"token{i}" for i in range(524))
+    doc["pdf_parse"]["body_text"][0]["text"] = texto_largo
+    ruta.write_text(json.dumps(doc), encoding="utf-8")
+    metadata = json.loads((raw / "papers.json").read_text())
+    audit = _analizar_citado("P11-1000", cache, metadata)
+    assert audit["estado"] == "utilizable"
+    chunks = [ch for ch in audit["chunks"] if ch["paragraph_indices"] == [0]]
+    assert len(chunks) == 2
+    assert "".join(ch["texto"] for ch in chunks) == texto_largo
+    assert all(ch["seccion"] == "Methods" for ch in chunks)
+    selected, summary = auditar_y_seleccionar(
+        load_split_index(raw), metadata, cache, set(), limite=10
+    )
+    assert len(selected) == 2
+    assert summary["documentos_citados_utilizables"] == 1
+    assert all(any(ch["chunk_id"] == "p00000-s000" for ch in r["cited_chunks"]) for r in selected)
