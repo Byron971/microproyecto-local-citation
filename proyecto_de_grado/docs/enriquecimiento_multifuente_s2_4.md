@@ -173,6 +173,27 @@ python -m proyecto_de_grado.src.data.preetiquetar_local --format label --input p
 
 Se guardará `piloto_qwen4b_directo_v1/qwen3_4b-instruct/etiqueta_directa_v1/predicciones.jsonl`, archivo local ignorado por Git; **no** se toca `piloto_qwen4b_v3` ni se modifica `funcion_cita.etiqueta_principal` del dataset. Comparar los mismos contextos con el piloto anterior; estimar distribución de etiquetas solo de manera descriptiva. **No continuar a 39 ni a 2.140 casos** hasta que exista un protocolo de anotación independiente y una decisión documentada sobre el modelo. Este clasificador todavía **no consume `cited_chunks`**: la comparación con/ sin evidencia OCL es un experimento distinto por diseñar.
 
+## Ablación exploratoria pareada — contexto+resumen vs contexto+resumen+ACL OCL
+
+El piloto de **etiqueta directa sin evidencia OCL** terminó correctamente sobre 5 registros del lote v3: `Application=2`, `Basis=2`, `Background=1`. Esos resultados tienen estado de **predicciones automáticas no verificadas**; ninguna etiqueta fue ratificada por personas y no hay precisión ni F1 calculables. El modelo es `qwen3:4b-instruct` por Ollama local con `temperature=0`. Se conservará el archivo original en `piloto_qwen4b_directo_v1`.
+
+Ahora se ofrece un incremento **optativo** del mismo `preetiquetar_local.py`: `--format label --evidence bm25_top2`. Para **los mismos IDs y el mismo orden de los primeros cinco ejemplos**, selecciona hasta dos fragmentos por BM25 del **artículo citado** (nunca de otros artículos) e incorpora el texto como candidato, sin declararlo evidencia humana. Se reutilizan título, resumen, marcador TARGETCIT, modelo y formato de una clase principal. La nueva solicitud cambia solo el **bloque adicional de evidencia** y su instrucción contextual; por ello las diferencias de predicción **no demuestran por sí solas mejora**.
+
+**Controles de integridad:**
+
+- Exige `train`, `cited_id`, IDs de chunk únicos, máximo dos párrafos y 300 palabras por chunk. No permite hacer el lote si no hay coincidencia léxica BM25 para algún caso seleccionado.
+- Cada predicción incluye `retrieved_chunks` con ID, índices del párrafo, puntaje BM25 **no calibrado** y SHA-256 del texto elegido. La huella de ejecución incorpora dataset, prompt, modelo, estrategia y versión exacta del código recuperador.
+- La carpeta es nueva (`evidencia_bm25_top2_v1`). No se alteran los vectores de scores previos, las cinco etiquetas directas del baseline ni los archivos DVC.
+- La extracción `Top2` se hace sobre los mismos `cited_chunks` generados de ACL OCL en S2.4. Ninguna etiqueta se deduce automáticamente de la sección del documento.
+
+Una vez aprobadas las pruebas de GitHub y revisada la ejecución local, correr **solo cinco casos**:
+
+```powershell
+python -m proyecto_de_grado.src.data.preetiquetar_local --format label --evidence bm25_top2 --input proyecto_de_grado/artifacts/enriquecimiento_s2_4/v3_adquisicion/candidatos_train_enriquecidos.jsonl --out proyecto_de_grado/artifacts/enriquecimiento_s2_4/piloto_qwen4b_con_ocl_v1 --model qwen3:4b-instruct --limit 5
+```
+
+**Siguiente puerta de calidad:** comparar por `id` el resultado directo previo vs resultado con ACL OCL; contar cambios, errores y casos sin evidencia; inspeccionar qué fragmentos se usaron. Mantener siempre “comparación de salidas automáticas, sin Gold”, **no** proclamar aumento o reducción de precisión. Antes de ampliarlo, planificar una pequeña validación humana ciega de funciones para juzgar si los cambios son correctos.
+
 ## Puerta de salida para siguiente incremento
 
 1. Ejecutar en `data/raw` real y documentar cobertura por split, total utilizable en caché y número de candidatos `train` generado.
