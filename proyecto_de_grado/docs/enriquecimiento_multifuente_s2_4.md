@@ -112,6 +112,24 @@ python -m proyecto_de_grado.src.data.diagnosticar_cache_s2_4 --top 12
 
 Informe local generado: `proyecto_de_grado/artifacts/enriquecimiento_s2_4/diagnostico_cache_train.json`. **No descargar** automáticamente lo que aparece priorizado: primero decidir estrategia de lotes, límites, fuente autorizada y tamaño.
 
+## Ajuste de fragmentación v2 — modo S2.4 (posterior al diagnóstico)
+
+El diagnóstico de caché mostró **cinco documentos citados disponibles** en `train`: dos inicialmente utilizables y **tres rechazados solo por fragmentación**. Se trata de `P11-1082` (32 contextos train; dos párrafos extensos), `N04-1019` (29 contextos; tres párrafos) y `D10-1033` (dos contextos; dos párrafos). Los párrafos más largos tienen 488, 524 y 372 palabras respectivamente. **No se han descargado archivos nuevos.**
+
+Se añadió a `fragmentar()` un modo opcional `dividir_parrafos_largos=True` que **solo usa el enriquecimiento S2.4**. Conserva todos los caracteres originales del párrafo mediante rangos `paragraph_char_spans` (inicio inclusivo, fin exclusivo). Los fragmentos generados reciben IDs `p00012-s000`, `p00012-s001` y `fragmentacion=division_conservadora_palabras_v1`. No se agregan fragmentos a diferentes secciones. Un texto indivisible mayor de 5.000 caracteres sigue rechazándose.
+
+**Regla importante:** el corte se hace en límites de palabras, **no es una segmentación semántica por oraciones**. Esto recupera cobertura sin perder evidencia, pero los fragmentos partidos deben ser revisados metodológicamente antes de tratarse como referencia final. El modo anterior de S2.2 y las 57 anotaciones de calibración S2.3 quedan **inalterados**; por defecto, `fragmentar()` sigue rechazando párrafos largos y conserva los IDs anteriores.
+
+Para comparar la nueva versión con el primer lote histórico, **NO sobrescribir los archivos anteriores**:
+
+```powershell
+python -m pytest -q proyecto_de_grado/tests/test_exportar_corpus_top3.py proyecto_de_grado/tests/test_preparar_enriquecimiento_s2_4.py proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py
+
+python -m proyecto_de_grado.src.data.preparar_enriquecimiento_s2_4 --limit 40 --seed 42 --max-per-cited 4 --out proyecto_de_grado/artifacts/enriquecimiento_s2_4/v2_segmentos
+```
+
+Se esperan **tres artículos adicionales potencialmente recuperables** si sus restantes invariantes cumplen las condiciones. Al existir `--max-per-cited 4`, esto no significa exportar automáticamente los 63 contextos asociados: se seleccionan como máximo cuatro por artículo en este lote. La cobertura real la determina el resultado local y debe contrastarse contra el resumen v1.
+
 ## Puerta de salida para siguiente incremento
 
 1. Ejecutar en `data/raw` real y documentar cobertura por split, total utilizable en caché y número de candidatos `train` generado.
