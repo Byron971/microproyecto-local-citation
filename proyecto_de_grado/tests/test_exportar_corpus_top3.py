@@ -123,3 +123,60 @@ def test_secciones_multiples_no_se_cruzan_con_chunk():
         _parrafo(2,"third", "Method"),
     ])
     assert [c["paragraph_indices"] for c in chunks] == [[0], [1,2]]
+
+
+def test_s2_4_divide_parrafo_de_488_palabras_sin_perder_ni_un_caracter():
+    original = "  ".join(f"word{i}" for i in range(488))
+    chunks = fragmentar(
+        [_parrafo(7, original, "Methods")],
+        dividir_parrafos_largos=True,
+    )
+    assert len(chunks) == 2
+    assert [x["chunk_id"] for x in chunks] == ["p00007-s000", "p00007-s001"]
+    assert "".join(x["texto"] for x in chunks) == original
+    assert [x["paragraph_indices"] for x in chunks] == [[7], [7]]
+    assert sum(x["palabras"] for x in chunks) == 488
+    assert all(x["palabras"] <= 300 and len(x["texto"]) <= 5000 for x in chunks)
+    assert chunks[0]["paragraph_char_spans"][0]["start"] == 0
+    assert chunks[-1]["paragraph_char_spans"][0]["end"] == len(original)
+    assert chunks[0]["paragraph_char_spans"][0]["end"] == chunks[1]["paragraph_char_spans"][0]["start"]
+
+
+def test_s2_4_preserva_ids_del_prototipo_y_no_mezcla_secciones():
+    chunks = fragmentar(
+        [_parrafo(0, "Short context.", "Intro"),
+         _parrafo(1, " ".join(["long"] * 524), "Methods"),
+         _parrafo(2, "Another method.", "Methods")],
+        dividir_parrafos_largos=True,
+    )
+    assert [x["chunk_id"] for x in chunks] == [
+        "p00000-p00000", "p00001-s000", "p00001-s001", "p00002-p00002"
+    ]
+    assert len({x["chunk_id"] for x in chunks}) == 4
+    assert [x["seccion"] for x in chunks] == ["Intro", "Methods", "Methods", "Methods"]
+    assert all(len(x["paragraph_indices"]) <= 2 for x in chunks)
+
+
+def test_s2_4_divide_por_caracteres_aunque_no_supere_300_palabras():
+    texto = ("a" * 40 + " ") * 150
+    chunks = fragmentar([_parrafo(4, texto)], dividir_parrafos_largos=True)
+    assert len(chunks) > 1
+    assert "".join(x["texto"] for x in chunks) == texto
+    assert all(x["palabras"] <= 300 and len(x["texto"]) <= 5000 for x in chunks)
+
+
+def test_s2_4_token_indivisible_mas_largo_que_limite_se_rechaza():
+    with pytest.raises(ValueError, match="indivisible"):
+        fragmentar([_parrafo(0, "x" * 5001)], dividir_parrafos_largos=True)
+
+
+def test_s2_4_no_crea_chunk_con_mas_de_5000_caracteres_por_acumular_parrafos():
+    a = "y" * 2600
+    b = "z" * 2600
+    chunks = fragmentar(
+        [_parrafo(0, a), _parrafo(1, b)],
+        dividir_parrafos_largos=True,
+    )
+    assert len(chunks) == 2
+    assert [x["chunk_id"] for x in chunks] == ["p00000-p00000", "p00001-p00001"]
+    assert all(len(x["texto"]) <= 5000 for x in chunks)
