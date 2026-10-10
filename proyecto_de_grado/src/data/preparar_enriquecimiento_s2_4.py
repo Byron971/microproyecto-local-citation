@@ -68,7 +68,7 @@ def _analizar_citado(cited_id: str, cache: Path, papers: dict) -> dict:
                              "seccion": seccion.strip()})
         if not parrafos:
             return {"estado": "sin_parrafos"}
-        chunks = fragmentar(parrafos)
+        chunks = fragmentar(parrafos, dividir_parrafos_largos=True)
         return {
             "estado": "utilizable",
             "sha256_ocl": hashlib.sha256(datos).hexdigest(),
