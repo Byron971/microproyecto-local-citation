@@ -130,6 +130,31 @@ python -m proyecto_de_grado.src.data.preparar_enriquecimiento_s2_4 --limit 40 --
 
 Se esperan **tres artículos adicionales potencialmente recuperables** si sus restantes invariantes cumplen las condiciones. Al existir `--max-per-cited 4`, esto no significa exportar automáticamente los 63 contextos asociados: se seleccionan como máximo cuatro por artículo en este lote. La cobertura real la determina el resultado local y debe contrastarse contra el resumen v1.
 
+## Adquisición incremental de ACL OCL — planificación controlada
+
+El repositorio ya tenía un descargador exploratorio (`medir_enlace.py`, del *spike* de 500 casos). Ese estudio mezclaba descargas ACL OCL, perfilado y consultas Semantic Scholar. Para **no repetir el experimento histórico ni ejecutar cientos de peticiones de golpe**, el incremento S2.4 incorpora `adquirir_ocl_incremental_s2_4.py`, que reutiliza la URL ACL OCL existente pero separa explícitamente planificación y descarga.
+
+**Primero, exclusivamente sin red** (usar ruta nueva para no sobrescribir el diagnóstico anterior de los 12 primeros IDs):
+
+```powershell
+python -m proyecto_de_grado.src.data.diagnosticar_cache_s2_4 --top 100 --out proyecto_de_grado/artifacts/enriquecimiento_s2_4/diagnostico_cache_train_top100.json
+python -m proyecto_de_grado.src.data.adquirir_ocl_incremental_s2_4 --limite 6
+```
+
+El segundo comando es **dry-run por defecto**, muestra exactamente seis IDs (o menos) y el número de contextos train potencialmente enlazables; **no crea archivos ni hace peticiones de red**. El lote selecciona la mitad por número de contextos y el resto diversifica por década cuando hay disponibilidad; es una heurística de desarrollo, no un muestreo estadísticamente representativo.
+
+**Solo tras aprobar la lista, la fuente/licencia y el tamaño del lote**, realizar una adquisición explícita:
+
+```powershell
+python -m proyecto_de_grado.src.data.adquirir_ocl_incremental_s2_4 --limite 6 --execute --pausa 2 --max-bytes 5000000
+```
+
+La adquisición real está limitada a máximo diez documentos por lote, hasta 5 MB por JSON, solicitudes secuenciales con pausa, tres intentos ante errores HTTP transitorios, lectura acotada por archivo, `paper_id` comprobado y guardado atómico; conserva `.404` solamente en respuestas HTTP 404 verificadas. No vuelve a consultar documentos en caché. Las pruebas usan transportes falsos y no requieren Internet.
+
+Este procedimiento **no debe ejecutarse automáticamente por CI** ni confundirse con haber descargado artículos reales. Los textos completos proceden de PDFs académicos con licencias potencialmente restrictivas: **no hacer commit de la caché ni redistribuir el contenido sin revisar licencias de artículos individuales**. El objetivo inicial es medir viabilidad de cobertura, no alimentar el corpus completo de una vez.
+
+Después del primer lote real, generar una **tercera** salida versionada distinta de las anteriores (`--out proyecto_de_grado/artifacts/enriquecimiento_s2_4/v3_adquisicion`) y comparar el número de casos elegibles, identidades válidas y motivos de exclusión. `--limit 40 --max-per-cited 4` son cuotas del **lote** y no evidencian una mejor cobertura global.
+
 ## Puerta de salida para siguiente incremento
 
 1. Ejecutar en `data/raw` real y documentar cobertura por split, total utilizable en caché y número de candidatos `train` generado.
