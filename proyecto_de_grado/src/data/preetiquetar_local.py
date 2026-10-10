@@ -49,6 +49,17 @@ category in the order above. The highest score must indicate your ONE selected
 main function. Avoid equal top scores. These scores are comparative rankings,
 not calibrated probabilities. No explanation, no Markdown, no extra text."""
 
+# Réplica EXPLÍCITA del protocolo exploratorio de 10-oct-2026:
+# mismo preámbulo y datos, sustituyendo solamente el formato de respuesta.
+# Mantener PROMPT intacto: su hash identifica los experimentos históricos.
+PROMPT_ETIQUETA_DIRECTA = PROMPT.partition("Reply ONLY with a JSON array")[0] + (
+    "\nReturn exactly ONE category name from this list:\n"
+    + "\n".join(ETIQUETAS)
+    + "\nNo scores. No explanation. No additional text."
+)
+FORMATOS = ("scores", "label")
+
+
 
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -89,12 +100,34 @@ def cargar_candidatos(ruta: Path) -> tuple[list[dict], str]:
     return candidatos, sha256_bytes(raw)
 
 
-def crear_prompt(caso: dict) -> str:
-    return PROMPT.format(
+def _seleccionar_prompt(formato: str) -> str:
+    if formato == "scores":
+        return PROMPT
+    if formato == "label":
+        return PROMPT_ETIQUETA_DIRECTA
+    raise ValueError(f"Formato no válido: {formato!r}")
+
+
+def crear_prompt(caso: dict, *, formato: str = "scores") -> str:
+    return _seleccionar_prompt(formato).format(
         context=caso["citation_context"],
         title=caso["cited_title"],
         abstract=caso["cited_abstract"],
     )
+
+
+def interpretar_etiqueta_directa(texto: str) -> str:
+    """Solo acepta una clase completa: nunca adivina ni extrae subcadenas.
+
+    En particular, rechaza explicaciones, listas de varias categorías y
+    números. Conservar el texto original permite auditar fallos de formato.
+    """
+    if not isinstance(texto, str):
+        raise ValueError("Respuesta de etiqueta no textual")
+    etiqueta = texto.strip()
+    if etiqueta not in ETIQUETAS:
+        raise ValueError("La respuesta no es una de las nueve etiquetas exactas")
+    return etiqueta
 
 
 def interpretar_puntajes(puntajes: list[float]) -> tuple[str | None, float, str]:
@@ -110,12 +143,20 @@ def interpretar_puntajes(puntajes: list[float]) -> tuple[str | None, float, str]
     return ETIQUETAS[indices[0]], margen, "ok"
 
 
-def fingerprint(modelo: str, input_hash: str) -> str:
-    configuracion = json.dumps(
-        {"modelo": modelo, "input_sha256": input_hash, "prompt_sha256": sha256_bytes(PROMPT.encode("utf-8"))},
-        sort_keys=True, ensure_ascii=False,
+def fingerprint(modelo: str, input_hash: str, *, formato: str = "scores") -> str:
+    # Compatibilidad bit a bit con las ejecuciones históricas "scores".
+    prompt = _seleccionar_prompt(formato)
+    configuracion = {
+        "modelo": modelo,
+        "input_sha256": input_hash,
+        "prompt_sha256": sha256_bytes(prompt.encode("utf-8")),
+    }
+    if formato == "label":
+        configuracion["response_format"] = "label"
+        configuracion["prompt_version"] = "etiqueta_directa_v1"
+    return sha256_bytes(
+        json.dumps(configuracion, sort_keys=True, ensure_ascii=False).encode("utf-8")
     )
-    return sha256_bytes(configuracion.encode("utf-8"))
 
 
 def leer_historial(ruta: Path, id_run: str) -> dict[str, dict]:
@@ -144,7 +185,9 @@ def ejecutar(
     id_run: str,
     limite: int,
     reintentar_errores: bool = False,
+    formato: str = "scores",
 ) -> dict:
+    prompt_usado = _seleccionar_prompt(formato)
     if limite <= 0:
         raise ValueError("El límite debe ser positivo")
     if limite > len(casos):
@@ -170,7 +213,7 @@ def ejecutar(
             estado = "provider_error"
             error = None
             try:
-                respuesta = cliente.generate(crear_prompt(caso))
+                respuesta = cliente.generate(crear_prompt(caso, formato=formato))
                 bruto = respuesta.text
                 tokens_entrada = getattr(respuesta, "input_tokens", None)
                 tokens_salida = getattr(respuesta, "output_tokens", None)
@@ -178,8 +221,12 @@ def ejecutar(
                 error = f"{type(exc).__name__}: {str(exc)[:350]}"
             else:
                 try:
-                    puntajes = parser(bruto)
-                    sugerida, margen, estado = interpretar_puntajes(puntajes)
+                    if formato == "label":
+                        sugerida = interpretar_etiqueta_directa(bruto)
+                        estado = "ok"
+                    else:
+                        puntajes = parser(bruto)
+                        sugerida, margen, estado = interpretar_puntajes(puntajes)
                 except (ValueError, TypeError) as exc:
                     estado = "parse_error"
                     error = f"{type(exc).__name__}: {str(exc)[:350]}"
@@ -188,7 +235,9 @@ def ejecutar(
                 "split": "train",
                 "model": getattr(cliente, "model", "unknown"),
                 "run_fingerprint": id_run,
-                "prompt_sha256": sha256_bytes(PROMPT.encode("utf-8")),
+                "prompt_sha256": sha256_bytes(prompt_usado.encode("utf-8")),
+                "response_format": formato,
+
                 "timestamp_utc": datetime.now(timezone.utc).isoformat(),
                 "status": estado,
                 "suggested_label": sugerida,
@@ -217,6 +266,7 @@ def ejecutar(
         "omitidos_por_reanudacion": saltadas,
         "estados": dict(sorted(conteos.items())),
         "distribucion_sugerida_no_validada": {k: clases.get(k, 0) for k in ETIQUETAS},
+        "response_format": formato,
         "nota": "Predicciones automáticas NO calibradas y NO validadas por humanos; no representan cuotas reales por clase.",
     }
 
@@ -243,11 +293,17 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--base-url", default="http://localhost:11434/v1")
     ap.add_argument("--limit", type=int, default=10)
     ap.add_argument("--retry-errors", action="store_true")
+    ap.add_argument(
+        "--format", dest="formato", choices=FORMATOS, default="scores",
+        help="scores: nueve puntajes históricos; label: una clase literal sin puntuaciones",
+    )
     args = ap.parse_args(argv)
     try:
         casos, input_hash = cargar_candidatos(args.input)
-        id_run = fingerprint(args.model, input_hash)
+        id_run = fingerprint(args.model, input_hash, formato=args.formato)
         carpeta = args.out / re.sub(r"[^A-Za-z0-9._-]", "_", args.model)
+        if args.formato == "label":
+            carpeta = carpeta / "etiqueta_directa_v1"
         resultados = carpeta / "predicciones.jsonl"
         # Fallar antes de ejecutar si un historial previo corresponde a otro experimento.
         leer_historial(resultados, id_run)
@@ -261,9 +317,12 @@ def main(argv: list[str] | None = None) -> int:
             casos, cliente=cliente, parser=parse_score_array,
             ruta_resultados=resultados, id_run=id_run, limite=args.limit,
             reintentar_errores=args.retry_errors,
+            formato=args.formato,
         )
         resumen.update({
             "model": args.model,
+            "response_format": args.formato,
+            "prompt_sha256": sha256_bytes(_seleccionar_prompt(args.formato).encode("utf-8")),
             "input": str(args.input),
             "input_sha256": input_hash,
             "run_fingerprint": id_run,
