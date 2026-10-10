@@ -10,6 +10,7 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import hashlib
+import inspect
 import json
 from pathlib import Path
 import re
@@ -18,6 +19,7 @@ import time
 from typing import Any, Callable
 
 from proyecto_de_grado.src.data.preparar_preetiquetado import ETIQUETAS
+from src.app.fragment_retrieval import recuperar_top3
 
 DEFAULT_INPUT = Path("proyecto_de_grado/artifacts/preetiquetado/candidatos_train_300.jsonl")
 DEFAULT_OUT_DIR = Path("proyecto_de_grado/artifacts/preetiquetado")
@@ -58,6 +60,19 @@ PROMPT_ETIQUETA_DIRECTA = PROMPT.partition("Reply ONLY with a JSON array")[0] + 
     + "\nNo scores. No explanation. No additional text."
 )
 FORMATOS = ("scores", "label")
+EVIDENCIAS = ("none", "bm25_top2")
+_BM25_TOP_K = 2
+# Mismo prompt de etiqueta directa y un bloque nuevo de evidencia. La
+# relevancia de los fragmentos BM25 NO está adjudicada por humanos.
+_PROMPT_CON_EVIDENCIA = PROMPT_ETIQUETA_DIRECTA.replace(
+    "\nReturn exactly ONE category name from this list:",
+    "\nCandidate passages from the CITED paper, retrieved by BM25 (not human-validated):\n"
+    "{retrieved_passages}\n"
+    "Use this information only if it helps interpret TARGETCIT. "
+    "Do not infer a citation function from the section name alone.\n"
+    "Return exactly ONE category name from this list:",
+)
+
 
 
 
@@ -108,11 +123,54 @@ def _seleccionar_prompt(formato: str) -> str:
     raise ValueError(f"Formato no válido: {formato!r}")
 
 
-def crear_prompt(caso: dict, *, formato: str = "scores") -> str:
-    return _seleccionar_prompt(formato).format(
+def _evidencia_bm25(caso: dict) -> tuple[str, list[dict]]:
+    if caso.get("split") != "train" or not isinstance(caso.get("cited_chunks"), list):
+        raise ValueError("Evidencia OCL requiere fragmentos del cited paper y split train")
+    chunks = caso["cited_chunks"]
+    if not chunks:
+        raise ValueError("No hay fragmentos OCL disponibles para recuperación")
+    ids = [x.get("chunk_id") for x in chunks if isinstance(x, dict)]
+    if (len(ids) != len(chunks) or any(not isinstance(i, str) or not i for i in ids)
+            or len(set(ids)) != len(ids)):
+        raise ValueError("Fragmentos OCL sin IDs únicos")
+    if any(not isinstance(ch.get("texto"), str) or not ch["texto"].strip()
+           or not isinstance(ch.get("paragraph_indices"), list)
+           or len(ch["paragraph_indices"]) not in (1, 2)
+           or len(ch["texto"].split()) > 300 for ch in chunks):
+        raise ValueError("Fragmentos OCL no cumplen contrato S2.4")
+    seleccion = recuperar_top3(caso["citation_context"], chunks)[:_BM25_TOP_K]
+    if not seleccion:
+        raise ValueError("Sin coincidencias léxicas BM25: caso no pareado")
+    texto = "\n\n".join(
+        f"[{x['chunk_id']} | cited_id={caso['cited_id']} | "
+        f"section={x.get('seccion') or 'unknown'}]\n{x['texto']}"
+        for x in seleccion
+    )
+    trazas = [{
+        "chunk_id": x["chunk_id"],
+        "paragraph_indices": x.get("paragraph_indices", []),
+        "bm25_score_uncalibrated": x["puntaje_bm25"],
+        "text_sha256": sha256_bytes(x["texto"].encode("utf-8")),
+    } for x in seleccion]
+    return texto, trazas
+
+
+def crear_prompt(
+    caso: dict, *, formato: str = "scores", evidencia: str = "none",
+) -> str:
+    if evidencia == "none":
+        plantilla = _seleccionar_prompt(formato)
+        fragmentos = None
+    elif evidencia == "bm25_top2" and formato == "label":
+        plantilla = _PROMPT_CON_EVIDENCIA
+        fragmentos, _ = _evidencia_bm25(caso)
+    else:
+        raise ValueError("Combinación de formato/evidencia no admitida")
+    return plantilla.format(
         context=caso["citation_context"],
         title=caso["cited_title"],
         abstract=caso["cited_abstract"],
+        retrieved_passages=fragmentos,
     )
 
 
@@ -143,9 +201,19 @@ def interpretar_puntajes(puntajes: list[float]) -> tuple[str | None, float, str]
     return ETIQUETAS[indices[0]], margen, "ok"
 
 
-def fingerprint(modelo: str, input_hash: str, *, formato: str = "scores") -> str:
-    # Compatibilidad bit a bit con las ejecuciones históricas "scores".
-    prompt = _seleccionar_prompt(formato)
+def _plantilla(formato: str, evidencia: str) -> str:
+    if evidencia == "none":
+        return _seleccionar_prompt(formato)
+    if evidencia == "bm25_top2" and formato == "label":
+        return _PROMPT_CON_EVIDENCIA
+    raise ValueError("Combinación de formato/evidencia no admitida")
+
+
+def fingerprint(
+    modelo: str, input_hash: str, *, formato: str = "scores", evidencia: str = "none",
+) -> str:
+    # Compatibilidad bit a bit con scores y label SIN evidencia ya ejecutados.
+    prompt = _plantilla(formato, evidencia)
     configuracion = {
         "modelo": modelo,
         "input_sha256": input_hash,
@@ -154,6 +222,12 @@ def fingerprint(modelo: str, input_hash: str, *, formato: str = "scores") -> str
     if formato == "label":
         configuracion["response_format"] = "label"
         configuracion["prompt_version"] = "etiqueta_directa_v1"
+    if evidencia == "bm25_top2":
+        configuracion["retrieval_method"] = evidencia
+        configuracion["retrieval_top_k"] = _BM25_TOP_K
+        configuracion["retriever_sha256"] = sha256_bytes(
+            inspect.getsource(recuperar_top3).encode("utf-8")
+        )
     return sha256_bytes(
         json.dumps(configuracion, sort_keys=True, ensure_ascii=False).encode("utf-8")
     )
@@ -186,8 +260,9 @@ def ejecutar(
     limite: int,
     reintentar_errores: bool = False,
     formato: str = "scores",
+    evidencia: str = "none",
 ) -> dict:
-    prompt_usado = _seleccionar_prompt(formato)
+    prompt_usado = _plantilla(formato, evidencia)
     if limite <= 0:
         raise ValueError("El límite debe ser positivo")
     if limite > len(casos):
@@ -212,8 +287,13 @@ def ejecutar(
             tokens_salida = None
             estado = "provider_error"
             error = None
+            traza_evidencia = []
             try:
-                respuesta = cliente.generate(crear_prompt(caso, formato=formato))
+                if evidencia == "bm25_top2":
+                    _, traza_evidencia = _evidencia_bm25(caso)
+                respuesta = cliente.generate(
+                    crear_prompt(caso, formato=formato, evidencia=evidencia)
+                )
                 bruto = respuesta.text
                 tokens_entrada = getattr(respuesta, "input_tokens", None)
                 tokens_salida = getattr(respuesta, "output_tokens", None)
@@ -237,6 +317,8 @@ def ejecutar(
                 "run_fingerprint": id_run,
                 "prompt_sha256": sha256_bytes(prompt_usado.encode("utf-8")),
                 "response_format": formato,
+                "evidence_mode": evidencia,
+                "retrieved_chunks": traza_evidencia,
 
                 "timestamp_utc": datetime.now(timezone.utc).isoformat(),
                 "status": estado,
@@ -267,6 +349,7 @@ def ejecutar(
         "estados": dict(sorted(conteos.items())),
         "distribucion_sugerida_no_validada": {k: clases.get(k, 0) for k in ETIQUETAS},
         "response_format": formato,
+        "evidence_mode": evidencia,
         "nota": "Predicciones automáticas NO calibradas y NO validadas por humanos; no representan cuotas reales por clase.",
     }
 
@@ -297,13 +380,21 @@ def main(argv: list[str] | None = None) -> int:
         "--format", dest="formato", choices=FORMATOS, default="scores",
         help="scores: nueve puntajes históricos; label: una clase literal sin puntuaciones",
     )
+    ap.add_argument(
+        "--evidence", choices=EVIDENCIAS, default="none",
+        help="none: historial intacto; bm25_top2: dos fragmentos del cited paper",
+    )
     args = ap.parse_args(argv)
     try:
         casos, input_hash = cargar_candidatos(args.input)
-        id_run = fingerprint(args.model, input_hash, formato=args.formato)
+        id_run = fingerprint(
+            args.model, input_hash, formato=args.formato, evidencia=args.evidence
+        )
         carpeta = args.out / re.sub(r"[^A-Za-z0-9._-]", "_", args.model)
         if args.formato == "label":
             carpeta = carpeta / "etiqueta_directa_v1"
+        if args.evidence == "bm25_top2":
+            carpeta = carpeta / "evidencia_bm25_top2_v1"
         resultados = carpeta / "predicciones.jsonl"
         # Fallar antes de ejecutar si un historial previo corresponde a otro experimento.
         leer_historial(resultados, id_run)
@@ -318,11 +409,13 @@ def main(argv: list[str] | None = None) -> int:
             ruta_resultados=resultados, id_run=id_run, limite=args.limit,
             reintentar_errores=args.retry_errors,
             formato=args.formato,
+            evidencia=args.evidence,
         )
         resumen.update({
             "model": args.model,
             "response_format": args.formato,
-            "prompt_sha256": sha256_bytes(_seleccionar_prompt(args.formato).encode("utf-8")),
+            "evidence_mode": args.evidence,
+            "prompt_sha256": sha256_bytes(_plantilla(args.formato, args.evidence).encode("utf-8")),
             "input": str(args.input),
             "input_sha256": input_hash,
             "run_fingerprint": id_run,
