@@ -3,7 +3,7 @@ name: Corte vertical Top3 de fragmentos
 on:
   workflow_dispatch:
   push:
-    branches: [feature/corte-vertical-top3-s2, feature/protocolo-evaluacion-top3-s2-3, feature/s2-4-auditoria-enriquecimiento-multifuente]
+    branches: [feature/corte-vertical-top3-s2, feature/protocolo-evaluacion-top3-s2-3, feature/s2-4-auditoria-enriquecimiento-multifuente, feature/s2-5-homologacion-fuentes]
     paths:
       - "src/app/**"
       - "tests/test_top3_corpus_real.py"
@@ -20,6 +20,10 @@ on:
       - "proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py"
       - "proyecto_de_grado/tests/test_preparar_enriquecimiento_s2_4.py"
       - "proyecto_de_grado/docs/enriquecimiento_multifuente_s2_4.md"
+      - "proyecto_de_grado/config/fuentes_citas_s2_5.json"
+      - "proyecto_de_grado/src/data/validar_fuentes_s2_5.py"
+      - "proyecto_de_grado/tests/test_validar_fuentes_s2_5.py"
+      - "proyecto_de_grado/docs/homologacion_fuentes_s2_5.md"
       - "proyecto_de_grado/tests/test_top3_humano.py"
       - "proyecto_de_grado/docs/protocolo_top3_s2_3.md"
       - ".github/workflows/corte-vertical-top3.yml"
@@ -40,6 +44,10 @@ on:
       - "proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py"
       - "proyecto_de_grado/tests/test_preparar_enriquecimiento_s2_4.py"
       - "proyecto_de_grado/docs/enriquecimiento_multifuente_s2_4.md"
+      - "proyecto_de_grado/config/fuentes_citas_s2_5.json"
+      - "proyecto_de_grado/src/data/validar_fuentes_s2_5.py"
+      - "proyecto_de_grado/tests/test_validar_fuentes_s2_5.py"
+      - "proyecto_de_grado/docs/homologacion_fuentes_s2_5.md"
       - "proyecto_de_grado/tests/test_top3_humano.py"
       - "proyecto_de_grado/docs/protocolo_top3_s2_3.md"
       - ".github/workflows/corte-vertical-top3.yml"
@@ -57,6 +65,6 @@ jobs:
       - name: Instalar dependencias de la API y pruebas
         run: uv sync --group dev
       - name: Probar corte vertical sin inferencias externas
-        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py proyecto_de_grado/tests/test_preparar_enriquecimiento_s2_4.py proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py proyecto_de_grado/tests/test_adquirir_ocl_incremental_s2_4.py proyecto_de_grado/tests/test_preetiquetar_local.py
+        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py proyecto_de_grado/tests/test_preparar_enriquecimiento_s2_4.py proyecto_de_grado/tests/test_diagnosticar_cache_s2_4.py proyecto_de_grado/tests/test_adquirir_ocl_incremental_s2_4.py proyecto_de_grado/tests/test_preetiquetar_local.py proyecto_de_grado/tests/test_validar_fuentes_s2_5.py
       - name: Verificar sintaxis JavaScript de la demo
         run: node --check src/app/static/top3.js
