@@ -188,3 +188,101 @@ def test_etiqueta_directa_invalida_se_conserva_como_error_de_formato(tmp_path):
     assert fila["suggested_label"] is None
     assert fila["scores"] is None
     assert fila["is_human_label"] is False
+
+
+def _casos_con_ocl():
+    preparados = []
+    for i, row in enumerate(casos()):
+        preparados.append({
+            **row,
+            "cited_id": f"P12-100{i}",
+            "cited_chunks": [
+                {"chunk_id": "p00001-p00001",
+                 "texto": "Experiment methods and systematic results for experiments.",
+                 "seccion": "Methods", "paragraph_indices": [1], "palabras": 8},
+                {"chunk_id": "p00002-p00002",
+                 "texto": "Unrelated historical overview of research.",
+                 "seccion": "Related Work", "paragraph_indices": [2], "palabras": 6},
+                {"chunk_id": "p00003-p00003",
+                 "texto": "Experiment three demonstrates reproducible experiment design.",
+                 "seccion": "Results", "paragraph_indices": [3], "palabras": 7},
+            ],
+        })
+    return preparados
+
+
+def test_evidencia_oculta_en_baseline_y_bm25_solo_del_citado():
+    c = _casos_con_ocl()[0]
+    base = crear_prompt(c, formato="label")
+    enriquecido = crear_prompt(c, formato="label", evidencia="bm25_top2")
+    assert "Candidate passages" not in base
+    assert "Candidate passages from the CITED paper" in enriquecido
+    assert "[p00001-p00001 | cited_id=P12-1000" in enriquecido
+    assert "p00002-p00002" not in enriquecido
+    assert c["citation_context"] in enriquecido
+    assert enriquecido.endswith("No additional text.")
+    assert crear_prompt(c, formato="scores") == crear_prompt(c)
+
+
+def test_huellas_aislan_experimento_pareado_del_historico():
+    modelo, huella = "qwen3:4b-instruct", "sha-entrada"
+    sin = fingerprint(modelo, huella, formato="label")
+    con = fingerprint(modelo, huella, formato="label", evidencia="bm25_top2")
+    assert sin != con
+    assert sin == fingerprint(modelo, huella, formato="label", evidencia="none")
+    with pytest.raises(ValueError, match="Combinación"):
+        fingerprint(modelo, huella, formato="scores", evidencia="bm25_top2")
+
+
+def test_evidencia_rechaza_articulo_incorrecto_o_sin_coincidencia():
+    c = _casos_con_ocl()[0]
+    with pytest.raises(ValueError, match="IDs únicos"):
+        crear_prompt({
+            **c, "cited_chunks": [c["cited_chunks"][0]] * 2,
+        }, formato="label", evidencia="bm25_top2")
+    with pytest.raises(ValueError, match="split train"):
+        crear_prompt({**c, "split": "test"},
+                     formato="label", evidencia="bm25_top2")
+    with pytest.raises(ValueError, match="Sin coincidencias"):
+        crear_prompt({**c, "citation_context": "TARGETCIT zebrazebrazebra"},
+                     formato="label", evidencia="bm25_top2")
+
+
+def test_ocl_paired_conserva_trazas_y_no_modifica_dataset(tmp_path):
+    class ClienteDirecto:
+        model = "modelo_simulado"
+        def __init__(self):
+            self.calls = []
+        def generate(self, prompt):
+            self.calls.append(prompt)
+            assert "Candidate passages from the CITED paper" in prompt
+            return SimpleNamespace(text="Basis", input_tokens=80, output_tokens=1)
+
+    cli = ClienteDirecto()
+    casos_reales = _casos_con_ocl()
+    referencia = json.dumps(casos_reales, sort_keys=True)
+    salida = tmp_path / "solo_ocl.jsonl"
+    ident = fingerprint(cli.model, "input", formato="label", evidencia="bm25_top2")
+    resumen = ejecutar(
+        casos_reales, cliente=cli, parser=parser_fake, ruta_resultados=salida,
+        id_run=ident, limite=2, formato="label", evidencia="bm25_top2",
+    )
+    assert resumen["estados"] == {"ok": 2}
+    assert resumen["evidence_mode"] == "bm25_top2"
+    registros = [json.loads(x) for x in salida.read_text(encoding="utf-8").splitlines()]
+    assert len(registros) == 2
+    assert len(cli.calls) == 2
+    for registro in registros:
+        assert registro["suggested_label"] == "Basis"
+        assert registro["scores"] is None
+        assert registro["is_human_label"] is False
+        assert registro["evidence_mode"] == "bm25_top2"
+        assert 1 <= len(registro["retrieved_chunks"]) <= 2
+        assert all(len(x["text_sha256"]) == 64 for x in registro["retrieved_chunks"])
+    assert json.dumps(casos_reales, sort_keys=True) == referencia
+    siguiente = ejecutar(
+        casos_reales, cliente=cli, parser=parser_fake, ruta_resultados=salida,
+        id_run=ident, limite=2, formato="label", evidencia="bm25_top2",
+    )
+    assert siguiente["omitidos_por_reanudacion"] == 2
+    assert len(cli.calls) == 2
