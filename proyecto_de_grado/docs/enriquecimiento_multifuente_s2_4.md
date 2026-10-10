@@ -155,6 +155,24 @@ Este procedimiento **no debe ejecutarse automáticamente por CI** ni confundirse
 
 Después del primer lote real, generar una **tercera** salida versionada distinta de las anteriores (`--out proyecto_de_grado/artifacts/enriquecimiento_s2_4/v3_adquisicion`) y comparar el número de casos elegibles, identidades válidas y motivos de exclusión. `--limit 40 --max-per-cited 4` son cuotas del **lote** y no evidencian una mejor cobertura global.
 
+## Primera comparación de prompts de funciones de cita (10-oct-2026)
+
+Sobre el lote v3 (**39 contextos de train de 11 artículos citados**, SHA-256 verificado y ninguna anotación humana), Qwen 4B produjo el mismo vector de nueve puntajes en los **3 casos reales del piloto**: `[0.95, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01]`, que implicaba `Background` para todos. Los textos brutos fueron idénticos entre sí. **No interpretar 0,95 como probabilidad calibrada.**
+
+En una prueba exploratoria **no persistida** que conservó el contexto, título, resumen, modelo y definiciones de las nueve clases, pero cambió el formato solicitado a un **único nombre literal**, los dos controles sintéticos respondieron `Application` y `Comparison`; los tres casos reales respondieron `Application`, `Basis` y `Background`. Este contraste de solo tres ejemplos **no demuestra precisión de clasificación** ni constituye F1, Gold o validación humana. Los controles artificiales tampoco se añaden al dataset.
+
+Para reproducir el cambio sin editar a mano el código, `preetiquetar_local.py` ahora admite `--format label`. El modo por defecto `scores`, el prompt y el fingerprint histórico se conservaron idénticos; `label` usa un **prompt/fingerprint nuevo** y guarda archivos en una subcarpeta `etiqueta_directa_v1` para evitar mezclar el antiguo experimento con el nuevo. El campo `raw_response` mantiene la salida original y `suggested_label` solo admite **una categoría literal exacta**; una respuesta con dos clases o explicaciones queda como `parse_error`. En modo `label`, tanto `scores` como `top1_top2_margin_uncalibrated` son `null`, porque el modelo no emitió puntuaciones.
+
+Tras validar las pruebas, ejecutar un piloto muy pequeño en una **carpeta nueva** (requiere Ollama local ya instalado, no descarga modelos ni usa API de pago):
+
+```powershell
+python -m pytest -q proyecto_de_grado/tests/test_preetiquetar_local.py
+
+python -m proyecto_de_grado.src.data.preetiquetar_local --format label --input proyecto_de_grado/artifacts/enriquecimiento_s2_4/v3_adquisicion/candidatos_train_enriquecidos.jsonl --out proyecto_de_grado/artifacts/enriquecimiento_s2_4/piloto_qwen4b_directo_v1 --model qwen3:4b-instruct --limit 5
+```
+
+Se guardará `piloto_qwen4b_directo_v1/qwen3_4b-instruct/etiqueta_directa_v1/predicciones.jsonl`, archivo local ignorado por Git; **no** se toca `piloto_qwen4b_v3` ni se modifica `funcion_cita.etiqueta_principal` del dataset. Comparar los mismos contextos con el piloto anterior; estimar distribución de etiquetas solo de manera descriptiva. **No continuar a 39 ni a 2.140 casos** hasta que exista un protocolo de anotación independiente y una decisión documentada sobre el modelo. Este clasificador todavía **no consume `cited_chunks`**: la comparación con/ sin evidencia OCL es un experimento distinto por diseñar.
+
 ## Puerta de salida para siguiente incremento
 
 1. Ejecutar en `data/raw` real y documentar cobertura por split, total utilizable en caché y número de candidatos `train` generado.
