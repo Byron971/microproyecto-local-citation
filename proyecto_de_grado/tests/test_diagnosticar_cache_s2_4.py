@@ -51,11 +51,15 @@ def test_diagnostico_separa_documentos_de_contextos(tmp_path):
     }
     assert resultado["contextos_train_no_excluidos"] == 4
     assert resultado["documentos_citados_distintos_train"] == 4
+    # Con la segmentacion optativa S2.4, C2 ya no es rechazado:
+    # el diagnostico debe seguir registrando sus excesos originales.
     assert resultado["estado_documentos_citados"] == {
-        "fragmentacion_invalida": 1, "no_descargado": 1,
-        "no_disponible_404": 1, "utilizable": 1,
+        "no_descargado": 1, "no_disponible_404": 1, "utilizable": 2,
     }
     assert resultado["estado_contextos_train"] == resultado["estado_documentos_citados"]
+    c2 = next(x for x in resultado["inspeccion_documentos_en_cache"] if x["cited_id"] == "C2")
+    assert c2["parrafos_demasiado_largos"] == 1
+    assert c2["max_palabras_en_parrafo"] == 301
 
 
 def test_no_recomienda_descargar_404_ni_exporta_val_test(tmp_path):
