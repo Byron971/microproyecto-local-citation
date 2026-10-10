@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -24,21 +25,67 @@ MAX_PARRAFOS_CHUNK = 2
 MAX_CARACTERES = 5000
 
 
-def fragmentar(parrafos: list[dict]) -> list[dict]:
-    """Agrupa hasta dos parrafos contiguos de la MISMA seccion, <=300 palabras.
+def _dividir_parrafo_sin_perdida(parrafo: dict) -> list[dict]:
+    """Segmenta por límites de palabras conservando cada carácter y offsets.
 
-    No trunca ni omite texto largo: el articulo completo se declara no
-    apto para este prototipo si algun parrafo supera el presupuesto.
+    La segmentación no pretende identificar oraciones lingüísticas; es un
+    mecanismo conservador para párrafos OCL anormalmente extensos.
+    """
+    texto = parrafo["texto"]
+    tokens = list(re.finditer(r"\S+", texto))
+    if not tokens:
+        raise ValueError("Parrafo sin tokens.")
+    fragmentos = []
+    principio, i = 0, 0
+    while i < len(tokens):
+        j = i
+        while j < len(tokens) and j - i < MAX_PALABRAS:
+            if tokens[j].end() - principio > MAX_CARACTERES:
+                break
+            j += 1
+        if j == i:
+            raise ValueError("Token indivisible mayor al limite de caracteres.")
+        # Preferir el inicio del siguiente token para conservar también los
+        # espacios entre palabras; si no cabe, añadirlos al segmento siguiente.
+        if j == len(tokens):
+            fin = len(texto)
+        elif tokens[j].start() - principio <= MAX_CARACTERES:
+            fin = tokens[j].start()
+        else:
+            fin = tokens[j - 1].end()
+        parte = texto[principio:fin]
+        if not parte.strip():
+            raise ValueError("Segmento vacío.")
+        fragmentos.append({
+            "numero": parrafo["numero"],
+            "seccion": parrafo["seccion"],
+            "texto": parte,
+            "segmento": len(fragmentos),
+            "char_inicio": principio,
+            "char_fin": fin,
+        })
+        principio, i = fin, j
+    if principio != len(texto) or "".join(x["texto"] for x in fragmentos) != texto:
+        raise ValueError("Fragmentacion con perdida de texto.")
+    return fragmentos
+
+
+def fragmentar(parrafos: list[dict], *, dividir_parrafos_largos: bool = False) -> list[dict]:
+    """Hasta dos párrafos contiguos, una sección, máximo 300 palabras.
+
+    Por defecto preserva la semántica y los IDs de S2.2/S2.3. En modo S2.4,
+    divide solo párrafos largos en segmentos trazables y sin pérdida de texto.
     """
     if not parrafos:
         raise ValueError("Articulo sin parrafos.")
     chunks = []
     pendientes: list[dict] = []
     palabras = 0
+    caracteres = 0
     seccion_anterior = None
 
     def cerrar() -> None:
-        nonlocal pendientes, palabras
+        nonlocal pendientes, palabras, caracteres
         if not pendientes:
             return
         chunks.append({
@@ -50,6 +97,7 @@ def fragmentar(parrafos: list[dict]) -> list[dict]:
         })
         pendientes = []
         palabras = 0
+        caracteres = 0
 
     numeros = set()
     for p in parrafos:
@@ -62,17 +110,37 @@ def fragmentar(parrafos: list[dict]) -> list[dict]:
         if not isinstance(seccion, str):
             raise ValueError("Seccion invalida.")
         n = len(texto.split())
-        if n > MAX_PALABRAS or len(texto) > MAX_CARACTERES:
+        es_largo = n > MAX_PALABRAS or len(texto) > MAX_CARACTERES
+        if es_largo and not dividir_parrafos_largos:
             raise ValueError("Parrafo demasiado largo: requiere division por oraciones.")
+        if es_largo:
+            cerrar()
+            for segmento in _dividir_parrafo_sin_perdida(p):
+                chunks.append({
+                    "chunk_id": f"p{numero:05d}-s{segmento['segmento']:03d}",
+                    "texto": segmento["texto"],
+                    "seccion": seccion,
+                    "paragraph_indices": [numero],
+                    "paragraph_char_spans": [{
+                        "paragraph_index": numero,
+                        "start": segmento["char_inicio"],
+                        "end": segmento["char_fin"],
+                    }],
+                    "palabras": len(segmento["texto"].split()),
+                    "fragmentacion": "division_conservadora_palabras_v1",
+                })
+            continue
         if pendientes and (
             len(pendientes) >= MAX_PARRAFOS_CHUNK
             or palabras + n > MAX_PALABRAS
+            or (dividir_parrafos_largos and caracteres + len(texto) + 1 > MAX_CARACTERES)
             or seccion != seccion_anterior
             or numero != pendientes[-1]["numero"] + 1
         ):
             cerrar()
         pendientes.append(p)
         palabras += n
+        caracteres += len(texto) + (1 if len(pendientes) > 1 else 0)
         seccion_anterior = seccion
     cerrar()
     if not chunks:
