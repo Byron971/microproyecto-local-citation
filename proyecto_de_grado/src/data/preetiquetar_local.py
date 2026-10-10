@@ -10,7 +10,6 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import hashlib
-import inspect
 import json
 from pathlib import Path
 import re
@@ -129,6 +128,8 @@ def _evidencia_bm25(caso: dict) -> tuple[str, list[dict]]:
     chunks = caso["cited_chunks"]
     if not chunks:
         raise ValueError("No hay fragmentos OCL disponibles para recuperación")
+    if not isinstance(caso.get("cited_id"), str) or not caso["cited_id"]:
+        raise ValueError("Falta identidad del artículo citado")
     ids = [x.get("chunk_id") for x in chunks if isinstance(x, dict)]
     if (len(ids) != len(chunks) or any(not isinstance(i, str) or not i for i in ids)
             or len(set(ids)) != len(ids)):
@@ -225,8 +226,9 @@ def fingerprint(
     if evidencia == "bm25_top2":
         configuracion["retrieval_method"] = evidencia
         configuracion["retrieval_top_k"] = _BM25_TOP_K
+        # Incluye tokenizador, stopwords, K1/B y no solo recuperar_top3.
         configuracion["retriever_sha256"] = sha256_bytes(
-            inspect.getsource(recuperar_top3).encode("utf-8")
+            (Path(__file__).resolve().parents[3] / "src/app/fragment_retrieval.py").read_bytes()
         )
     return sha256_bytes(
         json.dumps(configuracion, sort_keys=True, ensure_ascii=False).encode("utf-8")
@@ -400,6 +402,11 @@ def main(argv: list[str] | None = None) -> int:
         leer_historial(resultados, id_run)
         if args.limit < 1 or args.limit > len(casos):
             raise ValueError(f"--limit debe estar entre 1 y {len(casos)}")
+        # Validación previa del lote completo antes de llamar a Ollama.
+        # Una selección BM25 sin coincidencias no genera una comparación pareada.
+        if args.evidence == "bm25_top2":
+            for caso in casos[:args.limit]:
+                _evidencia_bm25(caso)
         comprobar_modelo(args.base_url, args.model)
         from src.evaluation.commercial.providers_openweight import OpenWeightClient
         from src.evaluation.commercial.stability import parse_score_array
