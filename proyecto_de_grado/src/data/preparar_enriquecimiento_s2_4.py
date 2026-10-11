@@ -31,7 +31,8 @@ def huella_contexto(texto: str) -> str:
     return hashlib.sha256(compacto.encode("utf-8")).hexdigest()
 
 
-def _analizar_citado(cited_id: str, cache: Path, papers: dict) -> dict:
+def _analizar_citado(cited_id: str, cache: Path, papers: dict,
+                    segmentacion_oraciones: bool = False) -> dict:
     """Una sola lectura por artículo citado, con trazabilidad OCL verificable."""
     if not ALLOWED_PAPER_ID.fullmatch(cited_id):
         return {"estado": "id_inseguro"}
@@ -68,7 +69,8 @@ def _analizar_citado(cited_id: str, cache: Path, papers: dict) -> dict:
                              "seccion": seccion.strip()})
         if not parrafos:
             return {"estado": "sin_parrafos"}
-        chunks = fragmentar(parrafos, dividir_parrafos_largos=True)
+        chunks = fragmentar(parrafos, dividir_parrafos_largos=True,
+                           segmentacion_oraciones=segmentacion_oraciones)
         return {
             "estado": "utilizable",
             "sha256_ocl": hashlib.sha256(datos).hexdigest(),
@@ -84,6 +86,7 @@ def _analizar_citado(cited_id: str, cache: Path, papers: dict) -> dict:
 def auditar_y_seleccionar(
     index, papers: dict, cache: Path, excluidos: set[str],
     limite: int = 40, semilla: int = 42, max_por_citado: int = 4,
+    segmentacion_oraciones: bool = False,
 ) -> tuple[list[dict], dict]:
     """Audita TODO el ACL-200 supervisado y exporta SOLO un lote de train.
 
@@ -106,7 +109,8 @@ def auditar_y_seleccionar(
         citado = ctx["refid"]
         citante = ctx["citing_id"]
         if citado not in cache_status:
-            cache_status[citado] = _analizar_citado(citado, cache, papers)
+            cache_status[citado] = _analizar_citado(
+                citado, cache, papers, segmentacion_oraciones=segmentacion_oraciones)
         dato = cache_status[citado]
         c = por_split[split]
         c["contextos"] += 1
@@ -201,6 +205,8 @@ def auditar_y_seleccionar(
             "La seleccion no es representativa del corpus general."
         ),
     }
+    if segmentacion_oraciones:
+        resumen["segmentacion"] = "division_oraciones_v1"
     return seleccionados, resumen
 
 
@@ -215,11 +221,13 @@ def _guardar_sin_sobrescribir(path: Path, contenido: str) -> None:
 
 
 def ejecutar(raw: Path, cache: Path, salida: Path, excluidos: set[str],
-            limite: int = 40, semilla: int = 42, max_por_citado: int = 4) -> dict:
+            limite: int = 40, semilla: int = 42, max_por_citado: int = 4,
+            segmentacion_oraciones: bool = False) -> dict:
     index = load_split_index(raw)
     papers = json.loads((raw / "papers.json").read_text(encoding="utf-8-sig"))
     candidatos, resumen = auditar_y_seleccionar(
         index, papers, cache, excluidos, limite, semilla, max_por_citado,
+        segmentacion_oraciones=segmentacion_oraciones,
     )
     contenido = "".join(json.dumps(c, ensure_ascii=False) + "\n" for c in candidatos)
     resumen["sha256_candidatos"] = hashlib.sha256(contenido.encode("utf-8")).hexdigest()
@@ -244,13 +252,16 @@ def main(argv=None) -> int:
     parser.add_argument("--limit", type=int, default=40)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max-per-cited", type=int, default=4)
+    parser.add_argument("--segmentacion-oraciones", action="store_true",
+                        help="S2.6 experimental: separar solo en fronteras de oracion")
     parser.add_argument("--exclude", type=Path, default=REPO / "proyecto_de_grado/anotacion/ids_excluir_test_gold.txt")
     parser.add_argument("--exclude-history", type=Path, default=REPO / "proyecto_de_grado/anotacion/ids_piloto_historico_no_test_final.txt")
     args = parser.parse_args(argv)
     try:
         excluidos = leer_exclusiones(args.exclude) | leer_exclusiones(args.exclude_history)
         resumen = ejecutar(args.raw, args.cache, args.out, excluidos,
-                          args.limit, args.seed, args.max_per_cited)
+                          args.limit, args.seed, args.max_per_cited,
+                          segmentacion_oraciones=args.segmentacion_oraciones)
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
         parser.exit(2, f"S2.4: {exc}\n")
     print("=== S2.4 | COBERTURA Y ENRIQUECIMIENTO SIN ETIQUETAS ===")
