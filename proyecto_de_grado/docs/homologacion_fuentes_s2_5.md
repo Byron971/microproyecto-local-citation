@@ -109,6 +109,22 @@ El resultado es un JSON de diagnóstico en `proyecto_de_grado/artifacts/multicit
 
 Antes de fusionar, queda pendiente un **cotejo de identidad** entre los IDs externos y los `context_id`/artículos originales de ACL-200, con una clave externa verificable (`S2ORC` ↔ `ACL Anthology`, si existiera), identificación de la **referencia concreta** y doble revisión humana de anotaciones inciertas. **Una coincidencia de título o un `id` que se parece a ACL no constituye un match válido**. No se ejecuta sobre `test`, no transfiere etiquetas, no actualiza modelos y no permite contabilizar ejemplos hacia la cuota de 2.000/clase o el 15 % humano.
 
+### Incidencia detectada en la primera ejecución real (2026-10-10)
+
+La primera ejecución `--execute` descargó el archivo indicado y **se detuvo sin generar perfil** en el registro de índice Python **833** (`264bdb348c13f167768fd859b047e8_7`) porque el lector anterior exigía que `x` tuviera al menos un texto. Inspeccionando directamente el **blob oficial de GitHub identificado por el SHA-1 fijado** se constató:
+
+- Total train externo: **5.491 filas**, todas con `y` de tipo cadena;
+- **17 filas con `x=[]`**, incluida la fila 833; **5.474 filas** con `x` no vacío;
+- Identificadores repetidos detectados: **0**;
+- Filas con más de una etiqueta externa: **746** en las 5.491 filas originales;
+- Los códigos de clasificación observados son: `background`, `motivation`, `differences`, `uses`, `extends`, `similarities` y `future_work`.
+
+Estos números son del **archivo train de una oración**, no del MultiCite completo ni de nuestro conjunto de nueve etiquetas. La cuenta `17/5.491` es una incidencia de formato del corpus externo: no autoriza inventar contenido, rellenar con título o copiar etiquetas a ACL-200.
+
+**Corrección:** `cargar_y_validar` conserva y valida los IDs, las etiquetas y el índice original de todas las filas, pero identifica explícitamente las 17 sin contexto como `excluido_contexto_vacio`. `perfil_muestra` las excluye del muestreo, informa sus IDs/motivos, el denominador completo y el subconjunto utilizable; sigue **rechazando** etiquetas desconocidas, IDs duplicados, contextos de tipos inesperados y falta total de registros útiles. Se añaden pruebas de regresión con la estructura de la fila 833. No se modifican los datasets originales ni los experimentos S2.4.
+
+Tras la actualización y la aprobación de GitHub Actions, la ejecución de inspección `--execute --sample 30 --seed 42` puede **repetirse una vez** porque el intento inicial no dejó el archivo fuente guardado ni generó perfil. La ejecución subsiguiente sigue siendo solo diagnóstico; **no fusiona ni homologa**. Comprobar que reporta 5.491 totales, 5.474 utilizables, 17 excluidos y 30 observaciones de muestra antes de proceder a cualquier otro paso.
+
 ## 6. Criterios de aceptación de este incremento
 
 - Documentación basada en fuentes primarias del proyecto y publicaciones externas, con alcance y licencias verificables.
