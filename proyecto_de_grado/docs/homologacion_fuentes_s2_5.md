@@ -85,6 +85,30 @@ El registro estructurado `proyecto_de_grado/config/fuentes_citas_s2_5.json` docu
 
 **S2.5.d — Pendiente:** paralelamente ampliar con **citas adicionales genuinas de ACL OCL** usando el mismo esquema y reconstrucción de TARGETCIT, deduplicando y asignando split sin contaminar el test. No declarar que las 2.000 etiquetas/clase o el 15 % humano están cumplidos hasta auditar conteos definitivos.
 
+## 5.b. Instrumento de inspección de una muestra REAL, sin mezclar datos
+
+**Verificación de los archivos oficiales de MultiCite (GitHub):**
+
+- El dataset completo es `data/full-v20210918.json`, **46.307.631 bytes**. Su esquema incluye el código `@UNSURE@` y estructura `x/y` por artículo e intención.
+- La versión simplificada `data/classification_1_context/train.json` tiene **1.667.641 bytes** en el commit `120671924b5ab968b98c7f696c4b67b4f8118948`, blob Git `fdb9dfe5aa5de396e687924a4da1c5dbd62f6255`. Su estructura documentada es una lista con `id`, `x`, `y`. El lector oficial `classification/citances_processor.py` transforma `y.split(" ")` en múltiples etiquetas y enumera **siete** nombres de clasificación: `motivation, background, uses, extends, similarities, differences, future_work`. Esto **no contradice** las ocho intenciones del esquema completo: `Unsure` no es una clase normal del clasificador.
+- Otros tamaños y ventanas de contexto tienen distribuciones distintas; la muestra de **una oración** es apropiada para examinar el formato con mínimo tráfico, **no** demuestra equivalencia con nuestras ventanas ACL-200.
+
+Implementación `proyecto_de_grado/src/data/perfilar_multicite_s2_5.py`. El modo por defecto **no descarga, no crea archivos**. Para inspeccionar primero el plan:
+
+```powershell
+python -m proyecto_de_grado.src.data.perfilar_multicite_s2_5
+```
+
+Tras confirmar uso de investigación no comercial y licencia CC BY-NC 2.0, autorizar **solo una** petición de ~1,67 MB a un commit Git fijado; límite máximo 2 MB, comprobación obligatoria del SHA-1 de objeto Git:
+
+```powershell
+python -m proyecto_de_grado.src.data.perfilar_multicite_s2_5 --execute --sample 30 --seed 42
+```
+
+El resultado es un JSON de diagnóstico en `proyecto_de_grado/artifacts/multicite_s2_5/perfil_multicite_train.json` (**ignorado por Git**). **NO guarda el archivo fuente completo**, solo un resumen de conteos del train y hasta treinta muestras locales de 250 caracteres con sus IDs y *etiquetas externas*. Muestrea primero para cubrir códigos menos frecuentes y luego rellena aleatoriamente; **los porcentajes del subconjunto NO representan las frecuencias reales**. El perfil incluye el número de filas multietiqueta, los IDs con forma de ACL Anthology, la distribución real del **train externo** y la huella SHA-256 de la fuente consultada.
+
+Antes de fusionar, queda pendiente un **cotejo de identidad** entre los IDs externos y los `context_id`/artículos originales de ACL-200, con una clave externa verificable (`S2ORC` ↔ `ACL Anthology`, si existiera), identificación de la **referencia concreta** y doble revisión humana de anotaciones inciertas. **Una coincidencia de título o un `id` que se parece a ACL no constituye un match válido**. No se ejecuta sobre `test`, no transfiere etiquetas, no actualiza modelos y no permite contabilizar ejemplos hacia la cuota de 2.000/clase o el 15 % humano.
+
 ## 6. Criterios de aceptación de este incremento
 
 - Documentación basada en fuentes primarias del proyecto y publicaciones externas, con alcance y licencias verificables.
