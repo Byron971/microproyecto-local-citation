@@ -55,7 +55,12 @@ def descargar_train(*, abrir=urllib.request.urlopen) -> bytes:
 
 
 def cargar_y_validar(content: bytes) -> list[dict]:
-    """Rechaza filas no reconocidas, etiquetas externas inesperadas o IDs dobles."""
+    """Valida TODO train; marca x=[] explícitamente como registro no utilizable.
+
+    MultiCite original contiene filas reales con contexto vacío. No se mezclan
+    con casos anotables ni se silencian: el perfil reporta cada exclusión.
+    Cualquier otra estructura desconocida sigue provocando un error.
+    """
     try:
         rows = json.loads(content.decode("utf-8-sig"))
     except (UnicodeError, json.JSONDecodeError) as exc:
@@ -74,16 +79,20 @@ def cargar_y_validar(content: bytes) -> list[dict]:
         ids.add(rid)
         if isinstance(x, str):
             texto = x
-        elif isinstance(x, list) and x and all(isinstance(part, str) for part in x):
+        elif isinstance(x, list) and all(isinstance(part, str) for part in x):
             texto = " ".join(x)
         else:
-            raise ValueError(f"Fila {idx}: contexto no es texto o lista de textos")
-        if not texto.strip() or not isinstance(y, str):
-            raise ValueError(f"Fila {idx}: contexto o etiqueta vacía")
+            raise ValueError(f"Fila {idx}: contexto tiene esquema desconocido")
+        if not isinstance(y, str):
+            raise ValueError(f"Fila {idx}: etiqueta no textual")
         etiquetas = y.split()
         if not etiquetas or len(etiquetas) != len(set(etiquetas)) or not set(etiquetas) <= LABELS:
             raise ValueError(f"Fila {idx}: etiquetas no válidas en clasificación MultiCite")
-        parsed.append({"id": rid, "context": texto, "labels": etiquetas})
+        estado = "utilizable" if texto.strip() else "excluido_contexto_vacio"
+        parsed.append({
+            "id": rid, "context": texto, "labels": etiquetas,
+            "estado_contexto": estado, "fila_original": idx,
+        })
     return parsed
 
 
@@ -94,8 +103,12 @@ def perfil_muestra(rows: list[dict], *, muestra: int = 30, semilla: int = 42) ->
     if not rows:
         raise ValueError("No hay registros")
     label_counts = Counter(l for row in rows for l in row["labels"])
+    excluidos = [r for r in rows if r["estado_contexto"] == "excluido_contexto_vacio"]
+    utilizables = [r for r in rows if r["estado_contexto"] == "utilizable"]
+    if not utilizables:
+        raise ValueError("No existen contextos utilizables en train")
     # IDs y orden deterministas, no el orden del archivo original.
-    ordered = sorted(rows, key=lambda x: x["id"])
+    ordered = sorted(utilizables, key=lambda x: x["id"])
     rng = random.Random(semilla)
     idxs = list(range(len(ordered)))
     rng.shuffle(idxs)
@@ -123,7 +136,17 @@ def perfil_muestra(rows: list[dict], *, muestra: int = 30, semilla: int = 42) ->
         "fuente_blob_git_sha1": SOURCE_BLOB_SHA1,
         "particion_fuente": "train",
         "filas_train": len(rows),
+        "filas_train_utilizables": len(utilizables),
+        "filas_excluidas_contexto_vacio": len(excluidos),
+        "exclusiones_contexto_vacio": [
+            {"fila_original": r["fila_original"], "external_id": r["id"],
+             "motivo": "x_vacio_o_solo_espacios"}
+            for r in excluidos
+        ],
         "codigos_externos_observados": dict(sorted(label_counts.items())),
+        "codigos_externos_en_filas_utilizables": dict(sorted(
+            Counter(l for r in utilizables for l in r["labels"]).items()
+        )),
         "filas_con_multiples_etiquetas": sum(len(r["labels"]) > 1 for r in rows),
         "ids_que_parecen_acl_anthology": sum(bool(ACL_ID.fullmatch(r["id"])) for r in rows),
         "ids_comparados_por_igualdad_con_acl200": False,
@@ -181,8 +204,10 @@ def main(argv: list[str] | None = None) -> int:
         # los ejemplos se almacenan en artifacts/ (ignorado por Git).
         ruta.write_text(json.dumps(resumen, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print("=== S2.5.b | PERFIL EXTERNO SIN FUSIÓN ===")
-        print("Filas:", resumen["filas_train"])
-        print("Etiquetas observadas:", resumen["codigos_externos_observados"])
+        print("Filas fuente:", resumen["filas_train"])
+        print("Filas utilizables:", resumen["filas_train_utilizables"])
+        print("Exclusiones por contexto vacío:", resumen["filas_excluidas_contexto_vacio"])
+        print("Etiquetas observadas (todas las filas):", resumen["codigos_externos_observados"])
         print("Filas multilabel:", resumen["filas_con_multiples_etiquetas"])
         print("IDs con formato ACL Anthology:", resumen["ids_que_parecen_acl_anthology"])
         print("Muestra local:", resumen["muestra"])
