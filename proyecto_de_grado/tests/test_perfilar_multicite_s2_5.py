@@ -59,7 +59,7 @@ def test_parser_multilabel_rechaza_unknown_y_duplicates():
         {"id": "a", "x": "text", "y": "background background"},
         {"id": "a", "x": "text", "y": "Background"},
         {"id": "a", "x": "text", "y": ""},
-        {"id": "a", "x": [], "y": "uses"},
+        {"id": "a", "x": {"unexpected": "object"}, "y": "uses"},
     ]:
         with pytest.raises(ValueError):
             m.cargar_y_validar(json.dumps([invalida]).encode())
@@ -139,3 +139,61 @@ def test_fuente_pinneada_es_train_no_test_ni_full():
     assert len(m.SOURCE_COMMIT) == 40
     assert len(m.SOURCE_BLOB_SHA1) == 40
     assert m.SOURCE_SIZE < m.MAX_BYTES
+
+
+def test_contextos_vacios_reales_se_excluyen_con_trazabilidad_y_sin_fusion():
+    """Reproduce x=[] de MultiCite train, incluido el caso de la fila 833."""
+    filas = _fake_source() + [
+        {"id": "264bdb348c13f167768fd859b047e8_7",
+         "x": [], "y": "differences"},
+        {"id": "264bdb348c13f167768fd859b047e8_12",
+         "x": [], "y": "similarities"},
+        {"id": "espacios", "x": ["  "], "y": "background"},
+    ]
+    parsed = m.cargar_y_validar(json.dumps(filas).encode())
+    assert len(parsed) == 9
+    assert parsed[6]["estado_contexto"] == "excluido_contexto_vacio"
+    assert parsed[6]["fila_original"] == 6
+    perfil = m.perfil_muestra(parsed, muestra=8, semilla=42)
+    assert perfil["filas_train"] == 9
+    assert perfil["filas_train_utilizables"] == 6
+    assert perfil["filas_excluidas_contexto_vacio"] == 3
+    assert len(perfil["exclusiones_contexto_vacio"]) == 3
+    assert perfil["muestra"] == 6
+    assert all(x["external_id"] not in {
+        "264bdb348c13f167768fd859b047e8_7",
+        "264bdb348c13f167768fd859b047e8_12", "espacios",
+    } for x in perfil["muestra_local"])
+    assert perfil["codigos_externos_observados"]["differences"] == 2
+    assert perfil["codigos_externos_en_filas_utilizables"]["differences"] == 1
+    assert perfil["clases_internas_validadas"] == 0
+
+
+def test_contexto_vacio_no_tapa_errores_reales_de_taxonomia_o_duplicados():
+    with pytest.raises(ValueError, match="etiquetas no válidas"):
+        m.cargar_y_validar(json.dumps([
+            {"id": "a", "x": [], "y": "unsure"}
+        ]).encode())
+    with pytest.raises(ValueError, match="repetido"):
+        m.cargar_y_validar(json.dumps([
+            {"id": "a", "x": [], "y": "uses"},
+            {"id": "a", "x": ["texto"], "y": "uses"},
+        ]).encode())
+    with pytest.raises(ValueError, match="No existen contextos utilizables"):
+        m.perfil_muestra(m.cargar_y_validar(json.dumps([
+            {"id": "a", "x": [], "y": "uses"},
+        ]).encode()))
+
+
+def test_muestreo_no_incluye_vacios_aunque_solo_sean_categorias_raras():
+    filas = [
+        {"id": "zero", "x": [], "y": "future_work"},
+        {"id": "full", "x": ["Sample valid example."], "y": "background"},
+    ]
+    perfil = m.perfil_muestra(
+        m.cargar_y_validar(json.dumps(filas).encode()), muestra=2
+    )
+    assert [x["external_id"] for x in perfil["muestra_local"]] == ["full"]
+    assert perfil["filas_excluidas_contexto_vacio"] == 1
+    assert perfil["codigos_externos_observados"]["future_work"] == 1
+    assert "future_work" not in perfil["codigos_externos_en_filas_utilizables"]
