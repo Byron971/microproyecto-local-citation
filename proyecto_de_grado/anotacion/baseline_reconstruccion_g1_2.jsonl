@@ -1,0 +1,5 @@
+{"context_id":"D15-1288_P09-2086_0","split":"test","estado":"revision_manual","motivo":"TARGETCIT_cerca_de_OTHERCIT_grupo_potencial","citation_ref_id":null,"oracion_con_targetcit":null}
+{"context_id":"P14-1048_P12-1007_0","split":"val","estado":"reconstruccion_candidata_revision_humana","motivo":null,"citation_ref_id":"BIBREF4","oracion_con_targetcit":"Also, the employment of SVM classifiers allows the incorporation of rich features for better data representation (TARGETCIT)."}
+{"context_id":"P14-1048_P12-1007_2","split":"val","estado":"revision_manual","motivo":"TARGETCIT_cerca_de_OTHERCIT_grupo_potencial","citation_ref_id":null,"oracion_con_targetcit":null}
+{"context_id":"W09-0704_E89-1009_0","split":"train","estado":"reconstruccion_candidata_revision_humana","motivo":null,"citation_ref_id":"BIBREF4","oracion_con_targetcit":"KATR is based on DATR, a formal language for representing lexical knowledge designed and implemented by Roger Evans and Gerald Gazdar (TARGETCIT)."}
+{"context_id":"W15-2710_P11-1082_0","split":"test","estado":"revision_manual","motivo":"TARGETCIT_cerca_de_OTHERCIT_grupo_potencial","citation_ref_id":null,"oracion_con_targetcit":null}

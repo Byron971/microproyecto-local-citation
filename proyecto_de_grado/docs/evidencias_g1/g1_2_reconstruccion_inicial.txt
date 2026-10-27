@@ -1,0 +1,42 @@
+G1.2 | 5 contextos | SOLO LECTURA | NO TEST GOLD
+
+============================================================
+ID: D15-1288_P09-2086_0 | split: test
+Estado: revision_manual | motivo: TARGETCIT_cerca_de_OTHERCIT_grupo_potencial
+Citante: D15-1288 | citado: P09-2086
+Referencia bib: ['BIBREF28']
+Contexto original ACL-200: f between accuracy, space, and time, with recent papers considering small but approximate lossy LMs (OTHERCIT), or loss-less LMs backed by tries (OTHERCIT), or related compressed structures (OTHERCIT; TARGETCIT . However, none of these approaches scale well to very high-order m or very large corpora, due to their high memory and time requirements. An important exception is OTHERCIT, who also propose a langua
+
+============================================================
+ID: P14-1048_P12-1007_0 | split: val
+Estado: reconstruccion_candidata_revision_humana | motivo: None
+Citante: P14-1048 | citado: P12-1007
+Referencia bib: BIBREF4
+Contexto original ACL-200: exploded.]e4 wsj 1146 e1:4 sequence e1:2 e3:4 strategy is its efficiency in practice. Also, the employment of SVM classifiers allows the incorporation of rich features for better data representation ( TARGETCIT . However, HILDAÆs approach also has obvious weakness: the greedy algorithm may lead to poor performance due to local optima, and more importantly, the SVM classifiers are not well-suited for solving 
+Oracion original OCL: Also, the employment of SVM classifiers allows the incorporation of rich features for better data representation (Feng and Hirst, 2012) .
+Oracion con TARGETCIT: Also, the employment of SVM classifiers allows the incorporation of rich features for better data representation TARGETCIT .
+
+============================================================
+ID: P14-1048_P12-1007_2 | split: val
+Estado: revision_manual | motivo: TARGETCIT_cerca_de_OTHERCIT_grupo_potencial
+Citante: P14-1048 | citado: P12-1007
+Referencia bib: ['BIBREF4']
+Contexto original ACL-200: arge corpus annotated in the framework of RST. The RST-DT consists of 385 documents (347 for training and 38 for testing) from the Wall Street Journal. Following previous work on the RST-DT (OTHERCIT; TARGETCIT ; OTHERCIT), we use 18 coarsegrained relation classes, and with nuclearity attached, we have a total set of 41 distinct relations. Non-binary relations are converted into a cascade of right-branching 
+
+============================================================
+ID: W09-0704_E89-1009_0 | split: train
+Estado: reconstruccion_candidata_revision_humana | motivo: None
+Citante: W09-0704 | citado: E89-1009
+Referencia bib: BIBREF4
+Contexto original ACL-200: l analysis of SY in the KATR formalism (Finkel, Shen, OTHERCIT). KATR is based on DATR, a formal language for representing lexical knowledge designed and implemented by Roger Evans and Gerald Gazdar ( TARGETCIT . Our information about SY is primarily due to the expertise of the second author. This research is part of a larger effort aimed at elucidating the morphological structure of natural languages. In pa
+Oracion original OCL: KATR is based on DATR, a formal language for representing lexical knowledge designed and implemented by Roger Evans and Gerald Gazdar (Evans & Gazdar 1989) .
+Oracion con TARGETCIT: KATR is based on DATR, a formal language for representing lexical knowledge designed and implemented by Roger Evans and Gerald Gazdar TARGETCIT .
+
+============================================================
+ID: W15-2710_P11-1082_0 | split: test
+Estado: revision_manual | motivo: TARGETCIT_cerca_de_OTHERCIT_grupo_potencial
+Citante: W15-2710 | citado: P11-1082
+Referencia bib: ['BIBREF8']
+Contexto original ACL-200:  There is an increasing body of research on using world knowledge and inference in high-level text processing tasks such as textual entailment, coreference resolution and question answering (OTHERCIT; TARGETCIT ; OTHERCIT). However, most of the existing approaches use ôstaticö knowledge that is typically expressed as a collection of n-ary relations between entities, and there is little work that attempts to 
+
+AVISO: ningun resultado queda validado sin revision humana.

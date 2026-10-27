@@ -1,0 +1,24 @@
+# G0.5: 20 IDs del piloto histórico usado para desarrollo/comparación de modelos.
+# No incorporarlos al futuro Test Gold independiente.
+# Fuente: annotations/citation_function/test_gold.jsonl
+# No reemplaza ids_excluir_test_gold.txt: se aplica la unión de ambas listas.
+P15-1029_W13-0109_0
+S15-1023_P08-1028_0
+S15-2047_S15-2044_0
+D15-1032_P05-1012_0
+P15-1169_N13-1090_0
+D15-1299_P13-2088_1
+D15-1105_W02-1020_0
+D15-1294_P14-2085_4
+W15-4314_P14-2111_4
+P15-1020_P03-1021_0
+P15-1156_P14-2029_2
+P15-1086_W03-0203_0
+W15-3060_D08-1088_0
+S15-1021_N13-1090_0
+P15-1122_W11-0908_0
+W15-3037_D14-1162_0
+P15-1089_W10-0513_0
+W15-0807_P08-1090_0
+J15-3004_P02-1026_0
+P15-1148_P10-1110_2

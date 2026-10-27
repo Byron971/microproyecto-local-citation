@@ -77,3 +77,10 @@ W06-3121_P05-1066_0
 W15-4641_W14-4337_1
 P14-3013_P13-2054_1
 S15-2025_S13-1005_2
+# G1.1: 5 casos inspeccionados para diseñar la alineación TARGETCIT/ACL OCL.
+# Excluir del nuevo Test Gold independiente; conservar trazabilidad del uso en desarrollo.
+D15-1288_P09-2086_0
+P14-1048_P12-1007_0
+P14-1048_P12-1007_2
+W09-0704_E89-1009_0
+W15-2710_P11-1082_0

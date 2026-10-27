@@ -1,0 +1,6 @@
+context_id,split,estado_automatico,decision_humana,identidad_citada_confirmada,span_target_confirmado,oracion_correcta,revisor,fecha_utc,oracion_corregida,justificacion
+P14-1048_P12-1007_0,val,reconstruccion_candidata_revision_humana,,,,,,,,
+W09-0704_E89-1009_0,train,reconstruccion_candidata_revision_humana,,,,,,,,
+P14-1048_P12-1007_2,val,revision_manual,,,,,,,,
+D15-1288_P09-2086_0,test,revision_manual,,,,,,,,
+W15-2710_P11-1082_0,test,revision_manual,,,,,,,,
