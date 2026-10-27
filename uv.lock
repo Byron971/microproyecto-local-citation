@@ -2464,7 +2464,7 @@ research = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = "==0.141.1" },
-    { name = "modelo-citas", url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" },
+    { name = "modelo-citas", url = "https://cduquel-modelo-citas-maia.s3.us-east-1.amazonaws.com/modelo_citas-0.2.0-py3-none-any.whl" },
     { name = "openai", specifier = ">=3.16.2" },
     { name = "pydantic", specifier = ">=2,<3" },
 ]
@@ -2579,7 +2579,7 @@ wheels = [
 [[package]]
 name = "modelo-citas"
 version = "0.2.0"
-source = { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" }
+source = { url = "https://cduquel-modelo-citas-maia.s3.us-east-1.amazonaws.com/modelo_citas-0.2.0-py3-none-any.whl" }
 dependencies = [
     { name = "joblib" },
     { name = "numpy" },
@@ -2589,7 +2589,7 @@ dependencies = [
     { name = "scipy" },
 ]
 wheels = [
-    { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl", hash = "sha256:a04de33c977baf7d7b9acccadde87cae1fe2ff379593be6a849d34d7a25977f7" },
+    { url = "https://cduquel-modelo-citas-maia.s3.us-east-1.amazonaws.com/modelo_citas-0.2.0-py3-none-any.whl", hash = "sha256:c151abab68f7d8e90ecc015c5856ecd969d7609552646f40a5275982bf25d8ad" },
 ]
 
 [package.metadata]
