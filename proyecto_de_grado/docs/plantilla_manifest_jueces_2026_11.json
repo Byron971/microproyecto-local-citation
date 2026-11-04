@@ -52,5 +52,43 @@
     "Ambiguo",
     "No evaluable"
   ],
-  "qlora_responsible_person_reported": "Carlos; confirmación en mensaje del grupo; detalles técnicos pendientes"
+  "qlora_responsible_person_reported": "Carlos; confirmación en mensaje del grupo; detalles técnicos pendientes",
+  "jurado_declared": [
+    "QLoRA",
+    "Qwen 2.5 7B",
+    "Llama 3.1 8B"
+  ],
+  "jurado_discarded_reported": [
+    "Mistral 7B",
+    "Granite 8B",
+    "OLMo 7B"
+  ],
+  "commercial_references_reported": [
+    "Sonnet (versión sin verificar)",
+    "GPT (versión sin verificar)"
+  ],
+  "jurado_consensus_accuracy_reported": "93% en subconjunto con consenso triple contra Sonnet/GPT; cobertura pendiente",
+  "calibration_3_reported": {
+    "n": 20,
+    "citing_year": 2014,
+    "deadline": "2026-11-04",
+    "files_status": "SharePoint; pendientes de inspeccionar"
+  },
+  "test_gold_batch_1_reported": {
+    "n": 519,
+    "citing_year": 2015,
+    "allocation": "~208 por participante en parejas, según equipo",
+    "status": "distribuido, aún no adjudicado/verificado"
+  },
+  "pre2000_exclusion_reported": {
+    "n": 595,
+    "scope": "excluidas del Test Gold, no necesariamente de train; IDs pendientes"
+  },
+  "scibert_c1_labels_source": "2642 con función de 2700 originados en Claude Code/Haiku, 58 fuera; development split 2115 train/527 val",
+  "taxonomy_conflict_reported": {
+    "excel_basis": "fundamenta una afirmación o premisa",
+    "repo_basis": "base conceptual directa que sostiene la construcción del trabajo",
+    "repo_evidence": "respalda una afirmación/hipótesis/dato/decisión concreta",
+    "risk": "deriva Basis/Evidence en etiquetas de Haiku y modelos entrenados, aún sin medición"
+  }
 }
