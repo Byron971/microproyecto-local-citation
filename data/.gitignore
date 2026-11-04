@@ -1,3 +1,5 @@
 /raw
 /processed/*
 !/processed/dashboard_insights.json
+/jurado
+/dataset_funciones
