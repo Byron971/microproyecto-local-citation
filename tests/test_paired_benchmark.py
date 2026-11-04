@@ -142,8 +142,8 @@ def test_cli_provisional_end_to_end_with_synthetic_acl_test(tmp_path, monkeypatc
     fake_repo = tmp_path / "repo"
     manifest_dir = fake_repo / "proyecto_de_grado" / "anotacion"
     manifest_dir.mkdir(parents=True)
-    (manifest_dir / "ids_excluir_test_gold.txt").write_text("OLD-1\\n", encoding="utf-8")
-    (manifest_dir / "ids_piloto_historico_no_test_final.txt").write_text("OLD-2\\n", encoding="utf-8")
+    (manifest_dir / "ids_excluir_test_gold.txt").write_text("OLD-1\n", encoding="utf-8")
+    (manifest_dir / "ids_piloto_historico_no_test_final.txt").write_text("OLD-2\n", encoding="utf-8")
 
     raw = tmp_path / "raw"
     raw.mkdir()
@@ -163,9 +163,9 @@ def test_cli_provisional_end_to_end_with_synthetic_acl_test(tmp_path, monkeypatc
         (raw / (name + ".json")).write_text(json.dumps(entries), encoding="utf-8")
 
     gold_file, a, b = (tmp_path / x for x in ("gold_new.jsonl", "a.jsonl", "b.jsonl"))
-    gold_file.write_text(json.dumps(row) + "\\n", encoding="utf-8")
-    a.write_text(json.dumps(prediction("new-one", "Application")) + "\\n", encoding="utf-8")
-    b.write_text(json.dumps(prediction("new-one", "Application")) + "\\n", encoding="utf-8")
+    gold_file.write_text(json.dumps(row) + "\n", encoding="utf-8")
+    a.write_text(json.dumps(prediction("new-one", "Application")) + "\n", encoding="utf-8")
+    b.write_text(json.dumps(prediction("new-one", "Application")) + "\n", encoding="utf-8")
 
     original_audit = benchmark.inspect_gold
 
