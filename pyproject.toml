@@ -23,11 +23,11 @@ tablero = "src.app.main:run_backend"
 # necesitan model-package/, el dataset ni las dependencias de entrenamiento.
 #
 # Publicar una versión nueva del modelo: subir VERSION, entrenar, construir el
-# wheel, subirlo a s3://ceduque-modelo-citas-wheels/wheels/ y actualizar la URL
+# wheel, subirlo a s3://cduquel-modelo-citas-maia/ y actualizar la URL
 # de abajo junto con `uv lock`. Un wheel publicado nunca se sobrescribe: el hash
 # queda fijado en uv.lock y un cambio silencioso haría fallar la instalación.
 [tool.uv.sources]
-modelo-citas = { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" }
+modelo-citas = { url = "https://cduquel-modelo-citas-maia.s3.us-east-1.amazonaws.com/modelo_citas-0.2.0-py3-none-any.whl" }
 
 [build-system]
 requires = ["hatchling"]
