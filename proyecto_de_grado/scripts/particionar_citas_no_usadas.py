@@ -11,7 +11,7 @@ de tamaño casi igual (todos <= MAX_POR_SUBCONJUNTO).
 Cada subconjunto se escribe con las mismas columnas que ANOTACION_18000_CITAS_REALES.csv, de modo que
 en finetune_qlora_citas.ipynb basta con apuntar TARGET_CSV (y OUT_CSV / RUN_JSONL) al subconjunto.
 
-Uso (desde la raíz del repositorio):
+Uso (requiere data/raw/ descargado con DVC):
     python proyecto_de_grado/scripts/particionar_citas_no_usadas.py [--max 10000] [--seed 42]
 """
 import argparse
@@ -21,13 +21,15 @@ import math
 import random
 from pathlib import Path
 
-LW = Path("local_workflows")
-RAW = Path("data/raw")
-OUT = LW / "subconjuntos_qlora"
-YA_CLASIFICADAS = LW / "ANOTACION_18000_CITAS_REALES.csv"
-ENTRENAMIENTO = LW / "ANOTACION_UNICA_2700_CITAS_REALES_ANOTADO.csv"
-TEST_GOLD = Path("proyecto_de_grado/anotacion/test_gold/TEST_GOLD_2700_MANIFIESTO.csv")
-TALLER = Path("proyecto_de_grado/anotacion/ids_excluir_test_gold.txt")
+ROOT = Path(__file__).resolve().parents[2]   # raíz del repositorio
+
+QLORA = ROOT / "notebooks" / "qlora-training"
+RAW = ROOT / "data" / "raw"      # se obtiene con DVC
+OUT = QLORA / "subconjuntos_qlora"
+YA_CLASIFICADAS = QLORA / "ANOTACION_18000_CITAS_REALES.csv"
+ENTRENAMIENTO = QLORA / "ANOTACION_UNICA_2700_CITAS_REALES_ANOTADO.csv"
+TEST_GOLD = ROOT / "proyecto_de_grado/anotacion/test_gold/TEST_GOLD_2700_MANIFIESTO.csv"
+TALLER = ROOT / "proyecto_de_grado/anotacion/ids_excluir_test_gold.txt"
 COLS = ["N°", "context_id", "Contexto TARGETCIT", "Título citado", "Resumen citado",
         "¿Evaluable?", "Función principal", "Confianza", "Justificación / duda", "Estado"]
 
