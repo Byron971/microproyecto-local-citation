@@ -62,3 +62,11 @@ Pruebas sintéticas sin red: python -m pytest -q proyecto_de_grado/tests/test_au
 5. Fechas comunicadas por el equipo: 26 de noviembre informe de despliegue, 27 sustentación y 29 informe final (2026). Confirmarlas contra el cronograma oficial.
 
 No convertir metas, mensajes del grupo o archivos faltantes en resultados científicos demostrados.
+
+## Actualización 3 de noviembre: nueva evidencia del responsable
+
+Carlos confirmó en el grupo que **él realizó el fine-tuning QLoRA**. Declaró además que la anotación inicial de las 2.700 citas se organizó con **Claude Code y Sonnet 5.5**, que debía distribuir el Excel entre **subagentes Haiku 5.5**. El mensaje de orquestación proporcionado por él se transcribió, con la ruta personal redactada, en [evidencia_anotacion_2700_claude_code_2026_11.md](evidencia_anotacion_2700_claude_code_2026_11.md).
+
+Se conoce ahora el archivo de entrada **ANOTACION_UNICA_2700_CITAS_REALES.xlsx** en OneDrive y la solicitud de producir un CSV con cuatro columnas de anotación, tres estados de evaluabilidad y nueve clases. **No equivalen a datos auditados**: siguen sin aportar Excel y hoja Guia congelados, CSV final, IDs, logs de ejecución, mensajes reales a subagentes, respuestas a AskUserQuestion, parámetros y versión/snapshot de cada invocación. El ID público de las familias de modelo aparece en documentación del fabricante, pero no demuestra la configuración ejecutada.
+
+Por tanto se reemplaza el estado anterior **'identidad del ejecutor QLoRA desconocida'** por **'Carlos, confirmado por declaración'**, y **'modelo Haiku desconocido'** por **'Haiku 5.5 declarado, ejecución pendiente de comprobar'**. No se puede atribuir todavía la RTX 4070 Super a ese entrenamiento hasta recibir confirmación de hardware, ni contar esas 2.700 etiquetas automáticas como verificaciones humanas.
