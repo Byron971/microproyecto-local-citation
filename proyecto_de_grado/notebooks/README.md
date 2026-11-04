@@ -49,7 +49,8 @@ Prepara el trabajo de los cinco anotadores del equipo.
 
 - **Calibración 3:** 20 citas de 2014 (partición val), dos por clase y tres sin consenso, iguales para todos.
 - **Test Gold:** citas de 2015 (partición test), al azar por clase según el voto del jurado, en tres tandas fijadas desde el inicio: 519 (tope de 500 por clase), 441 (tope de 1.000) y 573 (tope de 2.000), en total 1.533. Cada cita la anota una pareja; con cinco personas hay diez parejas.
-- **A ciegas:** las hojas no muestran la etiqueta de ningún modelo. `clave_coordinador.csv` guarda el voto del jurado y no se comparte con los anotadores.
+- **A ciegas:** las hojas no muestran la etiqueta de ningún modelo. `clave_coordinador_v2.csv` guarda el voto del jurado y no se comparte con los anotadores.
+- **Versiones de las hojas:** el nombre lleva la versión (`TestGold_T1_v2_<Apellido>.xlsx`). La v1 se repartió el 3-nov a las 7:43 p. m.; la v2 reemplazó dos citas por las exclusiones posteriores y es la vigente.
 - **Exclusiones:** citas del taller de práctica y de las calibraciones anteriores (`../anotacion/`), las 200 citas con las que se escogió el jurado, y las exclusiones agregadas después (`ids_piloto_historico_no_test_final.txt` y G1.1), que se reemplazaron en la misma posición sin rehacer el orden.
 - **Traducción de apoyo:** contexto, título y resumen traducidos al español con GPT-6.1 Sol, verificando que se conserven las marcas TARGETCIT y OTHERCIT. Se decide con el texto original en inglés.
 - **Hojas:** una por anotador, con listas desplegables, estado de avance, guía rápida, definiciones de las 9 funciones y 41 ejemplos explicados del taller.
