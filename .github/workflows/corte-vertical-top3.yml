@@ -1,0 +1,38 @@
+name: Corte vertical Top3 de fragmentos
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/corte-vertical-top3-s2]
+    paths:
+      - "src/app/**"
+      - "tests/test_top3_corpus_real.py"
+      - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
+      - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
+      - "tests/test_top3_fragmentos.py"
+      - ".github/workflows/corte-vertical-top3.yml"
+  pull_request:
+    paths:
+      - "src/app/**"
+      - "tests/test_top3_corpus_real.py"
+      - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
+      - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
+      - "tests/test_top3_fragmentos.py"
+      - ".github/workflows/corte-vertical-top3.yml"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Instalar dependencias de la API y pruebas
+        run: uv sync --group dev
+      - name: Probar corte vertical sin inferencias externas
+        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py
+      - name: Verificar sintaxis JavaScript de la demo
+        run: node --check src/app/static/top3.js
