@@ -133,3 +133,57 @@ def test_cli_provisional_refuses_gold_outside_verified_split(tmp_path):
     ])
     assert rc == 2
     assert not (tmp_path / "results").exists()
+
+
+def test_cli_provisional_end_to_end_with_synthetic_acl_test(tmp_path, monkeypatch):
+    """Solo prueba infraestructura; no certifica un Gold científico."""
+    import src.evaluation.commercial.paired_benchmark as benchmark
+
+    fake_repo = tmp_path / "repo"
+    manifest_dir = fake_repo / "proyecto_de_grado" / "anotacion"
+    manifest_dir.mkdir(parents=True)
+    (manifest_dir / "ids_excluir_test_gold.txt").write_text("OLD-1\\n", encoding="utf-8")
+    (manifest_dir / "ids_piloto_historico_no_test_final.txt").write_text("OLD-2\\n", encoding="utf-8")
+
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    row = gold("new-one", "Application")
+    contexts = {
+        row["id"]: {
+            "citing_id": row["citing_id"],
+            "refid": row["cited_id"],
+            "masked_text": row["input"],
+        }
+    }
+    (raw / "contexts.json").write_text(json.dumps(contexts), encoding="utf-8")
+    for name in ("train", "val", "test"):
+        entries = [
+            {"context_id": row["id"], "positive_ids": [row["cited_id"]]}
+        ] if name == "test" else []
+        (raw / (name + ".json")).write_text(json.dumps(entries), encoding="utf-8")
+
+    gold_file, a, b = (tmp_path / x for x in ("gold_new.jsonl", "a.jsonl", "b.jsonl"))
+    gold_file.write_text(json.dumps(row) + "\\n", encoding="utf-8")
+    a.write_text(json.dumps(prediction("new-one", "Application")) + "\\n", encoding="utf-8")
+    b.write_text(json.dumps(prediction("new-one", "Application")) + "\\n", encoding="utf-8")
+
+    original_audit = benchmark.inspect_gold
+
+    def local_audit(gold_path, cases, *, raw_dir):
+        return original_audit(gold_path, cases, raw_dir=raw_dir, root=fake_repo)
+
+    monkeypatch.setattr(benchmark, "inspect_gold", local_audit)
+    output = tmp_path / "out"
+    rc = main([
+        "--gold", str(gold_file), "--predictions-a", str(a),
+        "--predictions-b", str(b), "--name-a", "entrada_A",
+        "--name-b", "entrada_B", "--factor", "input",
+        "--raw-dir", str(raw), "--output-dir", str(output), "--provisional",
+    ])
+    assert rc == 0
+    report = json.loads((output / "paired_summary_provisional.json").read_text(encoding="utf-8"))
+    assert report["status"] == "PROVISIONAL_NO_CERTIFICADO"
+    assert report["manifest"]["human_gold_certified"] is False
+    assert report["n_same_gold"] == 1
+    assert (output / "per_class_a.csv").exists()
+    assert (output / "per_class_b.csv").exists()
