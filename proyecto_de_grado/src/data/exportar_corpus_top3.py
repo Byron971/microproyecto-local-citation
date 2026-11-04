@@ -70,12 +70,15 @@ def _dividir_parrafo_sin_perdida(parrafo: dict) -> list[dict]:
     return fragmentos
 
 
-def fragmentar(parrafos: list[dict], *, dividir_parrafos_largos: bool = False) -> list[dict]:
+def fragmentar(parrafos: list[dict], *, dividir_parrafos_largos: bool = False,
+              segmentacion_oraciones: bool = False) -> list[dict]:
     """Hasta dos párrafos contiguos, una sección, máximo 300 palabras.
 
     Por defecto preserva la semántica y los IDs de S2.2/S2.3. En modo S2.4,
     divide solo párrafos largos en segmentos trazables y sin pérdida de texto.
     """
+    if segmentacion_oraciones and not dividir_parrafos_largos:
+        raise ValueError("segmentacion_oraciones requiere dividir_parrafos_largos=True")
     if not parrafos:
         raise ValueError("Articulo sin parrafos.")
     chunks = []
@@ -115,7 +118,12 @@ def fragmentar(parrafos: list[dict], *, dividir_parrafos_largos: bool = False) -
             raise ValueError("Parrafo demasiado largo: requiere division por oraciones.")
         if es_largo:
             cerrar()
-            for segmento in _dividir_parrafo_sin_perdida(p):
+            if segmentacion_oraciones:
+                from proyecto_de_grado.src.data.segmentacion_oraciones_s2_6 import dividir_parrafo_oraciones
+                segmentos = dividir_parrafo_oraciones(p, MAX_PALABRAS, MAX_CARACTERES)
+            else:
+                segmentos = _dividir_parrafo_sin_perdida(p)
+            for segmento in segmentos:
                 chunks.append({
                     "chunk_id": f"p{numero:05d}-s{segmento['segmento']:03d}",
                     "texto": segmento["texto"],
@@ -127,7 +135,8 @@ def fragmentar(parrafos: list[dict], *, dividir_parrafos_largos: bool = False) -
                         "end": segmento["char_fin"],
                     }],
                     "palabras": len(segmento["texto"].split()),
-                    "fragmentacion": "division_conservadora_palabras_v1",
+                    "fragmentacion": ("division_oraciones_v1" if segmentacion_oraciones
+                                      else "division_conservadora_palabras_v1"),
                 })
             continue
         if pendientes and (
