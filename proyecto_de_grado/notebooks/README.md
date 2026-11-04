@@ -37,6 +37,8 @@ Con el jurado QLoRA + Qwen + Llama, cuando los tres coinciden el acierto es 93 %
 
 κ de Fleiss entre los tres jueces: 0,356. Tres de tres de acuerdo: 5.227 citas; dos de tres: 9.349; sin consenso: 3.424 (fuera del dataset). De las 14.576 con consenso, 51 coinciden en Ambiguo (45) o No evaluable (6) y tampoco entran al dataset. Votos: Background 4.786, Application 3.104, Evidence 2.009, Comparison 1.909, Improvement / Modification 1.155, Gap 995, Basis 382, Further Reading 153, Identification of the Originator 32.
 
+La auditoría de las entradas y del consenso está en [`../docs/auditoria_jurado_v3.md`](../docs/auditoria_jurado_v3.md) y el dataset que sale del voto, con su brecha por clase, en [`../docs/dataset_funciones_v1.md`](../docs/dataset_funciones_v1.md).
+
 ### Particiones
 
 La columna `particion` de `jurado_18000_v3.csv` se calcula con el año del artículo citante. Cruzada contra las particiones oficiales de ACL-200 (`data/raw/{train,val,test}.json`) con `../scripts/cruzar_particiones_acl200.py`:

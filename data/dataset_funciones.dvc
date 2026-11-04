@@ -1,0 +1,6 @@
+outs:
+- md5: 604f3e75e549d5cb8762fd28b2a1a83e.dir
+  size: 1464609
+  nfiles: 1
+  hash: md5
+  path: dataset_funciones
