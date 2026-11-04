@@ -5,8 +5,8 @@
 ['remote "aws-remote"']
     url = s3://byron971-local-citation-dvcstore-20260817
 ['remote "caicedo"']
-    url = s3://caicedo-local-citation-dvcstore
+    url = s3://caicedo-local-citation-dvcstore-202611
 ['remote "publico"']
-    url = https://caicedo-local-citation-dvcstore.s3.amazonaws.com
+    url = https://caicedo-local-citation-dvcstore-202611.s3.amazonaws.com
 ['remote "ssh-team"']
     url = ssh://ubuntu@100.53.183.142/home/ubuntu/dvcstore
