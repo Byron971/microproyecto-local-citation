@@ -8,7 +8,7 @@ Reglas (ver propuesta, sección 4, y decisiones del proyecto de grado):
 - Muestreo estratificado por la pre-etiqueta del QLoRA solo para asegurar casos de las clases raras.
   La pre-etiqueta NO se entrega a los anotadores (va en el manifiesto).
 
-Uso (desde la raíz del repositorio):
+Uso (la ejecución desde cualquier directorio es válida):
     python proyecto_de_grado/scripts/construir_test_gold.py
 """
 import csv
@@ -16,13 +16,15 @@ import random
 from collections import Counter, defaultdict
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[2]   # raíz del repositorio
+
 SEED = 42
 N_TOTAL = 2700
-LW = Path("local_workflows")
-OUT = Path("proyecto_de_grado/anotacion/test_gold")
-PRE = LW / "ANOTACION_18000_CITAS_REALES_QLORA.csv"
-TRAIN = LW / "ANOTACION_UNICA_2700_CITAS_REALES_ANOTADO.csv"
-EXCL = Path("proyecto_de_grado/anotacion/ids_excluir_test_gold.txt")
+QLORA = ROOT / "notebooks" / "qlora-training"
+OUT = ROOT / "proyecto_de_grado/anotacion/test_gold"
+PRE = QLORA / "ANOTACION_18000_CITAS_REALES_QLORA.csv"
+TRAIN = QLORA / "ANOTACION_UNICA_2700_CITAS_REALES_ANOTADO.csv"
+EXCL = ROOT / "proyecto_de_grado/anotacion/ids_excluir_test_gold.txt"
 RARE = ["Further Reading", "Identification of the Originator", "Improvement / Modification", "Basis", "Gap"]
 CLUSTERS = ["Evidence", "Comparison", "Application", "Background"]
 
