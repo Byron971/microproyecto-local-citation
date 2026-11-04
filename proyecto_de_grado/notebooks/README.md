@@ -37,6 +37,19 @@ Con el jurado QLoRA + Qwen + Llama, cuando los tres coinciden el acierto es 93 %
 
 κ de Fleiss entre los tres jueces: 0,356. Tres de tres de acuerdo: 5.227 citas; dos de tres: 9.349; sin consenso: 3.424 (fuera del dataset). De las 14.576 con consenso, 51 coinciden en Ambiguo (45) o No evaluable (6) y tampoco entran al dataset. Votos: Background 4.786, Application 3.104, Evidence 2.009, Comparison 1.909, Improvement / Modification 1.155, Gap 995, Basis 382, Further Reading 153, Identification of the Originator 32.
 
+### Particiones
+
+La columna `particion` de `jurado_18000_v3.csv` se calcula con el año del artículo citante. Cruzada contra las particiones oficiales de ACL-200 (`data/raw/{train,val,test}.json`) con `../scripts/cruzar_particiones_acl200.py`:
+
+| Por año (cuaderno) | En la partición oficial | Fuera de las particiones oficiales |
+|---|---|---|
+| train (2000-2013): 11.758 | 8.150 | 3.608 (3.518 de 2000-2008 y 90 de 2009-2013) |
+| val (2014): 2.853 | 2.798 | 55 |
+| test (2015): 2.794 | 2.794 | 0 |
+| anterior_2000: 595 | 0 | 595 |
+
+Las citas que están fuera de las particiones oficiales vienen de `contexts.json`. No están en val ni en test, así que pueden usarse para entrenar sin fuga, pero deben reportarse aparte de la partición train oficial.
+
 ### Historia de versiones
 
 1. **v1** (`jueces_llama_mistral_v1.ipynb`): Llama 3.1 8B y Mistral 7B con definiciones cortas y un solo orden de opciones. κ de Fleiss −0,014 con el QLoRA. El diagnóstico mostró que Llama elegía por posición (al invertir las opciones cambiaba de etiqueta en 15 de 22 citas) y que Mistral asignaba casi todo a Comparison o Evidence.
@@ -57,6 +70,7 @@ Prepara el trabajo de los cinco anotadores del equipo.
 - **Traducción de apoyo:** contexto, título y resumen traducidos al español con GPT-6.1 Sol, verificando que se conserven las marcas TARGETCIT y OTHERCIT. Se decide con el texto original en inglés.
 - **Hojas:** una por anotador, con listas desplegables, estado de avance, guía rápida, definiciones de las 9 funciones y 41 ejemplos explicados del taller. En las hojas T1 v2 la columna Estado no exige justificación en las filas Evaluable, aunque la guía rápida sí la pide; desde la tanda 2 la fórmula también la exige.
 - **Reproducible:** semilla 2026; con los mismos archivos de entrada se obtiene la misma asignación.
+- **Verificado contra ACL-200:** las 1.533 citas de las tres tandas son únicas y todas están en la partición test oficial; las 20 de la calibración están en val. Ningún artículo citante del Test Gold aparece en las 2.700 citas con que se entrenó el QLoRA.
 
 ## Requisitos para correrlos
 
