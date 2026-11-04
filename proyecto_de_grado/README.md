@@ -1,5 +1,6 @@
 # Proyecto de grado — Recomendación local de citas y clasificación de su función
 
+> **Actualización de coordinación al 3-nov-2026:** el cuadro histórico de esta página corresponde al corte del 7 de octubre, no al estado del proyecto a noviembre. Para el cierre actual consultar [Auditoría y plan de trabajo 4–29 de noviembre](docs/cierre_integrado_2026_11.md), [evidencia jurado/calibración/Gold](docs/evidencia_jurado_calibracion_gold_2026_11.md) y los PR #89/#90/#91. Los experimentos comunicados por el equipo aún requieren auditoría de archivos de entrada/salida; los cambios de esta rama no están fusionados en main.\n\n
 Esta carpeta reúne los avances del **proyecto de grado** del Grupo 19 (Tema 1), que se desarrolla en el curso *Proyecto: Despliegue de Soluciones* con la profesora Haydemar Núñez. Está separada del microproyecto que ocupa el resto del repositorio, que ya fue entregado y calificado en el curso anterior. Lo que se reutiliza de ese trabajo, como los datos de ACL-200 versionados con DVC y el piloto de anotación, se lee desde su ubicación original y no se duplica.
 
 **Integrantes:** Carlos Eduardo Duque Lugo, John Byron Arias Sanz, Gabriel Gustavo Pinzón Páez, José María Zambrana Arze, Carlos Alfredo Caicedo Bermúdez.
