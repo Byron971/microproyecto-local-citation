@@ -12,7 +12,7 @@
 
 - Entrada total: 18.000; 3/3 consenso: 5.227; 2/3 consenso: 9.349; sin consenso: 3.424; κ de Fleiss comunicado: 0,356.
 - Cobertura con al menos 2/3: **14.576/18.000 = 80,98 %**. Los votos agregados entre nueve categorías suman **14.525**, faltan 51 registros con consenso no distribuido entre las nueve (posibles estados de abstención; comprobar en `jurado_18000_v3.csv`).
-- Distribución reportada: Background 4.786; Application 3.104; Evidence 2.009; Comparison 1.909; Improvement/Modification 1.155; Gap 995; Basis 382; Further Reading 153; Identification of the Originator 32. La meta de 2.000 **por cada una de nueve clases** claramente **no está alcanzada** en siete categorías y precisa estrategia/aceptación metodológica.
+- Distribución reportada: Background 4.786; Application 3.104; Evidence 2.009; Comparison 1.909; Improvement/Modification 1.155; Gap 995; Basis 382; Further Reading 153; Identification of the Originator 32. La meta de 2.000 **por cada una de nueve clases** claramente **no está alcanzada** en seis categorías y precisa estrategia/aceptación metodológica.
 - Muestra de desarrollo para escoger jurado: 200; referencias Sonnet/GPT coincidieron en 164 (82 %, κ 0,757 comunicado). Acierto 93 % **condicionado a coincidencia triple** en 55 casos, y 71 % condicionado a coincidencia doble en 82; no son exactitud global ni Gold humano. Al seleccionar los jueces en estas mismas 200 citas, estos porcentajes pueden ser optimistas.
 - README PR #91 describe Sonnet modelo `claude-sonnet-5-5` y GPT modelo `gpt-6.1-sol` como referencias de desarrollo, no Gold. Los ID exactos se ven en celdas del notebook; verificar ejecuciones/metadata.
 
@@ -88,3 +88,10 @@
 - `proyecto_de_grado/docs/evidencia_anotacion_2700_claude_code_2026_11.md`, `proyecto_de_grado/docs/evidencia_jurado_calibracion_gold_2026_11.md`: relatos del equipo, todavía pendientes de corroboración con originales.
 
 **Prohibido confundir:** «corrida documentada en notebook» con «salidas reproducidas»; «hojas preparadas» con «Gold anotado»; «acuerdo entre modelos» con «acierto frente a humanos»; «TF-IDF artículos desplegado» con «tesis C1/C2 desplegada».
+
+## Correcciones adicionales detectadas en la lectura estática del PR #91
+
+- **Inconsistencia documental de calibración 3:** el README dice «dos por clase y tres sin consenso» para 20 citas. Dos por cada una de las 9 clases son 18, por lo que solo caben **2** sin consenso. El código `muestrear_calibracion` calcula `N_CALIBRACION-len(elegidas)`, es decir 2 cuando las nueve categorías están disponibles. Corregir README/criterio del muestreo antes del informe.
+- **Definición de fin de hoja Excel:** en `formula_estado`, una fila Evaluable se marca COMPLETO al tener función y confianza aunque `Justificación / duda` permanezca vacía, contradiciendo la guía que exige explicar cada etiqueta. Corregir y probar antes de distribuir hojas futuras sin sobrescribir las ya completadas.
+- **Cuotas científicas:** de nueve clases, **seis** tienen menos de 2.000 votos: Comparison 1.909, Improvement 1.155, Gap 995, Basis 382, Further Reading 153 e Identification of Originator 32. Evidence 2.009 supera la cuota numérica, pero aún necesita controlar calidad. El 15 % de 14.525 es 2.179, 646 más que 1.533 planificados; el 15 % de 18.000 es 2.700, 1.167 más.
+- **CI:** workflow de pruebas unitarias superado en ramas de auditoría y cuadernos según GitHub Actions; ello no reproduce GPU/Colab, descargas ni resultados de los 18.000. Solicitar los CSV/manifiestos reales.
