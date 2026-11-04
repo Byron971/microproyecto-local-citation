@@ -14,7 +14,6 @@ on:
       - "tests/test_paired_benchmark.py"
       - "tests/test_providers*.py"
       - "tests/test_annotation.py"
-      - "tests/test_paired_benchmark.py"
       - "tests/test_build_citation_function_pilot.py"
       - "config/prompts/citation_function_prompts.json"
       - ".github/workflows/evaluacion-citas.yml"
