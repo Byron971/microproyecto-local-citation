@@ -8,7 +8,7 @@
   "selection_ids_sha256": null,
   "total_selected": null,
   "split_counts": null,
-  "haiku_provider": null,
+  "haiku_provider": "Anthropic / Claude Code (según declaración del responsable; sin logs)",
   "haiku_model_id_exact": null,
   "haiku_model_version_or_resolution_date": null,
   "haiku_prompt_path": null,
@@ -34,5 +34,23 @@
   "jueces_consensus_coverage": null,
   "jueces_consensus_agreement": null,
   "gold_test_ids_sha256": null,
-  "gold_annotators_and_adjudication_protocol": null
+  "gold_annotators_and_adjudication_protocol": null,
+  "haiku_model_declared": "Claude Haiku 5.5; ID público claude-haiku-5-5 aún sin confirmar en logs",
+  "haiku_orchestrator_model_declared": "Claude Sonnet 5.5; ID público claude-sonnet-5-5 aún sin confirmar en logs",
+  "haiku_orchestrator_prompt_path": "proyecto_de_grado/docs/evidencia_anotacion_2700_claude_code_2026_11.md",
+  "haiku_subagent_prompts_path": null,
+  "haiku_source_workbook_filename": "ANOTACION_UNICA_2700_CITAS_REALES.xlsx (OneDrive; versión/hash pendientes)",
+  "haiku_source_workbook_guide_sheet": "Guia (contenido/snapshot no aportados)",
+  "haiku_required_output_columns": [
+    "¿Evaluable?",
+    "Función principal",
+    "Confianza",
+    "Justificación / duda"
+  ],
+  "haiku_evaluability_values": [
+    "Evaluable",
+    "Ambiguo",
+    "No evaluable"
+  ],
+  "qlora_responsible_person_reported": "Carlos; confirmación en mensaje del grupo; detalles técnicos pendientes"
 }
