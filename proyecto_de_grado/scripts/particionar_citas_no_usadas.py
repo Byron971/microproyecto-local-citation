@@ -4,7 +4,7 @@ Universo: data/raw/contexts.json (+ títulos/resúmenes de data/raw/papers.json)
 Se excluyen (por context_id):
   - las 18.000 ya clasificadas (incluyen el test gold de 2.700),
   - las 2.700 de entrenamiento,
-  - el test gold (por si no estuviera en las 18.000) y los casos del taller.
+  - los casos del taller.
 El resto se baraja con semilla fija y se reparte en K = ceil(N / MAX_POR_SUBCONJUNTO) subconjuntos
 de tamaño casi igual (todos <= MAX_POR_SUBCONJUNTO).
 
@@ -28,7 +28,6 @@ RAW = ROOT / "data" / "raw"      # se obtiene con DVC
 OUT = QLORA / "subconjuntos_qlora"
 YA_CLASIFICADAS = QLORA / "ANOTACION_18000_CITAS_REALES.csv"
 ENTRENAMIENTO = QLORA / "ANOTACION_UNICA_2700_CITAS_REALES_ANOTADO.csv"
-TEST_GOLD = ROOT / "proyecto_de_grado/anotacion/test_gold/TEST_GOLD_2700_MANIFIESTO.csv"
 TALLER = ROOT / "proyecto_de_grado/anotacion/ids_excluir_test_gold.txt"
 COLS = ["N°", "context_id", "Contexto TARGETCIT", "Título citado", "Resumen citado",
         "¿Evaluable?", "Función principal", "Confianza", "Justificación / duda", "Estado"]
@@ -55,7 +54,6 @@ def main():
     excluidas = {
         "ya clasificadas (18.000)": ids_csv(YA_CLASIFICADAS),
         "entrenamiento (2.700)": ids_csv(ENTRENAMIENTO),
-        "test gold (2.700)": ids_csv(TEST_GOLD),
         "taller": ids_txt(TALLER),
     }
     usadas = set().union(*excluidas.values())
