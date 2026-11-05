@@ -1,0 +1,54 @@
+name: Gate de entrega final y evidencia verificable
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/validar_paquete_entrega.py"
+      - "config/entrega_despliegue.example.json"
+      - "tests/test_validar_paquete_entrega.py"
+      - "docs/paquete_entrega_john_119.md"
+      - ".github/workflows/paquete-entrega.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/validar_paquete_entrega.py"
+      - "config/entrega_despliegue.example.json"
+      - "tests/test_validar_paquete_entrega.py"
+      - "docs/paquete_entrega_john_119.md"
+      - ".github/workflows/paquete-entrega.yml"
+
+jobs:
+  audit-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar
+        uses: actions/checkout@v4
+      - name: Python base
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Instalar pytest sin acceso a proveedores
+        run: python -m pip install pytest
+      - name: Ejecutar validaciones del release gate
+        run: python -m pytest -q tests/test_validar_paquete_entrega.py
+      - name: Generar borrador auditable de entrega
+        run: |
+          python scripts/validar_paquete_entrega.py \
+            --manifest config/entrega_despliegue.example.json \
+            --output-dir artifacts/entrega-provisional
+      - name: Confirmar que modo estricto BLOQUEA una entrega aún incompleta
+        run: |
+          if python scripts/validar_paquete_entrega.py \
+               --manifest config/entrega_despliegue.example.json \
+               --output-dir artifacts/entrega-provisional --strict; then
+            echo "ERROR: El gate aceptó falsamente una entrega sin URL externa."
+            exit 1
+          fi
+          echo "CORRECTO: la entrega sin URL verificada quedó bloqueada."
+      - name: Conservar borrador y auditoría sin datos sensibles
+        uses: actions/upload-artifact@v4
+        with:
+          name: borrador-paquete-entrega-no-final
+          path: artifacts/entrega-provisional
+          if-no-files-found: error
