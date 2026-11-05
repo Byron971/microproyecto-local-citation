@@ -13,10 +13,8 @@ from src.app.corpus_adapter import CorpusError
 
 
 def test_liveness_is_independent_of_model():
-    with TestClient(main.app, raise_server_exceptions=False) as client:
-        # La app real puede iniciar con el wheel cuando se usa lifespan;
-        # la ruta viva se prueba sin forzar siquiera esa carga.
-        assert client.get("/api/salud/viva").json() == {"estado": "vivo"}
+    # Se omite startup: liveness no debe depender del wheel ni de insights.
+    assert TestClient(main.app).get("/api/salud/viva").json() == {"estado": "vivo"}
 
 
 def test_readiness_is_503_before_model_and_insights(monkeypatch):
