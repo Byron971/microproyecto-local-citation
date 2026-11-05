@@ -1,6 +1,6 @@
 # Plan de cierre de rúbricas y distribución de issues — 4 de noviembre de 2026
 
-Estado: **auditoría de evidencias y hoja de ruta**, no certificación de entrega. Reparto actualizado 5-nov-2026.  
+Estado: **auditoría de evidencias y hoja de ruta**, no certificación de entrega.  
 Repo: https://github.com/Byron971/microproyecto-local-citation  
 Revisión de docente: `proyecto_de_grado/docs/retroalimentacion_propuesta_V3.md` (rama `feature/s2-5-homologacion-fuentes`).  
 Control de integración: #111 y PR #89–#92.
@@ -17,7 +17,7 @@ Control de integración: #111 y PR #89–#92.
 - **Datos 11/20 (−9):** documentar resolución de pares, cobertura real, splits por año del *citante*, viabilidad de 2.000 ejemplos de cada una de nueve clases, expansión si faltan. Issue #125.
 - **Metodología 12/15 (−3):** homologación entre ACL-200/ACL OCL y otras fuentes sin confundir unidades ni licencias; ablación de sección como predictor espurio, incluida sección barajada. Issues #125 y #128.
 - **Evaluación 8/10 (−2):** definir Gold humano por (contexto, chunk) y fórmulas denominadas Hit@3/Recall@3/MRR@3 (no es Gold de papers). Issue #127.
-- **Objetivos 10/10 con observación:** un solo verbo principal por objetivo. Verificar redacción final en informes #126 y #112.
+- **Objetivos 10/10 con observación:** un solo verbo principal por objetivo. **Verificar en el artículo final #112**; el informe de avance #126 fue entregado el 25-oct según el equipo y solo requiere reentrega si Haydemar la solicita.
 - Problemática, estado del arte y ética bien evaluados en V3 no eximen actualizar fuentes ni someter a nueva revisión.
 
 ## Hallazgos críticos según archivos/PR inspeccionados (NO confundir con métricas finales)
@@ -27,7 +27,7 @@ Control de integración: #111 y PR #89–#92.
 | Falta balance en Gap 1.005, Basis 1.618, Comparison 91, Improvement/Modification 845, Originator 1.968, Further Reading 1.847; faltante conjunto 7.374 | `dataset_funciones_v1.md`, PR #91 | #95, #125; no afirmar 18.000 balanceadas |
 | Gold propuesto de 519+441+573=1.533 (8,52% de 18.000). Mínimo humano 15% de 18.000 sería 2.700, sin confundirse con hoja de 2.700 **preetiquetada** | PR #91 y #92, #111, propuesta | #97–#100 y #127; reconciliar un solo Gold canónico |
 | PR #91 y #92 proponen manifiestos Gold distintos, muchos archivos aún sin certificación humana; no usar materiales antiguos | #111 | #100, #111 |
-| Diferenciar entrada de SciBERT **A (contexto+título/abstract)** vs **B (contexto+Top-3/sección)** de origen etiquetas **Haiku** vs **Jurado**. Son dos factores; faltaría control sección barajada | Propuesta A4, #103, comentario docente | #103, #104, #128; PR #124 corregido |
+| **A4 requiere SciBERT Y SPECTER**, ambos con entrada **A (contexto+título/abstract)** y **B (contexto+Top-3/sección)**. Fuentes Haiku/jurado son un **tercer factor separado**, no nombres A/B. Requiere controles de sección | Propuesta A4, #103, comentario docente | #103, #104, #128; no declarar SPECTER ejecutado sin checkpoint/pruebas |
 | Baseline BM25 en PR #90 (pendiente en main) y módulo denso SciBERT S2.8 en rama de investigación; no equivalen a servicio final integrado | PR #84, #90, módulos SciBERT | #101, #102, #107, #116 |
 | Código de `gold_policy.py` en main advierte que el piloto de 20 casos no es Gold final y que pasar checks de forma no certifica anotación | `src/evaluation/commercial/gold_policy.py` | #98–#100, #109 |
 | No hay evidencia verificada aquí de benchmark final F1 sobre Gold adjudicado, Top-3 Recall/MRR con juicio humano ni URL externa real | #111, archivos revisados | #110, #116, #119, #127 |
@@ -85,11 +85,11 @@ No marcar cumplimiento basado en documentos vacíos, un PR abierto, notebooks si
 |---|---|---|
 | Problema 10 | contexto, pregunta, contribución verificable y objetivo de una acción | #112 #120 |
 | Estado del arte 10 | revisión crítica reciente, comparación de métodos y referencias de origen | #108 |
-| Metodología 30 | arquitectura, corpus, anotación independiente, jurado, dos factores SciBERT, modelos comerciales, despliegue | #93–#109 #113 #125 #127 #128 |
+| Metodología 30 | arquitectura, corpus, anotación, jurado, **SciBERT y SPECTER A/B**, origen etiquetas separado, modelos comerciales, despliegue | #93–#109 #113 #125 #127 #128 |
 | Resultados 15 | F1 por clase/Macro/Micro, confusión, BM25 vs SciBERT con Gold, costo y latencia | #102 #106 #110 #127 |
 | Discusión 15 | error analysis, sesgos, falsos acuerdos, limitaciones y amenazas a validez | #111 #114 #128 |
 | Conclusiones 10 | responde objetivos con cifras soportadas y trabajo futuro factible | #112 #114 |
-| Calidad 10 | formato, máximo 12, abstract 200–300 palabras, citas completas, tablas, atribución de IA | #108 #115 #112 |
+| Calidad 10 | formato, máximo 12, abstract 200–300 palabras, **un verbo principal por objetivo**, referencias/IA explícitas (el equipo reporta 0/5 en el avance), tablas | #108 #115 #112 |
 
 ## Matriz del despliegue y sustentación
 - **35/100 funcionamiento:** #107 #116 #119 — endpoint real, modelo real, URL accesible desde fuera y fallos controlados.
@@ -100,7 +100,7 @@ No marcar cumplimiento basado en documentos vacíos, un PR abierto, notebooks si
 
 ## Puertas de calidad y orden
 **P0 / obligatorio antes de presentar resultados finales:** resolver diferencias PR #91/#92, balance real o justificar incumplimiento, guía de doble anotación, Gold canónico de 9 funciones, Gold de chunks, splits limpios y datasets con hash.  
-**P1 / evidencia experimental:** implementar y validar SciBERT A/B entrada, Haiku/jurado labels, ablations de sección; benchmark sobre mismo Gold, métricas/semillas/latencia/recursos.  
+**P1 / evidencia experimental:** implementar y validar SciBERT-A/B y **SPECTER-A/B** (enunciado A4), comparación independiente Haiku/jurado y ablaciones de sección; benchmark sobre mismo Gold, métricas/semillas/latencia/recursos.  
 **P2 / integración:** API + interfaz verdaderamente operativa y documentada, Docker/CI, entregable de enlaces verificables.  
 **P3 / publicación:** informe avance 8 páginas, artículo 12 páginas, sustentación ensayada; cada tabla y afirmación vinculada a archivo, commit, run y responsable.
 
@@ -118,3 +118,9 @@ No marcar cumplimiento basado en documentos vacíos, un PR abierto, notebooks si
 
 ## Riesgo residual
 La rúbrica y la asignación están cubiertas en el **plan**, pero alcanzar 100 depende de resultados reales, cumplimiento de muestra humana, calidad de experimentos, revisión docente y funcionamiento observable. Este documento no declara cumplimiento ni sustituye evaluación académica.
+
+## Coordinación del equipo (5-nov-2026)
+- **PR #134** del responsable Caicedo corresponde a #125: cobertura del corpus y respuestas a Haydemar. Está abierto, **no duplicar el informe**; revisar evidencia y pruebas antes de cerrar #125.
+- **Issue #126:** el equipo afirma entrega el 25-oct. Solicitar comprobante y confirmar si se pide reentrega; si no, cerrarlo como histórico y concentrar correcciones de objetivos en #112.
+- **A4:** el #103 asignado a @CarlosEdDL debe contener cuatro corridas SciBERT/SPECTER × entrada A/B; no confundir esta matriz con la fuente Haiku/Jurado.
+- **Puntos vulnerables de Gabriel:** #105 comerciales zero/few-shot; #108 referencias y declaración de IA (0/5 reportado por equipo); #107 y #121 selector de modelos real en demo. La cuenta @guspi123 debe adquirir permiso write antes de ser CODEOWNER.
