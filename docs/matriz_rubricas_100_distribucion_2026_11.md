@@ -48,7 +48,7 @@ Este reparto **sustituye la distribución inicial de 35 issues** (31 issues #93�
 | **Carlos Eduardo Duque** (@CarlosEdDL) | #101 #102 #103 #104 #106 #113 #128 | **7** | Encoder SciBERT/SPECTER y A/B, reproducibilidad, métricas/latencia; aporta a integración de modelos y no asume el despliegue |
 | **Gabriel Gustavo Pinzón** (@guspi123) | #105 #108 **#114** #115 #117 #121 #122 | **7** | Cede #107 a José y recibe discusión editorial #114. Coordina demos/sustentación #121, UX como revisor de #107, referencias/IA y README. **Sin asignación técnica hasta tener write** |
 
-Total = **36 issues, distribuidos 7/8/7/7/7**. La cantidad es solo indicador de cobertura; la equidad también considera trabajo/horas: IaC y API de José, entrenamiento de Duque y anotación del Gold son más exigentes que una tarea documental. No obligar a José a etiquetar solo los Gold: los cinco deben anotar y se necesita un adjudicador independiente. El issue #126 no debe generar nueva carga si la entrega quedó cerrada.
+**Equidad y carga pendiente verificada (5-nov):** hay **36 issues distintos**, de los cuales **4 (#93–#96 de Caicedo) ya estaban cerrados** y **32 siguen abiertos**. El reparto principal nominal es 7/8/7/7/7, pero eso ocultaba una desigualdad del trabajo abierto. Para compensar, **Caicedo figura además como co-assignee operativo en #98, #99 y #127**, conservando José la coordinación científica. El reparto de participaciones en issues ABIERTOS queda **John 7, Caicedo 7 (4 propios + 3 compartidos), José 7 (incluye 3 compartidos), Duque 7 y Gabriel 7 nominales (sin write para asignación técnica)**. **Los 32 issues no se convierten en 35:** hay tres asignaciones compartidas contadas dos veces. Esta es equidad por distribución formal, **no igualdad de horas**: IaC/API, entrenamiento de encoders y Gold humano requieren coordinación detallada; anotaciones ciegas se reparten entre los cinco y necesitan adjudicador independiente. El #126 se reportó entregado y no debe provocar trabajo redundante sin solicitud docente.
 
 **Transferencias formalizadas:**
 - #116: John → José (John sigue revisor técnico de PR #130/#131 y lleva #119).
@@ -57,6 +57,7 @@ Total = **36 issues, distribuidos 7/8/7/7/7**. La cantidad es solo indicador de 
 - #100: José → John (José sigue consultor de adjudicación).
 - #114: José → Gabriel (José sigue revisor de discusión y análisis).
 - #137: nuevo, IaC / GitHub Actions → José (complementa #116, no los duplica).
+- #98, #99, #127: José mantiene metodología, **Caicedo se añadió como co-responsable operativo** para repartir anotación/consenso/Gold de chunks y dejar libre la prioridad P0 del prototipo.
 
 **Acceso GitHub (comprobación 5-nov):** @guspi123 muestra **`read`**, por lo que no se puede guardar como `assignee` ni reconocerlo como CODEOWNER. La asignación a #114 queda **nominal** en el cuerpo hasta que admin conceda `write`; los otros cuatro usuarios ya están formalmente asignados. **El admin debe invitar/cambiar permisos y esperar aceptación**, y luego actualizar `.github/CODEOWNERS` y asignar los siete issues de Gabriel. No publicar «Gabriel tiene write» hasta verificarlo.
 
