@@ -114,6 +114,8 @@ def smoke(api: str, dashboard: str, timeout: float, check_ingress_limit: bool = 
     _expect(b"<html" in html.lower(), "El dashboard no devuelve HTML")
     _, html_top3 = check("interfaz_top3", dashboard, "/static/top3.html")
     _expect(b"capacidades-servicio" in html_top3, "La interfaz no informa disponibilidad real")
+    _, css = check("css_top3", dashboard, "/static/top3.css")
+    _expect(len(css) > 100, "El dashboard no sirve estilos CSS Top-3")
     _, js = check("js_top3", dashboard, "/static/top3.js")
     _expect(b"/api/capacidades" in js, "El JavaScript no consulta capacidades del backend")
 
