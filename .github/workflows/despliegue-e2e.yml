@@ -6,6 +6,7 @@ on:
     paths:
       - "src/app/**"
       - "tests/test_deployment_contract.py"
+      - "tests/test_smoke_despliegue.py"
       - "scripts/smoke_despliegue.py"
       - "Dockerfile"
       - "Dockerfile.dashboard"
@@ -46,6 +47,7 @@ jobs:
         run: |
           uv run pytest -q \
             tests/test_deployment_contract.py \
+            tests/test_smoke_despliegue.py \
             tests/test_app_settings.py \
             tests/test_top3_fragmentos.py \
             tests/test_top3_corpus_real.py
