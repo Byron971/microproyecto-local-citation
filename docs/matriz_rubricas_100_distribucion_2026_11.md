@@ -1,6 +1,6 @@
 # Plan de cierre de rúbricas y distribución de issues — 4 de noviembre de 2026
 
-Estado: **auditoría de evidencias y hoja de ruta**, no certificación de entrega.  
+Estado: **auditoría de evidencias y hoja de ruta**, no certificación de entrega. Reparto actualizado 5-nov-2026.  
 Repo: https://github.com/Byron971/microproyecto-local-citation  
 Revisión de docente: `proyecto_de_grado/docs/retroalimentacion_propuesta_V3.md` (rama `feature/s2-5-homologacion-fuentes`).  
 Control de integración: #111 y PR #89–#92.
@@ -34,20 +34,38 @@ Control de integración: #111 y PR #89–#92.
 | La propuesta exige validación humana del 15% y no overlap por documentos/par; algunos controles de split están en ramas, sin integración final | propuesta y #111 | #96, #100, #109 |
 | Reproducibilidad de QLoRA, parámetros, dependencia GPU, huellas/modelos/prompt Haiku y 595 exclusiones antiguas pendientes de auditoría | PR #89–#92, #111 | #93, #104, #111 |
 
-## Distribución de 35 issues por responsable principal (7 por persona)
-El responsable coordina entrega y PR, pero las revisiones y anotaciones se realizan entre varios. Los 31 issues #93–#123 se conservaron; se añadieron #125–#128 para cerrar huecos. El PR #124 no es issue.
+## Distribución actual de 36 issues principales por responsable — 5 de noviembre de 2026
 
-| Integrante | Issues (7) | Enfoque |
-|---|---|---|
-| John Byron Arias Sanz @Byron971 | #109 #110 #111 #112 #116 #118 #119 | protocolo/benchmark, merge y PR, artículo final, API/seguridad/QA |
-| Carlos Alfredo Caicedo Bermúdez @CaicedoBz | #93 #94 #95 #96 #120 #125 #126 | jurado/dataset/anti-leakage, fuente y viabilidad, avance de 8 páginas, relato |
-| José María Zambrana Arze @josezambrana | #97 #98 #99 #100 #114 #123 #127 | Gold de clases, Gold de chunks, acuerdo humano, discusión y ensayos |
-| Carlos Eduardo Duque Lugo @CarlosEdDL | #101 #102 #103 #104 #106 #113 #128 | SciBERT recuperación y clasificador, eficiencia, metodología y ablations |
-| Gabriel Gustavo Pinzón Páez (**login GitHub no verificado**) | #105 #107 #108 #115 #117 #121 #122 | APIs comerciales, interfaz, referencias, formato, README, demo y diseño |
+Este reparto **sustituye la distribución inicial de 35 issues** (31 issues #93–#123, cuatro #125–#128 y el nuevo #137 IaC). No confundir los códigos conceptuales **ISSUE 04, 09–12, 17, 18** del plan original con números de GitHub (por ejemplo, GitHub #4 es de MLflow, NO el despliegue).
 
-**Asignación técnica real:** las cuatro cuentas verificadas aparecen como `assignees` en sus issues. Gabriel consta como responsable nominal en el cuerpo de los siete issues; su asignación de GitHub queda pendiente de conocer su usuario, sin inventar identidad.
+**Petición de José María:** priorizar hasta el fin de semana el despliegue Docker/IaC y Actions (conceptual ISSUE 04 → GitHub #116 y nuevo #137), el demostrador interactivo (conceptual ISSUE 17 → #107), y conexión frontend/API (conceptual ISSUE 18 → #107 y #116). La demo de sustentación #121 la coordina Gabriel en lo visual y José la opera técnicamente.
 
-**Advertencia de equidad:** siete issues por integrante no implican idénticas horas. Revisar horas de anotación humana, experimentos GPU, implementación y edición en la reunión de equipo. Los cinco deben contribuir con evidencia de commits/PR; José no debe etiquetar en solitario 2.700 casos ni todos los chunks.
+| Integrante | Issues bajo responsabilidad principal | Cantidad | Observación de capacidad |
+|---|---|---:|---|
+| **John Byron** (@Byron971) | #100 #109 #110 #111 #112 #118 #119 | **7** | Conserva metodología, Gold congelado, artículo, parametrización y QA. PR #130/#131 fueron desarrollados por John, José continúa la implementación desde ellos, no los duplica |
+| **Carlos Alfredo Caicedo** (@CaicedoBz) | #93 #94 #95 #96 **#97** #120 #125 #126 | **8** | Recibe la auditoría de la tanda Gold #97; #125 tiene PR #134; #126 fue entregado el 25-oct según el equipo, pendiente comprobar si se solicita reentrega |
+| **José María Zambrana** (@josezambrana) | #98 #99 **#107 #116** #123 #127 **#137** | **7** | Prioridad P0 #137 IaC/Actions, #116 plataforma y #107 prototipo. Mantiene guía/anotación y acuerdo humano (#98/#99) y Gold de chunks (#127) con ejecución distribuida entre los cinco; #123 ensayo compartido |
+| **Carlos Eduardo Duque** (@CarlosEdDL) | #101 #102 #103 #104 #106 #113 #128 | **7** | Encoder SciBERT/SPECTER y A/B, reproducibilidad, métricas/latencia; aporta a integración de modelos y no asume el despliegue |
+| **Gabriel Gustavo Pinzón** (@guspi123) | #105 #108 **#114** #115 #117 #121 #122 | **7** | Cede #107 a José y recibe discusión editorial #114. Coordina demos/sustentación #121, UX como revisor de #107, referencias/IA y README. **Sin asignación técnica hasta tener write** |
+
+Total = **36 issues, distribuidos 7/8/7/7/7**. La cantidad es solo indicador de cobertura; la equidad también considera trabajo/horas: IaC y API de José, entrenamiento de Duque y anotación del Gold son más exigentes que una tarea documental. No obligar a José a etiquetar solo los Gold: los cinco deben anotar y se necesita un adjudicador independiente. El issue #126 no debe generar nueva carga si la entrega quedó cerrada.
+
+**Transferencias formalizadas:**
+- #116: John → José (John sigue revisor técnico de PR #130/#131 y lleva #119).
+- #107: Gabriel → José (Gabriel sigue revisor UX, selector y comunicación).
+- #97: José → Caicedo (José sigue revisor de criterios de anotación).
+- #100: José → John (José sigue consultor de adjudicación).
+- #114: José → Gabriel (José sigue revisor de discusión y análisis).
+- #137: nuevo, IaC / GitHub Actions → José (complementa #116, no los duplica).
+
+**Acceso GitHub (comprobación 5-nov):** @guspi123 muestra **`read`**, por lo que no se puede guardar como `assignee` ni reconocerlo como CODEOWNER. La asignación a #114 queda **nominal** en el cuerpo hasta que admin conceda `write`; los otros cuatro usuarios ya están formalmente asignados. **El admin debe invitar/cambiar permisos y esperar aceptación**, y luego actualizar `.github/CODEOWNERS` y asignar los siete issues de Gabriel. No publicar «Gabriel tiene write» hasta verificarlo.
+
+**Orden de ejecución de José (meta de prototipo, no promesa de disponibilidad):**
+1. Revisar PR #130 y #131 de John, sus workflows E2E existentes, dependencias, secretos y costos; planificar infraestructura #137.
+2. Crear IaC reproducible y workflows seguros de build/deploy con OIDC, aprobación del entorno y rollback; evitar aprovisionamiento de nube facturable sin autorización.
+3. Integrar frontend con API y un demostrador operable #107; mostrar solo backends disponibles y un selector honesto.
+4. Entregar pruebas CI, acceso HTTPS externo y smoke independiente si hay cuenta/recursos aprobados, junto a John #119.
+5. Mantener #98/#99/#127 con la anotación y revisión humana repartida; conservar insumos para el artículo de John #112.
 
 ## Matriz de trazabilidad del informe de avance (8 páginas)
 | Rubro (pts) | Evidencia que debe estar en las 8 páginas | Issues | Estado actual |
