@@ -93,3 +93,43 @@ def test_lifespan_refuses_unsupported_backend_before_loading_model(monkeypatch):
     with pytest.raises(ValueError, match="APP_TOP3_BACKEND"):
         with TestClient(app):
             pass
+
+
+def test_health_endpoint_exposes_only_safe_runtime_info_with_stub_model(monkeypatch):
+    from fastapi.testclient import TestClient
+    from src.app import main
+
+    class StubRecommender:
+        is_ready = True
+
+        def load(self):
+            return self
+
+        def describe(self):
+            return {"modelo": "modelo_de_prueba"}
+
+    seen = {}
+    monkeypatch.setenv("APP_ENV", "test")
+    monkeypatch.setenv("APP_INSIGHTS_PATH", "data/processed/dashboard_insights.json")
+    monkeypatch.setenv("OPENAI_API_KEY", "DO-NOT-EXPOSE-THIS")
+    monkeypatch.setattr(main, "Recommender", StubRecommender)
+
+    def fake_insights(path):
+        seen["path"] = path
+        return {"ejemplos": []}
+
+    monkeypatch.setattr(main, "load_insights", fake_insights)
+    with TestClient(main.app) as client:
+        r = client.get("/api/estado")
+        assert r.status_code == 200
+        data = r.json()
+        assert data["listo"] is True
+        assert data["configuracion"] == {
+            "entorno": "test",
+            "recomendador": "packaged_tfidf_linear",
+            "top3": "bm25_lexical",
+            "dispositivo": "cpu",
+        }
+        assert "DO-NOT-EXPOSE-THIS" not in str(data)
+        assert "dashboard_insights.json" not in str(data)
+    assert seen["path"] == ROOT / "data/processed/dashboard_insights.json"
