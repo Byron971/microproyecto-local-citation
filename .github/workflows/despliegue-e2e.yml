@@ -1,0 +1,92 @@
+name: Integracion real del despliegue API y tablero
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/app/**"
+      - "tests/test_deployment_contract.py"
+      - "tests/test_smoke_despliegue.py"
+      - "scripts/smoke_despliegue.py"
+      - "Dockerfile"
+      - "Dockerfile.dashboard"
+      - "docker-compose.yml"
+      - "nginx.conf"
+      - "config/runtime.env.example"
+      - ".github/workflows/despliegue-e2e.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/app/**"
+      - "tests/test_deployment_contract.py"
+      - "scripts/smoke_despliegue.py"
+      - "Dockerfile"
+      - "Dockerfile.dashboard"
+      - "docker-compose.yml"
+      - "nginx.conf"
+      - "config/runtime.env.example"
+      - ".github/workflows/despliegue-e2e.yml"
+
+jobs:
+  api-and-docker-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Clonar repo
+        uses: actions/checkout@v4
+
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+
+      - name: Dependencias de tests (sin datos Gold ni LLM)
+        run: uv sync --group dev
+
+      - name: Pruebas de API, disponibilidades y regresiones
+        run: |
+          uv run pytest -q \
+            tests/test_deployment_contract.py \
+            tests/test_smoke_despliegue.py \
+            tests/test_app_settings.py \
+            tests/test_top3_fragmentos.py \
+            tests/test_top3_corpus_real.py
+          node --check src/app/static/top3.js
+
+      - name: Comprobar sintaxis de Compose
+        run: docker compose --env-file config/runtime.env.example config --quiet
+
+      - name: Construir y arrancar API real y dashboard Nginx
+        run: docker compose --env-file config/runtime.env.example up --build --wait --wait-timeout 300 -d
+
+      - name: Probar inferencia y proxy por HTTP en contenedores
+        run: |
+          python3 scripts/smoke_despliegue.py \
+            --api-url http://127.0.0.1:8000 \
+            --dashboard-url http://127.0.0.1:8080 \
+            --check-ingress-limit \
+            --report artifacts/smoke-despliegue-ci.json
+
+      - name: Registrar observación de CPU y memoria de contenedores
+        if: success()
+        run: |
+          docker stats --no-stream --format 'table {{.Name}}\t{{.MemUsage}}\t{{.CPUPerc}}' > artifacts/docker-stats-ci.txt
+          cat artifacts/docker-stats-ci.txt
+
+      - name: Guardar evidencia de smoke (no científica)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-smoke-despliegue
+          path: artifacts/smoke-despliegue-ci.json
+          if-no-files-found: ignore
+
+      - name: Diagnóstico de fallo
+        if: failure()
+        run: |
+          docker compose --env-file config/runtime.env.example ps
+          docker compose --env-file config/runtime.env.example logs --tail=70 --no-color
+
+      - name: Detener contenedores de CI
+        if: always()
+        run: docker compose --env-file config/runtime.env.example down --remove-orphans --volumes
