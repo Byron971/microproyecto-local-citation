@@ -1,0 +1,29 @@
+{
+  "project_title": "Recomendación local de citas y clasificación de su función en artículos académicos",
+  "team": [
+    "John Byron Arias Sanz",
+    "Carlos Alfredo Caicedo Bermúdez",
+    "José María Zambrana Arze",
+    "Carlos Eduardo Duque Lugo",
+    "Gabriel Gustavo Pinzón Páez"
+  ],
+  "repository_url": "https://github.com/Byron971/microproyecto-local-citation",
+  "application_url": null,
+  "api_url": null,
+  "reviewer_access_instructions": "PENDIENTE: indicar acceso a evaluadores sin incluir contraseñas",
+  "external_validation": {
+    "performed": false,
+    "observer": null,
+    "checked_at_utc": null,
+    "proof_url": null
+  },
+  "evidence": {
+    "docker_ci_url": "https://github.com/Byron971/microproyecto-local-citation/actions/runs/41959273085",
+    "docker_ci_scope": "CI local del runner: TF-IDF + BM25, NO sistema de tesis final",
+    "documentation_path": "docs/despliegue_john_issue116.md"
+  },
+  "expected_final_features": {
+    "scibert_top3_required": true,
+    "nine_function_classifier_required": true
+  }
+}
