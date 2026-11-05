@@ -5,8 +5,18 @@ services:
       dockerfile: Dockerfile
     image: microproyecto-citas-api:0.1.0
     container_name: microproyecto-citas-api
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      APP_HOST: "0.0.0.0" # Necesario dentro de la red de Docker.
+      APP_PORT: "8000" # Puerto interno fijo para healthcheck y proxy.
+      APP_LOG_LEVEL: ${APP_LOG_LEVEL:-info}
+      APP_RECOMMENDER_BACKEND: packaged_tfidf_linear
+      APP_TOP3_BACKEND: bm25_lexical
+      APP_MODEL_DEVICE: cpu
+      APP_INSIGHTS_PATH: ${APP_INSIGHTS_PATH:-data/processed/dashboard_insights.json}
+      TOP3_CORPUS_PATH: ${TOP3_CORPUS_PATH:-proyecto_de_grado/artifacts/top3_s2/casos_train.json}
     ports:
-      - "8000:8000"
+      - "${API_BIND_HOST:-127.0.0.1}:${API_PUBLISHED_PORT:-8000}:8000"
     healthcheck:
       test:
         [
@@ -29,7 +39,7 @@ services:
     image: microproyecto-citas-dashboard:0.1.0
     container_name: microproyecto-citas-dashboard
     ports:
-      - "8080:80"
+      - "${DASHBOARD_BIND_HOST:-127.0.0.1}:${DASHBOARD_PUBLISHED_PORT:-8080}:80"
     depends_on:
       api:
         condition: service_healthy
