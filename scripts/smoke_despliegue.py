@@ -108,7 +108,7 @@ def smoke(api: str, dashboard: str, timeout: float, check_ingress_limit: bool = 
         "validacion_422", api, "/api/top3-fragmentos",
         method="POST", payload=invalid, expected=422,
     )
-    _expect(isinstance(response.get("detail"), list), "Error 422 sin detalle de validación")
+    # FastAPI devuelve lista para errores Pydantic y nuestro validador de\n    # chunk_id devuelve un texto; ambos son errores 422 documentados.\n    detalle = response.get("detail")\n    _expect(isinstance(detalle, (str, list)) and bool(detalle),\n            "Error 422 sin detalle de validación")
 
     _, html = check("tablero_nginx", dashboard, "/")
     _expect(b"<html" in html.lower(), "El dashboard no devuelve HTML")
