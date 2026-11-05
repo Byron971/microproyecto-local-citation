@@ -166,6 +166,9 @@ def audit_candidate(
     if not 0 < min_reviewed_fraction <= 1:
         raise ValueError("min_reviewed_fraction fuera de (0,1]")
     gold = index_gold(gold_rows)
+    # Evita representar como etiqueta humana final un vector de scores de un LLM.
+    for row in gold_rows:
+        _label(row.get("gold"), f"gold[{row.get('id')}].gold")
     blockers: list[str] = []
     warnings: list[str] = []
     outside_dataset = set(gold) - dataset_ids
@@ -275,6 +278,17 @@ def audit_candidate(
     }
 
 
+def read_adjudications(path: Path) -> list[dict[str, Any]]:
+    """Un Gold sin desacuerdos puede tener cero adjudicaciones explícitas."""
+    content = path.read_text(encoding="utf-8-sig")
+    if not content.strip() or all(
+        not line.strip() or line.lstrip().startswith("#")
+        for line in content.splitlines()
+    ):
+        return []
+    return read_jsonl(path)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Audita candidato Gold, sin certificarlo")
     for flag in (
@@ -296,7 +310,7 @@ def main(argv: list[str] | None = None) -> int:
         }
         report = audit_candidate(
             read_jsonl(args.gold), read_jsonl(args.reviews),
-            read_jsonl(args.adjudications), load_dataset_ids(args.dataset_ids),
+            read_adjudications(args.adjudications), load_dataset_ids(args.dataset_ids),
             read_jsonl(args.train), read_jsonl(args.validation),
             gold_path=args.gold, raw_dir=args.raw_dir,
             min_reviewed_fraction=args.min_reviewed_fraction,
