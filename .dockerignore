@@ -19,3 +19,10 @@ model-package
 
 *.pdf
 *.log
+
+# No incluir archivos de secretos aunque .gitignore los excluya.
+.env
+.env.*
+*.pem
+*.ppk
+*.key
