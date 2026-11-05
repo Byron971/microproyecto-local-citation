@@ -41,7 +41,12 @@ Separar explícitamente:
 Registrar la intersección de IDs, documentos y pares entre cada partición; todas deben ser cero. Si A y B tienen tamaños/distribuciones distintos, declarar el factor de confusión y construir además una comparación controlada sobre **intersección de ejemplos** con idéntico presupuesto de entrenamiento, sin descartar la evaluación de corpus completos.
 
 ## 4. Diseño comparativo de clasificación — dos factores independientes
-**Corrección de nomenclatura:** la propuesta y el issue #103 definen las **entradas A/B** por la información suministrada al clasificador; **NO** por la procedencia de las etiquetas. El contraste Haiku/jurado es un factor distinto. Confundirlos invalida la atribución causal de una posible mejora.
+**Corrección de alcance A4 y nomenclatura (5-nov-2026):** la propuesta exige entrenar clasificadores basados en **SciBERT y SPECTER** con **ambas entradas A/B** (cuatro combinaciones: SciBERT-A/B, SPECTER-A/B). Las **entradas A/B** se definen por el contenido suministrado, **NO** por la procedencia de las etiquetas. Haiku/jurado es un factor distinto. SPECTER es otro encoder base, no una tercera entrada ni un sinónimo de etiquetas.
+
+**Factor 0: arquitectura de encoder**
+- **SciBERT** con cabeza de clasificación para nueve funciones de cita.
+- **SPECTER** con cabeza de clasificación para nueve funciones, versión/tokenizer/pooling/truncamiento documentados. No declarar entrenado o desplegado hasta contar con código, checkpoint y ejecución verificados (#103).
+- Comparar con igual Test Gold y política de splits, reportando diferencias de recursos y presupuesto.
 
 **Factor 1: configuración de entrada (A/B de la propuesta)**
 - **Entrada A:** contexto de cita + título y abstract del trabajo citado.
@@ -53,11 +58,13 @@ Registrar la intersección de IDs, documentos y pares entre cada partición; tod
 - **Etiquetas-Jurado:** entrenar SciBERT sobre consenso de jueces sin contaminar el Gold ni usar ejemplos vistos por el juez ajustado.
 - Alinear por ID el tamaño/distribución para el análisis controlado, o declarar diferencias de muestra y confusores.
 
-**Matriz factorial sugerida (2 × 2, si los datos lo permiten):**
-| | Etiquetas-Haiku | Etiquetas-Jurado |
+**Matriz mínima A4 (obligatoria para cubrir el enunciado, 2 encoders × 2 entradas):**
+| Encoder | Entrada A: contexto + título/abstract | Entrada B: contexto + sección/Top-3 |
 |---|---|---|
-| Entrada A (título/abstract) | A×Haiku | A×Jurado |
-| Entrada B (Top-3/sección) | B×Haiku | B×Jurado |
+| SciBERT | SciBERT-A | SciBERT-B |
+| SPECTER | SPECTER-A | SPECTER-B |
+
+**Experimento adicional independiente:** etiqueta-Haiku vs etiqueta-Jurado para cada configuración en que sean viables datos y cómputo. Idealmente sería una matriz 2 encoders × 2 entradas × 2 procedencias (8 celdas); declarar explícitamente celdas no ejecutadas, sus causas y los confusores. La ablación con/sin sección no sustituye ninguna de las cuatro celdas A4.
 
 Modelos adicionales (QLoRA/open-weight, comerciales) mantienen versiones/prompts explícitos. **No asumir que ninguna comparación ha sido ejecutada ni que sus resultados mejoran.**
 
@@ -68,7 +75,7 @@ Cada predicción exportará: `example_id`, `model_id`, `model_version`, `experim
 ## 5. Métricas y análisis
 - Clasificación: Precision, Recall y F1 por clase, macro y micro; accuracy, soporte por clase y matriz de confusión 9×9.
 - Reportar distribución real y abstenciones/errores de formato separadamente; nunca eliminar silenciosamente ejemplos fallidos.
-- Comparaciones pareadas por `example_id` del **mismo** Gold: (a) entrada A frente a B con etiquetas fijas, (b) Haiku frente a jurado con entrada fija y (c) ablaciones de sección. Reportar delta de F1 macro y errores por clase.
+- Comparaciones pareadas por `example_id` del **mismo** Gold: (a) entrada A frente a B **dentro de cada encoder**, (b) SciBERT frente a SPECTER con entrada/etiquetas fijas, (c) Haiku frente a jurado con entrada/encoder fijos, y (d) ablaciones de sección. Reportar delta de F1 macro y errores por clase.
 - Si el tamaño lo permite, intervalos de confianza por bootstrap pareado con semilla fija; indicar unidad de remuestreo (preferentemente documento para respetar dependencias).
 - No derivar certeza estadística de una sola corrida; si se hacen varias semillas, publicar dispersión.
 
@@ -86,7 +93,8 @@ Medir latencia por ejemplo con condiciones de hardware/concurrencia y tamaño de
 - [ ] Manifiesto Gold único firmado/versionado y aprobado por equipo.
 - [ ] Prueba automatizada anti-leakage por ID/documento/par con resultado verificable.
 - [ ] Configs y semillas versionadas, artefactos y datasets con hash.
-- [ ] Contrastes de entrada A/B y Haiku/jurado desambiguados, reproducibles y con resultados comparables.
+- [ ] **Cuatro corridas A4 (SciBERT-A/B y SPECTER-A/B)** reproducibles y evaluadas sobre el mismo Gold, o bloqueo trazado (issue #103).
+- [ ] Contrastes de entrada A/B, base SciBERT/SPECTER y etiquetas Haiku/jurado desambiguados; no presentar variaciones de fuente de etiquetas como A/B.
 - [ ] Reporte de métricas por clase y matrices; trazabilidad a predicciones individuales.
 - [ ] Baseline BM25 separado del método SciBERT Top-3.
 - [ ] Documento de amenazas a validez: desbalance, sesgo de anotación, contaminación, diferentes tamaños de train, selección adaptativa de prompts e infraestructura.
@@ -101,5 +109,6 @@ Consultar issue #111 (auditoría técnica 4 nov), PR #89–#92 (todavía no trat
 4. Parámetros de entrenamiento recuperados de las implementaciones reales.
 5. Disponibilidad y protocolo de relevancia a nivel de chunk para evaluar Top-3.
 6. Aprobación del diseño factorial y ablación con sección verdadera/ausente/barajada (issue #128).
+7. Disponibilidad de SPECTER, arquitectura de clasificación y presupuesto computacional (issue #103); definir responsable de entrenamiento y criterios de aceptación antes de compararlo.
 
 **Regla de publicación:** no declarar números como resultados finales ni marcar el protocolo como aprobado hasta completar todos los P0.
