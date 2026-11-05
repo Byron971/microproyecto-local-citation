@@ -136,6 +136,68 @@ def estado() -> dict[str, Any]:
     return respuesta
 
 
+@app.get("/api/salud/viva")
+def salud_viva() -> dict[str, str]:
+    """Liveness: el proceso HTTP responde, sin cargar modelos ni datos."""
+    return {"estado": "vivo"}
+
+
+@app.get("/api/salud/lista")
+def salud_lista() -> dict[str, str]:
+    """Readiness real: el modelo de artículos y los insights están cargados."""
+    modelo = state.get("recomendador")
+    if modelo is None or not modelo.is_ready or state.get("insights") is None:
+        raise HTTPException(
+            status_code=503,
+            detail="La aplicación aún no está lista para atender solicitudes.",
+        )
+    return {"estado": "listo"}
+
+
+@app.get("/api/capacidades")
+def capacidades() -> dict[str, Any]:
+    """Inventario verificable, sin anunciar SciBERT o clasificación inexistentes.
+
+    Leer/validar el artefacto opcional evita confundir archivo presente con
+    una muestra TRAIN utilizable. No revela rutas, variables ni credenciales.
+    """
+    modelo = state.get("recomendador")
+    listo = modelo is not None and bool(modelo.is_ready)
+    try:
+        leer_corpus()
+    except CorpusError:
+        corpus_disponible = False
+    else:
+        corpus_disponible = True
+
+    return {
+        "tipo": "baseline_despliegue_no_evaluacion_cientifica",
+        "recomendacion_articulos": {
+            "disponible": listo,
+            "metodo": "TF-IDF + reordenador lineal empaquetado",
+        },
+        "top3_manual": {
+            "disponible": True,
+            "metodo": "BM25_lexico_baseline",
+            "alcance": "fragmentos proporcionados del articulo citado",
+        },
+        "top3_corpus_train": {
+            "disponible": corpus_disponible,
+            "metodo": "BM25_lexico_baseline",
+            "alcance": "solo muestra TRAIN ACL-200 + ACL OCL",
+        },
+        "top3_scibert": {
+            "disponible": False,
+            "motivo": "El recuperador denso SciBERT no está integrado a esta API.",
+        },
+        "clasificacion_funcion_cita": {
+            "disponible": False,
+            "clases_objetivo": 9,
+            "motivo": "El clasificador de nueve funciones aún no está integrado.",
+        },
+    }
+
+
 @app.post("/api/recomendar")
 def recomendar(consulta: ContextoConsulta) -> dict[str, Any]:
     """Devuelve los artículos más pertinentes para un contexto de cita.
