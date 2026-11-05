@@ -17,6 +17,7 @@ from openai import (
 )
 
 from .providers import ProviderCallError
+from .provider_settings import request_timeout_seconds
 from .schema import ProviderResponse
 
 GEMINI_OPENAI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
@@ -56,6 +57,7 @@ class GeminiClient:
                 api_key=api_key,
                 base_url=GEMINI_OPENAI_BASE_URL,
                 max_retries=0,
+                timeout=request_timeout_seconds(),
             )
         return self._client
 
