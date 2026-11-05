@@ -128,3 +128,23 @@ $("ejemplo-real").addEventListener("click", async () => {
     boton.disabled = false;
   }
 });
+
+/* Estado real del servicio; nunca inferir disponibilidad del clasificador
+   a partir de que BM25 responda. No renderizar contenido externo como HTML. */
+async function actualizarCapacidades() {
+  const etiqueta = $("capacidades-servicio");
+  try {
+    const resp = await fetch("/api/capacidades", { cache: "no-store" });
+    const capacidades = await leerRespuestaJSON(resp);
+    const bm25 = capacidades.top3_manual?.disponible === true;
+    const scibert = capacidades.top3_scibert?.disponible === true;
+    const clasificador = capacidades.clasificacion_funcion_cita?.disponible === true;
+    etiqueta.textContent =
+      `Recuperación BM25: ${bm25 ? "disponible" : "no disponible"} · ` +
+      `SciBERT Top-3: ${scibert ? "disponible" : "no integrado"} · ` +
+      `Clasificación de 9 funciones: ${clasificador ? "disponible" : "no integrada"}.`;
+  } catch {
+    etiqueta.textContent = "No se pudo verificar el estado de los modelos; revisa si la API está disponible.";
+  }
+}
+actualizarCapacidades();
