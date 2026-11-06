@@ -295,11 +295,11 @@ def test_cli_synthetic_acl_e2e_only_provisional(tmp_path, monkeypatch):
         "--provisional", "--bootstrap-draws", "100", "--seed", "23",
     ]
     assert main(args) == 0
-    data = json.loads((out / "a4_factorial_provisional.json").read_text(encoding="utf-8"))
-    assert data["n_same_gold"] == 4
-    assert data["provenance"]["human_gold_certified"] is False
-    assert data["provenance"]["raw_dir_verified"] is True
-    assert data["provenance"]["predictions_sha256"]
-    assert data["variants"]["haiku-scibert-a"]["metrics"]["confusion_matrix"]
+    report = json.loads((out / "a4_factorial_provisional.json").read_text(encoding="utf-8"))
+    assert report["n_same_gold"] == 4
+    assert report["provenance"]["human_gold_certified"] is False
+    assert report["provenance"]["raw_dir_verified"] is True
+    assert report["provenance"]["predictions_sha256"]
+    assert report["variants"]["haiku-scibert-a"]["metrics"]["confusion_matrix"]
     assert (out / "a4_model_scores.csv").exists()
-    assert "We apply TARGETCIT" not in json.dumps(data)
+    assert "We apply TARGETCIT" not in json.dumps(report)
