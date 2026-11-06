@@ -37,7 +37,7 @@ Salida: `artifacts/auditoria_splits_acl200/resumen_acl200.json`. No subir el res
 
 Se agregaron pruebas sintéticas en `tests/test_acl200_gold_split_gate.py` para: splits válidos, cruce Gold-train, año/grupo equivocado, texto distinto, exclusiones sin borrado, duplicados, datos DVC ausentes y formato de salida. **No se reportan como aprobadas hasta ejecutar CI o pytest y comprobar el resultado.**
 
-La edición automática del workflow `.github/workflows/evaluacion-citas.yml` fue bloqueada durante esta implementación. Por ello las pruebas nuevas **no están aún conectadas al CI**; ejecutar el comando manual y registrar evidencia hasta que un mantenedor incorpore la ruta en el workflow revisado.
+La edición automática del workflow `.github/workflows/evaluacion-citas.yml` fue bloqueada. Como alternativa se añadió una prueba de integración a `proyecto_de_grado/tests/test_validar_splits.py`, que el workflow **sí incluye** a través de `proyecto_de_grado/tests`. Las ocho pruebas específicas en `tests/test_acl200_gold_split_gate.py` todavía requieren ejecución directa o incorporación posterior al workflow. No reportar ejecución exitosa hasta verificar el run de GitHub Actions.
 
 ## Dependencias
 
