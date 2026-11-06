@@ -24,6 +24,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, model_validator
 
 from src.app.insights import load_insights
+from src.app.settings import get_app_settings
 from src.app.fragment_retrieval import recuperar_top3
 from src.app.corpus_adapter import CorpusError, ejemplos_disponibles, leer_corpus, top3_de_corpus
 from src.app.recommender import Recommender
@@ -33,7 +34,7 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 # El estado del proceso se guarda en un diccionario poblado durante el arranque.
 # El modelo y los insights se cargan una sola vez y se comparten entre
 # peticiones porque ambos son de solo lectura y su preparación es lo caro.
-state: dict[str, Any] = {"recomendador": None, "insights": None}
+state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None}
 
 
 class ContextoConsulta(BaseModel):
@@ -90,11 +91,14 @@ async def lifespan(app: FastAPI):
     se encuentre con una espera de varios segundos sin explicación: cuando el
     servidor dice estar listo, lo está de verdad.
     """
+    config = get_app_settings()  # Validación fail-closed antes de cargar el modelo.
+    state["config"] = config
+
     print("Cargando el modelo empaquetado (TF-IDF + reordenador lineal)...")
     state["recomendador"] = Recommender().load()
 
     print("Cargando información del tablero...")
-    state["insights"] = load_insights()
+    state["insights"] = load_insights(config.insights_path)
 
     print("Backend listo en http://127.0.0.1:8000")
 
@@ -125,7 +129,11 @@ def estado() -> dict[str, Any]:
     """Informa si el modelo está listo y con qué configuración se cargó."""
     recomendador = _recomendador()
 
-    return {"listo": recomendador.is_ready, "modelo": recomendador.describe()}
+    respuesta = {"listo": recomendador.is_ready, "modelo": recomendador.describe()}
+    config = state.get("config")
+    if config is not None:
+        respuesta["configuracion"] = config.public_info()
+    return respuesta
 
 
 @app.post("/api/recomendar")
@@ -264,7 +272,8 @@ app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 def run_backend() -> None:
-    """Inicia el backend del tablero en el puerto 8000."""
+    """Inicia el backend con host/puerto/logging validados por entorno."""
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    config = get_app_settings()
+    uvicorn.run(app, host=config.host, port=config.port, log_level=config.log_level)

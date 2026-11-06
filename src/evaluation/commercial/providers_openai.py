@@ -18,6 +18,7 @@ from openai import (
 )
 
 from .providers import ProviderCallError
+from .provider_settings import request_timeout_seconds
 from .schema import ProviderResponse
 
 DEFAULT_MODEL = "gpt-4o-mini"
@@ -49,7 +50,11 @@ class OpenAIClient:
                     "Falta la variable de entorno OPENAI_API_KEY. Configura tu "
                     "API key de OpenAI antes de ejecutar corridas reales."
                 )
-            self._client = OpenAI(api_key=api_key, max_retries=0)
+            self._client = OpenAI(
+                api_key=api_key,
+                max_retries=0,
+                timeout=request_timeout_seconds(),
+            )
         return self._client
 
     def generate(self, prompt: str) -> ProviderResponse:

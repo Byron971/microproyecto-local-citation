@@ -18,6 +18,7 @@ from openai import (
 )
 
 from .providers import ProviderCallError
+from .provider_settings import request_timeout_seconds
 from .schema import ProviderResponse
 
 COHERE_OPENAI_BASE_URL = "https://api.cohere.ai/compatibility/v1"
@@ -53,6 +54,7 @@ class CohereClient:
                 api_key=api_key,
                 base_url=COHERE_OPENAI_BASE_URL,
                 max_retries=0,
+                timeout=request_timeout_seconds(),
             )
         return self._client
 
