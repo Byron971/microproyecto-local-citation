@@ -1,93 +1,69 @@
-# John — Issue #100: puerta de auditoría para congelar Test Gold
+# Issue #100 — Auditoría del Test Gold existente, sin repetir anotaciones
 
-**Estado:** herramienta de auditoría implementada para candidato Gold, **NO certifica Gold humano**. Separa evidencia científica de validaciones técnicas. Revisión cruzada pendiente con José María, Caicedo y Duque. No subir Gold, datos humanos identificables, texto con derechos ni credenciales al PR.
+Responsable: John Byron (@Byron971). Revisión conjunta: José María (@josezambrana), Carlos Caicedo (@CaicedoBz) y Carlos Duque (@CarlosEdDL).  
+**Estado:** comprobación automática de integridad; **NO** es certificación final del Gold, ni solicitud de anotar nuevamente 2.700 citas.
 
-## 1. Requisitos que controla el script
+## 1. Lo que realmente existe en `main` (revisión 5-nov-2026)
 
-Módulo: `src/evaluation/commercial/gold_freeze_audit.py`.
+La rama `main` ya contiene los tres CSV necesarios:
 
-- IDs únicos presentes en una lista explícita de **todos los ejemplos del dataset final** (denominador real del 15 %).
-- Etiquetas finales de una de las **nueve funciones**; prohíbe usar una distribución de scores o la pseudo-etiqueta de un LLM como etiqueta humana.
-- `TARGETCIT` único y exclusión de casos usados en práctica/calibración con `gold_policy.py`.
-- Particiones oficiales ACL-200 de `data/raw` mediante `validar_splits.py`; Gold debe pertenecer a test.
-- Comparación contra **manifiestos reales de train y validation**; revisa solapes de `id`, documento citante, par citante–citado y contexto textual normalizado. Compartir solo el artículo *citado* no prueba fuga por sí mismo.
-- Al menos **dos anotaciones humanas primarias con IDs de anotador diferentes** para **cada ejemplo Gold**. Un acuerdo debe corresponder a la etiqueta final; si hay desacuerdo, exige una decisión registrada y razonada por un adjudicador **distinto de los dos anotadores primarios**.
-- Cuenta IDs con anotación humana presentada en `reviews.jsonl` (no preetiquetas Haiku/jurado) y exige una fracción de al menos **15 % de los IDs del dataset final**. Si el dataset final tiene 18.000 casos, el mínimo equivalente es 2.700 IDs revisados; no inferir cobertura a partir de muestra.
-- Genera reporte compacto con cantidades por clase, bloqueos, advertencias y SHA-256 de seis archivos de entrada (sin copiar el texto de anotaciones al reporte).
+| Archivo versionado | Total | Resultado verificable |
+|---|---:|---|
+| `proyecto_de_grado/anotacion/test_gold/TEST_GOLD_2700_ANOTADO.csv` | 2.700 `context_id` únicos | 2.672 `COMPLETO / Evaluable`, 25 `Ambiguo`, 3 `No evaluable` |
+| `notebooks/qlora-training/ANOTACION_UNICA_2700_CITAS_REALES_ANOTADO.csv` | 2.700 `context_id` únicos | 2.642 completos, 58 ambiguos o no evaluables |
+| `proyecto_de_grado/anotacion/test_gold/TEST_GOLD_2700_MANIFIESTO.csv` | 2.700 `context_id` | Muestreo, año citante y preetiqueta QLoRA; **no prueba validación humana** |
 
-### Límite fundamental
+Los IDs del primer conjunto y del conjunto de Haiku son **disjuntos (intersección 0)**. Según PR #92, el segundo CSV contiene **pre-etiquetas automáticas Haiku**, no 2.700 decisiones de anotadores humanos. El primer CSV está diligenciado, pero **carece de campos de identidad del anotador y fecha/bitácora**, así que no se certificará de manera automática la revisión humana. El usuario/equipo confirma que una persona realizó las revisiones: **no se rehacen**; se adjunta su evidencia de procedencia si la universidad la exige.
 
-**Ningún script puede garantizar que un ID de anotador corresponda a una persona real, que haya actuado a ciegas, que no existan anotaciones copiadas, que los modelos no hayan visto el Gold durante selección de prompts, o que el dataset final tenga efectivamente la procedencia declarada.** Estos requisitos se verifican documentalmente por José, Caicedo y John; luego se registra aprobación explícita y firmas/fecha por el proceso acordado. El auditor deja siempre:
-- `gold_human_certified=false`
-- `ready_for_final_benchmark=false`
-- Si no hay bloqueos: `CANDIDATO_PARA_REVISION_HUMANA_NO_CERTIFICADO`
-- Si faltan evidencias o hay incompatibilidades: `BLOQUEADO`
+El archivo de 2.700 anotaciones contiene **1.321 casos citantes de 2014** y **1.379 casos de 2015**. En el protocolo ACL-200, los de 2014 corresponden a **validación** y los de 2015 a **test candidato**, sujeto a corroboración contra particiones oficiales con DVC. Los 2.700 **no pueden reportarse como Test Gold final sin separar particiones**.
 
-El benchmark actual `paired_benchmark.py` sigue en **modo provisional** hasta la certificación externa. No retirar la barrera `--provisional` sin PR, revisión de otros y manifiesto canónico aprobado.
+El PR #91 documenta otro muestreo de **1.533 casos (519 + 441 + 573)** y doble revisión distribuida entre los cinco. Es un flujo adicional, con resultados privados en Drive; hasta cruzar IDs no se puede afirmar que esos 1.533 coincidan con el CSV de 2.700, ni descartarlos. No solicitar 1.533 anotaciones nuevas sin conciliar el trabajo previo.
 
-## 2. Contratos de datos — archivos locales, NO añadir al Git público
+## 2. Ruta principal para auditar los CSV que ya están
 
-Los archivos pueden permanecer en almacenamiento restringido con control de versiones (DVC/objeto S3 aprobado); el reporte solo incluye hashes de entradas.
-
-**`gold_candidate.jsonl`**, una fila por ejemplo final propuesto:
-
-```json
-{"id":"C-001","input":"We apply TARGETCIT to this method.","gold":"Application","citing_id":"P15-0001","cited_id":"P12-0002"}
-```
-
-**`human_independent_reviews.jsonl`**, una fila por anotación *primaria*, todas las revisiones humanas del dataset (incluidas al menos dos por caso Gold):
-
-```json
-{"case_id":"C-001","annotator_id":"reviewer-1","label":"Application"}
-```
-
-**`adjudications.jsonl`**, obligatorio como archivo pero puede estar vacío cuando no haya discrepancias, una fila por desacuerdo resuelto:
-
-```json
-{"case_id":"C-001","adjudicator_id":"reviewer-3","label":"Application","reason":"El trabajo cita un método que utiliza."}
-```
-
-En este ejemplo habría también una anotación primaria de `reviewer-2` con etiqueta diferente que requiera la decisión del tercero; no es un registro completo ni un Gold real.
-
-**`dataset_final_ids.txt`**: un ID de caso por línea, de **todo** el dataset final (no solamente casos de test). Se rechazan IDs repetidos. Las anotaciones humanas revisadas se cuentan exclusivamente sobre esta lista.
-
-**`train_manifest.jsonl`** y **`validation_manifest.jsonl`**: una fila por caso de ambos conjuntos utilizados para entrenamiento/ajuste, con `id`, `input`, `citing_id` y `cited_id`. Se comprueban contra ACL-200. **No inventar** manifiestos vacíos para evitar los controles; incluir también cualquier otra fuente/ejemplos de desarrollo que hayan podido contaminar Gold y excluirlos correctamente.
-
-Los archivos deben usar los IDs de contexto de `contexts.json`; si la propuesta final incorpora datos externos al ACL-200, **adaptar y aprobar primero** el contrato de procedencia/particiones y la política de pruebas, sin omitir silenciosamente casos por procedencia distinta.
-
-## 3. Ejecución
+`src/evaluation/commercial/gold_existing_csv_audit.py` lee directamente los tres CSV del repositorio, **sin modificarlos ni crear nuevas etiquetas**.
 
 ```bash
 uv sync --group dev
-uv run python -m src.evaluation.commercial.gold_freeze_audit \
-  --gold /ruta-restringida/gold_candidate.jsonl \
-  --reviews /ruta-restringida/human_independent_reviews.jsonl \
-  --adjudications /ruta-restringida/adjudications.jsonl \
-  --dataset-ids /ruta-restringida/dataset_final_ids.txt \
-  --train /ruta-restringida/train_manifest.jsonl \
-  --validation /ruta-restringida/validation_manifest.jsonl \
-  --raw-dir data/raw \
-  --output-dir artifacts/auditoria_gold_candidato
+uv run python -m src.evaluation.commercial.gold_existing_csv_audit \
+  --output-dir artifacts/auditoria_gold_existente
 ```
 
-Primero recuperar los datos ACL-200 del remoto DVC de confianza si no están locales. Los comandos **no ejecutan modelos, no envían tokens a proveedores, no modifican datasets**. Los parámetros `--gold`, `--reviews` y `--dataset-ids` deben apuntar a artefactos reales, con permisos apropiados.
+El informe `gold_existing_audit.json` conserva solo cantidades globales, año, clases, bloqueos, advertencias y SHA-256; **no contiene texto de citas, respuestas por fila, identificadores de cada ejemplo o credenciales**.
 
-El resultado es `artifacts/auditoria_gold_candidato/gold_audit.json` con resumen, bloqueo y hashes. Código `0` significa **que el candidato superó controles automáticos** y **debe entrar a revisión humana**, no que ya esté certificado; código `2` indica bloqueos o entrada incompleta.
+Comprueba: 2.700 IDs únicos por archivo; alineación exacta con el manifiesto; formato de `TARGETCIT`, estados y nueve funciones; exclusiones de prácticas; intersección de IDs, citantes y pares con entrenamiento Haiku; y repartición 2014/2015. La validación contra las **particiones oficiales** de ACL-200 se habilita opcionalmente indicando `--raw-dir data/raw` una vez ejecutado `dvc pull data/raw`; **sin ese argumento el reporte lo advierte expresamente**.
 
-### Pruebas sintéticas (sin Gold real ni S3)
+La cobertura de revisión humana se calcula **solo si** se introduce un denominador real documentado del dataset final con `--dataset-final-total N`; el reporte lo denomina `annotation_file_fraction_if_all_human`, **no valida la identidad humana**. Si el conjunto final fuera exactamente 18.000, 2.700/18.000 = 15 % en cantidad documental, aunque la cobertura adjudicada puede diferir; no asumir que 18.000 es el tamaño final si se depuraron casos o hay clases no evaluables.
+
+El comando no convierte el resultado en “Gold certificado”: los campos `scientific_gold_certified`, `human_provenance_verified`, `double_annotation_verified` y `ready_for_final_benchmark` permanecen `false`. Si los controles técnicos pasan, el estado es `INTEGRIDAD_CSV_OK_CERTIFICACION_HUMANA_PENDIENTE`.
+
+## 3. Ruta opcional para doble anotación / adjudicación
+
+El módulo previo `src/evaluation/commercial/gold_freeze_audit.py` fue diseñado como **gate estricto opcional** para un futuro conjunto Gold que *sí tenga dos evaluaciones independientes y una adjudicación registrada*. Exige archivos **JSONL** separados (`gold`, `reviews`, `adjudications`, `dataset-ids`, `train`, `validation`) y splits ACL-200. **NO ES requisito para ejecutar la auditoría de los 2.700 CSV actuales.**
+
+El script estricto no puede utilizarse sobre los CSV actuales sin un proceso de mapeo explícito ni se debe invocar para justificar que “hay que revisar las 2.700 otra vez”. Si la política docente exige doble anotación de un subconjunto del Gold y los 1.533 casos ya cuentan con esas hojas, **reutilizar dichas hojas** y verificar su correspondencia; solamente las faltantes, si las hubiera, serían una acción legítima adicional. No duplicar anotadores ni mezclar selección de validación y test.
+
+## 4. QA y criterios de aceptación
 
 ```bash
-uv run pytest -q tests/test_gold_freeze_audit.py tests/test_commercial_gold_policy.py tests/test_paired_benchmark.py
+uv run pytest -q tests/test_gold_existing_csv_audit.py tests/test_gold_freeze_audit.py \
+  tests/test_commercial_gold_policy.py tests/test_paired_benchmark.py
 ```
 
-## 4. Cierre real de #100 — responsabilidades y evidencias
+El workflow `.github/workflows/evaluacion-citas.yml` ejecuta pruebas sintéticas más una prueba de lectura de **los archivos reales** y la auditoría de su integridad. Archiva solo el JSON de resumen. **Que CI pase demuestra compatibilidad y controles técnicos, no revisión humana ni acuerdo interanotador.**
 
-1. **Caicedo:** entrega dataset final versionado, manifest de todos los IDs, etiqueta original/consenso y tabla de cobertura; coordina #97 y PR #134. Validación de 15 % con trazabilidad de anotadores. Confirmar números reales y fecha de cierre.
-2. **José María:** guía de anotación, evidencia de doble anotación ciega, acuerdo interanotador y decisiones independientes de adjudicación. Continúa en #98/#99/#127 y debe distribuir carga entre cinco mientras coordina despliegue.
-3. **John:** ejecuta el gate sobre artefactos versionados, revisa exclusiones, relaciones train/val/test e incompatibilidad de manifiestos PR #91/#92; conserva SHA-256 y fallo/éxito verificable en la bitácora privada.
-4. **Carlos Duque:** confirma que ningún ejemplo del Gold estuvo en el entrenamiento, selección de checkpoints/prompts o ajuste de SciBERT/SPECTER, y que están identificadas las variantes A/B y su procedencia de etiquetas.
-5. **Gabriel:** verifica que tabla final/explicación de Gold y limitaciones queden coherentes en artículo y demo, sin publicar las etiquetas humanas del test a la interfaz.
+Checklist para cerrar realmente #100:
 
-**Evidencias finales para #100:** manifiesto canónico único con huellas/versión; política de privacidad y acceso; denominador N dataset y numerador N revisado; acuerdo y adjudicación; informe leakage 0 o excepciones documentadas y excluidas; revisión fechada de otros integrantes. **Ninguna evidencia se presume disponible por crear este código.**
+- [ ] Registrar quién revisó los 2.700 ejemplos y cómo (fecha/protocolo), sin publicar datos personales/hojas privadas; confirmado por Caicedo/José.
+- [ ] Documentar denominador real del dataset depurado y numerador validado (2.700 registros diligenciados ≠ 2.700 clasificaciones evaluables).
+- [ ] Reconstruir la relación exacta entre los **2.700 revisados**, los **2.700 Haiku** y los **1.533 doblemente revisados** con los manifiestos y las hojas originales; confirmar intersecciones/citas excluidas.
+- [ ] Verificar ACL-200 `train`/`val`/`test` y anti-leakage a nivel de documentos y pares, con evidencia de versión y hash.
+- [ ] Comprobar ceguera, acuerdo humano, adjudicación de desacuerdos y reglas de abstención; no presumir los datos que no estén documentados.
+- [ ] Separar los casos de **validación 2014** de **prueba 2015** y congelar Gold de test con etiqueta humana adjudicada.
+- [ ] Obtener aprobación explícita del equipo para el manifiesto final y actualizar el benchmark #110 para consumirlo, sin mirar el test durante ajuste.
 
-La auditoría de chunk relevance del issue #127 es **otro Gold distinto**, y no puede sustituirse por el Gold de función de cita de nueve clases.
+## 5. Alcance del PR #142
+
+Este PR completa la **infraestructura de auditoría reproducible** y conserva los datos del equipo intactos. No se deben adjudicar 15/15, Gold final ni métricas científicas hasta disponer de evidencia independiente. Se puede fusionar el código de QA tras revisión y CI, pero **no cerrar #100 automáticamente**: depende de la documentación y consenso humano.
+
+Ningún procedimiento de este PR puede sustituir la tarea de clasificación SciBERT/SPECTER del #103 o el Gold de relevancia de chunks del #127, que es otro conjunto distinto.
