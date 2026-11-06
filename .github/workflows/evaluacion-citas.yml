@@ -10,10 +10,12 @@ on:
       - "tests/test_commercial_gold_policy.py"
       - "tests/test_commercial_doc_contract.py"
       - "tests/test_gold_freeze_audit.py"
+      - "tests/test_gold_existing_csv_audit.py"
       - "src/data/build_citation_function_pilot.py"
       - "tests/test_commercial*.py"
       - "tests/test_paired_benchmark.py"
       - "tests/test_gold_freeze_audit.py"
+      - "tests/test_gold_existing_csv_audit.py"
       - "tests/test_providers*.py"
       - "tests/test_annotation.py"
       - "tests/test_build_citation_function_pilot.py"
@@ -55,6 +57,7 @@ jobs:
             tests/test_commercial_metrics.py \
             tests/test_paired_benchmark.py \
             tests/test_gold_freeze_audit.py \
+            tests/test_gold_existing_csv_audit.py \
             tests/test_commercial_gold_policy.py \
             tests/test_commercial_doc_contract.py \
             tests/test_commercial_orchestrate.py \
@@ -66,3 +69,16 @@ jobs:
             tests/test_annotation.py \
             tests/test_build_citation_function_pilot.py \
             proyecto_de_grado/tests
+
+      - name: Auditar las anotaciones existentes sin reetiquetarlas
+        run: |
+          uv run python -m src.evaluation.commercial.gold_existing_csv_audit \
+            --output-dir artifacts/auditoria-gold-csv-existente
+
+      - name: Guardar evidencia agregada (sin texto de anotaciones)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-gold-csv-existente-no-certificada
+          path: artifacts/auditoria-gold-csv-existente/gold_existing_audit.json
+          if-no-files-found: ignore
