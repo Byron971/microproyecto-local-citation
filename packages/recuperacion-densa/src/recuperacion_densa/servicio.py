@@ -153,12 +153,14 @@ def evaluar(
     params = (max_length, pooling)
     articulos: dict[str, dict] = {}
     lat_art: list[float] = []
+    ids_art: list[str] = []
     for c in casos:
         if c["cited_id"] in articulos:
             continue
         t0 = reloj()
         vecs, aciertos = _embeddings_articulo(c["chunks"], codificador, cache, params)
         lat_art.append(reloj() - t0)
+        ids_art.append(c["cited_id"])
         articulos[c["cited_id"]] = {"vecs": vecs, "aciertos": aciertos}
 
     denso, bm25, filas, lat_denso, lat_bm25 = {}, {}, [], [], []
@@ -245,6 +247,9 @@ def evaluar(
         "consulta_densa": dominio.resumir_latencias(lat_denso),
         "bm25": dominio.resumir_latencias(lat_bm25),
         "codificador": codificador.info(),
+        "muestras": {"embedding_articulo": list(zip(ids_art, lat_art)),
+                     "consulta_densa": list(zip([c["context_id"] for c in casos], lat_denso)),
+                     "bm25": list(zip([c["context_id"] for c in casos], lat_bm25))},
     }
     return Evaluacion(resumen, denso, bm25, filas, latencias, ejemplos, div)
 
