@@ -10,6 +10,7 @@ from proyecto_de_grado.src.data import exportar_corpus_top3 as _exp
 from proyecto_de_grado.src.data.integrar_acl import integrar_contexto
 from proyecto_de_grado.src.data.preparar_preetiquetado import leer_exclusiones
 from proyecto_de_grado.src.data.validar_splits import load_split_index
+from proyecto_de_grado.scripts.spike_enlace_datos.medir_enlace import descargar_ocl as _d
 
 from .reglas import ReglasChunk
 
@@ -41,6 +42,5 @@ def cargar_exclusiones(rutas=EXCLUSIONES) -> set[str]:
 
 def descargar_ocl(acl_id: str, cache_dir: Path):
     """Paso de red: delega en el descargador existente del spike."""
-    from proyecto_de_grado.scripts.spike_enlace_datos.medir_enlace import descargar_ocl as _d
 
     return _d(acl_id, cache_dir)
