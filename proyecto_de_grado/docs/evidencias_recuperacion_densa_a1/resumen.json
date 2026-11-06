@@ -2,33 +2,35 @@
   "comparacion": {
     "macro": {
       "abstencion_bm25": 0.0,
-      "interseccion": 0.9168738791159222,
-      "jaccard": 0.21190266272566102,
-      "mismo_top1": 0.2275766478760856,
-      "n": 91,
-      "solape_3": 0.3056246263719741,
-      "solape_esperado_azar": 0.1278687159581193,
-      "solape_esperado_azar_chunks": 0.38360614787435793
+      "interseccion": 0.8925339662870665,
+      "jaccard": 0.203181374247586,
+      "mismo_top1": 0.21021881973846956,
+      "n": 89,
+      "solape_3": 0.29751132209568887,
+      "solape_esperado_azar": 0.12820494897404952,
+      "solape_esperado_azar_chunks": 0.3846148469221485
     },
     "micro": {
       "abstencion_bm25": 0.0,
-      "interseccion": 0.8165289256198347,
-      "jaccard": 0.18380165289256198,
-      "mismo_top1": 0.1933884297520661,
-      "n": 605,
-      "solape_3": 0.2721763085399449,
-      "solape_esperado_azar": 0.11194696796303048,
-      "solape_esperado_azar_chunks": 0.33584090388909144
+      "interseccion": 0.8126036484245439,
+      "jaccard": 0.1824212271973466,
+      "mismo_top1": 0.19071310116086235,
+      "n": 603,
+      "solape_3": 0.2708678828081813,
+      "solape_esperado_azar": 0.11216327672522629,
+      "solape_esperado_azar_chunks": 0.3364898301756789
     }
   },
   "diversidad": {
     "articulos_con_2_o_mas_contextos": 60,
-    "cobertura_media": 0.3029779681242411,
-    "top1_mas_frecuente_medio": 0.5006910636641616
+    "cobertura_media": 0.3034681642026724,
+    "cobertura_media_bm25": 0.38290071911313023,
+    "top1_mas_frecuente_medio": 0.5006910636641616,
+    "top1_mas_frecuente_medio_bm25": 0.4002200520544125
   },
   "estado": "comparacion_tecnica_train_sin_gold",
-  "huella_bm25": "757c45d73378d8b0597dd4370f16011dc8b1f9b5884dba1e33a64d6a098a4c9c",
-  "huella_denso": "312d08f6c491810932fc50670cbc669b7950c3e6e98721a17c55a6f1d3fa43c3",
+  "huella_bm25": "071df279cc0710018738cfc160a47b69534d32f24b659e0322ea8a46866a88ed",
+  "huella_denso": "a2c354b3ab9364b18f5c40e09b30a4b78684fc686ff7967b5ba24a1a73990985",
   "integridad": {
     "metodos": [
       "scibert",
@@ -45,48 +47,48 @@
   },
   "secciones": {
     "bm25": {
-      "conclusion": 0.08099173553719008,
-      "introduction": 0.2022038567493113,
-      "method": 0.13388429752066117,
-      "otra": 0.409366391184573,
-      "related_work": 0.06776859504132231,
-      "results": 0.08484848484848485,
-      "vacia": 0.0209366391184573
+      "conclusion": 0.0812603648424544,
+      "introduction": 0.2023217247097844,
+      "method": 0.13432835820895522,
+      "otra": 0.4096185737976783,
+      "related_work": 0.06799336650082918,
+      "results": 0.08402432283029299,
+      "vacia": 0.02045328911000553
     },
     "corpus": {
-      "conclusion": 0.05965045592705167,
-      "introduction": 0.09650455927051672,
-      "method": 0.15995440729483282,
-      "otra": 0.5007598784194529,
-      "related_work": 0.0338145896656535,
-      "results": 0.10600303951367782,
-      "vacia": 0.04331306990881459
+      "conclusion": 0.05982905982905983,
+      "introduction": 0.0944055944055944,
+      "method": 0.16083916083916083,
+      "otra": 0.5031080031080031,
+      "related_work": 0.03418803418803419,
+      "results": 0.10528360528360528,
+      "vacia": 0.042346542346542344
     },
     "denso": {
-      "conclusion": 0.08484848484848485,
-      "introduction": 0.17245179063360883,
-      "method": 0.12727272727272726,
-      "otra": 0.42534435261707987,
-      "related_work": 0.11735537190082644,
-      "results": 0.045179063360881545,
-      "vacia": 0.027548209366391185
+      "conclusion": 0.08512990602542841,
+      "introduction": 0.1724709784411277,
+      "method": 0.12769485903814262,
+      "otra": 0.4256495301271421,
+      "related_work": 0.11774461028192372,
+      "results": 0.04422332780541736,
+      "vacia": 0.027086788280818133
     }
   },
   "similitud": {
     "brecha_top1_top2": {
       "max": 0.051344000000000056,
-      "media": 0.0077606082644628115,
+      "media": 0.0077048126036484265,
       "min": 3.000000000086267e-06
     },
     "top1": {
       "max": 0.944183,
-      "media": 0.9031130495867767,
+      "media": 0.903026344941957,
       "min": 0.731727
     }
   },
   "validacion": {
-    "articulos": 91,
-    "chunks_unicos": 2632,
-    "contextos": 605
+    "articulos": 89,
+    "chunks_unicos": 2574,
+    "contextos": 603
   }
 }

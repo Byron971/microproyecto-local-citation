@@ -1,0 +1,55 @@
+{
+  "contextos": 603,
+  "contextos_a": 603,
+  "contextos_b": 603,
+  "latencias_s": {
+    "a": {
+      "bm25": {
+        "n": 603,
+        "p50": 0.0010906739989877678,
+        "p95": 0.001568353000038769
+      },
+      "carga_modelo_s": 1.8597518709993892,
+      "chunks_en_cache": 1,
+      "consulta_densa": {
+        "n": 603,
+        "p50": 0.009684401000413345,
+        "p95": 0.014506532999803312
+      },
+      "device": "cuda",
+      "embedding_articulo": {
+        "n": 89,
+        "p50": 0.1978695189991413,
+        "p95": 0.32335450099890295
+      },
+      "memoria_gpu_max_mb": 688.94921875
+    },
+    "b": {
+      "bm25": {
+        "n": 603,
+        "p50": 0.0011269239985267632,
+        "p95": 0.0016594120006629964
+      },
+      "carga_modelo_s": 1.9006896289993165,
+      "chunks_en_cache": 2574,
+      "consulta_densa": {
+        "n": 603,
+        "p50": 0.013997639000081108,
+        "p95": 0.018487297998944996
+      },
+      "device": "cuda",
+      "embedding_articulo": {
+        "n": 89,
+        "p50": 0.001589292998687597,
+        "p95": 0.0031019079997349763
+      },
+      "memoria_gpu_max_mb": 436.3037109375
+    }
+  },
+  "max_dif_coseno_abs": 0.0,
+  "mismo_conjunto_top3": 603,
+  "mismo_orden_top3": 603,
+  "mismo_top1": 603,
+  "resumen_json_identico": true,
+  "top3_csv_identico": true
+}

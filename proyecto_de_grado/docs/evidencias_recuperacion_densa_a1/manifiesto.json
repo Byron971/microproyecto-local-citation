@@ -2,7 +2,8 @@
   "argv": [
     "--device",
     "cuda",
-    "--sin-cache",
+    "--cache",
+    "proyecto_de_grado/artifacts/recuperacion_densa_a1/cache_verificacion",
     "--salida",
     "proyecto_de_grado/artifacts/recuperacion_densa_a1/corrida_cuda_1"
   ],
@@ -17,10 +18,10 @@
     "pooling": "mean",
     "python": "3.14.6",
     "revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
-    "textos_procesados": 3238,
+    "textos_procesados": 3177,
     "torch": "2.11.0+cu128",
     "transformers": "5.22.1",
-    "ventanas_procesadas": 3238
+    "ventanas_procesadas": 3177
   },
   "entradas": {
     "contexts.json": "4725714f53cd6e1f2efca883761dc252ac19be1489b699f4d14d1e7b9dcc3a73",
@@ -33,18 +34,18 @@
     "ids_piloto_historico_no_test_final.txt": "b9068f267dfeec8d90a00c1522700cee4adb5da42539328e6d76bfc3a87c88bb"
   },
   "git": {
-    "dirty": true,
-    "head": "ca4cc5bbc148064c44910e4eac008353170de4ae"
+    "dirty": false,
+    "head": "6a2d963462767ea4d8dd32df61941336192326a1"
   },
   "salidas": {
-    "comparacion.csv": "24ae461ba7d7004582717aec66e6195d062e9804166233e549ffafa831563230",
-    "diversidad.csv": "2afb75ae8c1786882a9ce261941b4dc27d516dd22f427e4bb2d344e8da835a3b",
-    "ejemplos_top3.json": "4383d45a684169760df564e9cf1f7523e0ea20ccc0dbddbebd3dad875bb116d9",
-    "ejemplos_top3.md": "6f06cf85dacc895756b8d4552687aaf4a8547924bd48850d1ee996ec0d5f219a",
-    "latencias.csv": "ca102dfb677c413240c57883f2a083d15b5ab3a92b9e0e7b1d9ef3fa3a75bcaf",
-    "latencias_resumen.json": "c2916f9fa7102036f491f17f20778409e66641211a0304f71c864d9311db8ecb",
-    "resumen.json": "cd9d129db669718c396f471fef18f186c0b162ffc226d0604817a3a04992dead",
-    "top3.csv": "160b99bb45c1b0f5a80df230ce56bd40a98c53e88379dbc6a7936cf438958685"
+    "comparacion.csv": "6c9b6f29b3d35a645168177d0b36e2f2366dae953a291b5951ba6b462aa387a1",
+    "diversidad.csv": "a2b8246bfcfaf502b73ef0d9c2fd6c9b2b24a25b5f26fdaa89f46d7f3c6490e0",
+    "ejemplos_top3.json": "41a6597a0cb9ff36c040c8218e1933ad523b7193256db042b612b44b75274869",
+    "ejemplos_top3.md": "4bcb32af12112a8da5e5632605bc013c2ab94b7cf67d9db71dbc86dafe6d558f",
+    "latencias.csv": "c8fd3014d1b2da29726036049ca3021071c6a92a8ce032343167fc18fe7e787f",
+    "latencias_resumen.json": "3f2a5622355254f8a7d19c20613472c18320509accbeb2eeb1c801ff4dbad046",
+    "resumen.json": "f7e92648621237a9313803ca53c0385fed26c78f9e5b685e99c2a654af05033d",
+    "top3.csv": "b6662baf5c53287a4a28728b318cb5327961c3339f902650b06c74505e6867b0"
   },
   "sha256_manifiesto_modelo": "bf089a55db140bb29422f48609a7be82e06e80198c8af156f30d860cb3911b13"
 }
