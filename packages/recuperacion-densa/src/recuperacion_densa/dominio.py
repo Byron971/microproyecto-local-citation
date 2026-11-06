@@ -28,6 +28,19 @@ def ventanas(n: int, cap: int) -> list[tuple[int, int]]:
     return [(i, min(i + cap, n)) for i in range(0, n, cap)]
 
 
+def construir_lotes(ids_por_texto: list[list[int]], capacidad: int, cls: int, sep: int):
+    """(secuencias `[CLS]+w+[SEP]`, indice_texto, pesos) con las ventanas de cada texto."""
+    secuencias, indices, pesos = [], [], []
+    for i, ids in enumerate(ids_por_texto):
+        if not ids:
+            raise ValueError("Tokenizer produjo secuencia vacia.")
+        for ini, fin in ventanas(len(ids), capacidad):
+            secuencias.append([cls, *ids[ini:fin], sep])
+            indices.append(i)
+            pesos.append(fin - ini)
+    return secuencias, indices, pesos
+
+
 def normalizar_vector(vector) -> tuple[float, ...]:
     if not len(vector) or not all(math.isfinite(float(v)) for v in vector):
         raise ValueError("Embedding vacio o no finito.")

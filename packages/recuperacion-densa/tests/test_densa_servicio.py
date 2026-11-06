@@ -1,3 +1,4 @@
+import csv
 import json
 
 import pytest
@@ -5,6 +6,7 @@ import pytest
 pytest.importorskip("recuperacion_densa")
 ad = pytest.importorskip("recuperacion_densa.adaptador_proyecto_grado")
 
+from proyecto_de_grado.src.evaluation import top3_humano as th  # noqa: E402
 from recuperacion_densa import dominio, servicio  # noqa: E402
 from recuperacion_densa.cache_embeddings import CacheDisco, CacheMemoria  # noqa: E402
 
@@ -211,14 +213,12 @@ def test_ejemplos_estratificados_reproducibles():
 
 # ---------------------------------------------------------------- gold: equivalencia con top3_humano
 def test_equivalencia_con_evaluar_calibracion(entorno, tmp_path):
-    from proyecto_de_grado.src.evaluation import top3_humano as th
 
     casos, meta = casos_de(entorno)
     origen = tmp_path / "casos.json"
     origen.write_text(json.dumps(servicio.exportar_casos(casos, meta)), encoding="utf-8")
     hojas = tmp_path / "hojas"
     th.preparar_hojas(origen, hojas)
-    import csv
     for nombre in ("anotador_a.csv", "anotador_b.csv", "adjudicacion_plantilla.csv"):
         ruta = hojas / nombre
         with ruta.open(encoding="utf-8-sig", newline="") as fh:
@@ -241,7 +241,6 @@ def test_equivalencia_con_evaluar_calibracion(entorno, tmp_path):
 
 
 def test_gold_con_fuente_alterada_falla(entorno, tmp_path):
-    from proyecto_de_grado.src.evaluation import top3_humano as th
 
     casos, meta = casos_de(entorno)
     origen = tmp_path / "casos.json"

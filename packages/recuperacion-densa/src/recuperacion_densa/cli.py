@@ -2,7 +2,8 @@
 
 Uso (desde la raiz del repo):
   uv run --project packages/recuperacion-densa python -m recuperacion_densa.cli --solo-validar
-  uv run --project packages/recuperacion-densa --group modelo python -m recuperacion_densa.cli
+  uv run --project packages/recuperacion-densa --group modelo python -m recuperacion_densa.cli_modelo
+(`cli` no importa torch; `cli_modelo` le inyecta el codificador real.)
 """
 from __future__ import annotations
 
@@ -15,12 +16,11 @@ import sys
 import time
 from pathlib import Path
 from typing import Callable
-from .codificador_torch import TorchSciBERTEncoder  # unico import de torch
 
 from . import adaptador_proyecto_grado as ad
 from . import dominio, servicio
 from .cache_embeddings import CacheDisco
-from .revision import MODEL_ID, REVISION_SCIBERT
+from .revision import REVISION_SCIBERT
 
 SALIDA = ad.REPO / "proyecto_de_grado/artifacts/recuperacion_densa_a1"
 MANIFIESTO_MODELO = (ad.REPO / "proyecto_de_grado/docs/evidencias_recuperacion_densa_a1"
@@ -128,14 +128,8 @@ def _parser() -> argparse.ArgumentParser:
     return ap
 
 
-def _fabrica_torch(args) -> Callable:
-    def f():
-        return TorchSciBERTEncoder(args.revision, MODEL_ID, args.device, args.batch_size,
-                                   args.max_length)
-    return f
-
-
-def main(argv: list[str] | None = None, *, fabrica_codificador: Callable | None = None,
+def main(argv: list[str] | None = None, *,
+         fabrica_codificador: Callable[[argparse.Namespace], object] | None = None,
          reloj: Callable[[], float] = time.perf_counter) -> int:
     ap = _parser()
     args = ap.parse_args(argv)
@@ -171,7 +165,9 @@ def main(argv: list[str] | None = None, *, fabrica_codificador: Callable | None 
         gold = (ad.cargar_gold_calibracion(args.calibracion_origen, args.calibracion_carpeta)
                 if args.calibracion_origen else None)
         t0 = reloj()
-        codificador = (fabrica_codificador or _fabrica_torch(args))()
+        if fabrica_codificador is None:
+            ap.exit(2, "Error: falta un codificador; use `cli_modelo` o --solo-validar.\n")
+        codificador = fabrica_codificador(args)
         carga = reloj() - t0
         cache = None if args.sin_cache else CacheDisco(SALIDA / "cache_embeddings")
         ev = servicio.evaluar(casos, codificador, ad.lexico, cache, reloj, ad.perfil_seccion,

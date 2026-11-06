@@ -7,6 +7,7 @@ pytest.importorskip("recuperacion_densa")
 ad = pytest.importorskip("recuperacion_densa.adaptador_proyecto_grado")
 
 from recuperacion_densa import cli  # noqa: E402
+from recuperacion_densa.revision import validar_revision  # noqa: E402
 from test_densa_servicio import Falso, Indice, doc  # noqa: E402
 
 
@@ -40,7 +41,7 @@ def test_solo_validar_no_importa_torch(mundo, capsys):
 def test_e2e_codificador_falso_y_determinismo(mundo):
     base, tmp = mundo
     for n in ("1", "2"):
-        assert cli.main([*base, "--salida", str(tmp / n)], fabrica_codificador=Falso) == 0
+        assert cli.main([*base, "--salida", str(tmp / n)], fabrica_codificador=lambda a: Falso()) == 0
     for f in ("resumen.json", "top3.csv", "comparacion.csv"):
         assert (tmp / "1" / f).read_bytes() == (tmp / "2" / f).read_bytes()
     man = json.loads((tmp / "1" / "manifiesto.json").read_text())
@@ -54,7 +55,7 @@ def test_se_niega_a_sobrescribir(mundo):
     (tmp / "out").mkdir()
     (tmp / "out" / "x").write_text("a")
     with pytest.raises(SystemExit) as e:
-        cli.main([*base, "--salida", str(tmp / "out")], fabrica_codificador=Falso)
+        cli.main([*base, "--salida", str(tmp / "out")], fabrica_codificador=lambda a: Falso())
     assert e.value.code == 2
     assert (tmp / "out" / "x").read_text() == "a"
 
@@ -67,13 +68,19 @@ def test_integridad_violada_no_escribe(mundo):
             return [(0.0,) * 16 for _ in textos]  # embedding nulo -> ValueError
 
     with pytest.raises(SystemExit):
-        cli.main([*base, "--salida", str(tmp / "o")], fabrica_codificador=Malo)
+        cli.main([*base, "--salida", str(tmp / "o")], fabrica_codificador=lambda a: Malo())
     assert not (tmp / "o").exists()
 
 
 def test_revision_invalida_rechazada():
-    from recuperacion_densa.revision import validar_revision
     for mala in (None, "main", "abc", "G" * 40):
         with pytest.raises(ValueError):
             validar_revision(mala)
     assert validar_revision("a" * 40) == "a" * 40
+
+
+def test_sin_codificador_inyectado_falla(mundo):
+    base, tmp = mundo
+    with pytest.raises(SystemExit) as e:
+        cli.main([*base, "--salida", str(tmp / "o")])
+    assert e.value.code == 2 and not (tmp / "o").exists()

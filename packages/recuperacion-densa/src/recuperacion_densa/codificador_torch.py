@@ -1,4 +1,4 @@
-"""Codificador SciBERT (port de S2.8). `torch` y `transformers` se importan de forma diferida.
+"""Codificador SciBERT (port de S2.8). Importa torch: solo lo carga `cli_modelo`.
 
 Ventanas contiguas `[CLS]+w+[SEP]` sin truncar, padding manual, mean pooling con mascara y
 combinacion de ventanas en float64 (media ponderada por tokens de contenido)."""
@@ -6,21 +6,12 @@ from __future__ import annotations
 
 import platform
 
+import torch
+import transformers
+from transformers import AutoModel, AutoTokenizer
+
 from . import dominio
 from .revision import MODEL_ID, validar_revision
-
-
-def construir_lotes(ids_por_texto: list[list[int]], capacidad: int, cls: int, sep: int):
-    """Devuelve (secuencias, indice_texto, pesos) con las ventanas de cada texto."""
-    secuencias, indices, pesos = [], [], []
-    for i, ids in enumerate(ids_por_texto):
-        if not ids:
-            raise ValueError("Tokenizer produjo secuencia vacia.")
-        for ini, fin in dominio.ventanas(len(ids), capacidad):
-            secuencias.append([cls, *ids[ini:fin], sep])
-            indices.append(i)
-            pesos.append(fin - ini)
-    return secuencias, indices, pesos
 
 
 class TorchSciBERTEncoder:
@@ -31,8 +22,6 @@ class TorchSciBERTEncoder:
         if batch_size < 1 or not 16 <= max_length <= 512:
             raise ValueError("batch_size>=1 y 16<=max_length<=512.")
         self.revision = validar_revision(revision)
-        import torch
-        from transformers import AutoModel, AutoTokenizer
         self.torch = torch
         torch.manual_seed(0)
         self.model_id, self.batch_size, self.max_length = model_id, batch_size, max_length
@@ -61,7 +50,7 @@ class TorchSciBERTEncoder:
             raise ValueError("SciBERT recibio un texto vacio.")
         torch, tok = self.torch, self.tokenizer
         ids = [tok.encode(t, add_special_tokens=False, truncation=False) for t in textos]
-        seqs, idx, pesos = construir_lotes(ids, self.capacidad, tok.cls_token_id, tok.sep_token_id)
+        seqs, idx, pesos = dominio.construir_lotes(ids, self.capacidad, tok.cls_token_id, tok.sep_token_id)
         vecs: list[list] = [[] for _ in textos]
         pes: list[list[int]] = [[] for _ in textos]
         with torch.inference_mode():
@@ -86,7 +75,6 @@ class TorchSciBERTEncoder:
 
     def info(self) -> dict:
         t = self.torch
-        import transformers
         gpu = t.cuda.get_device_name(0) if self.device == "cuda" else None
         return {"model_id": self.model_id, "revision": self.revision,
                 "commit_resuelto": self.commit_resuelto, "device": self.device, "gpu": gpu,

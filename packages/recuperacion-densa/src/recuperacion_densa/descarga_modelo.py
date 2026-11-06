@@ -6,6 +6,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from huggingface_hub import HfApi, snapshot_download
+
 from .revision import MODEL_ID, REVISION_SCIBERT, validar_revision
 
 MANIFIESTO = (Path(__file__).resolve().parents[4]
@@ -39,7 +41,6 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--revision", default=REVISION_SCIBERT)
     ap.add_argument("--manifiesto", type=Path, default=MANIFIESTO)
     a = ap.parse_args(argv)
-    from huggingface_hub import HfApi, snapshot_download
     if a.resolver:
         print(HfApi().model_info(a.model, revision="main").sha)
         return 0
