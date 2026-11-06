@@ -1,9 +1,7 @@
 import pytest
 
-pytest.importorskip("recuperacion_densa")
-ad = pytest.importorskip("recuperacion_densa.adaptador_proyecto_grado")
-
-from recuperacion_densa.cache_embeddings import CacheDisco, clave_embedding  # noqa: E402
+from recuperacion_densa import adaptador_proyecto_grado as ad
+from recuperacion_densa.cache_embeddings import CacheDisco, clave_embedding
 
 
 def test_adaptador_expone_componentes_del_proyecto():

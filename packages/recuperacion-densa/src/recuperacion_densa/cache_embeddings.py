@@ -9,8 +9,9 @@ from array import array
 from pathlib import Path
 
 
-def clave_embedding(model_id: str, revision: str, max_length: int, pooling: str, texto: str) -> str:
-    base = "\x1f".join((model_id, revision, str(max_length), pooling, texto))
+def clave_embedding(model_id: str, revision: str, max_length: int, pooling: str, texto: str,
+                    device: str = "cpu") -> str:
+    base = "\x1f".join((model_id, revision, str(max_length), pooling, device, texto))
     return hashlib.sha256(base.encode("utf-8")).hexdigest()
 
 

@@ -1,7 +1,6 @@
 import pytest
 
-pytest.importorskip("recuperacion_densa")
-from recuperacion_densa.dominio import construir_lotes  # noqa: E402
+from recuperacion_densa.dominio import construir_lotes
 
 
 def test_ventanas_no_pierden_tokens():

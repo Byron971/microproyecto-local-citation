@@ -5,12 +5,10 @@ import sys
 
 import pytest
 
-pytest.importorskip("recuperacion_densa")
-ad = pytest.importorskip("recuperacion_densa.adaptador_proyecto_grado")
-
-from recuperacion_densa import cli  # noqa: E402
-from recuperacion_densa.revision import validar_revision  # noqa: E402
-from test_densa_servicio import Falso, Indice, doc  # noqa: E402
+from recuperacion_densa import adaptador_proyecto_grado as ad
+from recuperacion_densa import cli
+from recuperacion_densa.revision import validar_revision
+from test_densa_servicio import Falso, Indice, doc
 
 
 @pytest.fixture
@@ -91,3 +89,37 @@ def test_sin_codificador_inyectado_falla(mundo):
     with pytest.raises(SystemExit) as e:
         cli.main([*base, "--salida", str(tmp / "o")])
     assert e.value.code == 2 and not (tmp / "o").exists()
+
+
+def test_gold_de_otros_contextos_se_rechaza(mundo, monkeypatch):
+    base, tmp = mundo
+    monkeypatch.setattr(ad, "cargar_gold_calibracion",
+                        lambda *a: {("ajeno", "c0"): 1})
+    with pytest.raises(SystemExit) as e:
+        cli.main([*base, "--salida", str(tmp / "g"), "--calibracion-origen", str(tmp / "o"),
+                  "--calibracion-carpeta", str(tmp)], fabrica_codificador=lambda a: Falso())
+    assert e.value.code == 2 and not (tmp / "g").exists()
+
+
+def test_exportar_casos_existente_falla_limpio(mundo):
+    base, tmp = mundo
+    destino = tmp / "casos.json"
+    destino.write_text("{}")
+    with pytest.raises(SystemExit) as e:
+        cli.main([*base, "--solo-validar", "--exportar-casos", str(destino)])
+    assert e.value.code == 2
+
+
+def test_escritura_atomica_sin_residuos(mundo):
+    base, tmp = mundo
+    assert cli.main([*base, "--salida", str(tmp / "ok")], fabrica_codificador=lambda a: Falso()) == 0
+    assert (tmp / "ok" / "manifiesto.json").is_file() and not (tmp / "ok.tmp").exists()
+
+
+def test_cache_configurable(mundo):
+    base, tmp = mundo
+    cache = tmp / "mi_cache"
+    args = [a for a in base if a != "--sin-cache"]
+    assert cli.main([*args, "--cache", str(cache), "--salida", str(tmp / "c")],
+                    fabrica_codificador=lambda a: Falso()) == 0
+    assert any(cache.glob("*.f64"))

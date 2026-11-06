@@ -1,6 +1,7 @@
+import json
+
 import pytest
 
-pytest.importorskip("recuperacion_densa")
 torch = pytest.importorskip("torch")
 transformers = pytest.importorskip("transformers")
 
@@ -27,3 +28,21 @@ def test_bert_diminuto_local(tmp_path):
     v = enc.encode([largo, "a b"])
     assert enc.ventanas_procesadas == 3 and len(v) == 2 and len(v[0]) == 16
     assert enc.encode([largo])[0] == pytest.approx(v[0], abs=1e-5)  # independiente del lote
+
+
+def test_verificar_snapshot_contra_manifiesto(tmp_path):
+    from recuperacion_densa.descarga_modelo import hash_manifiesto, manifiesto_de
+
+    snap = tmp_path / "snap"
+    snap.mkdir()
+    (snap / "config.json").write_text("{}")
+    enc = object.__new__(ct.TorchSciBERTEncoder)
+    enc.model_id, enc.revision = "tiny", "b" * 40
+    m = manifiesto_de(snap, "tiny", "b" * 40)
+    m["sha256_manifiesto"] = hash_manifiesto(dict(m))
+    man = tmp_path / "manifiesto_modelo.json"
+    man.write_text(json.dumps(m))
+    enc._verificar_snapshot(snap, man)  # coincide
+    (snap / "config.json").write_text('{"x": 1}')
+    with pytest.raises(RuntimeError, match="no coincide"):
+        enc._verificar_snapshot(snap, man)

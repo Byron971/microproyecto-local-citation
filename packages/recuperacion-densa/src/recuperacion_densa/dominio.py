@@ -99,6 +99,20 @@ def extracto(texto: str, limite: int = 240) -> str:
 
 
 # --------------------------------------------------------------- validacion de casos
+def deduplicar_chunks(chunks: list[dict]) -> tuple[list[dict], list[str]]:
+    """Descarta chunks con texto repetido (normalizado: strip + espacios colapsados).
+
+    Conserva el de menor chunk_id de cada grupo y mantiene el orden original.
+    Devuelve (chunks_unicos, chunk_ids_descartados)."""
+    mejor: dict[str, str] = {}
+    for c in chunks:
+        k = " ".join(c["texto"].split())
+        if k not in mejor or c["chunk_id"] < mejor[k]:
+            mejor[k] = c["chunk_id"]
+    unicos = [c for c in chunks if mejor[" ".join(c["texto"].split())] == c["chunk_id"]]
+    return unicos, sorted(c["chunk_id"] for c in chunks if c not in unicos)
+
+
 def validar_casos(casos: list[dict], excluidos: set[str] | frozenset[str] = frozenset()) -> dict:
     """Bloquea fugas: solo train, contexto no excluido, un TARGETCIT, corpus consistente."""
     if not isinstance(casos, list) or not casos:
@@ -115,6 +129,8 @@ def validar_casos(casos: list[dict], excluidos: set[str] | frozenset[str] = froz
             raise ValueError(f"Contexto excluido: {cid}")
         if not isinstance(pid, str) or not pid:
             raise ValueError(f"cited_id invalido en {cid}")
+        if caso.get("citing_id") == pid:
+            raise ValueError(f"Autocita (citing_id == cited_id) en {cid}")
         ctx = caso.get("citation_context")
         if not isinstance(ctx, str) or ctx.count("TARGETCIT") != 1:
             raise ValueError(f"Contexto sin TARGETCIT unico en {cid}")
@@ -123,7 +139,7 @@ def validar_casos(casos: list[dict], excluidos: set[str] | frozenset[str] = froz
         chunks = caso.get("chunks")
         if not isinstance(chunks, list) or not chunks:
             raise ValueError(f"Articulo sin chunks en {cid}")
-        vistos = set()
+        vistos, textos = set(), set()
         for c in chunks:
             if not isinstance(c, dict):
                 raise ValueError(f"Chunk mal formado en {cid}")
@@ -133,6 +149,10 @@ def validar_casos(casos: list[dict], excluidos: set[str] | frozenset[str] = froz
             vistos.add(chid)
             if not isinstance(texto, str) or not texto.strip():
                 raise ValueError(f"Texto de chunk vacio en {cid}")
+            norm = " ".join(texto.split())
+            if norm in textos:
+                raise ValueError(f"Texto de chunk duplicado en el articulo de {cid}")
+            textos.add(norm)
         h = huella_chunks(chunks)
         if articulos.setdefault(pid, (h, len(chunks)))[0] != h:
             raise ValueError(f"Chunks inconsistentes entre casos del mismo articulo: {pid}")

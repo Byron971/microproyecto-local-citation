@@ -31,6 +31,7 @@ def construir_casos(
     memo: dict[str, dict | None] = {}
     casos: list[dict] = []
     motivos: dict[str, int] = {}
+    duplicados: dict[str, list[str]] = {}
 
     def omitir(m: str) -> None:
         motivos[m] = motivos.get(m, 0) + 1
@@ -50,15 +51,23 @@ def construir_casos(
             continue
         try:
             registro = integrar(cid, indice.contexts, papers, Path(cache))
-            if cited not in memo:
-                memo[cited] = {
-                    "chunks": fragmentar(registro["paragraphs"]),
-                    "sha": hashlib.sha256(ruta.read_bytes()).hexdigest(),
-                }
         except ERRORES_ESPERADOS as exc:
-            memo.setdefault(cited, None)
             omitir(type(exc).__name__)
             continue
+        if registro.get("citing_id") == cited:
+            omitir("autocita")
+            continue
+        if cited not in memo:
+            try:
+                chunks, descartados = dominio.deduplicar_chunks(fragmentar(registro["paragraphs"]))
+                if descartados:
+                    duplicados[cited] = descartados
+                memo[cited] = {
+                    "chunks": chunks,
+                    "sha": hashlib.sha256(ruta.read_bytes()).hexdigest(),
+                }
+            except ERRORES_ESPERADOS:
+                memo[cited] = None
         info = memo[cited]
         if info is None:
             omitir("citado_fallido")
@@ -78,6 +87,11 @@ def construir_casos(
         "articulos": len({c["cited_id"] for c in casos}), "limite": limite,
         "exclusiones_suministradas": len(excluidos),
         "motivos_no_seleccion": dict(sorted(motivos.items())),
+        "chunks_duplicados_descartados": {
+            "regla": "texto normalizado repetido en el articulo; se conserva el chunk_id menor",
+            "articulos": len(duplicados),
+            "chunks": sum(len(v) for v in duplicados.values()),
+            "ids": dict(sorted(duplicados.items()))},
         "nota": "No contiene etiquetas humanas ni relevancia Top3; no reportar metricas cientificas.",
     }
     return casos, meta
@@ -101,8 +115,9 @@ class Evaluacion:
 
 
 def _embeddings_articulo(chunks, codificador, cache, params) -> tuple[list, int]:
-    claves = [clave_embedding(codificador.model_id, codificador.revision, *params, c["texto"])
-              for c in chunks]
+    device = getattr(codificador, "device", "cpu")
+    claves = [clave_embedding(codificador.model_id, codificador.revision, *params, c["texto"],
+                              device) for c in chunks]
     vectores = [cache.get(k) if cache else None for k in claves]
     faltan = [i for i, v in enumerate(vectores) if v is None]
     if faltan:
@@ -198,7 +213,15 @@ def evaluar(
     n_chunks = {a: len(c["chunks"]) for a, c in unicos.items()}
     div = dominio.diversidad_por_articulo(
         {k: [r["chunk_id"] for r in v] for k, v in denso.items()}, cited, n_chunks)
+    div_bm25 = dominio.diversidad_por_articulo(
+        {k: [r["chunk_id"] for r in v] for k, v in bm25.items()}, cited, n_chunks)
+    por_art_bm25 = {d["cited_id"]: d for d in div_bm25}
+    for d in div:
+        b = por_art_bm25[d["cited_id"]]
+        d["cobertura_bm25"] = b["cobertura"]
+        d["chunk_top1_mas_frecuente_bm25"] = b["chunk_top1_mas_frecuente"]
     multi = [d for d in div if d["contextos"] >= 2]
+    media = lambda k: (sum(d[k] for d in multi) / len(multi)) if multi else None  # noqa: E731
     resumen = {
         "estado": "comparacion_tecnica_train_sin_gold",
         "modelo": {"model_id": codificador.model_id, "revision": codificador.revision,
@@ -211,9 +234,10 @@ def evaluar(
         "similitud": dominio.estadisticas_similitud(denso),
         "diversidad": {
             "articulos_con_2_o_mas_contextos": len(multi),
-            "cobertura_media": (sum(d["cobertura"] for d in multi) / len(multi)) if multi else None,
-            "top1_mas_frecuente_medio": (sum(d["chunk_top1_mas_frecuente"] for d in multi)
-                                         / len(multi)) if multi else None,
+            "cobertura_media": media("cobertura"),
+            "top1_mas_frecuente_medio": media("chunk_top1_mas_frecuente"),
+            "cobertura_media_bm25": media("cobertura_bm25"),
+            "top1_mas_frecuente_medio_bm25": media("chunk_top1_mas_frecuente_bm25"),
         },
         "huella_denso": dominio.huella_resultados(denso),
         "huella_bm25": dominio.huella_resultados(bm25),

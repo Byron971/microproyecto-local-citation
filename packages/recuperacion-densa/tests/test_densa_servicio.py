@@ -3,12 +3,10 @@ import json
 
 import pytest
 
-pytest.importorskip("recuperacion_densa")
-ad = pytest.importorskip("recuperacion_densa.adaptador_proyecto_grado")
-
-from proyecto_de_grado.src.evaluation import top3_humano as th  # noqa: E402
-from recuperacion_densa import dominio, servicio  # noqa: E402
-from recuperacion_densa.cache_embeddings import CacheDisco, CacheMemoria  # noqa: E402
+from proyecto_de_grado.src.evaluation import top3_humano as th
+from recuperacion_densa import adaptador_proyecto_grado as ad
+from recuperacion_densa import dominio, servicio
+from recuperacion_densa.cache_embeddings import CacheDisco, CacheMemoria, clave_embedding
 
 
 class Indice:
@@ -249,3 +247,80 @@ def test_gold_con_fuente_alterada_falla(entorno, tmp_path):
     origen.write_text(origen.read_text(encoding="utf-8") + " ", encoding="utf-8")
     with pytest.raises(th.ProtocoloError):
         ad.cargar_gold_calibracion(origen, tmp_path / "h")
+
+
+# ---------------------------------------------------------------- correcciones de la revision
+def test_autocita_se_omite(entorno):
+    ind, papers, cache = entorno
+    ind.contexts["c2"]["citing_id"] = "A1"  # cita a A1 desde A1
+    casos, meta = casos_de(entorno)
+    assert "c2" not in {c["context_id"] for c in casos}
+    assert meta["motivos_no_seleccion"]["autocita"] == 1
+
+
+def test_error_por_contexto_no_descarta_el_articulo(entorno):
+    ind, papers, cache = entorno
+
+    def integrar(cid, *a):
+        if cid == "c1":
+            raise ValueError("contexto roto")
+        return ad.integrar(cid, *a)
+
+    casos, meta = servicio.construir_casos(ind, papers, cache, integrar, ad.fragmentar, {"c9"})
+    ids = [c["context_id"] for c in casos]
+    assert "c1" not in ids and {"c2", "c3"} <= set(ids)
+    assert meta["motivos_no_seleccion"]["ValueError"] == 2  # c1 y c7
+
+
+def test_error_por_articulo_omite_todos_sus_contextos(entorno):
+    ind, papers, cache = entorno
+
+    llamadas = []
+
+    def fragmentar(parrafos):
+        llamadas.append(1)
+        if len(llamadas) == 1:  # el primer articulo (A1) falla
+            raise ValueError("articulo roto")
+        return ad.fragmentar(parrafos)
+
+    casos, meta = servicio.construir_casos(ind, papers, cache, ad.integrar, fragmentar, {"c9"})
+    assert {c["cited_id"] for c in casos} == {"B1"}
+    assert meta["motivos_no_seleccion"]["citado_fallido"] == 3  # c1, c2, c3
+
+
+def test_cache_distingue_dispositivo(entorno):
+    casos, _ = casos_de(entorno)
+    cache = CacheMemoria()
+
+    class EnCuda(Falso):
+        device = "cuda"
+
+    cpu = Falso()
+    correr(casos, cpu, cache)
+    cuda = EnCuda()
+    ev = correr(casos, cuda, cache)
+    assert cuda.llamadas[1:] and ev.latencias["embedding_articulo"]["chunks_en_cache"] == 0
+    assert clave_embedding("m", "r", 512, "mean", "t", "cpu") != clave_embedding(
+        "m", "r", 512, "mean", "t", "cuda")
+
+
+def test_diversidad_incluye_bm25(entorno):
+    casos, _ = casos_de(entorno)
+    ev = correr(casos)
+    d = ev.resumen["diversidad"]
+    assert d["cobertura_media_bm25"] is not None and d["top1_mas_frecuente_medio_bm25"] is not None
+    assert {"cobertura_bm25", "chunk_top1_mas_frecuente_bm25"} <= set(ev.diversidad[0])
+
+
+def test_construir_casos_deduplica_y_registra(entorno):
+    ind, papers, cache = entorno
+
+    def frag(p):
+        cs = ad.fragmentar(p)
+        return cs + [{**cs[0], "chunk_id": cs[0]["chunk_id"] + "_dup"}]
+
+    casos, meta = servicio.construir_casos(ind, papers, cache, ad.integrar, frag, {"c9"})
+    assert all(len({ch["texto"] for ch in c["chunks"]}) == len(c["chunks"]) for c in casos)
+    dup = meta["chunks_duplicados_descartados"]
+    assert dup["articulos"] == 2 and dup["chunks"] == 2
+    dominio.validar_casos(casos)

@@ -4,6 +4,7 @@ Ventanas contiguas `[CLS]+w+[SEP]` sin truncar, padding manual, mean pooling con
 combinacion de ventanas en float64 (media ponderada por tokens de contenido)."""
 from __future__ import annotations
 
+import json
 import platform
 from pathlib import Path
 
@@ -13,6 +14,7 @@ from huggingface_hub import snapshot_download
 from transformers import AutoModel, AutoTokenizer
 
 from . import dominio
+from .descarga_modelo import MANIFIESTO, hash_manifiesto, manifiesto_de
 from .revision import MODEL_ID, validar_revision
 
 
@@ -20,7 +22,8 @@ class TorchSciBERTEncoder:
     pooling = "mean"
 
     def __init__(self, revision: str, model_id: str = MODEL_ID, device: str = "auto",
-                 batch_size: int = 16, max_length: int = 512, local_files_only: bool = True):
+                 batch_size: int = 16, max_length: int = 512, local_files_only: bool = True,
+                 manifiesto: Path = MANIFIESTO):
         if batch_size < 1 or not 16 <= max_length <= 512:
             raise ValueError("batch_size>=1 y 16<=max_length<=512.")
         self.revision = validar_revision(revision)
@@ -40,12 +43,22 @@ class TorchSciBERTEncoder:
         if self.commit_resuelto != self.revision:
             raise RuntimeError(f"El commit resuelto ({self.commit_resuelto}) no coincide con la "
                                f"revision fijada ({self.revision}).")
+        self._verificar_snapshot(ruta, manifiesto)
         self.tokenizer = AutoTokenizer.from_pretrained(ruta, trust_remote_code=False)
         self.model = AutoModel.from_pretrained(ruta, trust_remote_code=False).to(device).eval()
         if max_length > getattr(self.model.config, "max_position_embeddings", 512):
             raise ValueError("max_length supera los embeddings posicionales del modelo.")
         self.capacidad = max_length - self.tokenizer.num_special_tokens_to_add(pair=False)
         self.ventanas_procesadas = self.textos_procesados = 0
+
+    def _verificar_snapshot(self, ruta: Path, manifiesto: Path) -> None:
+        """Si hay manifiesto, el snapshot cargado debe coincidir byte a byte (hash)."""
+        if not Path(manifiesto).is_file():
+            return
+        previo = json.loads(Path(manifiesto).read_text(encoding="utf-8"))
+        actual = manifiesto_de(ruta, self.model_id, self.revision)
+        if hash_manifiesto(actual) != previo.get("sha256_manifiesto"):
+            raise RuntimeError("El snapshot del modelo no coincide con manifiesto_modelo.json.")
 
     def encode(self, textos: list[str]) -> list[tuple[float, ...]]:
         if not textos:

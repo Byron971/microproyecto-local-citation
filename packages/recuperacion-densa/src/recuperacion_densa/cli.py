@@ -11,6 +11,7 @@ import argparse
 import csv
 import hashlib
 import json
+import shutil
 import subprocess
 import sys
 import time
@@ -103,7 +104,8 @@ def escribir(ev: servicio.Evaluacion, salida: Path, perfil) -> list[Path]:
     with (salida / "ejemplos_top3.md").open("x", encoding="utf-8") as f:
         f.write(_md_ejemplos(ev.ejemplos))
     _csv(salida / "diversidad.csv", ["cited_id", "contextos", "n_chunks", "chunks_distintos_top3",
-                                     "cobertura", "chunk_top1_mas_frecuente"], ev.diversidad)
+                                     "cobertura", "chunk_top1_mas_frecuente", "cobertura_bm25",
+                                     "chunk_top1_mas_frecuente_bm25"], ev.diversidad)
     return sorted(p for p in salida.iterdir() if p.is_file())
 
 
@@ -119,6 +121,7 @@ def _parser() -> argparse.ArgumentParser:
     ap.add_argument("--revision", default=REVISION_SCIBERT)
     ap.add_argument("--salida", type=Path)
     ap.add_argument("--sin-cache", action="store_true")
+    ap.add_argument("--cache", type=Path, help="carpeta de la cache (def.: SALIDA/cache_embeddings)")
     ap.add_argument("--ejemplos", type=int, default=12)
     ap.add_argument("--semilla", type=int, default=102)
     ap.add_argument("--exportar-casos", type=Path)
@@ -151,14 +154,15 @@ def main(argv: list[str] | None = None, *,
             casos, meta = servicio.construir_casos(indice, papers, args.cache_ocl, ad.integrar,
                                                    ad.fragmentar, excluidos, args.limite)
         validacion = dominio.validar_casos(casos, excluidos)
-    except (OSError, KeyError, TypeError, ValueError) as exc:
+        print(f"Corpus valido: {validacion['contextos']} contextos / "
+              f"{validacion['articulos']} articulos")
+        if args.exportar_casos:
+            with args.exportar_casos.open("x", encoding="utf-8") as f:
+                json.dump(servicio.exportar_casos(casos, meta), f, ensure_ascii=False, indent=1)
+    except (OSError, KeyError, TypeError, ValueError) as exc:  # FileExistsError es OSError
         ap.exit(2, f"Error de validacion: {exc}\n")
-    print(f"Corpus valido: {validacion['contextos']} contextos / {validacion['articulos']} articulos")
-    if args.exportar_casos:
-        with args.exportar_casos.open("x", encoding="utf-8") as f:
-            json.dump(servicio.exportar_casos(casos, meta), f, ensure_ascii=False, indent=1)
     if args.solo_validar:
-        print(AVISO)
+        print(AVISO if not args.calibracion_origen else dominio.ETIQUETA_GOLD)
         return 0
 
     try:
@@ -169,18 +173,26 @@ def main(argv: list[str] | None = None, *,
             ap.exit(2, "Error: falta un codificador; use `cli_modelo` o --solo-validar.\n")
         codificador = fabrica_codificador(args)
         carga = reloj() - t0
-        cache = None if args.sin_cache else CacheDisco(SALIDA / "cache_embeddings")
+        if gold is not None:
+            esperado = {c["context_id"] for c in casos}
+            if {ctx for ctx, _ in gold} != esperado:
+                raise ad.ProtocoloError("Los contextos del gold no coinciden con los evaluados.")
+        cache = None if args.sin_cache else CacheDisco(args.cache or SALIDA / "cache_embeddings")
         ev = servicio.evaluar(casos, codificador, ad.lexico, cache, reloj, ad.perfil_seccion,
                               max_length=args.max_length, pooling=getattr(codificador, "pooling", "mean"),
                               n_ejemplos=args.ejemplos, semilla=args.semilla, excluidos=excluidos,
                               gold=gold, puntuar=ad.puntuar)
-    except (OSError, KeyError, TypeError, ValueError, RuntimeError) as exc:
+    except (OSError, KeyError, TypeError, ValueError, RuntimeError, ad.ProtocoloError) as exc:
         ap.exit(2, f"Error de evaluacion (no se escribio nada): {exc}\n")
     ev.latencias["carga_modelo_s"] = carga
     mem = getattr(codificador, "memoria_gpu_mb", lambda: None)()
     ev.latencias["memoria_gpu_max_mb"] = mem
 
-    salida.mkdir(parents=True, exist_ok=True)
+    # escritura atomica: todo se genera en <salida>.tmp y se renombra al final
+    final = salida
+    salida = final.with_name(final.name + ".tmp")
+    shutil.rmtree(salida, ignore_errors=True)
+    salida.mkdir(parents=True)
     archivos = escribir(ev, salida, ad.perfil_seccion)
     mm = _sha_archivo(MANIFIESTO_MODELO)
     _json(salida / "manifiesto.json", {
@@ -192,10 +204,14 @@ def main(argv: list[str] | None = None, *,
         "exclusiones": {p.name: _sha_archivo(p) for p in ad.EXCLUSIONES},
         "salidas": {p.name: _sha_archivo(p) for p in archivos},
     })
+    if final.exists():
+        final.rmdir()  # solo llega aqui vacia (verificado al inicio)
+    salida.rename(final)
+    salida = final
     c = ev.resumen["comparacion"]
     print(f"Evaluados {validacion['contextos']} contextos | salida: {salida}")
     print(json.dumps(c, ensure_ascii=False))
-    print(AVISO)
+    print(AVISO if gold is None else dominio.ETIQUETA_GOLD)
     return 0
 
 

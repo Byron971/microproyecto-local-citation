@@ -40,3 +40,20 @@ jobs:
         run: uv run pytest -q
       - name: Verificar que torch no esta instalado
         run: uv run python -c "import importlib.util as u; assert u.find_spec('torch') is None"
+
+  auditoria-corpus:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/auditoria-corpus
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Instalar dependencias
+        run: uv sync --locked
+      - name: Probar el paquete
+        run: uv run pytest -q

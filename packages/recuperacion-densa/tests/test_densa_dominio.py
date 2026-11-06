@@ -2,9 +2,7 @@ import math
 
 import pytest
 
-pytest.importorskip("recuperacion_densa")
-
-from recuperacion_densa import dominio as d  # noqa: E402
+from recuperacion_densa import dominio as d
 
 
 def chunk(i, sec="Intro", texto=None, idx=None):
@@ -74,6 +72,8 @@ def test_validar_ok_y_conteos():
     {"citation_context": "TARGETCIT y TARGETCIT"}, {"chunks": []},
     {"gold": ["c1"]}, {"evidencia_top3": {"x": 1}},
 ])
+
+
 def test_validar_rechaza(mut):
     with pytest.raises(ValueError):
         d.validar_casos([{**caso(), **mut}])
@@ -210,7 +210,6 @@ def test_extracto_y_huella_resultados():
     r2 = {"x": [{"cited_id": "A", "chunk_id": "c", "similitud_coseno": 0.2}]}
     assert d.huella_resultados(r1) == d.huella_resultados(dict(r1)) != d.huella_resultados(r2)
 
-
 # ---- consenso / gold
 ESP = {("x1", "c0"), ("x1", "c1")}
 
@@ -249,3 +248,24 @@ def test_agregar_gold():
     assert vacio["casos_sin_relevantes"] == 1 and vacio["recall_3"] is None
     with pytest.raises(ValueError):
         d.agregar_gold([c], cons, {"x1": ["zz"]}, puntuar)
+
+
+# ---- fail-closed: autocitas y textos duplicados
+def test_validar_rechaza_autocita():
+    with pytest.raises(ValueError, match="Autocita"):
+        d.validar_casos([caso(citing_id="A")])
+
+
+def test_validar_rechaza_texto_duplicado_en_el_articulo():
+    c = caso()
+    c["chunks"][1]["texto"] = "  " + c["chunks"][0]["texto"].upper().lower() + " "
+    c["chunks"][1]["texto"] = c["chunks"][0]["texto"].replace(" ", "  ")
+    with pytest.raises(ValueError, match="duplicado"):
+        d.validar_casos([c])
+
+
+def test_deduplicar_conserva_chunk_id_menor_y_orden():
+    cs = [chunk(2, texto="igual  texto"), chunk(1, texto="otro"), chunk(0, texto="igual texto ")]
+    unicos, desc = d.deduplicar_chunks(cs)
+    assert [c["chunk_id"] for c in unicos] == ["c1", "c0"] and desc == ["c2"]
+    assert d.deduplicar_chunks([chunk(0), chunk(1)])[1] == []

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 from huggingface_hub import HfApi, snapshot_download
@@ -47,6 +48,14 @@ def main(argv: list[str] | None = None) -> int:
     revision = validar_revision(a.revision)
     carpeta = Path(snapshot_download(a.model, revision=revision))
     m = manifiesto_de(carpeta, a.model, revision)
+    if a.manifiesto.exists():
+        previo = json.loads(a.manifiesto.read_text(encoding="utf-8"))
+        esperado = previo.get("sha256_manifiesto")
+        if hash_manifiesto(m) != esperado:
+            print(f"Error: el snapshot no coincide con {a.manifiesto}", file=sys.stderr)
+            return 1
+        print(f"Verificado {a.model}@{revision} | {len(m['archivos'])} archivos")
+        return 0
     m["sha256_manifiesto"] = hash_manifiesto({k: v for k, v in m.items()})
     a.manifiesto.parent.mkdir(parents=True, exist_ok=True)
     with a.manifiesto.open("x", encoding="utf-8") as fh:
