@@ -78,10 +78,14 @@ def test_prior_prelabels_not_automatically_counted_as_humans():
     assert "Haiku" in " ".join(report["warnings"])
 
 
-def test_excluded_gold_id_blocks_without_reannotation():
+def test_excluded_id_is_not_a_test_candidate_without_reannotation():
     a, h, m = payload()
-    result = audit_existing(a, h, m, expected_count=2, excluded={"P14-1_P11-1_0"})
-    assert any("previamente excluido" in b for b in result["blockers"])
+    result = audit_existing(a, h, m, expected_count=2, excluded={"P15-2_P12-2_0"})
+    assert result["blockers"] == []
+    assert result["input_records"]["anotacion"] == 2
+    assert result["n_excluded_from_final_gold"] == 1
+    assert result["n_test_candidates_2015_after_exclusions"] == 0
+    assert any("NO son elegibles" in msg for msg in result["warnings"])
 
 
 def test_manifests_must_match_exactly():
@@ -169,6 +173,9 @@ def test_actual_repository_2700_files_without_modifying_them(tmp_path):
     assert result["status_counts"] == {"COMPLETO": 2672, "REGISTRADO": 28}
     assert result["shared_ids_with_haiku"] == 0
     assert result["scientific_gold_certified"] is False
+    assert result["n_excluded_from_final_gold"] == 5
+    assert result["excluded_from_final_gold_by_year"] == {"2014": 1, "2015": 4}
+    assert result["n_test_candidates_2015_after_exclusions"] == 1375
     assert result["blockers"] == []
 
 
