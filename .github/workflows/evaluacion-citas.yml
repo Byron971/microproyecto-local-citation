@@ -11,11 +11,13 @@ on:
       - "tests/test_commercial_doc_contract.py"
       - "tests/test_gold_freeze_audit.py"
       - "tests/test_gold_existing_csv_audit.py"
+      - "tests/test_gold_manifest_reconcile.py"
       - "src/data/build_citation_function_pilot.py"
       - "tests/test_commercial*.py"
       - "tests/test_paired_benchmark.py"
       - "tests/test_gold_freeze_audit.py"
       - "tests/test_gold_existing_csv_audit.py"
+      - "tests/test_gold_manifest_reconcile.py"
       - "tests/test_providers*.py"
       - "tests/test_annotation.py"
       - "tests/test_build_citation_function_pilot.py"
@@ -58,6 +60,7 @@ jobs:
             tests/test_paired_benchmark.py \
             tests/test_gold_freeze_audit.py \
             tests/test_gold_existing_csv_audit.py \
+            tests/test_gold_manifest_reconcile.py \
             tests/test_commercial_gold_policy.py \
             tests/test_commercial_doc_contract.py \
             tests/test_commercial_orchestrate.py \
@@ -81,4 +84,17 @@ jobs:
         with:
           name: auditoria-gold-csv-existente-no-certificada
           path: artifacts/auditoria-gold-csv-existente/gold_existing_audit.json
+          if-no-files-found: ignore
+
+      - name: Conciliar PR91 y PR92 sin cambiar sus Gold
+        run: |
+          uv run python -m src.evaluation.commercial.gold_manifest_reconcile \
+            --output-dir artifacts/conciliacion-pr91-pr92
+
+      - name: Adjuntar reporte agregado y huellas de manifiestos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conciliacion-gold-pr91-pr92-sin-certificacion
+          path: artifacts/conciliacion-pr91-pr92/resumen_conciliacion_gold.json
           if-no-files-found: ignore
