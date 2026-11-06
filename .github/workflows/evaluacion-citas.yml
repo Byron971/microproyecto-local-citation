@@ -14,8 +14,7 @@ on:
       - "src/data/build_citation_function_pilot.py"
       - "tests/test_commercial*.py"
       - "tests/test_paired_benchmark.py"
-      - "tests/test_gold_freeze_audit.py"
-      - "tests/test_gold_existing_csv_audit.py"
+      - "tests/test_a4_factorial_benchmark.py"
       - "tests/test_providers*.py"
       - "tests/test_annotation.py"
       - "tests/test_build_citation_function_pilot.py"
@@ -56,6 +55,7 @@ jobs:
             tests/test_commercial_io.py \
             tests/test_commercial_metrics.py \
             tests/test_paired_benchmark.py \
+            tests/test_a4_factorial_benchmark.py \
             tests/test_gold_freeze_audit.py \
             tests/test_gold_existing_csv_audit.py \
             tests/test_commercial_gold_policy.py \
