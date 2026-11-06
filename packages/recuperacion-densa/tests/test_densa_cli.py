@@ -1,4 +1,6 @@
 import json
+import os
+import subprocess
 import sys
 
 import pytest
@@ -30,11 +32,16 @@ def mundo(tmp_path, monkeypatch):
     return ["--raw", str(raw), "--cache-ocl", str(cache), "--sin-cache"], tmp_path
 
 
-def test_solo_validar_no_importa_torch(mundo, capsys):
+def test_cli_no_importa_torch():
+    """En un subproceso: borrar torch de sys.modules en este proceso rompe su re-import."""
+    codigo = "import sys, recuperacion_densa.cli; sys.exit(int('torch' in sys.modules))"
+    env = {**os.environ, "PYTHONPATH": os.pathsep.join(p for p in sys.path if p)}
+    assert subprocess.run([sys.executable, "-c", codigo], env=env).returncode == 0
+
+
+def test_solo_validar(mundo, capsys):
     base, _ = mundo
-    sys.modules.pop("torch", None)
     assert cli.main([*base, "--solo-validar"]) == 0
-    assert "torch" not in sys.modules
     assert "3 contextos / 1 articulos" in capsys.readouterr().out
 
 

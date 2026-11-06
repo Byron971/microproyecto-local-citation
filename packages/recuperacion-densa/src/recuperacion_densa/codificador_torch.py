@@ -5,9 +5,11 @@ combinacion de ventanas en float64 (media ponderada por tokens de contenido)."""
 from __future__ import annotations
 
 import platform
+from pathlib import Path
 
 import torch
 import transformers
+from huggingface_hub import snapshot_download
 from transformers import AutoModel, AutoTokenizer
 
 from . import dominio
@@ -30,14 +32,16 @@ class TorchSciBERTEncoder:
         if device == "cuda" and not torch.cuda.is_available():
             raise RuntimeError("CUDA solicitado pero no esta disponible.")
         self.device = device
-        kw = dict(revision=self.revision, trust_remote_code=False,
-                  local_files_only=local_files_only)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id, **kw)
-        self.model = AutoModel.from_pretrained(model_id, **kw).to(device).eval()
-        self.commit_resuelto = getattr(self.model.config, "_commit_hash", None)
+        # transformers 5 deja config._commit_hash en None: el commit se verifica por la
+        # carpeta del snapshot (huggingface_hub la nombra con el SHA) y se carga desde ella.
+        ruta = Path(snapshot_download(model_id, revision=self.revision,
+                                      local_files_only=local_files_only))
+        self.commit_resuelto = ruta.name
         if self.commit_resuelto != self.revision:
             raise RuntimeError(f"El commit resuelto ({self.commit_resuelto}) no coincide con la "
                                f"revision fijada ({self.revision}).")
+        self.tokenizer = AutoTokenizer.from_pretrained(ruta, trust_remote_code=False)
+        self.model = AutoModel.from_pretrained(ruta, trust_remote_code=False).to(device).eval()
         if max_length > getattr(self.model.config, "max_position_embeddings", 512):
             raise ValueError("max_length supera los embeddings posicionales del modelo.")
         self.capacidad = max_length - self.tokenizer.num_special_tokens_to_add(pair=False)

@@ -1,0 +1,75 @@
+{
+  "cpu_vs_cuda": {
+    "contextos": 60,
+    "max_dif_coseno_abs": 9.999999999177334e-07,
+    "mismo_conjunto_top3": 60,
+    "mismo_orden_top3": 60,
+    "mismo_top1": 60,
+    "seleccion": "primeros 60 por context_id (--limite 60)"
+  },
+  "cuda1_vs_cuda2": {
+    "nota": "corrida 1 con --sin-cache; corrida 2 con cache de embeddings (243 chunks acertados en cache al medir)",
+    "resumen_json_identico": true,
+    "top3_csv_identico": true
+  },
+  "latencias_s": {
+    "corrida_cuda_1": {
+      "bm25": {
+        "n": 605,
+        "p50": 0.0011285929995210608,
+        "p95": 0.001650256999710109
+      },
+      "carga_modelo_s": 1.39587592999942,
+      "consulta_densa": {
+        "n": 605,
+        "p50": 0.010669063999557693,
+        "p95": 0.015555455000139773
+      },
+      "embedding_articulo": {
+        "n": 91,
+        "p50": 0.13113876699935645,
+        "p95": 0.21252763000029518
+      },
+      "memoria_gpu_max_mb": 688.94921875
+    },
+    "corrida_cuda_2": {
+      "bm25": {
+        "n": 605,
+        "p50": 0.001084495000213792,
+        "p95": 0.0015450729997610324
+      },
+      "carga_modelo_s": 1.4049421270001403,
+      "consulta_densa": {
+        "n": 605,
+        "p50": 0.011169512999913422,
+        "p95": 0.01625874700039276
+      },
+      "embedding_articulo": {
+        "n": 91,
+        "p50": 0.1771176590000323,
+        "p95": 0.3383903169997211
+      },
+      "memoria_gpu_max_mb": 689.73046875
+    },
+    "cpu_60": {
+      "bm25": {
+        "n": 60,
+        "p50": 0.001408692000040901,
+        "p95": 0.0018684189999476075
+      },
+      "carga_modelo_s": 1.1297105840003496,
+      "consulta_densa": {
+        "n": 60,
+        "p50": 0.04603939000026003,
+        "p95": 0.06231167100031598
+      },
+      "embedding_articulo": {
+        "n": 20,
+        "p50": 3.2577703509996354,
+        "p95": 5.173974873999214
+      },
+      "memoria_gpu_max_mb": null
+    }
+  },
+  "nota_latencias": "cpu_60 mide 60 contextos y 20 articulos; cuda: 605 y 91. Una sola GPU (RTX 4070 SUPER) y una CPU: no representa la API."
+}

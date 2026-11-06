@@ -1,0 +1,50 @@
+{
+  "argv": [
+    "--device",
+    "cuda",
+    "--sin-cache",
+    "--salida",
+    "proyecto_de_grado/artifacts/recuperacion_densa_a1/corrida_cuda_1"
+  ],
+  "encoder": {
+    "batch_size": 16,
+    "commit_resuelto": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "cuda": "12.8",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "max_length": 512,
+    "model_id": "allenai/scibert_scivocab_uncased",
+    "pooling": "mean",
+    "python": "3.14.6",
+    "revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "textos_procesados": 3238,
+    "torch": "2.11.0+cu128",
+    "transformers": "5.22.1",
+    "ventanas_procesadas": 3238
+  },
+  "entradas": {
+    "contexts.json": "4725714f53cd6e1f2efca883761dc252ac19be1489b699f4d14d1e7b9dcc3a73",
+    "entrada_s22": null,
+    "train.json": "62d670079b8ea1d4654d45d18c3a3e028a94732189acb54bc1b2350984ad9dae"
+  },
+  "estado": "comparacion_tecnica_train_sin_gold",
+  "exclusiones": {
+    "ids_excluir_test_gold.txt": "3dd1a15b8a74193c7b8e7c6397592e6c915a2dc478d768c9ed0be6e255ca4e0a",
+    "ids_piloto_historico_no_test_final.txt": "b9068f267dfeec8d90a00c1522700cee4adb5da42539328e6d76bfc3a87c88bb"
+  },
+  "git": {
+    "dirty": true,
+    "head": "ca4cc5bbc148064c44910e4eac008353170de4ae"
+  },
+  "salidas": {
+    "comparacion.csv": "24ae461ba7d7004582717aec66e6195d062e9804166233e549ffafa831563230",
+    "diversidad.csv": "2afb75ae8c1786882a9ce261941b4dc27d516dd22f427e4bb2d344e8da835a3b",
+    "ejemplos_top3.json": "4383d45a684169760df564e9cf1f7523e0ea20ccc0dbddbebd3dad875bb116d9",
+    "ejemplos_top3.md": "6f06cf85dacc895756b8d4552687aaf4a8547924bd48850d1ee996ec0d5f219a",
+    "latencias.csv": "ca102dfb677c413240c57883f2a083d15b5ab3a92b9e0e7b1d9ef3fa3a75bcaf",
+    "latencias_resumen.json": "c2916f9fa7102036f491f17f20778409e66641211a0304f71c864d9311db8ecb",
+    "resumen.json": "cd9d129db669718c396f471fef18f186c0b162ffc226d0604817a3a04992dead",
+    "top3.csv": "160b99bb45c1b0f5a80df230ce56bd40a98c53e88379dbc6a7936cf438958685"
+  },
+  "sha256_manifiesto_modelo": "bf089a55db140bb29422f48609a7be82e06e80198c8af156f30d860cb3911b13"
+}

@@ -1,0 +1,92 @@
+{
+  "comparacion": {
+    "macro": {
+      "abstencion_bm25": 0.0,
+      "interseccion": 0.9168738791159222,
+      "jaccard": 0.21190266272566102,
+      "mismo_top1": 0.2275766478760856,
+      "n": 91,
+      "solape_3": 0.3056246263719741,
+      "solape_esperado_azar": 0.1278687159581193,
+      "solape_esperado_azar_chunks": 0.38360614787435793
+    },
+    "micro": {
+      "abstencion_bm25": 0.0,
+      "interseccion": 0.8165289256198347,
+      "jaccard": 0.18380165289256198,
+      "mismo_top1": 0.1933884297520661,
+      "n": 605,
+      "solape_3": 0.2721763085399449,
+      "solape_esperado_azar": 0.11194696796303048,
+      "solape_esperado_azar_chunks": 0.33584090388909144
+    }
+  },
+  "diversidad": {
+    "articulos_con_2_o_mas_contextos": 60,
+    "cobertura_media": 0.3029779681242411,
+    "top1_mas_frecuente_medio": 0.5006910636641616
+  },
+  "estado": "comparacion_tecnica_train_sin_gold",
+  "huella_bm25": "757c45d73378d8b0597dd4370f16011dc8b1f9b5884dba1e33a64d6a098a4c9c",
+  "huella_denso": "312d08f6c491810932fc50670cbc669b7950c3e6e98721a17c55a6f1d3fa43c3",
+  "integridad": {
+    "metodos": [
+      "scibert",
+      "bm25"
+    ],
+    "violaciones": 0
+  },
+  "metricas_relevancia": "no calculadas: sin gold validado",
+  "modelo": {
+    "max_length": 512,
+    "model_id": "allenai/scibert_scivocab_uncased",
+    "pooling": "mean",
+    "revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1"
+  },
+  "secciones": {
+    "bm25": {
+      "conclusion": 0.08099173553719008,
+      "introduction": 0.2022038567493113,
+      "method": 0.13388429752066117,
+      "otra": 0.409366391184573,
+      "related_work": 0.06776859504132231,
+      "results": 0.08484848484848485,
+      "vacia": 0.0209366391184573
+    },
+    "corpus": {
+      "conclusion": 0.05965045592705167,
+      "introduction": 0.09650455927051672,
+      "method": 0.15995440729483282,
+      "otra": 0.5007598784194529,
+      "related_work": 0.0338145896656535,
+      "results": 0.10600303951367782,
+      "vacia": 0.04331306990881459
+    },
+    "denso": {
+      "conclusion": 0.08484848484848485,
+      "introduction": 0.17245179063360883,
+      "method": 0.12727272727272726,
+      "otra": 0.42534435261707987,
+      "related_work": 0.11735537190082644,
+      "results": 0.045179063360881545,
+      "vacia": 0.027548209366391185
+    }
+  },
+  "similitud": {
+    "brecha_top1_top2": {
+      "max": 0.051344000000000056,
+      "media": 0.0077606082644628115,
+      "min": 3.000000000086267e-06
+    },
+    "top1": {
+      "max": 0.944183,
+      "media": 0.9031130495867767,
+      "min": 0.731727
+    }
+  },
+  "validacion": {
+    "articulos": 91,
+    "chunks_unicos": 2632,
+    "contextos": 605
+  }
+}
