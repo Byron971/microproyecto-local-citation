@@ -112,8 +112,6 @@ def audit_existing(
                 blockers.append(f"{name}: año citante fuera del rango permitido (id oculto)")
             if (row.get("Contexto TARGETCIT") or "").count("TARGETCIT") != 1:
                 n_bad_markers += 1
-            if cid in excluded:
-                blockers.append(f"{name}: contiene registro previamente excluido")
             status = row["Estado"]
             evaluable = row["¿Evaluable?"]
             label = row["Función principal"]
@@ -148,6 +146,22 @@ def audit_existing(
         m = manifest.get(cid)
         if m is not None and m.get("anio_citante") != "20" + yy:
             blockers.append("Manifiesto: año citante incongruente (id oculto)")
+
+    # Las listas de exclusión se aplican al TEST CANDIDATO, no borran
+    # filas históricas ya anotadas. Conservamos el CSV original inmutable.
+    excluded_present = set(annotated) & excluded
+    excluded_years: Counter[str] = Counter()
+    excluded_completed_years: Counter[str] = Counter()
+    for cid in excluded_present:
+        year = "20" + _parts(cid)[0][1:3]
+        excluded_years[year] += 1
+        if annotated[cid]["Estado"] == "COMPLETO":
+            excluded_completed_years[year] += 1
+    if excluded_present:
+        warnings.append(
+            f"{len(excluded_present)} anotaciones previamente excluidas se conservan en "
+            "el CSV histórico, pero NO son elegibles para Test Gold."
+        )
 
     overlap_ids = set(annotated) & set(haiku)
     if overlap_ids:
@@ -220,6 +234,14 @@ def audit_existing(
         "double_annotation_verified": False,
         "n_provisional_test_2015": year_counts.get("2015", 0),
         "n_provisional_test_classifiable_2015": year_completed.get("2015", 0),
+        "n_excluded_from_final_gold": len(excluded_present),
+        "excluded_from_final_gold_by_year": dict(sorted(excluded_years.items())),
+        "n_test_candidates_2015_after_exclusions": (
+            year_counts.get("2015", 0) - excluded_years.get("2015", 0)
+        ),
+        "n_classifiable_test_candidates_2015_after_exclusions": (
+            year_completed.get("2015", 0) - excluded_completed_years.get("2015", 0)
+        ),
         "blockers": list(dict.fromkeys(blockers)),
         "warnings": warnings,
     }
