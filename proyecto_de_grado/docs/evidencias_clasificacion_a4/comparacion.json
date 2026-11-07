@@ -205,6 +205,206 @@
         2026
       ]
     },
+    "scibert|B_barajada": {
+      "agregado": {
+        "accuracy": {
+          "desv": 0.018781047930146868,
+          "media": 0.6147540983606558
+        },
+        "f1_macro": {
+          "desv": 0.030934914231628995,
+          "media": 0.4787307706920822
+        },
+        "f1_micro": {
+          "desv": 0.018781047930146868,
+          "media": 0.6147540983606558
+        },
+        "f1_por_clase": [
+          {
+            "desv": 0.008765369037618648,
+            "label": "Background",
+            "media": 0.7361126586079326
+          },
+          {
+            "desv": 0.05163947600795023,
+            "label": "Gap",
+            "media": 0.2749479483902816
+          },
+          {
+            "desv": 0.026142320114322985,
+            "label": "Basis",
+            "media": 0.1270687237026648
+          },
+          {
+            "desv": 0.046978732193336224,
+            "label": "Comparison",
+            "media": 0.5982617024755609
+          },
+          {
+            "desv": 0.01464740835981569,
+            "label": "Application",
+            "media": 0.7695885583218963
+          },
+          {
+            "desv": 0.07971861860502337,
+            "label": "Improvement / Modification",
+            "media": 0.3127496159754224
+          },
+          {
+            "desv": 0.02808326910916271,
+            "label": "Evidence",
+            "media": 0.5203718224823752
+          },
+          {
+            "desv": 0.03124194958360538,
+            "label": "Identification of the Originator",
+            "media": 0.27191894127377997
+          },
+          {
+            "desv": 0.041086439793346974,
+            "label": "Further Reading",
+            "media": 0.6975569649988255
+          }
+        ],
+        "f1_weighted": {
+          "desv": 0.020902097626292523,
+          "media": 0.624251220185177
+        },
+        "precision_macro": {
+          "desv": 0.024221567725471037,
+          "media": 0.47572107260519947
+        },
+        "precision_micro": {
+          "desv": 0.018781047930146868,
+          "media": 0.6147540983606558
+        },
+        "precision_weighted": {
+          "desv": 0.019899194125052522,
+          "media": 0.6405176147371913
+        },
+        "recall_macro": {
+          "desv": 0.031158646074805917,
+          "media": 0.5110287830847567
+        },
+        "recall_micro": {
+          "desv": 0.018781047930146868,
+          "media": 0.6147540983606558
+        },
+        "recall_weighted": {
+          "desv": 0.018781047930146868,
+          "media": 0.6147540983606558
+        },
+        "semillas": 3
+      },
+      "encoder": "SciBERT",
+      "entrada": "B_barajada",
+      "n": 732,
+      "semillas": [
+        42,
+        1234,
+        2026
+      ]
+    },
+    "scibert|B_sin_seccion": {
+      "agregado": {
+        "accuracy": {
+          "desv": 0.01848053177386431,
+          "media": 0.6051912568306012
+        },
+        "f1_macro": {
+          "desv": 0.022099157257113547,
+          "media": 0.4631735249131708
+        },
+        "f1_micro": {
+          "desv": 0.01848053177386431,
+          "media": 0.6051912568306012
+        },
+        "f1_por_clase": [
+          {
+            "desv": 0.02693433440884412,
+            "label": "Background",
+            "media": 0.7341653395915402
+          },
+          {
+            "desv": 0.02902427369887881,
+            "label": "Gap",
+            "media": 0.22405420666290232
+          },
+          {
+            "desv": 0.00554162660431532,
+            "label": "Basis",
+            "media": 0.11424386272091701
+          },
+          {
+            "desv": 0.021444980082219425,
+            "label": "Comparison",
+            "media": 0.5642749346100809
+          },
+          {
+            "desv": 0.02213483220247019,
+            "label": "Application",
+            "media": 0.7706942801553905
+          },
+          {
+            "desv": 0.04424424270215229,
+            "label": "Improvement / Modification",
+            "media": 0.35244252873563214
+          },
+          {
+            "desv": 0.07686923349951395,
+            "label": "Evidence",
+            "media": 0.49821916390624504
+          },
+          {
+            "desv": 0.036463619389704695,
+            "label": "Identification of the Originator",
+            "media": 0.21096866096866096
+          },
+          {
+            "desv": 0.015043858344319717,
+            "label": "Further Reading",
+            "media": 0.699498746867168
+          }
+        ],
+        "f1_weighted": {
+          "desv": 0.018927034171365528,
+          "media": 0.6129592132437257
+        },
+        "precision_macro": {
+          "desv": 0.015069978730476554,
+          "media": 0.47501642644228176
+        },
+        "precision_micro": {
+          "desv": 0.01848053177386431,
+          "media": 0.6051912568306012
+        },
+        "precision_weighted": {
+          "desv": 0.011975185937593634,
+          "media": 0.6385177337211122
+        },
+        "recall_macro": {
+          "desv": 0.02072031827340244,
+          "media": 0.4957362939379463
+        },
+        "recall_micro": {
+          "desv": 0.01848053177386431,
+          "media": 0.6051912568306012
+        },
+        "recall_weighted": {
+          "desv": 0.01848053177386431,
+          "media": 0.6051912568306012
+        },
+        "semillas": 3
+      },
+      "encoder": "SciBERT",
+      "entrada": "B_sin_seccion",
+      "n": 732,
+      "semillas": [
+        42,
+        1234,
+        2026
+      ]
+    },
     "specter|A": {
       "agregado": {
         "accuracy": {
@@ -667,6 +867,134 @@
       "a": "B",
       "agregado": {
         "accuracy": {
+          "desv": 0.027896964285057554,
+          "media": -0.005464480874316946
+        },
+        "f1_macro": {
+          "desv": 0.03807245340868992,
+          "media": -0.009136745930941362
+        },
+        "f1_micro": {
+          "desv": 0.027896964285057554,
+          "media": -0.005464480874316946
+        },
+        "f1_weighted": {
+          "desv": 0.024746746076782605,
+          "media": -0.012013491474042404
+        },
+        "precision_macro": {
+          "desv": 0.016956530652470967,
+          "media": -0.0069485786930772635
+        },
+        "recall_macro": {
+          "desv": 0.04247802734731148,
+          "media": 0.002519761147877664
+        }
+      },
+      "b": "B_sin_seccion",
+      "encoder": "SciBERT",
+      "factor": "ablacion",
+      "nombre": "B->B_sin_seccion",
+      "por_semilla": {
+        "1234": {
+          "accuracy": 0.025956284153005438,
+          "f1_macro": 0.016932416672118533,
+          "f1_micro": 0.025956284153005438,
+          "f1_weighted": 0.012746388280548526,
+          "precision_macro": -0.00030775850618752765,
+          "recall_macro": 0.0347980249584387
+        },
+        "2026": {
+          "accuracy": -0.02732240437158473,
+          "f1_macro": -0.0528276606635632,
+          "f1_micro": -0.02732240437158473,
+          "f1_weighted": -0.036747082928600516,
+          "precision_macro": -0.02622043267735019,
+          "recall_macro": -0.0456032428080288
+        },
+        "42": {
+          "accuracy": -0.015027322404371546,
+          "f1_macro": 0.008485006198620582,
+          "f1_micro": -0.015027322404371546,
+          "f1_weighted": -0.012039779774075221,
+          "precision_macro": 0.005682455104305928,
+          "recall_macro": 0.01836450129322309
+        }
+      },
+      "semillas": [
+        42,
+        1234,
+        2026
+      ]
+    },
+    {
+      "a": "B",
+      "agregado": {
+        "accuracy": {
+          "desv": 0.014776849489606452,
+          "media": 0.004098360655737728
+        },
+        "f1_macro": {
+          "desv": 0.007615177445752724,
+          "media": 0.006420499847969978
+        },
+        "f1_micro": {
+          "desv": 0.014776849489606452,
+          "media": 0.004098360655737728
+        },
+        "f1_weighted": {
+          "desv": 0.00881337310763771,
+          "media": -0.0007214845325911323
+        },
+        "precision_macro": {
+          "desv": 0.0004355224274276093,
+          "media": -0.006243932530159535
+        },
+        "recall_macro": {
+          "desv": 0.014869996173026201,
+          "media": 0.017812250294688064
+        }
+      },
+      "b": "B_barajada",
+      "encoder": "SciBERT",
+      "factor": "ablacion",
+      "nombre": "B->B_barajada",
+      "por_semilla": {
+        "1234": {
+          "accuracy": 0.020491803278688492,
+          "f1_macro": 0.01505057114458197,
+          "f1_micro": 0.020491803278688492,
+          "f1_weighted": 0.006982268218265086,
+          "precision_macro": -0.006331922487688713,
+          "recall_macro": 0.03430763943477627
+        },
+        "2026": {
+          "accuracy": 0.0,
+          "f1_macro": 0.003565714038508805,
+          "f1_micro": 0.0,
+          "f1_weighted": 0.0011855183839687422,
+          "precision_macro": -0.005771133271655404,
+          "recall_macro": 0.013692919689171412
+        },
+        "42": {
+          "accuracy": -0.008196721311475308,
+          "f1_macro": 0.0006452143608191574,
+          "f1_micro": -0.008196721311475308,
+          "f1_weighted": -0.010332240200007226,
+          "precision_macro": -0.006628741831134488,
+          "recall_macro": 0.005436191760116504
+        }
+      },
+      "semillas": [
+        42,
+        1234,
+        2026
+      ]
+    },
+    {
+      "a": "B",
+      "agregado": {
+        "accuracy": {
           "desv": 0.003943649379710531,
           "media": 0.00045537340619309735
         },
@@ -801,6 +1129,12 @@
       "scibert_B_1234",
       "scibert_B_2026",
       "scibert_B_42",
+      "scibert_B_barajada_1234",
+      "scibert_B_barajada_2026",
+      "scibert_B_barajada_42",
+      "scibert_B_sin_seccion_1234",
+      "scibert_B_sin_seccion_2026",
+      "scibert_B_sin_seccion_42",
       "specter_A_1234",
       "specter_A_2026",
       "specter_A_42",
@@ -822,6 +1156,12 @@
       "scibert_B_2026/predicciones_eval_B_barajada.jsonl": "79842a78574d5df8375d113c100ce7c76d0419c1f3898c405b559b3ba6cecf8d",
       "scibert_B_42/predicciones_eval.jsonl": "64d99da150aefa911df61e604ecd5697f67e44a10423732e90f68e595b60ac46",
       "scibert_B_42/predicciones_eval_B_barajada.jsonl": "d1d7b4f7edb5b3639400d14434125e4e4587cf44f2cdce8f694ebc6a6cd0dda0",
+      "scibert_B_barajada_1234/predicciones_eval.jsonl": "0f2f656dbed037baf192252894a13e60773baa98660d749995e2ec2e3d37c8c1",
+      "scibert_B_barajada_2026/predicciones_eval.jsonl": "1b1c9068c210fd8e3164a34d2d4940aa0dbb4b93766cbfcfd22a6a3f4dcfd537",
+      "scibert_B_barajada_42/predicciones_eval.jsonl": "260ee7324d0c79775169fa37de586b18efdcd50e9631f7c2ab4a8c18a7d520a0",
+      "scibert_B_sin_seccion_1234/predicciones_eval.jsonl": "e5ac6c525cd5bb4418205c66909ee8b18ed22526b5f5b8c617ac9e389101cb7f",
+      "scibert_B_sin_seccion_2026/predicciones_eval.jsonl": "b6b2cf11a90cc8719912850970c4a590c448005e4d84fe30f1f3ac4d5a0ca270",
+      "scibert_B_sin_seccion_42/predicciones_eval.jsonl": "577139f501791449239cf6c2068087dd9a2c629bdc3ef2b795f0e79eaf86ea88",
       "specter_A_1234/predicciones_eval.jsonl": "77762d7af059afaf333969b8a69d892b31e0fd3d80110cf1525dbcbcce35f6c7",
       "specter_A_2026/predicciones_eval.jsonl": "44b7279b2f177f3d39bdc7058ec4a40810b9cf301b624de429593f772cff0a10",
       "specter_A_42/predicciones_eval.jsonl": "fc949677ce1d80faabdc4fdc595e0a96ca9a3d4685fa57efa8c8717fcc7a580f",
