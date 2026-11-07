@@ -47,3 +47,34 @@ def fila_prediccion(case_id: str, scores: list[float], *, model_id: str, model_v
 
 def jsonl_texto(filas: list[dict]) -> str:
     return "".join(json.dumps(f, ensure_ascii=False, sort_keys=True) + "\n" for f in filas)
+
+
+NOMBRES_ENCODER = {"scibert": "SciBERT", "specter": "SPECTER"}
+
+
+def config_a4(manifiestos: dict[tuple[str, str], dict], semilla: int, carpeta: str = ".") -> dict:
+    """Configuracion `a4_factorial_v1` de una semilla: las 4 celdas (encoder x entrada A/B).
+
+    `manifiestos`: (encoder, entrada) -> manifiesto.json de la corrida. Las rutas de las
+    predicciones son relativas a la carpeta de la configuracion."""
+    esperadas = {(e, i) for e in NOMBRES_ENCODER for i in ("A", "B")}
+    if set(manifiestos) != esperadas:
+        raise ValueError(f"Matriz incompleta para la semilla {semilla}: "
+                         f"faltan {sorted(esperadas - set(manifiestos))}")
+    variantes = []
+    for (encoder, entrada), m in sorted(manifiestos.items()):
+        if m["training_labels"] != "Haiku" or m["data_use"] != "provisional_only":
+            raise ValueError("Solo se exporta material provisional con etiquetas Haiku.")
+        if m["semilla"] != semilla or m["encoder"] != encoder or m["entrada"] != entrada:
+            raise ValueError(f"Manifiesto inconsistente: {encoder}/{entrada}/{semilla}")
+        variantes.append({
+            "name": f"{NOMBRES_ENCODER[encoder]}_{entrada}_s{semilla}",
+            "encoder": NOMBRES_ENCODER[encoder], "input": entrada, "training_labels": "Haiku",
+            "predictions": f"{encoder}_{entrada}_{semilla}/predicciones_eval.jsonl",
+            "checkpoint_sha256": m["checkpoint_sha256"],
+            "train_ids_sha256": m["entradas"]["train_ids_sha256"],
+            "train_labels_sha256": m["entradas"]["train_labels_sha256"],
+            "input_spec_sha256": m["input_spec_sha256"]})
+    return {"schema_version": "a4_factorial_v1", "data_use": "provisional_only",
+            "estado": "provisional_etiquetas_haiku_no_gold_humano", "semilla": semilla,
+            "variants": variantes}
