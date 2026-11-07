@@ -23,7 +23,7 @@ from recuperacion_densa.cache_embeddings import CacheDisco
 from recuperacion_densa.dominio import SIN_SECCION
 
 from . import adaptador_proyecto_grado as ad
-from . import dominio, exportar, servicio
+from . import comparacion, dominio, exportar, servicio
 
 EVIDENCIAS = ad.REPO / "proyecto_de_grado/docs/evidencias_clasificacion_a4"
 ARTEFACTOS = ad.REPO / "proyecto_de_grado/artifacts/clasificacion_a4/preparacion"
@@ -302,6 +302,90 @@ def entradas(args) -> int:
     return 3 if bloqueos and args.exigir_cobertura else 0
 
 
+def descubrir_corridas(evidencias: Path) -> dict[tuple[str, str, int], Path]:
+    corridas = {}
+    for d in sorted(Path(evidencias).iterdir()):
+        m = comparacion.PATRON_CORRIDA.match(d.name)
+        if m and d.is_dir() and (d / "manifiesto.json").is_file():
+            corridas[(m[1], m[2], int(m[3]))] = d
+    return corridas
+
+
+def _texto_archivo(ruta: Path) -> str:
+    if not Path(ruta).is_file():
+        raise FileNotFoundError(f"Falta {ruta}")
+    return Path(ruta).read_text(encoding="utf-8")
+
+
+def evaluar(args) -> int:
+    """Puntua las predicciones contra un Gold y compara las corridas (sin reentrenar nunca).
+
+    Sin --gold-v2: eval 2015 con etiquetas Haiku (PROVISIONAL) + una config a4_factorial_v1 por
+    semilla + comparacion.{json,csv}. Con --gold-v2 <ruta privada>: puntua las predicciones
+    ciegas sobre los ids con gold evaluable y escribe comparacion_gold_v2.{json,csv}."""
+    ev = Path(args.evidencias)
+    corridas = descubrir_corridas(ev)
+    if not corridas:
+        raise FileNotFoundError(f"No hay corridas en {ev}: ejecute scripts/entrenar_clasificacion_a4.sh")
+    v2 = args.gold_v2 is not None
+    ruta_gold = Path(args.gold_v2) if v2 else Path(args.gold or ev / "gold_eval_2015_haiku.jsonl")
+    gold, abstenciones = comparacion.indexar_gold(comparacion.leer_jsonl(_texto_archivo(ruta_gold),
+                                                                          ruta_gold.name))
+    archivo, sufijo = ("predicciones_gold_v2.jsonl", "_gold_v2") if v2 else ("predicciones_eval.jsonl", "")
+    metricas, sondeo, shas = {}, {}, {}
+    for (enc, ent, sem), d in corridas.items():
+        pred = comparacion.indexar_predicciones(
+            comparacion.leer_jsonl(_texto_archivo(d / archivo), f"{d.name}/{archivo}"))
+        metricas[(enc, ent, sem)] = comparacion.puntuar(gold, pred, exacto=not v2)
+        shas[f"{d.name}/{archivo}"] = hashlib.sha256((d / archivo).read_bytes()).hexdigest()
+        if not v2:
+            guardado = json.loads(_texto_archivo(d / "metricas_eval.json"))
+            if abs(guardado["f1_macro"] - metricas[(enc, ent, sem)]["f1_macro"]) > 1e-9:
+                raise ValueError(f"{d.name}: metricas_eval.json no coincide con el Gold recalculado.")
+        barajado = d / "predicciones_eval_B_barajada.jsonl"
+        if not v2 and ent == "B" and barajado.is_file():
+            sondeo[(enc, sem)] = comparacion.puntuar(gold, comparacion.indexar_predicciones(
+                comparacion.leer_jsonl(barajado.read_text(encoding="utf-8"), barajado.name)))
+            shas[f"{d.name}/{barajado.name}"] = hashlib.sha256(barajado.read_bytes()).hexdigest()
+    comp = comparacion.comparar(metricas, sondeo)
+    comp["procedencia"] = {"gold": ruta_gold.name if not v2 else "<ruta privada>",
+                           "gold_sha256": hashlib.sha256(ruta_gold.read_bytes()).hexdigest(),
+                           "gold_n": len(gold), "gold_abstenciones": abstenciones,
+                           "corridas": [d.name for d in corridas.values()], "predicciones_sha256": shas}
+    if v2:
+        comp["estado"] = "gold_v2_dado_por_el_usuario_sin_verificar_congelacion_100"
+        comp["advertencias"] = ["Este paquete no certifica el Gold v2: confirme la congelacion en #100."]
+    salidas = {ev / f"comparacion{sufijo}.json": _json_texto(comp),
+               ev / f"comparacion{sufijo}.csv": _csv_texto(comparacion.COLUMNAS_CSV,
+                                                           comparacion.filas_csv(comp))}
+    if v2:
+        for (enc, ent, sem), d in corridas.items():
+            salidas[d / "metricas_gold_v2.json"] = _json_texto(
+                {"estado": comp["estado"], **metricas[(enc, ent, sem)]})
+    else:
+        for sem in sorted({s for _, _, s in corridas}):
+            celdas = {(e, i): json.loads((d / "manifiesto.json").read_text(encoding="utf-8"))
+                      for (e, i, s), d in corridas.items() if s == sem and i in comparacion.ENTRADAS_MATRIZ}
+            try:
+                salidas[ev / f"a4_config_semilla{sem}.json"] = _json_texto(exportar.config_a4(celdas, sem))
+            except ValueError as exc:
+                print(f"AVISO: semilla {sem} sin config a4_factorial_v1 ({exc})")
+    print(_json_texto({"corridas": len(corridas), "gold_n": len(gold), "gold_abstenciones": abstenciones,
+                       "celdas": {k: round(c["agregado"]["f1_macro"]["media"], 4)
+                                  for k, c in comp["celdas"].items()},
+                       "archivos": sorted(p.name for p in salidas)}), end="")
+    if args.solo_validar:
+        print("--solo-validar: no se escribio nada.")
+        return 0
+    existentes = [p for p in salidas if p.exists()]
+    if existentes:
+        raise FileExistsError(f"No se sobrescribe: {', '.join(str(p) for p in existentes)}")
+    for ruta, contenido in salidas.items():
+        _publicar(ruta, contenido)
+    print(f"Escrito en {ev}")
+    return 0
+
+
 def _sha_manifiesto(ruta: Path) -> str | None:
     try:
         return json.loads(Path(ruta).read_text(encoding="utf-8")).get("sha256_manifiesto")
@@ -356,6 +440,13 @@ def parser() -> argparse.ArgumentParser:
                    help="termina con codigo 3 si la cobertura queda bajo el umbral")
     e.add_argument("--manifiesto-ocl", type=Path, default=EVIDENCIAS / "manifiesto_ocl.json")
     e.set_defaults(accion=entradas)
+    v = sub.add_parser("evaluar", help="puntua predicciones, exporta a4_factorial_v1 y compara")
+    v.add_argument("--evidencias", type=Path, default=EVIDENCIAS)
+    v.add_argument("--gold", type=Path, default=None, help="Gold JSONL (def.: gold_eval_2015_haiku)")
+    v.add_argument("--gold-v2", type=Path, default=None,
+                   help="RUTA PRIVADA del Gold v2 (JSONL id/gold): puntua las predicciones ciegas")
+    v.add_argument("--solo-validar", action="store_true", help="calcula y muestra; no escribe")
+    v.set_defaults(accion=evaluar)
     return p
 
 

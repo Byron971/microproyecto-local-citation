@@ -1,0 +1,52 @@
+{
+  "data_use": "provisional_only",
+  "estado": "provisional_etiquetas_haiku_no_gold_humano",
+  "schema_version": "a4_factorial_v1",
+  "semilla": 42,
+  "variants": [
+    {
+      "checkpoint_sha256": "0656fceb422632195a9ec35a8dab7e2482041c033451ea3442a5bdcd4a7a6fbd",
+      "encoder": "SciBERT",
+      "input": "A",
+      "input_spec_sha256": "855e6dc426a8b99aebcf686a04ea997bfa49ad82c8e54b186ab9f6c55fd6e09d",
+      "name": "SciBERT_A_s42",
+      "predictions": "scibert_A_42/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    },
+    {
+      "checkpoint_sha256": "238b4035d7680d810488290eccc50c8cd977639e392df96b1bc10d91f3955902",
+      "encoder": "SciBERT",
+      "input": "B",
+      "input_spec_sha256": "dbb8cb085d7f66d3b1ea6db69b6f03b9a01296d83d94f8ce3571b73ab100ed59",
+      "name": "SciBERT_B_s42",
+      "predictions": "scibert_B_42/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    },
+    {
+      "checkpoint_sha256": "43243a929880203fa3eb75882163874452fbceaf6662cfb25a709a9c4e016606",
+      "encoder": "SPECTER",
+      "input": "A",
+      "input_spec_sha256": "855e6dc426a8b99aebcf686a04ea997bfa49ad82c8e54b186ab9f6c55fd6e09d",
+      "name": "SPECTER_A_s42",
+      "predictions": "specter_A_42/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    },
+    {
+      "checkpoint_sha256": "aa2b293f11ca6b0028896d374f9553d97a274a85d18dd986a8b5b69948622597",
+      "encoder": "SPECTER",
+      "input": "B",
+      "input_spec_sha256": "dbb8cb085d7f66d3b1ea6db69b6f03b9a01296d83d94f8ce3571b73ab100ed59",
+      "name": "SPECTER_B_s42",
+      "predictions": "specter_B_42/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    }
+  ]
+}
