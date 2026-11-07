@@ -1,0 +1,373 @@
+{
+  "casos": {
+    "eval_2015": 732,
+    "gold_v2": 839,
+    "train": 1241,
+    "val": 213
+  },
+  "checkpoint_sha256": "7097911e13db0538b579bc9eca4e557c3c6f8f895a29c9792bc3fcbd7e5a9350",
+  "data_use": "provisional_only",
+  "encoder": "scibert",
+  "entrada": "B_barajada",
+  "entrada_eval": "B_barajada",
+  "entradas": {
+    "manifiesto_entradas": "6d06b55901b0da5d6d3a4e3f871255972cf51d0aff2e42dafa9940a718830b1e",
+    "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+    "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714"
+  },
+  "epocas_ejecutadas": 6,
+  "estado": "provisional_etiquetas_haiku_no_gold_humano",
+  "experiment_id": "scibert_B_barajada_1234",
+  "git": {
+    "dirty": false,
+    "evidencia_sin_commit": true,
+    "head": "ed3f24ac3584b68785c436e37df274424f15e3b2"
+  },
+  "git_prediccion": {
+    "dirty": false,
+    "evidencia_sin_commit": true,
+    "head": "ed3f24ac3584b68785c436e37df274424f15e3b2"
+  },
+  "hardware": {
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "python": "3.14.6",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.22.2"
+  },
+  "hiperparametros": {
+    "acumulacion": 2,
+    "batch_size": 8,
+    "clip": 1.0,
+    "dropout": 0.1,
+    "epocas": 6,
+    "lr": 2e-05,
+    "max_len": 512,
+    "paciencia": 2,
+    "pesos_clase": true,
+    "warmup": 0.1,
+    "weight_decay": 0.01
+  },
+  "input_spec_sha256": "4ed49aac9746790821e33331191b8030910c6370f098184d46141b04dc3d3c29",
+  "latencia_ms_media": 5.124313919154739,
+  "limite": null,
+  "mejor_epoca": 5,
+  "metricas_val": {
+    "accuracy": 0.6713615023474179,
+    "confusion_matrix": [
+      [
+        66,
+        5,
+        1,
+        7,
+        2,
+        0,
+        3,
+        3,
+        1
+      ],
+      [
+        0,
+        4,
+        1,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        4,
+        0,
+        4,
+        1,
+        2,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        5,
+        0,
+        0,
+        14,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        3,
+        0,
+        2,
+        6,
+        42,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        4,
+        2,
+        0,
+        0,
+        8,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        4,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "f1_macro": 0.4710537054327904,
+    "f1_micro": 0.6713615023474179,
+    "f1_weighted": 0.6837872843451414,
+    "n": 213,
+    "per_class": [
+      {
+        "f1": 0.7764705882352942,
+        "label": "Background",
+        "precision": 0.8048780487804879,
+        "recall": 0.75,
+        "support": 88
+      },
+      {
+        "f1": 0.47058823529411764,
+        "label": "Gap",
+        "precision": 0.4444444444444444,
+        "recall": 0.5,
+        "support": 8
+      },
+      {
+        "f1": 0.32,
+        "label": "Basis",
+        "precision": 0.3076923076923077,
+        "recall": 0.3333333333333333,
+        "support": 12
+      },
+      {
+        "f1": 0.5,
+        "label": "Comparison",
+        "precision": 0.4,
+        "recall": 0.6666666666666666,
+        "support": 21
+      },
+      {
+        "f1": 0.8235294117647058,
+        "label": "Application",
+        "precision": 0.8936170212765957,
+        "recall": 0.7636363636363637,
+        "support": 55
+      },
+      {
+        "f1": 0.0,
+        "label": "Improvement / Modification",
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 2
+      },
+      {
+        "f1": 0.5925925925925926,
+        "label": "Evidence",
+        "precision": 0.7272727272727273,
+        "recall": 0.5,
+        "support": 16
+      },
+      {
+        "f1": 0.47058823529411764,
+        "label": "Identification of the Originator",
+        "precision": 0.4,
+        "recall": 0.5714285714285714,
+        "support": 7
+      },
+      {
+        "f1": 0.28571428571428575,
+        "label": "Further Reading",
+        "precision": 0.3333333333333333,
+        "recall": 0.25,
+        "support": 4
+      }
+    ],
+    "precision_macro": 0.47902643142221074,
+    "precision_micro": 0.6713615023474179,
+    "precision_weighted": 0.7107782379364127,
+    "recall_macro": 0.48167388167388164,
+    "recall_micro": 0.6713615023474179,
+    "recall_weighted": 0.6713615023474179
+  },
+  "model_id": "allenai/scibert_scivocab_uncased",
+  "model_version": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+  "parada_temprana": false,
+  "pesos_clase": [
+    0.2884704788470479,
+    2.5534979423868314,
+    2.05804311774461,
+    0.9131714495952906,
+    0.41784511784511785,
+    4.924603174603175,
+    1.8633633633633633,
+    3.7267267267267266,
+    6.267676767676767
+  ],
+  "segundos_entrenamiento": 161.2,
+  "semilla": 1234,
+  "sha256_permutacion": {
+    "train": "2354619023ccc6d4a0b457f9bf8cf94713c62e89a262ba2042648e9f385994d3",
+    "val": "e20f85c688990dddf9f6d97bf6029afcd8054e51394b97fc388f10b24b632423"
+  },
+  "sha256_permutacion_eval": {
+    "eval_2015": "ea00c31d4c82f1be871dcca0f40750c2960fc0069d76f17d5ce20baf3e405921",
+    "gold_v2": "8638e68cd3aff7fc1a6fe4a63d5c24aaca883ffa9937a5c8ed8bc8625516b684"
+  },
+  "tokenizer": {
+    "clase": "BertTokenizer",
+    "do_lower_case": true,
+    "vocab_sha256": "f0a650346e51ede8996710f79ba65d83fdb8da05b159f17037b74ba4e3a36c6f",
+    "vocab_size": 31090
+  },
+  "training_labels": "Haiku",
+  "truncamiento": {
+    "train": {
+      "casos": 1241,
+      "longitud_media": 479.2949234488316,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.354552780016116,
+          "tokens_truncados_max": 293,
+          "tokens_truncados_media": 21.35777598710717
+        },
+        "chunk_2": {
+          "frac_truncado": 0.37953263497179696,
+          "tokens_truncados_max": 268,
+          "tokens_truncados_media": 23.91941982272361
+        },
+        "chunk_3": {
+          "frac_truncado": 0.37872683319903305,
+          "tokens_truncados_max": 287,
+          "tokens_truncados_media": 26.703464947622884
+        },
+        "contexto": {
+          "frac_truncado": 0.0008058017727639,
+          "tokens_truncados_max": 2,
+          "tokens_truncados_media": 0.0016116035455278
+        }
+      }
+    },
+    "val": {
+      "casos": 213,
+      "longitud_media": 483.94835680751174,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.39436619718309857,
+          "tokens_truncados_max": 245,
+          "tokens_truncados_media": 24.920187793427232
+        },
+        "chunk_2": {
+          "frac_truncado": 0.4413145539906103,
+          "tokens_truncados_max": 225,
+          "tokens_truncados_media": 28.28638497652582
+        },
+        "chunk_3": {
+          "frac_truncado": 0.45539906103286387,
+          "tokens_truncados_max": 222,
+          "tokens_truncados_media": 33.74647887323944
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        }
+      }
+    }
+  },
+  "truncamiento_eval": {
+    "eval_2015": {
+      "casos": 732,
+      "longitud_media": 477.05054644808746,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.36475409836065575,
+          "tokens_truncados_max": 325,
+          "tokens_truncados_media": 21.32377049180328
+        },
+        "chunk_2": {
+          "frac_truncado": 0.38524590163934425,
+          "tokens_truncados_max": 290,
+          "tokens_truncados_media": 25.831967213114755
+        },
+        "chunk_3": {
+          "frac_truncado": 0.3948087431693989,
+          "tokens_truncados_max": 259,
+          "tokens_truncados_media": 27.62295081967213
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        }
+      }
+    },
+    "gold_v2": {
+      "casos": 839,
+      "longitud_media": 480.8212157330155,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.38617401668653156,
+          "tokens_truncados_max": 249,
+          "tokens_truncados_media": 23.091775923718714
+        },
+        "chunk_2": {
+          "frac_truncado": 0.38974970202622167,
+          "tokens_truncados_max": 280,
+          "tokens_truncados_media": 26.31227651966627
+        },
+        "chunk_3": {
+          "frac_truncado": 0.40762812872467225,
+          "tokens_truncados_max": 266,
+          "tokens_truncados_media": 28.160905840286055
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        }
+      }
+    }
+  }
+}
