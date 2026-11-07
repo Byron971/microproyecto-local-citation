@@ -6,6 +6,7 @@ import csv
 import json
 from pathlib import Path
 
+from auditoria_corpus import adaptador_proyecto_grado as _auditoria
 from proyecto_de_grado.src.data.preparar_preetiquetado import leer_exclusiones
 from proyecto_de_grado.src.data.validar_splits import load_split_index
 
@@ -18,10 +19,20 @@ TEST_GOLD = ANOTACION / "test_gold/TEST_GOLD_2700_ANOTADO.csv"
 TEST_GOLD_MANIFIESTO = ANOTACION / "test_gold/TEST_GOLD_2700_MANIFIESTO.csv"
 GOLD_V2 = ANOTACION / "test_gold_v2/manifiesto_ids.csv"
 GRUPO_GOLD_V2 = "testgold"  # el manifiesto tambien trae 20 filas `calibracion3`
+CACHE_OCL = _auditoria.CACHE
+# Reutiliza sin modificar la integracion, el fragmentador (regla de chunks de A1) y la
+# descarga de ACL OCL.
+integrar = _auditoria.integrar
+fragmentar = _auditoria.fragmentar
+descargar_ocl = _auditoria.descargar_ocl
 EXCLUSIONES = (
     ANOTACION / "ids_excluir_test_gold.txt",
     ANOTACION / "ids_piloto_historico_no_test_final.txt",
 )
+
+
+def cargar_papers(raw=RAW) -> dict:
+    return json.loads((Path(raw) / "papers.json").read_text(encoding="utf-8-sig"))
 
 
 def leer_csv(ruta: Path) -> list[dict]:

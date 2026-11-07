@@ -16,6 +16,7 @@ CATEGORIAS = (
     "Further Reading",
 )
 N_CLASES = len(CATEGORIAS)
+MARCA_TARGET = "TARGETCIT"
 
 _ALIAS = {
     "background": 0,
@@ -190,6 +191,45 @@ def agregar_semillas(corridas: list[dict]) -> dict:
         for i in range(N_CLASES)
     ]
     return salida
+
+
+# ---- validacion de casos con chunks (sin la restriccion train de A1)
+def validar_casos_chunks(casos: list[dict]) -> dict:
+    """Invariantes de cita/corpus: TARGETCIT unico, chunks bien formados y articulos
+    consistentes entre casos. No restringe el split (eso lo hace `verificar_fugas`)."""
+    if not isinstance(casos, list):
+        raise ValueError("Se necesita una lista de casos.")
+    ids, huellas = set(), {}
+    for caso in casos:
+        cid, pid = caso.get("context_id"), caso.get("cited_id")
+        if not isinstance(cid, str) or not cid or cid in ids:
+            raise ValueError("context_id vacio o duplicado.")
+        ids.add(cid)
+        if not isinstance(pid, str) or not pid or caso.get("citing_id") == pid:
+            raise ValueError(f"cited_id invalido o autocita en {cid}")
+        ctx = caso.get("citation_context")
+        if not isinstance(ctx, str) or ctx.count(MARCA_TARGET) != 1:
+            raise ValueError(f"Contexto sin TARGETCIT unico en {cid}")
+        chunks = caso.get("chunks")
+        if not isinstance(chunks, list) or not chunks:
+            raise ValueError(f"Articulo sin chunks en {cid}")
+        vistos, textos = set(), set()
+        for c in chunks:
+            chid, texto = c.get("chunk_id"), c.get("texto")
+            if not isinstance(chid, str) or not chid or chid in vistos:
+                raise ValueError(f"chunk_id vacio/duplicado en {cid}")
+            vistos.add(chid)
+            if not isinstance(texto, str) or not texto.strip():
+                raise ValueError(f"Texto de chunk vacio en {cid}")
+            norm = " ".join(texto.split())
+            if norm in textos:
+                raise ValueError(f"Texto de chunk duplicado en el articulo de {cid}")
+            textos.add(norm)
+        huella = _sha([(c["chunk_id"], c["texto"], c.get("seccion"), c.get("paragraph_indices"))
+                       for c in chunks])
+        if huellas.setdefault(pid, huella) != huella:
+            raise ValueError(f"Chunks inconsistentes entre casos del mismo articulo: {pid}")
+    return {"contextos": len(casos), "articulos": len(huellas)}
 
 
 # ---- fugas
