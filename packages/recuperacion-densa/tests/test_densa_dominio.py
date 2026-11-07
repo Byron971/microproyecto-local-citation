@@ -198,6 +198,11 @@ def test_diversidad_y_similitud():
     f = d.diversidad_por_articulo(tops, cited, {"A": 10, "B": 5})
     a = f[0]
     assert a["chunks_distintos_top3"] == 4 and a["chunk_top1_mas_frecuente"] == 1.0
+    # cobertura = distintos / n_chunks; top-1 repetido = max(frecuencia)/contextos (no min)
+    assert a["cobertura"] == pytest.approx(0.4) and a["contextos"] == 2
+    t = d.diversidad_por_articulo({"p": ["c0"], "q": ["c0"], "r": ["c1"], "s": ["c2"]},
+                                  dict.fromkeys("pqrs", "A"), {"A": 8})[0]
+    assert t["chunk_top1_mas_frecuente"] == 0.5 and t["cobertura"] == 3 / 8
     s = d.estadisticas_similitud({"x": [{"similitud_coseno": 0.9}, {"similitud_coseno": 0.6}],
                                   "y": [{"similitud_coseno": 0.5}]})
     assert s["top1"]["max"] == 0.9 and s["brecha_top1_top2"]["media"] == pytest.approx(0.3)

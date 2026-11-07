@@ -10,8 +10,9 @@ from pathlib import Path
 
 
 def clave_embedding(model_id: str, revision: str, max_length: int, pooling: str, texto: str,
-                    device: str = "cpu") -> str:
-    base = "\x1f".join((model_id, revision, str(max_length), pooling, device, texto))
+                    device: str = "cpu", entorno: str = "") -> str:
+    """`entorno`: huella de lo que altera los floats (batch_size, versiones de torch/transformers)."""
+    base = "\x1f".join((model_id, revision, str(max_length), pooling, device, entorno, texto))
     return hashlib.sha256(base.encode("utf-8")).hexdigest()
 
 

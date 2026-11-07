@@ -4,6 +4,12 @@ from recuperacion_densa import adaptador_proyecto_grado as ad
 from recuperacion_densa.cache_embeddings import CacheDisco, clave_embedding
 
 
+def test_clave_cambia_con_entorno():
+    base = clave_embedding("m", "r", 512, "mean", "t", "cpu", "bs=16;torch=1")
+    assert base != clave_embedding("m", "r", 512, "mean", "t", "cpu", "bs=8;torch=1")
+    assert base != clave_embedding("m", "r", 512, "mean", "t", "cpu", "bs=16;torch=2")
+
+
 def test_adaptador_expone_componentes_del_proyecto():
     assert callable(ad.fragmentar) and callable(ad.integrar) and callable(ad.lexico)
     assert ad.perfil_seccion(None) == "vacia"

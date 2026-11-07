@@ -16,7 +16,7 @@ Comparación técnica **offline** entre SciBERT (denso) y el baseline léxico BM
 
 ## 2. Corpus
 - **603 contextos de train sobre 89 artículos** (2 574 chunks únicos), construidos con un constructor multicontexto propio. `exportar_corpus_top3.preparar()` toma un solo contexto por citado y daría como máximo 89 casos.
-- **Autocitas excluidas:** 2 contextos cuyo `citing_id` coincide con el artículo citado (eliminan 2 artículos; antes 605/91). Además se descartó 1 chunk de texto idéntico a otro del mismo artículo (se conserva el `chunk_id` menor). La validación rechaza ambos casos (fail-closed).
+- **Autocitas excluidas** (aquí «autocita» = `citing_id == cited_id`, no autoría compartida): 2 contextos cuyo `citing_id` coincide con el artículo citado (eliminan 2 artículos; antes 605/91). Además se descartó 1 chunk de texto idéntico a otro del mismo artículo (se conserva el `chunk_id` menor). La validación rechaza ambos casos (fail-closed).
 - Muy concentrados: P98-1013 aporta 107 contextos, P97-1023 68, E06-1015 46; 29 artículos tienen un solo contexto (mediana 2). Por eso se reporta **micro** (por contexto) y **macro** (por artículo).
 - Mismo corpus que BM25 y A1: solo la caché local de 200 artículos; sin IDs excluidos de gold/piloto.
 
@@ -41,7 +41,7 @@ Distribución por contexto: 0/3 en 229, 1/3 en 260, 2/3 en 112, 3/3 en solo 2. S
 | results | 10,5 % | 4,4 % | 8,4 % |
 | introduction | 9,4 % | 17,2 % | 20,2 % |
 | conclusion | 6,0 % | 8,5 % | 8,1 % |
-| vacía | 4,2 % | 2,7 % | 2,0 % |
+| vacía | 4,2 % (de los chunks únicos del corpus de esta evaluación) | 2,7 % | 2,0 % |
 | related_work | 3,4 % | 11,8 % | 6,8 % |
 
 Ambos métodos favorecen introducción; SciBERT sobrerrepresenta *related work* (≈3,4× el corpus) y subrepresenta *results*. Descriptivo: sin gold no se sabe si es sesgo o señal.
@@ -67,21 +67,21 @@ Ambos métodos favorecen introducción; SciBERT sobrerrepresenta *related work* 
 | BM25 (incluye indexar) | 0,0011 / 0,0016 | 0,0015 / 0,0020 |
 
 Carga del modelo ≈1,9 s (CUDA); memoria GPU máxima 689 MB. «Frío» = caché vacía (`corrida_cuda_1`, 1 acierto por un texto repetido entre artículos); «caliente» = misma caché ya llena (`corrida_cuda_2`, **2 574 de 2 574 chunks, 100 %**). Con la caché caliente el embedding por artículo baja de ~0,2 s a ~1,6 ms (lectura de disco), pero **no es cero**. La consulta densa no cambia por la caché; su diferencia entre corridas (0,010 vs 0,014 s) es variación de la GPU en una sola medición.
-- **Determinismo:** `resumen.json` y `top3.csv` idénticos byte a byte entre `corrida_cuda_1` (frío) y `corrida_cuda_2` (caliente), diferencia de coseno 0 (`cuda_frio_vs_caliente.json`).
+- **Determinismo:** `resumen.json` y `top3.csv` idénticos byte a byte entre `corrida_cuda_1` (frío) y `corrida_cuda_2` (caliente), diferencia de coseno 0 (`cuda_frio_vs_caliente.json`). **Alcance:** en la corrida caliente los vectores de los fragmentos salen de la caché de la corrida 1, así que esta prueba solo muestra que la consulta se repite igual, no que codificar los fragmentos sea reproducible; esa evidencia es la de CPU vs CUDA.
 - **CPU vs CUDA (60 contextos):** mismo orden Top-3 en 60/60, mismo Top-1 en 60/60, diferencia máxima de coseno 1·10⁻⁶ (el redondeo a 6 decimales). No se observaron empates resueltos de forma distinta en esta muestra.
 
 ## 8. Gold: no ejecutado
 `Recall@3`, `Hit@3` y `MRR@3` **no se calculan**: faltan hojas S2.3 adjudicadas de relevancia de chunks (issue #127). El código está listo para puntuar una calibración (`--calibracion-origen/--calibracion-carpeta`, etiqueta `calibracion_train_no_gold`), pero no se usó.
 
 ## 9. Interpretación breve para el informe
-SciBERT y BM25 recuperan Top-3 distintos en la mayor parte de los contextos (coinciden en promedio ≈0,8 de 3 chunks, algo sobre el azar de ≈0,3). El denso muestra señales de anisotropía y más hubness que BM25 (Top-1 repetido en 50 % vs 40 % de los contextos), aunque BM25 también concentra. Estas son propiedades técnicas; la calidad real de cada método queda sin evaluar hasta tener gold.
+SciBERT y BM25 recuperan Top-3 distintos en la mayor parte de los contextos (coinciden en promedio ≈0,8 de 3 chunks, algo sobre el azar de ≈0,3). El denso muestra señales de anisotropía y más hubness que BM25 (Top-1 repetido en 50 % vs 40 % de los contextos), aunque BM25 también concentra. **Ojo con el piso:** esa cifra no puede bajar de 1/m (m = contextos por artículo); el piso promedio es ≈0,27 y los 19 artículos con m = 2 tienen piso 0,5. Sobre el piso, la diferencia es ≈0,23 (denso) frente a ≈0,13 (BM25): la comparación entre métodos vale, pero la cifra absoluta exagera la concentración. Estas son propiedades técnicas; la calidad real de cada método queda sin evaluar hasta tener gold.
 
 ## 10. Limitaciones
 - Sin gold: no hay Recall/Hit/MRR.
 - Solo train y la caché de 200 artículos; el 37 % de los artículos se descarta en la extracción (A1, #101).
 - Contextos concentrados en pocos artículos.
 - SciBERT con mean pooling no es un recuperador entrenado.
-- La heurística de sección no está validada; 4,3 % de chunks sin sección.
+- La heurística de sección no está validada; 4,3 % de chunks sin sección (denominador: todos los chunks extraídos por A1 en #101; el 4,2 % de §5 es sobre los chunks únicos de esta evaluación, por eso difieren).
 - Los párrafos `EQUATION` cortan oraciones. Ningún texto superó 512 tokens en este corpus (ventanas procesadas = textos procesados = 3 177), por lo que no hubo corte por ventanas.
 - Latencia medida en una sola GPU (RTX 4070 SUPER) y una CPU de escritorio, no la de la API; BM25 incluye la indexación; el CPU se midió solo con 60 contextos / 20 artículos; la latencia en caliente es una sola corrida.
 - Micro y macro no son intercambiables, y las proporciones de sección del §5 mezclan bases distintas (chunks únicos vs puestos Top-3 por contexto).

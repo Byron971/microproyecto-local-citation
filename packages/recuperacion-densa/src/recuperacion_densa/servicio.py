@@ -116,8 +116,9 @@ class Evaluacion:
 
 def _embeddings_articulo(chunks, codificador, cache, params) -> tuple[list, int]:
     device = getattr(codificador, "device", "cpu")
+    entorno = getattr(codificador, "huella_entorno", "")
     claves = [clave_embedding(codificador.model_id, codificador.revision, *params, c["texto"],
-                              device) for c in chunks]
+                              device, entorno) for c in chunks]
     vectores = [cache.get(k) if cache else None for k in claves]
     faltan = [i for i, v in enumerate(vectores) if v is None]
     if faltan:

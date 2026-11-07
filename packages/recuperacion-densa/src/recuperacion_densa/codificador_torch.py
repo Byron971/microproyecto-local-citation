@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import platform
+import warnings
 from pathlib import Path
 
 import torch
@@ -54,6 +55,9 @@ class TorchSciBERTEncoder:
     def _verificar_snapshot(self, ruta: Path, manifiesto: Path) -> None:
         """Si hay manifiesto, el snapshot cargado debe coincidir byte a byte (hash)."""
         if not Path(manifiesto).is_file():
+            warnings.warn(f"No se encontro {manifiesto}: el snapshot del modelo NO se verifica "
+                          "contra el manifiesto (pasa --manifiesto con la ruta correcta).",
+                          RuntimeWarning, stacklevel=2)
             return
         previo = json.loads(Path(manifiesto).read_text(encoding="utf-8"))
         actual = manifiesto_de(ruta, self.model_id, self.revision)
@@ -89,6 +93,11 @@ class TorchSciBERTEncoder:
         self.textos_procesados += len(textos)
         self.ventanas_procesadas += len(seqs)
         return [dominio.media_ponderada(v, p) for v, p in zip(vecs, pes)]
+
+    @property
+    def huella_entorno(self) -> str:
+        """Entra en la clave de cache: batch_size y versiones cambian los floats."""
+        return f"bs={self.batch_size};torch={torch.__version__};transformers={transformers.__version__}"
 
     def info(self) -> dict:
         t = self.torch
