@@ -1,0 +1,931 @@
+[
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00000-p00001",
+        "extracto": "The goal of our research is to create semantic class taggers that can assign a semantic class label to every noun phrase in a sentence. For example, consider the sentence: \"The lab mix was diagnosed with parvo and given abx\". A semantic ta…",
+        "palabras": 168,
+        "paragraph_indices": [
+          0,
+          1
+        ],
+        "puntaje_bm25": 21.295994,
+        "seccion": "Introduction"
+      },
+      {
+        "chunk_id": "p00009-p00009",
+        "extracto": "There has also been work on extracting semantically related terms or category members from the Web (e.g., (Paşca, 2004; Etzioni et al., 2005; Kozareva et al., 2008; Carlson et al., 2009) ). These techniques harvest broad-coverage semantic…",
+        "palabras": 110,
+        "paragraph_indices": [
+          9
+        ],
+        "puntaje_bm25": 12.375288,
+        "seccion": "Related Work"
+      },
+      {
+        "chunk_id": "p00002-p00003",
+        "extracto": "Despite widespread interest in semantic tagging, nearly all semantic taggers for comprehensive NP tagging still rely on supervised learning, which requires annotated data for training. A few annotated corpora exist, but they are relatively…",
+        "palabras": 146,
+        "paragraph_indices": [
+          2,
+          3
+        ],
+        "puntaje_bm25": 10.872638,
+        "seccion": "Introduction"
+      }
+    ],
+    "cited_id": "P10-1029",
+    "context_id": "D13-1018_P10-1029_0",
+    "contexto": "6) have been successfully applied to several tasks, including learning semantic relations ( ), extracting surface text patterns for open-domain question answering ( ), semantic tagging ( and unsupervised Word Sense Disambiguation ( ). ProT…",
+    "denso": [
+      {
+        "chunk_id": "p00031-p00032",
+        "extracto": "For many NLP tasks, classifiers use semantic features to represent the semantic class of words. These features are typically obtained from external resources such as Wordnet (Miller, 1990 ). Our bootstrapping model incrementally trains sem…",
+        "palabras": 85,
+        "paragraph_indices": [
+          31,
+          32
+        ],
+        "posicion": 1,
+        "seccion": "Dynamic Semantic Features",
+        "similitud_coseno": 0.906252
+      },
+      {
+        "chunk_id": "p00054-p00054",
+        "extracto": "We presented a novel technique for inducing domain-specific semantic class taggers from a handful of seed words and an unannotated text collection. Our results showed that the induced taggers achieve good performance on six semantic catego…",
+        "palabras": 78,
+        "paragraph_indices": [
+          54
+        ],
+        "posicion": 2,
+        "seccion": "Conclusions",
+        "similitud_coseno": 0.895585
+      },
+      {
+        "chunk_id": "p00006-p00006",
+        "extracto": "We evaluate our approach by creating six semantic taggers using a collection of message board posts in the domain of veterinary medicine. Our results show this approach produces high-quality semantic taggers after a sustained bootstrapping…",
+        "palabras": 47,
+        "paragraph_indices": [
+          6
+        ],
+        "posicion": 3,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.884528
+      }
+    ],
+    "interseccion": 0
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00003-p00003",
+        "extracto": "The task of relation extraction is mapping surface textual relations to underlying semantic relations. For instance, the textual expression \"X was born in Y\" indicates a semantic relation bornIn between entities \"X\" and \"Y\". This relation…",
+        "palabras": 149,
+        "paragraph_indices": [
+          3
+        ],
+        "puntaje_bm25": 14.442996,
+        "seccion": "Problem and Experimental Setup"
+      },
+      {
+        "chunk_id": "p00043-p00044",
+        "extracto": "Distant supervision for relation extraction requires no labeled data. The approach takes some existing knowledge base as supervision source, matches its relational instances against the text corpus to build the training data, and extracts…",
+        "palabras": 80,
+        "paragraph_indices": [
+          43,
+          44
+        ],
+        "puntaje_bm25": 13.720484,
+        "seccion": "Related Work"
+      },
+      {
+        "chunk_id": "p00001-p00001",
+        "extracto": "Past work has shown that standard supervised techniques can yield high-performance relation detection when abundant labeled data exists for a fixed inventory of individual relation types (e.g. leaderOf ) (Kambhatla, 2004; Culotta and Soren…",
+        "palabras": 225,
+        "paragraph_indices": [
+          1
+        ],
+        "puntaje_bm25": 13.061727,
+        "seccion": "Introduction"
+      }
+    ],
+    "cited_id": "D11-1135",
+    "context_id": "N13-1008_D11-1135_2",
+    "contexto": "by working with the BPR objective, and by more extensive experiments. Relational Clustering There is a large body of work aiming to discover latent relations by clustering surface patterns ( ; ; ), or by inducing synonymy relationships bet…",
+    "denso": [
+      {
+        "chunk_id": "p00001-p00001",
+        "extracto": "Past work has shown that standard supervised techniques can yield high-performance relation detection when abundant labeled data exists for a fixed inventory of individual relation types (e.g. leaderOf ) (Kambhatla, 2004; Culotta and Soren…",
+        "palabras": 225,
+        "paragraph_indices": [
+          1
+        ],
+        "posicion": 1,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.920551
+      },
+      {
+        "chunk_id": "p00047-p00048",
+        "extracto": "Relation duality (Bollegala et al., 2010) employs co-clustering to find clusters of entity pairs and patterns. They identify each cluster of entity pairs as a relation by selecting representative patterns for that relation. This approach i…",
+        "palabras": 129,
+        "paragraph_indices": [
+          47,
+          48
+        ],
+        "posicion": 2,
+        "seccion": "Related Work",
+        "similitud_coseno": 0.917379
+      },
+      {
+        "chunk_id": "p00045-p00046",
+        "extracto": "For example, DIRT (Lin and Pantel, 2001 ) aims to discover different representations of the same semantic relation, i.e. similar dependency paths. They employ the distributional similarity based approach while we use generative models. Bot…",
+        "palabras": 173,
+        "paragraph_indices": [
+          45,
+          46
+        ],
+        "posicion": 3,
+        "seccion": "Related Work",
+        "similitud_coseno": 0.915558
+      }
+    ],
+    "interseccion": 1
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00041-p00042",
+        "extracto": "In our current implementation, negative constraints are dropped as soon as they become redundant as far as unification is concerned. For example, when [case: ace] is unified with with [case: -dat], the resulting matrix is simply [case: acc…",
+        "palabras": 146,
+        "paragraph_indices": [
+          41,
+          42
+        ],
+        "puntaje_bm25": 9.15411,
+        "seccion": "(A -C) n (B -D) = (A n B) -(C u D)"
+      },
+      {
+        "chunk_id": "p00019-p00020",
+        "extracto": "Not allowing disjunctive specifications rules out matrices of the following sort. We indicate disjunction by enclosing the alternative values in {}. The first line describes the value of case as being \"either nominative or accusative.\" The…",
+        "palabras": 162,
+        "paragraph_indices": [
+          19,
+          20
+        ],
+        "puntaje_bm25": 8.625579,
+        "seccion": "Limitations of Some Current Formalisms"
+      },
+      {
+        "chunk_id": "p00008-p00008",
+        "extracto": "In a ca~'~e like this, the values of the two paths have been \"unified.\" To represent unification in terms of feature matrices we need to introduce some new convention to distinguish between identity and mere likeness. Even that would not q…",
+        "palabras": 81,
+        "paragraph_indices": [
+          8
+        ],
+        "puntaje_bm25": 7.598416,
+        "seccion": "Introduction"
+      }
+    ],
+    "cited_id": "P84-1008",
+    "context_id": "W12-3201_P84-1008_0",
+    "contexto": "ntactic considerations only. 1983 proposed the centering model which is concerned with the interactions between the local coherence of discourse and the choices of referring expressions. 1984 provides examples of feature structures in whic…",
+    "denso": [
+      {
+        "chunk_id": "p00023-p00024",
+        "extracto": "-er = Fnumber: pl l [_case' ~atJJ The second alternative seems preferrable given the fact that there is, in this particular declension, a clear twoway contrast. The marked dative is in opposition with an unmarked form representing all the…",
+        "palabras": 41,
+        "paragraph_indices": [
+          23,
+          24
+        ],
+        "posicion": 1,
+        "seccion": "Limitations of Some Current Formalisms",
+        "similitud_coseno": 0.89435
+      },
+      {
+        "chunk_id": "p00019-p00020",
+        "extracto": "Not allowing disjunctive specifications rules out matrices of the following sort. We indicate disjunction by enclosing the alternative values in {}. The first line describes the value of case as being \"either nominative or accusative.\" The…",
+        "palabras": 162,
+        "paragraph_indices": [
+          19,
+          20
+        ],
+        "posicion": 2,
+        "seccion": "Limitations of Some Current Formalisms",
+        "similitud_coseno": 0.892906
+      },
+      {
+        "chunk_id": "p00008-p00008",
+        "extracto": "In a ca~'~e like this, the values of the two paths have been \"unified.\" To represent unification in terms of feature matrices we need to introduce some new convention to distinguish between identity and mere likeness. Even that would not q…",
+        "palabras": 81,
+        "paragraph_indices": [
+          8
+        ],
+        "posicion": 3,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.891216
+      }
+    ],
+    "interseccion": 2
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00014-p00015",
+        "extracto": "For our experiments, we use the 21 million word 1987 Wall Street Journal corpus 4, automatically annotated with part-of-speech tags using the PARTS tagger (Church, 1988) . In order to verify our hypothesis about the orientations of conjoin…",
+        "palabras": 227,
+        "paragraph_indices": [
+          14,
+          15
+        ],
+        "puntaje_bm25": 15.850979,
+        "seccion": "Data Collection"
+      },
+      {
+        "chunk_id": "p00006-p00007",
+        "extracto": "Overview of Our Approach Our approach relies on an analysis of textual corpora that correlates linguistic features, or indicators, with 1 Exceptions include a small number of terms that are both negative from a pragmatic viewpoint and yet…",
+        "palabras": 150,
+        "paragraph_indices": [
+          6,
+          7
+        ],
+        "puntaje_bm25": 11.129619,
+        "seccion": "2"
+      },
+      {
+        "chunk_id": "p00022-p00022",
+        "extracto": "• Aside from the use of but with adjectives of different orientations, there are, rather surprisingly, small differences in the behavior of conjunctions between linguistic environments (as represented by the three attributes). There are a…",
+        "palabras": 102,
+        "paragraph_indices": [
+          22
+        ],
+        "puntaje_bm25": 10.56481,
+        "seccion": "Validation of the Conjunction Hypothesis"
+      }
+    ],
+    "cited_id": "P97-1023",
+    "context_id": "D10-1008_P97-1023_0",
+    "contexto": "PV Bootstrapping over Conjunctions Our second approach for acquiring PPVs is based on an observation from sentiment analysis research that conjoined adjectives typically have the same polarity (e.g. ( ). 3The POS tagging quality is undoubt…",
+    "denso": [
+      {
+        "chunk_id": "p00006-p00007",
+        "extracto": "Overview of Our Approach Our approach relies on an analysis of textual corpora that correlates linguistic features, or indicators, with 1 Exceptions include a small number of terms that are both negative from a pragmatic viewpoint and yet…",
+        "palabras": 150,
+        "paragraph_indices": [
+          6,
+          7
+        ],
+        "posicion": 1,
+        "seccion": "2",
+        "similitud_coseno": 0.918118
+      },
+      {
+        "chunk_id": "p00014-p00015",
+        "extracto": "For our experiments, we use the 21 million word 1987 Wall Street Journal corpus 4, automatically annotated with part-of-speech tags using the PARTS tagger (Church, 1988) . In order to verify our hypothesis about the orientations of conjoin…",
+        "palabras": 227,
+        "paragraph_indices": [
+          14,
+          15
+        ],
+        "posicion": 2,
+        "seccion": "Data Collection",
+        "similitud_coseno": 0.911451
+      },
+      {
+        "chunk_id": "p00022-p00022",
+        "extracto": "• Aside from the use of but with adjectives of different orientations, there are, rather surprisingly, small differences in the behavior of conjunctions between linguistic environments (as represented by the three attributes). There are a…",
+        "palabras": 102,
+        "paragraph_indices": [
+          22
+        ],
+        "posicion": 3,
+        "seccion": "Validation of the Conjunction Hypothesis",
+        "similitud_coseno": 0.908647
+      }
+    ],
+    "interseccion": 3
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00000-p00001",
+        "extracto": "The Berkeley FrameNet project 1 is producing frame-semantic descriptions of several thousand English lexical items and backing up these descriptions with semantically annotated attestations from contemporary English corpora 2. 1The project…",
+        "palabras": 164,
+        "paragraph_indices": [
+          0,
+          1
+        ],
+        "puntaje_bm25": 20.714006,
+        "seccion": "Introduction"
+      },
+      {
+        "chunk_id": "p00015-p00016",
+        "extracto": "The FrameNet entry for each of these verbs will include a concise formula for all semanwork includes the separate analysis of the flame semantics of directional and locational expressions. 7A separate frame RIDING_2 that applies to the Eng…",
+        "palabras": 207,
+        "paragraph_indices": [
+          15,
+          16
+        ],
+        "puntaje_bm25": 8.253497,
+        "seccion": "fra~ne (TRANSPORTATION)"
+      },
+      {
+        "chunk_id": "p00019-p00020",
+        "extracto": "The computational side of the FrameNet project is directed at efficiently capturing human insights into semantic structure. The majority of the work involved is marking text with semantic tags, specifying (again by hand) the structure of t…",
+        "palabras": 163,
+        "paragraph_indices": [
+          19,
+          20
+        ],
+        "puntaje_bm25": 8.129468,
+        "seccion": "Overview"
+      }
+    ],
+    "cited_id": "P98-1013",
+    "context_id": "W10-3204_P98-1013_0",
+    "contexto": "ation of the proposition meaning of one sentence through the semantic role labeling. Therefore, many large human-annotated corpora have been constructed to support related research, such as FrameNet ( , PropBank ( ), NomBank ( ), and so on…",
+    "denso": [
+      {
+        "chunk_id": "p00003-p00004",
+        "extracto": "The results of the project are (a) a lexical resource, called the FrameNet database 3, and (b) associated software tools. The database has three major components (described in more detail below: • Lexicon containing entries which are compo…",
+        "palabras": 101,
+        "paragraph_indices": [
+          3,
+          4
+        ],
+        "posicion": 1,
+        "seccion": "Scope of the Project",
+        "similitud_coseno": 0.891469
+      },
+      {
+        "chunk_id": "p00005-p00006",
+        "extracto": "SThe database will ultimately contain at least 5,000 lexical entries together with a parallel annotated corpus, these in formats suitable for integration into applications which use other lexical resources such as Word-Net and COMLEX. The…",
+        "palabras": 129,
+        "paragraph_indices": [
+          5,
+          6
+        ],
+        "posicion": 2,
+        "seccion": "Scope of the Project",
+        "similitud_coseno": 0.882423
+      },
+      {
+        "chunk_id": "p00031-p00032",
+        "extracto": "• Lexical Description Tool (1.3) (prototype) An interactive, web-based tool. • CQP (2.2.1) is a high-performance Corpus Query Processor, developed at IMS Stuttgart (IMS, 1997) . The cascade filter, which partitions lemmaspecific subcorpora…",
+        "palabras": 51,
+        "paragraph_indices": [
+          31,
+          32
+        ],
+        "posicion": 3,
+        "seccion": "Software",
+        "similitud_coseno": 0.877736
+      }
+    ],
+    "interseccion": 0
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00043-p00044",
+        "extracto": "Distant supervision for relation extraction requires no labeled data. The approach takes some existing knowledge base as supervision source, matches its relational instances against the text corpus to build the training data, and extracts…",
+        "palabras": 80,
+        "paragraph_indices": [
+          43,
+          44
+        ],
+        "puntaje_bm25": 24.534367,
+        "seccion": "Related Work"
+      },
+      {
+        "chunk_id": "p00041-p00042",
+        "extracto": "Many approaches have been explored in relation extraction, including bootstrapping, supervised classification, distant supervision, and unsupervised approaches. Bootstrapping employs a few labeled examples for each relation, iteratively ex…",
+        "palabras": 87,
+        "paragraph_indices": [
+          41,
+          42
+        ],
+        "puntaje_bm25": 18.199676,
+        "seccion": "Related Work"
+      },
+      {
+        "chunk_id": "p00002-p00002",
+        "extracto": "We evaluate our approach using 'intrinsic' clustering evaluation and 'extrinsic' evaluation settings. 1 The former evaluation is performed using subset of induced clusters against Freebase relations, a large manually-built entity and relat…",
+        "palabras": 121,
+        "paragraph_indices": [
+          2
+        ],
+        "puntaje_bm25": 15.733941,
+        "seccion": "Introduction"
+      }
+    ],
+    "cited_id": "D11-1135",
+    "context_id": "D13-1040_D11-1135_1",
+    "contexto": "to a predefined set of target relations, but discover all types of relations found in the text. The relations represent clusters over strings of words ( ), syntactic patterns between entities ( ; ), or logical expressions ( ). Another lear…",
+    "denso": [
+      {
+        "chunk_id": "p00043-p00044",
+        "extracto": "Distant supervision for relation extraction requires no labeled data. The approach takes some existing knowledge base as supervision source, matches its relational instances against the text corpus to build the training data, and extracts…",
+        "palabras": 80,
+        "paragraph_indices": [
+          43,
+          44
+        ],
+        "posicion": 1,
+        "seccion": "Related Work",
+        "similitud_coseno": 0.919155
+      },
+      {
+        "chunk_id": "p00000-p00000",
+        "extracto": "Many NLP applications would benefit from large knowledge bases of relational information about entities. For instance, knowing that the entity Steve Balmer bears the leaderOf relation to the entity Microsoft, would facilitate question answ…",
+        "palabras": 166,
+        "paragraph_indices": [
+          0
+        ],
+        "posicion": 2,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.906156
+      },
+      {
+        "chunk_id": "p00049-p00050",
+        "extracto": "Clustering is also employed in relation extraction. Hasegawa et al. (2004) cluster pairs of named entities according to the similarity of context words intervening between them. Their approach is not probabilistic. Researchers also use top…",
+        "palabras": 123,
+        "paragraph_indices": [
+          49,
+          50
+        ],
+        "posicion": 3,
+        "seccion": "Related Work",
+        "similitud_coseno": 0.904787
+      }
+    ],
+    "interseccion": 1
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00012-p00013",
+        "extracto": "As a specific goal to guide our thought, we will adopt a statement from another scholar who emphasizes the importance of keeping the humanities central to computational text analysis. In Reading Machines: Toward an Algorithmic Criticism, S…",
+        "palabras": 102,
+        "paragraph_indices": [
+          12,
+          13
+        ],
+        "puntaje_bm25": 55.850904,
+        "seccion": "Approach"
+      },
+      {
+        "chunk_id": "p00014-p00014",
+        "extracto": "The rest of this paper will attempt to respond to Ramsay's claim by developing such ambitious fantasies. We will strive to consider literary text analysis as it is understood by literary theorists of recent history, and we will describe ho…",
+        "palabras": 58,
+        "paragraph_indices": [
+          14
+        ],
+        "puntaje_bm25": 17.930851,
+        "seccion": "Approach"
+      },
+      {
+        "chunk_id": "p00006-p00007",
+        "extracto": "Computationally, the questions in Section 1 are likely to be answered over the course of decades rather than years. Contemporary relevant research from the fields of Computational Linguistics (CL) and Artificial Intelligence (AI) includes:…",
+        "palabras": 228,
+        "paragraph_indices": [
+          6,
+          7
+        ],
+        "puntaje_bm25": 15.609005,
+        "seccion": "Approach"
+      }
+    ],
+    "cited_id": "W12-2514",
+    "context_id": "P13-2085_W12-2514_0",
+    "contexto": "ism, states: Tools that can adjudicate the hermeneutical parameters of human reading experiences...stretch considerably beyond the most ambitious fantasies of artificial intelligence. Antonio has challenged Ramsay’s claim, and certainly th…",
+    "denso": [
+      {
+        "chunk_id": "p00012-p00013",
+        "extracto": "As a specific goal to guide our thought, we will adopt a statement from another scholar who emphasizes the importance of keeping the humanities central to computational text analysis. In Reading Machines: Toward an Algorithmic Criticism, S…",
+        "palabras": 102,
+        "paragraph_indices": [
+          12,
+          13
+        ],
+        "posicion": 1,
+        "seccion": "Approach",
+        "similitud_coseno": 0.942945
+      },
+      {
+        "chunk_id": "p00014-p00014",
+        "extracto": "The rest of this paper will attempt to respond to Ramsay's claim by developing such ambitious fantasies. We will strive to consider literary text analysis as it is understood by literary theorists of recent history, and we will describe ho…",
+        "palabras": 58,
+        "paragraph_indices": [
+          14
+        ],
+        "posicion": 2,
+        "seccion": "Approach",
+        "similitud_coseno": 0.924811
+      },
+      {
+        "chunk_id": "p00000-p00001",
+        "extracto": "tion,\" and resolving any allusions they may indicate; identifying the significance of named entities such as \"Howth Castle and Environs\" 2 ; exploring the effect of the line's syntax on reception, as described by writing scholars (Tufte, 2…",
+        "palabras": 68,
+        "paragraph_indices": [
+          0,
+          1
+        ],
+        "posicion": 3,
+        "seccion": "",
+        "similitud_coseno": 0.917364
+      }
+    ],
+    "interseccion": 2
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00000-p00001",
+        "extracto": "The most widely applied training procedure for statistical machine translation -IBM model 4 (Brown et al., 1993) unsupervised training followed by post-processing with symmetrization heuristics (Och and Ney, 2003) -yields low quality word…",
+        "palabras": 89,
+        "paragraph_indices": [
+          0,
+          1
+        ],
+        "puntaje_bm25": 8.591556,
+        "seccion": "Introduction"
+      },
+      {
+        "chunk_id": "p00006-p00006",
+        "extracto": "The rest of the paper is organized as follows. In Section 2, we review the data sets we use to validate experimentally our algorithms and the associated baselines. In Section 3, we present iteratively our contributions that eventually lead…",
+        "palabras": 141,
+        "paragraph_indices": [
+          6
+        ],
+        "puntaje_bm25": 8.581804,
+        "seccion": "Introduction"
+      },
+      {
+        "chunk_id": "p00002-p00003",
+        "extracto": "1. We first recast the problem of estimating the IBM models (Brown et al., 1993) in a discriminative framework, which leads to an initial increase in word-alignment accuracy. 2. We extend the IBM models with new (sub)models, which leads to…",
+        "palabras": 78,
+        "paragraph_indices": [
+          2,
+          3
+        ],
+        "puntaje_bm25": 8.089885,
+        "seccion": "Introduction"
+      }
+    ],
+    "cited_id": "P06-1097",
+    "context_id": "W11-4511_P06-1097_1",
+    "contexto": "orplex/TreeTagger/ 99 gives the maximum global alignment score. The great advantage of discriminative alignment in relation to a generative one is that it makes it easier to incorporate new features [ ]. The proposed alignment process is d…",
+    "denso": [
+      {
+        "chunk_id": "p00000-p00001",
+        "extracto": "The most widely applied training procedure for statistical machine translation -IBM model 4 (Brown et al., 1993) unsupervised training followed by post-processing with symmetrization heuristics (Och and Ney, 2003) -yields low quality word…",
+        "palabras": 89,
+        "paragraph_indices": [
+          0,
+          1
+        ],
+        "posicion": 1,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.906357
+      },
+      {
+        "chunk_id": "p00006-p00006",
+        "extracto": "The rest of the paper is organized as follows. In Section 2, we review the data sets we use to validate experimentally our algorithms and the associated baselines. In Section 3, we present iteratively our contributions that eventually lead…",
+        "palabras": 141,
+        "paragraph_indices": [
+          6
+        ],
+        "posicion": 2,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.904882
+      },
+      {
+        "chunk_id": "p00002-p00003",
+        "extracto": "1. We first recast the problem of estimating the IBM models (Brown et al., 1993) in a discriminative framework, which leads to an initial increase in word-alignment accuracy. 2. We extend the IBM models with new (sub)models, which leads to…",
+        "palabras": 78,
+        "paragraph_indices": [
+          2,
+          3
+        ],
+        "posicion": 3,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.90449
+      }
+    ],
+    "interseccion": 3
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00054-p00055",
+        "extracto": "This paper presents a comprehensive study of the impact of paraphrases on the accuracy of automatic evaluation. We found a strong connection between the quality of automatic paraphrases as judged by humans and their contribution to automat…",
+        "palabras": 137,
+        "paragraph_indices": [
+          54,
+          55
+        ],
+        "puntaje_bm25": 11.666133,
+        "seccion": "Conclusion and Future Work"
+      },
+      {
+        "chunk_id": "p00014-p00015",
+        "extracto": "A variety of automatic evaluation methods have been recently proposed in the machine translation community (NIST, 2002; Melamed et al., 2003; Papineni et al., 2002) . All these metrics compute n-gram overlap between a reference and a syste…",
+        "palabras": 130,
+        "paragraph_indices": [
+          14,
+          15
+        ],
+        "puntaje_bm25": 11.435434,
+        "seccion": "Automatic Evaluation Measures"
+      },
+      {
+        "chunk_id": "p00004-p00005",
+        "extracto": "In this paper, we explore the use of paraphrasing methods for refinement of automatic evaluation techniques. Given a reference sentence and a machine-generated sentence, we seek to find a paraphrase of the reference sentence that is closer…",
+        "palabras": 211,
+        "paragraph_indices": [
+          4,
+          5
+        ],
+        "puntaje_bm25": 9.693227,
+        "seccion": "Introduction"
+      }
+    ],
+    "cited_id": "N06-1058",
+    "context_id": "W09-0621_N06-1058_0",
+    "contexto": "g resources for text-to-text generation. Paraphrase generation has already proven to be valuable for Question Answering ( ), Machine Translation ( ) and the evaluation thereof ( ; ; ), but also for text simplification and explanation. In t…",
+    "denso": [
+      {
+        "chunk_id": "p00008-p00009",
+        "extracto": "(2) The quality of automatic paraphrases determines their contribution to automatic evalua-tion. By analyzing several paraphrasing resources, we found that the accuracy and coverage of a paraphrasing method correlate with its utility for a…",
+        "palabras": 64,
+        "paragraph_indices": [
+          8,
+          9
+        ],
+        "posicion": 1,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.914407
+      },
+      {
+        "chunk_id": "p00011-p00012",
+        "extracto": "Automatic Paraphrasing and Entailment Our work is closely related to research in automatic paraphrasing, in particular, to sentence level paraphrasing (Barzilay and Lee, 2003; Pang et al., 2003; Quirk et al., 2004) . Most of these approach…",
+        "palabras": 174,
+        "paragraph_indices": [
+          11,
+          12
+        ],
+        "posicion": 2,
+        "seccion": "Related Work",
+        "similitud_coseno": 0.912422
+      },
+      {
+        "chunk_id": "p00057-p00058",
+        "extracto": "Each pair included different translations of the same sentence, produced by two human translators. This can explain why previous attempts to use WordNet for generating sentence-level paraphrases(Barzilay and Lee, 2003;Quirk et al., 2004) w…",
+        "palabras": 35,
+        "paragraph_indices": [
+          57,
+          58
+        ],
+        "posicion": 3,
+        "seccion": "",
+        "similitud_coseno": 0.91012
+      }
+    ],
+    "interseccion": 0
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00011-p00012",
+        "extracto": "5The semantic frames for individual lexical units are typically \"blends\" of more than one basic frame; from our point of view, the so-called \"linking\" patterns proposed in LFG, HPSG, and Construction Grammar, operate on higher-level frames…",
+        "palabras": 230,
+        "paragraph_indices": [
+          11,
+          12
+        ],
+        "puntaje_bm25": 9.657079,
+        "seccion": "Conceptual Model"
+      },
+      {
+        "chunk_id": "p00009-p00010",
+        "extracto": "The FrameNet work is in some ways similar to efforts to describe the argument structures of lexical items in terms of case-roles or thetaroles, 5 but in FrameNet, the role names (called frame elements or FEs) are local to particular concep…",
+        "palabras": 90,
+        "paragraph_indices": [
+          9,
+          10
+        ],
+        "puntaje_bm25": 9.223916,
+        "seccion": "Conceptual Model"
+      },
+      {
+        "chunk_id": "p00037-p00038",
+        "extracto": "• Entry Writing Tools (4.2) (in development) • Database management tools to manage the catalog of subcorpora, schedule the work, render the nEventually, we plan to migrate to an XML data model, which appears to provide more flexibility whi…",
+        "palabras": 88,
+        "paragraph_indices": [
+          37,
+          38
+        ],
+        "puntaje_bm25": 8.551638,
+        "seccion": "Software"
+      }
+    ],
+    "cited_id": "P98-1013",
+    "context_id": "P09-1068_P98-1013_1",
+    "contexto": "ents that share a single participant, the protagonist. In this paper we extend this work to represent sets of situation-specific events not unlike scripts, caseframes ( ), and FrameNet frames ( . This paper shows that verbs in distinct nar…",
+    "denso": [
+      {
+        "chunk_id": "p00009-p00010",
+        "extracto": "The FrameNet work is in some ways similar to efforts to describe the argument structures of lexical items in terms of case-roles or thetaroles, 5 but in FrameNet, the role names (called frame elements or FEs) are local to particular concep…",
+        "palabras": 90,
+        "paragraph_indices": [
+          9,
+          10
+        ],
+        "posicion": 1,
+        "seccion": "Conceptual Model",
+        "similitud_coseno": 0.907939
+      },
+      {
+        "chunk_id": "p00007-p00008",
+        "extracto": "• Annotated Example Sentences which are marked up to exemplify the semantic and morphosyntactic properties of the lexical items. (Several of these are schematized in Fig. 2 ). These sentences provide empirical support for the lexicographic…",
+        "palabras": 98,
+        "paragraph_indices": [
+          7,
+          8
+        ],
+        "posicion": 2,
+        "seccion": "Scope of the Project",
+        "similitud_coseno": 0.899791
+      },
+      {
+        "chunk_id": "p00013-p00014",
+        "extracto": "Some combinations of frame elements, or Frame Element Groups (FEGs), for some real corpus sentences in the DRIVING frame are shown in Fig. 2 . A RIDING_I frame has the primary mover role as RIDER, and allows as VEHICLE those driven by othe…",
+        "palabras": 76,
+        "paragraph_indices": [
+          13,
+          14
+        ],
+        "posicion": 3,
+        "seccion": "fra~ne (TRANSPORTATION)",
+        "similitud_coseno": 0.88537
+      }
+    ],
+    "interseccion": 1
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00025-p00026",
+        "extracto": "Standardly, the evaluation of active learning methods and the comparison of sample selection metrics draws on experiments over gold-standard annotated corpora, where a set of annotated data is at our disposal, e.g. McCallum and Nigam (1998…",
+        "palabras": 255,
+        "paragraph_indices": [
+          25,
+          26
+        ],
+        "puntaje_bm25": 24.648514,
+        "seccion": "Evaluating Selective Sampling"
+      },
+      {
+        "chunk_id": "p00002-p00003",
+        "extracto": "However there are some provisos for active learning. An important point to consider is what effect informative examples have on the annotators. Are these examples more difficult? Will they affect the annotators' performance in terms of acc…",
+        "palabras": 131,
+        "paragraph_indices": [
+          2,
+          3
+        ],
+        "puntaje_bm25": 20.638229,
+        "seccion": "Introduction"
+      },
+      {
+        "chunk_id": "p00039-p00040",
+        "extracto": "We have presented active learning experiments in a novel NER domain and investigated negative side effects. We investigated the relationship between informativity of an example, as determined by selective sampling metrics, and inter-annota…",
+        "palabras": 213,
+        "paragraph_indices": [
+          39,
+          40
+        ],
+        "puntaje_bm25": 18.311568,
+        "seccion": "Conclusions and Future Work"
+      }
+    ],
+    "cited_id": "W05-0619",
+    "context_id": "W09-1905_W05-0619_0",
+    "contexto": "ted suggestions: active learning seeks to find more informative examples, and these will most likely involve more difficult decisions, decreasing annotation quality and/or increasing annotation time ( . Thus, we measure cost in terms of th…",
+    "denso": [
+      {
+        "chunk_id": "p00039-p00040",
+        "extracto": "We have presented active learning experiments in a novel NER domain and investigated negative side effects. We investigated the relationship between informativity of an example, as determined by selective sampling metrics, and inter-annota…",
+        "palabras": 213,
+        "paragraph_indices": [
+          39,
+          40
+        ],
+        "posicion": 1,
+        "seccion": "Conclusions and Future Work",
+        "similitud_coseno": 0.918623
+      },
+      {
+        "chunk_id": "p00033-p00033",
+        "extracto": "So far, the behaviour we have observed is what you would expect from selective sampling; there is a marked improvement in terms of cost and error rate reduction over random sampling. However, selective sampling raises questions of cognitiv…",
+        "palabras": 59,
+        "paragraph_indices": [
+          33
+        ],
+        "posicion": 2,
+        "seccion": "Annotator Performance",
+        "similitud_coseno": 0.918167
+      },
+      {
+        "chunk_id": "p00002-p00003",
+        "extracto": "However there are some provisos for active learning. An important point to consider is what effect informative examples have on the annotators. Are these examples more difficult? Will they affect the annotators' performance in terms of acc…",
+        "palabras": 131,
+        "paragraph_indices": [
+          2,
+          3
+        ],
+        "posicion": 3,
+        "seccion": "Introduction",
+        "similitud_coseno": 0.904902
+      }
+    ],
+    "interseccion": 2
+  },
+  {
+    "bm25": [
+      {
+        "chunk_id": "p00015-p00016",
+        "extracto": "Yang and Xue (2010) simply count unlabeled empty elements: items are (i, i) for each empty element, where i is its position. If multiple empty elements occur at the same position, they only count the last one. The metric originally propose…",
+        "palabras": 102,
+        "paragraph_indices": [
+          15,
+          16
+        ],
+        "puntaje_bm25": 8.759865,
+        "seccion": "Evaluation Measures"
+      },
+      {
+        "chunk_id": "p00024-p00025",
+        "extracto": "Unfortunately, not enough information was available to carry out comparison with the method ofChung and Gildea (2010). We provide a scoring script which supports all of these evaluation metrics. The code is available at http://www.isi.edu/…",
+        "palabras": 37,
+        "paragraph_indices": [
+          24,
+          25
+        ],
+        "puntaje_bm25": 8.586612,
+        "seccion": ""
+      },
+      {
+        "chunk_id": "p00022-p00022",
+        "extracto": "English As is standard, we trained the parser on sections 02-21 of the Penn Treebank Wall Street Journal corpus, used section 00 for development, and section 23 for testing. We ran 6 cycles of training; then, because we were unable to comp…",
+        "palabras": 241,
+        "paragraph_indices": [
+          22
+        ],
+        "puntaje_bm25": 6.735042,
+        "seccion": "Experiments and Results"
+      }
+    ],
+    "cited_id": "P11-2037",
+    "context_id": "N13-1125_P11-2037_2",
+    "contexto": "e.google.com/p/berkeleyparser 3http://mallet.cs.umass.edu 1056 consecutive ECs before the same word token to one, we will end up with a total EC count of 1,352, and this is also the EC count used by ( in their evaluation. On the dependency…",
+    "denso": [
+      {
+        "chunk_id": "p00011-p00012",
+        "extracto": "We use a modified version of the Berkeley parser which allows handling lattices as input. 2 The modification is fairly straightforward: Each lattice arc correspond to a lexical item. Lexical items are now indexed by their start and end sta…",
+        "palabras": 162,
+        "paragraph_indices": [
+          11,
+          12
+        ],
+        "posicion": 1,
+        "seccion": "Method",
+        "similitud_coseno": 0.907433
+      },
+      {
+        "chunk_id": "p00020-p00021",
+        "extracto": "Johnson counts this as (SBAR, i, i), (S/*T*, i, i); Schmid (2006) counts it as a single (SBAR-S/*T*, i, i). 5 We tried to follow Schmid in a generic way: we collapse any vertical chain of empty nonterminals into a single nonterminal. In or…",
+        "palabras": 124,
+        "paragraph_indices": [
+          20,
+          21
+        ],
+        "posicion": 2,
+        "seccion": "SBAR .",
+        "similitud_coseno": 0.902251
+      },
+      {
+        "chunk_id": "p00023-p00023",
+        "extracto": "The empty-element recovery method we have presented is simple, highly effective, and fully integrated with state of the art parsing. We hope to exploit cross-lingual information about empty elements in machine translation. Chung and Gildea…",
+        "palabras": 127,
+        "paragraph_indices": [
+          23
+        ],
+        "posicion": 3,
+        "seccion": "Discussion and Future Work",
+        "similitud_coseno": 0.899318
+      }
+    ],
+    "interseccion": 0
+  }
+]
