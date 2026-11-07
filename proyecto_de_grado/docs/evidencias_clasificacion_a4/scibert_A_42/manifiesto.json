@@ -1,0 +1,345 @@
+{
+  "casos": {
+    "eval_2015": 732,
+    "gold_v2": 839,
+    "train": 1241,
+    "val": 213
+  },
+  "checkpoint_sha256": "0656fceb422632195a9ec35a8dab7e2482041c033451ea3442a5bdcd4a7a6fbd",
+  "data_use": "provisional_only",
+  "encoder": "scibert",
+  "entrada": "A",
+  "entrada_eval": "A",
+  "entradas": {
+    "manifiesto_entradas": "6d06b55901b0da5d6d3a4e3f871255972cf51d0aff2e42dafa9940a718830b1e",
+    "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+    "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714"
+  },
+  "epocas_ejecutadas": 5,
+  "estado": "provisional_etiquetas_haiku_no_gold_humano",
+  "experiment_id": "scibert_A_42",
+  "git": {
+    "dirty": false,
+    "head": "21496e072717ce61624bb3b128e44b86e1d2d351"
+  },
+  "git_prediccion": {
+    "dirty": false,
+    "head": "21496e072717ce61624bb3b128e44b86e1d2d351"
+  },
+  "hardware": {
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "python": "3.14.6",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.22.2"
+  },
+  "hiperparametros": {
+    "acumulacion": 2,
+    "batch_size": 8,
+    "clip": 1.0,
+    "dropout": 0.1,
+    "epocas": 6,
+    "lr": 2e-05,
+    "max_len": 512,
+    "paciencia": 2,
+    "pesos_clase": true,
+    "warmup": 0.1,
+    "weight_decay": 0.01
+  },
+  "input_spec_sha256": "855e6dc426a8b99aebcf686a04ea997bfa49ad82c8e54b186ab9f6c55fd6e09d",
+  "latencia_ms_media": 2.922704099930365,
+  "limite": null,
+  "mejor_epoca": 3,
+  "metricas_val": {
+    "accuracy": 0.6431924882629108,
+    "confusion_matrix": [
+      [
+        60,
+        4,
+        4,
+        3,
+        4,
+        2,
+        4,
+        6,
+        1
+      ],
+      [
+        1,
+        2,
+        2,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        6,
+        1,
+        2,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        4,
+        1,
+        1,
+        9,
+        3,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        3,
+        0,
+        1,
+        2,
+        48,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        2,
+        0,
+        1,
+        11,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        2,
+        0,
+        0,
+        0,
+        4,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ]
+    ],
+    "f1_macro": 0.41976098254607996,
+    "f1_micro": 0.6431924882629108,
+    "f1_weighted": 0.6549855978697889,
+    "n": 213,
+    "per_class": [
+      {
+        "f1": 0.7361963190184048,
+        "label": "Background",
+        "precision": 0.8,
+        "recall": 0.6818181818181818,
+        "support": 88
+      },
+      {
+        "f1": 0.25,
+        "label": "Gap",
+        "precision": 0.25,
+        "recall": 0.25,
+        "support": 8
+      },
+      {
+        "f1": 0.15384615384615383,
+        "label": "Basis",
+        "precision": 0.14285714285714285,
+        "recall": 0.16666666666666666,
+        "support": 12
+      },
+      {
+        "f1": 0.42857142857142855,
+        "label": "Comparison",
+        "precision": 0.42857142857142855,
+        "recall": 0.42857142857142855,
+        "support": 21
+      },
+      {
+        "f1": 0.8495575221238938,
+        "label": "Application",
+        "precision": 0.8275862068965517,
+        "recall": 0.8727272727272727,
+        "support": 55
+      },
+      {
+        "f1": 0.0,
+        "label": "Improvement / Modification",
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 2
+      },
+      {
+        "f1": 0.7096774193548386,
+        "label": "Evidence",
+        "precision": 0.7333333333333333,
+        "recall": 0.6875,
+        "support": 16
+      },
+      {
+        "f1": 0.4,
+        "label": "Identification of the Originator",
+        "precision": 0.3076923076923077,
+        "recall": 0.5714285714285714,
+        "support": 7
+      },
+      {
+        "f1": 0.25,
+        "label": "Further Reading",
+        "precision": 0.25,
+        "recall": 0.25,
+        "support": 4
+      }
+    ],
+    "precision_macro": 0.4155600465945294,
+    "precision_micro": 0.6431924882629108,
+    "precision_weighted": 0.6737967445106834,
+    "recall_macro": 0.4343013468013468,
+    "recall_micro": 0.6431924882629108,
+    "recall_weighted": 0.6431924882629108
+  },
+  "model_id": "allenai/scibert_scivocab_uncased",
+  "model_version": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+  "parada_temprana": true,
+  "pesos_clase": [
+    0.2884704788470479,
+    2.5534979423868314,
+    2.05804311774461,
+    0.9131714495952906,
+    0.41784511784511785,
+    4.924603174603175,
+    1.8633633633633633,
+    3.7267267267267266,
+    6.267676767676767
+  ],
+  "segundos_entrenamiento": 80.1,
+  "semilla": 42,
+  "sha256_permutacion": null,
+  "sha256_permutacion_eval": null,
+  "tokenizer": {
+    "clase": "BertTokenizer",
+    "do_lower_case": true,
+    "vocab_sha256": "f0a650346e51ede8996710f79ba65d83fdb8da05b159f17037b74ba4e3a36c6f",
+    "vocab_size": 31090
+  },
+  "training_labels": "Haiku",
+  "truncamiento": {
+    "train": {
+      "casos": 1241,
+      "longitud_media": 229.17566478646253,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.014504431909750202,
+          "tokens_truncados_max": 1778,
+          "tokens_truncados_media": 7.186140209508461
+        },
+        "contexto": {
+          "frac_truncado": 0.0008058017727639,
+          "tokens_truncados_max": 2,
+          "tokens_truncados_media": 0.0016116035455278
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        }
+      }
+    },
+    "val": {
+      "casos": 213,
+      "longitud_media": 220.93427230046947,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.009389671361502348,
+          "tokens_truncados_max": 954,
+          "tokens_truncados_media": 8.953051643192488
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        }
+      }
+    }
+  },
+  "truncamiento_eval": {
+    "eval_2015": {
+      "casos": 732,
+      "longitud_media": 237.43579234972677,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.009562841530054645,
+          "tokens_truncados_max": 605,
+          "tokens_truncados_media": 3.101092896174863
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        }
+      }
+    },
+    "gold_v2": {
+      "casos": 839,
+      "longitud_media": 236.2777115613826,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.004767580452920143,
+          "tokens_truncados_max": 605,
+          "tokens_truncados_media": 1.294398092967819
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_max": 0,
+          "tokens_truncados_media": 0.0
+        }
+      }
+    }
+  }
+}
