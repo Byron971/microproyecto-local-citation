@@ -259,3 +259,104 @@ def regresion_top3(top3: dict[str, list[dict]], filas_a1: list[dict], tolerancia
     return {"contextos_a1": len(a1), "contextos_comparados": len(comunes),
             "coinciden": len(comunes) - len([d for d in discrepancias if not d.startswith("similitud")]),
             "max_dif_similitud": max_dif, "discrepancias": discrepancias}
+
+
+# ---------------------------------------------------------------- interseccion A/B
+MOTIVOS_PROPIOS = ("sin_top3", "menos_de_3_chunks", "chunk_ajeno", "sin_titulo_abstract")
+
+
+def agrupar_top3(filas: list[dict]) -> dict[str, list[dict]]:
+    """Filas de `top3_*.csv` -> {context_id: [fila ordenada por posicion]}."""
+    por_ctx: dict[str, list[dict]] = {}
+    for f in filas:
+        por_ctx.setdefault(f["context_id"], []).append({**f, "posicion": int(f["posicion"])})
+    for ctx, v in por_ctx.items():
+        v.sort(key=lambda r: r["posicion"])
+        if [r["posicion"] for r in v] != list(range(1, len(v) + 1)):
+            raise ValueError(f"Posiciones del Top-3 invalidas en {ctx}")
+    return por_ctx
+
+
+def _por_clase(filas: list[dict]) -> dict[str, int]:
+    conteo = {c: 0 for c in dominio.CATEGORIAS}
+    for f in filas:
+        if f.get("indice") is not None:
+            conteo[dominio.CATEGORIAS[f["indice"]]] += 1
+    return conteo
+
+
+def interseccion(
+    conjuntos: dict[str, list[dict]], casos_chunks: dict[str, list[dict]],
+    excluidos_chunks: list[dict], top3: dict[str, dict[str, list[dict]]], papers: dict,
+) -> dict:
+    """Entradas A y B sobre EXACTAMENTE los mismos context_id.
+
+    Un contexto entra si tiene chunks (regla de A1), un Top-3 completo cuyos chunk_id
+    pertenecen a su articulo y titulo/abstract en ACL-200. Devuelve
+    {entradas: {conjunto: [...]}, excluidos: [{conjunto, context_id, motivo, etiqueta}],
+    resumen: {conjunto: {...}}}. Los excluidos se declaran por motivo y por clase."""
+    previos = {(e["conjunto"], e["context_id"]): e["motivo"] for e in excluidos_chunks}
+    entradas, excluidos, resumen = {}, [], {}
+    for nombre, candidatos in conjuntos.items():
+        con_chunks = {c["context_id"]: c for c in casos_chunks.get(nombre, [])}
+        entradas[nombre] = []
+        excl_n = []
+
+        def omitir(caso: dict, motivo: str) -> None:
+            etiqueta = (dominio.CATEGORIAS[caso["indice"]] if caso.get("indice") is not None
+                        else "")
+            excl_n.append({"conjunto": nombre, "context_id": caso["context_id"],
+                           "motivo": motivo, "etiqueta": etiqueta})
+
+        for caso in candidatos:
+            cid = caso["context_id"]
+            if (nombre, cid) in previos:
+                omitir(caso, previos[(nombre, cid)])
+                continue
+            if cid not in con_chunks:
+                raise ValueError(f"{cid} sin chunks ni motivo de exclusion en {nombre}.")
+            filas = top3.get(nombre, {}).get(cid)
+            if not filas:
+                omitir(caso, "sin_top3")
+                continue
+            if len(filas) != dominio.TOP_K:
+                omitir(caso, "menos_de_3_chunks")
+                continue
+            textos = {c["chunk_id"]: c for c in con_chunks[cid]["chunks"]}
+            if any(f["chunk_id"] not in textos or f["cited_id"] != caso["cited_id"] for f in filas):
+                omitir(caso, "chunk_ajeno")
+                continue
+            paper = papers.get(caso["cited_id"]) or {}
+            titulo, abstract = (paper.get("title") or "").strip(), (paper.get("abstract") or "").strip()
+            if not titulo or not abstract:
+                omitir(caso, "sin_titulo_abstract")
+                continue
+            entradas[nombre].append({
+                **{k: v for k, v in caso.items() if k not in ("titulo", "abstract")},
+                "titulo": titulo, "abstract": abstract,
+                "top3": [{"chunk_id": f["chunk_id"], "perfil": f["perfil_seccion"],
+                          "seccion": f["seccion"], "texto": textos[f["chunk_id"]]["texto"]}
+                         for f in filas]})
+        entradas[nombre].sort(key=lambda e: e["context_id"])
+        motivos: dict[str, int] = {}
+        for e in excl_n:
+            motivos[e["motivo"]] = motivos.get(e["motivo"], 0) + 1
+        total = len(candidatos)
+        ids_excl = {e["context_id"] for e in excl_n}
+        resumen[nombre] = {
+            "candidatos": total, "interseccion": len(entradas[nombre]),
+            "cobertura_pct": round(100 * len(entradas[nombre]) / total, 2) if total else None,
+            "excluidos_por_motivo": dict(sorted(motivos.items())),
+            "por_clase_candidatos": _por_clase(candidatos),
+            "por_clase_interseccion": _por_clase(entradas[nombre]),
+            "por_clase_excluidos": _por_clase(
+                [c for c in candidatos if c["context_id"] in ids_excl]),
+        }
+        excluidos += sorted(excl_n, key=lambda e: e["context_id"])
+    return {"entradas": entradas, "excluidos": excluidos, "resumen": resumen}
+
+
+def huella_entradas(entradas: list[dict], tipo: str) -> str:
+    """SHA del texto efectivo de una entrada (A, B o B_sin_seccion) sobre un conjunto."""
+    return dominio._sha([[e["context_id"], [s["texto"] for s in dominio.construir_segmentos(e, tipo)]]
+                         for e in sorted(entradas, key=lambda e: e["context_id"])])
