@@ -1,7 +1,8 @@
-"""Dominio puro (solo stdlib): taxonomia, metricas y verificacion de fugas."""
+"""Dominio puro (solo stdlib): taxonomia, metricas, fugas y construccion de entradas."""
 import hashlib
 import json
 import math
+import random
 
 CATEGORIAS = (
     "Background",
@@ -250,3 +251,204 @@ def verificar_fugas(
         detalle = {k: v for k, v in fugas.items() if v}
         raise ValueError(f"Fuga entre conjuntos: {detalle}")
     return reporte
+
+
+# ---------------------------------------------------------------- construccion de entradas
+ENTRADAS = ("A", "B", "B_sin_seccion", "B_barajada")
+TOP_K = 3
+TOPE_CONTEXTO = 192
+TOPE_TITULO = 48
+MARCA = "TARGETCIT"
+VERSION_ENTRADA = "a4_entrada_v1"
+PLANTILLA = "[CLS] ctx [SEP] seg_1 [SEP] ... seg_n [SEP]"
+
+
+def _texto(valor, nombre: str, cid) -> str:
+    if not isinstance(valor, str) or not valor.strip():
+        raise ValueError(f"{nombre} vacio o ausente en {cid}")
+    return " ".join(valor.split())
+
+
+def construir_segmentos(caso: dict, entrada: str) -> list[dict]:
+    """Segmentos de texto de una entrada, en orden: [{nombre, tipo, texto}].
+
+    A = contexto, titulo, abstract. B = contexto + (perfil_i : chunk_i) x 3.
+    B_sin_seccion omite el perfil. B_barajada usa `perfiles_barajados` (ver
+    `barajar_secciones`). `caso` lleva `citation_context`, `titulo`, `abstract` y
+    `top3` = [{chunk_id, texto, perfil}] ya ordenado por relevancia."""
+    if entrada not in ENTRADAS:
+        raise ValueError(f"Entrada desconocida: {entrada!r}")
+    cid = caso.get("context_id")
+    contexto = _texto(caso.get("citation_context"), "citation_context", cid)
+    if contexto.count(MARCA) != 1:
+        raise ValueError(f"Contexto sin {MARCA} unico en {cid}")
+    segmentos = [{"nombre": "contexto", "tipo": "contexto", "texto": contexto}]
+    if entrada == "A":
+        segmentos.append({"nombre": "titulo", "tipo": "titulo",
+                          "texto": _texto(caso.get("titulo"), "titulo", cid)})
+        segmentos.append({"nombre": "abstract", "tipo": "abstract",
+                          "texto": _texto(caso.get("abstract"), "abstract", cid)})
+        return segmentos
+    top3 = caso.get("top3")
+    if not isinstance(top3, list) or len(top3) != TOP_K:
+        raise ValueError(f"Top-{TOP_K} incompleto en {cid}")
+    perfiles = [c.get("perfil") for c in top3]
+    if entrada == "B_barajada":
+        perfiles = caso.get("perfiles_barajados")
+        if not isinstance(perfiles, list) or len(perfiles) != TOP_K:
+            raise ValueError(f"B_barajada requiere `perfiles_barajados` (barajar_secciones) en {cid}")
+    for i, (c, perfil) in enumerate(zip(top3, perfiles), 1):
+        texto = _texto(c.get("texto"), f"chunk_{i}", cid)
+        if entrada != "B_sin_seccion":
+            if not isinstance(perfil, str) or not perfil:
+                raise ValueError(f"Perfil de seccion ausente en chunk_{i} de {cid}")
+            texto = f"{perfil} : {texto}"
+        segmentos.append({"nombre": f"chunk_{i}", "tipo": "chunk", "texto": texto})
+    return segmentos
+
+
+def barajar_secciones(casos: list[dict], semilla: int) -> tuple[list[dict], str]:
+    """Permutacion sembrada de `perfil` entre todos los chunks del conjunto.
+
+    Conserva la marginal de perfiles. Devuelve (casos con `perfiles_barajados`,
+    SHA de la permutacion). No depende del orden de entrada de `casos`."""
+    ranuras = sorted((c["context_id"], i) for c in casos for i in range(len(c["top3"])))
+    originales = {(c["context_id"], i): c["top3"][i].get("perfil")
+                  for c in casos for i in range(len(c["top3"]))}
+    perfiles = [originales[r] for r in ranuras]
+    barajados = list(perfiles)
+    random.Random(semilla).shuffle(barajados)
+    nuevo = dict(zip(ranuras, barajados))
+    sha = _sha({"semilla": semilla,
+                "permutacion": [[cid, i, originales[(cid, i)], nuevo[(cid, i)]]
+                                for cid, i in ranuras]})
+    salida = [{**c, "perfiles_barajados": [nuevo[(c["context_id"], i)]
+                                           for i in range(len(c["top3"]))]} for c in casos]
+    return salida, sha
+
+
+def tokenizar_segmentos(segmentos: list[dict], tokenizador) -> list[dict]:
+    """Ids por segmento. En el contexto marca la posicion de TARGETCIT (`centro`)."""
+    salida = []
+    for seg in segmentos:
+        if seg["tipo"] == "contexto":
+            antes, despues = seg["texto"].split(MARCA)
+            a, m, z = (tokenizador.ids(antes), tokenizador.ids(MARCA), tokenizador.ids(despues))
+            salida.append({"nombre": seg["nombre"], "tipo": "contexto", "ids": a + m + z,
+                           "centro": (len(a), len(a) + len(m))})
+        else:
+            salida.append({"nombre": seg["nombre"], "tipo": seg["tipo"],
+                           "ids": tokenizador.ids(seg["texto"]), "centro": None})
+    return salida
+
+
+def reparto_water_filling(longitudes: list[int], presupuesto: int) -> list[int]:
+    """Reparte `presupuesto` tokens: los segmentos cortos conservan todo y el sobrante
+    se redistribuye entre los largos (deterministico; el resto entero va a los primeros)."""
+    if presupuesto < 0:
+        raise ValueError("Presupuesto negativo.")
+    asignado = [0] * len(longitudes)
+    pendientes = sorted(range(len(longitudes)), key=lambda i: (longitudes[i], i))
+    restante = presupuesto
+    while pendientes:
+        parte = restante // len(pendientes)
+        i = pendientes[0]
+        if longitudes[i] <= parte:
+            asignado[i] = longitudes[i]
+            restante -= longitudes[i]
+            pendientes.pop(0)
+            continue
+        for j in pendientes:
+            asignado[j] = parte
+        restante -= parte * len(pendientes)
+        for j in sorted(pendientes):
+            if restante and asignado[j] < longitudes[j]:
+                asignado[j] += 1
+                restante -= 1
+        break
+    return asignado
+
+
+def _ventana_contexto(ids: list[int], centro: tuple[int, int], tope: int) -> list[int]:
+    if len(ids) <= tope:
+        return ids
+    medio = (centro[0] + centro[1]) // 2
+    inicio = min(max(medio - tope // 2, 0), len(ids) - tope)
+    if centro[0] < inicio:  # el span de TARGETCIT nunca queda fuera de la ventana
+        inicio = centro[0]
+    return ids[inicio:inicio + tope]
+
+
+def ensamblar(ids_segmentos: list[dict], max_len: int, cls: int, sep: int) -> dict:
+    """`[CLS] ctx [SEP] seg_1 [SEP] ... seg_n [SEP]` con presupuesto por segmento.
+
+    El contexto se reserva primero (tope 192; ventana centrada en TARGETCIT si se
+    recorta). A: titulo con tope 48 y abstract recortado por la cola. B: el resto se
+    reparte entre los chunks por water-filling. Devuelve input_ids, longitud y los
+    tokens truncados por segmento."""
+    if not ids_segmentos or ids_segmentos[0]["tipo"] != "contexto":
+        raise ValueError("El primer segmento debe ser el contexto.")
+    resto = ids_segmentos[1:]
+    tipos = [s["tipo"] for s in resto]
+    if tipos == ["titulo", "abstract"]:
+        modo = "A"
+    elif tipos and set(tipos) == {"chunk"}:
+        modo = "B"
+    else:
+        raise ValueError(f"Combinacion de segmentos no soportada: {tipos}")
+    presupuesto = max_len - 2 - len(resto)  # CLS + SEP del contexto + un SEP por segmento
+    ctx = ids_segmentos[0]
+    if presupuesto < 1 or ctx["centro"] is None:
+        raise ValueError("max_len insuficiente o contexto sin posicion de TARGETCIT.")
+    ventana = _ventana_contexto(ctx["ids"], ctx["centro"], min(TOPE_CONTEXTO, presupuesto))
+    asignado = {"contexto": len(ventana)}
+    libre = presupuesto - len(ventana)
+    if modo == "A":
+        titulo, abstract = resto
+        t = min(len(titulo["ids"]), TOPE_TITULO, libre)
+        a = min(len(abstract["ids"]), libre - t)
+        asignado.update({"titulo": t, "abstract": a})
+    else:
+        reparto = reparto_water_filling([len(s["ids"]) for s in resto], libre)
+        asignado.update({s["nombre"]: n for s, n in zip(resto, reparto)})
+    ids = [cls, *ventana, sep]
+    truncados = {"contexto": len(ctx["ids"]) - len(ventana)}
+    for s in resto:
+        n = asignado[s["nombre"]]
+        ids += [*s["ids"][:n], sep]
+        truncados[s["nombre"]] = len(s["ids"]) - n
+    if len(ids) > max_len:
+        raise ValueError("Secuencia ensamblada excede max_len.")
+    return {"input_ids": ids, "longitud": len(ids), "truncados": truncados}
+
+
+def especificacion_entrada(entrada: str, max_len: int, semilla_barajado: int | None = None) -> dict:
+    """Especificacion de la entrada, independiente del tokenizer (mismo hash en SciBERT
+    y SPECTER, como exige `a4_factorial_v1`)."""
+    if entrada not in ENTRADAS:
+        raise ValueError(f"Entrada desconocida: {entrada!r}")
+    if (entrada == "B_barajada") != (semilla_barajado is not None):
+        raise ValueError("La semilla de barajado aplica solo a B_barajada (y es obligatoria).")
+    espec = {
+        "version": VERSION_ENTRADA,
+        "entrada": entrada,
+        "max_len": max_len,
+        "plantilla": PLANTILLA,
+        "segmentos": {"A": ["contexto", "titulo", "abstract"]}.get(
+            entrada, ["contexto", "chunk_1", "chunk_2", "chunk_3"]),
+        "formato_chunk": {"B": "perfil : texto", "B_barajada": "perfil_barajado : texto",
+                          "B_sin_seccion": "texto"}.get(entrada),
+        "top_k": TOP_K if entrada != "A" else None,
+        "tope_contexto": TOPE_CONTEXTO,
+        "tope_titulo": TOPE_TITULO if entrada == "A" else None,
+        "truncamiento": "abstract por la cola" if entrada == "A" else "water-filling",
+        "ventana_contexto": "centrada en TARGETCIT",
+        "perfil_seccion": "heuristica auditoria_corpus.perfil_seccion",
+    }
+    if semilla_barajado is not None:
+        espec["semilla_barajado"] = semilla_barajado
+    return espec
+
+
+def sha_especificacion(especificacion: dict) -> str:
+    return _sha(especificacion)
