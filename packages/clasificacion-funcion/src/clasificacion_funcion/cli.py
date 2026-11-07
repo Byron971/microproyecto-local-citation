@@ -23,15 +23,19 @@ from recuperacion_densa.cache_embeddings import CacheDisco
 from recuperacion_densa.dominio import SIN_SECCION
 
 from . import adaptador_proyecto_grado as ad
-from . import dominio, servicio
+from . import dominio, exportar, servicio
 
 EVIDENCIAS = ad.REPO / "proyecto_de_grado/docs/evidencias_clasificacion_a4"
 ARTEFACTOS = ad.REPO / "proyecto_de_grado/artifacts/clasificacion_a4/preparacion"
 COL_MOTIVOS = ["conjunto", "context_id", "motivo"]
 COL_ETIQUETAS = ["context_id", "indice", "etiqueta"]
+COL_EXCLUIDOS = ["conjunto", "context_id", "motivo", "etiqueta"]
 COL_TOP3 = ["context_id", "posicion", "cited_id", "chunk_id", "seccion", "perfil_seccion",
             "paragraph_indices", "puntaje"]
 TOP3_A1 = ad.REPO / "proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/top3.csv"
+ENTRADAS_ART = ad.REPO / "proyecto_de_grado/artifacts/clasificacion_a4/entradas"
+UMBRAL_COBERTURA = 60.0
+TIPOS_ENTRADA = ("A", "B", "B_sin_seccion")
 CACHE_EMBEDDINGS = ad.REPO / "proyecto_de_grado/artifacts/clasificacion_a4/cache_embeddings"
 
 
@@ -227,6 +231,77 @@ def recuperar(args, fabrica_codificador: Callable | None) -> int:
     return 0
 
 
+def entradas(args) -> int:
+    """Interseccion controlada: A y B usan exactamente los mismos context_id."""
+    fuentes = crear_fuentes()
+    r = servicio.cargar_conjuntos(fuentes, args.fuente_etiquetas, args.limite)
+    contextos = fuentes.indice()[1]
+    papers = ad.cargar_papers(args.raw)
+    casos, excl_chunks = servicio.construir_casos_split(
+        r["conjuntos"], contextos, papers, args.cache_ocl, ad.integrar, ad.fragmentar)
+    top3 = {}
+    for n in r["conjuntos"]:
+        ruta = args.top3 / f"top3_{n}.csv"
+        if not ruta.is_file():
+            raise FileNotFoundError(f"Falta {ruta}: ejecute `cli_modelo recuperar` primero.")
+        top3[n] = servicio.agrupar_top3(leer_csv_top3(ruta))
+    res = servicio.interseccion(r["conjuntos"], casos, excl_chunks, top3, papers)
+    ent, resumen = res["entradas"], res["resumen"]
+    bloqueos = [{"conjunto": n, "cobertura_pct": resumen[n]["cobertura_pct"],
+                 "umbral_pct": args.umbral_cobertura,
+                 "accion": "registrar en #103 y proponer otro fragmentador en un issue aparte; "
+                           "no modificar la regla de A1"}
+                for n in ("train", "eval_2015", "gold_v2")
+                if (resumen[n]["cobertura_pct"] or 0) < args.umbral_cobertura]
+    print(_json_texto({"cobertura": {n: [v["interseccion"], v["candidatos"], v["cobertura_pct"]]
+                                     for n, v in resumen.items()}}), end="")
+    if bloqueos:
+        print(f"BLOQUEO: cobertura < {args.umbral_cobertura}% en "
+              f"{', '.join(b['conjunto'] for b in bloqueos)} (queda registrado en el manifiesto).")
+    if args.solo_validar:
+        print("--solo-validar: no se escribio nada.")
+        return 3 if bloqueos and args.exigir_cobertura else 0
+    hashes = {}
+    for n in ("train", "val", "eval_2015"):
+        hashes[n] = {"ids_sha256": dominio.sha_ids(e["context_id"] for e in ent[n]),
+                     "labels_sha256": dominio.sha_etiquetas(
+                         {e["context_id"]: e["indice"] for e in ent[n]})}
+    hashes["gold_v2"] = {"ids_sha256": dominio.sha_ids(e["context_id"] for e in ent["gold_v2"])}
+    espec = {t: dominio.sha_especificacion(dominio.especificacion_entrada(t, args.max_len))
+             for t in TIPOS_ENTRADA}
+    gold_eval = exportar.jsonl_texto(exportar.filas_gold(ent["eval_2015"]))
+    ev = {args.salida / f"ids_interseccion_{n}.txt": _lineas(e["context_id"] for e in v)
+          for n, v in ent.items()}
+    ev[args.salida / "excluidos.csv"] = _csv_texto(COL_EXCLUIDOS, res["excluidos"])
+    ev[args.salida / "gold_eval_2015_haiku.jsonl"] = gold_eval
+    manifiesto = {
+        "estado": r["estado"], "git": _git(), "fuente_etiquetas": r["fuente_etiquetas"],
+        "limite": args.limite, "max_len": args.max_len, "umbral_cobertura_pct": args.umbral_cobertura,
+        "cobertura": resumen, "bloqueos_cobertura": bloqueos,
+        "train_ids_sha256": hashes["train"]["ids_sha256"],
+        "train_labels_sha256": hashes["train"]["labels_sha256"],
+        "input_spec_sha256": espec, "hashes": hashes,
+        "texto_sha256": {t: {n: servicio.huella_entradas(v, t) for n, v in ent.items()}
+                         for t in TIPOS_ENTRADA},
+        "gold_eval_2015_haiku_sha256": hashlib.sha256(gold_eval.encode("utf-8")).hexdigest(),
+        "entradas": {**{f"top3_{n}.csv": _sha_archivo(args.top3 / f"top3_{n}.csv") for n in ent},
+                     "manifiesto_ocl": _sha_archivo(args.manifiesto_ocl),
+                     "manifiesto_recuperacion": _sha_archivo(args.top3 / "manifiesto_recuperacion.json")},
+    }
+    ev[args.salida / "manifiesto_entradas.json"] = _json_texto(manifiesto)
+    art = {args.artefactos / f"entradas_{n}.jsonl": exportar.jsonl_texto(
+        [{k: v for k, v in e.items() if k != "chunks"} for e in v]) for n, v in ent.items()}
+    existentes = [p for p in (*ev, *art) if p.exists()]
+    if existentes:
+        raise FileExistsError(f"No se sobrescribe: {', '.join(str(p) for p in existentes)}")
+    for carpeta in (args.salida, args.artefactos):
+        carpeta.mkdir(parents=True, exist_ok=True)
+    for ruta, contenido in {**ev, **art}.items():
+        _publicar(ruta, contenido)
+    print(f"Evidencias: {args.salida}\nEntradas con texto (gitignored): {args.artefactos}")
+    return 3 if bloqueos and args.exigir_cobertura else 0
+
+
 def _sha_manifiesto(ruta: Path) -> str | None:
     try:
         return json.loads(Path(ruta).read_text(encoding="utf-8")).get("sha256_manifiesto")
@@ -266,6 +341,21 @@ def parser() -> argparse.ArgumentParser:
     t.add_argument("--manifiesto-modelo", type=Path, default=EVIDENCIAS / "manifiesto_modelo_scibert.json")
     t.add_argument("--manifiesto-ocl", type=Path, default=EVIDENCIAS / "manifiesto_ocl.json")
     t.set_defaults(accion=recuperar)
+    e = sub.add_parser("entradas", help="interseccion A/B, hashes y Gold JSONL provisional")
+    e.add_argument("--solo-validar", action="store_true", help="solo cobertura; no escribe")
+    e.add_argument("--limite", type=int, default=None, help="primeros N casos por conjunto")
+    e.add_argument("--fuente-etiquetas", default="haiku", choices=servicio.FUENTES_ETIQUETAS)
+    e.add_argument("--raw", type=Path, default=ad.RAW)
+    e.add_argument("--cache-ocl", type=Path, default=ad.CACHE_OCL)
+    e.add_argument("--salida", type=Path, default=EVIDENCIAS)
+    e.add_argument("--top3", type=Path, default=EVIDENCIAS, help="carpeta con top3_*.csv")
+    e.add_argument("--artefactos", type=Path, default=ENTRADAS_ART)
+    e.add_argument("--max-len", type=int, default=512)
+    e.add_argument("--umbral-cobertura", type=float, default=UMBRAL_COBERTURA)
+    e.add_argument("--exigir-cobertura", action="store_true",
+                   help="termina con codigo 3 si la cobertura queda bajo el umbral")
+    e.add_argument("--manifiesto-ocl", type=Path, default=EVIDENCIAS / "manifiesto_ocl.json")
+    e.set_defaults(accion=entradas)
     return p
 
 
