@@ -1,0 +1,16 @@
+{
+  "archivos": {
+    ".gitattributes": "f049f7c0d16eaffe605baca479013bcb7a3847077cf6e548ba7b228831cf9c38",
+    "README.md": "f96b667d304d22019e55a5928baa6eed52636eaf2d9d74e1d590b9405e28af18",
+    "config.json": "6bbfb71747935be052561b95cfeb1450ace786225f0a5379bb0e2b79604c33e2",
+    "flax_model.msgpack": "6d84dc0bb064c651956611b39ed13a043d88ee7a1dd1239913ac06840a7fa53c",
+    "pytorch_model.bin": "a260abd90ae4bbb5aae9e040b5910ab68f27bac0cc13b1d1c9b83e42e880972c",
+    "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "tf_model.h5": "e673eeabca7ad162fbfb2281065ffba53d909267a93500e532e0a432fac2fcb2",
+    "tokenizer_config.json": "2e15575ac9455be4a3672e5ebe1c7760281e8239a0f0e43eb6992563cbdfd071",
+    "vocab.txt": "f99aae27d5a572628760968078207b9d79ff241cc75de4b9e4323feabc61fd6b"
+  },
+  "model_id": "allenai/specter",
+  "revision": "81cbfb43d4fc2e728d5b4201ce14987db8d0854c",
+  "sha256_manifiesto": "52732fc1b4853a645f51fcb0e959bc58e3f8ae20fd6a6403851cbcc57057bfa4"
+}
