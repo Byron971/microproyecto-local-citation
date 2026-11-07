@@ -36,3 +36,33 @@ class Predictor(Protocol):
 
 class Reloj(Protocol):
     def __call__(self) -> float: ...
+
+
+class Fuentes(Protocol):
+    """Origen de los datos del proyecto de grado (lo implementa el adaptador)."""
+
+    def indice(self) -> tuple[dict[str, str], dict[str, dict]]:
+        """(context_id -> split ACL-200, context_id -> {citing_id, refid, masked_text})."""
+        ...
+
+    def filas_haiku(self) -> list[dict]:
+        """Etiquetas Haiku de train/val: {context_id, etiqueta, titulo, abstract}."""
+        ...
+
+    def split_entrenamiento(self) -> dict[str, list[str]]:
+        """{'train': [context_id], 'val': [context_id]} agrupado por citante."""
+        ...
+
+    def filas_test_gold(self) -> list[dict]:
+        """Test Gold 2700 (etiquetas Haiku): {context_id, etiqueta, titulo, abstract, anio_citante}."""
+        ...
+
+    def ids_gold_v2(self) -> list[str]:
+        """context_id del Gold v2 (ciego, sin etiquetas)."""
+        ...
+
+    def exclusiones(self) -> set[str]: ...
+
+    def rutas(self) -> dict[str, Path]:
+        """Archivos de entrada (para registrar su SHA en el manifiesto)."""
+        ...
