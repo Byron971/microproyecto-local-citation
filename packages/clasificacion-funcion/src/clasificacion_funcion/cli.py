@@ -49,13 +49,19 @@ def _sha_archivo(ruta: Path) -> str | None:
 
 
 def _git() -> dict:
+    """HEAD y estado del arbol. `dirty` considera SOLO el codigo: la evidencia que genera el
+    propio flujo (EVIDENCIAS) se informa aparte en `evidencia_sin_commit`, porque cada paso
+    escribe archivos nuevos y, de lo contrario, `dirty` saldria siempre en true."""
     def run(*a):
         return subprocess.run(["git", "-C", str(ad.REPO), *a], capture_output=True, text=True,
                               check=True).stdout.strip()
     try:
-        return {"head": run("rev-parse", "HEAD"), "dirty": bool(run("status", "--porcelain"))}
-    except (OSError, subprocess.CalledProcessError):
-        return {"head": None, "dirty": None}
+        rel = Path(EVIDENCIAS).relative_to(ad.REPO).as_posix()
+        return {"head": run("rev-parse", "HEAD"),
+                "dirty": bool(run("status", "--porcelain", "--", ".", f":(exclude){rel}")),
+                "evidencia_sin_commit": bool(run("status", "--porcelain", "--", rel))}
+    except (OSError, ValueError, subprocess.CalledProcessError):
+        return {"head": None, "dirty": None, "evidencia_sin_commit": None}
 
 
 def _publicar(destino: Path, contenido: str) -> None:
