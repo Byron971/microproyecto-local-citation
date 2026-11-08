@@ -19,3 +19,9 @@ model-package
 
 *.pdf
 *.log
+
+# Infraestructura y configuración local fuera de la imagen
+terraform/
+.superpowers/
+.env
+.env.*
