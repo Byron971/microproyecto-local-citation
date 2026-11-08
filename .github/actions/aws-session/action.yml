@@ -1,0 +1,49 @@
+name: Sesión AWS
+description: Configura credenciales temporales y verifica que sigan vigentes.
+inputs:
+  access-key-id:
+    description: Access key de AWS
+    required: true
+  secret-access-key:
+    description: Secret key de AWS
+    required: true
+  session-token:
+    description: Token temporal (Learner Lab)
+    required: false
+  optional:
+    description: Permite omitir el plan de un PR cuando no hay sesión válida
+    default: 'false'
+outputs:
+  ready:
+    description: Indica si la sesión está vigente
+    value: ${{ steps.check.outputs.ready }}
+runs:
+  using: composite
+  steps:
+    - id: configure
+      uses: aws-actions/configure-aws-credentials@v4
+      continue-on-error: true
+      with:
+        aws-access-key-id: ${{ inputs.access-key-id }}
+        aws-secret-access-key: ${{ inputs.secret-access-key }}
+        aws-session-token: ${{ inputs.session-token }}
+        aws-region: us-east-1
+        retry-max-attempts: 1
+        unset-current-credentials: true
+    - id: check
+      shell: bash
+      env:
+        CONFIGURED: ${{ steps.configure.outcome }}
+        OPTIONAL: ${{ inputs.optional }}
+      run: |
+        if [ "$CONFIGURED" = success ] && aws sts get-caller-identity >/dev/null 2>&1; then
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
+        else
+          echo 'ready=false' >> "$GITHUB_OUTPUT"
+          if [ "$OPTIONAL" = true ]; then
+            echo '::warning::Plan omitido: actualiza los secrets AWS_* del repositorio.'
+          else
+            echo '::error::Actualiza los secrets AWS_* del repositorio (credenciales ausentes o vencidas).'
+            exit 1
+          fi
+        fi
