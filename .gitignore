@@ -62,3 +62,6 @@ reportes/**/*.blg
 terraform/*.tfvars
 terraform/*.tfvars.json
 terraform/crash.log
+
+# Configuración local de trabajo
+.superpowers/
