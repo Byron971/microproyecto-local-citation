@@ -1,0 +1,129 @@
+name: Validar y aplicar Terraform
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/terraform.yml'
+      - '.github/actions/aws-session/**'
+      - 'scripts/ci/**'
+      - 'tests/test_ci_deployment.py'
+  pull_request:
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/terraform.yml'
+      - '.github/actions/aws-session/**'
+      - 'scripts/ci/**'
+      - 'tests/test_ci_deployment.py'
+
+permissions:
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  TF_IN_AUTOMATION: 'true'
+  TF_INPUT: 'false'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.8
+          terraform_wrapper: false
+      - run: terraform -chdir=terraform fmt -check
+      - run: terraform -chdir=terraform init -backend=false -input=false -lockfile=readonly
+      - run: terraform -chdir=terraform validate
+      - name: Probar controles de despliegue sin AWS
+        run: python3 -m unittest discover -s tests -p test_ci_deployment.py -v
+
+  plan-pr:
+    needs: validate
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.8
+          terraform_wrapper: false
+      - name: Verificar sesión AWS
+        id: aws
+        uses: ./.github/actions/aws-session
+        with:
+          optional: 'true'
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      - name: Inicializar backend existente
+        if: steps.aws.outputs.ready == 'true'
+        run: terraform -chdir=terraform init -input=false -lockfile=readonly -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
+      - name: Plan
+        id: plan
+        if: steps.aws.outputs.ready == 'true'
+        continue-on-error: true
+        shell: bash
+        run: terraform -chdir=terraform plan -no-color -lock-timeout=5m > "$RUNNER_TEMP/terraform-plan.txt" 2>&1
+      - name: Comentar resultado
+        if: always() && steps.aws.outputs.ready == 'true'
+        uses: actions/github-script@v7
+        env:
+          PLAN_RESULT: ${{ steps.plan.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const file = `${process.env.RUNNER_TEMP}/terraform-plan.txt`;
+            const plan = fs.existsSync(file) ? fs.readFileSync(file, 'utf8').slice(0, 45000) : 'No se pudo generar el plan.';
+            const marker = '<!-- terraform-plan -->';
+            const body = [marker, `Terraform: ${process.env.PLAN_RESULT}`, '', '<details><summary>Plan</summary>', '', '```text', plan, '```', '</details>'].join('\n');
+            const {owner, repo} = context.repo;
+            const comments = await github.paginate(github.rest.issues.listComments, {owner, repo, issue_number: context.issue.number});
+            const previous = comments.find(c => c.user.type === 'Bot' && c.body.includes(marker));
+            if (previous) {
+              await github.rest.issues.updateComment({owner, repo, comment_id: previous.id, body});
+            } else {
+              await github.rest.issues.createComment({owner, repo, issue_number: context.issue.number, body});
+            }
+      - name: Reportar fallo del plan
+        if: steps.plan.outcome == 'failure'
+        run: |
+          cat "$RUNNER_TEMP/terraform-plan.txt"
+          exit 1
+
+  apply:
+    needs: validate
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: deploy-aws
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.8
+          terraform_wrapper: false
+      - name: Verificar sesión AWS
+        uses: ./.github/actions/aws-session
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      - name: Inicializar backend existente
+        run: terraform -chdir=terraform init -input=false -lockfile=readonly -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
+      - name: Plan y apply
+        run: |
+          terraform -chdir=terraform plan -lock-timeout=5m -out=deploy.tfplan
+          terraform -chdir=terraform apply -input=false deploy.tfplan
+      - name: Comprobar despliegue
+        run: bash scripts/ci/verify-deployment.sh

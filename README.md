@@ -1079,6 +1079,10 @@ Para eliminar el servicio (conserva bucket, ECR y tag SSM):
 terraform -chdir=terraform destroy
 ```
 
+Al integrar cambios en `main`, GitHub Actions despliega el API o aplica los
+cambios de Terraform. Antes, carga los secrets `AWS_ACCESS_KEY_ID`,
+`AWS_SECRET_ACCESS_KEY` y `AWS_SESSION_TOKEN` del lab en el repositorio.
+
 Más detalles en [terraform/README.md](terraform/README.md).
 
 ---
