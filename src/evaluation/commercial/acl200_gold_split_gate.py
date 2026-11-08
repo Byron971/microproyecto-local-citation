@@ -85,7 +85,7 @@ def audit_acl_membership(
                 continue
             actual = index.by_context.get(cid)
             if actual is None:
-                bad["fuera_de_splits"] += 1
+                bad["presente_en_contexts_sin_split" if cid in index.contexts else "ausente_de_contexts"] += 1
                 continue
             if actual != requested:
                 bad["split_incorrecto"] += 1
@@ -99,7 +99,13 @@ def audit_acl_membership(
             original = ctx.get("masked_text")
             if not isinstance(original, str) or original.count("TARGETCIT") != 1:
                 bad["marcador_original_invalido"] += 1
-            if name != "pr91" and row.get("Contexto TARGETCIT") != original:
+            # _read() recorta espacios externos de todos los campos CSV.
+            # Comparar de forma simétrica: si solo cambia whitespace externo,
+            # NO es una modificación semántica de la cita.
+            if name != "pr91" and (
+                not isinstance(original, str)
+                or row.get("Contexto TARGETCIT") != original.strip()
+            ):
                 bad["texto_distinto_del_original"] += 1
             if cid in excluded:
                 bad["historicamente_excluido"] += 1
@@ -153,6 +159,8 @@ def audit_acl_membership(
         "final_benchmark_allowed": False,
         "notes": [
             "Citado compartido solo no constituye fuga; citante y par sí.",
+            "La comparación textual tolera solo espacios externos; nunca cambios de contenido interno.",
+            "Un ID de contexts.json sin train/val/test no es elegible como Gold oficial.",
             "No verifica otros corpus de jurado/SciBERT/SPECTER: requieren manifiestos de entrenamiento.",
             "No certifica doble anotación, adjudicación, revisión humana ni 15 %.",
             "PR91 y PR92 son candidatos distintos, no deben unirse sin decisión del equipo.",
