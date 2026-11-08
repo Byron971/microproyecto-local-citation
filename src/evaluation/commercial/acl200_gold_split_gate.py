@@ -85,7 +85,20 @@ def audit_acl_membership(
                 continue
             actual = index.by_context.get(cid)
             if actual is None:
-                bad["presente_en_contexts_sin_split" if cid in index.contexts else "ausente_de_contexts"] += 1
+                # Única excepción histórica no bloqueante: anotación PR92 de
+                # validación 2014, presente en contexts pero sin split, ajena
+                # al manifiesto PR91. Se registra y excluye de elegibilidad.
+                # Una coincidencia de año por sí sola jamás justifica usarla.
+                if (
+                    name == "pr92_annotated"
+                    and requested == "val"
+                    and cid in index.contexts
+                    and cid not in pr91
+                    and row.get("Estado") in {"COMPLETO", "REGISTRADO"}
+                ):
+                    bad["historico_2014_sin_split_no_elegible"] += 1
+                else:
+                    bad["presente_en_contexts_sin_split" if cid in index.contexts else "ausente_de_contexts"] += 1
                 continue
             if actual != requested:
                 bad["split_incorrecto"] += 1
@@ -130,7 +143,9 @@ def audit_acl_membership(
             "ids_candidatos_sin_exclusion": len(candidate_ids),
         }
         for key, count in bad.items():
-            if key == "historicamente_excluido" and name == "pr92_annotated":
+            if name == "pr92_annotated" and key in {
+                "historicamente_excluido", "historico_2014_sin_split_no_elegible"
+            }:
                 continue  # CSV histórico intacto; se excluye del candidato Gold
             if count:
                 blockers.append(f"{name}: {count} {key}")
@@ -154,6 +169,9 @@ def audit_acl_membership(
         "source_counts": source_counts,
         "cross_checks": cross,
         "blockers": blockers,
+        "historical_validation_noneligible": source_counts["pr92_annotated"]["errores_o_exclusiones"].get(
+            "historico_2014_sin_split_no_elegible", 0
+        ),
         "acl_official_splits_loaded": True,
         "gold_human_certified": False,
         "final_benchmark_allowed": False,
@@ -161,6 +179,8 @@ def audit_acl_membership(
             "Citado compartido solo no constituye fuga; citante y par sí.",
             "La comparación textual tolera solo espacios externos; nunca cambios de contenido interno.",
             "Un ID de contexts.json sin train/val/test no es elegible como Gold oficial.",
+            "La excepción histórica PR92-2014 no bloquea, pero excluye esos casos de cualquier conjunto elegible.",
+            "Las fuentes locales de ACL aún deben verificarse contra la versión registrada de DVC.",
             "No verifica otros corpus de jurado/SciBERT/SPECTER: requieren manifiestos de entrenamiento.",
             "No certifica doble anotación, adjudicación, revisión humana ni 15 %.",
             "PR91 y PR92 son candidatos distintos, no deben unirse sin decisión del equipo.",
