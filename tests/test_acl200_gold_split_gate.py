@@ -164,3 +164,48 @@ def test_contexto_existente_pero_ausente_de_particiones_bloquea():
         "presente_en_contexts_sin_split"
     ] == 1
     assert report["status"] == "BLOQUEADO"
+
+
+def test_pr92_validacion_2014_fuera_splits_es_no_elegible_sin_bloquear():
+    idx, p91, p92, haiku, train, valid, test, *_ = fixture_sets()
+    extra = "P14-7777_P11-0001_0"
+    idx.contexts[extra] = {
+        "citing_id": "P14-7777", "refid": "P11-0001",
+        "masked_text": "Historical TARGETCIT."
+    }
+    p92[extra] = {"Contexto TARGETCIT": "Historical TARGETCIT.", "Estado": "COMPLETO"}
+    report = audit_acl_membership(idx, p91, p92, haiku, excluded=set())
+    assert report["blockers"] == []
+    assert report["historical_validation_noneligible"] == 1
+    assert report["source_counts"]["pr92_annotated"]["ids_candidatos_sin_exclusion"] == 2
+    assert report["gold_human_certified"] is False
+    assert report["final_benchmark_allowed"] is False
+
+
+def test_pr92_historico_fuera_splits_si_en_pr91_se_bloquea():
+    idx, p91, p92, haiku, train, valid, test, *_ = fixture_sets()
+    extra = "P14-7777_P11-0001_0"
+    idx.contexts[extra] = {
+        "citing_id": "P14-7777", "refid": "P11-0001",
+        "masked_text": "Historical TARGETCIT."
+    }
+    p92[extra] = {"Contexto TARGETCIT": "Historical TARGETCIT.", "Estado": "COMPLETO"}
+    p91[extra] = {"grupo": "calibracion3", "tanda": ""}
+    report = audit_acl_membership(idx, p91, p92, haiku, excluded=set())
+    assert report["status"] == "BLOQUEADO"
+    assert report["historical_validation_noneligible"] == 0
+
+
+def test_pr92_test_2015_fuera_splits_sigue_bloqueado():
+    idx, p91, p92, haiku, train, valid, test, *_ = fixture_sets()
+    extra = "P15-7777_P11-0001_0"
+    idx.contexts[extra] = {
+        "citing_id": "P15-7777", "refid": "P11-0001",
+        "masked_text": "Test orphan TARGETCIT."
+    }
+    p92[extra] = {"Contexto TARGETCIT": "Test orphan TARGETCIT.", "Estado": "COMPLETO"}
+    report = audit_acl_membership(idx, p91, p92, haiku, excluded=set())
+    assert report["status"] == "BLOQUEADO"
+    assert report["source_counts"]["pr92_annotated"]["errores_o_exclusiones"][
+        "presente_en_contexts_sin_split"
+    ] == 1
