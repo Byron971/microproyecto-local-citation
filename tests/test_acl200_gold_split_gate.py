@@ -137,3 +137,30 @@ def test_cli_realiza_auditoria_sintetica_y_no_exporta_ids(tmp_path, monkeypatch)
     assert "P15-0003" not in report_text
     assert "P13-0001" not in report_text
     assert json.loads(report_text)["final_benchmark_allowed"] is False
+
+
+def test_espacios_externos_no_son_cambio_de_contenido():
+    idx, p91, p92, haiku, train, valid, test, *_ = fixture_sets()
+    # El lector _read del repositorio elimina espacios externos de los CSV.
+    # El ACL original aún puede conservar esos espacios.
+    idx.contexts[test]["masked_text"] = "  Test TARGETCIT.  "
+    idx.contexts[train]["masked_text"] = " Use TARGETCIT. "
+    report = audit_acl_membership(idx, p91, p92, haiku, excluded=set())
+    assert "texto_distinto_del_original" not in report["source_counts"]["pr92_annotated"]["errores_o_exclusiones"]
+    assert "texto_distinto_del_original" not in report["source_counts"]["haiku_train"]["errores_o_exclusiones"]
+    assert report["blockers"] == []
+
+
+def test_contexto_existente_pero_ausente_de_particiones_bloquea():
+    idx, p91, p92, haiku, train, valid, test, *_ = fixture_sets()
+    orphan = "P15-9999_P11-0001_0"
+    idx.contexts[orphan] = {
+        "citing_id": "P15-9999", "refid": "P11-0001",
+        "masked_text": "Unused TARGETCIT."
+    }
+    p92[orphan] = {"Contexto TARGETCIT": "Unused TARGETCIT."}
+    report = audit_acl_membership(idx, p91, p92, haiku, excluded=set())
+    assert report["source_counts"]["pr92_annotated"]["errores_o_exclusiones"][
+        "presente_en_contexts_sin_split"
+    ] == 1
+    assert report["status"] == "BLOQUEADO"
