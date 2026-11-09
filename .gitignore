@@ -62,3 +62,13 @@ reportes/**/*.blg
 terraform/*.tfvars
 terraform/*.tfvars.json
 terraform/crash.log
+
+# Aplicación React
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+frontend/test-results/
+frontend/playwright-report/
+terraform/frontend/*.tfvars
+terraform/frontend/*.tfvars.json
+!frontend/.env.example

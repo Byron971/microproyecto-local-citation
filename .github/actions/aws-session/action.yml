@@ -1,6 +1,9 @@
 name: Sesión AWS
 description: Configura credenciales temporales y verifica que sigan vigentes.
 inputs:
+  region:
+    description: Región AWS
+    default: us-east-1
   access-key-id:
     description: Access key de AWS
     required: true
@@ -27,7 +30,7 @@ runs:
         aws-access-key-id: ${{ inputs.access-key-id }}
         aws-secret-access-key: ${{ inputs.secret-access-key }}
         aws-session-token: ${{ inputs.session-token }}
-        aws-region: us-east-1
+        aws-region: ${{ inputs.region }}
         retry-max-attempts: 1
         unset-current-credentials: true
     - id: check

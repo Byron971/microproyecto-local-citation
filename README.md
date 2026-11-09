@@ -1089,6 +1089,23 @@ Más detalles en [terraform/README.md](terraform/README.md).
 
 ---
 
+# Aplicación React en S3 y CloudFront
+
+La nueva interfaz vive en `frontend/` y se publica de forma independiente del API.
+Incluye recomendaciones, Top-3 y las vistas del estudio, con la identidad visual
+acordada. La clasificación de nueve funciones aún requiere un modelo integrado.
+
+Para desarrollo local, inicia `uv run tablero` y en otra terminal:
+
+```bash
+npm --prefix frontend ci
+npm --prefix frontend run dev
+```
+
+El stack `terraform/frontend/` crea S3 privado y CloudFront en la cuenta activa.
+Consulta [la guía del frontend](frontend/README.md) para crear los recursos,
+configurar CORS en el API y publicar el build.
+
 # Variables de entorno del despliegue
 
 ## Variables obligatorias

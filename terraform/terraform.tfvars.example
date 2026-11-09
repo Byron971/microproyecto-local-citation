@@ -10,3 +10,6 @@ desired_count  = 1
 # app_secrets = { API_KEY = "arn:aws:ssm:us-east-1:ACCOUNT:parameter/citas-api/key" }
 # custom_domain_name = "api.example.com"
 # certificate_arn = "arn:aws:acm:us-east-1:ACCOUNT:certificate/ID"
+
+# Origen público del frontend React, sin barra final.
+# cors_allowed_origins = ["https://TU_DISTRIBUCION.cloudfront.net"]

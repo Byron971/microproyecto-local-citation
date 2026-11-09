@@ -1,0 +1,18 @@
+:root {
+  --primary: #2f4be0;
+  --secondary: #4a5568;
+  --accent: #00a88f;
+  --background: #f3f5fa;
+  --surface: #fff;
+  --text: #121826;
+  --border: #dce1ed;
+  --soft-primary: #edf0ff;
+  --error: #a52435;
+  --font-title: 'Outfit', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --radius: 10px;
+  color: var(--text);
+  background: var(--background);
+  font-family: var(--font-body);
+  font-synthesis: none;
+}

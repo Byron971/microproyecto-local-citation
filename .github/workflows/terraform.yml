@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'terraform/**'
+      - '!terraform/frontend/**'
       - '.github/workflows/terraform.yml'
       - '.github/actions/aws-session/**'
       - 'scripts/ci/**'
@@ -13,6 +14,7 @@ on:
   pull_request:
     paths:
       - 'terraform/**'
+      - '!terraform/frontend/**'
       - '.github/workflows/terraform.yml'
       - '.github/actions/aws-session/**'
       - 'scripts/ci/**'
@@ -25,6 +27,7 @@ env:
   AWS_REGION: us-east-1
   TF_IN_AUTOMATION: 'true'
   TF_INPUT: 'false'
+  TF_VAR_cors_allowed_origins: ${{ vars.CORS_ALLOWED_ORIGINS || '[]' }}
 
 jobs:
   validate:

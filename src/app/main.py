@@ -14,6 +14,7 @@ Después, abrir http://127.0.0.1:8000 en el navegador.
 """
 
 import random
+import re
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
@@ -27,6 +28,7 @@ from src.app.insights import load_insights
 from src.app.fragment_retrieval import recuperar_top3
 from src.app.corpus_adapter import CorpusError, ejemplos_disponibles, leer_corpus, top3_de_corpus
 from src.app.recommender import Recommender
+from src.app.references import ReferenceUnavailable, fetch_bibtex
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
@@ -43,6 +45,7 @@ class ContextoConsulta(BaseModel):
         ...,
         description="Texto académico en inglés donde haría falta la cita.",
     )
+    modelo: str | None = Field(default=None, max_length=120)
     top_k: int = Field(
         default=10,
         ge=1,
@@ -128,6 +131,47 @@ def estado() -> dict[str, Any]:
     return {"listo": recomendador.is_ready, "modelo": recomendador.describe()}
 
 
+# Solo se publica el artefacto realmente integrado; los YAML son experimentos.
+MODELO_PREDETERMINADO = "tfidf_reranker_v1"
+
+
+@app.get("/api/modelos")
+def modelos() -> dict[str, Any]:
+    recomendador = state.get("recomendador")
+    disponible = bool(recomendador is not None and recomendador.is_ready)
+    return {
+        "predeterminado": MODELO_PREDETERMINADO,
+        "modelos": [{
+            "id": MODELO_PREDETERMINADO,
+            "nombre": "TF-IDF + reordenador lineal",
+            "descripcion": "Busca artículos con términos similares a tu texto y ordena los candidatos según su relación con el contexto.",
+            "disponible": disponible,
+            "motivo": None if disponible else "El modelo aún no está listo.",
+            "puntaje": {
+                "etiqueta": "Puntaje del reordenador",
+                "descripcion": "Salida estimada del clasificador para ordenar candidatos; no es garantía de que la referencia sea correcta.",
+            },
+            "devuelve_tfidf": True,
+        }],
+    }
+
+
+@app.get("/api/referencias/{paper_id}")
+def referencia_bibliografica(paper_id: str) -> dict[str, str]:
+    """Resuelve la referencia oficial solo para artículos del corpus instalado."""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.-]{0,79}", paper_id) or ".." in paper_id:
+        raise HTTPException(status_code=404, detail="Artículo no encontrado.")
+    recomendador = _recomendador()
+    if recomendador.model is None:
+        raise HTTPException(status_code=503, detail="El modelo aún no está disponible.")
+    if paper_id not in recomendador.model.papers:
+        raise HTTPException(status_code=404, detail="El artículo no pertenece al corpus disponible.")
+    try:
+        return fetch_bibtex(paper_id)
+    except ReferenceUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
 @app.post("/api/recomendar")
 def recomendar(consulta: ContextoConsulta) -> dict[str, Any]:
     """Devuelve los artículos más pertinentes para un contexto de cita.
@@ -135,6 +179,13 @@ def recomendar(consulta: ContextoConsulta) -> dict[str, Any]:
     El ranking sale del modelo empaquetado: TF-IDF recupera los candidatos y el
     reordenador lineal los ordena por probabilidad de ser la cita correcta.
     """
+    if consulta.modelo is not None:
+        if consulta.modelo != MODELO_PREDETERMINADO:
+            raise HTTPException(status_code=404, detail="El modelo elegido no existe.")
+        recomendador = state.get("recomendador")
+        if recomendador is None or not recomendador.is_ready:
+            raise HTTPException(status_code=409, detail="El modelo elegido aún no está disponible.")
+
     texto = consulta.contexto.strip()
 
     if not texto:
@@ -144,6 +195,7 @@ def recomendar(consulta: ContextoConsulta) -> dict[str, Any]:
 
     return {
         "consulta": texto,
+        "modelo": MODELO_PREDETERMINADO,
         "total": len(recomendaciones),
         "recomendaciones": recomendaciones,
     }
@@ -226,6 +278,20 @@ def insights() -> dict[str, Any]:
         raise HTTPException(status_code=503, detail="Los insights aún no están listos.")
 
     return datos
+
+
+@app.get("/api/ejemplos")
+def ejemplos_recomendacion() -> dict[str, Any]:
+    """Lista la muestra real ya exportada; no altera textos ni genera ejemplos."""
+    datos = state.get("insights")
+    if datos is None:
+        raise HTTPException(status_code=503, detail="Los ejemplos aún no están listos.")
+    ejemplos = datos.get("ejemplos") or []
+    return {
+        "total": len(ejemplos),
+        "particion": (datos.get("modelo") or {}).get("particion"),
+        "ejemplos": ejemplos,
+    }
 
 
 @app.get("/api/ejemplo")

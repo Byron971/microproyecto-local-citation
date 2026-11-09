@@ -25,3 +25,6 @@ terraform/
 .superpowers/
 .env
 .env.*
+
+# Frontend se publica por separado en S3
+frontend/

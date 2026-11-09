@@ -1,0 +1,58 @@
+name: Validar aplicación React
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'terraform/frontend/**'
+      - 'scripts/publicar_frontend.sh'
+      - 'tests/frontend_routes.test.cjs'
+      - '.github/workflows/frontend.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - 'terraform/frontend/**'
+      - 'scripts/publicar_frontend.sh'
+      - 'tests/frontend_routes.test.cjs'
+      - '.github/workflows/frontend.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm --prefix frontend ci
+      - run: npm --prefix frontend test
+      - run: npm --prefix frontend run build
+      - run: node --test tests/frontend_routes.test.cjs
+      - run: npx --prefix frontend playwright install --with-deps chromium
+      - run: npm --prefix frontend run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: frontend-browser-results
+          path: frontend/test-results/
+
+  infrastructure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.8
+          terraform_wrapper: false
+      - run: terraform -chdir=terraform/frontend fmt -check
+      - run: terraform -chdir=terraform/frontend init -backend=false -input=false
+      - run: terraform -chdir=terraform/frontend validate
