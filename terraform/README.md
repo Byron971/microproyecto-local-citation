@@ -34,6 +34,8 @@ creado por `make push`; no administra esos recursos.
 `make init`. Si cambias proyecto, región o repositorio, usa los mismos valores en
 el Makefile y `terraform.tfvars`, también para los comandos directos de Terraform.
 No versionar tfvars, planes, estado ni credenciales. Conservar el lockfile en Git.
+CI permite que init agregue checksums de su plataforma; no usa `-upgrade` y
+conserva la versión fijada y la verificación del proveedor.
 
 ## Continuar después del error de Cloud Map
 
