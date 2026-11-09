@@ -37,7 +37,9 @@ jobs:
           terraform_version: 1.14.8
           terraform_wrapper: false
       - run: terraform -chdir=terraform fmt -check
-      - run: terraform -chdir=terraform init -backend=false -input=false -lockfile=readonly
+      # init registra el checksum de Linux después de verificar el paquete firmado.
+      # readonly impide guardarlo y hace fallar validate con un lockfile de Mac.
+      - run: terraform -chdir=terraform init -backend=false -input=false
       - run: terraform -chdir=terraform validate
       - name: Probar controles de despliegue sin AWS
         run: python3 -m unittest discover -s tests -p test_ci_deployment.py -v
@@ -66,7 +68,7 @@ jobs:
           session-token: ${{ secrets.AWS_SESSION_TOKEN }}
       - name: Inicializar backend existente
         if: steps.aws.outputs.ready == 'true'
-        run: terraform -chdir=terraform init -input=false -lockfile=readonly -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
+        run: terraform -chdir=terraform init -input=false -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
       - name: Plan
         id: plan
         if: steps.aws.outputs.ready == 'true'
@@ -120,7 +122,7 @@ jobs:
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           session-token: ${{ secrets.AWS_SESSION_TOKEN }}
       - name: Inicializar backend existente
-        run: terraform -chdir=terraform init -input=false -lockfile=readonly -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
+        run: terraform -chdir=terraform init -input=false -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
       - name: Plan y apply
         run: |
           terraform -chdir=terraform plan -lock-timeout=5m -out=deploy.tfplan
