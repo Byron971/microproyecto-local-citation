@@ -79,3 +79,13 @@ variable "certificate_arn" {
   type    = string
   default = ""
 }
+
+variable "cors_allowed_origins" {
+  description = "Orígenes exactos permitidos para el frontend, sin barra final."
+  type        = list(string)
+  default     = []
+  validation {
+    condition     = alltrue([for origin in var.cors_allowed_origins : can(regex("^https://[a-zA-Z0-9.-]+(:[0-9]+)?$|^http://(localhost|127\\.0\\.0\\.1):[0-9]+$", origin))])
+    error_message = "Usa orígenes HTTPS exactos, o localhost HTTP con puerto, sin rutas ni barra final."
+  }
+}

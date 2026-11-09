@@ -1,0 +1,4 @@
+aws_region   = "us-east-1"
+project_name = "citas-api"
+# Sustituir por el endpoint de la cuenta donde desplegaste el API.
+api_base_url = "https://TU_API.execute-api.us-east-1.amazonaws.com"

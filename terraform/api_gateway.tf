@@ -1,6 +1,15 @@
 resource "aws_apigatewayv2_api" "main" {
   name          = var.project_name
   protocol_type = "HTTP"
+  dynamic "cors_configuration" {
+    for_each = length(var.cors_allowed_origins) > 0 ? [1] : []
+    content {
+      allow_origins = var.cors_allowed_origins
+      allow_methods = ["GET", "POST", "OPTIONS"]
+      allow_headers = ["content-type"]
+      max_age       = 300
+    }
+  }
 }
 resource "aws_apigatewayv2_vpc_link" "main" {
   name               = var.project_name

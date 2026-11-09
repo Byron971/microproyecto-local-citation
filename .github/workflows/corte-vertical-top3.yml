@@ -10,6 +10,9 @@ on:
       - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
       - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
       - "tests/test_top3_fragmentos.py"
+      - "tests/test_api_modelos.py"
+      - "tests/test_references.py"
+      - "frontend/src/test/fixtures/**"
       - "proyecto_de_grado/src/evaluation/top3_humano.py"
       - "proyecto_de_grado/tests/test_top3_humano.py"
       - "proyecto_de_grado/docs/protocolo_top3_s2_3.md"
@@ -21,6 +24,9 @@ on:
       - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
       - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
       - "tests/test_top3_fragmentos.py"
+      - "tests/test_api_modelos.py"
+      - "tests/test_references.py"
+      - "frontend/src/test/fixtures/**"
       - "proyecto_de_grado/src/evaluation/top3_humano.py"
       - "proyecto_de_grado/tests/test_top3_humano.py"
       - "proyecto_de_grado/docs/protocolo_top3_s2_3.md"
@@ -39,6 +45,6 @@ jobs:
       - name: Instalar dependencias de la API y pruebas
         run: uv sync --group dev
       - name: Probar corte vertical sin inferencias externas
-        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py
+        run: uv run pytest -q tests/test_references.py tests/test_api_modelos.py tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py
       - name: Verificar sintaxis JavaScript de la demo
         run: node --check src/app/static/top3.js
