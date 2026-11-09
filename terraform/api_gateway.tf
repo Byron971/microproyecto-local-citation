@@ -11,7 +11,7 @@ resource "aws_apigatewayv2_integration" "api" {
   api_id                 = aws_apigatewayv2_api.main.id
   integration_type       = "HTTP_PROXY"
   integration_method     = "ANY"
-  integration_uri        = aws_service_discovery_service.api.arn
+  integration_uri        = aws_lb_listener.api.arn
   connection_type        = "VPC_LINK"
   connection_id          = aws_apigatewayv2_vpc_link.main.id
   payload_format_version = "1.0"

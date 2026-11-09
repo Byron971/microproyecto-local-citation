@@ -15,24 +15,6 @@ resource "aws_cloudwatch_log_group" "api" {
 resource "aws_ecs_cluster" "main" {
   name = var.project_name
 }
-resource "aws_service_discovery_private_dns_namespace" "main" {
-  name = "${var.project_name}.internal"
-  vpc  = aws_vpc.main.id
-}
-resource "aws_service_discovery_service" "api" {
-  name = "api"
-  dns_config {
-    namespace_id   = aws_service_discovery_private_dns_namespace.main.id
-    routing_policy = "MULTIVALUE"
-    dns_records {
-      ttl  = 10
-      type = "SRV"
-    }
-  }
-  health_check_custom_config {
-    failure_threshold = 1
-  }
-}
 resource "aws_ecs_task_definition" "api" {
   family                   = var.project_name
   requires_compatibilities = ["FARGATE"]
@@ -107,10 +89,17 @@ resource "aws_ecs_service" "api" {
     security_groups  = [aws_security_group.task.id]
     assign_public_ip = true
   }
-  service_registries {
-    registry_arn   = aws_service_discovery_service.api.arn
-    container_name = "api"
-    container_port = 8000
+  load_balancer {
+    target_group_arn = aws_lb_target_group.api.arn
+    container_name   = "api"
+    container_port   = 8000
   }
-  depends_on = [aws_route_table_association.public, aws_vpc_security_group_egress_rule.task]
+  depends_on = [
+    aws_route_table_association.public,
+    aws_vpc_security_group_egress_rule.task,
+    aws_vpc_security_group_ingress_rule.api,
+    aws_vpc_security_group_ingress_rule.alb,
+    aws_vpc_security_group_egress_rule.alb,
+    aws_lb_listener.api,
+  ]
 }
