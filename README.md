@@ -1035,6 +1035,8 @@ api:8000
 
 # Despliegue en AWS con Terraform
 
+API Gateway conecta con ECS mediante un ALB interno.
+
 Ejecuta desde la raíz del repositorio con Docker iniciado, Terraform >= 1.10 y < 2.0
 y credenciales AWS vigentes. Si usas un perfil, selecciona `AWS_PROFILE`.
 La cuenta debe tener `LabRole` y permitir pasarlo a ECS.

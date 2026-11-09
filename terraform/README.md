@@ -1,6 +1,6 @@
 # Despliegue del API en ECS Fargate
 
-Terraform administra VPC, dos subredes públicas, security groups, ECS, Cloud Map,
+Terraform administra VPC, dos subredes públicas, security groups, ECS, ALB interno,
 API Gateway HTTP API y logs con retención de 14 días. No crea IAM, bucket ni ECR.
 El contenedor usa CPU x86, incluye el modelo y sirve también el tablero.
 
@@ -11,7 +11,7 @@ El contenedor usa CPU x86, incluye el modelo y sirve también el tablero.
 - Rol existente `LabRole` con confianza para ECS Tasks y permisos para ECR,
   CloudWatch Logs y, si se utilizan, los secretos SSM/KMS. Quien aplica debe
   poder pasar ese rol a ECS. Terraform no modifica sus permisos.
-- Confirmar permisos del lab para VPC Link, Cloud Map, ECS y SSM. Comprobar
+- Confirmar permisos del lab para VPC Link, ALB, ECS y SSM. Comprobar
   separadamente si los servicios continúan al cerrar la sesión del lab.
 
 ## Despliegue desde cero
@@ -35,14 +35,34 @@ creado por `make push`; no administra esos recursos.
 el Makefile y `terraform.tfvars`, también para los comandos directos de Terraform.
 No versionar tfvars, planes, estado ni credenciales. Conservar el lockfile en Git.
 
+## Continuar después del error de Cloud Map
+
+Learner Lab rechazó `servicediscovery:CreatePrivateDnsNamespace`. La integración
+usa ahora un ALB interno y conserva el VPC Link existente. No ejecutar destroy,
+borrar el estado ni volver a crear la imagen por este cambio de infraestructura.
+Con credenciales vigentes, desde la raíz:
+
+```sh
+export AWS_PROFILE=maia
+terraform -chdir=terraform plan
+terraform -chdir=terraform apply
+```
+
+El plan debe agregar ALB, target group, listener y reglas de seguridad, además
+de completar los recursos pendientes. Revisar cualquier reemplazo inesperado
+antes de confirmar. El rol necesita permisos de Elastic Load Balancing; esta
+configuración aún debe comprobarse en el laboratorio.
+
 ## Configuración
 
 - Inicio: `task_cpu=512`, `task_memory=1024`, una tarea. Validación de las
   combinaciones CPU/memoria permitidas por Fargate.
 - Salud: `/api/estado`, startPeriod 120 s y gracia 180 s. Cambiar a
   `/api/salud/lista` cuando exista. El health check usa Python de la imagen.
-- El puerto 8000 solo admite tráfico desde VPC Link. La IP pública permite
-  salida a ECR/logs; no permite entrada directa desde internet.
+- Flujo: API Gateway → VPC Link → ALB interno (80) → ECS (8000).
+  El ALB solo acepta al security group del VPC Link y ECS solo al del ALB.
+  La IP pública de la tarea permite salida a ECR/logs; no permite entrada
+  directa desde internet. El ALB comprueba la misma ruta de salud del contenedor.
 - El circuit breaker activa rollback. En el primer despliegue no existe una
   revisión previa sana a la que volver. Comprobar en ECS que la
   revisión estable sea la esperada; estabilidad por sí sola no prueba éxito.
@@ -63,8 +83,9 @@ Abrir la URL pública y comprobar `/api/estado` y `/`. Verificar también
 `/static/top3.html` y una petición válida a `/api/recomendar`. Cuando se integre
 el script de smoke del API, sustituir estas comprobaciones por ese script.
 Registrar URL, latencia externa de recomendaciones, CPU/memoria observadas y
-costo estimado para el issue #116. La estimación del diseño es USD 23/mes para
-0.5 vCPU/1 GB; no es una medición ni una cotización actualizada.
+costo estimado para el issue #116. La estimación anterior de USD 23/mes para
+0.5 vCPU/1 GB excluía el ALB. Ahora se agregan sus horas y consumo LCU;
+actualizar la estimación antes de usarla como costo total.
 
 Antes de dar por cumplido el rollback, probar una revisión no saludable y
 comprobar recuperación de la revisión anterior. Una subida fallida puede dejar

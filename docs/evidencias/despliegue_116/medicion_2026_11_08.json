@@ -1,0 +1,297 @@
+{
+  "started_at_utc": "2026-11-09T00:36:24.500172+00:00",
+  "url": "https://qlipl9bh0i.execute-api.us-east-1.amazonaws.com",
+  "region": "us-east-1",
+  "cluster": "citas-api",
+  "service": "citas-api",
+  "method": "External client; sequential requests; no concurrency; one fixed context; TLS connection per request; 3 warmups excluded",
+  "ecs": {
+    "status": "ACTIVE",
+    "desired": 1,
+    "running": 1,
+    "pending": 0,
+    "deployments": [
+      {
+        "status": "PRIMARY",
+        "rolloutState": "COMPLETED"
+      }
+    ],
+    "task_definition": "arn:aws:ecs:us-east-1:211125443585:task-definition/citas-api:1",
+    "cpu_units": "512",
+    "memory_mib": "1024"
+  },
+  "routes": {
+    "/": {
+      "status": 200,
+      "valid": true,
+      "seconds": 1.5113
+    },
+    "/static/top3.html": {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.4711
+    },
+    "/api/estado": {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.4483
+    }
+  },
+  "warmups": [
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 2.4514
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.658
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.9707
+    }
+  ],
+  "recommendation_payload": {
+    "contexto": "Neural networks for natural language processing and machine translation",
+    "top_k": 3
+  },
+  "recommendations": [
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 2.2637
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.7269
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 1.1577
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 1.3626
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.9179
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 2.8079
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.7303
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 1.1917
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 1.5762
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.7909
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 2.2213
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 2.0685
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.7071
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.7172
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.9093
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 1.0553
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 3.6154
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 2.0241
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.8048
+    },
+    {
+      "status": 200,
+      "valid": true,
+      "seconds": 0.6447
+    }
+  ],
+  "latency_seconds": {
+    "count": 20,
+    "min": 0.6447,
+    "median": 1.1065,
+    "mean": 1.414675,
+    "p95_nearest_rank": 2.8079,
+    "max": 3.6154
+  },
+  "cloudwatch": {
+    "start_utc": "2026-11-08T23:36:24.500172+00:00",
+    "end_utc": "2026-11-09T00:37:03.920637+00:00",
+    "period_seconds": 60,
+    "metrics": {
+      "CPUUtilization": {
+        "Label": "CPUUtilization",
+        "Datapoints": [
+          {
+            "Timestamp": "2026-11-09T00:27:00+00:00",
+            "Average": 0.0,
+            "Maximum": 0.0,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:28:00+00:00",
+            "Average": 35.44245424866676,
+            "Maximum": 95.62823486328125,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:29:00+00:00",
+            "Average": 2.985562046368917,
+            "Maximum": 8.33545207977295,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:30:00+00:00",
+            "Average": 3.075343281030655,
+            "Maximum": 8.611593246459961,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:31:00+00:00",
+            "Average": 2.9726144472757974,
+            "Maximum": 8.332833290100098,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:32:00+00:00",
+            "Average": 2.933279792467753,
+            "Maximum": 8.229421615600586,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:33:00+00:00",
+            "Average": 3.0013556281725564,
+            "Maximum": 8.432499885559082,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:34:00+00:00",
+            "Average": 3.0008642077445984,
+            "Maximum": 8.42801284790039,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:35:00+00:00",
+            "Average": 3.0051024158795676,
+            "Maximum": 8.433119773864746,
+            "Unit": "Percent"
+          }
+        ]
+      },
+      "MemoryUtilization": {
+        "Label": "MemoryUtilization",
+        "Datapoints": [
+          {
+            "Timestamp": "2026-11-09T00:27:00+00:00",
+            "Average": 0.0,
+            "Maximum": 0.0,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:28:00+00:00",
+            "Average": 16.167534722222225,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:29:00+00:00",
+            "Average": 21.2890625,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:30:00+00:00",
+            "Average": 21.2890625,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:31:00+00:00",
+            "Average": 21.2890625,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:32:00+00:00",
+            "Average": 21.2890625,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:33:00+00:00",
+            "Average": 21.2890625,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:34:00+00:00",
+            "Average": 21.2890625,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          },
+          {
+            "Timestamp": "2026-11-09T00:35:00+00:00",
+            "Average": 21.2890625,
+            "Maximum": 21.2890625,
+            "Unit": "Percent"
+          }
+        ]
+      }
+    }
+  },
+  "finished_at_utc": "2026-11-09T00:37:06.954525+00:00"
+}
