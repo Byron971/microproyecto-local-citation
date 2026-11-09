@@ -1035,6 +1035,8 @@ api:8000
 
 # Despliegue en AWS con Terraform
 
+API Gateway conecta con ECS mediante un ALB interno.
+
 Ejecuta desde la raíz del repositorio con Docker iniciado, Terraform >= 1.10 y < 2.0
 y credenciales AWS vigentes. Si usas un perfil, selecciona `AWS_PROFILE`.
 La cuenta debe tener `LabRole` y permitir pasarlo a ECS.
@@ -1078,6 +1080,10 @@ Para eliminar el servicio (conserva bucket, ECR y tag SSM):
 ```bash
 terraform -chdir=terraform destroy
 ```
+
+Al integrar cambios en `main`, GitHub Actions despliega el API o aplica los
+cambios de Terraform. Antes, carga los secrets `AWS_ACCESS_KEY_ID`,
+`AWS_SECRET_ACCESS_KEY` y `AWS_SESSION_TOKEN` del lab en el repositorio.
 
 Más detalles en [terraform/README.md](terraform/README.md).
 

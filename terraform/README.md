@@ -1,6 +1,6 @@
 # Despliegue del API en ECS Fargate
 
-Terraform administra VPC, dos subredes públicas, security groups, ECS, Cloud Map,
+Terraform administra VPC, dos subredes públicas, security groups, ECS, ALB interno,
 API Gateway HTTP API y logs con retención de 14 días. No crea IAM, bucket ni ECR.
 El contenedor usa CPU x86, incluye el modelo y sirve también el tablero.
 
@@ -11,7 +11,7 @@ El contenedor usa CPU x86, incluye el modelo y sirve también el tablero.
 - Rol existente `LabRole` con confianza para ECS Tasks y permisos para ECR,
   CloudWatch Logs y, si se utilizan, los secretos SSM/KMS. Quien aplica debe
   poder pasar ese rol a ECS. Terraform no modifica sus permisos.
-- Confirmar permisos del lab para VPC Link, Cloud Map, ECS y SSM. Comprobar
+- Confirmar permisos del lab para VPC Link, ALB, ECS y SSM. Comprobar
   separadamente si los servicios continúan al cerrar la sesión del lab.
 
 ## Despliegue desde cero
@@ -34,6 +34,26 @@ creado por `make push`; no administra esos recursos.
 `make init`. Si cambias proyecto, región o repositorio, usa los mismos valores en
 el Makefile y `terraform.tfvars`, también para los comandos directos de Terraform.
 No versionar tfvars, planes, estado ni credenciales. Conservar el lockfile en Git.
+CI permite que init agregue checksums de su plataforma; no usa `-upgrade` y
+conserva la versión fijada y la verificación del proveedor.
+
+## Continuar después del error de Cloud Map
+
+Learner Lab rechazó `servicediscovery:CreatePrivateDnsNamespace`. La integración
+usa ahora un ALB interno y conserva el VPC Link existente. No ejecutar destroy,
+borrar el estado ni volver a crear la imagen por este cambio de infraestructura.
+Con credenciales vigentes, desde la raíz:
+
+```sh
+export AWS_PROFILE=maia
+terraform -chdir=terraform plan
+terraform -chdir=terraform apply
+```
+
+El plan debe agregar ALB, target group, listener y reglas de seguridad, además
+de completar los recursos pendientes. Revisar cualquier reemplazo inesperado
+antes de confirmar. El rol necesita permisos de Elastic Load Balancing; esta
+configuración aún debe comprobarse en el laboratorio.
 
 ## Configuración
 
@@ -41,8 +61,10 @@ No versionar tfvars, planes, estado ni credenciales. Conservar el lockfile en Gi
   combinaciones CPU/memoria permitidas por Fargate.
 - Salud: `/api/estado`, startPeriod 120 s y gracia 180 s. Cambiar a
   `/api/salud/lista` cuando exista. El health check usa Python de la imagen.
-- El puerto 8000 solo admite tráfico desde VPC Link. La IP pública permite
-  salida a ECR/logs; no permite entrada directa desde internet.
+- Flujo: API Gateway → VPC Link → ALB interno (80) → ECS (8000).
+  El ALB solo acepta al security group del VPC Link y ECS solo al del ALB.
+  La IP pública de la tarea permite salida a ECR/logs; no permite entrada
+  directa desde internet. El ALB comprueba la misma ruta de salud del contenedor.
 - El circuit breaker activa rollback. En el primer despliegue no existe una
   revisión previa sana a la que volver. Comprobar en ECS que la
   revisión estable sea la esperada; estabilidad por sí sola no prueba éxito.
@@ -63,22 +85,48 @@ Abrir la URL pública y comprobar `/api/estado` y `/`. Verificar también
 `/static/top3.html` y una petición válida a `/api/recomendar`. Cuando se integre
 el script de smoke del API, sustituir estas comprobaciones por ese script.
 Registrar URL, latencia externa de recomendaciones, CPU/memoria observadas y
-costo estimado para el issue #116. La estimación del diseño es USD 23/mes para
-0.5 vCPU/1 GB; no es una medición ni una cotización actualizada.
+costo estimado para el issue #116. La estimación anterior de USD 23/mes para
+0.5 vCPU/1 GB excluía el ALB. Ahora se agregan sus horas y consumo LCU;
+actualizar la estimación antes de usarla como costo total.
 
 Antes de dar por cumplido el rollback, probar una revisión no saludable y
 comprobar recuperación de la revisión anterior. Una subida fallida puede dejar
 SSM apuntando a la imagen defectuosa aunque ECS vuelva a la anterior: restaurar
 el tag anterior en SSM y ejecutar apply antes de otro cambio de infraestructura.
 
-## GitHub Actions (siguiente etapa)
+## GitHub Actions
 
-Los workflows todavía no se incluyen en esta implementación de Terraform.
-Necesitarán los secrets AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY y
-AWS_SESSION_TOKEN para Learner Lab. Las credenciales temporales deben renovarse
-tanto localmente como en CI. El diseño omite OIDC y environments por las
-restricciones del lab; es una desviación del requisito original del issue #137.
-Los despliegues deben limitarse a main, con PR revisado y concurrencia deploy-aws.
+Primero completa el despliegue local. En GitHub abre **Settings → Secrets and
+variables → Actions → New repository secret** y agrega las credenciales vigentes:
+
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_SESSION_TOKEN` (obligatorio para Learner Lab)
+
+Renueva los tres al cambiar de sesión del lab. No los escribas en el código.
+Los workflows usan `us-east-1`, `maia2026-grupo19` y `citas-api`, igual que la
+configuración inicial local. Si cambias esos valores, actualiza ambos workflows.
+
+- **deploy-api.yml:** en PR comprueba el build sin credenciales. Al integrar
+  cambios del API en `main`, publica la imagen con el SHA corto, actualiza SSM y
+  aplica Terraform. Después comprueba la revisión de ECS, el tablero, el estado
+  del modelo y una recomendación. Si falla, intenta restaurar el tag anterior en
+  SSM; revisar ECS y ejecutar un plan antes de reintentar.
+- **terraform.yml:** comprueba formato y validez sin credenciales. En PRs del
+  mismo repositorio publica el plan como comentario si la sesión está vigente;
+  sin credenciales o desde forks se omite el plan. Los errores reales del plan
+  fallan el job. En `main`, aplica y comprueba el despliegue.
+
+Ambos permiten ejecución manual desde **Actions → Run workflow**, seleccionando
+`main`. Comparten `deploy-aws` y no cancelan el despliegue en curso. La comprobación
+HTTP se omite si `desired_count=0`. Los runners usan los valores versionados;
+no leen tu archivo local `terraform.tfvars`.
+
+Configura una regla de protección de `main` que exija PR revisado. El diseño usa
+secrets temporales de Learner Lab y omite OIDC y environments; esta diferencia
+respecto al requisito original de #137 debe quedar aceptada por el equipo.
+La ejecución real en GitHub/AWS y la prueba de rollback siguen pendientes; la
+validación local no demuestra que el laboratorio permita todos los servicios.
 
 ## Apagar y eliminar
 
