@@ -26,58 +26,28 @@ credenciales AWS en archivos `VITE_*`: son públicos.
 
 ## Publicar en cualquier cuenta AWS
 
-El API debe estar desplegado antes. Para habilitar el selector, publica la
-versión del API de esta rama, que incorpora `/api/modelos`, `/api/ejemplos`
-y `/api/referencias/{paper_id}`. Con el API anterior
-la interfaz puede usar el modelo predeterminado como alternativa. En la cuenta elegida necesitas un bucket
-para el estado, permisos S3/CloudFront y permisos para modificar CORS de API
-Gateway. El stack de frontend no crea roles IAM ni modifica ECS.
+Todos los recursos se crean desde `terraform/` y usan el mismo estado S3:
+ECS, API Gateway, S3 privado y CloudFront. Sigue los
+[pasos del README principal](../README.md#despliegue-en-aws-con-terraform).
+Si el API ya está desplegado, conserva su backend y su `terraform.tfvars`;
+no hace falta recrearlo ni configurar manualmente su URL en otro stack.
 
-Configura el perfil de la cuenta y el bucket del estado existente:
-
-```sh
-export AWS_PROFILE=mi-cuenta
-export AWS_REGION=us-east-1
-export TF_STATE_BUCKET=mi-bucket-de-estado
-cp terraform/frontend/terraform.tfvars.example terraform/frontend/terraform.tfvars
-```
-
-Edita el ejemplo: indica región, nombre del proyecto y `api_base_url` de tu API.
-El bucket web se nombra automáticamente con proyecto, cuenta y región. Su estado
-usa una key distinta de la del API; no reutilices la key de ECS.
-
-```sh
-terraform -chdir=terraform/frontend init \
-  -backend-config="bucket=$TF_STATE_BUCKET" \
-  -backend-config="region=$AWS_REGION"
-terraform -chdir=terraform/frontend plan
-terraform -chdir=terraform/frontend apply
-terraform -chdir=terraform/frontend output -raw frontend_url
-```
-
-En `terraform/terraform.tfvars` del API agrega la URL de CloudFront obtenida,
-sin barra final, a `cors_allowed_origins`. Conserva los otros orígenes que uses.
-Para probar el API remoto desde desarrollo también puedes incluir
-`http://localhost:5173` y `http://127.0.0.1:5173`.
-
-```hcl
-cors_allowed_origins = ["https://TU_DISTRIBUCION.cloudfront.net"]
-```
-
-Si usas GitHub Actions para desplegar el API o Terraform, configura también
-la variable de repositorio `CORS_ALLOWED_ORIGINS` con el mismo array JSON
-(por ejemplo `["https://TU_DISTRIBUCION.cloudfront.net"]`). Así, un apply de CI
-no elimina los orígenes definidos solo en tu tfvars local.
-
-Aplica CORS en el stack del API, con su backend inicializado en la cuenta correcta:
+Con las credenciales de la cuenta seleccionada:
 
 ```sh
 terraform -chdir=terraform plan
 terraform -chdir=terraform apply
-bash scripts/publicar_frontend.sh
+make publish-frontend
+terraform -chdir=terraform output -raw frontend_url
 ```
 
-El script obtiene la URL del API del output de Terraform, compila, sube primero
+CORS permite automáticamente el origen de CloudFront. `cors_allowed_origins`
+solo agrega orígenes adicionales, como `http://localhost:5173`. Si usas CI,
+configura esos extras en la variable `CORS_ALLOWED_ORIGINS` como un array JSON.
+La UI usa los endpoints `/api/modelos`, `/api/ejemplos` y
+`/api/referencias/{paper_id}` del API de esta rama.
+
+La tarea obtiene la URL del API del output de Terraform, compila, sube primero
 los assets y después `index.html`, y solicita su invalidación. No borra los assets
 con hash de versiones anteriores para que las sesiones abiertas sigan funcionando.
 La creación de CloudFront y sus invalidaciones pueden tardar varios minutos.
@@ -109,11 +79,11 @@ Las pruebas de navegador usan respuestas controladas para cubrir escritorio,
 375 px y rutas directas. No prueban permisos AWS ni CORS desplegado. Para usar
 un Chromium del equipo se admite `PLAYWRIGHT_CHROMIUM_EXECUTABLE=/ruta/al/binario`.
 
-El workflow `frontend.yml` valida UI e infraestructura sin secretos. El workflow
+El workflow `frontend.yml` valida la UI sin secretos. `terraform.yml` valida la infraestructura unificada. El workflow
 `publicar-frontend.yml` permite publicar manualmente desde main después de crear
-el stack y configurar CORS. Necesita los secrets `AWS_ACCESS_KEY_ID`,
+el stack único. Necesita los secrets `AWS_ACCESS_KEY_ID`,
 `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN` si son temporales, y las variables
-públicas `TF_STATE_BUCKET`, `API_BASE_URL`, `AWS_REGION` (opcional, us-east-1) y
+públicas `TF_STATE_BUCKET`, `AWS_REGION` (opcional, us-east-1) y
 `PROJECT_NAME` (opcional, citas-api). El bucket del estado debe estar en la región
 configurada. Estos valores deben coincidir con tu despliegue local.
 
@@ -125,13 +95,14 @@ con hash admiten caché de un año. Las llamadas al API van directamente a API
 Gateway, sin caché de CloudFront.
 
 El stack no crea dominios personalizados. Para eliminarlo hay que vaciar primero
-su bucket web y ejecutar `terraform -chdir=terraform/frontend destroy`.
-El estado, el bucket del API y ECS son independientes. No hay limpieza automática
+su bucket web y ejecutar `terraform -chdir=terraform destroy`, que también
+elimina el API y ECS. El bucket del estado y ECR se eliminan con `make destroy`
+después de Terraform. No hay limpieza automática
 para evitar borrar un despliegue por error; CloudFront y S3 pueden generar cargos.
 
 ## Origen de los ejemplos
 
-El selector usa los 50 contextos de validación (`val`) ya publicados en
+El modal usa los 50 contextos de validación (`val`) ya publicados en
 `data/processed/dashboard_insights.json`. El generador `compute_examples` de
 `src/training/build_insights.py` toma una muestra reproducible del dataset y
 conserva texto, ID y cita original. No se agregan ejemplos sintéticos ni se

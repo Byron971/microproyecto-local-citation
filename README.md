@@ -1035,17 +1035,23 @@ api:8000
 
 # Despliegue en AWS con Terraform
 
-API Gateway conecta con ECS mediante un ALB interno.
+Un único stack en `terraform/` crea el API en ECS, S3 privado y CloudFront.
+API Gateway conecta con ECS mediante un ALB interno; CORS permite la UI automáticamente.
 
 Ejecuta desde la raíz del repositorio con Docker iniciado, Terraform >= 1.10 y < 2.0
 y credenciales AWS vigentes. Si usas un perfil, selecciona `AWS_PROFILE`.
-La cuenta debe tener `LabRole` y permitir pasarlo a ECS.
+En una cuenta personal, Terraform crea los roles de ECS. La cuenta debe permitir
+crear roles IAM y pasarlos a ECS. En Learner Lab se reutiliza `LabRole`.
 
 Copia la configuración inicial (solo la primera vez):
 
 ```bash
 cp terraform/terraform.tfvars.example terraform/terraform.tfvars
 ```
+
+En `terraform/terraform.tfvars`, usa `ecs_role_name = ""` para una cuenta personal
+o `ecs_role_name = "LabRole"` para Learner Lab. Si ya tenías el archivo, actualiza
+esa línea; copiar el ejemplo no es necesario.
 
 Prepara bucket/ECR e inicializa Terraform para guardar el estado en S3.
 En otra cuenta, define antes `TF_STATE_BUCKET` con un nombre único:
@@ -1069,21 +1075,20 @@ terraform -chdir=terraform plan
 terraform -chdir=terraform apply
 ```
 
-Obtén la URL del tablero y ábrela cuando la tarea ECS esté lista:
+Publica React en el bucket creado y obtén la URL de la aplicación:
 
 ```bash
-terraform -chdir=terraform output -raw api_url
+make publish-frontend
+terraform -chdir=terraform output -raw frontend_url
 ```
 
-Para eliminar el servicio (conserva bucket, ECR y tag SSM):
-
-```bash
-terraform -chdir=terraform destroy
-```
+La URL del API también está disponible con `terraform -chdir=terraform output -raw api_url`.
 
 Al integrar cambios en `main`, GitHub Actions despliega el API o aplica los
 cambios de Terraform. Antes, carga los secrets `AWS_ACCESS_KEY_ID`,
-`AWS_SECRET_ACCESS_KEY` y `AWS_SESSION_TOKEN` del lab en el repositorio.
+`AWS_SECRET_ACCESS_KEY` y `AWS_SESSION_TOKEN` (si es temporal) en el repositorio.
+En el lab, configura además la variable de GitHub `ECS_ROLE_NAME=LabRole`; en una
+cuenta personal déjala vacía para crear los roles.
 
 Más detalles en [terraform/README.md](terraform/README.md).
 
@@ -1102,9 +1107,49 @@ npm --prefix frontend ci
 npm --prefix frontend run dev
 ```
 
-El stack `terraform/frontend/` crea S3 privado y CloudFront en la cuenta activa.
-Consulta [la guía del frontend](frontend/README.md) para crear los recursos,
-configurar CORS en el API y publicar el build.
+El mismo stack `terraform/` crea S3 privado y CloudFront junto al API.
+Consulta [la guía del frontend](frontend/README.md) para publicar y verificar la UI.
+
+# Eliminar la infraestructura de AWS
+
+Estos pasos eliminan el despliegue, sus imágenes y archivos. Ejecuta desde la
+raíz con las mismas credenciales, región, configuración y estado usados al
+crear los recursos. Evita nuevos despliegues automáticos mientras los eliminas.
+
+Vacía el bucket de React y destruye el único stack. Si todavía no creaste el
+bucket, omite el comando de vaciado. CloudFront puede tardar varios minutos:
+
+```bash
+FRONTEND_BUCKET=$(terraform -chdir=terraform output -raw frontend_bucket)
+aws s3 rm "s3://$FRONTEND_BUCKET" --recursive
+terraform -chdir=terraform destroy
+```
+
+Revisa el plan y confirma con `yes`. Conserva ECR, SSM y el bucket de estado
+hasta que `destroy` termine correctamente.
+
+Elimina ECR (incluidas sus imágenes) y el bucket de estado (incluidas sus
+versiones) con los mismos nombres usados en `make init`:
+
+```bash
+make destroy TF_STATE_BUCKET=nombre-del-bucket ECR_REPOSITORY=citas-api
+```
+
+Requiere Python 3. Se detiene si el estado aún contiene recursos, hay bloqueos
+o el bucket guarda archivos ajenos al estado del proyecto. No ejecutes
+Terraform ni despliegues automáticos durante la eliminación. Si cambiaste las
+claves del estado, pasa también `TF_STATE_KEY`.
+
+El tag SSM lo crea `make push`; elimínalo al final (ajusta el nombre del proyecto):
+
+```bash
+aws ssm delete-parameter --name /citas-api/api/image_tag
+```
+
+Si el bucket contiene estados o archivos de otros proyectos, consérvalo. Los roles IAM creados por Terraform se eliminan con `terraform destroy`. El rol
+IAM existente (`LabRole`), el bucket externo del modelo y cualquier DNS o
+certificado configurado fuera del proyecto no se crean con estos pasos y no se
+eliminan. Los workflows y secrets de GitHub se administran por separado.
 
 # Variables de entorno del despliegue
 

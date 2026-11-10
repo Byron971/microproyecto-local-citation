@@ -5,16 +5,16 @@ on:
   pull_request:
     paths:
       - 'frontend/**'
-      - 'terraform/frontend/**'
-      - 'scripts/publicar_frontend.sh'
+      - 'terraform/routes.js'
+      - 'Makefile'
       - 'tests/frontend_routes.test.cjs'
       - '.github/workflows/frontend.yml'
   push:
     branches: [main]
     paths:
       - 'frontend/**'
-      - 'terraform/frontend/**'
-      - 'scripts/publicar_frontend.sh'
+      - 'terraform/routes.js'
+      - 'Makefile'
       - 'tests/frontend_routes.test.cjs'
       - '.github/workflows/frontend.yml'
 
@@ -43,16 +43,3 @@ jobs:
         with:
           name: frontend-browser-results
           path: frontend/test-results/
-
-  infrastructure:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.14.8
-          terraform_wrapper: false
-      - run: terraform -chdir=terraform/frontend fmt -check
-      - run: terraform -chdir=terraform/frontend init -backend=false -input=false
-      - run: terraform -chdir=terraform/frontend validate
