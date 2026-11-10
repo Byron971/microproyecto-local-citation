@@ -1,0 +1,58 @@
+{
+  "abstenciones": {
+    "eval_2015": {
+      "Ambiguo": 10,
+      "No evaluable": 2
+    },
+    "train": {
+      "Ambiguo": 44,
+      "No evaluable": 6
+    },
+    "val": {
+      "Ambiguo": 7,
+      "No evaluable": 1
+    }
+  },
+  "casos": {
+    "eval_2015": 1363,
+    "gold_v2": 1533,
+    "train": 2245,
+    "val": 397
+  },
+  "citados_requeridos": 1945,
+  "entradas": {
+    "exclusiones_0": "3dd1a15b8a74193c7b8e7c6397592e6c915a2dc478d768c9ed0be6e255ca4e0a",
+    "exclusiones_1": "b9068f267dfeec8d90a00c1522700cee4adb5da42539328e6d76bfc3a87c88bb",
+    "gold_v2_manifiesto": "8849d3043a6edece432259b9cfcd1cdea9ac4beeec87a86fc6dd1804004da7d5",
+    "haiku_2700": "523b48d59de716dc7dbf5abe6ad7586600cc6201a503e2af03d378c71e7041ee",
+    "split_entrenamiento": "1f1f8bc312152fc52fac69f627c0c65a8cd86f61d5799b2b094c2195299be72b",
+    "test_gold": "83ff936b6c551931a8cf73518937ba9a1c1a72a5f9b7de942b5061e2d0361f9f",
+    "test_gold_manifiesto": "eeda12350ed97a10a6a9ab098989af373c5475fffd69cc389717884fc9463953"
+  },
+  "estado": "provisional_etiquetas_haiku_no_gold_humano",
+  "excluidos": 4,
+  "fuente_etiquetas": "haiku",
+  "git": {
+    "dirty": false,
+    "head": "81634c519a478256ee0cac72b5739578c974faff"
+  },
+  "hashes": {
+    "eval_2015": {
+      "ids_sha256": "04e8f52c546d241e00e03517b911bb0ed2f7457d6924f07d10db7d987ae2ba6b",
+      "labels_sha256": "0f3f7987e38026c1f910db7e6b466854f39f562201cc8c39d9b7e3d5c13fed2f"
+    },
+    "gold_v2": {
+      "ids_sha256": "8839f70b4117fc2db8bf1abe07ff03e6f3d0f9913fdb0a78cc7e4b26c9f414b6"
+    },
+    "train": {
+      "ids_sha256": "fd81f54bae93d7f624f53ca2284fe8a05a87b6b8857171381ed79102f7a4a6fb",
+      "labels_sha256": "e4a1104aaff21122251dbacc0f2895cd5ba4146375582cfa51e9680b43545bb4"
+    },
+    "val": {
+      "ids_sha256": "1e5157931be51dc138a3f1beed604ca4f069ed90087add34d9876afdf7028550",
+      "labels_sha256": "0b9f1dc965ddb446a60c9bfcdd54c953f50f83ec525058a710d99401e9355e85"
+    }
+  },
+  "limite": null,
+  "total_fugas": 0
+}

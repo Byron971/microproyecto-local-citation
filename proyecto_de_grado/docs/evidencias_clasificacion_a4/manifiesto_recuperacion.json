@@ -1,0 +1,97 @@
+{
+  "chunks_en_cache": {
+    "eval_2015": 2262,
+    "gold_v2": 15799,
+    "train": 44,
+    "val": 3460
+  },
+  "cobertura": {
+    "eval_2015": {
+      "cobertura_pct": 53.85,
+      "con_chunks": 734,
+      "contextos": 1363,
+      "excluidos_por_motivo": {
+        "parrafo_largo": 629
+      }
+    },
+    "gold_v2": {
+      "cobertura_pct": 54.79,
+      "con_chunks": 840,
+      "contextos": 1533,
+      "excluidos_por_motivo": {
+        "parrafo_largo": 693
+      }
+    },
+    "train": {
+      "cobertura_pct": 55.28,
+      "con_chunks": 1241,
+      "contextos": 2245,
+      "excluidos_por_motivo": {
+        "ValueError": 8,
+        "ocl_404": 5,
+        "parrafo_largo": 991
+      }
+    },
+    "val": {
+      "cobertura_pct": 53.65,
+      "con_chunks": 213,
+      "contextos": 397,
+      "excluidos_por_motivo": {
+        "ValueError": 1,
+        "autocita": 1,
+        "ocl_404": 1,
+        "parrafo_largo": 181
+      }
+    }
+  },
+  "encoder": {
+    "batch_size": 16,
+    "commit_resuelto": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "cuda": "12.8",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "max_length": 512,
+    "model_id": "allenai/scibert_scivocab_uncased",
+    "pooling": "mean",
+    "python": "3.14.6",
+    "revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "textos_procesados": 41584,
+    "torch": "2.11.0+cu128",
+    "transformers": "5.22.2",
+    "ventanas_procesadas": 41600
+  },
+  "entradas": {
+    "contexts.json": "4725714f53cd6e1f2efca883761dc252ac19be1489b699f4d14d1e7b9dcc3a73",
+    "manifiesto_ocl": "893fa495248bfe5916d0da82f0d2010a850a35a66a3b14727b42cf9f6584f099",
+    "manifiesto_preparacion": "ac10e802b7b52538a30e5388dc60dcb4df9d969989074366de297b2e260a3ce1",
+    "papers.json": "999d6b77fed44d6bb6ed1c49c532c02aaa19f21b9e6d65e569201c2a2c7ee749"
+  },
+  "estado": "provisional_etiquetas_haiku_no_gold_humano",
+  "git": {
+    "dirty": true,
+    "head": "81634c519a478256ee0cac72b5739578c974faff"
+  },
+  "huellas": {
+    "eval_2015": "d0056c0f00b27be0b2c9a99750408fc4b78bbe018d9387c174577311617b8c3b",
+    "gold_v2": "477c024494b646edaad572c4f2733dcaed39ef28db9452b1364c8100b6b094af",
+    "train": "bce09ad51d134ba6a526efa01a4be1f936a90c944b17808a20db4c8de9b11c59",
+    "val": "ebab8cd863cf77db19c94e9cee1d75d3f975e5e473b013bbd0757ab3193888cb"
+  },
+  "limite": null,
+  "regresion_a1": {
+    "coinciden": 42,
+    "contextos_a1": 603,
+    "contextos_comparados": 42,
+    "discrepancias": [],
+    "max_dif_similitud": 0.0
+  },
+  "salidas": {
+    "excluidos_recuperacion.csv": "e06276507b7c35b209620c14d0bc54b2421cb5ccb5d223273df3c1181b2ccbdc",
+    "top3_eval_2015.csv": "52869f8ba859f7768757b95c95acd3cec0bd61b917d8ec71b1353cf806320aa9",
+    "top3_gold_v2.csv": "bddcc09e7feed196811f23fbeaed114dd3db96406fe6c4984e5dd9ba39a443c7",
+    "top3_train.csv": "368284466b4f57749e6dd2c2e4e517051946328784a1341a8642ea077498f618",
+    "top3_val.csv": "8f20e6a02d48616203633588c2c3f869beca1284dc8cace75670062457e2b8c8"
+  },
+  "segundos": 307.9,
+  "sha256_manifiesto_modelo": "d64d1ac222fa40fb65d148ab4b87ca24b5063d4d54dc2317f280e8c50d671e7a"
+}

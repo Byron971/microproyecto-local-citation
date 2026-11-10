@@ -1,0 +1,67 @@
+{
+  "gold_v2": {
+    "cited_id_compartidos_no_bloqueante": {
+      "train~gold_v2": 253,
+      "train~val": 169,
+      "val~gold_v2": 102
+    },
+    "conjuntos": {
+      "gold_v2": 1533,
+      "train": 2245,
+      "val": 397
+    },
+    "fugas": {
+      "gold_v2~excluidos:context_id": 0,
+      "gold_v2~gold_v2:context_id": 0,
+      "train~excluidos:context_id": 0,
+      "train~gold_v2:citing_id": 0,
+      "train~gold_v2:context_id": 0,
+      "train~gold_v2:par_citante_citado": 0,
+      "train~gold_v2:sha_texto_targetcit": 0,
+      "train~val:citing_id": 0,
+      "train~val:context_id": 0,
+      "train~val:par_citante_citado": 0,
+      "train~val:sha_texto_targetcit": 0,
+      "val~excluidos:context_id": 0,
+      "val~gold_v2:citing_id": 0,
+      "val~gold_v2:context_id": 0,
+      "val~gold_v2:par_citante_citado": 0,
+      "val~gold_v2:sha_texto_targetcit": 0
+    },
+    "total_fugas": 0
+  },
+  "principal": {
+    "cited_id_compartidos_no_bloqueante": {
+      "train~eval_2015": 119,
+      "train~val": 169,
+      "val~eval_2015": 48
+    },
+    "conjuntos": {
+      "eval_2015": 1363,
+      "train": 2245,
+      "val": 397
+    },
+    "fugas": {
+      "eval_2015~excluidos:context_id": 0,
+      "eval_2015~gold_v2:context_id": 0,
+      "train~eval_2015:citing_id": 0,
+      "train~eval_2015:context_id": 0,
+      "train~eval_2015:par_citante_citado": 0,
+      "train~eval_2015:sha_texto_targetcit": 0,
+      "train~excluidos:context_id": 0,
+      "train~gold_v2:context_id": 0,
+      "train~val:citing_id": 0,
+      "train~val:context_id": 0,
+      "train~val:par_citante_citado": 0,
+      "train~val:sha_texto_targetcit": 0,
+      "val~eval_2015:citing_id": 0,
+      "val~eval_2015:context_id": 0,
+      "val~eval_2015:par_citante_citado": 0,
+      "val~eval_2015:sha_texto_targetcit": 0,
+      "val~excluidos:context_id": 0,
+      "val~gold_v2:context_id": 0
+    },
+    "total_fugas": 0
+  },
+  "total_fugas": 0
+}
