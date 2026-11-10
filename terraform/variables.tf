@@ -15,8 +15,19 @@ variable "ecr_repository" {
   default = "citas-api"
 }
 variable "ecs_role_name" {
-  type    = string
-  default = "LabRole"
+  description = "Rol existente para ejecución y tarea (LabRole en el lab). Vacío crea dos roles administrados por Terraform."
+  type        = string
+  default     = ""
+  nullable    = false
+  validation {
+    condition     = var.ecs_role_name == "" || can(regex("^[A-Za-z0-9_+=,.@-]{1,64}$", var.ecs_role_name))
+    error_message = "Usa el nombre de un rol IAM existente o una cadena vacía para crear roles."
+  }
+}
+variable "secrets_kms_key_arns" {
+  description = "ARN de claves KMS propias usadas por app_secrets; vacío si se usa la clave predeterminada de SSM."
+  type        = list(string)
+  default     = []
 }
 variable "task_cpu" {
   type    = number
@@ -78,4 +89,14 @@ variable "custom_domain_name" {
 variable "certificate_arn" {
   type    = string
   default = ""
+}
+
+variable "cors_allowed_origins" {
+  description = "Orígenes adicionales permitidos, sin barra final. CloudFront se incluye automáticamente."
+  type        = list(string)
+  default     = []
+  validation {
+    condition     = alltrue([for origin in var.cors_allowed_origins : can(regex("^https://[a-zA-Z0-9.-]+(:[0-9]+)?$|^http://(localhost|127\\.0\\.0\\.1):[0-9]+$", origin))])
+    error_message = "Usa orígenes HTTPS exactos, o localhost HTTP con puerto, sin rutas ni barra final."
+  }
 }

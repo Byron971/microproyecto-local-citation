@@ -16,6 +16,7 @@ TF_STATE_BUCKET ?= maia2026-grupo19
 ECR_KEEP_IMAGES ?= 5
 PROJECT_NAME   ?= citas-api
 TF_STATE_KEY   ?= $(PROJECT_NAME)/terraform.tfstate
+PYTHON         ?= python3
 TERRAFORM      ?= terraform
 TF_ARGS        ?=
 IMAGE_TAG      ?= $(shell git rev-parse --short HEAD)
@@ -42,7 +43,7 @@ LOCAL_IMAGE    = $(ECR_REPOSITORY):$(IMAGE_TAG)
 REMOTE_IMAGE   = $(ECR_REGISTRY)/$(ECR_REPOSITORY):$(IMAGE_TAG)
 
 .DEFAULT_GOAL := help
-.PHONY: help check-aws init init-bucket init-ecr login build push tf-plan tf-apply deploy
+.PHONY: help check-aws destroy init init-bucket init-ecr login build push tf-plan tf-apply deploy publish-frontend
 
 help: ## Muestra los comandos disponibles
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | \
@@ -119,8 +120,28 @@ tf-plan: ## Muestra los cambios de infraestructura
 tf-apply: ## Aplica los cambios de infraestructura sin reconstruir la imagen
 	$(TERRAFORM) -chdir=terraform apply $(TF_ARGS)
 
-deploy: ## Construye, publica y despliega (requiere make init previo)
+# Publicar assets antes que index.html; conservar hashes de versiones abiertas.
+publish-frontend: check-aws ## Compila React, publica en S3 y actualiza CloudFront
+	@set -eu; \
+	bucket=$$($(TERRAFORM) -chdir=terraform output -raw frontend_bucket); \
+	distribution=$$($(TERRAFORM) -chdir=terraform output -raw distribution_id); \
+	api_url=$$($(TERRAFORM) -chdir=terraform output -raw api_base_url); \
+	frontend_url=$$($(TERRAFORM) -chdir=terraform output -raw frontend_url); \
+	npm --prefix frontend ci; \
+	VITE_API_BASE_URL="$$api_url" npm --prefix frontend run build; \
+	$(AWS) s3 sync frontend/dist/assets/ "s3://$$bucket/assets/" --cache-control 'public,max-age=31536000,immutable'; \
+	$(AWS) s3 sync frontend/dist/ "s3://$$bucket/" --exclude 'assets/*' --exclude index.html --cache-control 'no-cache,max-age=0,must-revalidate'; \
+	$(AWS) s3 cp frontend/dist/index.html "s3://$$bucket/index.html" --content-type 'text/html; charset=utf-8' --cache-control 'no-cache,max-age=0,must-revalidate'; \
+	$(AWS) cloudfront create-invalidation --distribution-id "$$distribution" --paths '/index.html' >/dev/null; \
+	printf 'Frontend publicado: %s\n' "$$frontend_url"
+
+deploy: ## Publica API y React con un único stack (requiere make init previo)
 	$(MAKE) login
 	$(MAKE) build
 	$(MAKE) push
 	$(TERRAFORM) -chdir=terraform apply $(TF_ARGS)
+	$(MAKE) publish-frontend
+
+# Ejecutar después de terraform destroy y sin despliegues concurrentes.
+destroy: check-aws ## Elimina ECR y bucket de estado de make init (incluye todas las versiones)
+	@AWS_REGION="$(AWS_REGION)" $(PYTHON) scripts/destruir_init.py "$(TF_STATE_BUCKET)" "$(ECR_REPOSITORY)" "$(TF_STATE_KEY)"

@@ -1,6 +1,12 @@
 resource "aws_apigatewayv2_api" "main" {
   name          = var.project_name
   protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = distinct(concat(["https://${aws_cloudfront_distribution.web.domain_name}"], var.cors_allowed_origins))
+    allow_methods = ["GET", "POST", "OPTIONS"]
+    allow_headers = ["content-type"]
+    max_age       = 300
+  }
 }
 resource "aws_apigatewayv2_vpc_link" "main" {
   name               = var.project_name
@@ -19,7 +25,8 @@ resource "aws_apigatewayv2_integration" "api" {
   request_parameters     = { "overwrite:path" = "$request.path" }
 }
 resource "aws_apigatewayv2_route" "api" {
-  for_each  = toset(["ANY /", "ANY /{proxy+}"])
+  # Dejar OPTIONS sin integración para que API Gateway responda el preflight CORS.
+  for_each  = toset(["GET /", "GET /{proxy+}", "POST /{proxy+}"])
   api_id    = aws_apigatewayv2_api.main.id
   route_key = each.value
   target    = "integrations/${aws_apigatewayv2_integration.api.id}"
@@ -66,4 +73,14 @@ resource "aws_apigatewayv2_api_mapping" "custom" {
   api_id      = aws_apigatewayv2_api.main.id
   domain_name = aws_apigatewayv2_domain_name.custom[0].id
   stage       = aws_apigatewayv2_stage.main.id
+}
+
+# Conservar las rutas existentes al dejar de capturar OPTIONS con ANY.
+moved {
+  from = aws_apigatewayv2_route.api["ANY /"]
+  to   = aws_apigatewayv2_route.api["GET /"]
+}
+moved {
+  from = aws_apigatewayv2_route.api["ANY /{proxy+}"]
+  to   = aws_apigatewayv2_route.api["GET /{proxy+}"]
 }

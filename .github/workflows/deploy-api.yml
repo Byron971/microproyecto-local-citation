@@ -37,6 +37,8 @@ env:
   AWS_REGION: us-east-1
   TF_IN_AUTOMATION: 'true'
   TF_INPUT: 'false'
+  TF_VAR_ecs_role_name: ${{ vars.ECS_ROLE_NAME || '' }}
+  TF_VAR_cors_allowed_origins: ${{ vars.CORS_ALLOWED_ORIGINS || '[]' }}
 
 jobs:
   build-pr:
