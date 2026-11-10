@@ -1,4 +1,3 @@
-data "aws_caller_identity" "current" {}
 resource "aws_s3_bucket" "web" {
   bucket = "${var.project_name}-web-${data.aws_caller_identity.current.account_id}-${var.aws_region}"
 }
@@ -118,7 +117,3 @@ resource "aws_s3_bucket_policy" "web" {
   })
   depends_on = [aws_s3_bucket_public_access_block.web]
 }
-output "frontend_url" { value = "https://${aws_cloudfront_distribution.web.domain_name}" }
-output "frontend_bucket" { value = aws_s3_bucket.web.id }
-output "distribution_id" { value = aws_cloudfront_distribution.web.id }
-output "api_base_url" { value = trimsuffix(var.api_base_url, "/") }

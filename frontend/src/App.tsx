@@ -27,7 +27,7 @@ export function App() {
           <Link
             to="/"
             className="brand"
-            aria-label="Recomendación local de citas académicas, inicio"
+            aria-label="Recomendación local de citas, inicio"
           >
             <svg viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
               <path
@@ -38,9 +38,7 @@ export function App() {
               />
               <circle cx="37.6" cy="24" r="4" fill="currentColor" />
             </svg>
-            <span>
-              Recomendación local<span className="brand-subtitle">de citas académicas</span>
-            </span>
+            <span>Recomendación local de citas</span>
           </Link>
           <nav className="compact-nav" aria-label="Navegación principal">
             <NavLink to="/" end>

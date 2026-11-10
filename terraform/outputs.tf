@@ -16,3 +16,8 @@ output "task_definition_arn" {
 output "custom_domain_target" {
   value = try(aws_apigatewayv2_domain_name.custom[0].domain_name_configuration[0].target_domain_name, null)
 }
+
+output "frontend_url" { value = "https://${aws_cloudfront_distribution.web.domain_name}" }
+output "frontend_bucket" { value = aws_s3_bucket.web.id }
+output "distribution_id" { value = aws_cloudfront_distribution.web.id }
+output "api_base_url" { value = aws_apigatewayv2_api.main.api_endpoint }

@@ -6,7 +6,6 @@ on:
     branches: [main]
     paths:
       - 'terraform/**'
-      - '!terraform/frontend/**'
       - '.github/workflows/terraform.yml'
       - '.github/actions/aws-session/**'
       - 'scripts/ci/**'
@@ -14,7 +13,6 @@ on:
   pull_request:
     paths:
       - 'terraform/**'
-      - '!terraform/frontend/**'
       - '.github/workflows/terraform.yml'
       - '.github/actions/aws-session/**'
       - 'scripts/ci/**'
@@ -27,6 +25,7 @@ env:
   AWS_REGION: us-east-1
   TF_IN_AUTOMATION: 'true'
   TF_INPUT: 'false'
+  TF_VAR_ecs_role_name: ${{ vars.ECS_ROLE_NAME || '' }}
   TF_VAR_cors_allowed_origins: ${{ vars.CORS_ALLOWED_ORIGINS || '[]' }}
 
 jobs:
@@ -44,6 +43,8 @@ jobs:
       # readonly impide guardarlo y hace fallar validate con un lockfile de Mac.
       - run: terraform -chdir=terraform init -backend=false -input=false
       - run: terraform -chdir=terraform validate
+      - name: Probar roles IAM sin AWS
+        run: terraform -chdir=terraform test -filter=tests/iam.tftest.hcl
       - name: Probar controles de despliegue sin AWS
         run: python3 -m unittest discover -s tests -p test_ci_deployment.py -v
 

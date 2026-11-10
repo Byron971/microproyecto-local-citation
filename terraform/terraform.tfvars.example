@@ -1,15 +1,16 @@
 aws_region     = "us-east-1"
 project_name   = "citas-api"
 ecr_repository = "citas-api"
-ecs_role_name  = "LabRole"
+ecs_role_name  = "" # Cuenta personal: crea roles. En Learner Lab: "LabRole".
 task_cpu       = 512
 task_memory    = 1024
 desired_count  = 1
 # health_check_path = "/api/salud/lista" # Cuando la ruta esté integrada.
 # app_environment = {}
+# secrets_kms_key_arns = [] # Claves KMS propias, si app_secrets las usa.
 # app_secrets = { API_KEY = "arn:aws:ssm:us-east-1:ACCOUNT:parameter/citas-api/key" }
 # custom_domain_name = "api.example.com"
 # certificate_arn = "arn:aws:acm:us-east-1:ACCOUNT:certificate/ID"
 
-# Origen público del frontend React, sin barra final.
-# cors_allowed_origins = ["https://TU_DISTRIBUCION.cloudfront.net"]
+# CloudFront se permite automáticamente. Orígenes adicionales para desarrollo:
+# cors_allowed_origins = ["http://localhost:5173"]
