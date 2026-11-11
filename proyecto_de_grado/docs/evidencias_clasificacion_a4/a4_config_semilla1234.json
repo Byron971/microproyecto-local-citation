@@ -1,0 +1,52 @@
+{
+  "data_use": "provisional_only",
+  "estado": "provisional_etiquetas_haiku_no_gold_humano",
+  "schema_version": "a4_factorial_v1",
+  "semilla": 1234,
+  "variants": [
+    {
+      "checkpoint_sha256": "0cfb0cbfa0bd426663ad65a7ee4df613536339d1a2f6a1bfb54788dcabfd975e",
+      "encoder": "SciBERT",
+      "input": "A",
+      "input_spec_sha256": "855e6dc426a8b99aebcf686a04ea997bfa49ad82c8e54b186ab9f6c55fd6e09d",
+      "name": "SciBERT_A_s1234",
+      "predictions": "scibert_A_1234/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    },
+    {
+      "checkpoint_sha256": "0fe999535d040ddf589a3c54aa039a8d94bd6c5ab968df24e011e6b45586834d",
+      "encoder": "SciBERT",
+      "input": "B",
+      "input_spec_sha256": "dbb8cb085d7f66d3b1ea6db69b6f03b9a01296d83d94f8ce3571b73ab100ed59",
+      "name": "SciBERT_B_s1234",
+      "predictions": "scibert_B_1234/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    },
+    {
+      "checkpoint_sha256": "b545384210eb33b408d04ca2d300874357acc0fef41aa3e98d63957ccfba7a81",
+      "encoder": "SPECTER",
+      "input": "A",
+      "input_spec_sha256": "855e6dc426a8b99aebcf686a04ea997bfa49ad82c8e54b186ab9f6c55fd6e09d",
+      "name": "SPECTER_A_s1234",
+      "predictions": "specter_A_1234/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    },
+    {
+      "checkpoint_sha256": "afe483b1239933ba83176563f5d459ced78224cf43d73552dc6c2d5214608cd1",
+      "encoder": "SPECTER",
+      "input": "B",
+      "input_spec_sha256": "dbb8cb085d7f66d3b1ea6db69b6f03b9a01296d83d94f8ce3571b73ab100ed59",
+      "name": "SPECTER_B_s1234",
+      "predictions": "specter_B_1234/predicciones_eval.jsonl",
+      "train_ids_sha256": "bfb05569db04d895980187171c0017a796da0329621e1b596b582d95ba80abcc",
+      "train_labels_sha256": "c2b0d455c79a6fe1693c07dbd0883b0f420f1b8063fefd4b55af4fea9486e714",
+      "training_labels": "Haiku"
+    }
+  ]
+}

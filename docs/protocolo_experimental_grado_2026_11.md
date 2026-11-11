@@ -70,6 +70,14 @@ Modelos adicionales (QLoRA/open-weight, comerciales) mantienen versiones/prompts
 
 Para cada contraste fijar: arquitectura exacta, tokenizer, longitud máxima, truncamiento, semilla(s), epochs, learning rate, batch size, scheduler, weight decay, parada temprana, validación, elección de checkpoint, hardware, dataset manifest y versiones. Completar valores desde implementaciones reales **antes** de usar Gold.
 
+**Valores reales de la implementación A4 (completados 7-nov-2026; PROVISIONALES: etiquetas Haiku, Gold v2 sin congelar, #100).** Código: `packages/clasificacion-funcion`; informe: `proyecto_de_grado/docs/clasificacion_funcion_a4.md`; evidencia: `proyecto_de_grado/docs/evidencias_clasificacion_a4/`.
+- Arquitectura: `AutoModel` + dropout 0,1 + `Linear(768, 9)` sobre `[CLS]`, entropía cruzada con pesos inversos a la frecuencia. SciBERT `allenai/scibert_scivocab_uncased` @ `24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1`; SPECTER `allenai/specter` @ `81cbfb43d4fc2e728d5b4201ce14987db8d0854c` (carga desde `pytorch_model.bin`).
+- Tokenizer: `BertTokenizer` en minúsculas; **los vocabularios difieren** (SciBERT 31.090 tokens, SPECTER 31.116), con SHA de `vocab.txt` en cada manifiesto. Longitud máxima 512; el contexto se reserva primero (tope 192, ventana centrada en TARGETCIT); en A el título tiene tope de 48 tokens y el abstract se recorta por la cola; en B el espacio se reparte entre los 3 chunks (water-filling). Plantilla `[CLS] ctx [SEP] seg… [SEP]`.
+- Entrenamiento: AdamW lr 2e-5, weight decay 0,01 (sin decay en bias/LayerNorm), warmup 10 % y decaimiento lineal, batch 8 × acumulación 2, máximo 6 épocas, parada temprana con paciencia 2 sobre F1 macro de val, bf16, clip 1,0, semillas 42/1234/2026; checkpoint = mejor época en val. Hardware: RTX 4070 SUPER; torch 2.11.0+cu128; transformers 5.22.2.
+- Datos: train 1.241 / val 213 / eval 2015 **732** casos (intersección A/B con los mismos IDs); Gold v2 ciego 839 de 1.533 IDs. Cobertura de B 53,7-55,3 % en train, eval y Gold v2 (val 53,65 %), **bajo el umbral del 60 %** (bloqueo trazado en #103). El eval 2015 y el Gold v2 se solapan (826 de 1.363 contextos): no son evaluaciones independientes.
+- Resultados provisionales (F1 macro, eval 2015, media de 3 semillas): SciBERT-A 0,467, SciBERT-B 0,472, SPECTER-A 0,330, SPECTER-B 0,302. A frente a B no se distingue del ruido (bootstrap pareado, IC95 % que incluye 0); SciBERT rinde más que SPECTER con hiperparámetros compartidos, sin prueba de significación formal en la evidencia versionada, etiquetas Haiku y vocabulario de SPECTER *cased* usado en minúsculas. **A4 ejecutada en modo provisional, no cumplida.** Ablaciones de sección (SciBERT): sin sección −0,009, barajada +0,006 (dentro del ruido).
+- Factor 2 (Haiku frente a Jurado): solo Haiku ejecutado; Jurado **no ejecutado** (DVC sin descargar).
+
 Cada predicción exportará: `example_id`, `model_id`, `model_version`, `experiment_id`, `predicted_label`, `scores_9` si existen, latencia, estado de parseo y referencia al manifiesto del Gold (sin registrar la etiqueta verdadera en salidas accesibles al modelo).
 
 ## 5. Métricas y análisis
@@ -106,9 +114,11 @@ Consultar issue #111 (auditoría técnica 4 nov), PR #89–#92 (todavía no trat
 1. Nombre/ubicación del manifiesto Gold canónico y definición de cobertura humana.
 2. Tamaño y procedencia exactos del conjunto A (2.642 vs. 2.700) y B.
 3. Composición del conjunto de entrenamiento controlado y validación.
-4. Parámetros de entrenamiento recuperados de las implementaciones reales.
+4. ~~Parámetros de entrenamiento recuperados de las implementaciones reales~~ → completados en §4 para A4 (provisionales); falta confirmarlos con el equipo antes de usar el Gold v2.
 5. Disponibilidad y protocolo de relevancia a nivel de chunk para evaluar Top-3.
-6. Aprobación del diseño factorial y ablación con sección verdadera/ausente/barajada (issue #128).
-7. Disponibilidad de SPECTER, arquitectura de clasificación y presupuesto computacional (issue #103); definir responsable de entrenamiento y criterios de aceptación antes de compararlo.
+6. Aprobación del diseño factorial y de la ablación con sección verdadera/ausente/barajada (issue #128): ejecutada con SciBERT y 3 semillas, sin efecto detectable; falta decidir si se repite con el Gold v2 y con la heurística `perfil_seccion` validada.
+7. SPECTER: revisión fijada, cargado y entrenado (4 celdas A4 ejecutadas, provisionales; A4 **no cumplida** hasta el Gold v2). Pendiente: responsable de revisar los resultados, ajuste de hiperparámetros por encoder y criterios de aceptación.
+8. Cobertura de la Entrada B (53,7 % en eval, umbral 60 %): decidir si se abre un issue para otro fragmentador de chunks (la regla de A1 no se tocó).
+9. Coordinación con John sobre `inspect_gold` (rechaza nombres con «provisional») para puntuar el Gold v2 cuando #100 lo congele.
 
 **Regla de publicación:** no declarar números como resultados finales ni marcar el protocolo como aprobado hasta completar todos los P0.

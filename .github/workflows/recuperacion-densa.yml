@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - "packages/recuperacion-densa/**"
+      - "packages/clasificacion-funcion/**"
       - "packages/auditoria-corpus/**"
       - "src/app/fragment_retrieval.py"
       - "proyecto_de_grado/src/data/**"
@@ -14,6 +15,7 @@ on:
     branches: [main]
     paths:
       - "packages/recuperacion-densa/**"
+      - "packages/clasificacion-funcion/**"
       - "packages/auditoria-corpus/**"
       - "src/app/fragment_retrieval.py"
       - "proyecto_de_grado/src/data/**"
@@ -57,3 +59,23 @@ jobs:
         run: uv sync --locked
       - name: Probar el paquete
         run: uv run pytest -q
+
+  clasificacion-funcion:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/clasificacion-funcion
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      # default-groups = ["dev"]: el grupo `modelo` (torch) nunca se instala en CI.
+      - name: Instalar dependencias (sin torch)
+        run: uv sync --locked
+      - name: Probar el paquete
+        run: uv run pytest -q
+      - name: Verificar que torch no esta instalado
+        run: uv run python -c "import importlib.util as u; assert u.find_spec('torch') is None"
