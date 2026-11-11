@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W10-3812_P03-1021_0,Evaluable,Evidence,Media,Cites MERT as support for the claim that weights are usually optimized for BLEU; could be Application but framing is a general statement.,COMPLETO,45,1
+2,D09-1043_W07-1202_0,Evaluable,Evidence,Media,Cited to support the claim that perceptron models achieve state-of-the-art in CCG parsing.,COMPLETO,45,1
+3,W13-1729_P03-1054_0,Evaluable,Application,Alta,The authors used the Stanford parser to tag text.,COMPLETO,45,1
+4,D12-1038_P07-1106_0,Evaluable,Background,Media,Lists prior NLP tasks where the perceptron has been used.,COMPLETO,45,1
+5,W11-2161_W10-1708_0,Evaluable,Comparison,Alta,Explicitly contrasts the current system with last year's system.,COMPLETO,45,1
+6,D10-1054_P96-1021_0,Evaluable,Improvement / Modification,Alta,Extends HPB glue rules using BTG instead of the monotone glue rule.,COMPLETO,45,1
+7,D13-1013_N09-2028_0,Evaluable,Background,Alta,Describes a prior work's approach within a related-work enumeration.,COMPLETO,45,1
+8,W01-0805_W98-1419_0,Evaluable,Background,Alta,List of prior researchers working on referring expression generation.,COMPLETO,45,1
+9,W99-0113_P84-1085_0,Evaluable,Basis,Media,Linguistic Discourse Model is the framework the current account is combined with and builds on.,COMPLETO,45,1
+10,J08-2003_W05-0630_4,Evaluable,Comparison,Alta,Compares current tree-kernel results against polynomial kernel with state-of-the-art features.,COMPLETO,45,1
+11,W04-2403_W03-1008_0,Evaluable,Gap,Media,Cites prior approaches and then points out their flat feature representation as a problem.,COMPLETO,45,1
+12,P00-1007_P97-1003_2,Evaluable,Comparison,Alta,Compares the results obtained with those of full parsers.,COMPLETO,45,1
+13,P13-2066_D11-1084_0,Evaluable,Gap,Media,Describes discourse-based models and then notes their limitation (overall structure remains unresolved).,COMPLETO,45,1
+14,P13-1080_P08-1064_0,Evaluable,Background,Alta,Describes existing formalism STSSG among related models.,COMPLETO,45,1
+15,W94-0310_W90-0109_0,Evaluable,Basis,Media,"Text Structure is the representational level the generator maps to, drawn from the cited work.",COMPLETO,45,1
+16,P13-1158_N10-1069_0,Evaluable,Application,Alta,Adopts iterative parameter mixing perceptron as is.,COMPLETO,45,1
+17,E99-1017_P96-1031_1,Evaluable,Basis,Media,"Components are modifications of those in the cited work, which the algorithm builds on.",COMPLETO,45,1
+18,W01-0724_W00-0733_1,Evaluable,Evidence,Alta,Supports the claim that classifier combinations tend to outperform individual members.,COMPLETO,45,1
+19,W03-0410_E03-1037_1,Evaluable,Comparison,Alta,Compares their feature set and scores with the cited work.,COMPLETO,45,1
+20,D13-1014_D12-1110_0,Evaluable,Background,Alta,Lists works in the line of research on semantic compositionality.,COMPLETO,45,1
+21,W10-4343_N09-2028_1,Evaluable,Evidence,Media,Cites previous finding (ILP gains with less training data) to support the claim in the text.,COMPLETO,45,1
+22,J13-4002_P06-2066_3,Evaluable,Evidence,Alta,Cited findings support the claim that treebank structures are well-nested with small gap degree.,COMPLETO,45,1
+23,P12-1028_P98-1013_1,Evaluable,Application,Media,"Uses FrameNet data, selecting frames with over 100 annotated sentences.",COMPLETO,45,1
+24,W11-2919_P04-1084_1,Evaluable,Basis,Media,The proposed idea is extended to probabilistic versions of the cited GMTG formalism.,COMPLETO,45,1
+25,W13-2263_W02-2016_0,Evaluable,Application,Alta,Uses CaboCha parser directly.,COMPLETO,45,1
+26,P11-1064_P06-1124_2,Evaluable,Evidence,Alta,Supports the claim that the discount parameter models long-tailed distributions better.,COMPLETO,45,1
+27,J86-3001_P86-1021_0,Evaluable,Background,Media,One of several works cited for the use of cue phrases to indicate discourse boundaries.,COMPLETO,45,1
+28,P13-2036_P06-1010_0,Evaluable,Background,Media,Describes prior work extending Tao's approach within a related-work survey.,COMPLETO,45,1
+29,W11-1804_W11-1806_1,Evaluable,Comparison,Media,Compares reported improvements from using GE data among top systems.,COMPLETO,45,1
+30,D08-1066_W06-3105_1,Evaluable,Comparison,Alta,Contrasts the current result matching the heuristic with previous work that did not.,COMPLETO,45,1
+31,J03-4003_P96-1025_4,Evaluable,Comparison,Alta,Table row comparing model performance against other parsers.,COMPLETO,45,1
+32,P10-3018_W06-2932_2,Evaluable,Background,Alta,Describes parsers used by prior work on Hindi.,COMPLETO,45,1
+33,D11-1109_P08-1101_0,Evaluable,Gap,Media,"Notes prior work uses gold POS tags, a limitation the paper addresses.",COMPLETO,45,1
+34,W06-1616_E06-1011_0,Evaluable,Comparison,Alta,Contrasts the current solution as more general than the cited one.,COMPLETO,45,1
+35,D12-1018_P08-1090_1,Evaluable,Basis,Media,Describes the narrative score from the cited work that the feature builds on.,COMPLETO,45,1
+36,W96-0404_P95-1021_0,Evaluable,Background,Alta,Introduces the DTG formalism used in the work.,COMPLETO,45,1
+37,P09-2014_N07-1051_1,Evaluable,Further Reading,Alta,Refers readers to cited works for parser details.,COMPLETO,45,1
+38,W11-2113_W08-0309_0,Evaluable,Evidence,Alta,Cited results support the claim that METEOR performs poorly out of English.,COMPLETO,45,1
+39,W12-4503_P10-1142_0,Evaluable,Background,Media,Survey cited as an example of the standard coreference architecture.,COMPLETO,45,1
+40,S12-1014_W03-0601_0,Evaluable,Background,Media,Cited work developed the image dataset; context unclear whether it is used or just described.,COMPLETO,45,1
+41,W13-3606_P11-1092_0,Evaluable,Evidence,Alta,Supports the claim that low error frequency makes correction harder.,COMPLETO,45,1
+42,W11-3203_P04-1021_0,Evaluable,Comparison,Media,Compares the joint source-channel model with a similar model and their integration approach.,COMPLETO,45,1
+43,W11-2149_P03-1054_0,Evaluable,Application,Alta,Applies the Stanford parser to obtain dependency structures.,COMPLETO,45,1
+44,P08-3005_W05-0904_0,Evaluable,Background,Media,Describes the usual practice of syntactic similarity for wellformedness.,COMPLETO,45,1
+45,P09-1074_P03-1023_1,Evaluable,Comparison,Alta,Contrasts best published scores with extracted vs annotated CEs.,COMPLETO,45,1
+46,P13-2125_S12-1051_0,Evaluable,Evidence,Alta,Shared task results support the claim that feature-combination systems performed best.,COMPLETO,45,1
+47,W13-0804_J07-2003_1,Evaluable,Identification of the Originator,Alta,Chiang introduced the cube pruning algorithm.,COMPLETO,45,1
+48,E12-1076_P11-2041_0,Evaluable,Application,Alta,Uses the top-scoring ordering model from the cited work.,COMPLETO,45,1
+49,W09-2804_P05-1018_0,Evaluable,Background,Media,Cited as an example of dataset creation in other NLP tasks.,COMPLETO,45,1
+50,P13-2014_N13-1127_3,Evaluable,Background,Media,"Describes prior Dec-POMDP agents in a card game, then notes limitations.",COMPLETO,45,1
+51,J92-4004_P87-1013_1,Evaluable,Comparison,Alta,Compares the FTAG representation scheme with the FUG scheme of the cited work.,COMPLETO,45,1
+52,W08-0321_P07-2045_0,Evaluable,Application,Alta,Uses Moses to build baseline systems.,COMPLETO,45,1
+53,W98-1303_A94-1024_0,Evaluable,Background,Media,Describes findings of a prior study on tagger benefits for parsing.,COMPLETO,45,1
+54,N12-1087_W10-2902_1,Evaluable,Evidence,Alta,Cited observation supports the argument about probability mass in the tail.,COMPLETO,45,1
+55,N07-2049_N04-4035_0,Evaluable,Basis,Media,Initial work whose finding motivates and is extended by the present study.,COMPLETO,45,1
+56,D11-1106_W03-2900_0,Evaluable,Comparison,Alta,Compares BLEU score with the cited dependency-based system.,COMPLETO,45,1
+57,D08-1009_W07-1431_1,Evaluable,Comparison,Media,Positions the work as closely related to logical-form-based approaches.,COMPLETO,45,1
+58,W11-1913_P10-1142_1,Evaluable,Evidence,Media,Supports the claim that semantic information is important for improvement.,COMPLETO,45,1
+59,W12-1908_W04-3234_0,Evaluable,Gap,Media,Cites semi-supervised approaches and notes they still require substantial annotation.,COMPLETO,45,1
+60,W13-4706_P06-1067_0,Evaluable,Background,Media,Describes what a language model does.,COMPLETO,45,1
+61,S13-1043_P11-2022_2,Evaluable,Comparison,Alta,Compares non-entity-grid models and their F1 scores with the entity grid.,COMPLETO,45,1
+62,P10-2031_P10-2019_0,Evaluable,Background,Alta,Lists previous Chinese SRL research.,COMPLETO,45,1
+63,P07-1051_E03-1005_0,Evaluable,Evidence,Alta,Cited results support the shortest-derivation assumption.,COMPLETO,45,1
+64,S10-1076_P09-1046_0,Evaluable,Comparison,Alta,Notes previous work used ML and states two ways the current approach differs.,COMPLETO,45,1
+65,W11-0311_P06-1134_1,Evaluable,Evidence,Alta,Supports the claim that sentences with objective senses may not be objective.,COMPLETO,45,1
+66,W13-2026_P12-1041_0,Evaluable,Application,Alta,Uses Hearst concurrence features from the cited work.,COMPLETO,45,1
+67,P13-1115_P00-1065_1,Evaluable,Comparison,Media,Contrasts clustering-based approach coverage with the WordNet-based approach.,COMPLETO,45,1
+68,W13-4403_D09-1127_0,Evaluable,Background,Media,Cites prior Chinese parsing works whose performance was worse than English.,COMPLETO,45,1
+69,P04-2009_J97-4002_0,Evaluable,Evidence,Media,Supports the claim that copying the antecedent clause suffices for most ellipsis.,COMPLETO,45,1
+70,J86-3001_P86-1021_1,Evaluable,Evidence,Alta,Recent evidence from the cited work supports the claim about intonation and DSP.,COMPLETO,45,1
+71,W11-1101_P05-1053_1,Evaluable,Background,Alta,Summarizes features explored in previous research.,COMPLETO,45,1
+72,P12-2008_P09-1094_0,Evaluable,Background,Alta,Related-work description of prior paraphrase generation methods.,COMPLETO,45,1
+73,W11-4111_W01-0716_0,Evaluable,Further Reading,Media,cf. points the reader to the work for related uses of animacy.,COMPLETO,45,1
+74,S13-1045_P09-1011_0,Evaluable,Background,Alta,Related-work summary of models handling ambiguous logical form labels.,COMPLETO,45,1
+75,P09-2018_P98-2127_0,Evaluable,Background,Alta,Cites works from the active research area of distributional similarity.,COMPLETO,45,1
+76,P11-1064_W02-1018_0,Evaluable,Background,Alta,Cites prior many-to-many alignment work as an overview.,COMPLETO,45,1
+77,J13-4004_D09-1120_4,Evaluable,Application,Media,"Cited for a test partition used in the evaluation, i.e., data usage.",COMPLETO,45,1
+78,D12-1003_W11-1206_1,Evaluable,Background,Alta,Lists similarity measures used in prior work.,COMPLETO,45,1
+79,W12-2514_P10-1015_0,Evaluable,Background,Alta,Lists prior work on fiction in CL and AI.,COMPLETO,45,1
+80,P12-2004_P02-1017_1,Evaluable,Background,Media,States the original evaluation setting of CCM; could be Gap but mainly descriptive.,COMPLETO,45,1
+81,D10-1003_P07-1086_1,Evaluable,Comparison,Alta,Table comparing improvement magnitudes across parsers.,COMPLETO,45,1
+82,J89-3012_J98-4000_0,Evaluable,Further Reading,Media,Lists books surveying NLP approaches for readers.,COMPLETO,45,1
+83,D13-1093_P11-2033_0,Evaluable,Application,Alta,Uses the data split defined by the cited work.,COMPLETO,45,1
+84,P08-1046_W05-0615_2,Evaluable,Comparison,Alta,Compares adaptor grammar results with the PCFGs of the cited work.,COMPLETO,45,1
+85,W90-0116_J88-3006_0,Evaluable,Background,Alta,Describes Paris's prior work extension.,COMPLETO,45,1
+86,P09-1064_D08-1065_3,Evaluable,Background,Alta,Related-work description of a similar MBR approach.,COMPLETO,45,1
+87,W08-0902_P00-1065_0,Evaluable,Evidence,Alta,Supports the claim that the representations are learnable by automatic systems.,COMPLETO,45,1
+88,W06-0305_J04-3002_1,Evaluable,Background,Alta,Describes prior annotation approaches at sentence/word level.,COMPLETO,45,1
+89,W13-4008_P09-1026_1,Evaluable,Background,Alta,Related-work overview of prior stance classification approaches.,COMPLETO,45,1
+90,W07-2208_W06-1619_8,Evaluable,Comparison,Alta,Contrasts the cited model's use of the supertagger with the other model.,COMPLETO,45,1
+91,W01-0712_W95-0107_1,Evaluable,Identification of the Originator,Media,Credits the cited work for putting forward the standard NP chunking datasets.,COMPLETO,45,1
+92,W11-2604_D10-1112_0,Evaluable,Further Reading,Alta,Refers to a model for phonetic/morphological changes not covered here.,COMPLETO,45,1
+93,D11-1075_N06-1039_0,Evaluable,Gap,Media,"Cites prior unsupervised IE attempts, then points out their commonality and limitation.",COMPLETO,45,1
+94,N12-1027_P03-2041_0,Evaluable,Background,Alta,Related-work description of SCFG limitations observed by others.,COMPLETO,45,1
+95,W10-1012_W08-0907_0,Evaluable,Background,Alta,Lists prior work on qualitative assessment of instructional discourse.,COMPLETO,45,1
+96,P10-1130_D08-1093_0,Evaluable,Evidence,Media,Reports a finding from the cited study to support the caveat about parse accuracy.,COMPLETO,45,1
+97,P07-1115_P06-4020_1,Evaluable,Application,Alta,Uses the RASP toolkit as is.,COMPLETO,45,1
+98,P12-1008_W04-2703_0,Evaluable,Evidence,Alta,Reported agreement supports the claim of reliable annotation.,COMPLETO,45,1
+99,W08-2206_P06-1113_0,Evaluable,Background,Alta,Lists applications relying on semantic relatedness.,COMPLETO,45,1
+100,P13-2022_W12-3810_0,Evaluable,Application,Alta,Uses the corpus from the cited work for the study.,COMPLETO,45,1

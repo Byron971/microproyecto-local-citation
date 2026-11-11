@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J01-3003_W99-0632_4,Evaluable,Background,Media,Describes prior work on verb classification as part of a literature overview.,COMPLETO,37,1
+2,W06-1410_E91-1028_0,Evaluable,Background,Media,Describes how the cited work extended earlier GRE algorithms in a historical overview.,COMPLETO,37,1
+3,D13-1039_D11-1142_0,Evaluable,Background,Media,Lists methods addressing open-domain relation acquisition.,COMPLETO,37,1
+4,W09-0615_W06-1421_0,Evaluable,Gap,Media,"Cites evaluations that focus on humanlikeness and ignore effectiveness, pointing to a limitation.",COMPLETO,37,1
+5,D10-1054_P07-1005_0,Evaluable,Background,Media,Reports prior findings that WSD improves lexical translation.,COMPLETO,37,1
+6,P10-1100_P06-1095_0,Evaluable,Background,Media,Lists prior systems that classify temporal relations.,COMPLETO,37,1
+7,P13-2067_W11-2136_0,Evaluable,Background,Media,Enumerates related approaches using SRL in SMT.,COMPLETO,37,1
+8,D09-1160_N06-1020_0,Evaluable,Evidence,Baja,Cited as an example of semi-supervised learning that supports the claim about inefficiency on web-scale data.,COMPLETO,37,1
+9,D12-1106_P03-1054_0,Evaluable,Application,Alta,The Stanford parser is used as a tool to parse the articles.,COMPLETO,37,1
+10,W06-2402_W02-2001_0,Evaluable,Evidence,Media,Supports the claim that multi-word expression frequencies are low.,COMPLETO,37,1
+11,P06-2097_P03-1071_1,Evaluable,Evidence,Alta,Cited finding that longer silence signals topic change supports using silence as a feature.,COMPLETO,37,1
+12,J12-2002_P07-1125_1,Evaluable,Background,Media,Cited work provides the data used by another system; part of a literature description.,COMPLETO,37,1
+13,D09-1133_W06-1617_0,Evaluable,Background,Alta,Describes the pioneering NomBank SRL work in related work.,COMPLETO,37,1
+14,D13-1155_P08-1035_0,Evaluable,Gap,Media,Cited tree-pruning methods are then criticised for their limitations.,COMPLETO,37,1
+15,P12-1041_P09-1116_0,Evaluable,Evidence,Media,"Supports the claim that soft cluster assignments reveal different word senses, justifying the feature design.",COMPLETO,37,1
+16,W11-2020_W10-4304_3,Evaluable,Evidence,Media,Reported low rating correlation motivates the authors' guidelines.,COMPLETO,37,1
+17,D09-1058_E06-1011_0,Evaluable,Comparison,Media,Performance improvements are compared against state-of-the-art supervised parsers.,COMPLETO,37,1
+18,W06-3104_P04-1084_0,Evaluable,Background,Baja,Lists powerful grammar formalisms as general context.,COMPLETO,37,1
+19,W09-1704_N04-1033_0,Evaluable,Application,Alta,Uses the cited MT system directly for translation.,COMPLETO,37,1
+20,D12-1032_W02-1009_0,Evaluable,Comparison,Alta,Explicitly contrasts the present model with transformation models.,COMPLETO,37,1
+21,W13-2212_W12-3139_0,Evaluable,Evidence,Media,Supports the claim that factored decomposition helps handle rare and unknown words.,COMPLETO,37,1
+22,P13-1020_P11-1049_3,Evaluable,Basis,Baja,"The limit case recovers the cited approach, which the current model generalises.",COMPLETO,37,1
+23,N10-1144_P05-1019_0,Evaluable,Background,Alta,Reviews prior studies on connective substitutability.,COMPLETO,37,1
+24,W04-0106_W02-0604_0,Evaluable,Background,Alta,Outlines a related morphological learner in the literature review.,COMPLETO,37,1
+25,P04-1087_P00-1010_0,Evaluable,Application,Alta,Uses the cited temporal expression tagger directly.,COMPLETO,37,1
+26,W05-0607_P97-1024_0,Evaluable,Evidence,Media,Supports the claim that the independence assumption is wrong in some applications.,COMPLETO,37,1
+27,D13-1168_P08-1088_3,Evaluable,Further Reading,Baja,Points to another similarity method as future-work direction.,COMPLETO,37,1
+28,N10-1015_P09-1104_1,Evaluable,Evidence,Alta,Supports the claim that the restricted space covers almost all observed alignments.,COMPLETO,37,1
+29,N13-1032_N04-4026_0,Evaluable,Background,Media,Describes standard lexicalized distortion models used by phrase-based systems.,COMPLETO,37,1
+30,P10-1142_D09-1101_0,Evaluable,Background,Alta,Describes the cluster-ranking model proposed in prior work.,COMPLETO,37,1
+31,W13-1614_W08-1207_0,Evaluable,Evidence,Media,Supports the claim that fine-grained annotation schemes are reliable for English data.,COMPLETO,37,1
+32,P13-1079_N12-1047_0,Evaluable,Application,Alta,Uses batch-MIRA for tuning without modification.,COMPLETO,37,1
+33,P13-2083_P08-1028_0,Evaluable,Background,Alta,Describes the composition framework proposed in prior work.,COMPLETO,37,1
+34,P13-1039_D12-1106_1,Evaluable,Comparison,Alta,Contrasts the authors' modular method with prior clustering-initialisation approaches.,COMPLETO,37,1
+35,P10-1134_P08-1115_0,Evaluable,Background,Media,Lists works using lattices for translation models.,COMPLETO,37,1
+36,W13-0121_W07-1431_0,Evaluable,Background,Media,Announces a section reviewing related methods.,COMPLETO,37,1
+37,N10-1101_W04-3252_2,Evaluable,Application,Alta,Applies the TextRank algorithm for tag extraction.,COMPLETO,37,1
+38,P13-2071_P11-1105_2,Evaluable,Further Reading,Alta,Refers the reader to the cited work for operations and conversion algorithm details.,COMPLETO,37,1
+39,D10-1078_N10-1083_0,Evaluable,Background,Alta,Lists prior work on unsupervised POS induction.,COMPLETO,37,1
+40,W12-1509_D10-1049_0,Evaluable,Background,Alta,Lists statistical approaches to sentence planning and realisation.,COMPLETO,37,1
+41,N12-1030_P10-1035_4,Evaluable,Comparison,Alta,Appears in a table comparing parsing results of different approaches.,COMPLETO,37,1
+42,P06-1109_E03-1005_0,Evaluable,Further Reading,Media,Refers to the cited work for the correction factor details.,COMPLETO,37,1
+43,J10-3005_P05-1036_0,Evaluable,Background,Alta,Enumerates prior compression models learning deletion rules.,COMPLETO,37,1
+44,W02-2014_P99-1004_0,Evaluable,Background,Media,Lists similarity measures proposed in the literature.,COMPLETO,37,1
+45,W00-0103_J91-4003_0,Evaluable,Evidence,Baja,Supports the claim that word senses are systematically related.,COMPLETO,37,1
+46,N10-1146_P94-1019_0,Evaluable,Application,Alta,Uses the Wu and Palmer similarity metric.,COMPLETO,37,1
+47,W13-4051_D11-1054_3,Evaluable,Comparison,Media,Contrasts the results with the cited work's findings.,COMPLETO,37,1
+48,W08-0403_J07-2003_3,Evaluable,Background,Alta,Related work noting promising improvements of syntax-based models.,COMPLETO,37,1
+49,Q13-1027_N06-1014_0,Evaluable,Application,Alta,Uses the Berkeley Aligner to produce word alignments.,COMPLETO,37,1
+50,W07-2204_N06-1020_1,Evaluable,Comparison,Alta,Compares own f-score with the one reported in the cited work.,COMPLETO,37,1
+51,P13-4017_W11-2402_0,Evaluable,Application,Media,The tool implements the scoring models described in the cited work.,COMPLETO,37,1
+52,D11-1056_W04-3230_0,Evaluable,Background,Media,Reports the state of Japanese segmentation performance.,COMPLETO,37,1
+53,W13-4913_P06-1055_0,Evaluable,Application,Media,Trains probabilistic models like the cited parsers to derive a grammar.,COMPLETO,37,1
+54,P13-2138_P12-1038_1,Evaluable,Background,Alta,Related work on automatic image caption generation.,COMPLETO,37,1
+55,W13-1718_P07-1083_1,Evaluable,Evidence,Media,Supports the claim that features can be extended to non-Latin scripts.,COMPLETO,37,1
+56,W13-1719_D11-1148_0,Evaluable,Evidence,Alta,Supports the claim that syntactic features are discriminative for native language.,COMPLETO,37,1
+57,S12-1027_P09-1002_0,Evaluable,Background,Media,Summarises prior finding on graded sense labeling.,COMPLETO,37,1
+58,W06-0803_W04-0701_0,Evaluable,Background,Alta,Describes research on multi-document person name resolution.,COMPLETO,37,1
+59,W97-1005_P91-1030_2,Evaluable,Comparison,Media,Notes performance comparable to the cited work.,COMPLETO,37,1
+60,P12-2036_N06-2040_0,Evaluable,Evidence,Media,Supports the empirical observation that instructions are constrained by visual affordances.,COMPLETO,37,1
+61,P10-1010_W06-0605_0,Evaluable,Evidence,Media,Provides the factual statistic on languages with machine-readable data.,COMPLETO,37,1
+62,W09-4410_W06-2609_0,Evaluable,Background,Media,Cites prior work combining patterns and machine learning for definitions.,COMPLETO,37,1
+63,D13-1037_N12-1005_0,Evaluable,Background,Alta,Lists applications of neural networks in NLP.,COMPLETO,37,1
+64,E12-1047_N10-1118_1,Evaluable,Application,Media,Uses the optimal binarization strategy introduced in the cited work.,COMPLETO,37,1
+65,W13-2806_W08-0509_0,Evaluable,Application,Alta,Uses MGIZA++ for word alignment.,COMPLETO,37,1
+66,E12-1003_D11-1122_4,Evaluable,Application,Media,Computes aggregate scores in the same way as the cited work.,COMPLETO,37,1
+67,J97-1001_P96-1036_0,Evaluable,Evidence,Media,Cited as examples of testing generality across language families.,COMPLETO,37,1
+68,D12-1071_P06-1005_0,Evaluable,Application,Alta,Uses the same MI formula described in the cited work.,COMPLETO,37,1
+69,P11-2046_D10-1035_1,Evaluable,Evidence,Media,Cited result supports the claim about precision gains.,COMPLETO,37,1
+70,W12-2032_W12-2006_1,Evaluable,Further Reading,Alta,Refers the reader to the cited report for more details.,COMPLETO,37,1
+71,P13-1039_N13-1104_3,Evaluable,Comparison,Alta,Used as a baseline compared against the proposed model.,COMPLETO,37,1
+72,D11-1106_P07-1096_2,Evaluable,Comparison,Media,Relates cited guided learning to the authors' algorithm in related work.,COMPLETO,37,1
+73,J03-3002_W02-1013_3,Evaluable,Background,Media,Describes a prior bootstrapping paradigm for parallel corpora.,COMPLETO,37,1
+74,W10-1013_P98-2127_0,Evaluable,Application,Media,Uses Lin's word similarity estimates through a tool.,COMPLETO,37,1
+75,W10-3003_P07-1125_1,Evaluable,Background,Media,Lists prior work that considered only sentence classification.,COMPLETO,37,1
+76,W10-3911_S07-1028_0,Evaluable,Background,Alta,Reviews previous works using syntactic information.,COMPLETO,37,1
+77,D12-1047_P03-1021_0,Evaluable,Application,Alta,Uses MERT to tune feature weights.,COMPLETO,37,1
+78,W07-1205_P05-1033_0,Evaluable,Evidence,Media,"Footnote reports the cited finding that parser information gives no improvement, supporting a point.",COMPLETO,37,1
+79,J10-3003_W95-0107_0,Evaluable,Application,Media,Uses the IOB notation from the cited work.,COMPLETO,37,1
+80,W10-2419_W02-1201_0,Evaluable,Evidence,Baja,Supports the claim that tokenization works correctly in electronic processing.,COMPLETO,37,1
+81,P11-3001_P07-1039_0,Evaluable,Background,Alta,Lists works on learning word segmentation for SMT.,COMPLETO,37,1
+82,W09-3539_W03-0425_0,Evaluable,Evidence,Alta,"Earlier work showed combining ML models yields better performance, supporting the approach.",COMPLETO,37,1
+83,W10-3001_W09-1401_0,Evaluable,Background,Alta,Mentions related shared task as part of literature review.,COMPLETO,37,1
+84,P10-1041_P05-1017_2,Evaluable,Evidence,Baja,"Cited as precedent for removing ambiguous words, justifying the procedure.",COMPLETO,37,1
+85,P13-2008_P00-1037_0,Evaluable,Background,Media,Summarises query substitution approaches before comparing.,COMPLETO,37,1
+86,P12-1055_P11-1037_0,Evaluable,Background,Alta,Describes prior NER work on tweets.,COMPLETO,37,1
+87,W13-0101_P09-1004_0,Evaluable,Evidence,Media,Supports the claim that SRL argument identification reaches about 85% F-score.,COMPLETO,37,1
+88,W13-2322_W12-4209_0,Evaluable,Background,Media,Cites theoretical frameworks for mapping between graphs and strings.,COMPLETO,37,1
+89,W13-2018_W11-1820_0,Evaluable,Comparison,Alta,Pre-processing is stated as similar to the cited work.,COMPLETO,37,1
+90,W12-4404_P04-1021_3,Evaluable,Background,Alta,Describes a prior approach addressing source-origin differences.,COMPLETO,37,1
+91,P13-1020_E12-1023_0,Evaluable,Background,Alta,Notes that learning is possible with standard structured prediction algorithms.,COMPLETO,37,1
+92,D11-1110_D10-1004_0,Evaluable,Background,Alta,Cites supervised parsers as state of the art in the introduction.,COMPLETO,37,1
+93,N13-1100_D11-1016_0,Evaluable,Background,Alta,Lists prior efforts to model within-sentence valence shifts.,COMPLETO,37,1
+94,P11-2048_P09-1113_1,Evaluable,Background,Alta,Introduces distant supervision as prior approach addressing the problem.,COMPLETO,37,1
+95,P13-2078_W13-0109_0,Evaluable,Evidence,Alta,Supports the claim that distributions represent intension better than extension.,COMPLETO,37,1
+96,E09-1017_D08-1020_1,Evaluable,Application,Media,Uses the quality assessments previously collected in the cited work.,COMPLETO,37,1
+97,P03-1027_P98-1013_0,Evaluable,Gap,Alta,Cites FrameNet as a resource that lacks breadth or depth for mental state expressions.,COMPLETO,37,1
+98,W12-3150_W06-1600_0,Evaluable,Comparison,Alta,States the feature is similar to one used in the cited work.,COMPLETO,37,1
+99,P98-1090_W97-1301_1,Evaluable,Evidence,Media,Cited corpus analysis provides the figures supporting the claim.,COMPLETO,37,1
+100,W11-1005_D09-1159_0,Evaluable,Comparison,Alta,Likens the representation to the cited works and then contrasts with them.,COMPLETO,37,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P07-1005_P00-1056_0,Evaluable,Application,Alta,They use GIZA++ directly for word alignment.,COMPLETO,27,1
+2,D11-1066_P08-1082_0,Evaluable,Background,Media,Lists prior work on definition questions among several citations.,COMPLETO,27,1
+3,P12-1018_W08-0336_1,Evaluable,Background,Alta,Enumerates prior work on word segmentation for translation.,COMPLETO,27,1
+4,P10-1159_P99-1018_0,Evaluable,Evidence,Media,Supports the claim about adjective ordering acceptability.,COMPLETO,27,1
+5,D10-1078_N10-1083_1,Evaluable,Comparison,Alta,Compares reported accuracy with the table results.,COMPLETO,27,1
+6,W10-1412_N10-1115_2,Evaluable,Further Reading,Alta,Refers the reader to the cited work for complete details.,COMPLETO,27,1
+7,P09-1059_W03-1728_0,Evaluable,Identification of the Originator,Alta,Says the cited work first described character classification.,COMPLETO,27,1
+8,W11-1005_P03-2041_0,Evaluable,Evidence,Media,Supports the claim that learning MWUs such as elementary trees reduces non-isomorphism.,COMPLETO,27,1
+9,W10-0216_W06-1652_0,Evaluable,Background,Media,Describes the feature subsumption approach proposed in prior work.,COMPLETO,27,1
+10,N13-1015_P03-1054_0,Evaluable,Application,Alta,Uses the head rules from the Stanford parser as is.,COMPLETO,27,1
+11,W09-2813_P06-3007_0,Evaluable,Gap,Media,"Related event-based work is contrasted with the present non-textual case, which is novel.",COMPLETO,27,1
+12,P13-2030_W12-2304_3,Evaluable,Comparison,Alta,Appears in a results table comparing methods.,COMPLETO,27,1
+13,N10-2001_P06-4020_0,Evaluable,Application,Alta,The RASP toolkit is used for parsing.,COMPLETO,27,1
+14,J96-1003_A94-1024_0,Evaluable,Further Reading,Media,"Points to tagging techniques for disambiguation, not developed in the text.",COMPLETO,27,1
+15,Q13-1003_D12-1130_0,Evaluable,Background,Alta,Describes prior work using feature norms.,COMPLETO,27,1
+16,P13-1024_P11-1015_0,Evaluable,Evidence,Media,Supports the figure of 87.5% accuracy for sentiment analysis.,COMPLETO,27,1
+17,W11-0607_P98-2127_0,Evaluable,Background,Media,Describes common practice in structured DSMs.,COMPLETO,27,1
+18,W13-1718_W13-1706_0,Evaluable,Background,Media,Cites the shared task announcement as context for their participation.,COMPLETO,27,1
+19,D11-1137_P10-1001_0,Evaluable,Basis,Alta,Their search algorithm is inspired by the cited parsing algorithm.,COMPLETO,27,1
+20,W10-3813_W02-1018_0,Evaluable,Gap,Alta,Notes that phrase alignment models are unsuccessful due to intractable estimation.,COMPLETO,27,1
+21,P12-1013_P10-1124_0,Evaluable,Background,Alta,Describes prior work formulating entailment rule learning as graph optimization.,COMPLETO,27,1
+22,W12-3016_D10-1106_0,Evaluable,Gap,Media,Notes prior work lacked entity linking and lost most extractions.,COMPLETO,27,1
+23,P09-2057_N09-2024_0,Evaluable,Application,Alta,Uses the cited implementation techniques directly.,COMPLETO,27,1
+24,N10-1080_W08-0336_0,Evaluable,Application,Alta,Uses the Stanford Chinese Word Segmenter.,COMPLETO,27,1
+25,W09-0607_E06-2020_2,Evaluable,Evidence,Media,Cites a corpus analysis supporting the claim about spatial description variety.,COMPLETO,27,1
+26,W02-0810_S01-1040_1,Evaluable,Background,Media,Cites voting as an established combination method.,COMPLETO,27,1
+27,J08-2003_P04-1043_2,Evaluable,Background,Alta,Lists prior kernel applications across NLP tasks.,COMPLETO,27,1
+28,W12-3127_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ for word alignment.,COMPLETO,27,1
+29,J13-4006_P11-2012_0,Evaluable,Background,Alta,"Lists application areas, including authorship attribution.",COMPLETO,27,1
+30,W06-1501_J01-1004_0,Evaluable,Application,Media,Adopts the sister-adjunction operation from the cited work.,COMPLETO,27,1
+31,P11-2067_W08-1005_0,Evaluable,Comparison,Alta,Appears in a results table compared against this paper.,COMPLETO,27,1
+32,W07-1202_P04-1015_1,Evaluable,Comparison,Alta,Identifies the most similar work and states the main difference.,COMPLETO,27,1
+33,D10-1108_P08-1078_1,Evaluable,Background,Media,Cites work on textual entailment as a knowledge-intensive task.,COMPLETO,27,1
+34,J94-4005_A92-1014_0,Evaluable,Background,Alta,Lists work on collocation functions.,COMPLETO,27,1
+35,J99-3001_P86-1031_0,Evaluable,Background,Alta,Traces prior accounts integrating information structure in centering.,COMPLETO,27,1
+36,N06-2019_N01-1016_4,Evaluable,Comparison,Alta,States results are consistent with previous work.,COMPLETO,27,1
+37,P08-2030_N07-2014_0,Evaluable,Basis,Media,They extend the approach from the cited work to diacritization.,COMPLETO,27,1
+38,D11-1018_P01-1067_0,Evaluable,Background,Alta,Describes the tree rotation model from prior work.,COMPLETO,27,1
+39,P01-1007_W98-1302_0,Evaluable,Further Reading,Media,Refers the reader to an example of an FSA guiding a CF parser.,COMPLETO,27,1
+40,P11-2088_W06-1650_4,Evaluable,Comparison,Alta,Contrasts findings with prior product-review results.,COMPLETO,27,1
+41,W12-2032_W10-1004_0,Evaluable,Basis,Alta,The determiner system builds on the ideas of the cited work.,COMPLETO,27,1
+42,N10-1128_J07-2003_1,Evaluable,Application,Alta,Uses cube pruning for language model integration.,COMPLETO,27,1
+43,N09-2055_W07-0718_0,Evaluable,Basis,Media,The measure is grounded on previous human-evaluation work.,COMPLETO,27,1
+44,J05-1005_P00-1065_0,Evaluable,Evidence,Media,Supports the claim that the domain-specific level is appropriate for computational tasks.,COMPLETO,27,1
+45,S10-1076_P06-1095_0,Evaluable,Comparison,Alta,Contrasts their use of all five relations with the cited focus on HAPPENS-BEFORE.,COMPLETO,27,1
+46,W12-2004_P00-1056_0,Evaluable,Application,Alta,Uses the GIZA++ implementation of IBM Model 1.,COMPLETO,27,1
+47,P11-1071_N01-1016_0,Evaluable,Evidence,Media,Cites the observation on edited-word proportion to support the baseline accuracy claim.,COMPLETO,27,1
+48,P99-1023_P98-2186_0,Evaluable,Background,Alta,Enumerates prior tagging systems by type.,COMPLETO,27,1
+49,P06-1100_P05-1016_0,Evaluable,Background,Media,Describes the ontologizing task as defined in prior work.,COMPLETO,27,1
+50,W12-1641_W08-0105_0,Evaluable,Evidence,Media,Supports the claim that redundancy is used to repair misunderstanding.,COMPLETO,27,1
+51,N13-1008_N07-1071_1,Evaluable,Comparison,Alta,Contrasts their objective with the cited line of work.,COMPLETO,27,1
+52,W13-1729_D12-1064_0,Evaluable,Evidence,Media,Supports the claim that function words and dependency features help.,COMPLETO,27,1
+53,P07-1074_W06-0202_0,Evaluable,Gap,Alta,Points to limitations of existing approaches.,COMPLETO,27,1
+54,S12-1001_N09-4006_0,Evaluable,Application,Alta,Uses OntoNotes 3.0 as a data source for labeling.,COMPLETO,27,1
+55,N07-1072_P06-1117_0,Evaluable,Gap,Alta,Notes existing taggers perform poorly on other corpora.,COMPLETO,27,1
+56,D11-1137_W09-3839_3,Evaluable,Comparison,Alta,Compares their model with the cited k-best generative reranking work.,COMPLETO,27,1
+57,W12-4207_W08-0336_0,Evaluable,Application,Alta,Uses the Stanford Chinese segmenter.,COMPLETO,27,1
+58,W09-3711_J98-1004_0,Evaluable,Background,Alta,Notes use of co-occurrence space models in NLP.,COMPLETO,27,1
+59,J99-3001_P98-2204_1,Evaluable,Comparison,Media,Contrasts the cited approach with the centering model.,COMPLETO,27,1
+60,N13-1111_P04-1019_2,Evaluable,Gap,Alta,Criticizes prior work for focusing on subproblems.,COMPLETO,27,1
+61,W12-2414_P08-4003_0,Evaluable,Background,Alta,Describes available coreference systems.,COMPLETO,27,1
+62,W05-1512_P03-1054_2,Evaluable,Comparison,Alta,"Contrasts the cited annotation scheme with their own, noting what they borrow.",COMPLETO,27,1
+63,D11-1018_N03-1017_0,Evaluable,Application,Alta,Uses the phrase-based translation system.,COMPLETO,27,1
+64,N09-5005_N04-3012_0,Evaluable,Application,Alta,Uses the WordNet::Similarity measures.,COMPLETO,27,1
+65,W04-3212_W03-1707_0,Evaluable,Background,Alta,Lists semantically annotated corpora.,COMPLETO,27,1
+66,W07-0704_N03-1017_0,Evaluable,Application,Alta,Employs the phrase-based SMT framework.,COMPLETO,27,1
+67,J13-3003_P08-1028_3,Evaluable,Application,Media,Follows the cited work in using Spearman's rho.,COMPLETO,27,1
+68,W13-1736_N03-1033_0,Evaluable,Application,Alta,Uses the Stanford POS tagger.,COMPLETO,27,1
+69,E12-2020_N10-1069_0,Evaluable,Background,Alta,Describes the iterative parameter mixing strategy from prior work.,COMPLETO,27,1
+70,D10-1057_P08-2059_3,Evaluable,Application,Media,Follows the cited feature extraction directly.,COMPLETO,27,1
+71,D10-1052_P03-1021_0,Evaluable,Application,Alta,Trains weights using MERT.,COMPLETO,27,1
+72,J97-4005_E95-1012_0,Evaluable,Background,Alta,Describes the proposal of a probabilistic HPSG.,COMPLETO,27,1
+73,P13-1104_P05-1012_0,Evaluable,Comparison,Alta,Appears in a results table comparing parsers.,COMPLETO,27,1
+74,P11-2116_W08-1138_1,Evaluable,Gap,Media,Notes the manual cost assignment hampers comparison across data sets.,COMPLETO,27,1
+75,N13-1074_W07-0717_0,Evaluable,Background,Alta,Describes prior corpus-level weighting adaptation work.,COMPLETO,27,1
+76,P10-1044_N09-1042_0,Evaluable,Background,Alta,Lists NLP applications of topic models.,COMPLETO,27,1
+77,P13-1043_P08-1101_0,Evaluable,Background,Media,Cites work showing beam-search with global training is effective.,COMPLETO,27,1
+78,P10-1147_P05-1059_0,Evaluable,Background,Alta,Lists prior exploration of ITG.,COMPLETO,27,1
+79,D13-1172_P12-2065_0,Evaluable,Background,Alta,Enumerates topic-model approaches.,COMPLETO,27,1
+80,D11-1035_N06-1014_0,Evaluable,Application,Alta,Uses the Berkeley aligner for word alignment.,COMPLETO,27,1
+81,P10-2070_N03-1017_0,Evaluable,Application,Media,Employs the Phrase Based Model as the chosen SMT class.,COMPLETO,27,1
+82,P11-1109_N06-1058_0,Evaluable,Evidence,Media,Supports the claim that paraphrasing is an important NLP component.,COMPLETO,27,1
+83,W12-0604_P09-1113_0,Evaluable,Identification of the Originator,Alta,States the term was first introduced in the cited paper.,COMPLETO,27,1
+84,P11-3015_D08-1038_0,Evaluable,Application,Alta,Uses WEKA to process the corpus.,COMPLETO,27,1
+85,P02-1036_J97-4005_0,Evaluable,Background,Alta,Describes the point made in the cited work.,COMPLETO,27,1
+86,W13-5203_P03-1021_0,Evaluable,Application,Alta,Uses MERT to learn weights.,COMPLETO,27,1
+87,J13-3003_D10-1113_0,Evaluable,Background,Alta,Lists alternative approaches for representing meaning in context.,COMPLETO,27,1
+88,D10-1114_W97-0209_1,Evaluable,Background,Alta,Lists WordNet-based approaches to selectional preference.,COMPLETO,27,1
+89,W02-0810_P98-1029_0,Evaluable,Background,Media,Cites voting as a known combination method.,COMPLETO,27,1
+90,W11-2166_P03-2041_0,Evaluable,Background,Alta,Defines STSG labels from the cited formalism.,COMPLETO,27,1
+91,W11-2003_W01-0902_0,Evaluable,Evidence,Alta,Supports the claim that evaluation should use multiple criteria.,COMPLETO,27,1
+92,P11-1015_N07-1038_0,Evaluable,Background,Media,Cites work on sentiment and attitudinal aspects of meaning.,COMPLETO,27,1
+93,N13-1065_N10-1026_1,Evaluable,Comparison,Alta,Compares BJAC against baselines including the all-words approach.,COMPLETO,27,1
+94,P13-1120_P03-1002_0,Evaluable,Background,Alta,Lists related areas of work.,COMPLETO,27,1
+95,W12-2032_W11-2838_1,Evaluable,Background,Alta,Describes the preceding pilot shared task.,COMPLETO,27,1
+96,D13-1143_P11-1027_0,Evaluable,Application,Alta,Uses the Berkeley Language Modeling Toolkit.,COMPLETO,27,1
+97,P10-1145_P07-1089_0,Evaluable,Background,Alta,Describes related work applying forests in translation models.,COMPLETO,27,1
+98,D13-1108_N03-1017_0,Evaluable,Application,Media,Adopts the consistency notion from the phrase-based model.,COMPLETO,27,1
+99,J07-2002_P02-1030_2,Evaluable,Gap,Media,Notes previous approaches limit themselves to a specific model class.,COMPLETO,27,1
+100,D13-1074_W11-2838_0,Evaluable,Background,Alta,Lists prior competitions on grammatical error correction.,COMPLETO,27,1

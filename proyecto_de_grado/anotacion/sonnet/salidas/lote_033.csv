@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N10-1014_P96-1024_0,Evaluable,Improvement / Modification,Media,El algoritmo actual es una generalización sincrónica del algoritmo monolingüe citado.,COMPLETO,33,1
+2,P10-1016_W07-0403_0,Evaluable,Gap,Media,Se señala la limitación de los trabajos citados (estimación intratable).,COMPLETO,33,1
+3,P09-1036_N03-1017_1,Evaluable,Evidence,Alta,La cita respalda la afirmación de que las restricciones sintácticas duras perjudican el rendimiento.,COMPLETO,33,1
+4,W13-4908_W10-1404_0,Evaluable,Background,Alta,Describe trabajos previos sobre rasgos morfológicos en análisis de dependencias.,COMPLETO,33,1
+5,W12-2401_W07-1001_0,Evaluable,Background,Alta,Enumera trabajos previos sobre análisis de lenguaje clínico.,COMPLETO,33,1
+6,W02-2106_P96-1027_1,Evaluable,Comparison,Alta,Se señala similitud y ventaja frente a los enfoques citados.,COMPLETO,33,1
+7,N13-1041_P12-1042_0,Evaluable,Background,Alta,Trabajo relacionado descrito en detalle.,COMPLETO,33,1
+8,W08-2121_W08-2125_1,Evaluable,Evidence,Media,Los trabajos citados respaldan que la optimización conjunta mejora poco.,COMPLETO,33,1
+9,N10-1145_W07-1401_2,Evaluable,Application,Alta,Se usa el mismo montaje experimental del trabajo citado.,COMPLETO,33,1
+10,P07-2052_P06-1055_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los analizadores no lexicalizados logran precisión equivalente.,COMPLETO,33,1
+11,P10-1036_W01-0521_1,Evaluable,Evidence,Alta,Respalda que fuera de dominio los analizadores son más lentos y menos precisos.,COMPLETO,33,1
+12,D10-1030_D09-1153_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la baja precisión de los sistemas SRL en chino.,COMPLETO,33,1
+13,N13-1055_P11-1092_1,Evaluable,Background,Alta,Resume hallazgos de trabajos previos.,COMPLETO,33,1
+14,W10-0503_W03-1709_0,Evaluable,Application,Alta,Se usa el segmentador automático citado tal cual.,COMPLETO,33,1
+15,J12-4004_P11-1132_0,Evaluable,Further Reading,Media,Remite con 'see' al trabajo para más detalles sobre los dialectos.,COMPLETO,33,1
+16,J12-2001_W06-2920_0,Evaluable,Background,Media,Describe el formato CoNLL estándar en que se inspira el trabajo previo.,COMPLETO,33,1
+17,W13-0807_W06-3105_0,Evaluable,Background,Alta,Enumeración de literatura sobre aprendizaje desde corpus alineados.,COMPLETO,33,1
+18,N09-1002_P06-1134_0,Evaluable,Evidence,Alta,La cita aporta evidencia que motiva la anotación de subjetividad en sentidos.,COMPLETO,33,1
+19,P05-1003_P05-1002_0,Evaluable,Further Reading,Alta,Nota al pie que remite al trabajo para un método de escalado.,COMPLETO,33,1
+20,W11-1606_D08-1084_1,Evaluable,Improvement / Modification,Alta,Se adapta MANLI sustituyendo la decodificación por ILP exacto y añadiendo restricciones.,COMPLETO,33,1
+21,D12-1056_P02-1019_0,Evaluable,Background,Alta,Describe trabajo previo centrado en corregir palabras fuera de vocabulario.,COMPLETO,33,1
+22,J13-4002_N07-1050_1,Evaluable,Background,Alta,Reseña histórica de la terminología graph-based y transition-based.,COMPLETO,33,1
+23,W12-0116_P07-2045_0,Evaluable,Application,Alta,Se usa Moses directamente como herramienta.,COMPLETO,33,1
+24,P11-1128_D10-1027_0,Evaluable,Background,Media,Describe el análisis de complejidad de decodificación hecho en el trabajo citado.,COMPLETO,33,1
+25,W03-0433_W96-0102_0,Evaluable,Application,Alta,Se usa el etiquetador y chunker basado en memoria para anotar los datos.,COMPLETO,33,1
+26,D08-1023_J07-2003_1,Evaluable,Evidence,Media,Se apoya en el trabajo citado para afirmar la complejidad polinomial.,COMPLETO,33,1
+27,W10-3008_W09-1304_0,Evaluable,Comparison,Alta,Compara similitudes y diferencias entre el sistema actual y el citado.,COMPLETO,33,1
+28,W13-3611_D10-1094_0,Evaluable,Evidence,Media,Respalda que el enfoque de clasificación es de uso extendido.,COMPLETO,33,1
+29,N07-1063_P05-1033_3,Evaluable,Application,Alta,Se usa el método de extracción de N-best citado.,COMPLETO,33,1
+30,E12-1011_W06-2609_0,Evaluable,Background,Alta,Trabajos relacionados sobre sistemas de QA de definiciones.,COMPLETO,33,1
+31,W12-1509_E09-1085_0,Evaluable,Evidence,Alta,Respalda que procesar fragmentos mejora la experiencia del usuario.,COMPLETO,33,1
+32,P12-3003_N09-1018_0,Evaluable,Evidence,Media,Cita el sistema SRL cuyo rendimiento cae en tweets como soporte del dato.,COMPLETO,33,1
+33,P08-1119_N04-1041_0,Evaluable,Background,Alta,Enumera métodos previos de generación de léxicos semánticos.,COMPLETO,33,1
+34,D11-1127_D10-1125_0,Evaluable,Background,Media,Resume trabajo previo sobre técnicas de relajación en análisis sintáctico.,COMPLETO,33,1
+35,P13-2109_D10-1004_1,Evaluable,Comparison,Alta,Se compara con los mejores resultados publicados.,COMPLETO,33,1
+36,P12-1071_P11-1070_0,Evaluable,Background,Alta,Enumera trabajos previos que usan datos no etiquetados.,COMPLETO,33,1
+37,W08-2102_P05-1022_1,Evaluable,Comparison,Alta,Compara el rendimiento del modelo con el reranker citado.,COMPLETO,33,1
+38,P11-1012_W06-1615_0,Evaluable,Background,Alta,Trabajos relacionados sobre transferencia entre dominios.,COMPLETO,33,1
+39,W13-4038_W12-1613_0,Evaluable,Application,Alta,Se usa el corpus Navagati para evaluar.,COMPLETO,33,1
+40,W04-0110_N04-2008_1,Evaluable,Evidence,Media,El trabajo citado respalda que un contexto mínimo basta en griego.,COMPLETO,33,1
+41,D10-1090_P05-1074_0,Evaluable,Background,Alta,Contexto sobre el interés creciente en generación de paráfrasis.,COMPLETO,33,1
+42,W13-3518_J13-1002_0,Evaluable,Basis,Media,Se sigue la configuración inicial sugerida por el trabajo citado.,COMPLETO,33,1
+43,W12-2032_D10-1094_0,Evaluable,Basis,Alta,El sistema de determinantes se construye sobre las ideas del trabajo citado.,COMPLETO,33,1
+44,W10-2606_P06-1043_5,Evaluable,Comparison,Alta,Se muestran resultados del trabajo citado con fines de comparación.,COMPLETO,33,1
+45,P08-3003_P00-1010_2,Evaluable,Comparison,Alta,Se compara la precisión obtenida con la del trabajo citado.,COMPLETO,33,1
+46,J96-4003_J94-1003_1,Evaluable,Background,Media,Presenta trabajo previo sobre modelado fonológico con autómatas.,COMPLETO,33,1
+47,J07-1005_W04-0509_0,Evaluable,Background,Media,Describe un estudio previo sobre extracción de resultados.,COMPLETO,33,1
+48,W09-2301_P07-2045_1,Evaluable,Application,Alta,Se ejecutan pasos del script de entrenamiento de Moses.,COMPLETO,33,1
+49,D13-1131_P11-1137_1,Evaluable,Comparison,Media,Compara el efecto de la penalización L1 con los priors dispersos generativos.,COMPLETO,33,1
+50,D10-1099_P09-1113_5,Evaluable,Comparison,Media,Se contrasta con un sistema base de supervisión distante similar al citado.,COMPLETO,33,1
+51,P10-1111_P07-2051_2,Evaluable,Comparison,Alta,Contrasta explícitamente ('unlike') con el trabajo citado.,COMPLETO,33,1
+52,P09-1004_P00-1065_0,Evaluable,Identification of the Originator,Alta,Se reconoce como el primer trabajo en abordar SRL como tarea independiente.,COMPLETO,33,1
+53,S07-1109_W03-1606_0,Evaluable,Further Reading,Media,Remite con 'see' al trabajo para detalles sobre las relaciones.,COMPLETO,33,1
+54,P11-2072_N03-1016_0,Evaluable,Basis,Media,La heurística se inspira en la idea de A* parsing.,COMPLETO,33,1
+55,P13-1079_N10-1028_0,Evaluable,Background,Alta,Describe métodos populares previos.,COMPLETO,33,1
+56,W11-3708_D08-1014_0,Evaluable,Background,Alta,Contextualiza tareas de clasificación multilingüe como casos de enfoques sustitutivos.,COMPLETO,33,1
+57,W07-2305_P98-1116_0,Evaluable,Background,Alta,Trabajo previo sobre adquisición de paráfrasis.,COMPLETO,33,1
+58,W09-3518_W98-1005_0,Evaluable,Background,Alta,Describe modelos híbridos de transliteración existentes.,COMPLETO,33,1
+59,P04-1013_E03-1005_0,Evaluable,Comparison,Alta,Se compara la precisión con otros analizadores estadísticos.,COMPLETO,33,1
+60,P12-1039_D10-1049_1,Evaluable,Background,Alta,Describe trabajo previo sobre selección de contenido y realización superficial.,COMPLETO,33,1
+61,W06-2903_P03-1054_1,Evaluable,Evidence,Media,Respalda que debilitar los supuestos de independencia mejora los modelos.,COMPLETO,33,1
+62,P05-1031_W03-2106_1,Evaluable,Basis,Media,Se adopta la terminología y taxonomía del trabajo citado.,COMPLETO,33,1
+63,D10-1117_N10-1081_1,Evaluable,Comparison,Alta,Compara el modelo actual con el DMV de gramática adaptadora citado.,COMPLETO,33,1
+64,S13-1036_D12-1039_0,Evaluable,Evidence,Alta,Respalda que el PLN tradicional rinde mal en redes sociales.,COMPLETO,33,1
+65,J12-2001_W09-1105_3,Evaluable,Background,Media,Describe el enfoque de etiquetado usado por la mayoría de sistemas siguiendo el trabajo citado.,COMPLETO,33,1
+66,P10-2031_D09-1153_3,Evaluable,Background,Media,Indica que investigaciones previas usan esta división de datos.,COMPLETO,33,1
+67,W04-0107_P04-2012_0,Evaluable,Further Reading,Alta,Remite al trabajo para más detalles del marco.,COMPLETO,33,1
+68,W09-0405_W08-0332_0,Evaluable,Application,Alta,Se usa el esquema de puntuación del toolkit ULC.,COMPLETO,33,1
+69,W10-2606_P06-1043_6,Evaluable,Comparison,Alta,Contrasta ('unlike') con el trabajo citado.,COMPLETO,33,1
+70,N13-1060_N03-1017_1,Evaluable,Application,Alta,Se aplica la refinación grow-diag-final-and.,COMPLETO,33,1
+71,D12-1090_P03-1021_0,Evaluable,Background,Media,Menciona MERT como algoritmo de ajuste en el contexto del campo.,COMPLETO,33,1
+72,P11-1065_P05-1033_0,Evaluable,Background,Alta,Describe el sistema Hiero en la revisión de la literatura.,COMPLETO,33,1
+73,W13-4007_W07-1906_1,Evaluable,Evidence,Media,Respalda que el número y longitud de turnos son características importantes.,COMPLETO,33,1
+74,P06-1052_P05-3003_0,Evaluable,Background,Alta,Describe algoritmos existentes para enumerar lecturas desde una USR.,COMPLETO,33,1
+75,D13-1083_N12-1047_0,Evaluable,Background,Alta,Contexto sobre el uso extendido de MIRA en SMT.,COMPLETO,33,1
+76,P13-1172_D12-1123_5,Evaluable,Basis,Media,Se sigue el enfoque del trabajo citado de alineación monolingüe.,COMPLETO,33,1
+77,W10-3008_W09-1304_1,Evaluable,Application,Media,Se incluye como rasgo la lista de palabras de fin de cláusula usada por el trabajo citado.,COMPLETO,33,1
+78,P09-2081_W02-2018_0,Evaluable,Application,Alta,Se usa el algoritmo L-BFGS para estimar parámetros.,COMPLETO,33,1
+79,E09-1023_D08-1017_1,Evaluable,Further Reading,Baja,'see also' remite a otro trabajo sobre el mismo enfoque.,COMPLETO,33,1
+80,N07-1063_W06-3119_0,Evaluable,Evidence,Alta,Respalda que el rescoring de N-best produce más errores de búsqueda.,COMPLETO,33,1
+81,P12-1100_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ para alinear.,COMPLETO,33,1
+82,W11-3805_A97-1014_0,Evaluable,Background,Alta,Describe las convenciones de anotación de los corpus Negra y Tiger.,COMPLETO,33,1
+83,W13-3514_W11-1701_0,Evaluable,Improvement / Modification,Alta,Se extiende el enfoque supervisado citado con dos extensiones.,COMPLETO,33,1
+84,N13-2010_P12-1038_1,Evaluable,Gap,Media,Se señalan limitaciones del trabajo citado para justificar el enfoque propio.,COMPLETO,33,1
+85,J13-4002_W07-2216_2,Evaluable,Evidence,Alta,Respalda la afirmación de intratabilidad del análisis no proyectivo.,COMPLETO,33,1
+86,D12-1129_P10-1134_0,Evaluable,Comparison,Alta,Contrasta el enfoque propio con los modelos supervisados basados en retículos.,COMPLETO,33,1
+87,P11-1128_D09-1076_2,Evaluable,Background,Alta,Describe el algoritmo de extracción de reglas propuesto en trabajo previo.,COMPLETO,33,1
+88,W03-1901_P01-1040_0,Evaluable,Further Reading,Media,Remite con 'see' a trabajos que discuten el modelo de datos.,COMPLETO,33,1
+89,J13-3003_N10-1013_1,Evaluable,Background,Alta,Clasifica y describe enfoques previos.,COMPLETO,33,1
+90,P92-1025_P91-1007_2,Evaluable,Further Reading,Media,Remite al trabajo donde se discuten las heurísticas de foco.,COMPLETO,33,1
+91,P03-2036_E03-1047_0,Evaluable,Application,Alta,Se adquieren LTAG con el método propuesto en el trabajo citado.,COMPLETO,33,1
+92,J10-3003_P01-1008_3,Evaluable,Application,Alta,Se usa un subconjunto del corpus paralelo monolingüe del trabajo citado.,COMPLETO,33,1
+93,P11-2036_P06-1124_0,Evaluable,Evidence,Media,Respalda que el prior PYP es adecuado para el lenguaje natural.,COMPLETO,33,1
+94,J13-4004_D09-1120_5,Evaluable,Comparison,Alta,Compara resultados B3 F1 con el modelo citado.,COMPLETO,33,1
+95,W07-0715_W99-0604_0,Evaluable,Identification of the Originator,Alta,'originally described by' atribuye el origen del método.,COMPLETO,33,1
+96,W94-0101_J90-2002_0,Evaluable,Background,Media,Describe el enfoque del sistema Candide y sus limitaciones.,COMPLETO,33,1
+97,W12-0103_P07-2045_0,Evaluable,Application,Alta,Se usa Moses para extracción y decodificación.,COMPLETO,33,1
+98,W11-2166_W99-0604_1,Evaluable,Background,Media,Se enumera el sistema PBMT en una tabla de métodos de extracción existentes.,COMPLETO,33,1
+99,S12-1076_N09-4006_0,Evaluable,Application,Alta,Se usan pares de oraciones de OntoNotes como fuente de datos.,COMPLETO,33,1
+100,W12-3306_P11-1026_1,Evaluable,Comparison,Media,Se contrasta el procedimiento propio con el estudio de Hu.,COMPLETO,33,1

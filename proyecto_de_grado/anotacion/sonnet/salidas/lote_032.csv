@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P11-2102_W07-0101_1,Evaluable,Evidence,Media,La inclusión de interjecciones y puntuación se justifica por resultados del trabajo citado.,COMPLETO,32,1
+2,D13-1120_P10-1036_0,Evaluable,Background,Baja,Describe trabajos previos sobre etiquetado de otros formalismos.,COMPLETO,32,1
+3,W13-0808_W10-1407_0,Evaluable,Background,Media,Resume trabajo reciente sobre parsing con LCFRS.,COMPLETO,32,1
+4,J07-1005_W04-0508_0,Evaluable,Background,Alta,Enumera trabajos previos sobre modelos de dominio en QA.,COMPLETO,32,1
+5,W13-2105_W08-1105_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre compresión de oraciones.,COMPLETO,32,1
+6,P12-1041_N10-1061_3,Evaluable,Comparison,Alta,Fila de tabla comparando resultados con el sistema citado.,COMPLETO,32,1
+7,D09-1036_P02-1047_2,Evaluable,Comparison,Alta,"Compara su configuración con el sistema citado, señalando la diferencia de clasificador.",COMPLETO,32,1
+8,W11-2403_P08-1078_5,Evaluable,Comparison,Alta,Contrasta su enfoque unificado con la implementación citada.,COMPLETO,32,1
+9,E09-1014_E06-1040_1,Evaluable,Background,Media,Describe trabajo previo sobre evaluación de métricas automáticas.,COMPLETO,32,1
+10,P13-1147_P05-1053_0,Evaluable,Background,Media,Cita métodos supervisados previos antes de señalar su desventaja.,COMPLETO,32,1
+11,W02-1610_P01-1030_0,Evaluable,Application,Alta,Usa el decodificador ReWrite tal cual como línea base.,COMPLETO,32,1
+12,W12-3015_D10-1106_0,Evaluable,Gap,Media,Señala que la base de hechos no está estructurada en ontología útil.,COMPLETO,32,1
+13,E09-1074_W02-1029_0,Evaluable,Evidence,Media,Respalda la afirmación de que los ensambles son eficaces en extracción de tesauros.,COMPLETO,32,1
+14,W03-2204_W98-0705_0,Evaluable,Evidence,Media,Justifica el uso de synsets en lugar de lemas.,COMPLETO,32,1
+15,W11-2142_J07-2003_0,Evaluable,Identification of the Originator,Alta,Atribuye el enfoque jerárquico a quien lo introdujo.,COMPLETO,32,1
+16,W02-0219_P97-1035_2,Evaluable,Basis,Alta,La separación de factores estuvo motivada por el trabajo citado.,COMPLETO,32,1
+17,D10-1062_P07-2045_0,Evaluable,Application,Alta,Usa Moses para entrenar sistemas de traducción.,COMPLETO,32,1
+18,P12-3022_D08-1022_1,Evaluable,Basis,Alta,La clasificación se inspira en y extiende la Tabla 1 del trabajo citado.,COMPLETO,32,1
+19,P11-1118_P08-2011_5,Evaluable,Comparison,Alta,Usa el modelo citado como línea base de comparación.,COMPLETO,32,1
+20,P13-1041_D11-1100_0,Evaluable,Evidence,Media,Respalda la afirmación de que rasgos basados en sentidos mejoran el análisis de sentimiento.,COMPLETO,32,1
+21,P11-2070_N06-1033_3,Evaluable,Evidence,Alta,Justifica descartar reglas no binarizables por hallazgo del trabajo citado.,COMPLETO,32,1
+22,W13-1719_P12-2038_0,Evaluable,Evidence,Media,Respalda que los rasgos sintácticos son señal discriminativa de la lengua nativa.,COMPLETO,32,1
+23,W11-2120_W09-0401_0,Evaluable,Evidence,Media,Respalda la afirmación de alta calidad de sistemas basados en reglas según evaluadores humanos.,COMPLETO,32,1
+24,N13-1111_P04-1019_3,Evaluable,Application,Media,Emplea el conjunto de rasgos propuesto por el trabajo citado sin modificarlo.,COMPLETO,32,1
+25,N09-3010_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford para generar anotaciones.,COMPLETO,32,1
+26,W08-1122_E03-1008_0,Evaluable,Background,Media,Describe trabajo previo de co-entrenamiento de analizadores.,COMPLETO,32,1
+27,J10-2002_N04-1025_2,Evaluable,Evidence,Alta,Justifica no usar selección de rasgos por lo reportado en el trabajo citado.,COMPLETO,32,1
+28,P11-2029_P09-1104_0,Evaluable,Background,Media,Enumera estudios previos de alineamiento supervisado.,COMPLETO,32,1
+29,P11-1003_D08-1022_4,Evaluable,Comparison,Media,Sistema base de comparación que usa el algoritmo citado.,COMPLETO,32,1
+30,W09-0201_W02-0908_0,Evaluable,Evidence,Media,Respalda que la similitud conceptual se mide comúnmente con vectores de coocurrencia tipados.,COMPLETO,32,1
+31,N13-1001_P11-1105_5,Evaluable,Comparison,Media,Contrasta el tamaño de pila requerido por el modelo citado con la traducción basada en frases.,COMPLETO,32,1
+32,W13-0120_N10-1013_1,Evaluable,Gap,Media,Señala la limitación de los enfoques computacionales como el citado para distinguir polisemia de cambio de significado.,COMPLETO,32,1
+33,P11-1063_W06-3119_0,Evaluable,Background,Media,Resume trabajo reciente sobre gramáticas jerárquicas aumentadas con sintaxis.,COMPLETO,32,1
+34,W13-0803_P10-1146_1,Evaluable,Background,Media,Enumera enfoques previos con etiquetas monolingües.,COMPLETO,32,1
+35,S10-1025_W09-2412_2,Evaluable,Further Reading,Alta,Remite a la fuente para detalles de líneas base y cota superior.,COMPLETO,32,1
+36,D12-1024_W00-0405_0,Evaluable,Background,Alta,Describe el enfoque MMR como método extractivo conocido.,COMPLETO,32,1
+37,W09-2806_W04-1013_0,Evaluable,Evidence,Alta,Cita una conclusión que respalda la afirmación sobre evaluación con un solo modelo.,COMPLETO,32,1
+38,P03-1034_J97-2001_0,Evaluable,Background,Baja,Remite a páginas del trabajo para ilustrar prácticas de descripción de sistemas NLG.,COMPLETO,32,1
+39,W09-0424_P07-2045_0,Evaluable,Comparison,Media,Compara el papel de Joshua con el de Moses en traducción basada en frases.,COMPLETO,32,1
+40,P10-1142_P02-1014_2,Evaluable,Comparison,Alta,Contrasta resultados de algoritmos de agrupamiento entre estudios previos.,COMPLETO,32,1
+41,P07-1091_P05-1066_0,Evaluable,Basis,Alta,El método se inspira en los enfoques de preprocesamiento citados.,COMPLETO,32,1
+42,J13-4002_W07-2218_3,Evaluable,Evidence,Media,Respalda que la optimización global y beam search mejoran la precisión.,COMPLETO,32,1
+43,W06-1623_N04-1020_1,Evaluable,Background,Alta,Enumera trabajos previos de aprendizaje automático para análisis temporal.,COMPLETO,32,1
+44,P05-1072_W03-1008_2,Evaluable,Evidence,Media,Aporta la cifra de desajuste reportada para respaldar el argumento.,COMPLETO,32,1
+45,P08-2002_N01-1021_0,Evaluable,Identification of the Originator,Media,Atribuye la sugerencia de la sorpresa como índice de dificultad a la obra citada.,COMPLETO,32,1
+46,W07-1518_P00-1065_0,Evaluable,Background,Alta,Presenta el artículo pionero que dio origen al interés en SRL.,COMPLETO,32,1
+47,P13-1144_P11-1096_1,Evaluable,Application,Media,Sigue el mismo preprocesamiento del trabajo citado.,COMPLETO,32,1
+48,D12-1091_P06-1055_0,Evaluable,Application,Alta,Usa el parser de Berkeley como modelo base.,COMPLETO,32,1
+49,W03-0506_W97-0710_0,Evaluable,Background,Alta,Enumera métodos previos de resumen basados en posición.,COMPLETO,32,1
+50,J93-2005_J91-4003_3,Evaluable,Background,Media,Presenta el argumento previo de que el verbo tiene un solo tipo semántico profundo.,COMPLETO,32,1
+51,N12-1030_N06-1020_0,Evaluable,Background,Media,Cita resultados previos de parsing de inglés para contextualizar la dificultad.,COMPLETO,32,1
+52,W12-0208_N03-2016_0,Evaluable,Background,Media,Describe el hallazgo del trabajo citado sobre cognados y alineamiento.,COMPLETO,32,1
+53,W11-2149_W06-3108_3,Evaluable,Application,Alta,Prueba el modelo de reordenamiento discriminativo citado.,COMPLETO,32,1
+54,W12-3618_W06-2209_0,Evaluable,Application,Alta,Entrena el etiquetador con la técnica de anotación activa citada.,COMPLETO,32,1
+55,W03-2104_W02-0227_0,Evaluable,Improvement / Modification,Alta,Incorpora el foco atencional en el formalismo descrito en el trabajo citado.,COMPLETO,32,1
+56,N03-1028_W95-0107_0,Evaluable,Identification of the Originator,Alta,Reconoce el trabajo pionero que introdujo NP chunking como problema de aprendizaje.,COMPLETO,32,1
+57,N13-1001_P07-2045_0,Evaluable,Comparison,Alta,Moses se usa como sistema base de comparación.,COMPLETO,32,1
+58,W12-3148_W04-3250_0,Evaluable,Application,Alta,Usa el remuestreo bootstrap del trabajo citado para estimar intervalos.,COMPLETO,32,1
+59,P12-2023_N03-1017_1,Evaluable,Application,Alta,Usa la heurística grow-diag-final-and de simetrización.,COMPLETO,32,1
+60,W07-2202_W06-1619_0,Evaluable,Basis,Media,"El método adapta el parser HPSG existente, que es la base del trabajo.",COMPLETO,32,1
+61,W12-3809_P10-2047_0,Evaluable,Background,Alta,Enumera otros grupos que abordaron la identificación de perspectivas.,COMPLETO,32,1
+62,W03-1721_W03-1719_1,Evaluable,Further Reading,Alta,Remite al lector a detalles de las medidas de evaluación.,COMPLETO,32,1
+63,P11-1128_P07-2045_0,Evaluable,Comparison,Alta,Presenta resultados de Moses para comparar con el sistema propuesto.,COMPLETO,32,1
+64,W12-2032_N10-1018_7,Evaluable,Application,Media,El clasificador se basa en el enfoque de errores artificiales citado.,COMPLETO,32,1
+65,D13-1171_P06-1055_0,Evaluable,Application,Alta,Sigue el enfoque de asignación de palabras fuera de vocabulario del parser de Berkeley.,COMPLETO,32,1
+66,A00-2032_P98-2206_0,Evaluable,Comparison,Alta,Señala que el segmentador citado es el más similar al propio.,COMPLETO,32,1
+67,D10-1114_D08-1094_0,Evaluable,Background,Alta,Cita trabajos que representan significado con vectores como contexto general.,COMPLETO,32,1
+68,E97-1014_P96-1036_2,Evaluable,Application,Alta,Los datos de centering se calculan con el centrado funcional citado.,COMPLETO,32,1
+69,D13-1055_E12-1036_5,Evaluable,Comparison,Alta,Contrasta la exactitud reportada por el trabajo citado con la propia.,COMPLETO,32,1
+70,J13-3006_N07-1071_0,Evaluable,Evidence,Alta,Respalda que las preferencias de selección mejoran reglas de inferencia.,COMPLETO,32,1
+71,N07-1022_P03-1021_0,Evaluable,Application,Alta,Entrena los parámetros con minimum error-rate training.,COMPLETO,32,1
+72,W13-2223_P03-1021_0,Evaluable,Application,Alta,Optimiza los pesos con MERT estándar.,COMPLETO,32,1
+73,W06-1668_P05-1073_1,Evaluable,Comparison,Alta,Compara su resultado con el mejor resultado reportado por el trabajo citado.,COMPLETO,32,1
+74,P13-2034_W01-0514_0,Evaluable,Identification of the Originator,Media,"Indica que PLSA es la variante probabilística de LSA, introducida en el trabajo citado.",COMPLETO,32,1
+75,P06-1043_W01-0521_3,Evaluable,Evidence,Alta,Respalda que combinar corpus mejora el modelo.,COMPLETO,32,1
+76,W11-1208_P05-1074_2,Evaluable,Comparison,Alta,Contrasta el desempeño del método log-lineal con el de máxima verosimilitud del trabajo citado.,COMPLETO,32,1
+77,P10-1123_W03-2606_0,Evaluable,Background,Media,Cita estudios sobre resolución de relaciones puente específicas.,COMPLETO,32,1
+78,W13-3817_P88-1012_4,Evaluable,Background,Media,Describe el enfoque ingenuo de correferencia en marcos basados en inferencia.,COMPLETO,32,1
+79,P87-1013_P86-1038_1,Evaluable,Application,Media,Formaliza el DG como autómata siguiendo el enfoque de Kasper-Rounds.,COMPLETO,32,1
+80,D11-1059_D10-1083_4,Evaluable,Application,Alta,Sigue el procedimiento del trabajo citado de usar solo las secciones de entrenamiento.,COMPLETO,32,1
+81,P06-1064_P03-1013_0,Evaluable,Gap,Media,Señala la limitación de que la lexicalización no ayuda en este corpus.,COMPLETO,32,1
+82,D10-1049_P09-1011_3,Evaluable,Application,Alta,Usa el conjunto de datos creado por el trabajo citado.,COMPLETO,32,1
+83,W04-1216_P98-2127_0,Evaluable,Background,Alta,Enumera métodos previos de similitud distribucional.,COMPLETO,32,1
+84,J12-2006_P08-1001_0,Evaluable,Application,Alta,Usa el etiquetador Phoenix para etiquetar entidades nombradas.,COMPLETO,32,1
+85,J93-4001_P87-1033_1,Evaluable,Evidence,Alta,Respalda que procesar primero restricciones no disyuntivas mejora el desempeño.,COMPLETO,32,1
+86,W01-1605_W99-0307_4,Evaluable,Comparison,Alta,Compara los resultados de acuerdo con los resultados previos reportados.,COMPLETO,32,1
+87,D10-1074_W07-1401_0,Evaluable,Background,Alta,Cita trabajos sobre implicación textual como antecedentes.,COMPLETO,32,1
+88,P09-1089_N06-1003_0,Evaluable,Comparison,Alta,Compara su algoritmo con la implementación del algoritmo citado.,COMPLETO,32,1
+89,W13-2104_J03-4002_0,Evaluable,Basis,Media,Adopta el tratamiento de adverbiales discursivos del trabajo citado.,COMPLETO,32,1
+90,D12-1071_W11-1913_0,Evaluable,Further Reading,Alta,Remite a otra forma de usar cadenas narrativas para correferencia.,COMPLETO,32,1
+91,W11-1007_N10-1129_0,Evaluable,Comparison,Alta,Describe el trabajo citado para luego diferenciar el propio.,COMPLETO,32,1
+92,W12-2032_D10-1094_6,Evaluable,Evidence,Alta,Respalda que patrones de error similares se observan en otros corpus ESL.,COMPLETO,32,1
+93,P09-2024_P05-1026_0,Evaluable,Application,Media,Genera QUABs con técnicas descritas en el trabajo citado.,COMPLETO,32,1
+94,N03-1033_W96-0213_4,Evaluable,Gap,Alta,Señala que los modelos previos no están regularizados.,COMPLETO,32,1
+95,W03-1401_J91-4003_0,Evaluable,Basis,Media,Usa la estructura de qualia como marco conceptual para el análisis.,COMPLETO,32,1
+96,W12-3019_W04-3205_0,Evaluable,Comparison,Alta,Contrasta Rel-grams con VerbOcean.,COMPLETO,32,1
+97,E12-1003_P11-1145_1,Evaluable,Background,Media,Indica que la idea se exploró antes en representaciones semánticas superficiales.,COMPLETO,32,1
+98,P11-1037_P09-3003_1,Evaluable,Background,Alta,Describe trabajo previo de NER en notas clínicas.,COMPLETO,32,1
+99,D10-1044_N03-1017_0,Evaluable,Application,Alta,Usa un sistema estándar basado en frases tal cual.,COMPLETO,32,1
+100,D11-1118_W00-0717_0,Evaluable,Basis,Alta,El trabajo se construye sobre los algoritmos de agrupamiento de palabras citados.,COMPLETO,32,1

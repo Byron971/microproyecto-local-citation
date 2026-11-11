@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D09-1014_P07-1036_0,Evaluable,Comparison,Media,"Describes the cited method and then contrasts it with the current model ('However, this model requires large number of labeled examples').",COMPLETO,42,1
+2,D13-1009_P08-1019_0,Evaluable,Background,Alta,Listed among prior CQA research on question search.,COMPLETO,42,1
+3,W13-3510_D12-1110_0,Evaluable,Background,Alta,Describes prior work's model in a related-work narrative.,COMPLETO,42,1
+4,D13-1064_P11-1062_0,Evaluable,Background,Media,"Cited among works that type predicates before clustering, describing standard practice.",COMPLETO,42,1
+5,W08-0402_P00-1056_0,Evaluable,Application,Alta,The GIZA toolkit is used directly to obtain word alignments.,COMPLETO,42,1
+6,N10-3002_N04-1024_0,Evaluable,Gap,Media,"Prior observation about grammatical errors motivates the current paper ('due to the lack of an appropriate baseline'), although it also resembles Basis.",COMPLETO,42,1
+7,P13-1140_D12-1025_1,Evaluable,Background,Media,"Describes prior work on using induced lexicons for domain adaptation, followed by a remark about its limitations.",COMPLETO,42,1
+8,P07-1051_J99-3006_0,Evaluable,Basis,Media,"DOP* is a modification of the cited DOP model, so the current work builds directly on it.",COMPLETO,42,1
+9,W07-0704_P06-1122_0,Evaluable,Comparison,Media,Notes similarity to the cited problem while pointing out that the current approach doesn't need the more sophisticated solution.,COMPLETO,42,1
+10,N12-1052_N04-1043_0,Evaluable,Gap,Alta,Prior studies focused on few languages and tasks; the current work shows robustness across more.,COMPLETO,42,1
+11,J10-3009_N04-4026_0,Evaluable,Background,Alta,"Describes lexicalized reordering models proposed in prior work, before noting a limitation.",COMPLETO,42,1
+12,D09-1004_P07-1027_0,Evaluable,Background,Alta,Lists prior works on features useful for SRL.,COMPLETO,42,1
+13,W12-4402_W02-0505_0,Evaluable,Background,Alta,General survey of transliteration research.,COMPLETO,42,1
+14,W97-0113_P93-1020_1,Evaluable,Basis,Media,"The current approach provides a principled basis for the cited work's majority-opinion notion, building on it.",COMPLETO,42,1
+15,W13-0125_P10-4008_0,Evaluable,Application,Alta,The EDITS RTE system is used to model the dataset.,COMPLETO,42,1
+16,W06-2403_W03-1812_0,Evaluable,Background,Alta,Related-work enumeration of MWE processing studies.,COMPLETO,42,1
+17,P05-2012_N04-1033_0,Evaluable,Gap,Media,Cites strategies for phrase probabilities and then says none take inflected forms into account.,COMPLETO,42,1
+18,P12-2004_D10-1120_0,Evaluable,Background,Alta,Lists extensions of the DMV in prior work.,COMPLETO,42,1
+19,W05-0625_W04-3212_1,Evaluable,Application,Alta,"The syntactic frame feature introduced by the cited work is used as is; the phrase 'introduced by' hints at Originator, but the focus is on using it.",COMPLETO,42,1
+20,N12-1004_P10-1147_0,Evaluable,Background,Media,Describes the cited extraction-set model and its accuracy before noting a limitation.,COMPLETO,42,1
+21,W08-2122_W07-2218_0,Evaluable,Basis,Alta,The current model is based on ISBNs and extends this architecture.,COMPLETO,42,1
+22,P13-1132_W05-1203_1,Evaluable,Comparison,Alta,Explicitly contrasts with methods doing word-to-word alignment ('did not operate at the sense level').,COMPLETO,42,1
+23,W04-0214_W98-1119_0,Evaluable,Background,Media,Cited as an example of leading pronoun resolution methods and their performance.,COMPLETO,42,1
+24,P11-2125_N10-1003_0,Evaluable,Comparison,Media,The ensemble method is described as the discriminative analog of the cited generative product-of-experts model.,COMPLETO,42,1
+25,P12-2050_N09-4006_0,Evaluable,Background,Media,Notes prior use of the Omega ontology for crosslingual annotation.,COMPLETO,42,1
+26,D11-1137_W09-3839_1,Evaluable,Application,Media,"Follows the cited work in defining a grandsibling model, using the approach directly.",COMPLETO,42,1
+27,W12-3705_J04-3002_1,Evaluable,Application,Alta,Applies the UNIQUE feature following the cited work.,COMPLETO,42,1
+28,P13-1078_N03-1017_0,Evaluable,Application,Alta,Uses the cited alignment procedure to obtain word alignments.,COMPLETO,42,1
+29,W09-2002_W06-3506_1,Evaluable,Further Reading,Baja,Points to prior work on argument structure as a possible direction rather than supporting a claim.,COMPLETO,42,1
+30,P08-1057_P05-1005_0,Evaluable,Background,Alta,Lists applications where such classifications have been used.,COMPLETO,42,1
+31,N12-1032_W09-3819_1,Evaluable,Comparison,Alta,"Explicitly compares results with the cited work, noting differences.",COMPLETO,42,1
+32,W09-0413_N03-1017_0,Evaluable,Application,Alta,Uses the compound splitting method described in the cited work.,COMPLETO,42,1
+33,W09-3901_E06-1009_3,Evaluable,Further Reading,Alta,'For more details see' refers the reader to the cited source.,COMPLETO,42,1
+34,P13-1086_W12-3716_0,Evaluable,Background,Media,Introduces FrameNet as an existing resource relevant to the argument.,COMPLETO,42,1
+35,P13-1123_E09-1081_1,Evaluable,Background,Alta,Cites works on incremental dialogue processing as a field overview.,COMPLETO,42,1
+36,J01-4003_P99-1079_0,Evaluable,Basis,Media,"The study builds on the LRC algorithm, which is tested and altered.",COMPLETO,42,1
+37,P13-1121_N03-2024_0,Evaluable,Further Reading,Media,"Leaves coreference issues to other work, referring the reader there.",COMPLETO,42,1
+38,W12-2004_P11-2022_2,Evaluable,Background,Media,Describes prior findings on combining entity-grid with other models.,COMPLETO,42,1
+39,N13-1032_D11-1082_1,Evaluable,Application,Alta,Uses alignments from the cited supervised aligner.,COMPLETO,42,1
+40,P09-2010_P08-1108_2,Evaluable,Comparison,Alta,"Compares own results with those from the cited work, noting corroboration.",COMPLETO,42,1
+41,W09-0422_W08-0309_0,Evaluable,Evidence,Alta,Supports the claim that automatic metrics correlate poorly with human judgements.,COMPLETO,42,1
+42,P11-1055_P09-1113_0,Evaluable,Gap,Alta,"Points out that previous systems assume non-overlapping relations, a violated assumption.",COMPLETO,42,1
+43,W12-4107_W04-3205_0,Evaluable,Background,Alta,Lists prior work with pattern-based methods for various relations.,COMPLETO,42,1
+44,W06-1422_W00-1401_0,Evaluable,Background,Alta,Describes the first prior comparison of NLG evaluation techniques.,COMPLETO,42,1
+45,P85-1023_J81-4003_1,Evaluable,Background,Media,Mentions Extraposition Grammars among logic grammar formalisms.,COMPLETO,42,1
+46,W07-0730_N03-2016_0,Evaluable,Application,Alta,Uses the described method to extract cognates.,COMPLETO,42,1
+47,P12-1095_W11-2136_0,Evaluable,Comparison,Media,Describes prior work and then states how the current models differ.,COMPLETO,42,1
+48,P11-1069_N06-2033_1,Evaluable,Comparison,Alta,Related work with explicit differences from the current approach.,COMPLETO,42,1
+49,W11-2020_W10-4304_6,Evaluable,Comparison,Alta,Compares model performance with the cited work and explains the difference.,COMPLETO,42,1
+50,W09-2302_N03-1017_1,Evaluable,Application,Alta,Uses the symmetrization heuristics from the cited work.,COMPLETO,42,1
+51,P11-2102_W07-0101_0,Evaluable,Basis,Alta,The approach was 'inspired by' the cited work.,COMPLETO,42,1
+52,W00-0802_W99-0512_0,Evaluable,Evidence,Media,Cited experiments confirm that sense clusters are crucial for IR.,COMPLETO,42,1
+53,W06-1105_P04-1053_3,Evaluable,Comparison,Media,"Baseline is a re-implementation of the cited approach, used for comparison.",COMPLETO,42,1
+54,D09-1133_N07-1051_0,Evaluable,Application,Alta,The Berkeley parser is chosen and used as the Chinese parser.,COMPLETO,42,1
+55,P05-1021_P03-1023_2,Evaluable,Comparison,Alta,Compares improvement with that reported in the previous work and explains the difference.,COMPLETO,42,1
+56,W09-1114_P07-2045_0,Evaluable,Application,Alta,The Moses decoder is used to generate starting hypotheses.,COMPLETO,42,1
+57,P11-1038_P07-2045_0,Evaluable,Application,Alta,The SMT approach is implemented in Moses.,COMPLETO,42,1
+58,D13-1177_D12-1062_4,Evaluable,Basis,Media,"Cited among prior temporal relation work, whose techniques the authors leverage.",COMPLETO,42,1
+59,D12-1064_D11-1148_2,Evaluable,Evidence,Alta,The cited results motivate the choice of function-word features.,COMPLETO,42,1
+60,P98-2180_W95-0105_0,Evaluable,Gap,Media,"Notes attempts to combine strategies and says none fully integrate both, unlike the current work.",COMPLETO,42,1
+61,N07-2045_N04-2006_0,Evaluable,Background,Media,Cited as an example application of determiner selection (correcting non-native text).,COMPLETO,42,1
+62,P08-1118_P02-1047_0,Evaluable,Gap,Media,"Existing methods for oppositional terms are noted, but extending them to incompatible phrases is difficult.",COMPLETO,42,1
+63,W02-1809_W97-0315_0,Evaluable,Evidence,Alta,Supports the claim that correct name indexing improves retrieval.,COMPLETO,42,1
+64,D10-1078_P10-2040_0,Evaluable,Background,Alta,Lists prior work on unsupervised POS induction.,COMPLETO,42,1
+65,J05-4004_A00-1043_0,Evaluable,Background,Alta,Enumerates prior work on sentence simplification.,COMPLETO,42,1
+66,E97-1063_P97-1039_4,Evaluable,Further Reading,Baja,"Cited for translational entropy as a promising feature in future work, though it could also be Evidence.",COMPLETO,42,1
+67,N13-1093_P05-1053_1,Evaluable,Comparison,Alta,The cited method is a compared system in experiments.,COMPLETO,42,1
+68,J08-3003_P03-1054_0,Evaluable,Background,Alta,Cited among studies on the controversy over lexicalization.,COMPLETO,42,1
+69,W07-2202_P05-1011_0,Evaluable,Application,Media,"The parser used is based on Enju, which is employed as a tool.",COMPLETO,42,1
+70,N09-1017_P07-1027_4,Evaluable,Gap,Alta,"It was unclear whether the cited models would work in this environment, a gap the paper addresses.",COMPLETO,42,1
+71,W02-1028_W97-0313_1,Evaluable,Background,Media,"States prior evaluation of semantic lexicon learners on MUC-4, and the authors then reimplement the best one.",COMPLETO,42,1
+72,W04-3241_P02-1026_3,Evaluable,Application,Media,"The cited entropy definition is used, with a note on its sign.",COMPLETO,42,1
+73,P12-2014_P06-1095_1,Evaluable,Background,Alta,Describes prior ML work on temporal relations from Timebank.,COMPLETO,42,1
+74,P10-2070_N03-1017_1,Evaluable,Further Reading,Alta,'For more details see' directs the reader to the cited work.,COMPLETO,42,1
+75,W02-2102_P98-1035_0,Evaluable,Background,Alta,Notes prior usefulness of lexicalized syntax models in speech recognition.,COMPLETO,42,1
+76,P10-1066_P06-2027_3,Evaluable,Comparison,Alta,Related work explicitly contrasts differences with the current work.,COMPLETO,42,1
+77,J09-4009_N06-1033_0,Evaluable,Basis,Alta,The current article extends a preliminary version of itself presented in the cited work.,COMPLETO,42,1
+78,P11-2046_P09-1045_0,Evaluable,Application,Alta,Follows the cited work's categories and seeds.,COMPLETO,42,1
+79,P07-1011_A00-2019_1,Evaluable,Comparison,Alta,The method is compared with ALEK in performance.,COMPLETO,42,1
+80,W13-1730_W13-1706_0,Evaluable,Further Reading,Media,Refers to the overall results table in the shared task report for details.,COMPLETO,42,1
+81,W10-2401_W10-2405_0,Evaluable,Background,Alta,Describes prior work on DirectTL and its performance in related work.,COMPLETO,42,1
+82,P03-1064_E99-1025_1,Evaluable,Evidence,Baja,Footnote cites the source of a number and evaluation procedure.,COMPLETO,42,1
+83,W06-1807_W04-3217_1,Evaluable,Improvement / Modification,Alta,The pipeline is described as an improvement over the cited pipeline.,COMPLETO,42,1
+84,A00-2037_P97-1034_0,Evaluable,Evidence,Media,Cited definitions support the approach to labeling acknowledgments.,COMPLETO,42,1
+85,P10-2045_P98-1013_1,Evaluable,Background,Alta,Describes the FrameNet resource.,COMPLETO,42,1
+86,W10-0911_D08-1068_1,Evaluable,Background,Alta,Describes scalable inference approaches in prior work.,COMPLETO,42,1
+87,W08-0321_P03-1021_0,Evaluable,Application,Alta,Applies MER training to optimize weights.,COMPLETO,42,1
+88,D13-1037_W05-0612_0,Evaluable,Background,Alta,Lists prior unsupervised anaphora resolution work.,COMPLETO,42,1
+89,W10-3813_W02-1039_0,Evaluable,Comparison,Alta,Explicitly contrasts the current constraints with cohesion constraints.,COMPLETO,42,1
+90,S13-2073_E09-1005_0,Evaluable,Basis,Alta,The cited PageRank adaptation was an inspiration for the work.,COMPLETO,42,1
+91,W11-2119_W10-1748_0,Evaluable,Improvement / Modification,Alta,The cited expected BLEU tuning was extended to operate on word lattices.,COMPLETO,42,1
+92,P06-1071_W00-0729_0,Evaluable,Background,Alta,Cited as examples of CME modeling in NLP.,COMPLETO,42,1
+93,D13-1047_P13-1099_0,Evaluable,Background,Alta,Describes prior work improving the concept-based ILP approach.,COMPLETO,42,1
+94,E12-2004_P07-1039_0,Evaluable,Background,Media,"Cites the word boundary issue in MT raised by prior work, which motivates the segmentation step.",COMPLETO,42,1
+95,W13-3713_P05-1013_0,Evaluable,Background,Media,Cited for the formal definition of the projectivity constraint.,COMPLETO,42,1
+96,W03-0317_P98-1036_0,Evaluable,Background,Alta,Enumerates prior transliteration research.,COMPLETO,42,1
+97,P11-1069_D09-1043_0,Evaluable,Background,Alta,"Lists applications of the technique, including surface realization.",COMPLETO,42,1
+98,W01-1605_W99-0307_2,Evaluable,Basis,Alta,The annotation methodology builds on prior corpus work.,COMPLETO,42,1
+99,J11-1007_W07-2216_0,Evaluable,Evidence,Media,Supports the claim that graph-based parsers factor over single arcs.,COMPLETO,42,1
+100,W03-1602_W01-1402_1,Evaluable,Evidence,Media,"Cited work is said to show that declarative mapping rules best represent transfer knowledge, supporting the design choice.",COMPLETO,42,1

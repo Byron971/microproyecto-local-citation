@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W12-2032_W10-1004_4,Evaluable,Application,Media,Usa el algoritmo Averaged Perceptron tal cual en el trabajo actual.,COMPLETO,36,1
+2,P13-1120_W04-3205_0,Evaluable,Background,Alta,Enumera trabajos previos que ontologizan argumentos.,COMPLETO,36,1
+3,P07-1054_P06-1134_0,Evaluable,Background,Alta,Resume literatura que asocia propiedades de opinión a sentidos de palabras.,COMPLETO,36,1
+4,W11-0204_W09-1401_0,Evaluable,Application,Media,El recurso adopta el formato y esquema definidos en la tarea compartida.,COMPLETO,36,1
+5,P09-1088_W07-0403_1,Evaluable,Background,Media,Cita enfoques previos con restricciones de alineación para contrastar con el muestreador propio.,COMPLETO,36,1
+6,D09-1085_P06-4020_0,Evaluable,Application,Alta,El analizador RASP se elige y usa en la evaluación.,COMPLETO,36,1
+7,D13-1028_W12-4507_0,Evaluable,Comparison,Alta,Resultados del sistema citado en tabla comparativa con el sistema propio.,COMPLETO,36,1
+8,W11-0311_D09-1020_6,Evaluable,Comparison,Media,Contrasta el objetivo de desambiguar más palabras que el trabajo citado.,COMPLETO,36,1
+9,W13-0801_N03-1017_0,Evaluable,Evidence,Media,Respalda la afirmación de que las frases son menos ambiguas que las palabras sueltas.,COMPLETO,36,1
+10,N06-1035_E06-1037_1,Evaluable,Further Reading,Alta,Remite al trabajo previo para detalles del método.,COMPLETO,36,1
+11,P06-2096_W04-3219_0,Evaluable,Comparison,Alta,Describe el trabajo relacionado y lo contrasta con el propio (entrada menos restringida).,COMPLETO,36,1
+12,P09-1121_P08-1084_0,Evaluable,Background,Alta,Enumera trabajos previos que explotan datos bilingües para tareas monolingües.,COMPLETO,36,1
+13,W13-5103_P11-2054_0,Evaluable,Evidence,Alta,Respalda que la elección de rasgos afecta el desempeño.,COMPLETO,36,1
+14,P12-3018_W12-1814_0,Evaluable,Basis,Alta,El componente se construye sobre la arquitectura INPROTK existente.,COMPLETO,36,1
+15,D13-1064_D09-1001_3,Evaluable,Basis,Media,El trabajo se construye sobre avances en semántica distribucional monolingüe.,COMPLETO,36,1
+16,W13-4039_W06-1303_0,Evaluable,Background,Media,Resume resultados previos en dominios limitados de pregunta-respuesta.,COMPLETO,36,1
+17,E97-1051_P88-1012_0,Evaluable,Basis,Baja,Se apoya en un sistema que asigna costos a pruebas (abducción ponderada) como marco conceptual.,COMPLETO,36,1
+18,P03-1019_J90-2002_0,Evaluable,Identification of the Originator,Alta,Atribuye el enfoque fuente-canal a su trabajo original.,COMPLETO,36,1
+19,W13-4018_W12-1819_0,Evaluable,Further Reading,Media,El 'cf.' remite a trabajo sobre uso de medidas subjetivas para mejorar el sistema.,COMPLETO,36,1
+20,W07-1529_N07-3003_0,Evaluable,Background,Alta,Enumera trabajos que usan Wikipedia en lingüística computacional.,COMPLETO,36,1
+21,W08-2228_W06-3506_0,Evaluable,Evidence,Alta,Aporta el hallazgo de 90% de usos metafóricos como respaldo del argumento.,COMPLETO,36,1
+22,W13-2115_D10-1049_0,Evaluable,Background,Alta,Sección de trabajo relacionado que enumera dominios de generación de informes.,COMPLETO,36,1
+23,P11-1144_N10-1138_8,Evaluable,Application,Alta,Sigue el esquema de evaluación del trabajo citado.,COMPLETO,36,1
+24,D13-1168_W02-0902_1,Evaluable,Background,Alta,Describe prácticas previas de usar palabras idénticas para el espacio inicial.,COMPLETO,36,1
+25,W13-1721_N12-1011_1,Evaluable,Evidence,Alta,Respalda que el tipo de rasgo es efectivo en puntuación de contenido.,COMPLETO,36,1
+26,J03-1003_E91-1028_1,Evaluable,Comparison,Alta,Compara el algoritmo propio con el citado explícitamente.,COMPLETO,36,1
+27,P13-1158_W10-2903_0,Evaluable,Background,Alta,Resume trabajos previos de sistemas de QA basados en aprendizaje.,COMPLETO,36,1
+28,N07-4013_N06-1039_0,Evaluable,Gap,Alta,Describe el trabajo citado y señala su limitación (requiere agrupar documentos).,COMPLETO,36,1
+29,P05-1020_P02-1014_2,Evaluable,Further Reading,Alta,'See ... for details' remite a detalles del conjunto de rasgos.,COMPLETO,36,1
+30,W09-3901_E06-1009_1,Evaluable,Background,Alta,Enumera enfoques recientes que superan la enumeración secuencial.,COMPLETO,36,1
+31,P09-2013_W02-2016_1,Evaluable,Evidence,Alta,Justifica la decisión del núcleo cúbico por su eficacia empírica.,COMPLETO,36,1
+32,N06-1040_N03-1016_0,Evaluable,Background,Media,Resume hallazgo previo sobre anotaciones de nodos y exactitud.,COMPLETO,36,1
+33,W11-1015_P05-1033_1,Evaluable,Comparison,Alta,Compara el extractor propio con Hiero y otros métodos.,COMPLETO,36,1
+34,W13-2239_N06-1014_0,Evaluable,Application,Alta,Usa el alineador de Berkeley sin modificación.,COMPLETO,36,1
+35,P06-1132_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para alinear las oraciones.,COMPLETO,36,1
+36,E09-1087_P07-1096_3,Evaluable,Application,Alta,Usa el etiquetador citado en el experimento.,COMPLETO,36,1
+37,P13-2052_W09-1604_0,Evaluable,Background,Alta,Trabajo relacionado sobre alineación de recursos de Wikipedia multilingües.,COMPLETO,36,1
+38,P13-2143_D08-1038_0,Evaluable,Background,Alta,Enumera líneas de investigación relacionadas.,COMPLETO,36,1
+39,D12-1080_D08-1073_0,Evaluable,Background,Alta,Trabajo relacionado sobre ordenación temporal de eventos.,COMPLETO,36,1
+40,N10-1080_P03-1021_1,Evaluable,Background,Media,"Presenta MERT como técnica estándar, sin indicar uso modificado.",COMPLETO,36,1
+41,P12-1106_N04-1019_0,Evaluable,Background,Alta,Resume que la investigación se ha centrado en cobertura de contenido.,COMPLETO,36,1
+42,W10-1814_W07-1513_1,Evaluable,Background,Alta,Describe trabajo previo de anotación semiautomática con PropBank.,COMPLETO,36,1
+43,W09-2309_W08-0401_0,Evaluable,Background,Media,Describe las restricciones IST-ITG como antecedente técnico.,COMPLETO,36,1
+44,W13-1409_P10-1015_0,Evaluable,Background,Alta,Enumera enfoques de análisis literario con redes sociales.,COMPLETO,36,1
+45,N13-1125_P04-1082_0,Evaluable,Background,Alta,Describe práctica común en dos etapas citando trabajos previos.,COMPLETO,36,1
+46,W04-0845_N01-1006_0,Evaluable,Application,Alta,Usa fnTBL para etiquetado y segmentación.,COMPLETO,36,1
+47,D10-1064_P09-1089_3,Evaluable,Comparison,Alta,Contrasta el trabajo citado con otro y con el enfoque propio.,COMPLETO,36,1
+48,P97-1019_E93-1013_0,Evaluable,Background,Alta,Presenta el origen de una línea de investigación como antecedente.,COMPLETO,36,1
+49,E09-1027_W07-1001_0,Evaluable,Evidence,Media,Respalda que los rasgos cognitivamente motivados son valiosos.,COMPLETO,36,1
+50,P04-1020_P02-1014_0,Evaluable,Background,Alta,Enumera enfoques supervisados previos.,COMPLETO,36,1
+51,A97-1004_A94-1013_0,Evaluable,Further Reading,Alta,Remite a una descripción menos detallada del sistema SATZ.,COMPLETO,36,1
+52,P08-1031_P08-1036_0,Evaluable,Gap,Alta,Señala la limitación de requerir estructura de anotación predefinida.,COMPLETO,36,1
+53,W11-2311_W04-1606_0,Evaluable,Application,Alta,Usa el analizador morfológico de Buckwalter.,COMPLETO,36,1
+54,W13-0808_W06-3119_0,Evaluable,Background,Alta,Enumera paradigmas de traducción basados en SCFG.,COMPLETO,36,1
+55,W11-0221_W06-1615_0,Evaluable,Background,Alta,Trabajo relacionado sobre adaptación de dominio.,COMPLETO,36,1
+56,D11-1004_P07-2045_0,Evaluable,Background,Alta,Ejemplo de sistemas basados en frases que usan MERT.,COMPLETO,36,1
+57,D10-1094_P10-2065_2,Evaluable,Evidence,Alta,Respalda que tasas de error similares se reportan en otros corpus.,COMPLETO,36,1
+58,W00-0736_W95-0107_0,Evaluable,Application,Media,Implementa su propia versión del enfoque de chunking como etiquetado.,COMPLETO,36,1
+59,J06-3002_P91-1030_1,Evaluable,Evidence,Alta,Respalda que argumentos y adjuntos difieren estadísticamente.,COMPLETO,36,1
+60,D12-1077_D11-1018_1,Evaluable,Background,Alta,Enumera trabajos previos de reordenamiento sin analizador.,COMPLETO,36,1
+61,D09-1086_P09-1053_0,Evaluable,Background,Alta,Enumera aplicaciones de QG.,COMPLETO,36,1
+62,W10-3006_W09-1304_1,Evaluable,Comparison,Alta,Compara resultados propios con los del trabajo citado.,COMPLETO,36,1
+63,W12-3623_P04-1054_0,Evaluable,Evidence,Media,Respalda que las representaciones de dependencias favorecen aplicaciones de PLN.,COMPLETO,36,1
+64,E12-1020_N07-1015_1,Evaluable,Evidence,Alta,Justifica el uso de MaxEnt por su desempeño en extracción de relaciones.,COMPLETO,36,1
+65,D12-1018_N06-1039_0,Evaluable,Background,Alta,Menciona aplicaciones de reglas de inferencia en la introducción.,COMPLETO,36,1
+66,W11-3216_P04-1021_0,Evaluable,Background,Media,Resume hallazgo previo sobre métodos basados en grafemas.,COMPLETO,36,1
+67,P12-2058_N09-2036_0,Evaluable,Background,Alta,Enumera aplicaciones de la técnica CP.,COMPLETO,36,1
+68,E09-3005_J97-4005_0,Evaluable,Application,Media,Usa el modelo de máxima entropía descrito en la obra citada.,COMPLETO,36,1
+69,P12-1018_N03-1017_0,Evaluable,Background,Alta,Describe la práctica tradicional de combinar alineaciones.,COMPLETO,36,1
+70,W11-1601_P08-1040_0,Evaluable,Evidence,Alta,Respalda que la simplificación mejora otras aplicaciones de PLN.,COMPLETO,36,1
+71,N07-1051_P06-1043_0,Evaluable,Background,Media,Resume la conclusión previa sobre la caída de desempeño.,COMPLETO,36,1
+72,P95-1019_P88-1015_1,Evaluable,Comparison,Alta,Contrasta la noción de interrupción de los autores citados con los subdiálogos propios.,COMPLETO,36,1
+73,W11-1704_D08-1014_0,Evaluable,Background,Alta,Describe trabajo previo sobre léxicos de subjetividad en otros idiomas.,COMPLETO,36,1
+74,P12-1048_P06-2124_0,Evaluable,Basis,Alta,El enfoque está inspirado en los estudios citados.,COMPLETO,36,1
+75,P09-2010_W08-1705_0,Evaluable,Background,Alta,Describe la evolución del análisis sintáctico basado en gramáticas.,COMPLETO,36,1
+76,E12-1032_W07-2321_2,Evaluable,Comparison,Alta,Compara los hallazgos propios con los del trabajo citado.,COMPLETO,36,1
+77,W09-3821_W01-0521_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la escasez de dependencias bilexicales.,COMPLETO,36,1
+78,P12-1041_D09-1101_1,Evaluable,Comparison,Alta,Resultados del sistema citado en tabla comparativa.,COMPLETO,36,1
+79,W11-3708_P09-1027_2,Evaluable,Comparison,Alta,Compara los resultados propios con los reportados por el trabajo citado.,COMPLETO,36,1
+80,J10-4006_P06-1040_6,Evaluable,Evidence,Media,Respalda la idea de que el material léxico conector informa sobre la relación.,COMPLETO,36,1
+81,P99-1082_P98-1029_0,Evaluable,Evidence,Alta,Respalda que combinar clasificadores mejora la exactitud.,COMPLETO,36,1
+82,D13-1065_P11-1062_1,Evaluable,Evidence,Alta,Respalda que los patrones tipados reducen errores por ambigüedad.,COMPLETO,36,1
+83,W10-1722_J07-2003_1,Evaluable,Application,Alta,Aplica las restricciones de extracción descritas en el trabajo citado.,COMPLETO,36,1
+84,P13-2080_S12-1051_0,Evaluable,Background,Media,Ejemplifica medidas graduales en similitud textual semántica.,COMPLETO,36,1
+85,W12-2503_P05-1018_2,Evaluable,Further Reading,Media,Sugiere una medida de cohesión más compleja en el trabajo citado.,COMPLETO,36,1
+86,D09-1005_J07-2003_1,Evaluable,Application,Media,Usa el sistema Hiero como base para el entrenamiento propuesto.,COMPLETO,36,1
+87,W13-1108_P06-1134_0,Evaluable,Evidence,Alta,Respalda que las expresiones polares son muy ambiguas.,COMPLETO,36,1
+88,P10-1040_P09-1116_1,Evaluable,Background,Media,Reporta un hallazgo previo sobre representaciones para distintas tareas.,COMPLETO,36,1
+89,P13-1020_D11-1022_1,Evaluable,Application,Alta,Usa el factor descrito en el trabajo citado.,COMPLETO,36,1
+90,P07-1060_W03-1004_1,Evaluable,Background,Media,Describe el trabajo previo sobre similitud coseno.,COMPLETO,36,1
+91,N07-1050_W06-2932_0,Evaluable,Comparison,Alta,Compara resultados propios con los mejores sistemas originales.,COMPLETO,36,1
+92,Q13-1012_P11-2033_0,Evaluable,Background,Alta,Describe trabajo previo sobre búsqueda en haz.,COMPLETO,36,1
+93,P11-1069_P05-1012_0,Evaluable,Comparison,Alta,Compara la comparación de analizadores con la de MSTParser y MaltParser.,COMPLETO,36,1
+94,P11-1042_P10-1147_0,Evaluable,Background,Alta,Trabajo relacionado sobre alineación discriminativa.,COMPLETO,36,1
+95,W12-0704_E99-1010_1,Evaluable,Application,Alta,Usa el software mkcls que implementa el método citado.,COMPLETO,36,1
+96,P10-1032_N03-1017_0,Evaluable,Evidence,Media,Respalda que los equivalentes sintácticos pierden frases no sintácticas.,COMPLETO,36,1
+97,J10-4006_W04-3221_1,Evaluable,Background,Alta,Enumera trabajos previos sobre tripletas distribucionales.,COMPLETO,36,1
+98,D10-1078_P10-1132_1,Evaluable,Comparison,Alta,Compara resultados propios con los reportados por el trabajo citado.,COMPLETO,36,1
+99,W13-0803_P07-2045_1,Evaluable,Application,Alta,Usa Moses en los experimentos.,COMPLETO,36,1
+100,S13-1043_W13-0114_0,Evaluable,Comparison,Alta,Resultados del sistema citado en tabla comparativa con el propio.,COMPLETO,36,1

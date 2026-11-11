@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N04-1033_J90-2002_0,Evaluable,Identification of the Originator,Media,Attributes the source-channel approach to the cited statistical MT paper.,COMPLETO,34,1
+2,D13-1077_N13-1111_0,Evaluable,Background,Alta,Related work listing prior research on antecedent selection.,COMPLETO,34,1
+3,N03-1002_N01-1025_1,Evaluable,Application,Alta,Uses the YamCha chunker directly.,COMPLETO,34,1
+4,N10-1053_N04-3012_0,Evaluable,Further Reading,Media,Refers the reader to a tool for computing lexical similarity measures.,COMPLETO,34,1
+5,W10-1709_N03-1017_0,Evaluable,Application,Alta,Applies standard phrase extraction heuristics as is.,COMPLETO,34,1
+6,P12-1050_N06-1014_0,Evaluable,Application,Alta,Uses the Berkeley Aligner for word alignment.,COMPLETO,34,1
+7,W08-2138_N07-1049_0,Evaluable,Improvement / Modification,Alta,Implements an alternative to the cited revision method.,COMPLETO,34,1
+8,P12-1019_P10-1110_1,Evaluable,Comparison,Alta,"Contrasts the cited use of equivalent states with the current use (""In contrast, we..."").",COMPLETO,34,1
+9,P13-2001_N03-1017_0,Evaluable,Application,Alta,Uses the grow-diag-final-and heuristic to symmetrize alignments.,COMPLETO,34,1
+10,W12-1643_E09-1081_1,Evaluable,Gap,Alta,Cited work has not dealt with learned grounded semantics; the current work goes beyond it.,COMPLETO,34,1
+11,J00-1003_W98-1302_1,Evaluable,Comparison,Media,Notes that a similar formulation for another grammar transformation appears in the cited work.,COMPLETO,34,1
+12,P06-2064_J02-3004_1,Evaluable,Background,Media,Describes how the cited work treats nominalizations.,COMPLETO,34,1
+13,P13-1031_N09-1069_1,Evaluable,Evidence,Media,Supports the claim about robustness to local optima.,COMPLETO,34,1
+14,W01-0520_W00-1401_0,Evaluable,Further Reading,Alta,Directs the reader to the cited work for detailed discussion of evaluation.,COMPLETO,34,1
+15,D11-1004_J07-2003_0,Evaluable,Application,Media,Uses the cited approximate search techniques for decoding.,COMPLETO,34,1
+16,P13-1008_N12-1015_1,Evaluable,Background,Media,Describes the cited work's later convergence proof and framework for early update.,COMPLETO,34,1
+17,P05-1005_W97-0201_0,Evaluable,Evidence,Alta,Cites an effort estimate to support the knowledge acquisition bottleneck claim.,COMPLETO,34,1
+18,W13-2807_N03-1017_2,Evaluable,Application,Alta,The baseline is built with the phrase-based model.,COMPLETO,34,1
+19,W10-4235_P10-1103_1,Evaluable,Evidence,Media,Supports the claim that the simulations are reasonable for training and testing NLG policies.,COMPLETO,34,1
+20,P07-1051_P06-1109_6,Evaluable,Evidence,Alta,Reports figures supporting the claim that binarization hurts f-score.,COMPLETO,34,1
+21,N12-1047_N10-1069_1,Evaluable,Application,Alta,Online parallelization follows the cited method.,COMPLETO,34,1
+22,W03-1023_W02-1030_0,Evaluable,Background,Media,Lists prior successful uses of the Web in NLP.,COMPLETO,34,1
+23,N13-1016_P11-1154_2,Evaluable,Basis,Media,The evaluation approach is similar to the cited framework.,COMPLETO,34,1
+24,W04-1216_P93-1024_0,Evaluable,Background,Alta,Enumerates existing distributional similarity methods.,COMPLETO,34,1
+25,P13-1137_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser to obtain parses.,COMPLETO,34,1
+26,P09-1050_N04-1041_1,Evaluable,Background,Media,Describes related work on inducing names for semantic classes.,COMPLETO,34,1
+27,P09-4007_P09-1067_1,Evaluable,Further Reading,Alta,Features are described in more detail in the cited work.,COMPLETO,34,1
+28,J11-4007_P98-2204_0,Evaluable,Application,Alta,Uses the salience-list model directly.,COMPLETO,34,1
+29,W13-1505_J12-1004_0,Evaluable,Further Reading,Media,Points to the cited work for the underlying theory and program design.,COMPLETO,34,1
+30,P06-1012_P04-1036_1,Evaluable,Evidence,Alta,Supports the claim that sense priors depend on domain.,COMPLETO,34,1
+31,P10-4014_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ for word alignment.,COMPLETO,34,1
+32,P09-1066_P05-1033_0,Evaluable,Comparison,Media,Contrasts collaborative decoding with full SMT decoders such as Hiero.,COMPLETO,34,1
+33,S07-1098_S07-1014_1,Evaluable,Further Reading,Alta,Refers to the cited work for full tabulation of results.,COMPLETO,34,1
+34,P04-1051_P03-1069_2,Evaluable,Background,Media,Describes a previously proposed probability-based approach to coherence.,COMPLETO,34,1
+35,P07-1003_P05-1033_0,Evaluable,Background,Alta,Cited as an example of empirically successful syntactic MT.,COMPLETO,34,1
+36,P94-1022_P93-1017_1,Evaluable,Identification of the Originator,Media,Credits the authors who defined Lexicalized Context-Free Grammars.,COMPLETO,34,1
+37,W13-2217_P13-1031_2,Evaluable,Comparison,Alta,Contrasts the cited work's richer classes with the simpler ones used here.,COMPLETO,34,1
+38,W06-3106_N03-1017_0,Evaluable,Evidence,Alta,Supports the claim that phrase-based MT outperforms word-based MT.,COMPLETO,34,1
+39,D13-1137_D12-1110_1,Evaluable,Comparison,Alta,Compares performance with the MV-RNN model.,COMPLETO,34,1
+40,N10-1016_P05-1033_0,Evaluable,Background,Baja,Cited to define phrase-based decoding in general.,COMPLETO,34,1
+41,D13-1049_P01-1067_0,Evaluable,Comparison,Alta,Compares the preordering approach with syntax-based translation systems.,COMPLETO,34,1
+42,P13-2116_W09-1101_0,Evaluable,Background,Alta,Summarizes studies with varied conclusions on joint inference.,COMPLETO,34,1
+43,P07-1062_N03-1030_5,Evaluable,Application,Media,Uses the cited evaluation set (RST corpus) for experiments.,COMPLETO,34,1
+44,P01-1032_P00-1059_0,Evaluable,Background,Media,Reviews recent context-based disambiguation models.,COMPLETO,34,1
+45,P13-1157_P06-1062_0,Evaluable,Background,Alta,One of several works on building bilingual corpora from the web.,COMPLETO,34,1
+46,W09-3825_P06-1054_0,Evaluable,Background,Alta,Describes prior findings on shift-reduce parsing for Chinese.,COMPLETO,34,1
+47,W11-0116_D09-1120_0,Evaluable,Evidence,Alta,Supports claim that semantic knowledge improves coreference resolution.,COMPLETO,34,1
+48,P10-1003_D09-1060_2,Evaluable,Basis,Media,The cited finding on source subtree features motivates the features used.,COMPLETO,34,1
+49,W12-1642_D09-1044_3,Evaluable,Application,Media,Uses the GRE method as a baseline.,COMPLETO,34,1
+50,W10-2101_W07-1301_0,Evaluable,Background,Media,Lists prior work on algorithms for language family reconstruction.,COMPLETO,34,1
+51,E09-1011_P08-2039_2,Evaluable,Evidence,Alta,Supports the claim that Arabic segmentation improves translation.,COMPLETO,34,1
+52,P99-1038_P95-1028_1,Evaluable,Background,Media,Describes an alternative theory of scope availability proposed in the cited work.,COMPLETO,34,1
+53,W03-0302_P03-1012_0,Evaluable,Further Reading,Alta,More details on the probability model are in the cited work.,COMPLETO,34,1
+54,E12-1009_P10-1001_2,Evaluable,Basis,Media,Feature sets are mostly based on previous work.,COMPLETO,34,1
+55,P11-1109_D08-1084_0,Evaluable,Further Reading,Alta,Points to a similar discussion in the cited work.,COMPLETO,34,1
+56,D12-1127_P07-1096_0,Evaluable,Background,Alta,Cites supervised taggers achieving near-human accuracy as context.,COMPLETO,34,1
+57,P10-1036_P06-1043_1,Evaluable,Background,Media,Describes prior effective use of the method for parsing.,COMPLETO,34,1
+58,P02-1020_P91-1022_0,Evaluable,Gap,Media,Notes sentence-length based algorithms are inappropriate for this case.,COMPLETO,34,1
+59,D13-1128_P05-1012_2,Evaluable,Application,Alta,Uses the cited parser to dependency-parse the descriptions.,COMPLETO,34,1
+60,D13-1034_W02-0502_0,Evaluable,Gap,Alta,Criticizes approaches requiring extensive linguistic knowledge and hand-crafted rules.,COMPLETO,34,1
+61,W12-1903_W12-0701_0,Evaluable,Background,Alta,Cites work showing growing attention to the field.,COMPLETO,34,1
+62,N06-1038_P04-1054_0,Evaluable,Background,Alta,Lists common approaches including kernel methods.,COMPLETO,34,1
+63,W12-3137_E03-1076_0,Evaluable,Application,Alta,Uses the frequency-based compound splitting method.,COMPLETO,34,1
+64,D12-1036_P09-1083_1,Evaluable,Background,Alta,Describes the cited work's formulation of answer generation.,COMPLETO,34,1
+65,W09-3813_P99-1047_0,Evaluable,Comparison,Alta,Compares segmentation results against the cited systems.,COMPLETO,34,1
+66,P99-1041_P98-2127_0,Evaluable,Further Reading,Alta,More details on the database and thesaurus construction are in the cited work.,COMPLETO,34,1
+67,D12-1130_W01-0514_0,Evaluable,Background,Alta,Lists NLP applications of distributional models.,COMPLETO,34,1
+68,W09-0809_W08-0406_4,Evaluable,Comparison,Alta,Contrasts the new result with the cited work that only reported manual alignments.,COMPLETO,34,1
+69,W09-2310_N04-4026_1,Evaluable,Application,Alta,The baseline applies the lexicalized reordering model.,COMPLETO,34,1
+70,W10-4010_P05-3013_1,Evaluable,Improvement / Modification,Media,Multilingual version of TextRank without morphological analysis.,COMPLETO,34,1
+71,P12-1111_P07-1096_1,Evaluable,Application,Media,Follows the data split used in prior work.,COMPLETO,34,1
+72,W96-0410_P85-1008_0,Evaluable,Basis,Alta,Adopts the ontologically promiscuous representation advocated by the cited work.,COMPLETO,34,1
+73,E12-1076_W11-0326_0,Evaluable,Background,Alta,Lists works mapping vision to language.,COMPLETO,34,1
+74,N09-1034_P06-1010_2,Evaluable,Comparison,Alta,Compares own results with the cited system's MRR score.,COMPLETO,34,1
+75,W09-3716_J91-4003_0,Evaluable,Identification of the Originator,Media,Credits the source of the qualia structure definition.,COMPLETO,34,1
+76,P09-1027_D08-1014_0,Evaluable,Gap,Alta,Notes prior methods are straightforward and performance is unsatisfactory.,COMPLETO,34,1
+77,W13-2605_N01-1021_2,Evaluable,Comparison,Media,Compares the GCG formulation with the cited HPSG-like notation.,COMPLETO,34,1
+78,Q13-1002_E06-1011_1,Evaluable,Background,Alta,States the algorithm has been extended to higher order factors.,COMPLETO,34,1
+79,J12-3004_A97-1039_0,Evaluable,Background,Alta,Mentions RealPro as another publicly available realizer.,COMPLETO,34,1
+80,D13-1155_W08-1105_4,Evaluable,Comparison,Alta,Compares amount of data used for counts with the cited work.,COMPLETO,34,1
+81,P11-1126_N10-1141_1,Evaluable,Background,Media,Notes prior effectiveness of consensus features.,COMPLETO,34,1
+82,W12-0502_P09-1031_0,Evaluable,Gap,Media,Prior combinations are sporadic and do not cover the whole range of measures.,COMPLETO,34,1
+83,P11-1003_P10-1146_1,Evaluable,Background,Alta,Lists related work on re-aligning subtree pairs.,COMPLETO,34,1
+84,P12-1108_N06-1041_0,Evaluable,Background,Alta,Lists recent unsupervised POS tagging approaches.,COMPLETO,34,1
+85,P11-1101_P09-1092_2,Evaluable,Basis,Media,Information status features follow the cited work.,COMPLETO,34,1
+86,P09-1068_P08-1090_1,Evaluable,Identification of the Originator,Media,"Defines narrative event chains, introduced in the cited work.",COMPLETO,34,1
+87,E12-1003_W06-1601_0,Evaluable,Background,Alta,Notes identification can be tackled with heuristics as in prior work.,COMPLETO,34,1
+88,N09-1027_W06-3119_2,Evaluable,Comparison,Alta,Contrasts behavior of richly-labeled PSCFG with other approach.,COMPLETO,34,1
+89,N07-2022_P03-1021_0,Evaluable,Evidence,Alta,Supports the claim that tuning by minimizing error is effective.,COMPLETO,34,1
+90,P08-3012_W07-1013_0,Evaluable,Background,Baja,Cites the shared task describing the challenge and ICD-9-CM context.,COMPLETO,34,1
+91,W06-0204_P05-1047_4,Evaluable,Comparison,Alta,Compares proposed metric with the cited vector space approach.,COMPLETO,34,1
+92,N09-1001_P05-1017_0,Evaluable,Background,Alta,Related work enumerating opinion mining research at word level.,COMPLETO,34,1
+93,D11-1017_D10-1069_1,Evaluable,Improvement / Modification,Media,Suggests combining the approach with uptraining (targeted uptraining).,COMPLETO,34,1
+94,D09-1037_N03-1017_0,Evaluable,Background,Alta,Describes standard phrase-based models and their assumptions.,COMPLETO,34,1
+95,D13-1172_P12-1036_0,Evaluable,Background,Alta,Reviews prior seeded topic models before noting limitations.,COMPLETO,34,1
+96,P13-2024_W12-2601_1,Evaluable,Comparison,Alta,Contrasts the current results with those reported in the cited work.,COMPLETO,34,1
+97,D13-1157_N12-1093_2,Evaluable,Comparison,Alta,Reports improvement over the cited system.,COMPLETO,34,1
+98,P13-2064_W02-1019_0,Evaluable,Background,Alta,Related work describing the cited graph distance loss for MBR alignment.,COMPLETO,34,1
+99,W13-4906_P10-1110_0,Evaluable,Basis,Alta,The parser is inspired by the cited work.,COMPLETO,34,1
+100,W12-3150_P11-2072_0,Evaluable,Background,Media,"Lists features described in the literature, including the cited one.",COMPLETO,34,1

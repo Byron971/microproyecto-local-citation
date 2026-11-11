@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P12-1051_N06-1056_4,Evaluable,Comparison,Alta,WASP is run as one of the comparison systems.,COMPLETO,35,1
+2,W11-1012_J07-2003_0,Evaluable,Background,Media,Describes Hiero as prior work in the introduction.,COMPLETO,35,1
+3,D11-1060_P09-1045_1,Evaluable,Background,Alta,Related-work summary of prior bootstrapping approaches.,COMPLETO,35,1
+4,W06-1410_P02-1013_0,Evaluable,Further Reading,Media,"'see, for example' points to other algorithms in the literature.",COMPLETO,35,1
+5,Q13-1035_D11-1084_0,Evaluable,Background,Alta,Lists prior work on data selection.,COMPLETO,35,1
+6,W13-2232_D09-1092_6,Evaluable,Application,Alta,Uses PLTM with the same settings as the cited work.,COMPLETO,35,1
+7,W05-0836_N04-1022_0,Evaluable,Identification of the Originator,Alta,Credits who proposed MBR for translation.,COMPLETO,35,1
+8,N13-1007_D08-1021_0,Evaluable,Background,Alta,Lists methods for paraphrase acquisition.,COMPLETO,35,1
+9,W07-2305_W04-0601_0,Evaluable,Improvement / Modification,Alta,Starts from the COMIC text planner and enhances it.,COMPLETO,35,1
+10,D13-1068_W09-2804_0,Evaluable,Evidence,Alta,Supports the claim that the problem is NP-hard.,COMPLETO,35,1
+11,N10-1068_P06-2065_0,Evaluable,Background,Media,Lists prior work on decipherment applications.,COMPLETO,35,1
+12,S12-1061_S12-1051_0,Evaluable,Further Reading,Alta,Refers the reader to the task description.,COMPLETO,35,1
+13,W12-3102_W11-2103_0,Evaluable,Comparison,Alta,Compares agreement rates with WMT11 results.,COMPLETO,35,1
+14,S07-1066_S07-1009_0,Evaluable,Evidence,Media,Supports the claim that modes reflect annotator agreement.,COMPLETO,35,1
+15,P10-1025_W00-0726_0,Evaluable,Evidence,Media,Supports the claim that best CoNLL chunking systems use lexical information.,COMPLETO,35,1
+16,D13-1064_Q13-1015_3,Evaluable,Background,Media,Describes the cited work's approach to entity types.,COMPLETO,35,1
+17,W11-0810_W03-0424_0,Evaluable,Evidence,Alta,Supports the observation about one entity tag per discourse.,COMPLETO,35,1
+18,E06-1051_P04-1054_0,Evaluable,Background,Alta,Lists prior kernel approaches based on syntactic information.,COMPLETO,35,1
+19,N12-1049_D11-1140_0,Evaluable,Comparison,Alta,Explicitly contrasts the approach with CCG grammars.,COMPLETO,35,1
+20,D11-1137_E06-1011_0,Evaluable,Application,Alta,Baseline uses features provided in the cited work.,COMPLETO,35,1
+21,N13-1008_P09-1113_0,Evaluable,Background,Alta,Describes prior approaches that label text from databases.,COMPLETO,35,1
+22,P10-1024_P09-1004_0,Evaluable,Comparison,Alta,"Contrasts the cited work, which only identifies arguments, with the current one.",COMPLETO,35,1
+23,W11-2924_P05-1022_1,Evaluable,Background,Alta,Describes the state of the art in parsers.,COMPLETO,35,1
+24,W08-2004_W05-1203_1,Evaluable,Application,Media,Word similarity measures are used for the anchoring step.,COMPLETO,35,1
+25,E12-1029_P11-1114_4,Evaluable,Comparison,Alta,Compares the system with its supervised counterpart TIER.,COMPLETO,35,1
+26,N12-1050_D09-1001_0,Evaluable,Gap,Alta,Points out that such systems ignore negation.,COMPLETO,35,1
+27,W10-1012_N03-1030_0,Evaluable,Gap,Media,"Notes work focuses on sentence level, leaving higher levels open.",COMPLETO,35,1
+28,P06-1109_W06-2912_3,Evaluable,Basis,Media,Builds on and extends the earlier U-DOP pruning.,COMPLETO,35,1
+29,S07-1102_P98-1013_0,Evaluable,Background,Alta,Introduces the FrameNet project as context.,COMPLETO,35,1
+30,E97-1008_P93-1024_0,Evaluable,Background,Alta,Describes class-based methods in prior work.,COMPLETO,35,1
+31,D13-1040_P04-1053_2,Evaluable,Comparison,Alta,Models are compared against the cited system.,COMPLETO,35,1
+32,P10-1112_P06-1055_0,Evaluable,Background,Alta,Describes recent trends in subcategory induction.,COMPLETO,35,1
+33,W11-1210_D09-1009_0,Evaluable,Background,Media,Describes what the cited work proposes as related work.,COMPLETO,35,1
+34,W08-1006_P03-1054_1,Evaluable,Evidence,Alta,Supports the claim that Markovization improves parsing.,COMPLETO,35,1
+35,W08-2135_W06-2932_0,Evaluable,Basis,Media,Features are strongly based on previous works.,COMPLETO,35,1
+36,P00-1057_P94-1022_1,Evaluable,Basis,Media,Relies on the cited definition of regular adjunction.,COMPLETO,35,1
+37,W11-2139_J07-2003_2,Evaluable,Evidence,Alta,Supports the claim that syntactic constraints harm performance.,COMPLETO,35,1
+38,P10-1145_P03-1021_0,Evaluable,Application,Alta,Uses standard MERT for tuning.,COMPLETO,35,1
+39,W12-3154_W10-1759_0,Evaluable,Background,Alta,Lists other authors' weighting approaches.,COMPLETO,35,1
+40,N06-1012_P05-1001_0,Evaluable,Comparison,Alta,Compares results with the best reported result.,COMPLETO,35,1
+41,D13-1033_W10-1412_0,Evaluable,Evidence,Alta,Supports the claim that morphosyntactic modeling improves parsing.,COMPLETO,35,1
+42,D12-1080_N10-1066_0,Evaluable,Background,Alta,Lists applications of joint inference.,COMPLETO,35,1
+43,W11-2815_D10-1040_0,Evaluable,Gap,Media,"Notes the cited work focuses on static spatial scenes, a limitation.",COMPLETO,35,1
+44,P11-1067_W10-2902_4,Evaluable,Comparison,Alta,Table column compares algorithms including the cited one.,COMPLETO,35,1
+45,D13-1157_N12-1093_3,Evaluable,Background,Alta,Describes the cited joint model in related work.,COMPLETO,35,1
+46,W11-0322_P10-1154_0,Evaluable,Comparison,Alta,The network is compared against WordNet++.,COMPLETO,35,1
+47,W11-2205_P08-1068_0,Evaluable,Evidence,Alta,Supports the claim that semi-supervised learning is effective.,COMPLETO,35,1
+48,P09-1025_A97-1039_1,Evaluable,Application,Alta,Uses RealPro for surface realization.,COMPLETO,35,1
+49,W04-3234_W00-0717_0,Evaluable,Evidence,Alta,Supports the claim that clustering agrees with POS.,COMPLETO,35,1
+50,P13-2083_D08-1094_0,Evaluable,Gap,Media,Presented amid limitations of existing models regarding structure.,COMPLETO,35,1
+51,W04-0106_N01-1024_0,Evaluable,Background,Alta,Presents further cues from related work.,COMPLETO,35,1
+52,P13-1039_N07-1055_0,Evaluable,Background,Alta,Related work enumeration.,COMPLETO,35,1
+53,P07-1005_W04-3250_0,Evaluable,Background,Media,Mentions Pharaoh as a state-of-the-art system.,COMPLETO,35,1
+54,W12-2508_P10-2008_0,Evaluable,Background,Alta,Describes prior authorship work.,COMPLETO,35,1
+55,P05-3012_W04-0601_0,Evaluable,Further Reading,Alta,Refers to a detailed description elsewhere.,COMPLETO,35,1
+56,N13-1026_N03-1032_0,Evaluable,Evidence,Alta,Supports the claim that PMI is the best metric.,COMPLETO,35,1
+57,W05-1511_P03-1014_1,Evaluable,Background,Alta,Lists prior hybrid parsing work.,COMPLETO,35,1
+58,W04-3250_J90-2002_0,Evaluable,Identification of the Originator,Alta,Credits IBM work as the origin of SMT.,COMPLETO,35,1
+59,E09-1018_P07-1107_0,Evaluable,Basis,Alta,The cited work significantly influenced and inspired this work.,COMPLETO,35,1
+60,P98-2154_E95-1025_0,Evaluable,Gap,Alta,Points to a limitation of previous methods.,COMPLETO,35,1
+61,D10-1041_N06-1003_0,Evaluable,Background,Media,Describes the cited argument about coverage.,COMPLETO,35,1
+62,P12-2057_J07-2003_0,Evaluable,Background,Alta,General context on state-of-the-art models.,COMPLETO,35,1
+63,W13-0807_D11-1082_0,Evaluable,Background,Alta,Lists relevant literature.,COMPLETO,35,1
+64,N03-1016_N03-1016_0,Evaluable,Further Reading,Alta,Refers to where the proof can be found.,COMPLETO,35,1
+65,W13-4049_N10-1020_0,Evaluable,Background,Alta,Summarizes prior unsupervised dialogue act work.,COMPLETO,35,1
+66,D11-1010_P10-2021_0,Evaluable,Background,Alta,Related work description.,COMPLETO,35,1
+67,D11-1061_N04-3012_0,Evaluable,Application,Alta,Uses the WordNet similarity package as a tool.,COMPLETO,35,1
+68,N13-1121_D11-1120_3,Evaluable,Background,Alta,Lists prior work on inferring user properties.,COMPLETO,35,1
+69,D10-1049_P09-1011_1,Evaluable,Application,Alta,Uses the WEATHERGOV dataset for testing.,COMPLETO,35,1
+70,D13-1172_P11-1036_0,Evaluable,Background,Alta,Enumeration of related topic model work.,COMPLETO,35,1
+71,Q13-1006_P07-1049_0,Evaluable,Background,Alta,Summarizes previous work using punctuation.,COMPLETO,35,1
+72,P06-1016_P05-1053_1,Evaluable,Background,Alta,Lists typical related works.,COMPLETO,35,1
+73,J93-2005_J91-4003_2,Evaluable,Further Reading,Alta,'Cf. for details' refers to additional information.,COMPLETO,35,1
+74,D10-1038_E06-1035_0,Evaluable,Gap,Alta,Contrasts existing work with the unstudied asynchronous case.,COMPLETO,35,1
+75,W09-1401_W09-1301_0,Evaluable,Further Reading,Alta,Refers the reader for details of the revision process.,COMPLETO,35,1
+76,P13-1012_D08-1069_0,Evaluable,Comparison,Alta,Notes the model resembles models used by the cited work.,COMPLETO,35,1
+77,D12-1003_W02-0902_1,Evaluable,Gap,Media,Describes prior work and notes its limitation.,COMPLETO,35,1
+78,J13-4004_W99-0611_0,Evaluable,Background,Alta,Lists unsupervised approaches.,COMPLETO,35,1
+79,D13-1105_N13-1138_2,Evaluable,Comparison,Alta,Compares results against the cited system.,COMPLETO,35,1
+80,W13-0211_W11-0908_0,Evaluable,Further Reading,Media,Footnote 'See' refers to additional sources.,COMPLETO,35,1
+81,W13-4034_P00-1013_0,Evaluable,Background,Alta,Lists reinforcement learning approaches.,COMPLETO,35,1
+82,D09-1044_W00-0400_0,Evaluable,Background,Alta,Defines summarisation in the introduction.,COMPLETO,35,1
+83,N06-3007_N03-1032_0,Evaluable,Evidence,Alta,Supports the claim that co-occurrence measures improve performance.,COMPLETO,35,1
+84,D09-1107_W06-3105_0,Evaluable,Gap,Alta,Cited for the reference reachability problem of the approach.,COMPLETO,35,1
+85,D13-1176_D12-1110_0,Evaluable,Background,Alta,Lists related work.,COMPLETO,35,1
+86,S12-1080_N03-1033_0,Evaluable,Application,Alta,Uses the Stanford POS Tagger.,COMPLETO,35,1
+87,E09-1061_J99-4004_0,Evaluable,Basis,Media,Builds on semiring-extended deduction formalism.,COMPLETO,35,1
+88,D13-1203_P11-1082_1,Evaluable,Comparison,Media,Analysis similar to the cited work but with different splits.,COMPLETO,35,1
+89,N13-1032_W12-3134_0,Evaluable,Application,Alta,Uses Joshua as an off-the-shelf tool.,COMPLETO,35,1
+90,P11-1063_N03-1017_0,Evaluable,Background,Alta,Related work on phrase-based translation.,COMPLETO,35,1
+91,P13-1132_S12-1051_1,Evaluable,Application,Media,Evaluates on the SemEval-2012 task.,COMPLETO,35,1
+92,E09-1063_P07-1039_0,Evaluable,Evidence,Media,Supports the claim that monolingual segmentation may be unsuited.,COMPLETO,35,1
+93,W06-1616_P05-1012_1,Evaluable,Background,Alta,Describes the cited dependency parsing framework.,COMPLETO,35,1
+94,P13-1020_W04-1013_0,Evaluable,Application,Alta,Uses the ROUGE toolkit for evaluation.,COMPLETO,35,1
+95,W11-2815_W98-1419_0,Evaluable,Background,Alta,Describes prior approaches to REs.,COMPLETO,35,1
+96,W12-2025_P11-1092_1,Evaluable,Application,Alta,Adopts the confusion set from the authors' previous work.,COMPLETO,35,1
+97,P07-1096_P04-1015_0,Evaluable,Basis,Media,"The proposed algorithm is perceptron-like, built on the cited one.",COMPLETO,35,1
+98,P11-1148_P98-2127_0,Evaluable,Background,Alta,Describes an important approach in the field.,COMPLETO,35,1
+99,D13-1187_N10-1119_0,Evaluable,Evidence,Media,Supports the claim about the typical approach in the literature.,COMPLETO,35,1
+100,S12-1026_W06-1601_0,Evaluable,Basis,Alta,Follows the cited work in treating linkings as first-class objects.,COMPLETO,35,1

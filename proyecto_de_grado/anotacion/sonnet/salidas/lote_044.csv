@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W04-1215_W02-0301_1,Evaluable,Comparison,Media,"Contrasta el trabajo citado (división de la clase O) con el propio, señalando similitud con lo que hicieron.",COMPLETO,44,1
+2,W98-1207_A92-1018_0,Evaluable,Comparison,Media,Contrasta el tagger propio con un tagger probabilístico estándar.,COMPLETO,44,1
+3,D13-1179_D09-1092_0,Evaluable,Background,Alta,Describe modelos de tópicos existentes y su extensión al caso multilingüe.,COMPLETO,44,1
+4,D13-1029_D13-1203_0,Evaluable,Gap,Media,Señala que incorporar conocimiento ha perjudicado el rendimiento en trabajos previos.,COMPLETO,44,1
+5,W12-3131_W08-0509_0,Evaluable,Application,Alta,Usa MGIZA++ tal cual para calcular puntajes de alineación.,COMPLETO,44,1
+6,P05-1065_N04-1025_1,Evaluable,Background,Alta,Resume el trabajo previo sobre el clasificador de unigramas suavizados.,COMPLETO,44,1
+7,W12-3124_P03-1021_0,Evaluable,Comparison,Baja,"Contrasta MERT estándar con el optimizador usado, indicando que no es aplicable.",COMPLETO,44,1
+8,P09-1092_W07-2303_6,Evaluable,Comparison,Media,Aparece como fila de resultados de un modelo de referencia en una tabla comparativa.,COMPLETO,44,1
+9,J99-3003_P98-1040_0,Evaluable,Improvement / Modification,Media,El trabajo extiende la representación vectorial para generar consultas de desambiguación dinámicas.,COMPLETO,44,1
+10,P09-1037_P05-1033_2,Evaluable,Further Reading,Alta,Remite a la fuente para una discusión más detallada.,COMPLETO,44,1
+11,W10-1404_P07-1122_1,Evaluable,Background,Alta,Resume trabajos que modifican la estructura del árbol de dependencias.,COMPLETO,44,1
+12,W10-3411_W08-1902_0,Evaluable,Evidence,Media,Respalda la afirmación de que acceder a la información almacenada no es trivial.,COMPLETO,44,1
+13,W05-1202_W03-1011_0,Evaluable,Evidence,Alta,Respalda la decisión metodológica basada en que la similitud distribucional funciona con palabras frecuentes.,COMPLETO,44,1
+14,W09-0604_W04-1015_0,Evaluable,Background,Alta,Enumera aplicaciones previas de la compresión de oraciones.,COMPLETO,44,1
+15,D11-1005_P10-1131_2,Evaluable,Comparison,Alta,Compara resultados propios con los reportados por el trabajo citado.,COMPLETO,44,1
+16,D12-1039_W09-2010_0,Evaluable,Gap,Alta,Señala la limitación de enfoques no supervisados previos que no distinguen tokens OOV.,COMPLETO,44,1
+17,P97-1051_P88-1012_0,Evaluable,Basis,Baja,El sistema de costos de pruebas del trabajo citado sustenta el planteamiento sobre paralelismo.,COMPLETO,44,1
+18,N07-1065_E06-1050_0,Evaluable,Gap,Alta,Describe el trabajo previo y señala su limitación (mapeo de preguntas restringido).,COMPLETO,44,1
+19,J05-4002_W02-0908_2,Evaluable,Comparison,Alta,Compara explícitamente los resultados propios con los del trabajo citado.,COMPLETO,44,1
+20,W12-2004_P11-1118_1,Evaluable,Background,Media,"Menciona el uso exitoso previo de los modelos en otra tarea, en contraste con sus resultados.",COMPLETO,44,1
+21,W11-2145_W11-2124_0,Evaluable,Further Reading,Alta,Remite a la fuente para más detalles ('For more details see').,COMPLETO,44,1
+22,D09-1119_W01-0521_0,Evaluable,Evidence,Media,Cita un hallazgo previo que respalda y es consistente con los resultados propios.,COMPLETO,44,1
+23,W02-1019_P00-1056_2,Evaluable,Application,Media,Usa los datos/modelos del trabajo citado para entrenar los modelos IBM-3.,COMPLETO,44,1
+24,D13-1173_P06-2065_0,Evaluable,Background,Media,Presenta la aplicación teórica de EM como punto de partida antes de señalar su complejidad.,COMPLETO,44,1
+25,P10-1033_P00-1056_1,Evaluable,Comparison,Alta,GIZA++ es uno de los baselines contra los que se compara el sistema.,COMPLETO,44,1
+26,S13-2072_P06-1134_0,Evaluable,Background,Alta,Enumera esfuerzos previos en análisis de opinión y emociones.,COMPLETO,44,1
+27,J13-2001_P06-2055_1,Evaluable,Evidence,Alta,El resultado propio confirma una observación del trabajo citado.,COMPLETO,44,1
+28,E09-1018_N04-4009_0,Evaluable,Comparison,Media,Contrasta un enfoque no supervisado distinto con el propio.,COMPLETO,44,1
+29,W13-3733_N13-1070_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el rendimiento posterior es sensible al esquema de conversión.,COMPLETO,44,1
+30,J13-1004_W09-1210_4,Evaluable,Evidence,Media,Respalda la afirmación de que el decodificador es eficiente con modelos de rasgos ricos.,COMPLETO,44,1
+31,P12-2001_N06-2033_1,Evaluable,Basis,Baja,"El umbral de poda propio se inspira en el del trabajo citado, que le sirve de base.",COMPLETO,44,1
+32,J03-4004_E95-1016_0,Evaluable,Gap,Media,Se usa para señalar limitación de cobertura de trabajos previos centrados en sujeto y objeto.,COMPLETO,44,1
+33,W13-2235_W08-0509_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la complejidad computacional de la alineación.,COMPLETO,44,1
+34,N13-1115_P12-1099_1,Evaluable,Improvement / Modification,Alta,Usa el ensemble decoding citado y lo extiende a ensemble tuning.,COMPLETO,44,1
+35,P84-1014_J80-1001_0,Evaluable,Identification of the Originator,Media,Atribuye la caracterización formal de las CATN a Woods.,COMPLETO,44,1
+36,P06-2066_E06-1011_1,Evaluable,Evidence,Alta,Los resultados propios confirman estudios previos sobre análisis no proyectivo.,COMPLETO,44,1
+37,W09-3829_P08-1068_3,Evaluable,Application,Media,Aplica el procedimiento de dos conjuntos de etiquetas de clusters del trabajo citado.,COMPLETO,44,1
+38,D11-1079_W09-0434_0,Evaluable,Gap,Alta,Cita un hallazgo que señala la limitación del modelo jerárquico en reordenamiento de larga distancia.,COMPLETO,44,1
+39,P12-1036_D10-1006_3,Evaluable,Comparison,Alta,DF-LDA se usa como modelo de línea base contra el cual comparar.,COMPLETO,44,1
+40,P13-2056_N07-1057_0,Evaluable,Gap,Media,Señala que pocos trabajos han abordado el tema.,COMPLETO,44,1
+41,N12-1004_P10-1147_6,Evaluable,Application,Media,Sigue una versión simplificada del procedimiento descrito en el trabajo citado.,COMPLETO,44,1
+42,D10-1002_N10-1003_5,Evaluable,Comparison,Alta,Compara la exactitud propia con la del modelo producto citado.,COMPLETO,44,1
+43,D13-1185_N13-1104_2,Evaluable,Comparison,Alta,Distingue el enfoque propio de otros por la restricción sobre menciones correferentes.,COMPLETO,44,1
+44,P06-2098_N03-1028_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el perceptrón votado es conocido por su buen desempeño.,COMPLETO,44,1
+45,N10-1090_W09-3832_1,Evaluable,Evidence,Alta,Respalda la elección del perceptrón promediado por su efectividad demostrada.,COMPLETO,44,1
+46,P06-1123_W02-1039_2,Evaluable,Comparison,Alta,Contrasta explícitamente su medición de fallos por corpus con la de trabajos previos.,COMPLETO,44,1
+47,W08-2225_W04-0905_0,Evaluable,Further Reading,Alta,Remite a una evaluación previa de pequeña escala.,COMPLETO,44,1
+48,E12-1009_P05-1012_1,Evaluable,Background,Alta,Revisa el trabajo previo sobre análisis basado en grafos y el parser MST.,COMPLETO,44,1
+49,W09-1117_W06-2920_1,Evaluable,Application,Alta,Usa los datos del CoNLL-X para el entrenamiento.,COMPLETO,44,1
+50,P13-1077_W07-0403_0,Evaluable,Background,Alta,Enumera trabajos previos que han explorado ITG para alineación.,COMPLETO,44,1
+51,D08-1092_P05-1034_0,Evaluable,Background,Alta,Enumera trabajos previos de MT con estructuras de árbol del lado fuente.,COMPLETO,44,1
+52,W13-4018_W11-2020_0,Evaluable,Background,Media,Describe trabajo previo que introdujo la métrica IQ y su método.,COMPLETO,44,1
+53,W06-2908_P05-1073_0,Evaluable,Background,Alta,Enumera estudios previos sobre etiquetado de roles semánticos.,COMPLETO,44,1
+54,W13-2108_P11-2041_2,Evaluable,Evidence,Alta,Respalda la decisión de limitar a cuatro atributos con un hallazgo previo.,COMPLETO,44,1
+55,W12-3201_P08-1093_0,Evaluable,Background,Alta,Enumera estudios previos que usan oraciones citantes en aplicaciones.,COMPLETO,44,1
+56,P02-1017_W01-0714_0,Evaluable,Basis,Media,Trabajo previo propio sobre el que se construye y mejora el modelo actual.,COMPLETO,44,1
+57,D12-1062_N12-3008_1,Evaluable,Application,Alta,Usa el extractor de intervalos temporales descrito en el trabajo citado.,COMPLETO,44,1
+58,E03-1058_W01-0514_3,Evaluable,Comparison,Alta,Se comparan con los resultados publicados en la literatura sobre la colección de Choi.,COMPLETO,44,1
+59,W09-1104_N06-1019_0,Evaluable,Comparison,Alta,Señala similitud y diferencia explícitas entre el enfoque propio y el citado.,COMPLETO,44,1
+60,P11-1145_D09-1001_1,Evaluable,Comparison,Alta,Contrasta el modelo no paramétrico propio con el método paramétrico citado.,COMPLETO,44,1
+61,P12-1023_D09-1060_2,Evaluable,Comparison,Alta,Se compara el resultado propio con el del parser citado.,COMPLETO,44,1
+62,W12-2102_W10-1815_0,Evaluable,Comparison,Media,Contrasta el conjunto de rasgos más completo del trabajo citado con el estudio previo.,COMPLETO,44,1
+63,P04-1060_N03-1017_0,Evaluable,Evidence,Media,Respalda la afirmación de que los bloques contiguos superan a los constituyentes sintácticos.,COMPLETO,44,1
+64,P12-2038_D11-1148_3,Evaluable,Comparison,Alta,El resultado CFG del trabajo citado se compara con los modelos propios.,COMPLETO,44,1
+65,P11-2044_D08-1084_6,Evaluable,Comparison,Alta,Compara el sistema final con los resultados reportados en el trabajo citado.,COMPLETO,44,1
+66,P11-1141_W03-1025_2,Evaluable,Background,Alta,Menciona parsers exitosos previos con técnicas discriminativas.,COMPLETO,44,1
+67,P13-2009_N06-1056_1,Evaluable,Comparison,Alta,Compara los parsers propios con WASP y describe similitudes.,COMPLETO,44,1
+68,W07-1033_W04-1219_1,Evaluable,Evidence,Media,Respalda la expectativa de mejora con gazetteers mediante resultados reportados.,COMPLETO,44,1
+69,P12-1025_P08-1101_0,Evaluable,Background,Alta,Resume trabajos previos que muestran la ventaja de soluciones conjuntas.,COMPLETO,44,1
+70,W12-3307_P03-1071_3,Evaluable,Comparison,Alta,LCseg aparece en una tabla comparando algoritmos de la literatura.,COMPLETO,44,1
+71,P13-1089_P00-1065_0,Evaluable,Background,Media,Introduce la tarea de SRL con referencias al trabajo fundacional.,COMPLETO,44,1
+72,W06-1631_W98-1005_0,Evaluable,Gap,Media,Describe el trabajo previo y lo contrasta con el objetivo propio.,COMPLETO,44,1
+73,D11-1107_W08-1131_2,Evaluable,Evidence,Alta,Respalda la afirmación sobre el 53% de exactitud del mejor sistema.,COMPLETO,44,1
+74,P13-1010_P05-1018_0,Evaluable,Background,Media,"Presenta el modelo de entity grid, aunque también atribuye su introducción.",COMPLETO,44,1
+75,P05-1019_P99-1004_1,Evaluable,Evidence,Alta,Respalda la afirmación sobre la sensibilidad de la divergencia KL al orden de argumentos.,COMPLETO,44,1
+76,D11-1097_P06-4020_0,Evaluable,Application,Alta,Usa el parser RASP tal cual para analizar el corpus.,COMPLETO,44,1
+77,P05-1063_W03-1021_0,Evaluable,Background,Alta,Describe el Structured Language Model como antecedente.,COMPLETO,44,1
+78,P12-1084_D11-1099_3,Evaluable,Background,Media,Describe el enfoque de trabajos previos que clasifican menciones individualmente.,COMPLETO,44,1
+79,D09-1112_P08-2029_0,Evaluable,Background,Alta,Enumera trabajos previos que usan kernels para ingeniería de rasgos.,COMPLETO,44,1
+80,D12-1039_W11-2210_1,Evaluable,Gap,Alta,Describe enfoques en cascada y señala su limitación.,COMPLETO,44,1
+81,P06-2008_P05-1026_2,Evaluable,Background,Alta,"Resume resultados previos sobre preguntas predictivas, distinguiéndolos del trabajo actual.",COMPLETO,44,1
+82,D09-1038_N06-1033_5,Evaluable,Comparison,Alta,Compara la complejidad de la binarización propia con la sincrónica citada.,COMPLETO,44,1
+83,P13-1162_J04-3002_0,Evaluable,Background,Alta,Cita literatura sobre subjetividad como contexto general.,COMPLETO,44,1
+84,S12-1060_S12-1051_1,Evaluable,Comparison,Alta,Compara el desempeño de los sistemas propios con los de otros en la tarea compartida.,COMPLETO,44,1
+85,W08-1119_J88-2003_0,Evaluable,Basis,Media,Propone incorporar la ontología temporal citada como trabajo futuro basado en ella.,COMPLETO,44,1
+86,W10-1204_P03-1054_0,Evaluable,Application,Alta,Usa el parser de dependencias de Stanford sin modificarlo.,COMPLETO,44,1
+87,W04-0904_J91-4003_0,Evaluable,Background,Media,Explica los Qualia de Pustejovsky como contexto teórico.,COMPLETO,44,1
+88,W13-0124_P02-1047_0,Evaluable,Background,Alta,Enumera enfoques automáticos previos de reconocimiento de relaciones de coherencia.,COMPLETO,44,1
+89,S07-1088_W95-0105_1,Evaluable,Improvement / Modification,Alta,JIGSAW difiere del algoritmo original al cambiar la medida de similitud.,COMPLETO,44,1
+90,D13-1054_N04-4026_0,Evaluable,Background,Alta,Enumera trabajos previos sobre modelado de reordenamiento de frases.,COMPLETO,44,1
+91,E99-1022_W97-1506_0,Evaluable,Background,Media,"Describe un método previo de compilación de restricciones, sin desarrollarlo.",COMPLETO,44,1
+92,W11-2154_P03-1021_0,Evaluable,Application,Alta,Usa MERT directamente para optimizar los pesos.,COMPLETO,44,1
+93,P06-1110_P05-1022_0,Evaluable,Further Reading,Baja,Remite a trabajo con rasgos lingüísticamente más sofisticados como dirección futura.,COMPLETO,44,1
+94,D08-1060_W03-1025_0,Evaluable,Application,Alta,Usa el parser de constituyentes citado para analizar el corpus.,COMPLETO,44,1
+95,D12-1085_W06-2920_0,Evaluable,Application,Alta,Usa los conjuntos de datos del CoNLL 2006 para danés y holandés.,COMPLETO,44,1
+96,W04-1007_W03-0505_0,Evaluable,Basis,Media,Usa hallazgos previos propios sobre rasgos verbales correlacionados con el estatus retórico como base.,COMPLETO,44,1
+97,N10-1117_E06-1011_0,Evaluable,Background,Alta,Describe trabajo previo que parte de una solución proyectiva de segundo orden.,COMPLETO,44,1
+98,W13-3304_W12-3156_0,Evaluable,Background,Alta,Resume hallazgos de trabajo previo sobre traducciones inconsistentes.,COMPLETO,44,1
+99,D08-1012_P06-1055_0,Evaluable,Comparison,Media,"Compara el entrenamiento EM jerárquico con otros métodos, mostrando superioridad.",COMPLETO,44,1
+100,D10-1069_N06-2033_0,Evaluable,Comparison,Media,"Compara el enfoque con el co-training, señalando similitud y diferencia de objetivo.",COMPLETO,44,1
