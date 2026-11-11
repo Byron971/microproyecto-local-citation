@@ -156,3 +156,47 @@ def test_probabilidades_y_filas_de_prediccion(base, tmp_path):
     assert set(filas[0]) == set(exportar.ESQUEMA_PREDICCION) and filas[0]["case_id"] == "c200"
     paired = pytest.importorskip("src.evaluation.commercial.paired_benchmark")
     assert len(paired.index_predictions(filas, {e["context_id"] for e in ej}, "t")) == 5
+
+
+# ---------------------------------------------------------------- perdida suave, pesos, callback
+def _logits_y():
+    torch.manual_seed(0)
+    return torch.randn(6, 9), torch.tensor([0, 3, 8, 1, 1, 5])
+
+
+def test_perdida_suave_one_hot_igual_a_la_dura():
+    logits, y = _logits_y()
+    pesos = torch.tensor(dominio.pesos_clase(y.tolist()), dtype=torch.float32)
+    dura = torch.nn.CrossEntropyLoss(weight=pesos)(logits, y)
+    suave = ct.calcular_perdida(logits, y, pesos, objetivo=torch.nn.functional.one_hot(y, 9).float())
+    assert torch.allclose(dura, suave, atol=1e-6)
+
+
+def test_perdida_sin_campos_opcionales_igual_a_cross_entropy():
+    logits, y = _logits_y()
+    assert torch.allclose(ct.calcular_perdida(logits, y), torch.nn.CrossEntropyLoss()(logits, y),
+                          atol=1e-6)
+
+
+def test_pesos_de_muestra_iguales_a_uno_no_cambian_la_perdida():
+    logits, y = _logits_y()
+    pesos = torch.tensor(dominio.pesos_clase(y.tolist()), dtype=torch.float32)
+    base_ = ct.calcular_perdida(logits, y, pesos)
+    assert torch.allclose(base_, ct.calcular_perdida(logits, y, pesos, peso=torch.ones(6)), atol=1e-6)
+    assert not torch.allclose(base_, ct.calcular_perdida(logits, y, pesos, peso=torch.tensor(
+        [1.0, 0.1, 1.0, 1.0, 1.0, 1.0])), atol=1e-6)
+
+
+def test_entrenar_con_objetivo_peso_y_callback(base, tmp_path):
+    ruta, tok = base
+    hp = ct.Hiperparametros(max_len=128, epocas=2, batch_size=4, acumulacion=2, paciencia=5)
+    train = ejemplos(tok, conjunto(20), "B")
+    for e in train:
+        e["objetivo"] = [1.0 if i == e["indice"] else 0.0 for i in range(9)]
+        e["peso"] = 0.5
+    vistas = []
+    modelo = ct.ClasificadorCLS(ruta, 1)
+    res = ct.entrenar(modelo, train, ejemplos(tok, conjunto(8, 100), "B"), tok.pad_id, 1, hp,
+                      tmp_path / "kd", torch.device("cpu"), al_terminar_epoca=vistas.append)
+    assert [v["epoca"] for v in vistas] == [1, 2] == [h["epoca"] for h in res["historial"]]
+    assert all(v["loss_train"] == v["loss_train"] for v in vistas)  # finita (no NaN)

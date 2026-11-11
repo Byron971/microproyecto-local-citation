@@ -3,12 +3,15 @@
 Deuda transitoria: `proyecto_de_grado` se importa como namespace desde la raiz del repo
 (pythonpath ../..). Las rutas bajo `local_workflows/` no se versionan (.gitignore)."""
 import csv
+import glob
 import json
 from pathlib import Path
 
 from auditoria_corpus import adaptador_proyecto_grado as _auditoria
 from proyecto_de_grado.src.data.preparar_preetiquetado import leer_exclusiones
 from proyecto_de_grado.src.data.validar_splits import load_split_index
+
+from .seleccion_datos import Fuentes
 
 REPO = Path(__file__).resolve().parents[4]
 RAW = REPO / "data/raw"
@@ -19,6 +22,11 @@ TEST_GOLD = ANOTACION / "test_gold/TEST_GOLD_2700_ANOTADO.csv"
 TEST_GOLD_MANIFIESTO = ANOTACION / "test_gold/TEST_GOLD_2700_MANIFIESTO.csv"
 GOLD_V2 = ANOTACION / "test_gold_v2/manifiesto_ids.csv"
 GRUPO_GOLD_V2 = "testgold"  # el manifiesto tambien trae 20 filas `calibracion3`
+JURADO = REPO / "v3_Jueces/jurado_18000_v3.csv"
+REFERENCIA_GPT = REPO / "v3_Jueces/referencia_gpt_200.jsonl"
+# Etiquetas QLoRA v2 de las 18.000 y de las 43.014 restantes (misma version del modelo).
+PREDS_QLORA = (REPO / "local_workflows/qlora_18000_preds_v2.jsonl",
+               *sorted(glob.glob(str(REPO / "local_workflows/subconjuntos_qlora/*_qlora_v2_preds.jsonl"))))
 CACHE_OCL = _auditoria.CACHE
 # Reutiliza sin modificar la integracion, el fragmentador (regla de chunks de A1) y la
 # descarga de ACL OCL.
@@ -101,3 +109,31 @@ class FuentesProyectoGrado:
                 "test_gold": self._test_gold, "test_gold_manifiesto": self._manifiesto,
                 "gold_v2_manifiesto": self._gold_v2,
                 **{f"exclusiones_{i}": r for i, r in enumerate(self._exclusiones)}}
+
+
+def _leer_jsonl(ruta) -> list[dict]:
+    with open(ruta, encoding="utf-8") as f:
+        return [json.loads(linea) for linea in f if linea.strip()]
+
+
+def cargar_fuentes_104(fuentes: "FuentesProyectoGrado | None" = None) -> Fuentes:
+    """Fuentes del issue #104: QLoRA v2, jurado, Haiku, GPT, contextos y exclusiones."""
+    fp = fuentes or FuentesProyectoGrado()
+    qlora = {}
+    for ruta in PREDS_QLORA:
+        for r in _leer_jsonl(ruta):
+            qlora[r["context_id"]] = {"label": r["label"], "p": r["p"], "dist": r["dist"]}
+    jurado = {f["context_id"]: {"voto": f["voto"], "acuerdo": int(f["jueces_de_acuerdo"]),
+                                "qlora": f["qlora"]} for f in leer_csv(JURADO)}
+    haiku = {f["context_id"]: f["etiqueta"] for f in fp.filas_haiku()}
+    split = fp.split_entrenamiento()
+    gpt = {r["context_id"]: r["etiqueta"] for r in _leer_jsonl(REFERENCIA_GPT)
+           if r.get("estado") == "completed"}
+    ids_gold = {f["context_id"] for f in leer_csv(fp._manifiesto)} | set(fp.ids_gold_v2())
+    return Fuentes(qlora=qlora, jurado=jurado, haiku=haiku, haiku_train=set(split["train"]),
+                   haiku_val=set(split["val"]), gpt=gpt, contextos=cargar_papers_contextos(fp._raw),
+                   ids_gold=ids_gold, ids_excluidos=fp.exclusiones())
+
+
+def cargar_papers_contextos(raw=RAW) -> dict:
+    return json.loads((Path(raw) / "contexts.json").read_text(encoding="utf-8-sig"))
