@@ -1011,7 +1011,7 @@ docker compose down
 
 # Puertos
 
-La configuración actual utiliza:
+La configuración local con Docker Compose utiliza:
 
 | Servicio | Puerto del contenedor | Puerto del host | Uso |
 |---|---:|---:|---|
@@ -1019,10 +1019,10 @@ La configuración actual utiliza:
 | FastAPI | 8000 | 8000 | API |
 | MLflow remoto | 8050 | 8050 | Seguimiento experimental, cuando se utiliza |
 
-Para acceder al tablero desplegado:
+Para acceder al tablero local:
 
 ```text
-http://<IP_PUBLICA_EC2>:8080
+http://127.0.0.1:8080
 ```
 
 La API no necesita exponerse públicamente para que el tablero funcione, ya que Nginx se comunica con ella mediante la red interna de Docker utilizando:
@@ -1033,323 +1033,53 @@ api:8000
 
 ---
 
-# Despliegue en AWS EC2
+# Despliegue en AWS con Terraform
 
-La Entrega 3 despliega la solución contenerizada en una instancia Amazon EC2.
+Ejecuta desde la raíz del repositorio con Docker iniciado, Terraform >= 1.10 y < 2.0
+y credenciales AWS vigentes. Si usas un perfil, selecciona `AWS_PROFILE`.
+La cuenta debe tener `LabRole` y permitir pasarlo a ECS.
 
-La arquitectura es:
-
-```text
-Internet
-   |
-   | HTTP :8080
-   v
-Amazon EC2
-   |
-   +-----------------------------+
-   | Docker Compose              |
-   |                             |
-   | Dashboard / Nginx           |
-   | container :80               |
-   | host      :8080             |
-   |             |               |
-   |             | /api/*        |
-   |             v               |
-   | FastAPI                     |
-   | container :8000             |
-   |                             |
-   +-----------------------------+
-```
-
----
-
-## Configuración utilizada en la Entrega 3
-
-La infraestructura utilizada durante la validación fue:
-
-```text
-Proveedor:          Amazon Web Services
-Servicio:           EC2
-Sistema operativo:  Ubuntu Server 24.04 LTS
-Tipo de instancia:  t3.small
-Almacenamiento:     20 GiB gp3
-Orquestación:       Docker Compose
-```
-
-La dirección IP pública de una instancia de AWS Academy puede cambiar si la instancia se detiene y vuelve a iniciar.
-
-Por esta razón, la documentación utiliza:
-
-```text
-<IP_PUBLICA_EC2>
-```
-
-en lugar de almacenar permanentemente una IP específica.
-
----
-
-# Reglas de seguridad recomendadas
-
-El grupo de seguridad de EC2 debe permitir únicamente los puertos necesarios.
-
-Para el entorno académico utilizado en este proyecto:
-
-```text
-Puerto 22 / TCP
-Uso: SSH
-Origen recomendado: Mi IP
-
-Puerto 8080 / TCP
-Uso: Dashboard
-Origen recomendado: Mi IP
-```
-
-No es necesario abrir públicamente el puerto `8000` para que el dashboard pueda consumir la API.
-
-La comunicación Nginx -> FastAPI ocurre dentro de la red Docker.
-
----
-
-# Crear una instancia EC2
-
-Configuración utilizada:
-
-```text
-Ubuntu Server 24.04 LTS
-Arquitectura x86_64
-t3.small
-20 GiB gp3
-IP pública habilitada
-```
-
-También debe crearse o seleccionarse un par de claves SSH.
-
-Ejemplo:
-
-```text
-microproyecto-citas-key.pem
-```
-
-La clave privada debe mantenerse únicamente en el equipo del usuario.
-
-Nunca debe copiarse al repositorio.
-
----
-
-# Conectarse por SSH
-
-Ejemplo:
+Copia la configuración inicial (solo la primera vez):
 
 ```bash
-ssh -i /ruta/microproyecto-citas-key.pem ubuntu@<DNS_PUBLICO_EC2>
+cp terraform/terraform.tfvars.example terraform/terraform.tfvars
 ```
 
-Desde PowerShell en Windows puede utilizarse una ruta como:
-
-```powershell
-ssh -i "$HOME\Downloads\microproyecto-citas-key.pem" ubuntu@<DNS_PUBLICO_EC2>
-```
-
----
-
-# Preparar EC2
-
-Actualizar los paquetes:
+Prepara bucket/ECR e inicializa Terraform para guardar el estado en S3.
+En otra cuenta, define antes `TF_STATE_BUCKET` con un nombre único:
 
 ```bash
-sudo apt update
+make init
 ```
 
-Instalar Docker y Docker Compose:
+Construye y publica la imagen; guarda su tag en SSM:
 
 ```bash
-sudo apt install -y docker.io docker-compose-v2
+make login
+make build
+make push
 ```
 
-Habilitar Docker:
+Revisa el plan y confirma la creación con `yes`:
 
 ```bash
-sudo systemctl enable --now docker
+terraform -chdir=terraform plan
+terraform -chdir=terraform apply
 ```
 
-Verificar:
+Obtén la URL del tablero y ábrela cuando la tarea ECS esté lista:
 
 ```bash
-docker --version
-docker compose version
-git --version
+terraform -chdir=terraform output -raw api_url
 ```
 
----
-
-# Clonar el proyecto en EC2
+Para eliminar el servicio (conserva bucket, ECR y tag SSM):
 
 ```bash
-git clone https://github.com/Byron971/microproyecto-local-citation.git
-cd microproyecto-local-citation
+terraform -chdir=terraform destroy
 ```
 
-Si se está trabajando sobre una rama específica:
-
-```bash
-git branch --show-current
-```
-
-Para actualizar posteriormente el código:
-
-```bash
-git pull
-```
-
----
-
-# Construir la solución en EC2
-
-Primero comprobar la configuración:
-
-```bash
-docker compose config --quiet
-```
-
-La instancia no necesita datos, ni DVC, ni entrenar. Solo requiere salida HTTPS hacia S3 para descargar el wheel.
-
-Construir:
-
-```bash
-docker compose build
-```
-
-El flujo que deja lista la imagen es:
-
-```text
-máquina de entrenamiento
-    data/raw (DVC)
-        |
-        v
-    tox -c model-package -e train
-        |
-        v
-    tox -c model-package -e build
-        |
-        v
-    wheel publicado en S3
-        |
---------|--------------------------
-        v
-EC2
-    docker compose build
-        |
-        v
-    uv sync --frozen  (descarga el wheel, verifica el hash)
-        |
-        v
-    paquete modelo-citas instalado en la imagen
-```
-
-Si la URL no está publicada o el archivo cambió, `uv sync --frozen` falla por desajuste de hash en lugar de producir una imagen que no puede servir recomendaciones.
-
----
-
-# Iniciar el despliegue
-
-```bash
-docker compose up -d
-```
-
-Verificar:
-
-```bash
-docker compose ps
-```
-
-Estado esperado:
-
-```text
-microproyecto-citas-api        Up (...) (healthy)
-microproyecto-citas-dashboard  Up (...)
-```
-
----
-
-# Comprobar la API en EC2
-
-Desde la propia instancia:
-
-```bash
-curl http://127.0.0.1:8000/api/estado
-```
-
-La respuesta debe contener:
-
-```json
-{
-  "listo": true
-}
-```
-
-El objeto también puede incluir información del modelo cargado, número de artículos, configuración y versión.
-
----
-
-# Comprobar el dashboard desde un navegador externo
-
-Abrir:
-
-```text
-http://<IP_PUBLICA_EC2>:8080
-```
-
-La interfaz debe mostrar:
-
-```text
-Modelo listo
-```
-
-Una validación funcional completa consiste en:
-
-1. abrir el dashboard desde un navegador externo;
-2. pulsar `Usar un ejemplo real`;
-3. comprobar que aparece un contexto del corpus;
-4. pulsar `Recomendar citas`;
-5. comprobar que aparece el ranking de artículos;
-6. revisar que títulos, posiciones, similitudes y resúmenes sean visibles.
-
----
-
-# Validar la inferencia mediante logs
-
-Después de realizar una recomendación desde el navegador:
-
-```bash
-docker compose logs --no-color api | grep "POST"
-```
-
-Debe aparecer una línea similar a:
-
-```text
-POST /api/recomendar HTTP/1.1" 200 OK
-```
-
-Esto confirma el flujo:
-
-```text
-Navegador
-   |
-   v
-Nginx
-   |
-   v
-FastAPI
-   |
-   v
-modelo-citas
-   |
-   v
-ranking
-   |
-   v
-respuesta HTTP 200
-```
+Más detalles en [terraform/README.md](terraform/README.md).
 
 ---
 
@@ -1387,67 +1117,6 @@ export MLFLOW_TRACKING_URI=http://<IP_MLFLOW>:8050
 ```
 
 Esta variable no es necesaria para servir recomendaciones desde la API.
-
----
-
-# Credenciales y secretos
-
-No deben versionarse:
-
-```text
-*.pem
-credenciales de AWS
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_SESSION_TOKEN
-contraseñas
-tokens
-archivos .env con secretos
-```
-
-Las credenciales temporales de AWS Academy se utilizan únicamente en el entorno local o de laboratorio cuando son necesarias.
-
-El despliegue de este proyecto no requiere almacenar credenciales AWS dentro de las imágenes Docker.
-
-Tampoco deben versionarse las llaves de los proveedores de LLM usados en la evaluación de función de cita. `config/citation_eval.env.example` contiene únicamente nombres de variables, sin valores.
-
-El remoto DVC utilizado para recuperar los datos es:
-
-```text
-publico
-```
-
-y es de solo lectura. El build de la imagen ya no lo utiliza.
-
----
-
-# Evidencias de despliegue
-
-Las evidencias de la Entrega 3 se almacenan en:
-
-```text
-reportes/reporte03/
-```
-
-Entre las evidencias del despliegue en AWS se encuentran:
-
-```text
-issue#31_aws_ec2_infraestructura.png
-issue#31_aws_contenedores_activos.png
-issue#31_aws_logs_post_recomendacion.png
-issue#31_aws_recomendacion_real.png
-```
-
-Estas evidencias documentan:
-
-- infraestructura EC2;
-- instancia en ejecución;
-- comprobaciones de estado;
-- contenedores activos;
-- API saludable;
-- puertos publicados;
-- solicitud POST de inferencia con respuesta HTTP 200;
-- recomendación real ejecutada desde un navegador externo.
 
 ---
 
@@ -1590,7 +1259,7 @@ Git
 GitHub
 DVC
 Amazon S3
-AWS EC2
+AWS ECS Fargate
 Docker
 Docker Compose
 Nginx
@@ -1645,32 +1314,6 @@ http://127.0.0.1:8080
 
 ---
 
-## Despliegue en EC2
-
-```bash
-git clone https://github.com/Byron971/microproyecto-local-citation.git
-cd microproyecto-local-citation
-
-docker compose config --quiet
-docker compose build
-docker compose up -d
-docker compose ps
-```
-
-Abrir externamente:
-
-```text
-http://<IP_PUBLICA_EC2>:8080
-```
-
-Comprobar logs:
-
-```bash
-docker compose logs --no-color api | grep "POST"
-```
-
----
-
 # Estado de la solución
 
 La solución implementa actualmente:
@@ -1688,7 +1331,7 @@ La solución implementa actualmente:
 - orquestación mediante Docker Compose;
 - healthcheck de la API;
 - comunicación interna mediante Nginx;
-- despliegue funcional en Amazon EC2;
+- infraestructura de despliegue en Amazon ECS Fargate con Terraform;
 - acceso desde navegador externo;
 - evidencia reproducible del flujo de inferencia;
 - separación de responsabilidades entre el paquete del modelo y el repositorio de experimentación;
