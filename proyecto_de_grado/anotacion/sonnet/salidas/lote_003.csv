@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N03-1014_W96-0213_0,Evaluable,Application,Alta,Uses the publicly available tagger to provide POS tags.,COMPLETO,3,1
+2,W10-0402_W06-1613_3,Evaluable,Further Reading,Alta,Points to more work on citation function worth combining with their approach.,COMPLETO,3,1
+3,P13-2141_P12-1076_1,Evaluable,Gap,Media,"Previous works do not distinguish the two noise types, motivating the current approach.",COMPLETO,3,1
+4,W10-2911_P04-1062_0,Evaluable,Further Reading,Media,Points to additional recent good results for POS induction variants.,COMPLETO,3,1
+5,W11-2142_W06-3110_0,Evaluable,Application,Alta,The n-gram posterior model is applied directly in reranking.,COMPLETO,3,1
+6,W98-1116_P98-2184_0,Evaluable,Evidence,Media,"Cited work reaches similar conclusions, supporting the authors' finding.",COMPLETO,3,1
+7,W11-2212_P10-1052_0,Evaluable,Application,Alta,WAPITI is used to train the CRF models.,COMPLETO,3,1
+8,D12-1029_P09-1040_1,Evaluable,Comparison,Alta,Table compares LAS results with other parsers including the cited one.,COMPLETO,3,1
+9,S12-1030_N06-1014_0,Evaluable,Application,Alta,Berkeley Aligner is used to train the word alignment model.,COMPLETO,3,1
+10,D11-1139_D10-1004_0,Evaluable,Further Reading,Alta,Refers the reader to an empirical comparison of loss functions.,COMPLETO,3,1
+11,J08-1002_P04-1014_0,Evaluable,Comparison,Media,"Evaluation measures correspond to those in other studies, with noted non-comparability of figures.",COMPLETO,3,1
+12,P12-1100_P05-1034_0,Evaluable,Background,Media,Lists previous works assuming syntactic cohesion.,COMPLETO,3,1
+13,D09-1120_N07-1011_6,Evaluable,Comparison,Alta,Own system's performance is compared with the cited state-of-the-art system.,COMPLETO,3,1
+14,D11-1001_W09-1402_0,Evaluable,Background,Alta,Describes the standard pipeline architecture of current event extractors.,COMPLETO,3,1
+15,P13-1066_W03-1805_0,Evaluable,Background,Alta,Describes previous work on phrase extraction.,COMPLETO,3,1
+16,W13-0101_P98-1013_0,Evaluable,Evidence,Media,FrameNet is cited as an example supporting the claim about standard practice.,COMPLETO,3,1
+17,P04-3019_P97-1063_0,Evaluable,Application,Alta,Statistical word-alignment techniques from the cited work are used.,COMPLETO,3,1
+18,S12-1092_N10-1146_0,Evaluable,Evidence,Alta,"Cited works have shown distributional similarity improves performance, supporting the design choice.",COMPLETO,3,1
+19,W13-3502_D08-1112_0,Evaluable,Background,Alta,Introduces active learning with general references.,COMPLETO,3,1
+20,W03-2304_A00-2026_0,Evaluable,Background,Alta,Enumerates prior ML approaches to NLG.,COMPLETO,3,1
+21,W09-1304_P07-1125_1,Evaluable,Background,Alta,Describes prior work on hedge classification.,COMPLETO,3,1
+22,P10-1001_P05-1012_0,Evaluable,Background,Alta,Lists efficient parsing algorithms in an introduction.,COMPLETO,3,1
+23,E09-1069_P03-1046_0,Evaluable,Comparison,Media,"Evaluation scheme is the same as in previous evaluations, allowing comparability.",COMPLETO,3,1
+24,W09-3815_N06-1033_0,Evaluable,Background,Alta,Summarizes prior work showing binarization yields faster decoders.,COMPLETO,3,1
+25,J08-2003_W05-0625_2,Evaluable,Evidence,Alta,Supports the claim that argument type depends on other arguments.,COMPLETO,3,1
+26,D09-1099_W97-0313_0,Evaluable,Background,Alta,Related work enumeration of techniques.,COMPLETO,3,1
+27,D12-1039_P11-1038_4,Evaluable,Evidence,Alta,Supports the claim that dictionary lookup has high precision but low recall.,COMPLETO,3,1
+28,W12-4512_D08-1031_0,Evaluable,Background,Alta,Lists statistical approaches to coreference resolution.,COMPLETO,3,1
+29,P10-1146_P08-1058_0,Evaluable,Comparison,Baja,Data structures are similar to those of the cited work; could also be Application.,COMPLETO,3,1
+30,W11-0215_W10-1903_2,Evaluable,Evidence,Media,Supports the claim about Zipfian distribution of modification types.,COMPLETO,3,1
+31,E06-2016_P05-1050_0,Evaluable,Basis,Media,Domain Models from the cited work underpin the approach.,COMPLETO,3,1
+32,W12-3309_W02-0109_1,Evaluable,Application,Alta,NLTK tagger used to tag tweets.,COMPLETO,3,1
+33,W00-0602_P99-1042_3,Evaluable,Comparison,Alta,Own NE accuracy is compared with the cited system's accuracy.,COMPLETO,3,1
+34,P10-1031_D09-1001_2,Evaluable,Basis,Media,The authors' own previous USP system is the foundation being described and built on.,COMPLETO,3,1
+35,W96-0112_P91-1030_1,Evaluable,Gap,Media,"Own method has properties not shared by previously proposed methods, including the cited one.",COMPLETO,3,1
+36,D13-1090_P12-1091_5,Evaluable,Comparison,Alta,WTMF results are reprinted for comparison in the table.,COMPLETO,3,1
+37,D12-1060_P09-2080_4,Evaluable,Comparison,Alta,"Compares RANK and SCL on the cited work's Chinese texts, noting the same phenomenon.",COMPLETO,3,1
+38,W07-0401_N04-1021_0,Evaluable,Gap,Media,"Cited work used syntactic features in reranking but gains were very small, motivating the new strategy.",COMPLETO,3,1
+39,D12-1058_D08-1021_0,Evaluable,Comparison,Alta,Contrasts the approach with those that constrain paraphrase context.,COMPLETO,3,1
+40,Q13-1024_P11-2032_0,Evaluable,Gap,Alta,Notes the cited sampler cannot run efficiently on large-scale tasks.,COMPLETO,3,1
+41,D09-1059_J07-2003_0,Evaluable,Identification of the Originator,Media,Cube pruning is credited as an idea from MT decoding in the cited work.,COMPLETO,3,1
+42,D12-1023_P07-1024_1,Evaluable,Background,Media,Reports prior findings on dependency length in English.,COMPLETO,3,1
+43,W08-2004_W06-2909_0,Evaluable,Background,Alta,Cites tree kernel applications in NLP with 'e.g.'.,COMPLETO,3,1
+44,N09-1061_P06-2066_0,Evaluable,Evidence,Alta,Supports the claim that higher fan-out is needed in dependency parsing.,COMPLETO,3,1
+45,E12-1085_P09-1002_0,Evaluable,Background,Media,Describes prior annotation results with graded similarity judgments.,COMPLETO,3,1
+46,D13-1178_E09-1005_0,Evaluable,Evidence,Alta,Supports that restricting to subgraphs is standard practice.,COMPLETO,3,1
+47,Q13-1014_W11-2103_2,Evaluable,Comparison,Alta,System is compared with systems submitted to the original task.,COMPLETO,3,1
+48,P13-2030_W12-2304_0,Evaluable,Basis,Alta,Current paper extends the cited regularized compression work.,COMPLETO,3,1
+49,W13-2230_P08-1059_0,Evaluable,Identification of the Originator,Alta,Explicitly says the idea was introduced by the cited work.,COMPLETO,3,1
+50,W13-3006_P11-2011_0,Evaluable,Evidence,Alta,Supports the claim that segmental phonotactic patterns are star-free.,COMPLETO,3,1
+51,P13-2144_W06-1652_0,Evaluable,Background,Alta,Previous work on polarity identification.,COMPLETO,3,1
+52,J13-3003_S07-1016_0,Evaluable,Comparison,Media,Table compares shared task results across SensEval/SemEval editions.,COMPLETO,3,1
+53,W13-3304_N12-1046_0,Evaluable,Further Reading,Alta,'For recent work... see' directs reader to related literature.,COMPLETO,3,1
+54,N10-1061_D09-1120_1,Evaluable,Application,Alta,Uses deterministic coreference configurations as defined in the cited work.,COMPLETO,3,1
+55,S10-1076_W02-0109_0,Evaluable,Application,Alta,Porter Stemmer in NLTK used for stemming.,COMPLETO,3,1
+56,P07-1017_E03-1076_0,Evaluable,Background,Alta,Reviews prior work showing improvements from compound splitting.,COMPLETO,3,1
+57,D10-1015_P07-2045_0,Evaluable,Gap,Media,"Moses cannot handle LMs with different token granularity, a limitation.",COMPLETO,3,1
+58,P10-1044_P07-1028_2,Evaluable,Evidence,Media,Supports that pseudo-disambiguation is a standard evaluation.,COMPLETO,3,1
+59,W09-0423_E09-1003_1,Evaluable,Further Reading,Alta,Refers to the cited work for a detailed description of the improved algorithm.,COMPLETO,3,1
+60,N13-1121_D11-1120_0,Evaluable,Background,Alta,Describes prior classifiers using textual content.,COMPLETO,3,1
+61,E12-1013_D10-1091_1,Evaluable,Improvement / Modification,Alta,Extends the cited failure analysis work to lattices.,COMPLETO,3,1
+62,P99-1079_P89-1031_0,Evaluable,Gap,Media,"Prior comparisons are small and hand-tested, motivating the project.",COMPLETO,3,1
+63,P09-1093_P08-1035_0,Evaluable,Background,Alta,Describes prior dependency-tree trimming approaches for Japanese.,COMPLETO,3,1
+64,D13-1155_N10-1131_1,Evaluable,Comparison,Media,Contrasts the cited method's many features and reranker with other approaches.,COMPLETO,3,1
+65,P13-1016_P07-2045_1,Evaluable,Gap,Media,Notes limitation of Moses linear distortion cost for long-distance reordering.,COMPLETO,3,1
+66,W06-1641_P97-1023_0,Evaluable,Application,Alta,Uses the cited sentiment word list as a resource.,COMPLETO,3,1
+67,P11-1081_D08-1055_0,Evaluable,Background,Alta,Cites prior work on Japanese zero anaphora.,COMPLETO,3,1
+68,P08-1098_W04-3202_0,Evaluable,Background,Alta,Lists prior AL work on parsing.,COMPLETO,3,1
+69,S12-1077_E09-1065_0,Evaluable,Background,Alta,Lists applications of sentence similarity.,COMPLETO,3,1
+70,D08-1112_W04-1213_0,Evaluable,Background,Alta,Lists tasks treated as sequence labeling.,COMPLETO,3,1
+71,P06-2104_N03-1022_0,Evaluable,Background,Media,Gives an example of FOL representations used in QA.,COMPLETO,3,1
+72,W12-0501_P97-1023_1,Evaluable,Background,Alta,Classifies prior approaches in related work.,COMPLETO,3,1
+73,D13-1171_P13-1161_1,Evaluable,Comparison,Alta,Notes similarity in spirit and differences with the cited work.,COMPLETO,3,1
+74,N09-1001_W08-1207_6,Evaluable,Comparison,Alta,Section compares to the authors' previous approach and its reported accuracy.,COMPLETO,3,1
+75,J10-3002_N06-1013_0,Evaluable,Evidence,Alta,Supports the criticism that AER correlates poorly with translation quality.,COMPLETO,3,1
+76,W11-0223_W04-2405_0,Evaluable,Basis,Alta,"Work follows the cited approach, applied to a new domain.",COMPLETO,3,1
+77,D11-1022_W06-2920_0,Evaluable,Application,Alta,Uses datasets from the cited shared task.,COMPLETO,3,1
+78,P13-1033_P05-1033_0,Evaluable,Background,Alta,Lists syntax-based SMT approaches in the introduction.,COMPLETO,3,1
+79,D11-1122_P05-1077_0,Evaluable,Application,Alta,Uses randomized algorithms to build the semantic space.,COMPLETO,3,1
+80,P11-1087_P06-1124_5,Evaluable,Evidence,Alta,Supports the claim that PYP suits language modelling.,COMPLETO,3,1
+81,W10-3001_W09-1304_0,Evaluable,Background,Alta,Describes prior scope detection work.,COMPLETO,3,1
+82,P13-2061_P03-1021_0,Evaluable,Application,Alta,MERT used to tune parameters.,COMPLETO,3,1
+83,W08-1207_P05-1017_0,Evaluable,Comparison,Alta,Contrasts own view of polarity with other researchers.,COMPLETO,3,1
+84,J11-2001_P97-1023_1,Evaluable,Background,Alta,Describes early sentiment research on adjectives.,COMPLETO,3,1
+85,W09-1901_P06-4020_0,Evaluable,Application,Alta,RASP parser used to identify NPs.,COMPLETO,3,1
+86,P12-2045_P06-2027_0,Evaluable,Gap,Media,"Despite template adaptation, event types are brittle and cannot handle novel events.",COMPLETO,3,1
+87,N13-1055_W12-4006_0,Evaluable,Background,Baja,Fragment suggests prior work on Wikipedia revisions; contrast with novelty claim follows.,COMPLETO,3,1
+88,W07-1426_P04-1014_1,Evaluable,Application,Alta,C&C parser used to parse dependency structure.,COMPLETO,3,1
+89,W13-5006_P98-2127_1,Evaluable,Comparison,Alta,Explicitly contrasts own method with the cited one.,COMPLETO,3,1
+90,P12-1066_P09-1009_0,Evaluable,Background,Alta,Related work on parallel corpora in multilingual parsing.,COMPLETO,3,1
+91,W12-0704_W11-2165_0,Evaluable,Background,Alta,Related work listing uses of word clusters in SMT.,COMPLETO,3,1
+92,P12-2034_N07-1051_0,Evaluable,Application,Alta,Berkeley parser used to parse sentences.,COMPLETO,3,1
+93,D12-1125_N06-1041_0,Evaluable,Application,Alta,Uses the prototype-driven tagger as a comparison tool.,COMPLETO,3,1
+94,D08-1081_W05-0905_2,Evaluable,Evidence,Alta,Previously attested finding supports the authors' observation.,COMPLETO,3,1
+95,J09-1008_P08-1006_0,Evaluable,Evidence,Alta,Cited finding supports the claim that representations may matter.,COMPLETO,3,1
+96,W06-1636_P96-1025_1,Evaluable,Identification of the Originator,Alta,Base NP notion was introduced by the cited work.,COMPLETO,3,1
+97,W97-1005_W95-0103_1,Evaluable,Background,Alta,Describes the prior method's heuristic for PP attachment.,COMPLETO,3,1
+98,P09-1099_P97-1035_1,Evaluable,Application,Alta,Employs the PARADISE procedure as is.,COMPLETO,3,1
+99,D09-1112_P05-1024_0,Evaluable,Background,Alta,Cites kernel methods for feature engineering with 'e.g.'.,COMPLETO,3,1
+100,N13-1100_J94-2004_0,Evaluable,Background,Alta,Describes prior work's argument about narrative coherence.,COMPLETO,3,1

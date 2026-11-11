@@ -11,3 +11,23 @@
 {"lote": 11, "pasada": 1, "casos": 100, "prompt_sha256": "7cdfae360b7e5f8f", "estado": "ok", "intentos": 2, "tokens_entrada": 129874, "tokens_salida": 18070, "duracion_s": 103.03}
 {"lote": 12, "pasada": 1, "casos": 100, "prompt_sha256": "7cdfae360b7e5f8f", "estado": "error", "intentos": 2, "error": "ValueError: Ids no coinciden con el lote (faltan 1, sobran 1).", "tokens_entrada": 103958, "tokens_salida": 18122, "duracion_s": 100.54}
 {"lote": 13, "pasada": 1, "casos": 100, "prompt_sha256": "7cdfae360b7e5f8f", "estado": "error", "intentos": 2, "error": "RuntimeError: claude reporto error: None", "tokens_entrada": 55953, "tokens_salida": 9257, "duracion_s": 51.98}
+{"lote": 3, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 48260, "tokens_salida": 6712, "duracion_s": 35.95}
+{"lote": 7, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 71468, "tokens_salida": 7022, "duracion_s": 39.06}
+{"lote": 8, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 63553, "tokens_salida": 7577, "duracion_s": 41.2}
+{"lote": 5, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 56173, "tokens_salida": 7603, "duracion_s": 42.0}
+{"lote": 9, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 64280, "tokens_salida": 7684, "duracion_s": 42.04}
+{"lote": 13, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 54586, "tokens_salida": 6888, "duracion_s": 36.87}
+{"lote": 14, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 50816, "tokens_salida": 6644, "duracion_s": 36.12}
+{"lote": 12, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 50614, "tokens_salida": 7490, "duracion_s": 40.32}
+{"lote": 15, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 57460, "tokens_salida": 6759, "duracion_s": 36.37}
+{"lote": 16, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 56199, "tokens_salida": 7072, "duracion_s": 37.12}
+{"lote": 18, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 63181, "tokens_salida": 7333, "duracion_s": 40.95}
+{"lote": 17, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 54301, "tokens_salida": 7731, "duracion_s": 43.42}
+{"lote": 19, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 55231, "tokens_salida": 6798, "duracion_s": 36.92}
+{"lote": 20, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 53426, "tokens_salida": 7803, "duracion_s": 42.81}
+{"lote": 21, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 60361, "tokens_salida": 6986, "duracion_s": 37.69}
+{"lote": 22, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 52062, "tokens_salida": 7002, "duracion_s": 38.17}
+{"lote": 23, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 53359, "tokens_salida": 7666, "duracion_s": 41.38}
+{"lote": 24, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 49308, "tokens_salida": 6589, "duracion_s": 35.12}
+{"lote": 25, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 64025, "tokens_salida": 7190, "duracion_s": 38.29}
+{"lote": 26, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 59095, "tokens_salida": 7173, "duracion_s": 38.84}

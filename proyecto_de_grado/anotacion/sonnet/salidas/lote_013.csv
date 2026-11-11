@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D13-1165_P02-1019_0,Evaluable,Background,Media,Reviews prior work in text normalization and spelling correction that used pronunciation information.,COMPLETO,13,1
+2,W09-1119_W03-0425_0,Evaluable,Evidence,Media,Cited work supports the claim that gazetteer features are critical for good performance.,COMPLETO,13,1
+3,P13-1039_N09-1041_2,Evaluable,Improvement / Modification,Media,The KL-divergence criterion of KLSUM/HIERSUM inspires a decoding criterion that is adapted for the DSHMM.,COMPLETO,13,1
+4,Q13-1020_P07-1003_0,Evaluable,Basis,Media,The cited statement about rule generality and context motivates the design of the base distribution.,COMPLETO,13,1
+5,N13-1070_P09-1087_2,Evaluable,Evidence,Alta,Cited as support for the claim that syntax-informed SMT helps with different word orders.,COMPLETO,13,1
+6,N07-2045_N06-1020_0,Evaluable,Application,Alta,Uses the Charniak parser as is to parse the NANC data.,COMPLETO,13,1
+7,W09-3102_W03-1609_2,Evaluable,Comparison,Alta,Contrasts the current work's corpora with approaches that use more closely related comparable corpora.,COMPLETO,13,1
+8,W12-2604_W05-0905_1,Evaluable,Application,Alta,"Uses Spearman's rho for correlation, following the cited works.",COMPLETO,13,1
+9,J03-4003_W96-0213_1,Evaluable,Evidence,Alta,Supports the estimated 3% POS tagging error rate in the treebank used to justify a procedure.,COMPLETO,13,1
+10,D10-1007_N09-2029_1,Evaluable,Comparison,Alta,The cited model-based algorithm is a baseline to compare against.,COMPLETO,13,1
+11,D13-1057_D10-1048_1,Evaluable,Comparison,Alta,The Stanford coreference system is a compared system.,COMPLETO,13,1
+12,W08-1113_W07-2305_0,Evaluable,Evidence,Alta,Recent studies support the claim that corpus-similarity measures favor repetitive generation.,COMPLETO,13,1
+13,W13-2259_W12-3150_1,Evaluable,Application,Alta,Uses Moses GHKM rule extraction as a tool.,COMPLETO,13,1
+14,D13-1173_P13-1036_0,Evaluable,Background,Alta,Describes prior work on decipherment of MT with non-parallel data.,COMPLETO,13,1
+15,W12-4202_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit for the phrase-based translation model.,COMPLETO,13,1
+16,W06-1608_N06-1021_0,Evaluable,Application,Alta,Uses the parsing approach described in the cited work.,COMPLETO,13,1
+17,P87-1030_P85-1007_0,Evaluable,Background,Media,Quotes an assumption underlying prior work on intention recognition.,COMPLETO,13,1
+18,W11-0307_W09-1402_0,Evaluable,Evidence,Media,Supports the claim that pipelines often achieve state-of-the-art performance.,COMPLETO,13,1
+19,P11-1126_P09-1064_0,Evaluable,Background,Alta,Lists single-system consensus decoding methods as prior literature.,COMPLETO,13,1
+20,P05-1001_W03-0428_0,Evaluable,Comparison,Alta,Result compared against previous best results in a table.,COMPLETO,13,1
+21,P06-1128_P05-1011_2,Evaluable,Application,Alta,Uses the HPSG parser to parse sentences.,COMPLETO,13,1
+22,W06-1637_N06-2031_4,Evaluable,Further Reading,Alta,Points to a worked example elsewhere.,COMPLETO,13,1
+23,P13-1042_S13-1045_0,Evaluable,Background,Alta,Lists prior semantic parsers for Freebase as context.,COMPLETO,13,1
+24,W07-2305_P98-1116_1,Evaluable,Background,Media,Cites statistical realisation as one of the traditions the work brings together.,COMPLETO,13,1
+25,N12-1056_W00-1427_0,Evaluable,Application,Alta,Uses the Morpha lemmatizer as a tool.,COMPLETO,13,1
+26,W12-3005_P09-1113_0,Evaluable,Improvement / Modification,Alta,Extends the distant supervision framework and modifies its assumption.,COMPLETO,13,1
+27,P09-1024_W03-1004_0,Evaluable,Evidence,Media,Supports the claim that segment clustering identifies content structure patterns.,COMPLETO,13,1
+28,W07-2204_P06-1043_1,Evaluable,Comparison,Alta,Compares the f-score obtained to the one reported in the cited work.,COMPLETO,13,1
+29,W10-1909_W09-1402_1,Evaluable,Background,Media,Reports the performance of the best tool in the shared task as context.,COMPLETO,13,1
+30,W13-1716_P12-2038_1,Evaluable,Background,Media,Describes prior work proposing TSG fragments as features for NLI.,COMPLETO,13,1
+31,J12-2001_J04-3002_0,Evaluable,Background,Media,Lists the initial work on subjectivity in computational linguistics.,COMPLETO,13,1
+32,J07-2003_P03-1021_1,Evaluable,Application,Alta,Uses minimum-error-rate training to learn the parameters.,COMPLETO,13,1
+33,W11-1701_W10-0214_6,Evaluable,Evidence,Media,Cited work shows generalized dependency features improve accuracy on similar tasks.,COMPLETO,13,1
+34,D13-1165_P12-3011_0,Evaluable,Application,Alta,Uses the OpenGrm NGram library to build language models.,COMPLETO,13,1
+35,W01-0814_W98-1415_0,Evaluable,Background,Alta,Enumerates related works on realization of cohesive relations.,COMPLETO,13,1
+36,P04-1018_N04-1001_0,Evaluable,Further Reading,Alta,Refers the reader to the cited work for details of the system.,COMPLETO,13,1
+37,W06-2909_P05-1073_2,Evaluable,Evidence,Media,Cited work suggests re-ranking is the most promising approach.,COMPLETO,13,1
+38,W12-3307_A00-2004_2,Evaluable,Comparison,Alta,The cited TT result is listed in a table comparing algorithms.,COMPLETO,13,1
+39,N12-1043_P06-1124_0,Evaluable,Background,Media,Names Pitman-Yor processes as an example of sophisticated language modeling techniques.,COMPLETO,13,1
+40,D10-1062_W08-0336_0,Evaluable,Application,Alta,Uses the Stanford Chinese segmenter to re-segment data.,COMPLETO,13,1
+41,W12-3135_W08-0509_0,Evaluable,Application,Alta,Uses Giza++ for word alignment.,COMPLETO,13,1
+42,J09-1008_E06-1040_1,Evaluable,Evidence,Media,Supports the claim that experts prefer system-generated language in NLG.,COMPLETO,13,1
+43,Q13-1007_W12-1912_0,Evaluable,Basis,Alta,The current work builds on the authors' previously proposed induction algorithm.,COMPLETO,13,1
+44,W11-2208_D08-1109_6,Evaluable,Comparison,Alta,The HMM result from the cited work is compared with the authors' model.,COMPLETO,13,1
+45,W02-1018_P01-1067_1,Evaluable,Comparison,Alta,Contrasts the model with previous approaches in how it models translation.,COMPLETO,13,1
+46,P13-1172_D12-1123_4,Evaluable,Application,Alta,Adopts the cited graph-based extraction framework.,COMPLETO,13,1
+47,W13-2302_W11-0415_3,Evaluable,Comparison,Media,Cited accuracy is contrasted with the authors' setting and other work.,COMPLETO,13,1
+48,W07-2218_P07-1080_5,Evaluable,Further Reading,Alta,Refers to the cited work for details of the calculation.,COMPLETO,13,1
+49,P13-1057_N13-1014_1,Evaluable,Basis,Alta,The paper builds on the authors' previous approach.,COMPLETO,13,1
+50,W09-3526_W06-1672_1,Evaluable,Background,Alta,Lists prior work on transliteration in a related work section.,COMPLETO,13,1
+51,D11-1001_P11-1163_1,Evaluable,Comparison,Alta,The cited system is compared against in the results table.,COMPLETO,13,1
+52,P10-1022_W03-1008_0,Evaluable,Comparison,Media,Contrasts the authors' analysis with the problem case identified by cited works.,COMPLETO,13,1
+53,P98-1076_J97-4004_2,Evaluable,Evidence,Baja,Cited source supports the observation about fragments from the same source leading to the hypothesis.,COMPLETO,13,1
+54,D13-1007_P13-1155_0,Evaluable,Background,Alta,Summarizes recent findings that normalization improves downstream tasks.,COMPLETO,13,1
+55,W99-0907_P98-2127_0,Evaluable,Background,Media,Describes how term similarity values are commonly obtained in prior work.,COMPLETO,13,1
+56,P11-1051_P08-1093_0,Evaluable,Background,Alta,Lists previous work on citation-based summarization.,COMPLETO,13,1
+57,W00-0205_J88-2003_0,Evaluable,Evidence,Media,Cited works support the claim that lexical aspect may be used to interpret event sequences.,COMPLETO,13,1
+58,W11-2204_P02-1017_0,Evaluable,Evidence,Media,Supports the statement of the standard approach in unsupervised parsing.,COMPLETO,13,1
+59,P09-2032_N04-1022_0,Evaluable,Application,Alta,Uses the MBR decoding method for system combination.,COMPLETO,13,1
+60,D10-1112_W09-0807_1,Evaluable,Evidence,Media,Supports that the character n-gram approach was successfully applied to dialect ID.,COMPLETO,13,1
+61,W12-4501_P10-1142_0,Evaluable,Further Reading,Alta,Refers the reader to a survey for detail.,COMPLETO,13,1
+62,D13-1080_N13-1008_0,Evaluable,Comparison,Alta,"Contrasts the approach with Universal Schema, listing key differences.",COMPLETO,13,1
+63,W13-3206_P08-1028_2,Evaluable,Application,Alta,Uses the dataset introduced by the cited work for evaluation.,COMPLETO,13,1
+64,P13-3023_W09-0613_1,Evaluable,Background,Alta,Lists NLG systems based on hand-written grammars in related work.,COMPLETO,13,1
+65,W04-2013_W97-0811_0,Evaluable,Basis,Media,The cited observation motivates the study of PoS tagging for disambiguation.,COMPLETO,13,1
+66,D10-1121_P03-1054_1,Evaluable,Application,Alta,Uses the Stanford parser to parse the data.,COMPLETO,13,1
+67,W01-0805_E91-1028_0,Evaluable,Background,Alta,Lists researchers who addressed referring expression generation.,COMPLETO,13,1
+68,W05-0906_N04-1019_1,Evaluable,Background,Media,Presents the Pyramid Method as a realistic model of human variation in the literature.,COMPLETO,13,1
+69,P11-1145_P09-1011_1,Evaluable,Comparison,Media,Contrasts a model Markovian over word sequences with the authors' tree-based model.,COMPLETO,13,1
+70,P09-2093_N03-2019_0,Evaluable,Background,Alta,Lists prior methods for inferring implicit time arguments.,COMPLETO,13,1
+71,J05-3002_N03-2024_0,Evaluable,Evidence,Alta,Supports the claim that shorter descriptions or anaphora increase readability.,COMPLETO,13,1
+72,W09-0809_P08-2039_1,Evaluable,Evidence,Media,Supports the expectation that more Arabic segmentation would improve performance.,COMPLETO,13,1
+73,J04-4002_P03-1021_1,Evaluable,Further Reading,Alta,Points to the cited work for an efficient algorithm not described here.,COMPLETO,13,1
+74,W12-2414_W06-3316_0,Evaluable,Background,Alta,Lists works recognizing the importance of coreference in biomedical articles.,COMPLETO,13,1
+75,W09-1707_E95-1020_0,Evaluable,Background,Alta,Reports drawbacks of distributional tagging noted in prior work.,COMPLETO,13,1
+76,P09-1014_P09-1015_0,Evaluable,Application,Alta,Uses the ALINE algorithm to map stress onto orthographic forms.,COMPLETO,13,1
+77,E97-1063_W97-0207_0,Evaluable,Background,Media,Mentions prior definitions of co-occurrence in bitext space.,COMPLETO,13,1
+78,N03-3005_P99-1061_0,Evaluable,Comparison,Alta,Contrasts the cited method with the authors' work on indexing.,COMPLETO,13,1
+79,P03-1019_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ to compute the Viterbi alignment.,COMPLETO,13,1
+80,S12-1026_W06-1601_2,Evaluable,Comparison,Alta,Explicitly contrasts the approach with the cited work's manual rules.,COMPLETO,13,1
+81,W08-0403_P03-1011_0,Evaluable,Background,Alta,Lists syntax-based translation models in related work.,COMPLETO,13,1
+82,P06-1087_W95-0107_0,Evaluable,Identification of the Originator,Alta,Credits the cited work with first proposing the base-NP definition.,COMPLETO,13,1
+83,N12-1006_N04-4015_0,Evaluable,Evidence,Alta,Supports the claim that segmentation improves Arabic MT.,COMPLETO,13,1
+84,P93-1010_J88-2003_0,Evaluable,Further Reading,Alta,Footnote refers to the cited work for a partial model of aspectual coercion.,COMPLETO,13,1
+85,W03-0310_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ software to train models.,COMPLETO,13,1
+86,P13-2073_W11-2123_0,Evaluable,Application,Alta,Uses the KenLM toolkit for language modeling.,COMPLETO,13,1
+87,E09-3005_N06-1020_0,Evaluable,Background,Alta,Lists recent work on domain adaptation.,COMPLETO,13,1
+88,P07-2052_N01-1025_0,Evaluable,Application,Alta,Uses the YamCha chunker to assign chunk tags.,COMPLETO,13,1
+89,W13-5412_E09-1013_4,Evaluable,Application,Media,Follows prior literature in using a 20-word window for BOW features.,COMPLETO,13,1
+90,N13-1080_D08-1072_0,Evaluable,Background,Alta,Lists multi-domain learning work in the introduction.,COMPLETO,13,1
+91,D08-1021_P07-1059_0,Evaluable,Background,Media,Cites recent work showing paraphrases improve question answering.,COMPLETO,13,1
+92,W11-2168_D08-1023_0,Evaluable,Evidence,Media,Supports the claim that LM ability must be preserved when moving away from phrase-based systems.,COMPLETO,13,1
+93,P13-2104_D09-1060_3,Evaluable,Comparison,Alta,Describes a compared method (the cited algorithm) used as baseline.,COMPLETO,13,1
+94,P10-2048_P09-1027_3,Evaluable,Application,Alta,Uses the same features (unigrams and bigrams) as the cited work.,COMPLETO,13,1
+95,P11-1037_P09-3003_2,Evaluable,Evidence,Media,Supports the claim that linear CRFs are used in state-of-the-art NER.,COMPLETO,13,1
+96,W13-2233_W06-3119_0,Evaluable,Comparison,Alta,SAMT results from the cited work are compared in the results table.,COMPLETO,13,1
+97,W12-3112_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser with its bundled model.,COMPLETO,13,1
+98,S10-1030_W04-3252_0,Evaluable,Background,Alta,Describes the unsupervised TextRank approach in related work.,COMPLETO,13,1
+99,P12-1013_D10-1107_0,Evaluable,Gap,Media,Describes a related prior method and sets up a contrast with its limitations.,COMPLETO,13,1
+100,P06-1010_N04-1003_0,Evaluable,Application,Alta,Uses the cited named-entity recognizer as is.,COMPLETO,13,1

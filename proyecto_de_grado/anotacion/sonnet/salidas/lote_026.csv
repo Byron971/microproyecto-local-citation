@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W13-2907_N07-1051_0,Evaluable,Application,Alta,Usa el BerkeleyParser tal cual como herramienta para obtener el parseo.,COMPLETO,26,1
+2,W13-0125_W10-0725_0,Evaluable,Comparison,Alta,Contrasta explícitamente su uso de crowdsourcing con el del trabajo citado.,COMPLETO,26,1
+3,N09-2036_J07-2003_3,Evaluable,Comparison,Alta,Compara su método con cube pruning estándar en los resultados.,COMPLETO,26,1
+4,P13-1104_P11-2033_4,Evaluable,Comparison,Alta,Compara la precisión de su parser con la del parser citado.,COMPLETO,26,1
+5,P07-1004_W06-3110_0,Evaluable,Background,Media,Enumera características usadas en trabajos previos.,COMPLETO,26,1
+6,P12-1103_P00-1056_0,Evaluable,Application,Alta,Usa Giza++ para el alineamiento de palabras sin modificarlo.,COMPLETO,26,1
+7,W13-2239_W00-0405_0,Evaluable,Background,Media,Cita trabajos previos que muestran la eficacia de la diversidad en otros campos.,COMPLETO,26,1
+8,P06-2006_W01-0521_0,Evaluable,Background,Media,Resume un hallazgo previo sobre la contribución de parámetros bilexicales.,COMPLETO,26,1
+9,W13-5104_W12-3803_0,Evaluable,Evidence,Media,Respalda la afirmación sobre riesgos de la incertidumbre médica.,COMPLETO,26,1
+10,P13-1052_N10-1087_1,Evaluable,Comparison,Media,Explica por qué no se puede comparar con enfoques basados en patrones léxicos.,COMPLETO,26,1
+11,P11-1011_P08-1108_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los clasificadores apilados son eficaces.,COMPLETO,26,1
+12,P06-1111_P02-1017_5,Evaluable,Basis,Media,El modelo CCM citado es el punto de partida del trabajo actual.,COMPLETO,26,1
+13,J08-3003_P03-1013_1,Evaluable,Background,Media,Describe la controversia en la literatura sobre la lexicalización.,COMPLETO,26,1
+14,J11-4008_P02-1024_2,Evaluable,Comparison,Alta,Contrasta la función objetivo de trabajos previos con la propia.,COMPLETO,26,1
+15,P12-1045_D11-1131_0,Evaluable,Background,Alta,Enumera enfoques previos al problema de supervisión ambigua.,COMPLETO,26,1
+16,S12-1059_P98-2127_0,Evaluable,Application,Alta,Usa los algoritmos citados sobre WordNet.,COMPLETO,26,1
+17,P10-3006_N06-2013_0,Evaluable,Evidence,Alta,Sustenta la afirmación de que el preprocesado morfológico mejora la traducción.,COMPLETO,26,1
+18,E09-1020_P03-1011_1,Evaluable,Evidence,Media,Apoya la afirmación de que imponer estructura estricta degrada el alineamiento.,COMPLETO,26,1
+19,W11-2911_D10-1068_0,Evaluable,Background,Media,Menciona trabajos previos de aprendizaje no supervisado.,COMPLETO,26,1
+20,S13-2025_W04-0404_0,Evaluable,Evidence,Alta,Respalda la cifra de frecuencia de los compuestos nominales.,COMPLETO,26,1
+21,P11-1053_N04-1043_0,Evaluable,Identification of the Originator,Alta,Usa 'pioneered by' para atribuir el origen de la idea.,COMPLETO,26,1
+22,P09-1006_P06-1043_1,Evaluable,Evidence,Alta,Respalda que el auto-entrenamiento ayuda al parsing y motiva su uso.,COMPLETO,26,1
+23,P13-2126_P03-1054_0,Evaluable,Application,Alta,Usa los parsers de Stanford como herramienta.,COMPLETO,26,1
+24,D13-1129_P05-1012_3,Evaluable,Application,Alta,Entrena los pesos con MIRA tal como se describe.,COMPLETO,26,1
+25,P06-1023_P04-1082_1,Evaluable,Comparison,Alta,Compara resultados de su parser con los reportados en el trabajo citado.,COMPLETO,26,1
+26,P12-2028_N04-3012_0,Evaluable,Application,Alta,Usa la implementación de elesk del paquete citado como baseline.,COMPLETO,26,1
+27,W04-3236_W03-1728_2,Evaluable,Comparison,Alta,"Compara su segmentador con el citado, señalando similitudes y mejoras.",COMPLETO,26,1
+28,D12-1077_W06-3119_0,Evaluable,Application,Media,Adopta la convención de la etiqueta X del trabajo citado.,COMPLETO,26,1
+29,W09-3815_N06-1033_1,Evaluable,Background,Media,Describe la contribución del trabajo citado como contexto relacionado.,COMPLETO,26,1
+30,D11-1001_P05-1073_0,Evaluable,Evidence,Alta,Respalda que las compatibilidades entre argumentos ayudan en SRL.,COMPLETO,26,1
+31,P11-1067_W10-2902_2,Evaluable,Background,Alta,Enumera trabajos previos sobre entrenamiento de DMV.,COMPLETO,26,1
+32,P13-1125_W06-3119_0,Evaluable,Background,Alta,Cita modelos sintácticos previos en la revisión de literatura.,COMPLETO,26,1
+33,P09-1073_P03-1023_0,Evaluable,Evidence,Media,Respalda que la saliencia relativa se explota en enfoques de ranking.,COMPLETO,26,1
+34,P13-1172_D12-1123_2,Evaluable,Gap,Alta,"Señala la limitación del trabajo previo, probado solo en datos medianos.",COMPLETO,26,1
+35,P13-2108_N07-1051_1,Evaluable,Further Reading,Media,Remite con 'see' a detalles sobre el score como verosimilitud condicional.,COMPLETO,26,1
+36,W11-2136_E03-1076_0,Evaluable,Application,Alta,Usa el método de división de compuestos citado.,COMPLETO,26,1
+37,D11-1129_P08-1028_5,Evaluable,Evidence,Media,Respalda la elección de Spearman como métrica de ranking.,COMPLETO,26,1
+38,J10-2001_W06-1403_1,Evaluable,Evidence,Media,Sustenta la afirmación de que HLDS es adecuado para la realización.,COMPLETO,26,1
+39,W13-4913_W04-3224_0,Evaluable,Basis,Media,Se basa en modelos de parsers estadísticos estándar para derivar la gramática.,COMPLETO,26,1
+40,P11-3012_P05-1053_1,Evaluable,Comparison,Alta,Compara su F-measure con el resultado de Zhou et al.,COMPLETO,26,1
+41,N09-1061_E09-1055_0,Evaluable,Evidence,Alta,Respalda que los treebanks son binarizables sin aumento de fan-out.,COMPLETO,26,1
+42,P13-1096_P97-1023_0,Evaluable,Background,Alta,Resume métodos previos de identificación de palabras de opinión.,COMPLETO,26,1
+43,S12-1056_N13-4004_0,Evaluable,Background,Media,Sitúa SpRL como un tipo de SRL citando una referencia general.,COMPLETO,26,1
+44,W09-3523_N03-1017_1,Evaluable,Improvement / Modification,Alta,Modifica el método estándar de extracción de frases para extraer también el contexto.,COMPLETO,26,1
+45,D12-1105_P03-1054_2,Evaluable,Background,Media,Menciona gramáticas lexicalizadas previas para justificar la dificultad.,COMPLETO,26,1
+46,P12-1050_N10-1129_0,Evaluable,Gap,Media,Señala que el intento previo preservó el rendimiento pero no lo mejoró.,COMPLETO,26,1
+47,P10-1021_N01-1021_2,Evaluable,Identification of the Originator,Alta,Se refiere a la formulación original de surprisal.,COMPLETO,26,1
+48,D13-1202_P12-1015_2,Evaluable,Evidence,Alta,Respalda que los modelos de ventana superan a otros modelos.,COMPLETO,26,1
+49,P12-2001_D09-1161_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando el desempeño con otros sistemas.,COMPLETO,26,1
+50,W12-3619_S12-1018_0,Evaluable,Improvement / Modification,Alta,Extiende el esquema de anotación citado a un dominio más complejo.,COMPLETO,26,1
+51,W07-0714_W05-0904_0,Evaluable,Improvement / Modification,Alta,Declara que su método sigue y extiende sustancialmente el trabajo citado.,COMPLETO,26,1
+52,W13-3507_P12-1024_1,Evaluable,Basis,Alta,La derivación citada es la fuerza motriz de su algoritmo.,COMPLETO,26,1
+53,N07-1044_E06-1016_3,Evaluable,Evidence,Alta,Respalda que las medidas de asociación superan a la frecuencia bruta.,COMPLETO,26,1
+54,P13-1012_P06-1055_0,Evaluable,Application,Alta,Usa el Berkeley Parser para parsear el corpus.,COMPLETO,26,1
+55,P08-1041_N04-4027_0,Evaluable,Background,Media,Describe métodos previos de resumen de conversaciones antes de criticarlos.,COMPLETO,26,1
+56,Q13-1014_W12-3134_0,Evaluable,Background,Media,Menciona toolkits existentes de MT como contexto.,COMPLETO,26,1
+57,D09-1158_P07-1034_2,Evaluable,Background,Media,Describe un trabajo previo que propuso reponderación de instancias.,COMPLETO,26,1
+58,W13-2208_W08-0509_0,Evaluable,Background,Media,Describe la versión multihilo existente de GIZA++.,COMPLETO,26,1
+59,W02-0905_P91-1030_0,Evaluable,Comparison,Media,Indica que su método no es comparable con enfoques de atribución previos.,COMPLETO,26,1
+60,S12-1003_W05-0202_0,Evaluable,Background,Alta,"Enumera aplicaciones de la relación semántica, incluida la calificación de respuestas cortas.",COMPLETO,26,1
+61,W07-1431_P03-1054_0,Evaluable,Application,Alta,"Usa el parser de Stanford para tokenización, etiquetado y parsing.",COMPLETO,26,1
+62,P06-1047_W04-1017_1,Evaluable,Comparison,Alta,Compara sus ROUGE-1 con los del trabajo citado.,COMPLETO,26,1
+63,W11-3207_P07-1015_0,Evaluable,Background,Alta,Enumera enfoques previos de transliteración.,COMPLETO,26,1
+64,D10-1049_W09-0607_0,Evaluable,Background,Alta,Ejemplos de sistemas de generación existentes.,COMPLETO,26,1
+65,D11-1006_D10-1120_2,Evaluable,Comparison,Alta,Es uno de los sistemas baseline con los que compara.,COMPLETO,26,1
+66,D11-1022_D10-1004_7,Evaluable,Identification of the Originator,Media,Atribuye el concepto de turbo parsers al trabajo que lo introdujo.,COMPLETO,26,1
+67,W10-0102_J04-3001_0,Evaluable,Background,Alta,Cita aplicaciones previas de aprendizaje activo en PLN.,COMPLETO,26,1
+68,E09-1025_P07-1058_0,Evaluable,Evidence,Alta,Respalda la afirmación de precisión aproximada de DIRT.,COMPLETO,26,1
+69,W09-3710_P07-1058_0,Evaluable,Evidence,Alta,Respalda la afirmación de precisión aproximada de DIRT.,COMPLETO,26,1
+70,N07-1049_W05-1505_0,Evaluable,Comparison,Alta,Declara que el trabajo citado es el más cercano y lo contrasta con el propio.,COMPLETO,26,1
+71,N07-1039_P03-1054_0,Evaluable,Application,Alta,Usa el parser de dependencias de Stanford como herramienta.,COMPLETO,26,1
+72,W04-1505_A97-1014_0,Evaluable,Evidence,Media,Respalda la afirmación de que la anotación de NEGRA es plana.,COMPLETO,26,1
+73,J08-2006_P00-1065_0,Evaluable,Basis,Media,Adopta la descomposición en tareas introducida por el trabajo citado.,COMPLETO,26,1
+74,P12-2031_P10-1124_0,Evaluable,Comparison,Alta,Es uno de los cuatro métodos comparados en el estudio de caso.,COMPLETO,26,1
+75,W13-3303_P11-1132_0,Evaluable,Background,Media,Resume hallazgos previos sobre explicitación en translationese.,COMPLETO,26,1
+76,D11-1079_P10-1146_0,Evaluable,Evidence,Media,Respalda que las restricciones difusas resuelven el problema.,COMPLETO,26,1
+77,P13-2008_P05-1074_0,Evaluable,Application,Alta,Usa el método de pivote citado para extraer paráfrasis.,COMPLETO,26,1
+78,P13-1007_P08-1026_0,Evaluable,Background,Media,Menciona esfuerzos previos hacia grafos ponderados antes de señalar su limitación.,COMPLETO,26,1
+79,E12-1025_N03-1017_0,Evaluable,Evidence,Media,Respalda la aproximación log-lineal del modelo de traducción.,COMPLETO,26,1
+80,N07-1037_E06-1026_0,Evaluable,Gap,Alta,Presenta el modelo previo y señala su limitación con palabras no vistas.,COMPLETO,26,1
+81,P13-4019_P11-2053_0,Evaluable,Background,Alta,Enumera usos de la visualización en lingüística.,COMPLETO,26,1
+82,W08-0610_W07-1009_0,Evaluable,Application,Alta,Usa un sistema NER citado para marcar genes.,COMPLETO,26,1
+83,S13-2060_D11-1096_1,Evaluable,Application,Alta,Adopta el Smoothed Partial Tree Kernel propuesto en el trabajo citado.,COMPLETO,26,1
+84,W10-1707_N04-1022_0,Evaluable,Application,Media,Emplea la regla de decisión de mínimo riesgo del trabajo citado.,COMPLETO,26,1
+85,W09-3719_P02-1047_0,Evaluable,Gap,Alta,Critica que los estudios previos eligieron marcadores sin evidencia empírica.,COMPLETO,26,1
+86,S13-2040_W09-2412_0,Evaluable,Background,Alta,Menciona tareas SemEval previas como contexto del interés multilingüe.,COMPLETO,26,1
+87,W02-2030_P98-1083_0,Evaluable,Background,Alta,Cita aplicaciones previas de árboles de decisión en parsing.,COMPLETO,26,1
+88,N13-1107_D11-1142_5,Evaluable,Comparison,Alta,Compara sus resultados con los reportados en el trabajo citado.,COMPLETO,26,1
+89,N13-1105_D12-1130_0,Evaluable,Comparison,Alta,Compara sus resultados con el estado del arte.,COMPLETO,26,1
+90,J01-3003_A97-1052_0,Evaluable,Background,Alta,Enumera trabajos previos de extracción de subcategorización.,COMPLETO,26,1
+91,W12-4404_P07-1016_0,Evaluable,Background,Media,Describe el modelo previo de transliteración por clases.,COMPLETO,26,1
+92,W11-2139_P08-1114_0,Evaluable,Evidence,Alta,Respalda que las características sintácticas mejoran el desempeño.,COMPLETO,26,1
+93,W02-1022_P00-1056_0,Evaluable,Background,Media,Enumera trabajos de alineamiento en traducción automática.,COMPLETO,26,1
+94,W08-2006_N06-1058_0,Evaluable,Background,Alta,"Lista aplicaciones de la relación léxica, incluida la paráfrasis.",COMPLETO,26,1
+95,D12-1047_D11-1033_1,Evaluable,Comparison,Alta,"Contrasta el método citado con el propio, señalando ventajas.",COMPLETO,26,1
+96,W10-4148_P97-1003_0,Evaluable,Background,Alta,Enumera modelos de parsing comunes.,COMPLETO,26,1
+97,D13-1116_D09-1161_1,Evaluable,Comparison,Alta,Compara su sistema con el de combinación citado.,COMPLETO,26,1
+98,E12-1055_P07-2045_0,Evaluable,Application,Alta,Usa Moses como herramienta principal.,COMPLETO,26,1
+99,J07-4002_W95-0103_0,Evaluable,Comparison,Alta,Compara sus resultados con tres enfoques previos.,COMPLETO,26,1
+100,W12-3201_P99-1068_1,Evaluable,Evidence,Media,Respalda la afirmación sobre la insuficiencia de datos bilingües minados de la Web.,COMPLETO,26,1

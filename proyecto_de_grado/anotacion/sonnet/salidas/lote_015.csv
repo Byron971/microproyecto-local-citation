@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D12-1009_N10-1020_6,Evaluable,Background,Media,"Describes how previous work (BHMM) found optimal structure, as contrast setup for the current approach.",COMPLETO,15,1
+2,P11-2125_P06-1055_1,Evaluable,Application,Alta,Uses the Berkeley parser's split non-terminals as clusterings.,COMPLETO,15,1
+3,J92-1001_P90-1033_0,Evaluable,Background,Media,Mentions recent work suggesting role information collection may be automated.,COMPLETO,15,1
+4,N04-4026_N03-2036_2,Evaluable,Basis,Media,"Uses a decoding procedure similar to the cited one, building on it.",COMPLETO,15,1
+5,W11-2903_P03-2041_3,Evaluable,Comparison,Alta,Table compares published tree-parsing algorithms with this paper.,COMPLETO,15,1
+6,E09-1026_P00-1065_0,Evaluable,Background,Alta,Introductory statement of growing interest in semantic role labeling.,COMPLETO,15,1
+7,S01-1015_P99-1020_0,Evaluable,Identification of the Originator,Alta,'a method first introduced by' attributes origin.,COMPLETO,15,1
+8,S13-2060_S13-2052_0,Evaluable,Background,Media,Describes how participating systems in the shared task model sentiment analysis.,COMPLETO,15,1
+9,W12-2013_P11-2038_0,Evaluable,Comparison,Alta,Compares own approach performing on par with the cited more complicated grammars.,COMPLETO,15,1
+10,J03-4003_A92-1014_0,Evaluable,Further Reading,Media,'see' pointing to work using lexical relations for parse disambiguation.,COMPLETO,15,1
+11,P11-1037_W03-0434_0,Evaluable,Application,Media,Uses a text window of size 5 as in the cited work.,COMPLETO,15,1
+12,W11-0504_N04-1019_0,Evaluable,Background,Media,Describes the Pyramid evaluation framework idea.,COMPLETO,15,1
+13,N07-1015_P04-1054_0,Evaluable,Background,Alta,Lists prior work designing kernel functions for relation extraction.,COMPLETO,15,1
+14,N09-1003_P98-2127_0,Evaluable,Gap,Alta,Cites limitations of distributional similarity in previous work.,COMPLETO,15,1
+15,W08-1005_P03-1054_0,Evaluable,Evidence,Alta,Supports the claim that a naive treebank PCFG performs poorly.,COMPLETO,15,1
+16,W11-1811_P10-2029_1,Evaluable,Evidence,Media,Supports claim that these pronouns are harder to resolve than other types.,COMPLETO,15,1
+17,N10-1015_D08-1092_3,Evaluable,Comparison,Alta,Compares own parsing results to the cited bilingual reranker.,COMPLETO,15,1
+18,P10-2031_D09-1153_1,Evaluable,Background,Alta,Notes prior semantic chunking methods that relax full parses.,COMPLETO,15,1
+19,E09-1014_W05-1510_1,Evaluable,Comparison,Media,Contrasts the cited findings on language model score with the current log-linear results.,COMPLETO,15,1
+20,P10-1021_D09-1045_2,Evaluable,Evidence,Media,"Cited work demonstrates the model improves perplexity, supporting the claim.",COMPLETO,15,1
+21,W98-1423_P98-2227_1,Evaluable,Further Reading,Alta,"Figure taken from cited work, 'where further details are explained'.",COMPLETO,15,1
+22,W11-3503_P06-1092_0,Evaluable,Background,Alta,Lists prior stochastic input method work.,COMPLETO,15,1
+23,W11-0808_J91-4003_0,Evaluable,Basis,Alta,Adopts and adapts qualia structure idea from the cited work.,COMPLETO,15,1
+24,W07-1525_W98-1119_0,Evaluable,Background,Media,Describes how MUC proposed a minimal string constraint for markable boundaries.,COMPLETO,15,1
+25,W05-1202_P99-1004_0,Evaluable,Background,Alta,Enumerates prior work on distributional similarity.,COMPLETO,15,1
+26,W11-1402_P11-2088_1,Evaluable,Further Reading,Alta,Refers reader to prior work for details of the average-expert model.,COMPLETO,15,1
+27,P98-1036_W97-0315_0,Evaluable,Evidence,Alta,Cites reported statistics supporting that many queries contain proper names.,COMPLETO,15,1
+28,D11-1081_P07-1005_1,Evaluable,Basis,Media,"Features are motivated by WSD work, taking it as inspiration.",COMPLETO,15,1
+29,W06-2914_P93-1020_0,Evaluable,Background,Media,Previous studies obtained significant inter-annotator agreement; describes prior literature.,COMPLETO,15,1
+30,P12-2002_P06-1055_0,Evaluable,Application,Alta,Uses models trained with the Berkeley parser.,COMPLETO,15,1
+31,W07-1430_P85-1008_0,Evaluable,Evidence,Media,Supports the argument that semantic representations need not be higher-order.,COMPLETO,15,1
+32,W06-3103_N04-4038_1,Evaluable,Background,Alta,Lists prior segmentation methods and notes their limitation of not studying translation impact.,COMPLETO,15,1
+33,P13-1079_P11-1064_1,Evaluable,Application,Alta,Employs the method proposed by the cited work.,COMPLETO,15,1
+34,W04-2312_N03-4011_0,Evaluable,Background,Media,Gives an example of an unsupervised clustering algorithm.,COMPLETO,15,1
+35,P07-2009_P06-1088_0,Evaluable,Evidence,Alta,Supports claim that statistical tagging assigns categories accurately.,COMPLETO,15,1
+36,W10-1411_J08-3003_0,Evaluable,Background,Alta,Lists attempts pointing to shortcomings of traditional parsing methods.,COMPLETO,15,1
+37,W11-0307_P00-1065_0,Evaluable,Background,Media,Relates event arguments to roles in semantic role labeling.,COMPLETO,15,1
+38,W94-0321_J89-2001_0,Evaluable,Basis,Media,"Follows Carberry's idea of expectations, building on it.",COMPLETO,15,1
+39,D10-1012_W98-0704_0,Evaluable,Background,Alta,Lists different methods proposed for SIR.,COMPLETO,15,1
+40,W09-1704_W06-0901_0,Evaluable,Background,Alta,Lists supervised approaches explored for ACE event extraction.,COMPLETO,15,1
+41,D11-1069_D09-1130_0,Evaluable,Comparison,Alta,"Compares closely related work with own research, similarities and differences.",COMPLETO,15,1
+42,W09-0434_W02-1039_0,Evaluable,Background,Media,Related work describing the cited study's findings.,COMPLETO,15,1
+43,Q13-1004_P11-2033_0,Evaluable,Comparison,Alta,Table compares own system's results with the state of the art.,COMPLETO,15,1
+44,S13-2092_P11-1016_0,Evaluable,Evidence,Alta,Supports the decision to use unigram model since it works well on tweets.,COMPLETO,15,1
+45,W00-1108_W97-0710_0,Evaluable,Background,Alta,Enumerates summarization techniques in the literature.,COMPLETO,15,1
+46,D09-1077_P06-1021_1,Evaluable,Evidence,Media,Supports that prosodic cues identify repair existence.,COMPLETO,15,1
+47,P10-1085_W04-3250_0,Evaluable,Application,Alta,Uses the paired bootstrap resampling method for significance.,COMPLETO,15,1
+48,N07-1038_P02-1047_0,Evaluable,Evidence,Media,Supports claim that the relation can be determined automatically.,COMPLETO,15,1
+49,E12-1009_P05-1012_0,Evaluable,Background,Alta,Lists the two classes of parsing approaches.,COMPLETO,15,1
+50,N10-1135_N01-1013_0,Evaluable,Gap,Media,Notes limitation of these approaches covered only by WordNet.,COMPLETO,15,1
+51,W12-3140_J07-2003_0,Evaluable,Identification of the Originator,Alta,'hierarchical approach as introduced by' credits the originator.,COMPLETO,15,1
+52,N12-1044_P06-1010_0,Evaluable,Background,Alta,Lists prior work on machine transliteration.,COMPLETO,15,1
+53,P13-4026_W12-1014_0,Evaluable,Further Reading,Alta,'See ... for further details'.,COMPLETO,15,1
+54,D13-1116_N07-1051_1,Evaluable,Evidence,Media,Cited finding that normalization gives better results supports the remark on approximations.,COMPLETO,15,1
+55,J11-1005_N07-1051_0,Evaluable,Comparison,Alta,Reports cited results to compare with current parser's results.,COMPLETO,15,1
+56,W12-1509_E09-1081_0,Evaluable,Basis,Alta,Current work builds on the abstract incremental processing model of the cited work.,COMPLETO,15,1
+57,P11-2121_P09-1040_0,Evaluable,Evidence,Alta,Supports the claim that non-projective parsing is possible in linear time in practice.,COMPLETO,15,1
+58,W06-1304_A00-2023_1,Evaluable,Comparison,Alta,Contrasts own system with the cited generation systems.,COMPLETO,15,1
+59,D10-1026_P08-1058_3,Evaluable,Background,Alta,Describes the cited approach to storing large language models in related work.,COMPLETO,15,1
+60,E97-1051_J90-4001_0,Evaluable,Background,Alta,Lists prior attention to VP ellipsis.,COMPLETO,15,1
+61,W13-1407_N12-1016_0,Evaluable,Application,Media,Uses an adaptation of the cited proposal for computing the agreement coefficient.,COMPLETO,15,1
+62,W13-2243_P07-2045_0,Evaluable,Application,Alta,Uses Moses software to estimate models.,COMPLETO,15,1
+63,P11-2125_E06-1011_0,Evaluable,Background,Alta,Describes higher-order parsing models from prior work.,COMPLETO,15,1
+64,P12-2031_W03-1011_0,Evaluable,Comparison,Alta,Case study compares four methods including the cited one.,COMPLETO,15,1
+65,P12-2004_D10-1067_0,Evaluable,Background,Alta,Lists studies on unsupervised constituency parsing.,COMPLETO,15,1
+66,P10-1022_P08-1039_1,Evaluable,Basis,Alta,Current changes build on the corrected CCGbank corpus.,COMPLETO,15,1
+67,D08-1018_N06-1022_0,Evaluable,Further Reading,Alta,'Please refer to ... for more details'.,COMPLETO,15,1
+68,E09-1069_P05-1011_3,Evaluable,Application,Alta,Uses the Enju HPSG grammar in experiments.,COMPLETO,15,1
+69,P13-1140_E12-1014_0,Evaluable,Improvement / Modification,Alta,'borrow and extend the idea of' the cited work.,COMPLETO,15,1
+70,J11-3004_P05-1012_2,Evaluable,Background,Media,"Notes that some known parsing algorithms rely on statistical control mechanisms, describing prior work.",COMPLETO,15,1
+71,W07-1201_W06-1517_3,Evaluable,Evidence,Alta,Cited result supports the argument that MC-TAG cannot be restricted to remain well-nested.,COMPLETO,15,1
+72,D13-1168_W02-0902_2,Evaluable,Application,Media,Follows the preprocessing procedure of previous work.,COMPLETO,15,1
+73,W09-0412_N03-2016_2,Evaluable,Application,Alta,Sets parameter value as suggested by the cited work.,COMPLETO,15,1
+74,P09-1016_P07-1016_2,Evaluable,Evidence,Alta,Justifies model choice because it was shown to be simple yet accurate.,COMPLETO,15,1
+75,W07-1909_P01-1016_0,Evaluable,Background,Alta,Lists studies on ECA behaviour strategies.,COMPLETO,15,1
+76,Q13-1006_P07-1049_2,Evaluable,Comparison,Alta,CCL parser is a baseline for comparison.,COMPLETO,15,1
+77,N09-1074_P04-1005_0,Evaluable,Background,Alta,Reviews recent work showing syntactic cues help speech repair.,COMPLETO,15,1
+78,D11-1066_W03-1208_0,Evaluable,Evidence,Media,Supports claim of state-of-the-art performance in question classification.,COMPLETO,15,1
+79,W13-3202_P13-1045_0,Evaluable,Comparison,Alta,"Closest work compared to current one, noting differences.",COMPLETO,15,1
+80,P13-1171_S12-1055_0,Evaluable,Comparison,Alta,Compares Probase's score to the previous best system.,COMPLETO,15,1
+81,P10-1075_W01-0521_0,Evaluable,Evidence,Alta,Supports claim that parsing accuracy degrades without in-domain training data.,COMPLETO,15,1
+82,N09-1062_P07-1035_0,Evaluable,Comparison,Media,Contrasts own model with grammar refinement models.,COMPLETO,15,1
+83,D12-1127_N06-1041_0,Evaluable,Background,Alta,Lists recent work using subsets of word-tag pairs.,COMPLETO,15,1
+84,P11-2076_W02-2016_0,Evaluable,Application,Alta,Uses the CaboCha parser to analyze documents.,COMPLETO,15,1
+85,W09-0804_P03-1004_1,Evaluable,Application,Media,Uses the tag/feature scheme of the cited work for segmentation.,COMPLETO,15,1
+86,D13-1130_A00-2004_0,Evaluable,Background,Alta,Lists various topic segmentation methods in the literature.,COMPLETO,15,1
+87,D12-1021_P06-1124_1,Evaluable,Application,Alta,Uses the process described by the cited work to reason about rules.,COMPLETO,15,1
+88,W07-1201_W06-1517_2,Evaluable,Evidence,Media,"Cites the result that tree-local MC-TAG can induce non-well-nested drawings, and replicates their example.",COMPLETO,15,1
+89,D10-1011_N10-1124_2,Evaluable,Evidence,Alta,"Previous studies show weighting PECO elements improves results, supporting the claim.",COMPLETO,15,1
+90,D09-1128_P07-1068_5,Evaluable,Comparison,Alta,Table row compares accuracies against the cited system.,COMPLETO,15,1
+91,P11-2119_J08-3007_0,Evaluable,Further Reading,Alta,Refers to source for details on CKY algorithm.,COMPLETO,15,1
+92,W06-1623_N03-2019_1,Evaluable,Background,Alta,Lists machine-learning work on temporal analysis.,COMPLETO,15,1
+93,A00-2034_A97-1052_1,Evaluable,Application,Alta,Uses the cited SCF acquisition system.,COMPLETO,15,1
+94,W02-1604_W01-1402_0,Evaluable,Further Reading,Alta,Reader is referred to the cited papers for more information.,COMPLETO,15,1
+95,A00-2026_P98-1116_1,Evaluable,Comparison,Alta,Contrasts own approach with the cited corpus-based generation approaches.,COMPLETO,15,1
+96,D13-1150_P08-1036_0,Evaluable,Further Reading,Media,Suggests aspect-based sentiment analysis studies for further investigation.,COMPLETO,15,1
+97,P12-2022_P11-2036_0,Evaluable,Gap,Media,Previous attempt combining TIG and Bayesian methods noted as having severe limitations.,COMPLETO,15,1
+98,P07-1048_P02-1048_0,Evaluable,Improvement / Modification,Alta,Develops and extends the MATCH architecture.,COMPLETO,15,1
+99,P03-2008_N03-2020_0,Evaluable,Basis,Alta,Current paper continues own previous work by applying the ranked model.,COMPLETO,15,1
+100,W06-1654_P02-1030_0,Evaluable,Evidence,Media,Cited finding supports claim that more data improves synonym extraction accuracy.,COMPLETO,15,1

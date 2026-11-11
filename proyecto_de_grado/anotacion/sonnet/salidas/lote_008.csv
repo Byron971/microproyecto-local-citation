@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J08-1002_W03-1013_0,Evaluable,Background,Media,Enumera trabajos que usan modelos log-lineales como enfoque estándar; descripción del estado del área.,COMPLETO,8,1
+2,D08-1069_P07-1068_0,Evaluable,Comparison,Alta,Compara explícitamente los resultados MUC propios con los reportados por el trabajo citado.,COMPLETO,8,1
+3,P11-1157_N06-1020_0,Evaluable,Background,Alta,Lista trabajos previos de adaptación de dominio que evitaron la selección automática; revisión de literatura.,COMPLETO,8,1
+4,N13-1025_W10-1748_0,Evaluable,Background,Alta,Enumera trabajos recientes de predicción estructurada para métricas de traducción.,COMPLETO,8,1
+5,D09-1161_N06-2033_2,Evaluable,Basis,Media,La característica de conteo de constituyentes se adopta inspirada en los trabajos citados.,COMPLETO,8,1
+6,P11-1037_P09-3003_0,Evaluable,Background,Alta,"Ejemplifica estudios previos sobre texto informal (correos, blogs, notas clínicas).",COMPLETO,8,1
+7,W10-1719_P07-2045_0,Evaluable,Application,Alta,Usa directamente la herramienta Moses para extraer frases y generar la tabla de frases.,COMPLETO,8,1
+8,P08-1115_J07-2003_3,Evaluable,Background,Media,Describe lo que el trabajo citado sugiere (límite de longitud de span) como contexto para el decodificador.,COMPLETO,8,1
+9,E06-1011_P04-1015_0,Evaluable,Evidence,Media,Respalda la afirmación de que el aprendizaje en línea es robusto con inferencia aproximada.,COMPLETO,8,1
+10,W03-0103_W02-1030_0,Evaluable,Evidence,Alta,"Respalda que los conteos de Internet son fiables, justificando el enfoque propuesto.",COMPLETO,8,1
+11,W12-3011_D11-1135_0,Evaluable,Gap,Media,Señala que esa dirección no se siguió y que la mayoría de sistemas trata las frases relacionales como entidades no analizadas.,COMPLETO,8,1
+12,P12-1069_N10-1115_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando precisión y tiempo con otros analizadores.,COMPLETO,8,1
+13,P13-2153_N03-2016_0,Evaluable,Background,Alta,Enumera áreas donde se ha investigado la similitud fonética.,COMPLETO,8,1
+14,N13-1125_P11-2037_1,Evaluable,Background,Media,Describe cómo se evalúan los elementos vacíos en el marco de estructura sintagmática.,COMPLETO,8,1
+15,W11-1403_E09-1014_0,Evaluable,Comparison,Media,Los hallazgos propios concuerdan con los resultados del trabajo citado.,COMPLETO,8,1
+16,P12-2056_P10-1016_0,Evaluable,Gap,Alta,"Critica los enfoques previos por alta complejidad computacional, justificando el trabajo.",COMPLETO,8,1
+17,P10-1112_P96-1024_1,Evaluable,Improvement / Modification,Alta,Usa una simplificación de la reducción PCFG de DOP.,COMPLETO,8,1
+18,W12-3019_P08-1090_0,Evaluable,Basis,Alta,Declara construir sobre el trabajo previo de cadenas narrativas.,COMPLETO,8,1
+19,D08-1022_P05-1033_2,Evaluable,Comparison,Alta,Compara el BLEU del sistema con el de Hiero.,COMPLETO,8,1
+20,W11-1109_P07-1049_0,Evaluable,Comparison,Media,Contrasta los analizadores no supervisados que dependen de etiquetas POS con el citado que no.,COMPLETO,8,1
+21,S13-2051_E12-1060_1,Evaluable,Application,Media,Reutiliza la característica de contexto posicional de su trabajo previo.,COMPLETO,8,1
+22,D11-1065_P10-2041_2,Evaluable,Evidence,Media,Respalda que el método de diferencia de entropía cruzada fue consistentemente el mejor.,COMPLETO,8,1
+23,P13-1048_W10-4327_0,Evaluable,Evidence,Media,Respalda que el análisis del discurso beneficia el resumen automático.,COMPLETO,8,1
+24,D09-1058_P08-1068_7,Evaluable,Comparison,Alta,Compara la tendencia observada con la del trabajo citado.,COMPLETO,8,1
+25,J11-1007_N07-1050_1,Evaluable,Background,Alta,Reseña trabajos que exploraron sistemas de transición no proyectivos.,COMPLETO,8,1
+26,J13-3008_D12-1130_0,Evaluable,Further Reading,Media,Lista trabajos de semántica distribucional con los que integrar el marco a futuro.,COMPLETO,8,1
+27,N10-1015_P09-1104_0,Evaluable,Comparison,Alta,Compara el modelo con el alineador discriminativo citado como línea base.,COMPLETO,8,1
+28,S10-1003_W09-2413_0,Evaluable,Further Reading,Alta,Remite al lector a una descripción más detallada de la construcción de datos.,COMPLETO,8,1
+29,J08-3003_W05-1513_0,Evaluable,Background,Media,Indica que este tipo de clasificador se ha usado con éxito en análisis determinista.,COMPLETO,8,1
+30,P13-1047_P05-1001_0,Evaluable,Background,Alta,Enumera métodos de aprendizaje multitarea propuestos.,COMPLETO,8,1
+31,P12-1018_P11-1064_2,Evaluable,Application,Alta,Experimenta directamente con el método de alineamiento citado.,COMPLETO,8,1
+32,E12-1014_P08-1088_0,Evaluable,Background,Media,Describe configuraciones de evaluación de trabajos previos antes de criticar su extrapolación.,COMPLETO,8,1
+33,W11-1212_N07-2008_2,Evaluable,Comparison,Alta,Compara las ganancias del sistema frente al enfoque citado.,COMPLETO,8,1
+34,W09-2503_D08-1021_2,Evaluable,Evidence,Media,Justifica el uso de heurísticas de filtrado por las deficiencias discutidas en el trabajo citado.,COMPLETO,8,1
+35,W97-1016_P91-1030_0,Evaluable,Identification of the Originator,Alta,Atribuye a los citados ser los primeros en mostrar el enfoque basado en corpus.,COMPLETO,8,1
+36,N06-1012_W03-0425_0,Evaluable,Background,Alta,Enumera aplicaciones de métodos discriminativos en PLN.,COMPLETO,8,1
+37,Q13-1035_P07-2045_1,Evaluable,Application,Alta,Usa el sistema Moses para los experimentos.,COMPLETO,8,1
+38,D10-1042_P09-1098_1,Evaluable,Background,Alta,Describe trabajos previos de extracción de pares de traducción.,COMPLETO,8,1
+39,P13-1012_N10-1061_1,Evaluable,Comparison,Alta,"Contrasta explícitamente el sistema citado (no supervisado, generativo) con el propio.",COMPLETO,8,1
+40,P11-1003_D08-1022_1,Evaluable,Basis,Media,"Las definiciones usadas son similares a las del trabajo citado, del que se parte.",COMPLETO,8,1
+41,W09-2504_P98-1013_0,Evaluable,Background,Alta,Presenta FrameNet como enfoque existente para el mapeo de argumentos.,COMPLETO,8,1
+42,D13-1177_D12-1062_0,Evaluable,Background,Alta,Enumera trabajos de relaciones temporales entre eventos.,COMPLETO,8,1
+43,E09-1001_W07-1210_1,Evaluable,Improvement / Modification,Alta,Modifica la definición de RMRS del trabajo citado haciendo ARG0 opcional.,COMPLETO,8,1
+44,D12-1062_P09-1046_0,Evaluable,Background,Alta,Enumera sistemas automáticos previos para la tarea.,COMPLETO,8,1
+45,W11-3216_P04-1021_3,Evaluable,Improvement / Modification,Alta,Extiende el modelo conjunto fuente-canal original permitiendo más unidades.,COMPLETO,8,1
+46,P04-1013_E03-1005_1,Evaluable,Comparison,Alta,Compara la exactitud obtenida con el mejor resultado actual.,COMPLETO,8,1
+47,W11-0309_N10-1075_0,Evaluable,Basis,Alta,El enfoque se construye sobre el trabajo previo citado.,COMPLETO,8,1
+48,N09-1040_P98-2244_0,Evaluable,Identification of the Originator,Media,Atribuye el origen de la programación dinámica para segmentación lineal.,COMPLETO,8,1
+49,D12-1136_D11-1054_0,Evaluable,Gap,Media,Señala que el trabajo citado consideró el entorno conversacional pero su técnica no era adecuada.,COMPLETO,8,1
+50,W04-3221_J91-4003_0,Evaluable,Background,Media,Presenta la Estructura Qualia como teoría existente sobre atributos esenciales.,COMPLETO,8,1
+51,D11-1141_P09-1113_0,Evaluable,Basis,Media,El enfoque novedoso de supervisión distante se apoya en el concepto citado.,COMPLETO,8,1
+52,W01-1315_E93-1030_0,Evaluable,Evidence,Media,Respalda que la información léxica específica determina la interpretación temporal.,COMPLETO,8,1
+53,D11-1038_W03-1004_0,Evaluable,Application,Alta,Usa el método de alineamiento citado con tf.idf.,COMPLETO,8,1
+54,P12-1106_P11-1100_2,Evaluable,Application,Media,Describe el procedimiento de predicción del trabajo citado que se sigue (SVMlight con ranking).,COMPLETO,8,1
+55,N12-1002_P11-2020_0,Evaluable,Background,Alta,Resume hallazgos previos sobre entrainment.,COMPLETO,8,1
+56,D11-1066_W03-1208_1,Evaluable,Evidence,Alta,Respalda que las estructuras sintácticas son esenciales para clasificación de preguntas.,COMPLETO,8,1
+57,D11-1141_W02-2010_0,Evaluable,Evidence,Alta,Respalda que la capitalización es una característica clave para NER.,COMPLETO,8,1
+58,P12-1028_D09-1012_0,Evaluable,Application,Alta,Aplica la herramienta de ingeniería inversa propuesta en el trabajo citado.,COMPLETO,8,1
+59,W07-1101_E03-1025_0,Evaluable,Comparison,Media,Contrasta la variabilidad de precisión y recall reportada para RASP.,COMPLETO,8,1
+60,W08-0334_A94-1010_0,Evaluable,Evidence,Alta,Respalda que el modelado dependiente del tema mejora los modelos en reconocimiento de voz.,COMPLETO,8,1
+61,P02-1045_W98-1119_0,Evaluable,Background,Alta,Resume trabajos supervisados previos de resolución de pronombres.,COMPLETO,8,1
+62,W98-1201_W95-0103_0,Evaluable,Evidence,Alta,Respalda que olvidar elementos de entrenamiento perjudica la generalización.,COMPLETO,8,1
+63,P13-1052_N10-1087_0,Evaluable,Further Reading,Media,"Remite a trabajo sobre mejores semillas, fuera del alcance del artículo.",COMPLETO,8,1
+64,W09-2111_N07-2045_0,Evaluable,Background,Alta,Enumera enfoques basados en datos aplicados a la predicción de artículos.,COMPLETO,8,1
+65,D09-1004_P05-1073_0,Evaluable,Background,Media,Lista trabajos previos sobre características para SRL.,COMPLETO,8,1
+66,P06-1053_N01-1021_1,Evaluable,Comparison,Alta,Contrasta el modelo de amplia cobertura con modelos limitados de ejemplos seleccionados.,COMPLETO,8,1
+67,S10-1002_W09-2412_0,Evaluable,Gap,Media,Señala una limitación de agrupar sentidos por traducciones que justifica la recolección del conjunto de datos.,COMPLETO,8,1
+68,S12-1036_S12-1035_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para detalles de las medidas de evaluación.,COMPLETO,8,1
+69,W06-3104_P03-2041_0,Evaluable,Comparison,Alta,Contrasta el enfoque propio con los basados en gramáticas síncronas estocásticas.,COMPLETO,8,1
+70,N10-1082_P09-2012_0,Evaluable,Background,Media,Enumera modelos bayesianos no paramétricos previos.,COMPLETO,8,1
+71,D09-1133_N06-1055_4,Evaluable,Gap,Alta,"Señala que los sistemas previos asumen predicados anotados, sin reconocimiento automático.",COMPLETO,8,1
+72,Q13-1015_D09-1001_0,Evaluable,Evidence,Media,Respalda la utilidad de la semántica inducida para aplicaciones como QA.,COMPLETO,8,1
+73,W02-1501_W98-1114_0,Evaluable,Evidence,Media,Respalda la afirmación de que la frecuencia de marcos de subcategorización permite ajustar su impacto.,COMPLETO,8,1
+74,P11-1054_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford para obtener los análisis.,COMPLETO,8,1
+75,N07-1057_W02-1039_0,Evaluable,Evidence,Media,Respalda que la suposición de correspondencia directa se ha probado solo en pocos pares de lenguas.,COMPLETO,8,1
+76,W11-1008_J99-4004_1,Evaluable,Identification of the Originator,Alta,Indica que el análisis con semianillos fue introducido en el trabajo citado.,COMPLETO,8,1
+77,N12-1025_W11-1209_0,Evaluable,Background,Media,Menciona trabajos previos de extracción de alineamientos subfrasales desde texto comparable.,COMPLETO,8,1
+78,N12-1007_P03-1054_0,Evaluable,Application,Alta,Usa paquetes del analizador de Stanford para tokenizar.,COMPLETO,8,1
+79,W03-0806_W02-0109_0,Evaluable,Background,Alta,Presenta NLTK como herramienta existente entre los sistemas revisados.,COMPLETO,8,1
+80,N07-1057_P00-1056_1,Evaluable,Application,Alta,Combina alineamientos con los métodos definidos en el trabajo citado.,COMPLETO,8,1
+81,W98-1308_P96-1015_0,Evaluable,Further Reading,Media,Remite a fuentes de ideas fundamentales sobre relaciones regulares.,COMPLETO,8,1
+82,W10-1406_P03-1054_0,Evaluable,Background,Alta,Describe el trabajo previo que refinó manualmente no terminales.,COMPLETO,8,1
+83,N09-2032_P07-1080_0,Evaluable,Application,Alta,Usa el modelo de análisis sintáctico propuesto en trabajos citados.,COMPLETO,8,1
+84,N13-1115_P12-1099_0,Evaluable,Application,Alta,Emplea la decodificación en conjunto del trabajo citado.,COMPLETO,8,1
+85,P08-2051_W05-0905_0,Evaluable,Evidence,Alta,Respalda que ROUGE-1 tiene baja correlación con la evaluación humana en reuniones.,COMPLETO,8,1
+86,W12-2801_P10-1083_0,Evaluable,Background,Alta,Enumera trabajos sobre aprendizaje de interpretación del lenguaje situado.,COMPLETO,8,1
+87,W03-0404_W97-0313_0,Evaluable,Background,Alta,Enumera técnicas de creación de léxicos semánticos.,COMPLETO,8,1
+88,D09-1017_P06-2063_0,Evaluable,Background,Alta,Enumera estudios sobre clasificación de sentimiento y resumen de opiniones.,COMPLETO,8,1
+89,J13-1002_W04-0308_1,Evaluable,Application,Media,Describe el analizador arc-standard del trabajo citado que se emplea.,COMPLETO,8,1
+90,P11-2089_W10-0708_0,Evaluable,Evidence,Alta,Respalda que el crowdsourcing es eficaz en reconocimiento de voz.,COMPLETO,8,1
+91,N13-1121_P98-2127_0,Evaluable,Background,Alta,Describe la tradición de agrupar palabras por similitud de vectores de contexto.,COMPLETO,8,1
+92,P04-1042_P03-1054_0,Evaluable,Comparison,Alta,"Señala que los citados encontraron independientemente lo mismo, vinculando ambos hallazgos.",COMPLETO,8,1
+93,D13-1182_D10-1084_1,Evaluable,Background,Alta,Reseña trabajos previos de clasificación de actos de diálogo.,COMPLETO,8,1
+94,W02-0817_W97-0206_0,Evaluable,Evidence,Alta,Aporta el nivel de acuerdo de proyectos previos para respaldar el diseño.,COMPLETO,8,1
+95,W00-1006_P88-1012_1,Evaluable,Background,Alta,Describe enfoques previos de estructura discursiva basados en inferencias.,COMPLETO,8,1
+96,P09-1046_D08-1073_3,Evaluable,Further Reading,Alta,Remite a discusión detallada de un problema y posible solución.,COMPLETO,8,1
+97,D13-1084_P12-1102_1,Evaluable,Comparison,Alta,Compara los datos propios con conjuntos usados previamente.,COMPLETO,8,1
+98,P12-1013_N06-1039_0,Evaluable,Background,Alta,Indica que aplicaciones como QA e IE dependen de reglas de implicación.,COMPLETO,8,1
+99,P13-1127_W10-2903_1,Evaluable,Background,Alta,Ejemplifica investigaciones sobre aprendizaje con supervisión indirecta.,COMPLETO,8,1
+100,W12-3152_N06-1014_0,Evaluable,Application,Alta,Usa el alineador de Berkeley en lugar de GIZA.,COMPLETO,8,1

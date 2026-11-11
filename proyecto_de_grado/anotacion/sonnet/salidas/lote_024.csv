@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D13-1167_N13-1090_0,Evaluable,Background,Alta,Lists prior work on relational similarity as an application area.,COMPLETO,24,1
+2,E09-1037_E06-1011_0,Evaluable,Background,Media,Cites approximate decoding approach (exact solution then modified) as general technique.,COMPLETO,24,1
+3,D10-1091_W09-0437_2,Evaluable,Background,Media,Cites prior work using oracle decoding to assess phrase-based expressive power.,COMPLETO,24,1
+4,W11-1920_P10-2029_1,Evaluable,Further Reading,Alta,Refers reader to more details on Reconcile.,COMPLETO,24,1
+5,P13-2152_E12-1041_0,Evaluable,Evidence,Alta,Supports claim that better language models predict reading times better.,COMPLETO,24,1
+6,J97-4002_P92-1002_2,Evaluable,Further Reading,Media,Constraint is discussed in cited work; points to it.,COMPLETO,24,1
+7,W09-2502_P08-1008_0,Evaluable,Background,Alta,Lists RTE challenge reports.,COMPLETO,24,1
+8,W10-0910_P04-1053_0,Evaluable,Identification of the Originator,Alta,States unsupervised relation discovery was initially introduced by cited work.,COMPLETO,24,1
+9,E12-1055_W07-0733_0,Evaluable,Identification of the Originator,Alta,Cited work first used alternative decoding paths for domain adaptation.,COMPLETO,24,1
+10,D11-1019_P10-1146_4,Evaluable,Comparison,Alta,Results are consistent with conclusions of cited works.,COMPLETO,24,1
+11,W97-0506_J91-4003_0,Evaluable,Basis,Media,Follows the nomenclature of the cited work for categories.,COMPLETO,24,1
+12,P07-1102_W06-1637_3,Evaluable,Evidence,Alta,Supports claim that priming effects are strong (~10%).,COMPLETO,24,1
+13,S13-1036_P12-1091_0,Evaluable,Comparison,Alta,WTMF is a baseline against which the approach is compared.,COMPLETO,24,1
+14,W04-3228_J90-2002_0,Evaluable,Identification of the Originator,Alta,Statistical MT pioneered by cited work.,COMPLETO,24,1
+15,W06-3309_P02-1047_0,Evaluable,Comparison,Alta,Contrasts own work with prior rhetorical-element characterizations.,COMPLETO,24,1
+16,N13-1070_P09-1087_0,Evaluable,Evidence,Media,Supports claim that MSTParser performs well on long-distance dependencies useful downstream.,COMPLETO,24,1
+17,W11-3708_D08-1014_2,Evaluable,Background,Alta,Related work describing cited solution using MT.,COMPLETO,24,1
+18,N12-1045_D10-1083_2,Evaluable,Comparison,Alta,Compares own POS induction results with published results.,COMPLETO,24,1
+19,W12-6315_N03-1028_0,Evaluable,Evidence,Media,Supports claim about CRF advantages over HMMs and classifiers.,COMPLETO,24,1
+20,N13-1037_N03-1033_0,Evaluable,Background,Alta,Cites the Stanford tagger as the tool whose performance drops on social media.,COMPLETO,24,1
+21,P09-1063_D08-1022_0,Evaluable,Evidence,Media,Supports claim that packed forests alleviate the problems.,COMPLETO,24,1
+22,P13-2001_N12-1006_0,Evaluable,Background,Alta,Related work description of prior dialect/English MT.,COMPLETO,24,1
+23,P99-1039_P95-1028_1,Evaluable,Evidence,Alta,Cited observation used to support the upper bound claim.,COMPLETO,24,1
+24,N06-1012_N01-1025_1,Evaluable,Comparison,Alta,Result table compares own CRF with cited system's F1.,COMPLETO,24,1
+25,W00-0405_W97-0713_0,Evaluable,Background,Alta,Lists prior approaches to summarization.,COMPLETO,24,1
+26,W10-4324_P10-1103_0,Evaluable,Background,Alta,Reviews recent RL efforts for information presentation.,COMPLETO,24,1
+27,W09-1905_P08-2017_1,Evaluable,Background,Media,Cites recent work on cost-sensitive selection in active learning.,COMPLETO,24,1
+28,W13-2307_N06-1019_0,Evaluable,Evidence,Media,Supports claim that semisupervised learning from partial annotations may suffice.,COMPLETO,24,1
+29,N12-1044_W10-2405_1,Evaluable,Application,Alta,Follows cited work in including n-gram features.,COMPLETO,24,1
+30,D11-1006_P10-1131_0,Evaluable,Evidence,Alta,Supports consistency claim that adding languages improves grammar induction.,COMPLETO,24,1
+31,P10-1065_P02-1051_0,Evaluable,Background,Alta,Describes existing strategy proposed in the literature.,COMPLETO,24,1
+32,N09-1065_N07-1010_1,Evaluable,Comparison,Alta,Compares own approach with cited anaphoricity approaches.,COMPLETO,24,1
+33,N06-1013_N03-1017_2,Evaluable,Evidence,Alta,Phrase length limit justified by cited observations.,COMPLETO,24,1
+34,P09-1113_P05-1053_1,Evaluable,Evidence,Alta,Supports claim that syntactic features improve supervised IE.,COMPLETO,24,1
+35,P11-1003_D08-1022_2,Evaluable,Application,Alta,Uses Algorithm 1 from cited work.,COMPLETO,24,1
+36,N12-1004_P07-2045_1,Evaluable,Application,Alta,Uses Moses toolkit for translation experiments.,COMPLETO,24,1
+37,W05-1011_W02-0908_0,Evaluable,Gap,Media,"Cited finding followed by 'Unfortunately', setting up a limitation motivating the work.",COMPLETO,24,1
+38,N06-1010_P02-1060_0,Evaluable,Background,Alta,Lists supervised NER approaches.,COMPLETO,24,1
+39,P13-1150_P06-2065_1,Evaluable,Comparison,Media,Cited trigram HMM model used as baseline.,COMPLETO,24,1
+40,W11-0408_A00-2020_2,Evaluable,Further Reading,Media,Points to error detection algorithms for future investigation.,COMPLETO,24,1
+41,J12-4005_P02-1031_0,Evaluable,Further Reading,Media,'see' directs reader to work on path-based patterns.,COMPLETO,24,1
+42,W12-2025_N10-1018_0,Evaluable,Evidence,Alta,Supports claim that observed article is a valuable feature.,COMPLETO,24,1
+43,W12-1904_W10-1406_0,Evaluable,Evidence,Media,Supports description of KTB difficulties.,COMPLETO,24,1
+44,P06-4007_P05-1026_3,Evaluable,Further Reading,Alta,Refers reader to details of user experiments.,COMPLETO,24,1
+45,W13-3713_P05-1012_0,Evaluable,Improvement / Modification,Alta,Cited MST formulation must be modified to be incremental.,COMPLETO,24,1
+46,P11-2072_P11-2070_0,Evaluable,Application,Alta,Applies terminal-aware binarization to grammars.,COMPLETO,24,1
+47,J99-2001_P86-1031_0,Evaluable,Gap,Alta,Cited work addressed multiple subjects but not the general problem.,COMPLETO,24,1
+48,D11-1070_W07-1013_2,Evaluable,Background,Alta,Describes origin of dataset from the shared task.,COMPLETO,24,1
+49,W02-0813_P97-1003_0,Evaluable,Application,Alta,Uses the Collins parser to extract features.,COMPLETO,24,1
+50,D11-1054_P05-1018_0,Evaluable,Evidence,Media,Supports claim that considering utterance yields locally coherent discourse.,COMPLETO,24,1
+51,P98-1122_P94-1041_0,Evaluable,Background,Alta,Describes findings of prior work on self-repairs.,COMPLETO,24,1
+52,W13-0111_S12-1001_4,Evaluable,Comparison,Alta,Compares own system to Silberer and Frank's supervised model.,COMPLETO,24,1
+53,P11-1118_P08-2011_3,Evaluable,Evidence,Media,Supports claim that name mentioning is a powerful source of information.,COMPLETO,24,1
+54,J13-4002_W07-2216_0,Evaluable,Evidence,Alta,Supports claim that arbitrary non-projective parsing is computationally hard.,COMPLETO,24,1
+55,D13-1172_P12-1043_0,Evaluable,Background,Alta,Lists other approaches in related literature.,COMPLETO,24,1
+56,S12-1091_N03-1033_0,Evaluable,Application,Alta,Uses Stanford CoreNLP for lemmatization and tagging.,COMPLETO,24,1
+57,D11-1117_P08-1100_0,Evaluable,Evidence,Alta,Supports claim that unsupervised objectives are loosely correlated with performance.,COMPLETO,24,1
+58,W13-2233_N12-1047_0,Evaluable,Application,Alta,Uses batch MIRA for tuning.,COMPLETO,24,1
+59,E09-1018_W98-1119_0,Evaluable,Comparison,Alta,Discusses overlaps and differences between cited work's formulation and own.,COMPLETO,24,1
+60,P00-1006_W99-0604_0,Evaluable,Background,Alta,Lists recent SMT research on decoding.,COMPLETO,24,1
+61,N09-1053_N09-1051_1,Evaluable,Further Reading,Alta,Footnote points to additional results in cited work.,COMPLETO,24,1
+62,W07-2202_P06-1043_0,Evaluable,Background,Alta,Lists domain adaptation work across NLP areas.,COMPLETO,24,1
+63,W11-1217_W08-0509_1,Evaluable,Application,Alta,Applies parallel GIZA++ as a tool.,COMPLETO,24,1
+64,D10-1064_E09-1003_0,Evaluable,Background,Alta,Cites prior work exploiting comparable corpora.,COMPLETO,24,1
+65,N07-2007_N04-4015_0,Evaluable,Comparison,Alta,Describes related work and contrasts it with own approach.,COMPLETO,24,1
+66,D09-1122_P05-1014_2,Evaluable,Basis,Media,Own method is a variation of the distributional inclusion hypothesis.,COMPLETO,24,1
+67,P03-1062_W99-0619_1,Evaluable,Evidence,Alta,Supports claim that TF*IDF and IC are successful accent predictors.,COMPLETO,24,1
+68,W10-2901_P02-1017_0,Evaluable,Background,Alta,Reports prior CCM results as state of the art in grammar induction.,COMPLETO,24,1
+69,N13-2006_P07-2045_0,Evaluable,Application,Alta,Uses Moses toolkit for translation.,COMPLETO,24,1
+70,P10-1126_P00-1041_1,Evaluable,Improvement / Modification,Alta,Model builds on and extends the cited headline generation model.,COMPLETO,24,1
+71,N10-1076_N07-2014_3,Evaluable,Comparison,Alta,Compares results and notes cited work omits unsolvable instances.,COMPLETO,24,1
+72,E12-1003_P11-1112_1,Evaluable,Application,Alta,Implements the heuristic proposed in cited work.,COMPLETO,24,1
+73,P12-1078_P11-1137_2,Evaluable,Application,Media,Uses the SAGE framework for the model.,COMPLETO,24,1
+74,W98-1126_W97-0320_1,Evaluable,Background,Alta,Describes prior experiments on event categorization.,COMPLETO,24,1
+75,W10-3802_P03-1021_0,Evaluable,Application,Alta,Uses MERT for parameter tuning.,COMPLETO,24,1
+76,N13-1046_P02-1051_0,Evaluable,Background,Alta,Related work on spelling-based transliteration.,COMPLETO,24,1
+77,W08-2215_P01-1008_0,Evaluable,Identification of the Originator,Alta,Idea of monolingual sentence-aligned corpus is due to cited work.,COMPLETO,24,1
+78,W06-3119_P03-1021_0,Evaluable,Application,Alta,Uses minimum-error-rate training for optimization.,COMPLETO,24,1
+79,P10-1001_E06-1011_1,Evaluable,Background,Media,Prior work remarked on sibling factorization rearrangement.,COMPLETO,24,1
+80,W13-3517_P10-1142_0,Evaluable,Evidence,Alta,Cited suggestion justifies using true mentions.,COMPLETO,24,1
+81,W11-2168_W02-1018_0,Evaluable,Gap,Alta,Cited attempts failed to overcome combinatorial problems.,COMPLETO,24,1
+82,W06-3601_P01-1067_1,Evaluable,Gap,Alta,Notes one-level SCFG rules in cited work are not enough.,COMPLETO,24,1
+83,S07-1062_W06-2607_1,Evaluable,Background,Media,Describes structured feature classes defined in prior work.,COMPLETO,24,1
+84,P11-1134_N10-1045_4,Evaluable,Comparison,Alta,Results are in line with findings of cited work.,COMPLETO,24,1
+85,Q13-1035_W07-0717_0,Evaluable,Background,Alta,Related work on corpus-level combination approaches.,COMPLETO,24,1
+86,P12-1014_D11-1027_0,Evaluable,Background,Alta,Cites methods for identifying causality in related work.,COMPLETO,24,1
+87,D09-1005_P03-1021_0,Evaluable,Background,Media,Describes MERT as an existing training method.,COMPLETO,24,1
+88,W10-1602_P02-1017_0,Evaluable,Background,Media,Describes DMV+CCM as an existing unsupervised parsing model.,COMPLETO,24,1
+89,W13-2106_N01-1003_0,Evaluable,Background,Alta,Describes overgenerate-and-rank approach from prior work.,COMPLETO,24,1
+90,D09-1044_W04-1017_4,Evaluable,Application,Media,Uses a modified adaptive algorithm from cited work.,COMPLETO,24,1
+91,D12-1038_P07-1106_1,Evaluable,Background,Alta,Lists prior work on word segmentation.,COMPLETO,24,1
+92,N10-1134_W04-1013_0,Evaluable,Application,Alta,Uses ROUGE to evaluate.,COMPLETO,24,1
+93,D11-1011_D09-1099_5,Evaluable,Basis,Media,Builds on and enhances the output of the cited harvesting approach.,COMPLETO,24,1
+94,D12-1129_P05-1050_0,Evaluable,Background,Alta,Describes prior unsupervised WSD results.,COMPLETO,24,1
+95,W09-1312_W04-3247_0,Evaluable,Application,Alta,Uses lexical PageRank algorithm to rank sentences.,COMPLETO,24,1
+96,S13-2060_D11-1096_0,Evaluable,Background,Alta,Cites prior use of convolution tree kernels for semantic tasks.,COMPLETO,24,1
+97,W12-5116_D09-1015_0,Evaluable,Background,Alta,Reviews literature recognizing nested structures in terminology.,COMPLETO,24,1
+98,N10-1009_N10-1111_0,Evaluable,Background,Alta,Lists prior work on learning with light supervision.,COMPLETO,24,1
+99,N13-1133_S07-1050_1,Evaluable,Comparison,Alta,Compares own system's performance to Semeval participants.,COMPLETO,24,1
+100,N07-1056_P00-1041_1,Evaluable,Background,Alta,Notes task has been extensively studied.,COMPLETO,24,1

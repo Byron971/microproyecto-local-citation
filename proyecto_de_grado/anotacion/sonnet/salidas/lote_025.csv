@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W11-2929_P10-1075_1,Evaluable,Basis,Media,El trabajo actual construye sobre los métodos de detección de reglas anómalas del trabajo citado.,COMPLETO,25,1
+2,S12-1065_P07-2045_0,Evaluable,Application,Alta,Se usan los scripts de Moses para tokenizar.,COMPLETO,25,1
+3,P11-2076_P03-1040_0,Evaluable,Background,Alta,Enumera métodos previos que usan información sintáctica.,COMPLETO,25,1
+4,P11-2128_P06-1028_0,Evaluable,Application,Alta,Usa CRFs con MCE para etiquetar entidades.,COMPLETO,25,1
+5,N10-1085_P99-1018_1,Evaluable,Comparison,Alta,Compara la medida de exactitud con la reportada en trabajos citados.,COMPLETO,25,1
+6,P10-1088_W05-0619_0,Evaluable,Background,Media,Describe un hallazgo previo relacionado con el trabajo actual.,COMPLETO,25,1
+7,P12-2010_D08-1063_0,Evaluable,Background,Alta,Enumera estudios tempranos de proyección de anotaciones.,COMPLETO,25,1
+8,P12-2071_P07-1096_0,Evaluable,Background,Media,Cita trabajos que logran más de 97% de exactitud en etiquetado POS como estado del área.,COMPLETO,25,1
+9,D11-1110_P08-1068_0,Evaluable,Background,Alta,Enumera métodos semisupervisados previos.,COMPLETO,25,1
+10,D12-1062_N12-3008_0,Evaluable,Application,Alta,Usa el extractor de intervalos temporales citado sin modificarlo.,COMPLETO,25,1
+11,E12-1065_N06-1020_0,Evaluable,Application,Alta,Usa el parser de Charniak auto-entrenado.,COMPLETO,25,1
+12,W11-2702_P02-1013_1,Evaluable,Background,Media,Describe el enfoque de algoritmos REG existentes respecto a relaciones espaciales.,COMPLETO,25,1
+13,D11-1054_N06-1056_0,Evaluable,Background,Alta,Enumera aplicaciones de la traducción automática estadística.,COMPLETO,25,1
+14,J11-3002_P05-1008_2,Evaluable,Basis,Alta,La estimación de parámetros se inspira en el trabajo citado y lo extiende.,COMPLETO,25,1
+15,N09-2019_J08-3007_0,Evaluable,Further Reading,Media,Remite a una revisión general sobre análisis morfológico.,COMPLETO,25,1
+16,W11-3708_D08-1014_1,Evaluable,Application,Alta,Adopta los métodos citados en los experimentos.,COMPLETO,25,1
+17,P13-1070_D11-1120_0,Evaluable,Background,Alta,Enumera trabajos sobre caracterización de usuarios.,COMPLETO,25,1
+18,W06-2303_W05-0635_0,Evaluable,Comparison,Alta,Tabla que compara resultados con sistemas del estado del arte.,COMPLETO,25,1
+19,W05-0623_P00-1065_0,Evaluable,Basis,Media,Las características usadas provienen de investigaciones previas que las identificaron como útiles.,COMPLETO,25,1
+20,W09-1704_P01-1008_1,Evaluable,Background,Alta,Sección de trabajo relacionado que enumera enfoques previos.,COMPLETO,25,1
+21,P07-1011_A00-2019_2,Evaluable,Comparison,Alta,Compara la técnica propia con el método ALEK.,COMPLETO,25,1
+22,P12-1040_N07-1011_0,Evaluable,Background,Media,Resume trabajos recientes sobre propiedades a nivel de entidad.,COMPLETO,25,1
+23,W04-3219_P00-1056_0,Evaluable,Application,Alta,Aplica los algoritmos de alineamiento de Giza++.,COMPLETO,25,1
+24,P11-1125_P03-1054_0,Evaluable,Application,Media,Usa la markovización vertical y horizontal para limitar el contexto.,COMPLETO,25,1
+25,W05-0201_W97-0209_0,Evaluable,Background,Media,Define de forma general las preferencias selectivas citando fuentes.,COMPLETO,25,1
+26,P13-1077_D12-1021_1,Evaluable,Comparison,Media,"Compara el prior del trabajo citado con el modelo uniforme más simple, sin diferencia empírica.",COMPLETO,25,1
+27,P12-1073_P08-1001_3,Evaluable,Basis,Alta,El modelo se construye sobre el trabajo previo citado.,COMPLETO,25,1
+28,A00-2038_W97-1102_4,Evaluable,Comparison,Media,Contrasta el hallazgo del trabajo citado (ponderación perjudicial) con la propuesta de saliencias diferenciadas.,COMPLETO,25,1
+29,W13-3733_E12-1006_1,Evaluable,Application,Alta,Usa la métrica TED citada para evaluar.,COMPLETO,25,1
+30,J05-4002_J91-4003_0,Evaluable,Evidence,Media,Respalda la afirmación de que los sustantivos admiten menos extensiones de sentido.,COMPLETO,25,1
+31,J09-1005_P99-1041_3,Evaluable,Improvement / Modification,Alta,Fixedness se presenta como mejora de la medida de no composicionalidad citada.,COMPLETO,25,1
+32,W11-0905_P98-1013_0,Evaluable,Background,Media,Presenta FrameNet como recurso léxico.,COMPLETO,25,1
+33,W01-0519_W96-0102_0,Evaluable,Background,Media,"Describe el aprendizaje basado en memoria, uno de los taggers comparados.",COMPLETO,25,1
+34,D11-1017_D11-1138_0,Evaluable,Comparison,Media,Señala que el trabajo citado investiga una idea similar en otro contexto.,COMPLETO,25,1
+35,P13-2110_P06-1055_0,Evaluable,Application,Alta,Entrena con la estrategia split-merge-smooth citada.,COMPLETO,25,1
+36,W09-3817_W02-2016_0,Evaluable,Background,Alta,Describe el enfoque de los parsers basados en transición.,COMPLETO,25,1
+37,W12-3153_P07-2045_2,Evaluable,Application,Alta,Usa Moses con configuración estándar.,COMPLETO,25,1
+38,W12-3144_W11-2124_0,Evaluable,Further Reading,Alta,'For more details see' remite al trabajo citado.,COMPLETO,25,1
+39,W01-1011_A92-1021_0,Evaluable,Application,Alta,Usa el tagger de Brill en el módulo de extracción.,COMPLETO,25,1
+40,W10-0402_W06-1613_1,Evaluable,Basis,Media,El esquema de clasificación se deriva de la literatura citada.,COMPLETO,25,1
+41,W12-2004_P11-2022_0,Evaluable,Application,Alta,Construye las rejillas de entidades con la herramienta citada.,COMPLETO,25,1
+42,W09-3910_W04-1013_1,Evaluable,Application,Alta,Usa la métrica ROUGE para evaluar.,COMPLETO,25,1
+43,W09-0609_W08-1137_0,Evaluable,Background,Media,Menciona otros enfoques relacionados en la tarea TUNA.,COMPLETO,25,1
+44,D09-1087_P06-1055_0,Evaluable,Background,Alta,Referencia a la extensa literatura sobre parsers para inglés.,COMPLETO,25,1
+45,D11-1091_E09-1013_0,Evaluable,Comparison,Alta,Contrasta clustering discreto con métodos que asignan distribuciones de sentidos.,COMPLETO,25,1
+46,P07-1004_J04-3004_0,Evaluable,Basis,Alta,El algoritmo está inspirado en el algoritmo de Yarowsky.,COMPLETO,25,1
+47,E09-3004_P06-4020_0,Evaluable,Application,Alta,Parsea el corpus con RASP2.,COMPLETO,25,1
+48,W97-0301_P96-1025_1,Evaluable,Comparison,Alta,Tabla de resultados con SPATTER como sistema comparado.,COMPLETO,25,1
+49,W09-3711_P98-2127_0,Evaluable,Evidence,Media,Respalda que los candidatos de paráfrasis se obtienen de un espacio de co-ocurrencia.,COMPLETO,25,1
+50,W13-2314_W10-0730_0,Evaluable,Evidence,Alta,Justifica el diseño de la tarea con la afirmación de que las tareas simples funcionan mejor.,COMPLETO,25,1
+51,J12-3007_P01-1067_0,Evaluable,Background,Media,Describe el modelo de traducción usado en el trabajo previo.,COMPLETO,25,1
+52,D10-1064_D10-1041_0,Evaluable,Comparison,Alta,Contrasta el método propio con los trabajos que codifican paráfrasis en retículas.,COMPLETO,25,1
+53,W08-0126_P04-1009_0,Evaluable,Background,Alta,Describe estudios previos sobre simulación de usuarios.,COMPLETO,25,1
+54,N12-1047_D09-1147_1,Evaluable,Background,Media,"Menciona enfoques existentes que usan retículas, no probados aquí.",COMPLETO,25,1
+55,E12-1068_P08-2039_0,Evaluable,Gap,Media,Señala que estos trabajos no abordan directamente el problema que se aborda aquí.,COMPLETO,25,1
+56,E09-1061_J99-4004_3,Evaluable,Further Reading,Alta,Nota al pie que remite a condiciones adicionales en el trabajo citado.,COMPLETO,25,1
+57,W12-3307_N09-1040_0,Evaluable,Background,Alta,Describe un algoritmo bayesiano jerárquico previo.,COMPLETO,25,1
+58,W12-4404_P11-2010_3,Evaluable,Background,Media,"Describe el modelo LCT de los trabajos citados, que se usa como base del método.",COMPLETO,25,1
+59,P13-1010_P05-1018_6,Evaluable,Basis,Alta,El modelo se basa en la rejilla de entidades citada.,COMPLETO,25,1
+60,D11-1052_N10-1119_3,Evaluable,Comparison,Alta,Contrasta el método de propagación de etiquetas citado con el propio.,COMPLETO,25,1
+61,W02-2034_J94-2004_0,Evaluable,Identification of the Originator,Media,Define el concepto de elemento subjetivo atribuyéndolo a la fuente que lo introdujo.,COMPLETO,25,1
+62,D11-1137_P05-1012_1,Evaluable,Application,Alta,Usa el conjunto de características proporcionado en el trabajo citado.,COMPLETO,25,1
+63,W10-3814_W06-3119_1,Evaluable,Background,Media,Describe el método SAMT usado.,COMPLETO,25,1
+64,W09-2901_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para los alineamientos.,COMPLETO,25,1
+65,W10-2920_D09-1120_0,Evaluable,Comparison,Alta,Compara el hallazgo propio con el del trabajo citado ('Similar to').,COMPLETO,25,1
+66,P11-1062_D10-1106_4,Evaluable,Application,Alta,Usa las puntuaciones proporcionadas por el trabajo citado.,COMPLETO,25,1
+67,D10-1114_P91-1030_0,Evaluable,Evidence,Alta,Respalda que las preferencias selectivas son útiles para resolver ambigüedades de adjunción.,COMPLETO,25,1
+68,W11-2213_P09-1070_0,Evaluable,Background,Alta,Enumera aplicaciones de modelos de tópicos.,COMPLETO,25,1
+69,D12-1051_N03-1028_1,Evaluable,Evidence,Media,Respalda que los CRFs rinden comparable o mejor en chunking.,COMPLETO,25,1
+70,W94-0317_W90-0116_0,Evaluable,Basis,Media,El sistema se construye sobre la organización local del texto como idea base.,COMPLETO,25,1
+71,P10-1128_W98-1119_0,Evaluable,Background,Alta,Enumera trabajos que introducen pistas lingüísticas en modelos de aprendizaje.,COMPLETO,25,1
+72,P04-1065_P03-1006_1,Evaluable,Further Reading,Alta,Remite a trabajos que revisan la teoría de autómatas ponderados.,COMPLETO,25,1
+73,W11-1818_W09-1410_0,Evaluable,Application,Alta,Usa las dependencias tipadas citadas como anotaciones lingüísticas.,COMPLETO,25,1
+74,P09-1067_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para obtener alineamientos.,COMPLETO,25,1
+75,P11-2041_P99-1018_0,Evaluable,Background,Alta,Enumera trabajos previos sobre orden de modificadores.,COMPLETO,25,1
+76,W06-2912_P00-1009_0,Evaluable,Evidence,Alta,Respalda que la heurística rinde al menos como Monte Carlo.,COMPLETO,25,1
+77,W09-3901_P04-1009_0,Evaluable,Background,Alta,Enumera enfoques recientes que superan la enumeración secuencial.,COMPLETO,25,1
+78,N09-1074_P06-1021_0,Evaluable,Background,Alta,Resume trabajos recientes sobre reparaciones en el habla.,COMPLETO,25,1
+79,W11-2929_W06-2920_0,Evaluable,Background,Media,Contextualiza la necesidad de anotación de dependencias para entrenamiento y evaluación.,COMPLETO,25,1
+80,J12-2005_W09-1304_2,Evaluable,Identification of the Originator,Alta,Indica que la tarea fue introducida por primera vez en el trabajo citado.,COMPLETO,25,1
+81,P12-2029_D11-1122_1,Evaluable,Background,Alta,Describe lo que usan los sistemas SRL no supervisados previos.,COMPLETO,25,1
+82,W11-1807_W09-1402_0,Evaluable,Basis,Media,La representación usada proviene de trabajos previos y luego se extiende.,COMPLETO,25,1
+83,E12-1021_P11-1026_1,Evaluable,Comparison,Media,Describe el trabajo citado y luego compara experimentalmente con él.,COMPLETO,25,1
+84,W10-0307_P09-1113_0,Evaluable,Evidence,Media,Respalda el uso creciente de Mechanical Turk para evaluar sistemas.,COMPLETO,25,1
+85,P06-2019_A00-1043_1,Evaluable,Background,Alta,Sección de trabajo previo que describe el sistema citado.,COMPLETO,25,1
+86,E09-1061_W09-0437_0,Evaluable,Evidence,Media,Respalda que el análisis modular facilita aislar errores.,COMPLETO,25,1
+87,J13-3003_D08-1094_0,Evaluable,Background,Alta,Enumera modelos de espacio vectorial para significado en contexto.,COMPLETO,25,1
+88,W09-1321_W04-2705_0,Evaluable,Background,Alta,Referencia a NomBank como recurso en el que se basan las PAS descritas.,COMPLETO,25,1
+89,D10-1076_P07-2045_0,Evaluable,Application,Alta,Usa el toolkit Moses con configuración por defecto.,COMPLETO,25,1
+90,A00-2020_P98-1029_0,Evaluable,Background,Alta,Enumera trabajos previos de etiquetado.,COMPLETO,25,1
+91,W13-0215_W10-0731_0,Evaluable,Background,Alta,Cita aplicaciones previas de Mechanical Turk.,COMPLETO,25,1
+92,D08-1035_P01-1064_2,Evaluable,Comparison,Alta,Explica cómo el modelo generaliza el método de Utiyama e Isahara.,COMPLETO,25,1
+93,D10-1091_P03-1021_0,Evaluable,Background,Media,Describe el paso estándar de entrenamiento MERT en el pipeline de SMT.,COMPLETO,25,1
+94,P06-1109_E95-1020_0,Evaluable,Evidence,Media,Respalda que existen etiquetadores POS no supervisados precisos.,COMPLETO,25,1
+95,W11-2815_W08-1109_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre el procesamiento de referentes con puntos de referencia salientes.,COMPLETO,25,1
+96,P09-2075_W04-3247_0,Evaluable,Background,Alta,Enumera métodos de resumen existentes.,COMPLETO,25,1
+97,W08-0308_N04-1014_0,Evaluable,Background,Alta,Describe el desarrollo histórico de transductores de árbol; se atribuye la generalización.,COMPLETO,25,1
+98,D13-1152_E06-1011_1,Evaluable,Background,Media,Describe el modelo de segundo orden previo como ejemplo de modelos de orden superior.,COMPLETO,25,1
+99,W03-0419_W03-0428_2,Evaluable,Comparison,Alta,Compara resultados entre sistemas sin diferencia significativa.,COMPLETO,25,1
+100,P13-1043_D10-1002_0,Evaluable,Comparison,Alta,Tabla que compara el desempeño del parser propio con trabajos relacionados.,COMPLETO,25,1

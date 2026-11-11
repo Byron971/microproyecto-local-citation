@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W08-1104_W05-1615_1,Evaluable,Evidence,Media,"La cita respalda la afirmación sobre la necesidad de un estudio piloto, como lección aprendida.",COMPLETO,23,1
+2,P11-1157_W06-1615_0,Evaluable,Background,Media,Enumera trabajos previos de adaptación de dominio que evitaron el problema de selección automática.,COMPLETO,23,1
+3,P12-2022_P11-2036_2,Evaluable,Comparison,Alta,Compara el sistema propio con la variante TIG restringida del trabajo citado.,COMPLETO,23,1
+4,W07-0807_W06-1631_0,Evaluable,Evidence,Alta,Respalda con un dato concreto la afirmación sobre variabilidad de grafías de nombres.,COMPLETO,23,1
+5,P11-1098_D08-1094_0,Evaluable,Evidence,Media,Respalda la afirmación de que las preferencias de selección son útiles para medir similitud.,COMPLETO,23,1
+6,P06-3014_W04-3212_1,Evaluable,Evidence,Media,Justifica la práctica de evaluación de dependientes por su uso en etiquetado de roles semánticos.,COMPLETO,23,1
+7,W11-2165_W08-0336_0,Evaluable,Application,Alta,Usa el segmentador chino de Stanford en modo CTB sin modificación.,COMPLETO,23,1
+8,P09-1104_N09-1026_0,Evaluable,Further Reading,Alta,Remite a la fuente para los detalles de un enfoque de acotamiento similar.,COMPLETO,23,1
+9,W08-1105_P03-1054_0,Evaluable,Application,Alta,Usa el parser PCFG de Stanford para analizar el corpus.,COMPLETO,23,1
+10,D12-1063_W12-1903_1,Evaluable,Further Reading,Media,Remite a un manuscrito complementario para estrategias de entrenamiento más incrementales.,COMPLETO,23,1
+11,P11-1023_W07-0718_0,Evaluable,Evidence,Media,Respalda la afirmación de que la métrica correlaciona mejor con el juicio humano.,COMPLETO,23,1
+12,P12-1049_N03-1017_0,Evaluable,Application,Alta,Aplica la heurística grow-diag-final-and tal como fue propuesta.,COMPLETO,23,1
+13,W12-1509_P10-1103_4,Evaluable,Evidence,Alta,Respalda la afirmación de que estudios previos muestran las ventajas de la optimización.,COMPLETO,23,1
+14,W06-2207_J04-3004_2,Evaluable,Evidence,Alta,Sustenta la propiedad teórica de convergencia que justifica la elección del algoritmo.,COMPLETO,23,1
+15,P09-1108_P03-1021_0,Evaluable,Background,Media,Enumera usos de listas k-best en trabajos previos como contexto.,COMPLETO,23,1
+16,E09-1041_P05-2004_0,Evaluable,Background,Alta,Enumera enfoques previos de modelado conjunto de POS y chunking.,COMPLETO,23,1
+17,D13-1205_P09-1042_1,Evaluable,Comparison,Alta,"Contrasta explícitamente el trabajo actual con el citado, señalando similitudes y diferencias.",COMPLETO,23,1
+18,P05-3025_P01-1067_0,Evaluable,Gap,Alta,Señala limitaciones del sistema citado que motivan el nuevo sistema.,COMPLETO,23,1
+19,D10-1026_P08-1058_5,Evaluable,Comparison,Alta,Compara los requisitos de almacenamiento del método propio con el del trabajo citado.,COMPLETO,23,1
+20,P02-1019_P00-1037_0,Evaluable,Identification of the Originator,Media,"Indica que el trabajo citado introdujo un nuevo modelo de error, con atribución explícita.",COMPLETO,23,1
+21,P13-1105_P10-1002_4,Evaluable,Comparison,Alta,Compara resultados propios con la línea base de proyección directa citada.,COMPLETO,23,1
+22,D10-1056_N06-1041_4,Evaluable,Application,Alta,Usa directamente el método de similitud descrito en el trabajo citado.,COMPLETO,23,1
+23,P10-1158_P09-1025_2,Evaluable,Comparison,Alta,Señala diferencias del trabajo actual respecto al citado.,COMPLETO,23,1
+24,W13-5307_P12-3005_0,Evaluable,Application,Alta,Usa la herramienta langid.py para la identificación de idioma.,COMPLETO,23,1
+25,W10-1406_N09-1062_1,Evaluable,Background,Alta,Resume trabajo previo sobre inducción no paramétrica de TSG.,COMPLETO,23,1
+26,W11-2314_W05-1616_0,Evaluable,Background,Alta,Menciona trabajos previos sobre generación de textos legibles.,COMPLETO,23,1
+27,P06-2010_P00-1065_1,Evaluable,Identification of the Originator,Alta,Indica que el etiquetado de roles semánticos fue introducido por primera vez en el trabajo citado.,COMPLETO,23,1
+28,P11-1126_P09-1107_4,Evaluable,Comparison,Media,Compara el procedimiento propio de combinación de sistemas con lo hecho en el trabajo citado.,COMPLETO,23,1
+29,P13-1041_D11-1100_2,Evaluable,Background,Media,Describe un hallazgo previo sobre synsets como rasgos para clasificación de sentimiento.,COMPLETO,23,1
+30,N13-1121_P11-1137_0,Evaluable,Background,Alta,Enumera áreas de aplicación de propiedades de usuario en trabajos previos.,COMPLETO,23,1
+31,W10-1761_P05-1033_4,Evaluable,Application,Alta,Calcula probabilidades usando conteos fraccionarios tal como se describe en el trabajo citado.,COMPLETO,23,1
+32,P05-2016_J90-2002_0,Evaluable,Identification of the Originator,Alta,Atribuye a IBM el primer trabajo en SMT con modelo de canal ruidoso.,COMPLETO,23,1
+33,A94-1024_A92-1018_0,Evaluable,Background,Alta,Enumera enfoques estadísticos de etiquetado como contexto general.,COMPLETO,23,1
+34,P11-1101_D09-1046_0,Evaluable,Evidence,Alta,Respalda la elección de Spearman como medida apropiada para anotación graduada.,COMPLETO,23,1
+35,P07-2044_P06-1095_0,Evaluable,Comparison,Alta,Contrasta el resultado propio con la mejor precisión previamente reportada.,COMPLETO,23,1
+36,P10-1062_N03-1017_0,Evaluable,Application,Alta,Usa el sistema Moses para generar hipótesis de traducción.,COMPLETO,23,1
+37,D10-1036_W04-3252_1,Evaluable,Evidence,Alta,Respalda con un hallazgo previo que la dirección del grafo influye poco.,COMPLETO,23,1
+38,P07-1030_P04-1053_0,Evaluable,Background,Alta,Resume métodos previos de agrupamiento no supervisado para relaciones entre entidades.,COMPLETO,23,1
+39,P08-2011_P05-1018_0,Evaluable,Comparison,Media,"Contrasta el trabajo actual con el citado, que usa coreferencia sin mucha ventaja.",COMPLETO,23,1
+40,P06-1063_W01-0521_0,Evaluable,Background,Media,Resume un hallazgo previo sobre la caída de precisión del parser entre dominios.,COMPLETO,23,1
+41,P03-1071_A00-2004_2,Evaluable,Comparison,Alta,Evalúa el método propio frente a algoritmos de segmentación citados.,COMPLETO,23,1
+42,W12-4510_P11-1082_0,Evaluable,Background,Alta,Describe trabajo previo sobre correferencia con conocimiento del mundo en trabajos relacionados.,COMPLETO,23,1
+43,E09-1001_W07-1204_0,Evaluable,Background,Media,Cita trabajos previos que usaron la representación para ranking estadístico.,COMPLETO,23,1
+44,P11-2055_W09-2413_0,Evaluable,Further Reading,Alta,Remite a una descripción más detallada de la construcción del conjunto de datos.,COMPLETO,23,1
+45,D11-1031_N10-1112_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el método es convexo y minimiza una cota del riesgo.,COMPLETO,23,1
+46,P04-1043_P02-1031_0,Evaluable,Background,Alta,Enumera enfoques previos de aprendizaje automático para identificación de argumentos.,COMPLETO,23,1
+47,J08-3003_P03-1013_2,Evaluable,Background,Alta,Menciona estudios previos sobre el efecto de la lexicalización.,COMPLETO,23,1
+48,W11-2902_P96-1016_0,Evaluable,Background,Alta,Enumera formalismos de gramáticas síncronas como trasfondo.,COMPLETO,23,1
+49,D13-1185_N13-1104_1,Evaluable,Comparison,Alta,Describe el trabajo citado como el más relacionado y lo contrasta con el propio.,COMPLETO,23,1
+50,W13-1602_N10-1020_0,Evaluable,Background,Alta,Enumera aplicaciones de PLN en redes sociales.,COMPLETO,23,1
+51,J08-1001_P97-1003_1,Evaluable,Application,Alta,Usa el parser de Collins para obtener la estructura de constituyentes.,COMPLETO,23,1
+52,D11-1015_P02-1047_2,Evaluable,Evidence,Alta,Respalda la afirmación de que los patrones basados en marcadores encuentran pocas instancias.,COMPLETO,23,1
+53,D13-1013_P04-1005_2,Evaluable,Comparison,Alta,"Compara resultados de otro trabajo con los del citado, que son mejores.",COMPLETO,23,1
+54,D12-1125_D10-1083_0,Evaluable,Application,Alta,Usa el algoritmo de inducción de POS no supervisado citado.,COMPLETO,23,1
+55,N07-1037_P05-1017_0,Evaluable,Background,Alta,Enumera trabajos previos que usaron diccionarios para orientación semántica.,COMPLETO,23,1
+56,P95-1008_E89-1009_0,Evaluable,Identification of the Originator,Alta,Indica que DATR fue introducido por el trabajo citado.,COMPLETO,23,1
+57,Q13-1032_E09-1065_3,Evaluable,Background,Media,Resume un hallazgo previo sobre rasgos LSA para calificación.,COMPLETO,23,1
+58,P08-1047_W02-2016_0,Evaluable,Application,Alta,Usa CaboCha como analizador de dependencias sin modificación.,COMPLETO,23,1
+59,P11-1069_P06-2089_1,Evaluable,Comparison,Alta,Describe el trabajo citado en trabajos relacionados y señala diferencias con el enfoque propio.,COMPLETO,23,1
+60,N13-1123_P12-1034_1,Evaluable,Evidence,Media,"Respalda la afirmación de que n-gramas pueden mejorar los modelos de tópicos, como trabajo futuro.",COMPLETO,23,1
+61,W13-0904_N10-1039_0,Evaluable,Background,Alta,Enumera trabajos recientes sobre detección de lenguaje figurado.,COMPLETO,23,1
+62,W09-1103_J04-3001_0,Evaluable,Evidence,Media,Respalda el argumento de que TC refleja el número de decisiones del anotador.,COMPLETO,23,1
+63,W03-2605_W98-1427_0,Evaluable,Background,Baja,Referencia al proyecto ICONOCLAST como origen del corpus; contexto sobre los datos.,COMPLETO,23,1
+64,P13-2008_P05-1033_0,Evaluable,Evidence,Media,Respalda la afirmación de que CYK es el algoritmo más común en SMT.,COMPLETO,23,1
+65,W08-2109_W08-0704_0,Evaluable,Comparison,Media,Contrasta los algoritmos incrementales con los de segmentación por lotes citados.,COMPLETO,23,1
+66,N09-1053_N09-1051_2,Evaluable,Evidence,Media,Justifica la elección de nats por consistencia con el trabajo citado.,COMPLETO,23,1
+67,D12-1135_D11-1120_0,Evaluable,Background,Alta,Resume resultados de trabajo previo sobre clasificación de género.,COMPLETO,23,1
+68,P12-1014_P09-1011_0,Evaluable,Background,Alta,Sitúa el trabajo en el área de adquisición de lenguaje fundamentado.,COMPLETO,23,1
+69,W11-1606_A00-2024_0,Evaluable,Comparison,Alta,Distingue el enfoque propio de la fusión de oraciones tradicional citada.,COMPLETO,23,1
+70,P09-1110_P96-1008_0,Evaluable,Background,Alta,Enumera enfoques previos para mapear oraciones a representaciones de significado.,COMPLETO,23,1
+71,D10-1069_P06-1055_7,Evaluable,Comparison,Media,Compara resultados de uptraining con distintos parsers base en una tabla.,COMPLETO,23,1
+72,D12-1062_P09-1046_4,Evaluable,Application,Media,Usa la misma configuración experimental del trabajo citado sin modificarla.,COMPLETO,23,1
+73,D12-1094_P08-1004_0,Evaluable,Evidence,Alta,Respalda la afirmación de que las relaciones verbales cubren más del 70% de las relaciones.,COMPLETO,23,1
+74,J05-4002_P99-1004_0,Evaluable,Evidence,Alta,Respalda que dar peso a no-ocurrencias compartidas es indeseable.,COMPLETO,23,1
+75,E12-1056_P00-1065_0,Evaluable,Further Reading,Media,Con 'see' remite a trabajos sobre proyección de roles semánticos.,COMPLETO,23,1
+76,S07-1066_W02-0109_0,Evaluable,Application,Alta,Usa el etiquetador de NLTK para asignar partes del discurso.,COMPLETO,23,1
+77,E12-1064_P10-1015_0,Evaluable,Background,Alta,Menciona estudios recientes relacionados sobre extracción de redes sociales.,COMPLETO,23,1
+78,D09-1086_P05-1012_1,Evaluable,Application,Alta,Entrena un parser de dependencias basado en aristas del trabajo citado sin modificarlo.,COMPLETO,23,1
+79,P13-3014_W07-1701_1,Evaluable,Further Reading,Media,Remite a una fuente sobre la rica inflexión nominal del polaco.,COMPLETO,23,1
+80,P05-1018_P97-1003_0,Evaluable,Application,Alta,Emplea el parser estadístico de Collins para obtener la estructura sintáctica.,COMPLETO,23,1
+81,S13-1035_P08-1068_0,Evaluable,Gap,Media,"Señala que los intentos exitosos usan información secuencial y no sintáctica, lo que motiva el trabajo.",COMPLETO,23,1
+82,J12-1003_P98-2127_1,Evaluable,Application,Alta,Usa el parser Minipar para analizar el corpus.,COMPLETO,23,1
+83,W03-1013_P02-1042_1,Evaluable,Further Reading,Alta,Remite a fuentes para una introducción a CCG.,COMPLETO,23,1
+84,J97-4002_J97-4002_0,Evaluable,Basis,Alta,El trabajo se construye sobre restricciones y heurísticas propuestas y desarrolladas en el trabajo citado.,COMPLETO,23,1
+85,D13-1141_N06-1014_0,Evaluable,Application,Alta,Usa el Berkeley Aligner para extraer alineaciones.,COMPLETO,23,1
+86,P07-1126_W06-3804_0,Evaluable,Improvement / Modification,Media,El refinamiento de saliencia está inspirado en el trabajo citado y adaptado.,COMPLETO,23,1
+87,W11-3201_N03-1017_0,Evaluable,Background,Media,Describe la traducción automática basada en frases como enfoque originalmente desarrollado para MT.,COMPLETO,23,1
+88,W08-2102_P08-1109_0,Evaluable,Background,Alta,Resume trabajo reciente sobre GLMs log-lineales aplicados a PCFG.,COMPLETO,23,1
+89,D10-1067_P07-1049_2,Evaluable,Evidence,Media,Respalda la afirmación de que el entrenamiento del parser no puede arrancarse con bootstrapping.,COMPLETO,23,1
+90,W06-1208_J02-3004_3,Evaluable,Comparison,Alta,Compara los resultados obtenidos con los puntos de referencia del trabajo citado.,COMPLETO,23,1
+91,W13-2214_D11-1125_0,Evaluable,Background,Alta,Cita trabajos sobre la adopción de aprendizaje discriminativo en SMT.,COMPLETO,23,1
+92,W09-1117_W02-0902_6,Evaluable,Background,Alta,Resume que la literatura previa se centra en evaluar sustantivos.,COMPLETO,23,1
+93,J08-4004_N09-4006_0,Evaluable,Background,Media,Cita OntoNotes como ejemplo de práctica en la literatura que solo reporta porcentaje de acuerdo.,COMPLETO,23,1
+94,P13-1043_N06-2033_3,Evaluable,Comparison,Alta,Compara la eficiencia del parser propio con otros parsers shift-reduce citados.,COMPLETO,23,1
+95,W02-2103_A00-2023_0,Evaluable,Basis,Alta,HALogen se presenta como sucesor de los sistemas citados.,COMPLETO,23,1
+96,P13-1108_P09-1068_0,Evaluable,Background,Alta,Enumera líneas de investigación previas sobre aprendizaje de scripts.,COMPLETO,23,1
+97,W12-1638_W11-2014_1,Evaluable,Application,Alta,Usa el reconocimiento incremental con lattice del trabajo citado tal cual.,COMPLETO,23,1
+98,W12-6335_W04-1116_0,Evaluable,Further Reading,Alta,Remite al estudio relacionado para el conjunto completo de roles semánticos.,COMPLETO,23,1
+99,D13-1112_N12-1015_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los errores de búsqueda rompen la convergencia.,COMPLETO,23,1
+100,D13-1015_D12-1050_0,Evaluable,Evidence,Alta,Justifica la decisión de usar un espacio semántico simple por el hallazgo previo.,COMPLETO,23,1
