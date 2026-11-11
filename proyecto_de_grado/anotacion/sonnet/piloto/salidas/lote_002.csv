@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P15-1080_P05-1033_3,Evaluable,Application,Alta,Uses an in-house implementation of the hierarchical phrase-based system as is.,COMPLETO,2,1
+2,D10-1042_P09-1098_1,Evaluable,Background,Alta,Describes prior work on mining translation pairs.,COMPLETO,2,1
+3,D15-1215_D14-1082_1,Evaluable,Comparison,Alta,Reports explicit performance improvement over the cited parser.,COMPLETO,2,1
+4,P15-1080_D11-1125_1,Evaluable,Further Reading,Alta,Refers readers to the original paper for details of PRO sampling.,COMPLETO,2,1
+5,D15-1294_P14-2085_4,Evaluable,Application,Alta,Uses the features proposed in the cited work.,COMPLETO,2,1
+6,W04-0110_N04-2008_1,Evaluable,Evidence,Media,Cited finding supports the claim that extra context is not strictly necessary.,COMPLETO,2,1
+7,Q13-1005_P09-1010_0,Evaluable,Basis,Alta,Learning is inspired by the cited RL approach.,COMPLETO,2,1
+8,W10-1724_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit.,COMPLETO,2,1
+9,K15-1033_E06-1040_0,Evaluable,Background,Media,Cited with other works to summarize prior findings on metric correlations in other tasks.,COMPLETO,2,1
+10,D12-1021_N03-1017_0,Evaluable,Application,Media,Uses the grow-diag-final-and heuristic for symmetrizing alignments.,COMPLETO,2,1
+11,P14-2008_N13-1067_2,Evaluable,Comparison,Alta,Compares own results to higher published results for citation polarity.,COMPLETO,2,1
+12,S15-2005_P14-5008_0,Evaluable,Application,Alta,Uses the Excitement Open Platform to compute edit distance.,COMPLETO,2,1
+13,N10-1118_E09-1055_1,Evaluable,Background,Media,Describes the cited work's algorithm for extracting LCFRS rules as prior work.,COMPLETO,2,1
+14,P15-1127_P08-1039_0,Evaluable,Basis,Alta,Explicitly builds on insights from the cited work.,COMPLETO,2,1
+15,E97-1014_P96-1036_1,Evaluable,Evidence,Media,Cited with a page number to support a claim about the ordering of ef lists in the model.,COMPLETO,2,1
+16,P08-1046_J99-3006_0,Evaluable,Background,Media,Cites DOP/TSG as prior approaches generalizing over subtrees.,COMPLETO,2,1
+17,W10-4143_N07-1051_0,Evaluable,Background,Alta,Lists well-known English parsers as context.,COMPLETO,2,1
+18,D09-1040_N06-1003_3,Evaluable,Further Reading,Media,Points to the cited work as listing influential work on morphological analysis.,COMPLETO,2,1
+19,S15-2125_P08-1031_0,Evaluable,Background,Alta,Reviews prior work using topic or category information.,COMPLETO,2,1
+20,P11-1070_E06-1011_0,Evaluable,Comparison,Alta,Reports relative error reductions over the cited parser.,COMPLETO,2,1
+21,P15-1029_W13-0109_0,Evaluable,Background,Alta,Lists literature on compositionality in distributional semantics.,COMPLETO,2,1
+22,E12-1003_D11-1122_4,Evaluable,Application,Alta,Computes aggregate scores in the same way as the cited work.,COMPLETO,2,1
+23,Q13-1032_W05-0202_1,Evaluable,Background,Alta,Describes prior work on short answer grading.,COMPLETO,2,1
+24,J96-2002_E91-1023_1,Evaluable,Background,Media,Refers to a phonological representation from the cited work as an alternative approach.,COMPLETO,2,1
+25,W14-4308_N13-1127_1,Evaluable,Evidence,Media,Supports the characterization of these utterances as scalar implicatures.,COMPLETO,2,1
+26,W07-2305_E06-1045_0,Evaluable,Background,Media,Describes related work using corpus-weighted selection.,COMPLETO,2,1
+27,P14-2006_P14-2005_1,Evaluable,Background,Media,Mentions prior work extending BLANC to predicted mentions as context for the reference implementation.,COMPLETO,2,1
+28,W15-3206_W12-2301_1,Evaluable,Application,Alta,Uses CALIMA-EGY analyzer as a resource.,COMPLETO,2,1
+29,W05-0906_P98-1013_0,Evaluable,Background,Alta,Mentions FrameNet as a resource in a general overview of recent work.,COMPLETO,2,1
+30,D14-1218_P11-1100_1,Evaluable,Evidence,Media,Justifies the choice of evaluation tasks as common in existing work.,COMPLETO,2,1
+31,P13-2056_N07-1057_0,Evaluable,Background,Alta,Notes that few prior works addressed this topic.,COMPLETO,2,1
+32,W03-2202_P98-2127_0,Evaluable,Application,Alta,Uses Lin's similarity measure to produce a thesaurus.,COMPLETO,2,1
+33,N10-1129_P07-2045_2,Evaluable,Background,Alta,Lists prior generative reordering models.,COMPLETO,2,1
+34,D11-1097_P10-1044_0,Evaluable,Basis,Alta,The work builds on the cited selectional preference models.,COMPLETO,2,1
+35,W12-4202_P07-2045_0,Evaluable,Application,Alta,Uses Moses for experiments.,COMPLETO,2,1
+36,W06-2922_W02-2016_0,Evaluable,Gap,Media,Cites the long training time of SVM to motivate the author's faster parser.,COMPLETO,2,1
+37,N04-1026_P01-1048_1,Evaluable,Evidence,Alta,Supports the claim that lexical information improves emotion prediction.,COMPLETO,2,1
+38,W04-1201_W02-0301_0,Evaluable,Background,Alta,Reviews prior efforts porting NER to the biomedical domain.,COMPLETO,2,1
+39,W10-4205_P87-1002_0,Evaluable,Background,Alta,Describes early rule-based systems historically.,COMPLETO,2,1
+40,W03-0508_W02-0406_0,Evaluable,Background,Media,Describes the cited study and its conclusion as related work.,COMPLETO,2,1
+41,P15-1019_E14-1024_0,Evaluable,Background,Alta,Lists prior work on event representations.,COMPLETO,2,1
+42,D14-1140_P98-2141_1,Evaluable,Background,Alta,Characterizes prior simultaneous translation approaches as rule and parse-based.,COMPLETO,2,1
+43,W06-0103_W04-1102_3,Evaluable,Basis,Media,The HMM models of the cited work are reviewed and used as the framework.,COMPLETO,2,1
+44,W12-6315_W03-1709_0,Evaluable,Background,Alta,Cites recent papers on Chinese word segmentation.,COMPLETO,2,1
+45,D13-1134_D10-1040_0,Evaluable,Gap,Media,"Describes prior models and notes they do not update the probability model, motivating the work.",COMPLETO,2,1
+46,W12-5903_W99-0604_0,Evaluable,Application,Alta,Uses the phrase-based MT system.,COMPLETO,2,1
+47,W13-5305_A00-2004_0,Evaluable,Application,Alta,Chooses the C99b algorithm for experiments.,COMPLETO,2,1
+48,J14-2005_D09-1021_0,Evaluable,Background,Alta,Lists prior work using dependency syntax on the target side.,COMPLETO,2,1
+49,J97-3002_J90-2002_0,Evaluable,Evidence,Alta,Supports the claim that parallel corpora provide constraints for statistical analysis.,COMPLETO,2,1
+50,W14-3332_P03-1021_1,Evaluable,Application,Alta,Uses MERT for tuning.,COMPLETO,2,1
+51,W05-1510_P96-1027_0,Evaluable,Application,Alta,Adopts chart generation to obtain the forest representation.,COMPLETO,2,1
+52,P13-1020_N04-1019_0,Evaluable,Application,Alta,Uses Pyramid scores as an evaluation metric.,COMPLETO,2,1
+53,D09-1086_D08-1017_0,Evaluable,Comparison,Media,"Notes that training amounts to the stacking technique, linking the setup to the cited work.",COMPLETO,2,1
+54,N07-1037_P05-1017_0,Evaluable,Background,Alta,Related work list of dictionary-based approaches.,COMPLETO,2,1
+55,N06-1024_W03-1005_1,Evaluable,Background,Alta,Categorizes prior approaches to empty category recovery.,COMPLETO,2,1
+56,D11-1045_N04-4026_0,Evaluable,Background,Alta,Describes generalized reordering models from the literature.,COMPLETO,2,1
+57,D12-1003_W11-1206_1,Evaluable,Background,Alta,Enumerates similarity measures used in prior work.,COMPLETO,2,1
+58,P13-2104_D09-1060_0,Evaluable,Basis,Alta,The approach is inspired by the cited work.,COMPLETO,2,1
+59,D13-1108_P05-1033_0,Evaluable,Comparison,Alta,Reports BLEU improvement over the hierarchical phrase-based model.,COMPLETO,2,1
+60,P98-2204_P83-1007_0,Evaluable,Basis,Alta,The proposal is inspired by the centering model.,COMPLETO,2,1
+61,N09-2055_P07-2045_0,Evaluable,Application,Alta,Uses Moses for training and translation.,COMPLETO,2,1
+62,S15-2017_P07-2045_0,Evaluable,Application,Alta,Uses Moses to train an SMT system.,COMPLETO,2,1
+63,P10-2033_P08-1009_0,Evaluable,Gap,Media,"Cited approaches are described as not effective at this stage, for the language pair in question.",COMPLETO,2,1
+64,D14-1067_P14-1133_3,Evaluable,Comparison,Alta,Compares system performance with the cited system.,COMPLETO,2,1
+65,N10-1073_D08-1037_0,Evaluable,Background,Alta,Lists techniques for mining name transliterations.,COMPLETO,2,1
+66,W13-3522_P05-1074_2,Evaluable,Background,Media,"Describes the cited context-conditioned extraction procedure, then notes its limitation.",COMPLETO,2,1
+67,W14-0206_W11-2010_3,Evaluable,Application,Alta,Uses the selection algorithm taken from the cited work.,COMPLETO,2,1
+68,J14-2008_E12-1017_6,Evaluable,Background,Alta,Describes the cited work in a literature review.,COMPLETO,2,1
+69,W15-3037_D14-1162_0,Evaluable,Background,Alta,Cited among examples of word embedding successes.,COMPLETO,2,1
+70,P14-2028_P00-1037_0,Evaluable,Background,Alta,States the state-of-the-art approach in spelling correction.,COMPLETO,2,1
+71,D14-1087_N04-1041_2,Evaluable,Application,Media,Categories mined by following existing work using Hearst patterns.,COMPLETO,2,1
+72,N13-1055_W09-2112_0,Evaluable,Application,Media,Follows the approach of artificially introducing errors as in cited work.,COMPLETO,2,1
+73,P15-2046_N13-1107_6,Evaluable,Comparison,Alta,Result table comparing against the cited system.,COMPLETO,2,1
+74,W03-0302_W02-1039_1,Evaluable,Identification of the Originator,Alta,Notions of overlap were originally introduced in the cited work.,COMPLETO,2,1
+75,P10-1078_P09-4001_0,Evaluable,Background,Alta,Describes related work on credibility evaluation.,COMPLETO,2,1
+76,P13-1043_P11-2033_0,Evaluable,Background,Alta,Cites prior transition-based parsers reaching state-of-the-art accuracies.,COMPLETO,2,1
+77,D13-1173_P11-1002_1,Evaluable,Background,Alta,Cites prior decipherment work.,COMPLETO,2,1
+78,W11-2906_W06-2920_0,Evaluable,Application,Media,Uses the Danish corpus as used in the CoNLL-X Shared Task.,COMPLETO,2,1
+79,P07-1087_P03-1020_2,Evaluable,Application,Alta,Employs the TrueCasing method.,COMPLETO,2,1
+80,E03-1076_P01-1030_0,Evaluable,Application,Alta,Uses a freely available decoder.,COMPLETO,2,1
+81,P15-1080_D11-1125_2,Evaluable,Application,Alta,Uses the PRO sampling method.,COMPLETO,2,1
+82,D13-1174_P12-2063_0,Evaluable,Background,Alta,Describes the cited finding as related work.,COMPLETO,2,1
+83,W14-4921_P14-2085_1,Evaluable,Background,Alta,Lists related work on automatic aspectual class classification.,COMPLETO,2,1
+84,P10-1001_E06-1011_6,Evaluable,Comparison,Alta,Result table comparing against the cited parser.,COMPLETO,2,1
+85,W13-3203_D11-1116_0,Evaluable,Application,Alta,Uses the Fanseparser to obtain relations and POS tags.,COMPLETO,2,1
+86,W13-3513_P08-1028_2,Evaluable,Background,Alta,Describes the simple composition models of the cited work.,COMPLETO,2,1
+87,P14-1010_N12-1047_0,Evaluable,Application,Alta,Uses batch hope-fear MIRA for tuning.,COMPLETO,2,1
+88,J15-3004_P02-1026_0,Evaluable,Background,Alta,Cites indications of entropy rate constancy as prior findings.,COMPLETO,2,1
+89,W15-1103_P02-1026_0,Evaluable,Background,Alta,Describes the prior finding about discourse-level complexity.,COMPLETO,2,1
+90,W14-1617_N13-1056_1,Evaluable,Application,Alta,Uses datasets released in the cited work.,COMPLETO,2,1
+91,N07-1051_P05-1022_5,Evaluable,Comparison,Alta,"Compares performance with the reranking parser, which outperforms it.",COMPLETO,2,1
+92,P13-2074_P06-1055_0,Evaluable,Application,Alta,Uses parses from the split-merge parser.,COMPLETO,2,1
+93,P14-1012_N03-1017_0,Evaluable,Background,Media,"Cited for standard phrase features, describing prior approach.",COMPLETO,2,1
+94,W15-4108_P11-1133_0,Evaluable,Background,Alta,Lists previous publications on this approach.,COMPLETO,2,1
+95,W12-3135_W08-0509_0,Evaluable,Application,Alta,Uses multi-threaded Giza++ for word alignment.,COMPLETO,2,1
+96,W15-4102_W11-2123_0,Evaluable,Application,Alta,Uses KenLM to compute perplexity.,COMPLETO,2,1
+97,D10-1108_P08-1078_0,Evaluable,Background,Alta,Cites textual entailment work as an NLP task using semantic knowledge.,COMPLETO,2,1
+98,W13-2223_P03-1021_0,Evaluable,Application,Alta,Optimizes weights with standard MERT.,COMPLETO,2,1
+99,D13-1123_P12-3029_0,Evaluable,Background,Alta,Describes resources used by other participants.,COMPLETO,2,1
+100,E14-1052_D13-1184_1,Evaluable,Comparison,Alta,Claims the approach outperforms the cited approach.,COMPLETO,2,1

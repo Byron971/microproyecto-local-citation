@@ -1,0 +1,4 @@
+{"lote": 4, "pasada": 1, "casos": 51, "prompt_sha256": "7cdfae360b7e5f8f", "estado": "ok", "intentos": 1, "tokens_entrada": 31944, "tokens_salida": 4769, "duracion_s": 27.2}
+{"lote": 1, "pasada": 1, "casos": 100, "prompt_sha256": "7cdfae360b7e5f8f", "estado": "ok", "intentos": 1, "tokens_entrada": 61018, "tokens_salida": 8236, "duracion_s": 45.8}
+{"lote": 3, "pasada": 1, "casos": 100, "prompt_sha256": "7cdfae360b7e5f8f", "estado": "ok", "intentos": 1, "tokens_entrada": 53584, "tokens_salida": 9047, "duracion_s": 50.19}
+{"lote": 2, "pasada": 1, "casos": 100, "prompt_sha256": "7cdfae360b7e5f8f", "estado": "ok", "intentos": 2, "tokens_entrada": 98608, "tokens_salida": 16155, "duracion_s": 87.99}

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W10-1404_P08-1108_1,Evaluable,Background,Media,Describes prior work on two-stage parsers and its finding as literature review.,COMPLETO,1,1
+2,D13-1064_P12-1075_0,Evaluable,Background,Media,Cites prior clustering approaches that assign types to predicates as standard practice.,COMPLETO,1,1
+3,W14-4505_P08-1068_0,Evaluable,Background,Alta,Lists studies applying word clustering to dependency parsing.,COMPLETO,1,1
+4,W12-1637_W11-2006_2,Evaluable,Further Reading,Baja,Points to a table/figure in the cited work for the referee score details.,COMPLETO,1,1
+5,J08-1002_W03-0401_0,Evaluable,Basis,Media,"Methods for representing HPSG parses with feature forests were developed in the cited earlier work, on which this work builds.",COMPLETO,1,1
+6,P12-1028_N07-1071_0,Evaluable,Evidence,Media,Supports the claim that distributional models outperform WordNet in supervised learning with few examples.,COMPLETO,1,1
+7,P11-1044_N03-1017_0,Evaluable,Application,Alta,Uses the Moses toolkit as is to build the transliteration system.,COMPLETO,1,1
+8,J13-3006_P98-2127_5,Evaluable,Application,Alta,Uses precompiled similarity measures from Lin directly.,COMPLETO,1,1
+9,P10-1049_P08-2007_0,Evaluable,Evidence,Alta,Supports the claim that producing all segmentations and alignments is infeasible.,COMPLETO,1,1
+10,E14-1070_W13-3509_1,Evaluable,Comparison,Media,Cited reranking models serve as baseline and the text contrasts how knowledge is encoded.,COMPLETO,1,1
+11,N10-1005_N04-1011_4,Evaluable,Comparison,Alta,Compares the current BRKINSERT result with similar results in the cited work.,COMPLETO,1,1
+12,S13-2055_P97-1023_0,Evaluable,Background,Alta,Lists prior work on word polarity lexicon induction.,COMPLETO,1,1
+13,D12-1015_P10-1139_0,Evaluable,Background,Alta,Enumerates research topics including opinion retrieval.,COMPLETO,1,1
+14,P14-1025_E12-1060_0,Evaluable,Gap,Media,Notes topic models used for WSD but says this work extends them by focusing on prior sense distributions.,COMPLETO,1,1
+15,P14-5002_P06-1005_0,Evaluable,Application,Alta,Uses number and gender data compiled by the cited work.,COMPLETO,1,1
+16,P13-2114_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser to generate features.,COMPLETO,1,1
+17,P12-1071_P09-1006_3,Evaluable,Comparison,Alta,"Compares parsing accuracy with the cited work, noting the constituent parser it uses.",COMPLETO,1,1
+18,W99-0614_W95-0103_0,Evaluable,Background,Alta,Enumerates statistical solutions proposed for PP attachment.,COMPLETO,1,1
+19,S14-2141_P14-1114_1,Evaluable,Basis,Alta,Builds on the authors' earlier work showing how to perform STS with PSL.,COMPLETO,1,1
+20,D10-1002_N07-1051_0,Evaluable,Comparison,Alta,Result table compares the cited parser's scores with other parsers.,COMPLETO,1,1
+21,D13-1109_D09-1092_0,Evaluable,Background,Alta,Lists prior work learning bilingual lexicons from comparable corpora.,COMPLETO,1,1
+22,D09-1111_W06-1672_0,Evaluable,Background,Alta,Describes the cited alignment-free discriminative transliteration approach as related work.,COMPLETO,1,1
+23,D15-1064_P12-1055_0,Evaluable,Background,Alta,Lists recent NER efforts on social media.,COMPLETO,1,1
+24,W13-1201_P11-2037_0,Evaluable,Background,Media,Cites parsers that enrich output representation as the state of the art.,COMPLETO,1,1
+25,P15-1128_D14-1002_0,Evaluable,Improvement / Modification,Media,Adapts a CNN framework from cited work to the matching problem.,COMPLETO,1,1
+26,P13-2125_S12-1051_0,Evaluable,Background,Media,Cites the STS-2012 shared task to describe the prevailing feature-based approach.,COMPLETO,1,1
+27,K15-2007_D09-1036_0,Evaluable,Basis,Alta,The system design is motivated by and follows the pipeline of the cited work.,COMPLETO,1,1
+28,S12-1056_N13-4004_0,Evaluable,Background,Media,Cites a tutorial on SRL to introduce the general concept.,COMPLETO,1,1
+29,W06-2917_P85-1009_1,Evaluable,Further Reading,Media,Points to the cited work for a detailed discussion of the auxiliary system and nativism.,COMPLETO,1,1
+30,P13-1103_P07-1031_0,Evaluable,Background,Media,Cites works noting chunks have internal structure.,COMPLETO,1,1
+31,W12-5105_W04-3221_0,Evaluable,Application,Alta,Uses the AAMP dataset as an evaluation test.,COMPLETO,1,1
+32,W15-5619_P13-1010_0,Evaluable,Background,Alta,One of many works listed on local coherence modeling.,COMPLETO,1,1
+33,N09-2036_J07-2003_3,Evaluable,Comparison,Alta,Compares the proposed method against standard cube pruning.,COMPLETO,1,1
+34,N07-2045_N04-2006_0,Evaluable,Background,Media,Cites work as an application example of determiner selection correcting learner text.,COMPLETO,1,1
+35,N13-1037_D12-1039_0,Evaluable,Background,Alta,Lists approaches to normalization.,COMPLETO,1,1
+36,D15-1123_P13-2121_0,Evaluable,Application,Alta,Uses the KenLM toolkit to train the language model.,COMPLETO,1,1
+37,W04-0907_E03-1040_0,Evaluable,Basis,Media,Work follows the same approach as the cited verb classification work.,COMPLETO,1,1
+38,W07-2206_N04-1013_0,Evaluable,Background,Alta,Lists statistical parsing work on linguistically motivated grammars.,COMPLETO,1,1
+39,P99-1023_W96-0101_0,Evaluable,Basis,Media,Suggests using the genotype word-class idea from the cited work as a future improvement.,COMPLETO,1,1
+40,P14-1092_P12-1007_0,Evaluable,Basis,Media,Work is inspired by recent discourse parsing work.,COMPLETO,1,1
+41,W08-2004_P06-1051_2,Evaluable,Background,Media,Cites NLP applications of tree kernels as general background.,COMPLETO,1,1
+42,D13-1155_P10-1058_0,Evaluable,Gap,Alta,Points out the ad hoc combination of scores as a limitation of the cited work.,COMPLETO,1,1
+43,P06-1139_P03-1021_0,Evaluable,Application,Alta,Uses discriminative (minimum error rate) training from the cited work to train weights.,COMPLETO,1,1
+44,W09-0437_J07-2003_1,Evaluable,Application,Alta,Uses default settings as described by the cited systems.,COMPLETO,1,1
+45,P13-1092_P11-1149_0,Evaluable,Gap,Media,Contrasts cited self-supervised approach and notes it still requires a manual lexicon.,COMPLETO,1,1
+46,W07-1406_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford Parser as a preprocessor.,COMPLETO,1,1
+47,N06-3005_J04-3002_0,Evaluable,Background,Alta,Lists prior research on learning subjective language.,COMPLETO,1,1
+48,J05-4002_P98-2127_0,Evaluable,Background,Alta,Lists works on automatic thesaurus generation.,COMPLETO,1,1
+49,P11-1126_P09-1064_0,Evaluable,Background,Alta,Describes single-system consensus decoding methods in prior work.,COMPLETO,1,1
+50,J08-4004_W04-0210_0,Evaluable,Background,Media,Mentions the authors' own earlier work as one of few exceptions checking unit identification.,COMPLETO,1,1
+51,N10-1128_P01-1067_0,Evaluable,Basis,Alta,Reordering forest is inspired by the cited reordering model.,COMPLETO,1,1
+52,N09-1070_N04-1019_0,Evaluable,Basis,Media,"Metric used is similar to Pyramid, which is the starting idea; not a direct unmodified use.",COMPLETO,1,1
+53,D15-1298_P14-5010_0,Evaluable,Application,Alta,Uses Stanford CoreNLP to parse sentences.,COMPLETO,1,1
+54,P05-3027_W97-0322_0,Evaluable,Background,Alta,Notes prior work showing first order representations work for sense discrimination.,COMPLETO,1,1
+55,P13-2135_W08-0509_0,Evaluable,Application,Alta,Uses the MGIZA++ package to build alignment models.,COMPLETO,1,1
+56,P12-3014_P10-1124_1,Evaluable,Application,Alta,Uses entailment graphs borrowed from the cited work.,COMPLETO,1,1
+57,S15-2013_Q14-1034_2,Evaluable,Background,Alta,"Describes the cited work's dataset, system and findings as prior work.",COMPLETO,1,1
+58,E14-1054_W11-2501_1,Evaluable,Application,Alta,Uses a subset of the BLESS dataset for evaluation.,COMPLETO,1,1
+59,P14-1034_N09-1068_0,Evaluable,Evidence,Media,Supports the claim that priors can provide domain adaptation.,COMPLETO,1,1
+60,P00-1051_W99-0106_0,Evaluable,Evidence,Media,Cited finding supports a claim about agreement on discourse segmentation requiring training.,COMPLETO,1,1
+61,W10-2101_W07-1317_0,Evaluable,Background,Media,Cites algorithms for language family reconstruction as existing work.,COMPLETO,1,1
+62,P15-2010_D11-1033_0,Evaluable,Basis,Alta,"States the work builds on the Moore-Lewis method, applied to translation models in the cited work.",COMPLETO,1,1
+63,P07-1072_P06-2064_0,Evaluable,Background,Media,Describes related work focusing on lexical similarity of unseen noun compounds.,COMPLETO,1,1
+64,N04-4025_W01-0514_0,Evaluable,Background,Alta,Lists NLP tasks to which LSA has been applied.,COMPLETO,1,1
+65,W13-0805_N04-4026_0,Evaluable,Background,Alta,Describes lexicalized reordering models in prior work.,COMPLETO,1,1
+66,D11-1068_N03-1030_0,Evaluable,Background,Alta,Lists work on implicit discourse relations in RST.,COMPLETO,1,1
+67,J14-4005_Q14-1019_0,Evaluable,Background,Alta,Lists recent efforts on automatic acquisition of training data.,COMPLETO,1,1
+68,W10-3101_P07-1125_0,Evaluable,Background,Alta,Lists corpora and annotation schemes for linguistic phenomena.,COMPLETO,1,1
+69,N13-1093_W09-1401_0,Evaluable,Background,Alta,Cites the BioNLP shared task as prior effort in negation detection.,COMPLETO,1,1
+70,W15-0807_P08-1090_0,Evaluable,Background,Alta,Lists recent work on script understanding.,COMPLETO,1,1
+71,P13-2012_P98-1013_0,Evaluable,Background,Alta,Describes FrameNet and its basis in Frame Semantics.,COMPLETO,1,1
+72,N10-1019_W00-0708_0,Evaluable,Background,Alta,Lists prior work using part-of-speech features for article generation.,COMPLETO,1,1
+73,J01-3003_W99-0632_3,Evaluable,Gap,Alta,Notes prior work used only subcategorization frequencies and did not address thematic role features.,COMPLETO,1,1
+74,P11-1114_P98-1067_0,Evaluable,Background,Alta,Lists existing event extraction data sets for corporate acquisitions.,COMPLETO,1,1
+75,D14-1127_N12-1071_0,Evaluable,Background,Alta,Lists prior work on emotion lexicon creation.,COMPLETO,1,1
+76,E06-1012_P96-1025_2,Evaluable,Improvement / Modification,Alta,Uses a modified version of the backed-off smoothing from the cited work.,COMPLETO,1,1
+77,W10-0403_W03-2502_0,Evaluable,Background,Alta,Describes algorithms introduced in prior work combining tag trigrams with word bigrams.,COMPLETO,1,1
+78,W04-3212_N04-1032_0,Evaluable,Background,Alta,Lists statistical semantic analyzers developed in prior work.,COMPLETO,1,1
+79,D13-1111_N04-1022_1,Evaluable,Comparison,Alta,Notes similarity between the current approach and MBR decoding.,COMPLETO,1,1
+80,P03-2030_P00-1065_0,Evaluable,Background,Media,Cites automatic semantic parsing as one application of FrameNet data.,COMPLETO,1,1
+81,P12-1023_P08-1076_1,Evaluable,Background,Media,Describes the cited SSSCM model as part of prior semi-supervised work.,COMPLETO,1,1
+82,D14-1011_P12-1055_0,Evaluable,Gap,Media,Lists lexical normalization studies and says they did not address word segmentation.,COMPLETO,1,1
+83,P12-1065_J04-3004_2,Evaluable,Comparison,Media,States graph propagation is closely related to the cited work.,COMPLETO,1,1
+84,W12-5503_P09-3003_1,Evaluable,Application,Media,Extracts orthographic and lexical features following the cited work.,COMPLETO,1,1
+85,D11-1091_D10-1114_1,Evaluable,Application,Alta,Employs tiered clustering from the cited work directly.,COMPLETO,1,1
+86,W15-0511_N13-1091_0,Evaluable,Background,Alta,Lists methods used in negation detection.,COMPLETO,1,1
+87,P14-2131_P08-1109_1,Evaluable,Background,Alta,Lists work using discrete representations for constituency parsing.,COMPLETO,1,1
+88,S15-2047_S15-2044_0,Evaluable,Identification of the Originator,Baja,Table of participating teams referencing each team's system paper; the cited paper is the team's own description.,COMPLETO,1,1
+89,W15-4703_W13-2111_1,Evaluable,Application,Alta,Uses the KBGen dataset isolated by the cited work.,COMPLETO,1,1
+90,W15-3018_P10-2041_0,Evaluable,Application,Alta,Uses the cross-entropy difference data selection method as described.,COMPLETO,1,1
+91,S13-2014_P12-1010_1,Evaluable,Further Reading,Alta,Refers the reader to the cited work for further details on the model.,COMPLETO,1,1
+92,D14-1037_P13-1155_3,Evaluable,Basis,Media,Lexical similarity features follow prior work.,COMPLETO,1,1
+93,W12-1511_W11-2821_0,Evaluable,Background,Media,Cites works within the SWAT project context.,COMPLETO,1,1
+94,P15-1138_D13-1203_1,Evaluable,Application,Alta,Uses the Berkeley Coreference Resolution system's English model.,COMPLETO,1,1
+95,P11-1012_W06-1615_0,Evaluable,Background,Alta,Lists work on cross-domain knowledge transfer.,COMPLETO,1,1
+96,W14-3324_P03-1021_0,Evaluable,Application,Alta,Uses MERT for tuning feature weights.,COMPLETO,1,1
+97,D12-1047_D08-1090_0,Evaluable,Background,Alta,Describes the cited work's method for selecting documents to adapt the LM.,COMPLETO,1,1
+98,Q14-1033_P11-1092_0,Evaluable,Further Reading,Media,Footnote pointing to studies that combine native and learner data.,COMPLETO,1,1
+99,W14-4005_W13-2203_1,Evaluable,Background,Alta,Describes the cited study's examination of HMEANT.,COMPLETO,1,1
+100,P11-1126_N10-1141_4,Evaluable,Application,Media,Uses the feature set from the cited consensus decoding work as the starting point.,COMPLETO,1,1
