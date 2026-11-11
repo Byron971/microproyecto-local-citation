@@ -114,3 +114,45 @@ def test_faltan_splits_falla(tmp_path):
     (tmp_path / "contexts.json").write_text("{}", encoding="utf-8")
     with pytest.raises(FileNotFoundError):
         load_split_index(tmp_path)
+
+
+def test_integracion_gate_gold_y_haiku_sobre_splits_sinteticos():
+    """Cobertura de integración con la suite ACL-200 que ejecuta CI."""
+    from src.evaluation.commercial.acl200_gold_split_gate import audit_acl_membership
+
+    train_id = "P13-0001_P11-0001_0"
+    val_id = "P14-0002_P11-0001_0"
+    test_id = "P15-0003_P11-0001_0"
+    contexts = {
+        train_id: {"citing_id": "P13-0001", "refid": "P11-0001", "masked_text": "Train TARGETCIT."},
+        val_id: {"citing_id": "P14-0002", "refid": "P11-0001", "masked_text": "Val TARGETCIT."},
+        test_id: {"citing_id": "P15-0003", "refid": "P11-0001", "masked_text": "Test TARGETCIT."},
+    }
+    splits = {
+        "train": [{"context_id": train_id, "positive_ids": ["P11-0001"]}],
+        "val": [{"context_id": val_id, "positive_ids": ["P11-0001"]}],
+        "test": [{"context_id": test_id, "positive_ids": ["P11-0001"]}],
+    }
+    index = build_split_index(contexts, splits)
+    p91 = {
+        val_id: {"grupo": "calibracion3", "tanda": ""},
+        test_id: {"grupo": "testgold", "tanda": "1"},
+    }
+    p92 = {
+        val_id: {"Contexto TARGETCIT": "Val TARGETCIT."},
+        test_id: {"Contexto TARGETCIT": "Test TARGETCIT."},
+    }
+    haiku = {train_id: {"Contexto TARGETCIT": "Train TARGETCIT."}}
+
+    report = audit_acl_membership(index, p91, p92, haiku, excluded=set())
+    assert report["status"] == "SPLITS_Y_FUENTES_INSPECCIONADOS_CERTIFICACION_HUMANA_PENDIENTE"
+    assert report["cross_checks"]["pr92_annotated_vs_haiku"]["documentos_citantes"] == 0
+    assert report["cross_checks"]["pr92_annotated_vs_haiku"]["pares_citante_citado"] == 0
+    assert report["gold_human_certified"] is False
+    assert report["final_benchmark_allowed"] is False
+
+    # Un candidato de entrenamiento en Gold debe ser detectado y bloquear la evaluación.
+    contaminated = {**p92, train_id: {"Contexto TARGETCIT": "Train TARGETCIT."}}
+    report_leak = audit_acl_membership(index, p91, contaminated, haiku, excluded=set())
+    assert report_leak["status"] == "BLOQUEADO"
+    assert report_leak["cross_checks"]["pr92_annotated_vs_haiku"]["ids"] == 1
