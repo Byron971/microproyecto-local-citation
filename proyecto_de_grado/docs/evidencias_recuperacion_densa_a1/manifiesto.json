@@ -1,0 +1,51 @@
+{
+  "argv": [
+    "--device",
+    "cuda",
+    "--cache",
+    "proyecto_de_grado/artifacts/recuperacion_densa_a1/cache_verificacion",
+    "--salida",
+    "proyecto_de_grado/artifacts/recuperacion_densa_a1/corrida_cuda_1"
+  ],
+  "encoder": {
+    "batch_size": 16,
+    "commit_resuelto": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "cuda": "12.8",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "max_length": 512,
+    "model_id": "allenai/scibert_scivocab_uncased",
+    "pooling": "mean",
+    "python": "3.14.6",
+    "revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "textos_procesados": 3177,
+    "torch": "2.11.0+cu128",
+    "transformers": "5.22.1",
+    "ventanas_procesadas": 3177
+  },
+  "entradas": {
+    "contexts.json": "4725714f53cd6e1f2efca883761dc252ac19be1489b699f4d14d1e7b9dcc3a73",
+    "entrada_s22": null,
+    "train.json": "62d670079b8ea1d4654d45d18c3a3e028a94732189acb54bc1b2350984ad9dae"
+  },
+  "estado": "comparacion_tecnica_train_sin_gold",
+  "exclusiones": {
+    "ids_excluir_test_gold.txt": "3dd1a15b8a74193c7b8e7c6397592e6c915a2dc478d768c9ed0be6e255ca4e0a",
+    "ids_piloto_historico_no_test_final.txt": "b9068f267dfeec8d90a00c1522700cee4adb5da42539328e6d76bfc3a87c88bb"
+  },
+  "git": {
+    "dirty": false,
+    "head": "6a2d963462767ea4d8dd32df61941336192326a1"
+  },
+  "salidas": {
+    "comparacion.csv": "6c9b6f29b3d35a645168177d0b36e2f2366dae953a291b5951ba6b462aa387a1",
+    "diversidad.csv": "a2b8246bfcfaf502b73ef0d9c2fd6c9b2b24a25b5f26fdaa89f46d7f3c6490e0",
+    "ejemplos_top3.json": "41a6597a0cb9ff36c040c8218e1933ad523b7193256db042b612b44b75274869",
+    "ejemplos_top3.md": "4bcb32af12112a8da5e5632605bc013c2ab94b7cf67d9db71dbc86dafe6d558f",
+    "latencias.csv": "c8fd3014d1b2da29726036049ca3021071c6a92a8ce032343167fc18fe7e787f",
+    "latencias_resumen.json": "3f2a5622355254f8a7d19c20613472c18320509accbeb2eeb1c801ff4dbad046",
+    "resumen.json": "f7e92648621237a9313803ca53c0385fed26c78f9e5b685e99c2a654af05033d",
+    "top3.csv": "b6662baf5c53287a4a28728b318cb5327961c3339f902650b06c74505e6867b0"
+  },
+  "sha256_manifiesto_modelo": "bf089a55db140bb29422f48609a7be82e06e80198c8af156f30d860cb3911b13"
+}
