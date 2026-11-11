@@ -13,7 +13,7 @@ PLANTILLA = "Instrucciones.\n## Casos\n{{CASOS}}\n"
 FAKE = '''#!{py}
 import json, os, re, sys
 prompt = sys.stdin.read()
-ids = [i for i in re.findall(r'"context_id": "([^"]+)"', prompt) if i != "..."]
+ids = [int(i) for i in re.findall(r'"n": ([0-9]+)', prompt)]
 log = os.environ.get("FAKE_LOG")
 if log:
     open(log, "a").write(json.dumps({{"argv": sys.argv[1:], "cwd": os.getcwd(), "ls": os.listdir("."),
@@ -26,7 +26,7 @@ if cont:
     open(cont, "w").write(str(llamada + 1))
 if modo == "error_proceso":
     sys.stderr.write("boom"); sys.exit(3)
-filas = [{{"context_id": i, "evaluable": "Evaluable", "funcion": "background", "confianza": "Alta",
+filas = [{{"n": i, "evaluable": "Evaluable", "funcion": "background", "confianza": "Alta",
           "justificacion_breve": ""}} for i in ids]
 if modo == "primero_incompleto" and llamada == 0:
     filas = filas[:-1]
@@ -83,14 +83,15 @@ def test_seleccion_es_v_union_d1_sin_muestreo_nuevo():
 
 def test_validar_respuesta_reglas():
     ids = ["x", "y"]
-    ok = [{"context_id": "y", "evaluable": "Evaluable", "funcion": "gap", "confianza": "Alta"},
-          {"context_id": "x", "evaluable": "Ambiguo", "funcion": "", "confianza": "Baja",
+    ok = [{"n": 2, "evaluable": "Evaluable", "funcion": "gap", "confianza": "Alta"},
+          {"n": 1, "evaluable": "Ambiguo", "funcion": "", "confianza": "Baja",
            "justificacion_breve": "duda"}]
     filas = an.validar_respuesta(ok, ids)
     assert [f["context_id"] for f in filas] == ["x", "y"] and filas[1]["funcion"] == "Gap"
     malos = [ok[:1], ok + [ok[0]], [{**ok[0], "funcion": "Otra"}, ok[1]],
              [ok[0], {**ok[1], "justificacion_breve": ""}], [ok[0], {**ok[1], "funcion": "Gap"}],
-             [{**ok[0], "confianza": "Muy alta"}, ok[1]], [{**ok[0], "context_id": "z"}, ok[1]]]
+             [{**ok[0], "confianza": "Muy alta"}, ok[1]], [{**ok[0], "n": 3}, ok[1]],
+             [{**ok[0], "n": "2"}, ok[1]], [{**ok[0], "n": True}, ok[1]]]
     for m in malos:
         with pytest.raises(ValueError):
             an.validar_respuesta(m, ids)
@@ -173,8 +174,9 @@ def test_el_prompt_no_lleva_etiquetas_ni_otras_pasadas(lotes):
     carpeta, l = lotes
     filas = an.leer_csv(carpeta / "lote_001.csv")
     prompt = an.construir_prompt(PLANTILLA, filas)
-    assert '"context_id"' in prompt and "{{CASOS}}" not in prompt
-    assert set(json.loads(prompt.split("## Casos\n")[1])[0]) == {"context_id", "contexto", "titulo", "resumen"}
+    assert '"n": 1' in prompt and "{{CASOS}}" not in prompt
+    assert set(json.loads(prompt.split("## Casos\n")[1])[0]) == {"n", "contexto", "titulo", "resumen"}
+    assert "context_id" not in prompt and not any(f["context_id"] in prompt for f in filas)
 
 
 def test_piloto_y_informe(tmp_path, claude_falso):
@@ -203,3 +205,21 @@ def test_verificar_aislamiento_devuelve_tokens_y_respuesta(claude_falso, tmp_pat
     rep = an.verificar_aislamiento(ejecutor(claude_falso))
     assert rep["tokens_entrada"] == 15 and rep["tokens_salida"] == 7 and "respuesta" in rep
     assert "--tools" in json.loads(log.read_text(encoding="utf-8").splitlines()[0])["argv"]
+
+
+def test_guarda_la_respuesta_cruda_de_los_intentos_fallidos(lotes, claude_falso, tmp_path, monkeypatch):
+    carpeta, _ = lotes
+    monkeypatch.setenv("FAKE_MODO", "siempre_mal")
+    errores = tmp_path / "errores"
+    linea = an.anotar_lote(1, carpeta, tmp_path / "s", PLANTILLA, ejecutor(claude_falso), carpeta_errores=errores)
+    assert linea["estado"] == "error"
+    crudas = sorted(p.name for p in errores.iterdir())
+    assert crudas == ["lote_001_pasada1_intento1.txt", "lote_001_pasada1_intento2.txt"]
+    assert "Inventada" in (errores / crudas[0]).read_text(encoding="utf-8")
+
+
+def test_salida_con_ids_de_otro_orden_no_es_valida(lotes, claude_falso, tmp_path):
+    carpeta, l = lotes
+    an.anotar_lote(1, carpeta, tmp_path / "s", PLANTILLA, ejecutor(claude_falso))
+    ruta = tmp_path / "s" / "lote_001.csv"
+    assert an.salida_valida(ruta, l[1]) and not an.salida_valida(ruta, list(reversed(l[1])))

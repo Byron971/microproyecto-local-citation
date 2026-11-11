@@ -27,7 +27,8 @@ from clasificacion_funcion import seleccion_datos as sd  # noqa: E402
 
 SONNET = REPO / "proyecto_de_grado/anotacion/sonnet"
 ARTIFACTS = REPO / "proyecto_de_grado/artifacts/anotacion_sonnet"
-PROMPT = SONNET / "prompt_v1.md"
+PROMPT = SONNET / "prompt_v2.md"
+ERRORES = ARTIFACTS / "errores"
 ITEMS_TALLER = REPO / "proyecto_de_grado/anotacion/taller/items_meta.json"
 
 
@@ -87,7 +88,7 @@ def anotar(args) -> int:
     plantilla = PROMPT.read_text(encoding="utf-8")
     ejecutar = partial(an.ejecutar_claude, modelo=args.modelo, binario=args.claude, timeout=args.timeout)
     r = an.anotar_pendientes(lotes, salidas, plantilla, ejecutar, base / "registro.jsonl", args.pasada,
-                             args.max_lotes, args.paralelo)
+                             args.max_lotes, args.paralelo, ERRORES)
     print(r)
     return 1 if r["error"] else 0
 

@@ -74,8 +74,10 @@ def sha_prompt(plantilla: str) -> str:
 def construir_prompt(plantilla: str, filas: list[dict]) -> str:
     if "{{CASOS}}" not in plantilla:
         raise ValueError("La plantilla no contiene {{CASOS}}.")
-    casos = [{"context_id": f["context_id"], "contexto": f["Contexto TARGETCIT"],
-              "titulo": f["Título citado"], "resumen": f["Resumen citado"]} for f in filas]
+    # Numeracion 1..N: el modelo responde por numero y no copia ids largos (en el prompt v1
+    # copiar 100 `context_id` produjo ids alterados, faltantes y repetidos).
+    casos = [{"n": i, "contexto": f["Contexto TARGETCIT"], "titulo": f["Título citado"],
+              "resumen": f["Resumen citado"]} for i, f in enumerate(filas, 1)]
     return plantilla.replace("{{CASOS}}", json.dumps(casos, ensure_ascii=False, indent=1))
 
 
@@ -96,40 +98,43 @@ def extraer_json(texto: str) -> list:
 
 
 def validar_respuesta(datos: list, ids_lote: list[str]) -> list[dict]:
-    """Filas validadas en el orden del lote. Lanza ValueError ante cualquier incumplimiento."""
-    por_id: dict[str, dict] = {}
+    """Filas validadas en el orden del lote. `datos` responde por `n` (1..N, posicion en el
+    lote); se traduce a `context_id`. Lanza ValueError ante cualquier incumplimiento."""
+    por_n: dict[int, dict] = {}
     for d in datos:
-        if not isinstance(d, dict) or not isinstance(d.get("context_id"), str):
-            raise ValueError(f"Fila sin context_id: {d!r}")
-        if d["context_id"] in por_id:
-            raise ValueError(f"context_id repetido: {d['context_id']}")
-        por_id[d["context_id"]] = d
-    faltan, sobran = set(ids_lote) - set(por_id), set(por_id) - set(ids_lote)
+        n = d.get("n") if isinstance(d, dict) else None
+        if isinstance(n, bool) or not isinstance(n, int):
+            raise ValueError(f"Fila sin n entero: {d!r}"[:200])
+        if n in por_n:
+            raise ValueError(f"n repetido: {n}")
+        por_n[n] = d
+    esperados = set(range(1, len(ids_lote) + 1))
+    faltan, sobran = esperados - set(por_n), set(por_n) - esperados
     if faltan or sobran:
-        raise ValueError(f"Ids no coinciden con el lote (faltan {len(faltan)}, sobran {len(sobran)}).")
+        raise ValueError(f"n no coincide con el lote (faltan {sorted(faltan)[:5]}, sobran {sorted(sobran)[:5]}).")
     filas = []
-    for cid in ids_lote:
-        d = por_id[cid]
+    for n, cid in enumerate(ids_lote, 1):
+        d = por_n[n]
         evaluable, conf = d.get("evaluable"), d.get("confianza")
         just = (d.get("justificacion_breve") or "").strip()
         if evaluable not in EVALUABLE:
-            raise ValueError(f"{cid}: evaluable invalido {evaluable!r}")
+            raise ValueError(f"n={n}: evaluable invalido {evaluable!r}")
         if conf not in CONFIANZA:
-            raise ValueError(f"{cid}: confianza invalida {conf!r}")
+            raise ValueError(f"n={n}: confianza invalida {conf!r}")
         funcion = (d.get("funcion") or "").strip()
         if evaluable == "Evaluable":
             try:
                 indice = dominio.normalizar_etiqueta(funcion)
             except ValueError as exc:
-                raise ValueError(f"{cid}: funcion invalida {funcion!r}") from exc
+                raise ValueError(f"n={n}: funcion invalida {funcion!r}") from exc
             if indice is None:
-                raise ValueError(f"{cid}: funcion invalida {funcion!r}")
+                raise ValueError(f"n={n}: funcion invalida {funcion!r}")
             funcion = dominio.CATEGORIAS[indice]
         else:
             if funcion:
-                raise ValueError(f"{cid}: {evaluable} con funcion {funcion!r}")
+                raise ValueError(f"n={n}: {evaluable} con funcion {funcion!r}")
             if not just:
-                raise ValueError(f"{cid}: {evaluable} sin justificacion")
+                raise ValueError(f"n={n}: {evaluable} sin justificacion")
         filas.append({"context_id": cid, "evaluable": evaluable, "funcion": funcion,
                       "confianza": conf, "justificacion": just})
     return filas
@@ -155,9 +160,11 @@ def salida_valida(ruta: Path, ids_lote: list[str]) -> bool:
         return False
     try:
         filas = leer_csv(ruta)
-        datos = [{"context_id": f["context_id"], "evaluable": f["¿Evaluable?"], "funcion": f["Función principal"],
+        if [f["context_id"] for f in filas] != list(ids_lote):
+            return False
+        datos = [{"n": i, "evaluable": f["¿Evaluable?"], "funcion": f["Función principal"],
                   "confianza": f["Confianza"], "justificacion_breve": f["Justificación / duda"]}
-                 for f in filas]
+                 for i, f in enumerate(filas, 1)]
         validar_respuesta(datos, ids_lote)
         return True
     except (ValueError, KeyError):
@@ -176,13 +183,15 @@ def ejecutar_claude(prompt: str, modelo: str = "sonnet", binario: str = "claude"
         r = subprocess.run(orden, input=prompt, capture_output=True, text=True, cwd=vacio,
                            timeout=timeout)
     if r.returncode != 0:
-        raise RuntimeError(f"claude termino con codigo {r.returncode}: {r.stderr.strip()[:300]}")
+        raise RuntimeError(f"claude termino con codigo {r.returncode}: "
+                           f"{(r.stderr.strip() or r.stdout.strip())[:300]}")
     try:
         sobre = json.loads(r.stdout)
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"Salida de claude no es JSON: {r.stdout[:200]!r}") from exc
     if sobre.get("is_error"):
-        raise RuntimeError(f"claude reporto error: {str(sobre.get('result'))[:300]}")
+        raise RuntimeError("claude reporto error: "
+                           f"{json.dumps({k: v for k, v in sobre.items() if k != 'usage'}, ensure_ascii=False)[:400]}")
     uso = sobre.get("usage") or {}
     entrada = sum(uso.get(k, 0) for k in ("input_tokens", "cache_creation_input_tokens",
                                           "cache_read_input_tokens"))
@@ -190,9 +199,18 @@ def ejecutar_claude(prompt: str, modelo: str = "sonnet", binario: str = "claude"
             "duracion_s": round(time.perf_counter() - t0, 2)}
 
 
+def guardar_cruda(carpeta: Path | None, n: int, pasada: int, intento: int, texto: str) -> None:
+    """Respuesta cruda de un intento fallido (carpeta ignorada por git) para diagnosticar."""
+    if carpeta is None:
+        return
+    Path(carpeta).mkdir(parents=True, exist_ok=True)
+    (Path(carpeta) / f"lote_{n:03d}_pasada{pasada}_intento{intento}.txt").write_text(texto, encoding="utf-8")
+
+
 def anotar_lote(n: int, carpeta_lotes: Path, carpeta_salidas: Path, plantilla: str, ejecutar,
-                pasada: int = 1, reintentos: int = 1) -> dict:
-    """Anota un lote y devuelve su linea de registro. No lanza: un fallo queda `estado=error`."""
+                pasada: int = 1, reintentos: int = 1, carpeta_errores: Path | None = None) -> dict:
+    """Anota un lote y devuelve su linea de registro. No lanza: un fallo queda `estado=error`.
+    Con `carpeta_errores` guarda la respuesta cruda de cada intento que falla la validacion."""
     filas_lote = leer_csv(Path(carpeta_lotes) / nombre_lote(n))
     ids = [f["context_id"] for f in filas_lote]
     ruta = Path(carpeta_salidas) / nombre_lote(n)
@@ -202,24 +220,26 @@ def anotar_lote(n: int, carpeta_lotes: Path, carpeta_salidas: Path, plantilla: s
     prompt = construir_prompt(plantilla, filas_lote)
     entrada = salida = 0
     duracion = 0.0
-    error = ""
+    error = cruda = ""
     for intento in range(1 + reintentos):
         try:
             r = ejecutar(prompt)
             entrada, salida, duracion = entrada + r["entrada"], salida + r["salida"], duracion + r["duracion_s"]
-            validadas = validar_respuesta(extraer_json(r["texto"]), ids)
+            cruda = r["texto"]
+            validadas = validar_respuesta(extraer_json(cruda), ids)
             escribir_salida(ruta, validadas, n, pasada)
             return {**base, "estado": "ok", "intentos": intento + 1, "tokens_entrada": entrada,
                     "tokens_salida": salida, "duracion_s": round(duracion, 2)}
         except (ValueError, RuntimeError, subprocess.TimeoutExpired) as exc:
             error = f"{type(exc).__name__}: {exc}"[:300]
+            guardar_cruda(carpeta_errores, n, pasada, intento + 1, f"# {error}\n{cruda}")
     return {**base, "estado": "error", "intentos": 1 + reintentos, "error": error,
             "tokens_entrada": entrada, "tokens_salida": salida, "duracion_s": round(duracion, 2)}
 
 
 def anotar_pendientes(carpeta_lotes: Path, carpeta_salidas: Path, plantilla: str, ejecutar,
                       registro: Path, pasada: int = 1, max_lotes: int | None = None,
-                      paralelo: int = 4) -> dict:
+                      paralelo: int = 4, carpeta_errores: Path | None = None) -> dict:
     """Anota los lotes pendientes (hasta `max_lotes`) con `paralelo` hilos; anade al registro."""
     todos = sorted(int(p.stem.split("_")[1]) for p in Path(carpeta_lotes).glob("lote_*.csv"))
     pendientes = []
@@ -234,7 +254,8 @@ def anotar_pendientes(carpeta_lotes: Path, carpeta_salidas: Path, plantilla: str
     registro.parent.mkdir(parents=True, exist_ok=True)
 
     def tarea(n: int) -> dict:
-        linea = anotar_lote(n, carpeta_lotes, carpeta_salidas, plantilla, ejecutar, pasada)
+        linea = anotar_lote(n, carpeta_lotes, carpeta_salidas, plantilla, ejecutar, pasada,
+                            carpeta_errores=carpeta_errores)
         with cerrojo, registro.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(linea, ensure_ascii=False) + "\n")
         return linea

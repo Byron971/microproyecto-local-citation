@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D13-1134_W12-1604_2,Evaluable,Application,Media,Uses a similar dataset from the cited work for feature selection.,COMPLETO,1,1
+2,P13-2030_W12-2304_2,Evaluable,Application,Media,Follows the suggested parameter setting nms=3 from the cited work.,COMPLETO,1,1
+3,P11-1101_W05-1510_0,Evaluable,Comparison,Media,"Notes that the cited work also found a negative effect of LM scores, linking it to the authors' own observation.",COMPLETO,1,1
+4,D09-1143_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford Parser to parse documents.,COMPLETO,1,1
+5,P09-2050_P01-1008_0,Evaluable,Improvement / Modification,Alta,Explicitly extends the cited technique to handle noisy bug reports.,COMPLETO,1,1
+6,P10-1035_N07-1051_2,Evaluable,Application,Alta,"Trains the Petrov parser on CCGbank as an illustration, using it unmodified.",COMPLETO,1,1
+7,W05-1008_N01-1006_0,Evaluable,Application,Alta,Uses fnTBL 1.0 to build a tagger.,COMPLETO,1,1
+8,D12-1044_P98-2192_0,Evaluable,Comparison,Alta,"States the described algorithm is similar in spirit to the cited parsing algorithm, with similar steps and items.",COMPLETO,1,1
+9,Q13-1015_P04-1014_0,Evaluable,Application,Alta,Uses the C&C parser trained on CCGBank as a pipeline step.,COMPLETO,1,1
+10,D13-1087_P10-1107_0,Evaluable,Background,Alta,Lists prior work on deciphering various ciphers.,COMPLETO,1,1
+11,D10-1048_D08-1068_3,Evaluable,Comparison,Alta,Results table comparing the cited system's scores with the current system.,COMPLETO,1,1
+12,W12-3154_D11-1033_0,Evaluable,Background,Alta,Describes data selection approaches for domain adaptation in prior work.,COMPLETO,1,1
+13,P11-3006_W00-0405_0,Evaluable,Identification of the Originator,Media,Says the MMR-MD measure was proposed in the cited work.,COMPLETO,1,1
+14,Q13-1028_P05-1018_0,Evaluable,Application,Alta,Uses entity transition probabilities from the Entity Grid model as features.,COMPLETO,1,1
+15,J12-3004_N06-1046_0,Evaluable,Background,Alta,Cites work that has given attention to aggregation in NLG.,COMPLETO,1,1
+16,E87-1024_P84-1047_0,Evaluable,Comparison,Alta,Contrasts the current approach with the entity-oriented parser of the cited work.,COMPLETO,1,1
+17,P13-1106_W10-2906_1,Evaluable,Comparison,Alta,"Compares with the cited method, noting similarities and differences.",COMPLETO,1,1
+18,P11-1068_P10-1110_6,Evaluable,Gap,Alta,Describes the cited criterion and then points out 'Unfortunately' its shortcoming.,COMPLETO,1,1
+19,J08-1002_W03-0403_0,Evaluable,Background,Alta,Lists previous maximum entropy models of HPSG parse trees.,COMPLETO,1,1
+20,W02-2101_A00-2023_1,Evaluable,Comparison,Media,Contrasts the current approach (whole texts) with other stochastic approaches that select constituents.,COMPLETO,1,1
+21,W09-2501_P05-1074_0,Evaluable,Background,Media,Describes the cited approach to paraphrase acquisition from bilingual corpora as an alternative approach.,COMPLETO,1,1
+22,J09-1003_P05-1018_1,Evaluable,Background,Alta,Part of a list of recent work on information ordering.,COMPLETO,1,1
+23,D13-1137_P13-1045_1,Evaluable,Basis,Alta,Compositional functions follow those of the cited SU-RNN model.,COMPLETO,1,1
+24,P11-1141_P10-1113_0,Evaluable,Evidence,Media,Cites the finding that joint modeling improved both tasks to support the claim that joint modeling is beneficial.,COMPLETO,1,1
+25,P13-1109_P07-2045_0,Evaluable,Application,Alta,Uses Moses in the MT pipeline.,COMPLETO,1,1
+26,W12-0501_W06-1652_0,Evaluable,Background,Media,"Lists applications of sentiment analysis, one being document classification.",COMPLETO,1,1
+27,P11-1116_N04-1041_0,Evaluable,Background,Alta,Lists prior approaches to entity classification.,COMPLETO,1,1
+28,W12-3307_P08-2068_0,Evaluable,Background,Media,Describes related DP approaches using topic modeling; related work overview.,COMPLETO,1,1
+29,P07-1123_E06-1025_0,Evaluable,Background,Alta,"Lists applications of sentiment analysis, here text semantic analysis.",COMPLETO,1,1
+30,D11-1004_W08-0304_0,Evaluable,Background,Alta,Summarizes recent MERT work extending Och's algorithm.,COMPLETO,1,1
+31,E12-1009_P09-1040_0,Evaluable,Background,Alta,Reviews transitions introduced to handle non-projectivity.,COMPLETO,1,1
+32,D10-1026_P07-1065_1,Evaluable,Background,Alta,Describes recent randomized language models using Bloom filter structures.,COMPLETO,1,1
+33,P05-1004_W03-1022_0,Evaluable,Evidence,Alta,Cites a finding to support the claim of limited WordNet coverage.,COMPLETO,1,1
+34,D12-1001_D11-1006_7,Evaluable,Application,Alta,Follows the cited procedure for training under the BANKS condition.,COMPLETO,1,1
+35,E12-1011_E09-3011_1,Evaluable,Comparison,Alta,Contrasts the current pattern-free models with systems relying on patterns.,COMPLETO,1,1
+36,P12-1044_P07-1035_0,Evaluable,Background,Alta,Cites graphical models used for unsupervised POS tagging as general context.,COMPLETO,1,1
+37,D13-1094_D09-1036_1,Evaluable,Basis,Media,"Describes the cited findings and then speculatively includes similar features, building on that work.",COMPLETO,1,1
+38,W07-0604_P05-1025_1,Evaluable,Comparison,Alta,Explicitly compares accuracy with the cited work's reported LAS.,COMPLETO,1,1
+39,W11-1208_N06-1014_0,Evaluable,Application,Alta,Uses the BerkeleyAligner in experiments.,COMPLETO,1,1
+40,W05-1202_W02-0908_0,Evaluable,Background,Alta,Lists recent interest in distributionally similar words.,COMPLETO,1,1
+41,P05-1048_W02-1002_0,Evaluable,Evidence,Alta,Justifies the choice of maximum entropy model by the cited finding of higher accuracy.,COMPLETO,1,1
+42,D11-1116_P08-1068_0,Evaluable,Basis,Alta,The use of the algorithm was inspired by the cited work.,COMPLETO,1,1
+43,P13-1099_W09-1802_1,Evaluable,Background,Media,"Describes how the cited work selected concepts and weights, setting up the proposed alternative.",COMPLETO,1,1
+44,E09-1090_P08-1109_1,Evaluable,Comparison,Alta,Compares the parser's accuracy with that of the cited discriminative approaches.,COMPLETO,1,1
+45,W12-0706_E95-1020_0,Evaluable,Evidence,Media,Supports the claim that clustered POS are linguistically unsatisfactory.,COMPLETO,1,1
+46,D10-1102_P07-1055_0,Evaluable,Gap,Alta,Cites works as having the undesirable property of requiring gold sentence-level annotations.,COMPLETO,1,1
+47,W10-3903_N09-1041_0,Evaluable,Gap,Alta,Cites methods for topic summaries then notes redundancy between summaries has not been addressed.,COMPLETO,1,1
+48,D12-1037_P03-1021_2,Evaluable,Background,Alta,Related work description of discriminative training that optimizes evaluation metrics.,COMPLETO,1,1
+49,W07-1016_W06-3309_1,Evaluable,Comparison,Alta,Compares the F-scores obtained with those from previous studies.,COMPLETO,1,1
+50,P09-1103_N03-1017_0,Evaluable,Background,Alta,Cites phrase-based approaches as general context in the introduction.,COMPLETO,1,1
+51,N13-1118_D11-1095_3,Evaluable,Evidence,Alta,Cites prior finding that AGG is less accurate than HGFC to support the claim.,COMPLETO,1,1
+52,W13-2211_W08-0509_0,Evaluable,Application,Alta,Uses MGIZA++ for word alignment.,COMPLETO,1,1
+53,W98-0301_P97-1012_0,Evaluable,Evidence,Media,Supports the claim that cue phrases can introduce expectations about discourse.,COMPLETO,1,1
+54,W11-0411_W09-3025_1,Evaluable,Evidence,Alta,"Supports the claim that examples never cover all cases, as shown in the cited work.",COMPLETO,1,1
+55,P04-1065_P00-1056_1,Evaluable,Comparison,Alta,Compares results with those of the alignment template approach.,COMPLETO,1,1
+56,P09-1039_E06-1011_4,Evaluable,Comparison,Alta,The cited second-order model is one of the baselines in the results table.,COMPLETO,1,1
+57,D08-1068_P07-1107_5,Evaluable,Comparison,Alta,Compares the system to the cited one on ACE-2004 in MUC scores.,COMPLETO,1,1
+58,P12-1106_P11-1100_0,Evaluable,Background,Media,"Describes prior work validating an argument, as motivation from prior literature.",COMPLETO,1,1
+59,P11-1127_P07-2026_0,Evaluable,Evidence,Alta,Footnote cites the finding that 1000-best is sufficient to justify the choice.,COMPLETO,1,1
+60,W13-3511_W04-3234_0,Evaluable,Evidence,Media,Supports the claim that cluster features are effective for tasks such as NER.,COMPLETO,1,1
+61,P13-1136_W09-1802_0,Evaluable,Gap,Media,Notes that similar ideas for MDS showed only limited improvement over extractive baselines.,COMPLETO,1,1
+62,P12-3010_P00-1056_0,Evaluable,Application,Alta,Uses the GIZA++ toolkit to build baseline modules.,COMPLETO,1,1
+63,W09-1117_P07-2045_0,Evaluable,Application,Alta,Trains a model with the Moses toolkit.,COMPLETO,1,1
+64,D11-1114_E09-1055_1,Evaluable,Comparison,Alta,Contrasts the algorithm's independence from gap degree with cited parsers exponential in it.,COMPLETO,1,1
+65,D10-1108_P09-1031_0,Evaluable,Background,Alta,Lists attempts to learn taxonomic organization of concepts.,COMPLETO,1,1
+66,P13-4022_P98-1013_0,Evaluable,Application,Media,FCG connects to FrameNet as an external resource to load lexical entries.,COMPLETO,1,1
+67,P13-1072_W11-0704_0,Evaluable,Background,Alta,Related work overview of lexicon-building methods.,COMPLETO,1,1
+68,W10-3804_N03-1017_1,Evaluable,Evidence,Alta,Cites the finding that restricting to syntactic phrases hurts performance to support the claim.,COMPLETO,1,1
+69,P10-1004_E95-1001_0,Evaluable,Background,Alta,Cites literature on weakening rules in underspecification.,COMPLETO,1,1
+70,D13-1108_P03-1021_0,Evaluable,Application,Alta,Uses standard MERT to tune feature weights.,COMPLETO,1,1
+71,D13-1103_W04-1013_0,Evaluable,Application,Alta,Uses the ROUGE-1 metric for evaluation.,COMPLETO,1,1
+72,S13-2062_S13-2052_0,Evaluable,Further Reading,Alta,Refers the reader to the cited task paper for more details on datasets.,COMPLETO,1,1
+73,P13-4017_P98-2127_0,Evaluable,Application,Media,Lists Lin's thesaurus as one of the resources used by the system.,COMPLETO,1,1
+74,D11-1050_D09-1045_0,Evaluable,Comparison,Media,"Describes prior integration of topic models and VSMs, then contrasts it with the current motivation.",COMPLETO,1,1
+75,W13-2807_N03-1017_3,Evaluable,Evidence,Media,Supports the explanation that better alignments yield more extracted phrases.,COMPLETO,1,1
+76,P10-1114_W06-1615_0,Evaluable,Basis,Alta,The approach builds upon structural correspondence learning.,COMPLETO,1,1
+77,P09-1051_W09-3710_0,Evaluable,Evidence,Alta,Supports the claim that individual resources contribute around 0.5–2% in RTE.,COMPLETO,1,1
+78,W12-1514_P07-2045_1,Evaluable,Application,Alta,Uses Moses for generation experiments.,COMPLETO,1,1
+79,P13-1138_W01-0802_0,Evaluable,Evidence,Media,Supports the claim that document planning is arguably the most important task.,COMPLETO,1,1
+80,P13-1105_P09-1009_0,Evaluable,Background,Alta,Describes prior work projecting syntactic structures across multilingual texts.,COMPLETO,1,1
+81,Q13-1022_D12-1044_0,Evaluable,Background,Alta,Summarizes the cited result on 1-inherit parsing complexity as prior literature.,COMPLETO,1,1
+82,P11-3003_N03-1017_0,Evaluable,Basis,Alta,The work is based on the phrase-based SMT approach.,COMPLETO,1,1
+83,W01-0705_P98-2247_0,Evaluable,Background,Alta,Lists corpus-based approaches to verb classification in introduction.,COMPLETO,1,1
+84,N10-1146_E06-1015_0,Evaluable,Comparison,Alta,Comparative experiments with the cited method as a strong baseline.,COMPLETO,1,1
+85,D10-1006_N10-1122_5,Evaluable,Comparison,Media,"Notes the cited work also used the same three aspects for evaluation, aligning evaluation setups.",COMPLETO,1,1
+86,S13-1035_P98-2127_0,Evaluable,Evidence,Alta,Supports the claim that syntactic contexts are well established for vector-space models.,COMPLETO,1,1
+87,N13-2011_E09-1059_0,Evaluable,Evidence,Alta,Supports the claim that sentiment-informed summarizers perform better per human evaluation.,COMPLETO,1,1
+88,N09-1024_P08-1084_0,Evaluable,Gap,Alta,Notes existing directed generative models are hard to extend with overlapping features.,COMPLETO,1,1
+89,D13-1185_N13-1104_3,Evaluable,Comparison,Alta,Contrasts the cited model's filtering requirement with the current model not needing it.,COMPLETO,1,1
+90,W10-2405_W09-3504_1,Evaluable,Improvement / Modification,Alta,DIRECTL+ is an extension of DIRECTL with additional features.,COMPLETO,1,1
+91,Q13-1025_P08-1108_1,Evaluable,Background,Alta,Reviews prior work combining parser outputs.,COMPLETO,1,1
+92,N10-1017_D08-1021_4,Evaluable,Comparison,Alta,Compares HTP with the cited state-of-the-art system.,COMPLETO,1,1
+93,D13-1047_W04-1013_1,Evaluable,Application,Alta,Uses the ROUGE-2 metric to compare sentences with abstracts.,COMPLETO,1,1
+94,D08-1033_P08-2007_0,Evaluable,Evidence,Alta,Supports the claim that computing alignment expectations is #P-hard.,COMPLETO,1,1
+95,D09-1008_N07-1008_1,Evaluable,Evidence,Alta,Footnote cites a reported result to support the value of test set adaptation.,COMPLETO,1,1
+96,N10-1131_P05-1008_0,Evaluable,Background,Media,Notes similar over-generate-and-select approaches adopted in NLG and parsing.,COMPLETO,1,1
+97,W03-1809_N01-1006_0,Evaluable,Application,Alta,Uses a POS tagger and chunker built with fnTBL 1.0.,COMPLETO,1,1
+98,D10-1080_D09-1116_0,Evaluable,Background,Alta,"Lists applications relying on accurate POS tags, including syntactic language modeling.",COMPLETO,1,1
+99,P03-1013_P97-1003_3,Evaluable,Evidence,Alta,Supports the claim that lexicalization improves parsing performance on the Penn Treebank.,COMPLETO,1,1
+100,D10-1078_P10-2040_1,Evaluable,Comparison,Alta,Induces 50 labels to allow comparison with the cited work.,COMPLETO,1,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,E09-1075_P94-1019_0,Evaluable,Application,Alta,Uses the Wu and Palmer measure directly in experiments.,COMPLETO,4,1
+2,W11-4111_P04-1053_1,Evaluable,Basis,Media,"The approach is inspired by the cited method, which provides the intellectual starting point.",COMPLETO,4,1
+3,E99-1022_P96-1033_0,Evaluable,Further Reading,Media,Refers the reader to the cited work for details of Magic compilation.,COMPLETO,4,1
+4,D13-1084_P12-3005_0,Evaluable,Application,Alta,langid.py is used as a baseline tool.,COMPLETO,4,1
+5,W03-0416_P98-2124_3,Evaluable,Comparison,Alta,Li's method is compared against the proposed method in experiments.,COMPLETO,4,1
+6,P08-1099_P07-1036_0,Evaluable,Comparison,Alta,Performance is compared with HMMs trained with soft constraints.,COMPLETO,4,1
+7,W13-3507_P06-1055_0,Evaluable,Background,Media,Lists prior work on L-PCFGs estimated with EM.,COMPLETO,4,1
+8,P11-1158_N09-1063_1,Evaluable,Application,Media,The CFG heuristics developed in the cited work are used as the basis of heuristic variants in the experiments.,COMPLETO,4,1
+9,D11-1059_P10-2040_0,Evaluable,Background,Alta,Enumerates related non-probabilistic clustering systems.,COMPLETO,4,1
+10,W08-0322_N07-2047_0,Evaluable,Basis,Alta,The paper follows and continues the cited work on kernel regression for SMT.,COMPLETO,4,1
+11,P13-1132_S12-1051_0,Evaluable,Gap,Media,"Notes that top systems in the cited task did not use sense information, motivating the proposed approach.",COMPLETO,4,1
+12,D10-1027_N10-1128_0,Evaluable,Background,Alta,Mentions multipass coarse-to-fine decoding as a popular idea in related work.,COMPLETO,4,1
+13,N10-1119_E06-1039_1,Evaluable,Background,Media,Cited as prior work in which sentence polarity ranking is a sub-task of extractive summarization.,COMPLETO,4,1
+14,P09-1002_N09-4006_0,Evaluable,Background,Media,Describes OntoNotes' use of a 90% ITA criterion as context for sense granularity.,COMPLETO,4,1
+15,N10-1132_N04-4027_0,Evaluable,Background,Alta,"Lists prior work on extractive summarization of conversations, including emails.",COMPLETO,4,1
+16,P13-1085_D11-1095_0,Evaluable,Background,Alta,"One of several works enumerated as approaches that identify VCs, SCFs and SPs.",COMPLETO,4,1
+17,N13-1055_P11-1092_2,Evaluable,Application,Alta,Uses the same dataset splits as the cited work.,COMPLETO,4,1
+18,W06-3119_N03-1017_1,Evaluable,Application,Alta,Uses the techniques and implementation of the cited work to obtain phrase translations.,COMPLETO,4,1
+19,N09-2069_W04-1102_1,Evaluable,Evidence,Alta,"Previous work is cited as showing that the first character of a word is likely to form part of the abbreviation, supporting the feature choice.",COMPLETO,4,1
+20,D10-1114_N10-1013_2,Evaluable,Background,Alta,Cited as prior work showing multi-prototype representations are a powerful approach.,COMPLETO,4,1
+21,P13-1145_D12-1062_1,Evaluable,Background,Alta,Lists works using ILP in NLP applications.,COMPLETO,4,1
+22,W09-0213_W03-1812_1,Evaluable,Background,Alta,Related work section on MWE classification.,COMPLETO,4,1
+23,W11-0412_W03-0407_0,Evaluable,Background,Media,Quotes the cited work's definition of self-training to explain the concept.,COMPLETO,4,1
+24,P07-1104_P06-1029_0,Evaluable,Background,Media,Describes a prior finding about BLasso in LM adaptation as related work.,COMPLETO,4,1
+25,W10-0609_D09-1065_0,Evaluable,Background,Media,Describes related work predicting EEG activation patterns from corpus statistics.,COMPLETO,4,1
+26,P12-1095_P06-1055_0,Evaluable,Application,Alta,Uses the Berkeley parser to parse source sentences.,COMPLETO,4,1
+27,D11-1004_P05-1012_0,Evaluable,Background,Alta,"Enumerates applications where structured prediction is used, including dependency parsing.",COMPLETO,4,1
+28,W12-6337_P06-1055_1,Evaluable,Background,Media,Describes the Berkeley parser and its improvement over the unlexicalized model.,COMPLETO,4,1
+29,N12-1072_W10-0214_2,Evaluable,Gap,Media,"Notes that the cited research does not model dialogue or author relations, contrasting with the present corpus.",COMPLETO,4,1
+30,P10-1112_N03-1017_0,Evaluable,Background,Alta,Cites phrase-based translation as an example of memorizing large substructures.,COMPLETO,4,1
+31,J92-3002_E89-1009_0,Evaluable,Further Reading,Media,Points to an intriguing proposal for treating inflected elements as specifications of lexemes.,COMPLETO,4,1
+32,D11-1079_N09-2001_1,Evaluable,Comparison,Alta,Contrasts the cited work's use of cohesion with the authors' own dependency orientation feature.,COMPLETO,4,1
+33,J10-3003_P01-1008_4,Evaluable,Background,Media,Cited as an example of the human-judgment evaluation approach for paraphrases.,COMPLETO,4,1
+34,W10-4151_W95-0107_0,Evaluable,Background,Media,"Historical account of chunking that mentions the B, I, O tag set.",COMPLETO,4,1
+35,D13-1161_D12-1035_0,Evaluable,Background,Alta,Cited as an example of natural language interfaces to databases such as DBpedia.,COMPLETO,4,1
+36,P10-1032_P07-2045_0,Evaluable,Application,Alta,Uses Moses with default settings as the phrase-based system.,COMPLETO,4,1
+37,P10-1100_P08-1090_1,Evaluable,Background,Alta,Reviews approaches to automatically learning event chains from corpora.,COMPLETO,4,1
+38,S10-1084_S07-1053_0,Evaluable,Evidence,Media,Cited as an example supporting the claim that WSD systems prefer shorter windows.,COMPLETO,4,1
+39,N13-1115_N12-1026_0,Evaluable,Background,Alta,Lists alternatives to MERT in the literature.,COMPLETO,4,1
+40,N09-1001_W08-1207_1,Evaluable,Evidence,Alta,Supports the claim that humans can reliably assign binary subjectivity labels to word senses.,COMPLETO,4,1
+41,P05-1066_P01-1067_0,Evaluable,Background,Alta,Lists methods incorporating syntax within SMT.,COMPLETO,4,1
+42,E09-2012_W07-1216_0,Evaluable,Background,Media,Cited to describe the Fips multilingual parser.,COMPLETO,4,1
+43,P11-2109_D09-1116_0,Evaluable,Application,Alta,"DT construction and probability estimation methods are based on the cited work, with the reader referred to it for details.",COMPLETO,4,1
+44,P13-3019_W12-3106_0,Evaluable,Comparison,Alta,Compares obtained correlation against the lowest reported by BlockErrCats.,COMPLETO,4,1
+45,D08-1020_N04-1025_1,Evaluable,Background,Alta,Enumerates prior work that used language models to predict grade-level suitability.,COMPLETO,4,1
+46,N13-1123_P09-1026_0,Evaluable,Comparison,Alta,Contrasts the cited unsupervised method relying on external knowledge with the authors' model.,COMPLETO,4,1
+47,J05-4004_W03-1004_0,Evaluable,Further Reading,Media,'See also' pointing to work on alignments for monolingual paraphrasing.,COMPLETO,4,1
+48,N13-1107_P04-1054_0,Evaluable,Background,Alta,Cites tree kernels as achieving state-of-the-art in traditional RE.,COMPLETO,4,1
+49,W07-0711_P03-1021_0,Evaluable,Application,Alta,MER training is used as is to train the weight vector.,COMPLETO,4,1
+50,W11-2843_W11-2838_1,Evaluable,Further Reading,Alta,Refers the reader to the overview for scoring metrics and rankings.,COMPLETO,4,1
+51,D11-1039_P06-2034_0,Evaluable,Background,Alta,Lists techniques applied to semantic parser induction.,COMPLETO,4,1
+52,W12-6216_W02-1018_0,Evaluable,Background,Alta,Cites phrase-based models as the state of the art in SMT.,COMPLETO,4,1
+53,P13-2022_W05-0308_0,Evaluable,Background,Media,Introduces an example sentence discussed in the cited work to motivate implicit sentiment.,COMPLETO,4,1
+54,N12-1054_P10-1110_0,Evaluable,Comparison,Alta,Compares the parser's speed with published results of other parsers.,COMPLETO,4,1
+55,W13-4031_D10-1084_0,Evaluable,Background,Alta,Lists works using textual features for DA classification.,COMPLETO,4,1
+56,W04-1701_W00-1606_0,Evaluable,Background,Media,Cited for morphological and syntactic analysis playing a crucial role in QA.,COMPLETO,4,1
+57,W12-4802_P04-1021_2,Evaluable,Basis,Media,The joint source channel model is introduced as the model on which the approach builds.,COMPLETO,4,1
+58,W91-0218_P86-1004_0,Evaluable,Evidence,Baja,"Cited to support that a filler can be hypothesized, preventing the absent definition from applying.",COMPLETO,4,1
+59,W12-1909_D10-1120_0,Evaluable,Application,Alta,Takes the universal rules of the cited work and uses them in a rule-based heuristic.,COMPLETO,4,1
+60,W96-0112_P91-1030_3,Evaluable,Background,Media,Remarks on the motivation of prior work to avoid data sparseness.,COMPLETO,4,1
+61,S12-1060_S12-1051_0,Evaluable,Background,Media,Identifies the shared task for which the systems were submitted.,COMPLETO,4,1
+62,E95-1014_A92-1018_1,Evaluable,Application,Alta,Uses the Xerox HMM tagger to tag the text.,COMPLETO,4,1
+63,P11-2079_N03-1017_0,Evaluable,Background,Alta,Cites phrase-based systems in the introduction as general context.,COMPLETO,4,1
+64,N13-1025_W11-2123_0,Evaluable,Application,Alta,Uses KenLM through the cdec decoder as a tool.,COMPLETO,4,1
+65,W06-2503_P98-2127_1,Evaluable,Application,Alta,Uses the distributional similarity measure to obtain nearest neighbours.,COMPLETO,4,1
+66,J13-4004_D08-1068_1,Evaluable,Basis,Baja,"Feature is likely inspired by or taken from the cited work, with the citation marking an example.",COMPLETO,4,1
+67,D11-1020_P05-1034_2,Evaluable,Background,Alta,Describes the cited work's treelet approach among related work.,COMPLETO,4,1
+68,P97-1004_A94-1019_0,Evaluable,Further Reading,Alta,'See' referring to the cited work for the case of syntactic variants in English.,COMPLETO,4,1
+69,W04-0819_P03-1002_1,Evaluable,Application,Alta,Uses Feature Set 2 as introduced in the cited work.,COMPLETO,4,1
+70,W11-3707_P06-1134_1,Evaluable,Application,Alta,Uses the annotated data from the cited work.,COMPLETO,4,1
+71,D10-1082_P07-1106_0,Evaluable,Comparison,Media,"Contrasts the model with the cited work, noting it is in line with it in not treating segmentation as labeling.",COMPLETO,4,1
+72,W06-2936_W04-3201_0,Evaluable,Application,Media,Adopts the terminology of the cited work for structured output prediction.,COMPLETO,4,1
+73,P06-2019_P05-1036_2,Evaluable,Background,Media,Describes the cited work's argument about the noisy-channel model.,COMPLETO,4,1
+74,P10-1085_P03-1021_0,Evaluable,Application,Alta,Uses MERT to tune feature weights.,COMPLETO,4,1
+75,W13-3201_P08-1028_0,Evaluable,Background,Alta,Lists proposed composition operations.,COMPLETO,4,1
+76,D12-1022_P10-1058_0,Evaluable,Background,Alta,Lists ILP-based models for summarization subtasks.,COMPLETO,4,1
+77,P13-1135_P12-3005_0,Evaluable,Application,Alta,Uses the langid.py tool for language identification.,COMPLETO,4,1
+78,W06-1668_W02-1002_0,Evaluable,Evidence,Alta,Supports the claim that discriminative models are superior with identical model structure.,COMPLETO,4,1
+79,P12-2031_N06-1039_0,Evaluable,Background,Alta,Cited as an application area (IE) of inference rules in the introduction.,COMPLETO,4,1
+80,D13-1155_W11-1607_0,Evaluable,Comparison,Alta,Notes that the cited work adopted a similar pruning framework and learning approach.,COMPLETO,4,1
+81,N13-1120_J06-3003_0,Evaluable,Identification of the Originator,Alta,Relational similarity is said to be pioneered by the cited work.,COMPLETO,4,1
+82,W02-1029_W02-0908_2,Evaluable,Evidence,Media,Cited findings support the claim that complex contexts yield superior performance.,COMPLETO,4,1
+83,N13-1056_P08-1088_0,Evaluable,Background,Alta,Related work listing monolingual signals for bilingual lexicon induction.,COMPLETO,4,1
+84,D09-1036_P02-1047_0,Evaluable,Background,Alta,Related work describing one of the first statistical works on implicit discourse relations.,COMPLETO,4,1
+85,S13-2007_S13-2019_2,Evaluable,Further Reading,Alta,Refers to system descriptions for details on the techniques.,COMPLETO,4,1
+86,W06-0103_W04-1102_3,Evaluable,Basis,Media,The HMM models of the cited work are reviewed and used as the framework for the lexicon construction.,COMPLETO,4,1
+87,J83-2002_J81-4003_1,Evaluable,Further Reading,Alta,Refers the reader to the cited work for the bracketing constraint.,COMPLETO,4,1
+88,W13-3003_E99-1008_1,Evaluable,Evidence,Media,"Cited algorithms support the claim of membership problem complexity, leading to the XP conclusion.",COMPLETO,4,1
+89,W98-1126_W97-0320_0,Evaluable,Background,Media,Summarizes prior findings on feature organization for event categorization that motivate the current paper.,COMPLETO,4,1
+90,S12-1086_N06-1058_0,Evaluable,Background,Media,Cited as an application area (MT evaluation) of sentence similarity in the introduction.,COMPLETO,4,1
+91,D09-1044_W04-1017_0,Evaluable,Comparison,Alta,The atomic-events approach is compared to the novel GRE approach.,COMPLETO,4,1
+92,D10-1066_P04-1015_0,Evaluable,Comparison,Media,"Reports that the cited perceptron algorithm gives no improvement over the original Roark model, as a results comparison.",COMPLETO,4,1
+93,W13-2018_W09-1401_0,Evaluable,Background,Alta,Mentions previous editions of the shared task.,COMPLETO,4,1
+94,N10-1060_P06-1043_0,Evaluable,Gap,Media,"Reports prior results on parser degradation, motivating investigation on even more distant text.",COMPLETO,4,1
+95,W09-3802_N04-1014_0,Evaluable,Further Reading,Alta,Refers the reader to the cited work for common definitions.,COMPLETO,4,1
+96,D13-1128_P12-1038_0,Evaluable,Background,Alta,Lists approaches to image description generation.,COMPLETO,4,1
+97,N09-2014_E09-1085_0,Evaluable,Background,Alta,Cites work on incremental dialogue processing showing improvements.,COMPLETO,4,1
+98,W08-0403_J07-2003_2,Evaluable,Background,Media,"Describes how Chiang's hierarchical model scores rules, as context for the stated goal.",COMPLETO,4,1
+99,P10-1061_D08-1014_1,Evaluable,Evidence,Media,Supports the claim that corpus translation is a viable approach requiring no manual labor.,COMPLETO,4,1
+100,P11-2044_N10-1069_0,Evaluable,Application,Alta,Uses iterative parameter mixing from the cited work to parallelize training.,COMPLETO,4,1
