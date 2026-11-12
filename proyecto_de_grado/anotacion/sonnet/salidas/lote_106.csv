@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P11-1056_P05-1053_1,Evaluable,Background,Media,"Lists prior RE work on ACE that assumed pre-annotated mentions, describing the state of the area.",COMPLETO,106,1
+2,W10-1602_W09-1309_0,Evaluable,Basis,Alta,The authors state they build upon previous normalization work.,COMPLETO,106,1
+3,J00-1003_W98-1302_0,Evaluable,Further Reading,Alta,'See' directs the reader to a variant approximation for details not covered.,COMPLETO,106,1
+4,W12-3307_P01-1064_0,Evaluable,Background,Media,Describes prior work introducing a probabilistic DP approach in a literature review.,COMPLETO,106,1
+5,P10-1024_P91-1030_0,Evaluable,Background,Media,Reviews a prior work's result related to the core-adjunct task in the related-work section.,COMPLETO,106,1
+6,N12-1046_D11-1080_0,Evaluable,Comparison,Media,Compares reported BLEU scores of other systems against the authors' baseline.,COMPLETO,106,1
+7,P13-1001_P07-2045_1,Evaluable,Comparison,Alta,Table compares the proposed system with Moses in BLEU and TER.,COMPLETO,106,1
+8,D13-1001_D11-1142_0,Evaluable,Application,Alta,ReVerb is used as-is to extract SPO triples.,COMPLETO,106,1
+9,W03-2408_W97-0201_1,Evaluable,Evidence,Alta,Prior work supports the finding that more annotated data brings larger improvements.,COMPLETO,106,1
+10,E09-1053_P07-1021_2,Evaluable,Evidence,Media,"Cited to support the claim that TAG/LCRFS dependency languages are regular, used in the argument.",COMPLETO,106,1
+11,W04-3009_W02-1025_1,Evaluable,Evidence,Alta,The cited finding about the importance of domain-describing language models justifies the design decision.,COMPLETO,106,1
+12,P12-2001_P04-1013_0,Evaluable,Background,Media,Lists previous discriminative constituent parsing models as first-order.,COMPLETO,106,1
+13,W11-0902_E99-1001_0,Evaluable,Evidence,Alta,Supports the claim that gazetteers are important.,COMPLETO,106,1
+14,D09-1022_N09-2005_0,Evaluable,Further Reading,Media,Points to where a comparison of the model in decoding and reranking can be found.,COMPLETO,106,1
+15,J13-4004_N07-1011_1,Evaluable,Application,Alta,Uses the test partition established in previous studies as an evaluation dataset.,COMPLETO,106,1
+16,W12-4504_P11-1082_0,Evaluable,Basis,Media,Authors' own prior work on lexical features underpins the current system design.,COMPLETO,106,1
+17,D09-1021_P05-1012_1,Evaluable,Basis,Media,Proposed models are analogous to and motivated by dependency parsing models in the cited work.,COMPLETO,106,1
+18,N09-1027_P03-1021_0,Evaluable,Application,Alta,MERT is used directly to train feature weights.,COMPLETO,106,1
+19,W07-2216_P05-1012_1,Evaluable,Background,Alta,Related-work listing of data-driven projective parsing work.,COMPLETO,106,1
+20,W97-0903_A94-1002_1,Evaluable,Background,Alta,Background section introducing PLANDoc system.,COMPLETO,106,1
+21,D10-1048_D08-1031_1,Evaluable,Basis,Alta,The work explicitly builds upon the cited observation and extends it.,COMPLETO,106,1
+22,P10-2003_N04-4026_0,Evaluable,Background,Alta,Reviews prior lexicalized reordering models.,COMPLETO,106,1
+23,N13-1017_N09-1041_0,Evaluable,Basis,Media,Follows the cited aspect-specific summarization use of topic models in the same way for f-LDA.,COMPLETO,106,1
+24,D13-1042_D12-1082_0,Evaluable,Background,Media,Describes prior work's approach in related work.,COMPLETO,106,1
+25,W13-0808_W10-1761_0,Evaluable,Background,Alta,Introductory overview of prominent SMT paradigms.,COMPLETO,106,1
+26,D13-1026_P03-1021_0,Evaluable,Application,Alta,MERT used to optimize feature weights.,COMPLETO,106,1
+27,W05-0601_W97-0209_1,Evaluable,Further Reading,Media,Points to literature with more accurate measures not developed here.,COMPLETO,106,1
+28,E12-1019_J09-4007_0,Evaluable,Evidence,Media,Supports the claim that kernels model local sequences and patterns naturally.,COMPLETO,106,1
+29,S13-1044_W08-0336_0,Evaluable,Application,Alta,Uses the Stanford Chinese Segmenter as a tool.,COMPLETO,106,1
+30,D13-1156_W09-1802_0,Evaluable,Background,Alta,Reviews prior concept-based ILP summarization work.,COMPLETO,106,1
+31,P10-1026_P97-1008_0,Evaluable,Evidence,Media,Supports the statement that JS divergence is commonly used to compute similarities.,COMPLETO,106,1
+32,E09-3004_W04-3205_0,Evaluable,Further Reading,Media,'see' refers the reader to further sources on hyponymy/meronymy patterns.,COMPLETO,106,1
+33,W06-1608_N03-1017_2,Evaluable,Comparison,Alta,Compares treelet results to a phrasal SMT system.,COMPLETO,106,1
+34,W07-2208_P05-1011_8,Evaluable,Comparison,Alta,Figure compares the authors' model with the cited model in F-score vs. time.,COMPLETO,106,1
+35,N12-1009_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser as is.,COMPLETO,106,1
+36,N09-1002_E06-1026_1,Evaluable,Background,Alta,Related-work overview of methods for identifying subjective words.,COMPLETO,106,1
+37,W06-0206_P02-1030_0,Evaluable,Background,Media,Reviews recent replication work on thesaurus extraction.,COMPLETO,106,1
+38,E12-1083_P03-1021_0,Evaluable,Application,Alta,MERT is used for tuning meta-parameters.,COMPLETO,106,1
+39,E09-1088_P05-1010_0,Evaluable,Background,Media,"Introductory statement on benefits of latent variable models, general context.",COMPLETO,106,1
+40,W09-3829_P08-1068_0,Evaluable,Background,Alta,Lists semi-supervised parsing approaches as context before the paper's contribution.,COMPLETO,106,1
+41,P06-1044_P03-1009_2,Evaluable,Comparison,Alta,Compares own results with the cited work's reported results.,COMPLETO,106,1
+42,D10-1061_P04-1075_0,Evaluable,Background,Alta,Describes the traditional dominance of unsupervised selection strategies in the literature.,COMPLETO,106,1
+43,W09-0304_E95-1009_1,Evaluable,Identification of the Originator,Alta,Says the Levenshtein algorithm was first introduced by the cited work.,COMPLETO,106,1
+44,W10-0731_W97-0201_0,Evaluable,Evidence,Alta,Cited estimate supports the claim about the annotation bottleneck.,COMPLETO,106,1
+45,P06-2066_E06-1010_0,Evaluable,Evidence,Alta,Supports the claim that projectivity cannot be maintained for real-world data.,COMPLETO,106,1
+46,W13-1736_D11-1148_0,Evaluable,Background,Media,Describes prior work extending earlier results and its findings.,COMPLETO,106,1
+47,P08-1003_W06-1656_0,Evaluable,Background,Media,Reports prior experimental findings on NER in weakly supervised extraction.,COMPLETO,106,1
+48,P12-1039_D10-1049_4,Evaluable,Comparison,Alta,Explicitly compares the authors' system against the cited discriminative system.,COMPLETO,106,1
+49,W13-1204_A97-1042_0,Evaluable,Evidence,Media,Cited findings support the claim that important information appears at the start of documents.,COMPLETO,106,1
+50,D12-1061_D08-1039_0,Evaluable,Basis,Media,Triplet model originally proposed for SMT is adopted for query expansion.,COMPLETO,106,1
+51,P10-1112_N07-1051_1,Evaluable,Application,Media,Notation/formulas adapted from the cited work.,COMPLETO,106,1
+52,P04-1084_P04-1084_0,Evaluable,Further Reading,Alta,Refers to the cited work for more details omitted for lack of space.,COMPLETO,106,1
+53,D10-1004_P08-1109_0,Evaluable,Background,Media,Introductory citation of prior work showing feature-rich models help parsing.,COMPLETO,106,1
+54,J05-4002_P98-2127_1,Evaluable,Background,Alta,Contrasts prior work using single versus multiple grammatical relations as context.,COMPLETO,106,1
+55,D12-1128_P06-1013_1,Evaluable,Evidence,Media,"Supports the claim that ensembles improve unsupervised WSD, justifying the method choice.",COMPLETO,106,1
+56,D11-1146_D10-1036_0,Evaluable,Comparison,Alta,Contrasts social tag suggestion with keyphrase extraction.,COMPLETO,106,1
+57,W09-1704_P05-1074_0,Evaluable,Background,Alta,Describes prior paraphrase extraction work in related work.,COMPLETO,106,1
+58,N13-1052_P05-1010_0,Evaluable,Further Reading,Alta,'See ... for more details' about the binarization scheme.,COMPLETO,106,1
+59,W05-1001_P02-1031_3,Evaluable,Comparison,Alta,Compares the authors' results with those reported in the cited work.,COMPLETO,106,1
+60,D11-1117_P04-1062_0,Evaluable,Background,Media,Describes prior use of DA for POS disambiguation and its findings.,COMPLETO,106,1
+61,E99-1017_P96-1015_0,Evaluable,Background,Media,Lists prior improvements and extensions to the compilation algorithm.,COMPLETO,106,1
+62,P13-1116_P91-1003_0,Evaluable,Background,Alta,Describes earlier approaches to implicit argument resolution.,COMPLETO,106,1
+63,P13-1147_P05-1053_1,Evaluable,Comparison,Alta,"Compares own system with the cited one, noting feature set differences.",COMPLETO,106,1
+64,P10-1101_W09-1112_0,Evaluable,Background,Media,Summarizes earlier experimental findings on structural features.,COMPLETO,106,1
+65,W05-1509_P03-1054_0,Evaluable,Evidence,Media,Cited accuracy drop supports the claim that richer labels decrease parsing performance.,COMPLETO,106,1
+66,W04-3213_P98-1013_0,Evaluable,Background,Media,"Mentions FrameNet as a resource on which supervised SRL relies, as a limitation of prior approaches.",COMPLETO,106,1
+67,P98-2204_P87-1022_0,Evaluable,Comparison,Alta,Compares own algorithm's results with the centering algorithm.,COMPLETO,106,1
+68,W13-2713_N12-1047_0,Evaluable,Application,Alta,Uses batch MIRA tuning as is.,COMPLETO,106,1
+69,P13-1031_N12-1026_0,Evaluable,Comparison,Alta,"Compares the cited work's approach (SGD, losses) with the authors' own.",COMPLETO,106,1
+70,D12-1077_P06-1096_0,Evaluable,Basis,Alta,Learning algorithm is motivated by the cited discriminative training work.,COMPLETO,106,1
+71,W08-2101_W05-0623_1,Evaluable,Evidence,Alta,Results are said to confirm the cited observation.,COMPLETO,106,1
+72,P12-2056_P07-1039_2,Evaluable,Comparison,Alta,Authors compare their approaches to the cited packed word method.,COMPLETO,106,1
+73,P13-2067_W07-0718_0,Evaluable,Background,Media,Lists works showing ULC correlates with human judgement.,COMPLETO,106,1
+74,P13-2083_P07-1028_0,Evaluable,Background,Alta,Lists applications of distributional semantic models.,COMPLETO,106,1
+75,W11-1709_W08-0616_0,Evaluable,Evidence,Media,Cited works support the stated benefit of analyzing suicide notes.,COMPLETO,106,1
+76,W13-2417_W07-1710_0,Evaluable,Evidence,Media,Supports the claim that derivational subnets reflect cognitive structures.,COMPLETO,106,1
+77,P13-1079_P12-1018_1,Evaluable,Application,Media,Inference uses the cited beam-search block sampling method.,COMPLETO,106,1
+78,S13-1045_W10-2903_0,Evaluable,Background,Alta,Reviews prior approaches using feedback from the world instead of logical forms.,COMPLETO,106,1
+79,N13-1112_P06-1095_0,Evaluable,Evidence,Alta,Cited work shows rule-based approaches underperform learning-based ones.,COMPLETO,106,1
+80,P12-1020_P08-1016_1,Evaluable,Evidence,Alta,Supports the claim that phonetic variation reduces dpseg performance.,COMPLETO,106,1
+81,D11-1081_J07-2003_1,Evaluable,Evidence,Alta,Supports the constraint choice by noting heuristic extraction yields tight consistent phrases.,COMPLETO,106,1
+82,D10-1054_W06-3108_0,Evaluable,Background,Alta,Related-work description of prior phrase reordering work.,COMPLETO,106,1
+83,D09-1087_P06-1055_1,Evaluable,Application,Media,Describes the Berkeley parser used as the parsing model.,COMPLETO,106,1
+84,P99-1067_J93-1006_0,Evaluable,Background,Media,Summarizes studies reporting high alignment accuracy.,COMPLETO,106,1
+85,N13-1010_N07-1051_0,Evaluable,Comparison,Alta,Compares F-score of the model with the cited parser.,COMPLETO,106,1
+86,W11-1905_P06-1005_0,Evaluable,Application,Alta,Uses the number and gender data from the cited work directly.,COMPLETO,106,1
+87,P02-1017_W01-0714_2,Evaluable,Comparison,Alta,Contrasts the stability of the cited conditional model with the present model.,COMPLETO,106,1
+88,N09-1026_W06-1600_0,Evaluable,Background,Alta,Lists prior syntax-based MT models using synchronous tree fragments.,COMPLETO,106,1
+89,W09-0431_P06-1067_0,Evaluable,Background,Alta,Previous work listing of Arabic-to-English translation.,COMPLETO,106,1
+90,P12-1048_P06-2124_1,Evaluable,Background,Alta,Describes the cited topic-model work in related work.,COMPLETO,106,1
+91,P05-1033_P03-1021_0,Evaluable,Application,Alta,Uses Koehn's MERT implementation to tune weights.,COMPLETO,106,1
+92,W13-0102_N10-1012_6,Evaluable,Comparison,Alta,Authors' correlation results are compared with and confirm the cited findings.,COMPLETO,106,1
+93,P09-1103_W06-1600_0,Evaluable,Gap,Media,"Notes prior rules are strictly derived from contiguous equivalences, a limitation motivating the work.",COMPLETO,106,1
+94,W10-2210_N09-1024_0,Evaluable,Background,Alta,Cites extensively studied segmentation methods as context.,COMPLETO,106,1
+95,N12-1047_P07-2045_0,Evaluable,Application,Media,Uses a decoder similar to Moses for experiments.,COMPLETO,106,1
+96,E12-1085_N09-4006_0,Evaluable,Background,Media,Gives OntoNotes as an example of a project using percent agreement.,COMPLETO,106,1
+97,E12-1017_W11-0902_0,Evaluable,Comparison,Media,Likens the NER setting to the cited work concerning topically distinct domain.,COMPLETO,106,1
+98,W13-2702_P03-1040_0,Evaluable,Background,Alta,"Lists prior solutions to data sparsity, including compound treatment.",COMPLETO,106,1
+99,P13-1096_P11-1015_2,Evaluable,Evidence,Alta,Supports the claim that these features with SVM yield state-of-the-art performance.,COMPLETO,106,1
+100,D13-1140_D12-1107_0,Evaluable,Evidence,Media,Supports the claim that lower-order info is incorrect in Kneser-Ney LMs.,COMPLETO,106,1

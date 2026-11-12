@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W11-0112_P88-1012_0,Evaluable,Further Reading,Media,"'See, for example' redirects the reader to work on integrating weighted/probabilistic info with logic-based representations.",COMPLETO,123,1
+2,P13-1089_D10-1125_0,Evaluable,Background,Alta,Enumerates alternative inference approaches in the literature.,COMPLETO,123,1
+3,N12-1044_W10-2405_2,Evaluable,Application,Alta,"DIRECTL+ is run with the feature set described by the cited work, used as is.",COMPLETO,123,1
+4,W12-3705_J04-3002_0,Evaluable,Background,Media,Cites subjectivity analysis studies that commonly use these standard features.,COMPLETO,123,1
+5,N10-1076_P06-1073_4,Evaluable,Improvement / Modification,Alta,Features are based on the cited work with a few new additions.,COMPLETO,123,1
+6,D13-1026_P09-1067_0,Evaluable,Application,Alta,Uses the inside-outside algorithm as cited to compute feature expectations.,COMPLETO,123,1
+7,D13-1201_P03-1021_4,Evaluable,Identification of the Originator,Alta,'First advocated' the use of Powell's method for MERT.,COMPLETO,123,1
+8,P10-1112_P09-2012_1,Evaluable,Basis,Media,"The work builds on the PCFG-reduction of DOP from the cited work, simplified.",COMPLETO,123,1
+9,D12-1129_N07-1044_0,Evaluable,Background,Alta,Lists various approaches to domain-specific WSD.,COMPLETO,123,1
+10,P10-2039_P09-1057_1,Evaluable,Evidence,Alta,Supports the design decision that minimizing tag n-gram parameters matters most.,COMPLETO,123,1
+11,D13-1031_N06-2049_1,Evaluable,Comparison,Alta,Result table compares the authors' method with the cited system.,COMPLETO,123,1
+12,W13-1606_P11-1032_2,Evaluable,Application,Alta,Uses the dataset assembled by the cited work for evaluation.,COMPLETO,123,1
+13,D11-1142_P10-1013_3,Evaluable,Evidence,Alta,Supports the claim that dependency paths boost recall.,COMPLETO,123,1
+14,D09-1003_W06-1600_0,Evaluable,Background,Media,Cites MT as an application where syntactic analysis proved useful.,COMPLETO,123,1
+15,W98-1124_A97-1042_0,Evaluable,Background,Alta,Describes prior approaches on sentence position in summarization.,COMPLETO,123,1
+16,P13-2047_W11-2103_0,Evaluable,Comparison,Media,Agreement results are said to be in line with those of similar evaluations.,COMPLETO,123,1
+17,P11-1092_P10-2065_1,Evaluable,Background,Media,Describes a prior system that extends another with parse features.,COMPLETO,123,1
+18,J05-4003_W02-2018_0,Evaluable,Further Reading,Alta,'See [X] for a comparison' directs readers to additional details.,COMPLETO,123,1
+19,W03-1002_P00-1056_0,Evaluable,Application,Alta,Uses Giza++ as a tool to generate alignments.,COMPLETO,123,1
+20,N13-1070_W10-2910_0,Evaluable,Background,Alta,Lists applications where dependency parsing has proven useful.,COMPLETO,123,1
+21,W09-3302_E09-1070_3,Evaluable,Background,Media,Reports prior findings about NER trained on automatically annotated Wikipedia.,COMPLETO,123,1
+22,W11-1902_D08-1031_0,Evaluable,Background,Media,Part of a list of previous coreference work using semantic databases.,COMPLETO,123,1
+23,W13-1018_W03-1707_0,Evaluable,Background,Alta,Describes PropBank corpora developed for several languages.,COMPLETO,123,1
+24,D08-1109_P91-1034_0,Evaluable,Background,Alta,Reviews prior work on cross-lingual WSD.,COMPLETO,123,1
+25,W12-1806_E09-1085_0,Evaluable,Background,Alta,Lists active research areas with example works.,COMPLETO,123,1
+26,W11-1005_P08-1023_1,Evaluable,Application,Media,Hyperedge pruning is done similarly to the cited work.,COMPLETO,123,1
+27,P11-1104_P08-1114_0,Evaluable,Gap,Media,"Lists structure-based reordering methods, then points out they do not exploit word correlations.",COMPLETO,123,1
+28,D10-1025_D09-1092_2,Evaluable,Comparison,Alta,Explicitly contrasts JPLSA with the polylingual topic model.,COMPLETO,123,1
+29,W12-0105_W10-0721_0,Evaluable,Background,Alta,Describes an existing image-description dataset among related datasets.,COMPLETO,123,1
+30,N12-1078_W10-0731_0,Evaluable,Background,Alta,Lists prior uses of MTurk for lexical semantic resources.,COMPLETO,123,1
+31,P09-1108_N07-1052_0,Evaluable,Background,Alta,Notes prior successful applications of A* parsing.,COMPLETO,123,1
+32,P12-2007_W06-3119_0,Evaluable,Background,Alta,Describes prior approaches to refining the non-terminal category.,COMPLETO,123,1
+33,D09-1042_W05-1510_0,Evaluable,Background,Alta,Lists earlier chart generators for HPSG.,COMPLETO,123,1
+34,D11-1141_P11-1038_0,Evaluable,Background,Alta,Related work on lexical normalization of tweets.,COMPLETO,123,1
+35,D12-1075_P09-1057_0,Evaluable,Gap,Alta,Points out unrealistic assumptions in prior work on tag dictionaries.,COMPLETO,123,1
+36,D10-1098_W02-1041_0,Evaluable,Background,Alta,Lists prior work on NER over informal text.,COMPLETO,123,1
+37,W11-2146_N10-1064_0,Evaluable,Evidence,Alta,Supports the claim that misspellings affect SMT at several levels.,COMPLETO,123,1
+38,W04-3211_P00-1065_2,Evaluable,Comparison,Alta,Compares the result against the cited Bayesian algorithm.,COMPLETO,123,1
+39,W02-1013_P99-1068_1,Evaluable,Comparison,Alta,Shows the algorithm performs competitively with the cited approach.,COMPLETO,123,1
+40,D13-1093_P04-1015_0,Evaluable,Background,Media,Cites prior work showing beam search with perceptron is powerful.,COMPLETO,123,1
+41,W12-3709_P07-2045_1,Evaluable,Application,Alta,Uses the Moses toolkit as is.,COMPLETO,123,1
+42,W10-3812_P03-1021_1,Evaluable,Application,Alta,Uses GIZA++ for word alignment.,COMPLETO,123,1
+43,P06-1002_P04-1064_0,Evaluable,Evidence,Alta,Supports the claim that AER and BLEU do not correlate well.,COMPLETO,123,1
+44,W12-3104_W11-2105_0,Evaluable,Identification of the Originator,Media,AMBER was 'first described' in the cited work.,COMPLETO,123,1
+45,J10-3005_A00-1043_1,Evaluable,Comparison,Alta,'Unlike' contrasts the approach with the cited work.,COMPLETO,123,1
+46,N13-1035_W07-0717_0,Evaluable,Background,Alta,"Describes prior approach to interpolation weights, noted as unsuccessful.",COMPLETO,123,1
+47,D09-1069_P07-1016_1,Evaluable,Evidence,Alta,Supports the claim about Chinese transliteration reflecting pronunciation and meaning.,COMPLETO,123,1
+48,P10-1033_J07-2003_2,Evaluable,Application,Alta,Uses their implementation of the hierarchical phrase-based system.,COMPLETO,123,1
+49,P10-1148_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford dependency parser as a tool.,COMPLETO,123,1
+50,P13-1079_P07-2045_0,Evaluable,Application,Alta,Employs Moses toolkit for the experiments.,COMPLETO,123,1
+51,N10-1035_W09-3808_0,Evaluable,Comparison,Alta,Contrasts their general algorithm with parsers dependent on canonical form.,COMPLETO,123,1
+52,D13-1002_D11-1026_1,Evaluable,Evidence,Alta,Supports an explanation of the findings about the segmenter's default settings.,COMPLETO,123,1
+53,P02-1055_W00-0726_1,Evaluable,Further Reading,Alta,Refers to the shared task overview for details.,COMPLETO,123,1
+54,W09-0603_P98-1116_0,Evaluable,Background,Alta,Historical account of trainable NLG following Knight and Langkilde.,COMPLETO,123,1
+55,N09-1034_N06-1041_0,Evaluable,Background,Alta,Reviews work using constraints in unsupervised learning.,COMPLETO,123,1
+56,P05-1072_W04-3212_1,Evaluable,Evidence,Alta,Supports the claim that the Path feature is sparse and hard to generalize.,COMPLETO,123,1
+57,W12-0102_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ with default settings.,COMPLETO,123,1
+58,D09-1125_P05-3026_0,Evaluable,Comparison,Alta,"Compares their method with J&L, noting similarities.",COMPLETO,123,1
+59,N10-1143_W01-0514_3,Evaluable,Comparison,Alta,Compares BIN result with the baseline reported in the cited work.,COMPLETO,123,1
+60,E95-1025_J91-4002_0,Evaluable,Further Reading,Alta,Footnote refers to complexity analysis in the cited work.,COMPLETO,123,1
+61,W12-2108_P11-1122_0,Evaluable,Background,Alta,Lists prior uses of AMT for NLP annotation.,COMPLETO,123,1
+62,D13-1140_P03-1021_0,Evaluable,Application,Alta,Uses MERT to train models.,COMPLETO,123,1
+63,N07-1007_P06-1132_1,Evaluable,Basis,Alta,Task definition follows the cited work.,COMPLETO,123,1
+64,W12-3119_P07-2045_0,Evaluable,Application,Alta,Trains a Moses decoder with default parameters.,COMPLETO,123,1
+65,W13-3008_W02-0603_0,Evaluable,Further Reading,Media,Points to well-explored MDL segmentation literature without developing it.,COMPLETO,123,1
+66,N10-1002_W07-1217_0,Evaluable,Comparison,Media,Cites related work and then compares the proposed technique as more general.,COMPLETO,123,1
+67,Q13-1016_P11-1060_0,Evaluable,Gap,Media,"Cited approaches assume a logical representation of the environment, followed by drawbacks of existing work.",COMPLETO,123,1
+68,W11-2917_P02-1016_1,Evaluable,Application,Media,"Baseline uses methods from cited works, adapted to their framework.",COMPLETO,123,1
+69,D10-1014_W06-3119_0,Evaluable,Comparison,Alta,'Unlike previous studies' contrasts latent categories with explicit treebank categories.,COMPLETO,123,1
+70,D10-1091_W09-0437_3,Evaluable,Comparison,Alta,Notes similar conclusions were drawn by the cited work.,COMPLETO,123,1
+71,D13-1080_D11-1132_0,Evaluable,Gap,Media,"Prior work is described, then noted as not using background KBs.",COMPLETO,123,1
+72,N12-1020_W12-1011_1,Evaluable,Further Reading,Alta,Refers the interested reader for a detailed analysis.,COMPLETO,123,1
+73,P06-1067_P96-1021_0,Evaluable,Identification of the Originator,Media,Reordering restrictions 'were introduced by' the cited works.,COMPLETO,123,1
+74,P13-1104_E06-1011_0,Evaluable,Comparison,Alta,Results table compares the cited parser's accuracy with others.,COMPLETO,123,1
+75,D12-1039_P11-1037_1,Evaluable,Gap,Alta,"Notes limitation: these approaches do not distinguish OOV tokens, limiting applicability.",COMPLETO,123,1
+76,P13-1020_P11-1049_7,Evaluable,Comparison,Alta,Compares runtimes with those reported by the cited work.,COMPLETO,123,1
+77,D11-1001_P11-1163_2,Evaluable,Application,Media,Stanford predictions from the cited work are used as input features in the compared system.,COMPLETO,123,1
+78,D09-1122_W03-1011_1,Evaluable,Basis,Media,"Describes the framework proposed by the cited work, which the paper builds on.",COMPLETO,123,1
+79,W07-0733_P07-2045_0,Evaluable,Application,Alta,The submission uses the Moses MT system.,COMPLETO,123,1
+80,N13-1044_N12-1006_0,Evaluable,Comparison,Alta,Contrasts their approach targeting DA directly with combining DA and MSA data.,COMPLETO,123,1
+81,J10-4006_W02-0908_1,Evaluable,Background,Alta,Part of a long list of works using distributional triples.,COMPLETO,123,1
+82,W01-0717_W99-0611_0,Evaluable,Comparison,Alta,"Compares the cited system with the presented one, noting similarities and differences.",COMPLETO,123,1
+83,N13-1070_P09-2079_1,Evaluable,Application,Media,Adds dependency triplets to bag-of-words in a way similar to the cited work.,COMPLETO,123,1
+84,D09-1067_P08-1050_3,Evaluable,Comparison,Media,Describes the best prior supervised result on T1 for comparison with their results.,COMPLETO,123,1
+85,P11-3007_N03-1017_0,Evaluable,Identification of the Originator,Alta,Credits the advent of PB-SMT to the cited works.,COMPLETO,123,1
+86,W11-0140_W09-3726_0,Evaluable,Comparison,Alta,Says their recursive interpretation function is similar to the cited work.,COMPLETO,123,1
+87,P13-1126_W04-3250_0,Evaluable,Application,Alta,Uses the bootstrap-resampling test for significance testing as in the cited work.,COMPLETO,123,1
+88,W05-1011_N01-1013_0,Evaluable,Background,Alta,Lists NLP problems where lexical semantic resources are used.,COMPLETO,123,1
+89,W05-1515_P04-1015_0,Evaluable,Evidence,Alta,Cites a reported improvement to support the point that punctuation features are useful.,COMPLETO,123,1
+90,W12-1517_W94-0333_0,Evaluable,Background,Alta,Lists earlier translation-to-sign-language works using lexicalized grammars.,COMPLETO,123,1
+91,D09-1119_P03-1054_0,Evaluable,Background,Alta,Describes the prior work's contribution to unlexicalized parsing.,COMPLETO,123,1
+92,N09-2062_N03-1028_0,Evaluable,Comparison,Alta,Results table compares the cited system with the authors' models.,COMPLETO,123,1
+93,D09-1133_N06-1055_0,Evaluable,Background,Alta,"Reviews prior work on Chinese SRL, mentioning the NomBank resource.",COMPLETO,123,1
+94,W11-0328_D09-1127_1,Evaluable,Comparison,Alta,Table compares the cited deterministic parser's accuracy with the authors' results.,COMPLETO,123,1
+95,S12-1027_D09-1046_2,Evaluable,Background,Media,Describes an alternate measure proposed by the cited work.,COMPLETO,123,1
+96,W13-2909_D08-1020_1,Evaluable,Evidence,Alta,Prior work confirmed by the preliminary experiment that document length predicts readability.,COMPLETO,123,1
+97,P13-1112_D11-1148_0,Evaluable,Background,Alta,Lists researchers working on native language identification.,COMPLETO,123,1
+98,J99-4003_P94-1041_1,Evaluable,Evidence,Alta,"Supports the claim that pattern matching is too limited, via corpus statistics.",COMPLETO,123,1
+99,P12-1087_P09-1113_2,Evaluable,Identification of the Originator,Alta,Credits the cited work with coining the name 'distant supervision'.,COMPLETO,123,1
+100,W12-1603_D11-1139_0,Evaluable,Background,Alta,Lists studies showing benefits of modeling sparsity.,COMPLETO,123,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,S10-1075_P09-1046_0,Evaluable,Background,Media,Cita citada como ejemplo de trabajos previos que logran mejoras marginales.,COMPLETO,115,1
+2,E12-1032_N04-4001_0,Evaluable,Comparison,Media,Observación propia descrita como consistente con el hallazgo del trabajo citado.,COMPLETO,115,1
+3,N13-1055_P11-4017_0,Evaluable,Application,Alta,Usa la Java Wikipedia Library tal cual para extraer texto de revisiones.,COMPLETO,115,1
+4,W11-1827_W09-1418_0,Evaluable,Further Reading,Media,Remite al trabajo citado para detalles de la lista de disparadores (see ... for details).,COMPLETO,115,1
+5,W13-2505_P07-2045_1,Evaluable,Application,Alta,Usa Moses con opciones por defecto.,COMPLETO,115,1
+6,N07-1055_P06-2103_1,Evaluable,Gap,Media,Trabajo previo prometedor pero con limitación (poder explicativo) que motiva el enfoque actual.,COMPLETO,115,1
+7,N10-1014_D09-1136_0,Evaluable,Background,Media,Menciona soluciones posibles en la literatura que no se adoptan.,COMPLETO,115,1
+8,W13-1109_P07-2045_0,Evaluable,Application,Alta,Experimentos realizados con la herramienta EMS de Moses.,COMPLETO,115,1
+9,W13-5411_J91-4003_0,Evaluable,Identification of the Originator,Media,Atribuye el concepto de dot type al Generative Lexicon.,COMPLETO,115,1
+10,D13-1167_N13-1120_0,Evaluable,Background,Alta,Lista de trabajos sobre aplicaciones de similitud relacional.,COMPLETO,115,1
+11,J05-1005_P91-1030_2,Evaluable,Background,Alta,Enumeración de trabajos que evalúan solo secuencias vp-np-pp.,COMPLETO,115,1
+12,W10-4213_P06-4020_1,Evaluable,Application,Alta,Usa el toolkit RASP para obtener relaciones gramaticales.,COMPLETO,115,1
+13,W10-2608_W06-1615_1,Evaluable,Application,Media,Usa el conjunto de datos introducido por la obra citada en los experimentos.,COMPLETO,115,1
+14,D13-1064_P05-1074_0,Evaluable,Background,Alta,Describe trabajos recientes sobre paráfrasis y traducción.,COMPLETO,115,1
+15,D12-1062_D08-1073_1,Evaluable,Comparison,Alta,Contrasta la representación en línea de tiempo con los grafos temporales previos.,COMPLETO,115,1
+16,Q13-1031_P07-2010_0,Evaluable,Evidence,Media,Respalda la afirmación de que el reconocimiento de metáforas importa para minería de afecto.,COMPLETO,115,1
+17,W13-3513_P08-1028_2,Evaluable,Background,Media,Describe modelos simples de composición como extremo del espectro de soluciones.,COMPLETO,115,1
+18,W04-3227_N03-1017_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la traducción basada en frases es ventajosa.,COMPLETO,115,1
+19,W11-2843_N10-1018_2,Evaluable,Application,Media,Calcula exactitud y línea base como se describe en el trabajo citado.,COMPLETO,115,1
+20,E06-1003_P98-2127_1,Evaluable,Comparison,Alta,Contrasta el método propio con enfoques de similitud por pares.,COMPLETO,115,1
+21,D11-1137_P05-1012_2,Evaluable,Comparison,Alta,Aparece en tabla comparando resultados con otros sistemas.,COMPLETO,115,1
+22,J13-4004_D08-1031_2,Evaluable,Evidence,Media,"Respalda que la coincidencia de cadenas es importante, consistente con análisis de error previos.",COMPLETO,115,1
+23,N12-1087_P00-1056_0,Evaluable,Application,Alta,Usa el corpus Hansards en los experimentos.,COMPLETO,115,1
+24,D13-1108_N04-1014_1,Evaluable,Background,Alta,Sección de trabajo relacionado que enumera modelos basados en constituyentes.,COMPLETO,115,1
+25,N10-1115_P07-1096_0,Evaluable,Basis,Alta,El algoritmo propuesto está inspirado en el análisis easy-first citado.,COMPLETO,115,1
+26,N01-1025_E99-1023_0,Evaluable,Background,Media,Describe representaciones de chunks introducidas en el trabajo citado; podría ser originador.,COMPLETO,115,1
+27,W07-1425_W04-3205_0,Evaluable,Evidence,Media,Respalda la decisión de usar la frase predicativa como unidad.,COMPLETO,115,1
+28,J97-3002_A94-1006_0,Evaluable,Comparison,Media,Compara la técnica propuesta con word_align y su penalización por desviación.,COMPLETO,115,1
+29,N12-1010_W09-3933_0,Evaluable,Background,Alta,Lista de trabajos previos sobre detección de desinterés.,COMPLETO,115,1
+30,A97-1054_A97-1034_0,Evaluable,Further Reading,Alta,Remite a la fuente para una comparación detallada de arquitecturas.,COMPLETO,115,1
+31,W04-2418_W01-0724_0,Evaluable,Background,Alta,Ejemplos de tareas donde el aprendizaje basado en memoria ha sido eficaz.,COMPLETO,115,1
+32,P08-1066_W02-1039_0,Evaluable,Evidence,Media,Respalda la flexibilidad de los árboles de dependencia como representación.,COMPLETO,115,1
+33,N12-1009_P11-1051_2,Evaluable,Comparison,Alta,Compara los métodos propios con el método base propuesto por la obra citada.,COMPLETO,115,1
+34,N06-1019_W04-3215_1,Evaluable,Evidence,Alta,Aporta evidencia de que anotar secuencias de categorías puede ser eficiente.,COMPLETO,115,1
+35,W13-2215_P07-2045_1,Evaluable,Application,Alta,Usa el script clean-corpus de Moses para filtrar.,COMPLETO,115,1
+36,E12-1003_D11-1122_2,Evaluable,Background,Media,Indica que la idea se ha explorado antes en otros trabajos.,COMPLETO,115,1
+37,W11-2405_P07-1059_0,Evaluable,Evidence,Media,"Ilustra que las paráfrasis son útiles en expansión de consultas, apoyado en la cita.",COMPLETO,115,1
+38,D13-1172_N10-1122_0,Evaluable,Background,Alta,Enumeración de trabajos con modelos de tópicos.,COMPLETO,115,1
+39,Q13-1029_J06-3003_3,Evaluable,Comparison,Alta,Compara la velocidad de SuperSim con LRA.,COMPLETO,115,1
+40,E06-3001_P87-1022_0,Evaluable,Gap,Media,"Señala que modelos de discurso ignoran el entorno visual, justificando el enfoque multimodal.",COMPLETO,115,1
+41,D13-1111_N03-1017_1,Evaluable,Application,Alta,Emplea un modelo basado en frases para dos pares de idiomas.,COMPLETO,115,1
+42,W13-0113_W11-2819_0,Evaluable,Evidence,Media,Sustenta la afirmación de que las DRS son una abstracción adecuada para NLG.,COMPLETO,115,1
+43,W10-2606_N06-1020_6,Evaluable,Comparison,Alta,Contrasta explícitamente la ponderación de instancias propia con la del trabajo citado.,COMPLETO,115,1
+44,D09-1112_E06-1015_3,Evaluable,Further Reading,Media,Remite a la obra citada para detalles de la evaluación rápida del algoritmo.,COMPLETO,115,1
+45,P12-1044_P06-1044_1,Evaluable,Gap,Media,Señala errores por ruido de análisis sintáctico como limitación de métodos previos.,COMPLETO,115,1
+46,D09-1086_P09-1009_0,Evaluable,Background,Media,Enumera otros trabajos sobre aprendizaje de analizadores desde bitexto.,COMPLETO,115,1
+47,P09-1008_P06-1055_1,Evaluable,Application,Alta,Usa el analizador Berkeley en los experimentos.,COMPLETO,115,1
+48,W11-0908_P86-1004_0,Evaluable,Background,Alta,Describe un sistema temprano como antecedente en el área.,COMPLETO,115,1
+49,W13-0112_D10-1113_1,Evaluable,Evidence,Media,Respalda la afirmación de que NMF es eficaz para reducir dimensionalidad.,COMPLETO,115,1
+50,J97-1004_J88-3006_3,Evaluable,Background,Media,Ejemplos de la literatura de discurso con lenguaje informal de estructura.,COMPLETO,115,1
+51,N12-1064_P01-1064_1,Evaluable,Comparison,Alta,Aparece en tabla comparando resultados con otros métodos.,COMPLETO,115,1
+52,W05-0305_W98-0315_0,Evaluable,Basis,Alta,PDTB se construye sobre el enfoque DLTAG citado.,COMPLETO,115,1
+53,W07-0804_W04-0701_1,Evaluable,Evidence,Media,Respalda la afirmación sobre la importancia de los nominales.,COMPLETO,115,1
+54,W12-4510_P11-1079_0,Evaluable,Background,Media,Describe trabajo previo que usó asociaciones de palabras en correferencia.,COMPLETO,115,1
+55,P11-1114_P98-1067_1,Evaluable,Background,Alta,Ejemplos de clasificadores previos para etiquetar roles de eventos.,COMPLETO,115,1
+56,D11-1127_P03-1021_0,Evaluable,Application,Alta,Usa MERT estándar para estimación de parámetros.,COMPLETO,115,1
+57,W10-0609_P06-4020_0,Evaluable,Application,Alta,Usa el analizador RASP para obtener relaciones gramaticales.,COMPLETO,115,1
+58,P06-1049_P03-1069_3,Evaluable,Comparison,Alta,Compara el coeficiente Kendall propio con el del enfoque probabilístico citado.,COMPLETO,115,1
+59,J09-1003_P06-2103_0,Evaluable,Background,Alta,Enumeración de trabajos sobre ordenación de información.,COMPLETO,115,1
+60,P10-1081_W06-0901_0,Evaluable,Background,Alta,Enumera sistemas de extracción de eventos que procesan una oración a la vez.,COMPLETO,115,1
+61,W09-0630_W08-1138_0,Evaluable,Application,Alta,Reutiliza los mismos ajustes del año anterior sin modificación.,COMPLETO,115,1
+62,P12-1005_P08-2042_1,Evaluable,Background,Media,Describe cómo trabajos previos evaluaron sus modelos.,COMPLETO,115,1
+63,D10-1091_P06-1091_0,Evaluable,Background,Alta,Enumera otras aplicaciones del problema de decodificación oráculo.,COMPLETO,115,1
+64,W04-2803_A97-1051_0,Evaluable,Gap,Media,"Herramientas existentes están orientadas a entidades nombradas, lo que motiva el trabajo.",COMPLETO,115,1
+65,P11-1052_W04-1017_0,Evaluable,Evidence,Media,Respalda que métodos establecidos corresponden a optimización submodular.,COMPLETO,115,1
+66,W08-1005_P96-1024_0,Evaluable,Comparison,Alta,Relaciona explícitamente la aproximación propia con el algoritmo citado.,COMPLETO,115,1
+67,D13-1157_P09-1011_0,Evaluable,Background,Alta,Ejemplos de trabajos previos de aprendizaje en generación.,COMPLETO,115,1
+68,P13-2106_P10-2042_0,Evaluable,Gap,Media,"Se resalta que el muestreo local es insuficiente, motivando inferencia por bloques.",COMPLETO,115,1
+69,E09-1079_A92-1021_0,Evaluable,Background,Alta,Describe enfoques de etiquetado seleccionando la etiqueta más probable.,COMPLETO,115,1
+70,W04-1217_E99-1001_0,Evaluable,Evidence,Media,Respalda que usar el etiquetado en otras partes del documento es eficaz.,COMPLETO,115,1
+71,D12-1023_N09-2041_0,Evaluable,Improvement / Modification,Alta,Los conjuntos de rasgos extienden los de trabajos previos con rasgos nuevos.,COMPLETO,115,1
+72,P04-1013_W96-0213_0,Evaluable,Application,Alta,Usa un etiquetador público para obtener las etiquetas.,COMPLETO,115,1
+73,P08-1115_J07-2003_0,Evaluable,Improvement / Modification,Media,Extiende la decodificación de retículos a traducción jerárquica.,COMPLETO,115,1
+74,W13-4073_W12-1812_1,Evaluable,Gap,Media,Análisis que muestra que los modelos generativos pueden degradar el seguimiento.,COMPLETO,115,1
+75,N07-1030_P02-1014_0,Evaluable,Background,Alta,Enumera trabajos que tratan la correferencia como clasificación binaria.,COMPLETO,115,1
+76,W00-0405_P95-1053_0,Evaluable,Background,Alta,Ejemplos de trabajos previos de resumen estadístico.,COMPLETO,115,1
+77,W11-1826_W09-1418_0,Evaluable,Comparison,Alta,Contrasta el tratamiento flexible de disparadores con el método de otros trabajos.,COMPLETO,115,1
+78,W10-2915_W06-3119_0,Evaluable,Background,Alta,Describe trabajo posterior que expande la gramática Hiero.,COMPLETO,115,1
+79,W10-4203_E91-1028_0,Evaluable,Comparison,Alta,Evalúa el modelo comparándolo con un sistema basado en el enfoque clásico citado.,COMPLETO,115,1
+80,W04-3214_P97-1003_0,Evaluable,Application,Alta,Usa el modelo 3 de Collins para analizar los datos.,COMPLETO,115,1
+81,W12-1901_W04-3213_0,Evaluable,Background,Alta,Enumera trabajos con configuraciones no supervisadas.,COMPLETO,115,1
+82,D10-1044_D09-1074_1,Evaluable,Background,Media,Describe el método del trabajo citado de ponderación por oración; podría ser Basis.,COMPLETO,115,1
+83,W13-2257_W12-3102_0,Evaluable,Background,Alta,Resume los resultados de la tarea compartida WMT12.,COMPLETO,115,1
+84,E09-1001_P85-1008_0,Evaluable,Comparison,Media,Señala similitud con la filosofía de semántica composicional citada.,COMPLETO,115,1
+85,P08-2004_P06-1134_0,Evaluable,Background,Alta,Resume hallazgos previos sobre subjetividad y desambiguación.,COMPLETO,115,1
+86,W06-3601_N03-1017_0,Evaluable,Comparison,Alta,"Compara el enfoque con modelos basados en frases, señalando sus limitaciones.",COMPLETO,115,1
+87,P13-1105_P05-1012_0,Evaluable,Background,Alta,Introducción que cita métodos supervisados de análisis de dependencias.,COMPLETO,115,1
+88,P10-3018_W06-2932_1,Evaluable,Background,Media,Describe que el trabajo citado formuló el análisis de dependencias como problema MST.,COMPLETO,115,1
+89,W00-1102_W98-0704_0,Evaluable,Background,Alta,Resume hallazgos de trabajos previos sobre expansión con WordNet.,COMPLETO,115,1
+90,P10-1016_W08-0336_0,Evaluable,Background,Alta,Enumera investigaciones sobre el impacto de segmentadores en traducción.,COMPLETO,115,1
+91,D13-1098_P06-1095_0,Evaluable,Background,Alta,Describe sistemas previos con mejores resultados en relaciones temporales.,COMPLETO,115,1
+92,D11-1022_D10-1004_0,Evaluable,Background,Alta,Presenta los turbo parsers como el tipo de analizadores del área.,COMPLETO,115,1
+93,D13-1203_P10-2029_3,Evaluable,Background,Alta,Enumera recursos externos usados por sistemas previos.,COMPLETO,115,1
+94,D11-1066_W04-2705_0,Evaluable,Background,Media,Menciona NomBank como recurso de relaciones nominales; podría ser Application.,COMPLETO,115,1
+95,J03-2001_J02-2001_0,Evaluable,Evidence,Media,Apoya la afirmación sobre el tratamiento lexicográfico de la sinonimia.,COMPLETO,115,1
+96,P08-1078_N07-1071_4,Evaluable,Comparison,Alta,Contrasta explícitamente con trabajo previo al usar el puntaje a priori de la regla.,COMPLETO,115,1
+97,W12-4102_W01-1626_0,Evaluable,Background,Alta,Resume hallazgos previos sobre palabras polarizadas e indicadores de subjetividad.,COMPLETO,115,1
+98,P12-1066_D10-1120_0,Evaluable,Background,Alta,Describe el método del trabajo citado dentro de la literatura de transferencia.,COMPLETO,115,1
+99,W96-0112_W95-0103_1,Evaluable,Comparison,Alta,"Compara el método propio con las propuestas previas, señalando propiedades que ellas no comparten.",COMPLETO,115,1
+100,W09-3911_W09-3937_0,Evaluable,Comparison,Alta,Compara la frecuencia de enunciados divididos en chat con la del diálogo cara a cara.,COMPLETO,115,1

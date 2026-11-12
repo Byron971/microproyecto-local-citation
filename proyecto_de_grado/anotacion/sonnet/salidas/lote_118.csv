@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,E09-1017_P03-1069_0,Evaluable,Background,Alta,Reviews prior work on discourse-level coherence constraints.,COMPLETO,118,1
+2,D10-1053_P08-2007_0,Evaluable,Evidence,Alta,Supports the claim that Viterbi inference is NP-hard.,COMPLETO,118,1
+3,J97-4002_P92-1002_0,Evaluable,Basis,Alta,Current work builds on constraints first proposed in the cited work.,COMPLETO,118,1
+4,P05-1001_N01-1025_1,Evaluable,Comparison,Alta,Results compared with previous best systems.,COMPLETO,118,1
+5,P11-1125_P09-1065_0,Evaluable,Comparison,Alta,Contrasts joint decoding with the current approach.,COMPLETO,118,1
+6,J95-4002_P93-1017_4,Evaluable,Further Reading,Media,Points to the cited work for discussion of the approach.,COMPLETO,118,1
+7,W01-1403_P98-2139_0,Evaluable,Comparison,Alta,States similarity and differences with the cited work.,COMPLETO,118,1
+8,W07-2208_W06-1619_9,Evaluable,Comparison,Alta,Model compared experimentally against the cited baseline.,COMPLETO,118,1
+9,W02-1022_A00-2026_0,Evaluable,Comparison,Media,Contrasts the cited annotated-data approach with un-annotated corpora.,COMPLETO,118,1
+10,W12-3137_N03-1017_0,Evaluable,Application,Alta,Lexicon probabilities extracted in the fashion of the cited method.,COMPLETO,118,1
+11,P10-1088_W10-0733_0,Evaluable,Background,Media,Cites prior finding that MTurk is cost-effective for translations.,COMPLETO,118,1
+12,P89-1007_P83-1007_1,Evaluable,Further Reading,Media,Refers to centering literature for relation to the results.,COMPLETO,118,1
+13,P12-1038_D11-1041_1,Evaluable,Comparison,Alta,Baseline comparable to the cited HMM approach.,COMPLETO,118,1
+14,P10-2028_D08-1035_0,Evaluable,Background,Media,Describes the lexical cohesion idea from prior work.,COMPLETO,118,1
+15,N13-1048_P03-1021_3,Evaluable,Gap,Alta,"Notes prior work uses few features or small training sets, motivating large-scale training.",COMPLETO,118,1
+16,W03-0412_P00-1065_0,Evaluable,Gap,Alta,Points out limitation: assumes frame knowledge and covers only 20%.,COMPLETO,118,1
+17,D12-1056_P02-1019_1,Evaluable,Background,Alta,Lists prior error model variations.,COMPLETO,118,1
+18,N12-1015_P10-1110_3,Evaluable,Evidence,Media,Cited work supports the suggestion about relevant stack information.,COMPLETO,118,1
+19,D13-1031_D11-1090_0,Evaluable,Background,Alta,Describes how prior work used in-domain data.,COMPLETO,118,1
+20,W05-1515_W05-1513_0,Evaluable,Comparison,Alta,Explicitly states difference from the cited approach.,COMPLETO,118,1
+21,D11-1042_W05-0904_0,Evaluable,Background,Alta,Enumerates prior works using syntactic dependencies.,COMPLETO,118,1
+22,D09-1010_P04-1043_0,Evaluable,Background,Alta,Summarizes prior ML work on tree structures.,COMPLETO,118,1
+23,P98-1095_P88-1015_0,Evaluable,Basis,Media,Uses the initiative concept as defined by the cited work.,COMPLETO,118,1
+24,P13-1151_P11-2117_3,Evaluable,Evidence,Alta,Supports the claim that Simple Wikipedia is simpler.,COMPLETO,118,1
+25,P11-1041_P10-1080_0,Evaluable,Evidence,Media,Supports the monotonicity assumption in alignment.,COMPLETO,118,1
+26,W10-2906_P06-1055_0,Evaluable,Application,Alta,Uses the Berkeley parser as is.,COMPLETO,118,1
+27,W11-0327_W06-1615_0,Evaluable,Background,Alta,Summarizes prior domain adaptation work.,COMPLETO,118,1
+28,W13-2232_D10-1025_5,Evaluable,Comparison,Alta,Compares reported accuracy with the cited work on same data.,COMPLETO,118,1
+29,D10-1002_N10-1003_2,Evaluable,Evidence,Alta,Cited finding supports claim of EM instability.,COMPLETO,118,1
+30,W09-3302_E09-1070_1,Evaluable,Comparison,Media,Reports similar findings from cited cross-corpus comparison.,COMPLETO,118,1
+31,D13-1186_N06-1046_0,Evaluable,Background,Alta,Lists prior ILP global inference works.,COMPLETO,118,1
+32,W98-1426_P98-1116_0,Evaluable,Basis,Alta,Paper builds on the Nitrogen system introduced in the cited work.,COMPLETO,118,1
+33,D08-1060_P05-1033_0,Evaluable,Background,Alta,Describes the Hiero model from literature.,COMPLETO,118,1
+34,D13-1148_E09-1013_1,Evaluable,Application,Alta,Uses the same prior settings as the cited work.,COMPLETO,118,1
+35,W07-0731_W06-3119_1,Evaluable,Background,Alta,Enumerates prior PSCFG nonterminal choices.,COMPLETO,118,1
+36,W10-2005_P08-2002_0,Evaluable,Evidence,Media,Supports effectiveness of the features in human sentence processing modeling.,COMPLETO,118,1
+37,N13-1037_N09-1054_0,Evaluable,Application,Alta,Uses data gathered by the cited work.,COMPLETO,118,1
+38,W09-2607_P00-1056_0,Evaluable,Application,Alta,Uses the cited tool to train SMT models.,COMPLETO,118,1
+39,W07-0407_P06-1009_0,Evaluable,Gap,Media,Describes the cited CRF approach and points out its remaining limitation.,COMPLETO,118,1
+40,P04-1014_P02-1042_4,Evaluable,Comparison,Alta,Results shown for comparison.,COMPLETO,118,1
+41,D08-1109_P05-1033_0,Evaluable,Background,Alta,Lists examples of prior cross-lingual structure induction.,COMPLETO,118,1
+42,N07-3006_N03-1030_0,Evaluable,Background,Alta,Reviews prior statistical segmentation approaches.,COMPLETO,118,1
+43,W11-1109_W04-3252_2,Evaluable,Comparison,Alta,Contrasts their graphs with the text graphs in the cited work.,COMPLETO,118,1
+44,P10-1122_W07-1401_1,Evaluable,Further Reading,Media,Refers to a pilot study for a similar evaluation.,COMPLETO,118,1
+45,D12-1001_P10-1131_0,Evaluable,Background,Alta,Summarizes prior supervised-light parsing work.,COMPLETO,118,1
+46,D11-1095_P98-1013_0,Evaluable,Background,Alta,Lists existing verb classifications.,COMPLETO,118,1
+47,E09-3008_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit for decoding and training.,COMPLETO,118,1
+48,W11-0221_N10-1004_0,Evaluable,Background,Alta,Lists prior domain adaptation approaches.,COMPLETO,118,1
+49,D11-1070_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser as a tool.,COMPLETO,118,1
+50,W13-2206_W12-3102_0,Evaluable,Evidence,Media,Cited results support the claim about performance of systems.,COMPLETO,118,1
+51,N10-1080_P07-2045_0,Evaluable,Comparison,Alta,Decoder's BLEU matches Moses.,COMPLETO,118,1
+52,N13-1053_P11-1032_5,Evaluable,Background,Alta,Cites prior studies showing n-gram effectiveness.,COMPLETO,118,1
+53,D13-1124_W10-2010_0,Evaluable,Basis,Media,Measure idea connects to uncertainty reduction literature as conceptual grounding.,COMPLETO,118,1
+54,D08-1035_P02-1026_1,Evaluable,Comparison,Media,Notes connections with prior work on entropy and discourse structure.,COMPLETO,118,1
+55,J09-4008_W08-0309_0,Evaluable,Background,Alta,Describes shared-task evaluation efforts in MT.,COMPLETO,118,1
+56,N12-1054_E06-1011_0,Evaluable,Evidence,Media,Supports the stated parsing time complexity.,COMPLETO,118,1
+57,N06-1031_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ for word alignment.,COMPLETO,118,1
+58,D11-1144_W03-0423_0,Evaluable,Background,Alta,Reviews prior discriminative classifiers for NER.,COMPLETO,118,1
+59,W03-1208_W02-2016_0,Evaluable,Application,Alta,Uses CaboCha for analysis.,COMPLETO,118,1
+60,W03-1205_W00-1411_0,Evaluable,Further Reading,Alta,Refers to cited work for description of omitted principles.,COMPLETO,118,1
+61,W07-1019_W00-1427_0,Evaluable,Application,Alta,Uses morpha for lemmatisation.,COMPLETO,118,1
+62,W06-1108_E95-1009_0,Evaluable,Identification of the Originator,Alta,Credits the cited work with introducing string edit distance for dialects.,COMPLETO,118,1
+63,N07-1046_P97-1017_0,Evaluable,Background,Alta,Reviews prior transliteration work.,COMPLETO,118,1
+64,P11-2125_P05-1012_1,Evaluable,Application,Media,Features use POS tags as defined in the cited work.,COMPLETO,118,1
+65,D12-1057_D08-1103_0,Evaluable,Gap,Media,"Notes previous methods require thesauri, contrasted with the proposed method.",COMPLETO,118,1
+66,J09-2001_S07-1044_0,Evaluable,Background,Alta,Reports participants in a shared task.,COMPLETO,118,1
+67,W13-2257_N06-1014_0,Evaluable,Application,Alta,Uses the Berkeley Aligner for word alignments.,COMPLETO,118,1
+68,P10-1029_P07-1068_0,Evaluable,Background,Alta,Lists related work on semantic class induction.,COMPLETO,118,1
+69,W11-2902_N04-1014_0,Evaluable,Background,Alta,Introduces formalisms studied in prior work.,COMPLETO,118,1
+70,N06-1012_P05-1003_2,Evaluable,Identification of the Originator,Alta,States the method is originally due to the cited work.,COMPLETO,118,1
+71,P06-1044_P03-1009_0,Evaluable,Background,Alta,Cites prior work on automatic lexical class induction.,COMPLETO,118,1
+72,W99-0104_P98-2143_0,Evaluable,Background,Alta,Describes knowledge-poor approaches in the literature.,COMPLETO,118,1
+73,W13-2809_P13-1155_2,Evaluable,Further Reading,Alta,Refers to cited work for a complete description.,COMPLETO,118,1
+74,W10-2927_P05-1012_0,Evaluable,Application,Alta,Uses the freely available MST parser.,COMPLETO,118,1
+75,D09-1042_N06-1056_0,Evaluable,Background,Media,Notes prior works also use tree-structured MRs; could support a methodological choice.,COMPLETO,118,1
+76,P06-1044_P03-1009_1,Evaluable,Improvement / Modification,Alta,Extends the cited system with additional clustering techniques.,COMPLETO,118,1
+77,P12-1028_P03-1004_0,Evaluable,Background,Alta,Lists prior applications of kernels.,COMPLETO,118,1
+78,W13-3523_D09-1092_2,Evaluable,Background,Media,"Describes assumption of the cited model, leading to a limitation.",COMPLETO,118,1
+79,W07-2219_P03-1054_1,Evaluable,Background,Media,Describes how cited work systematizes parametrizations.,COMPLETO,118,1
+80,N10-1004_N09-1068_0,Evaluable,Background,Alta,Reports prior techniques for separating domain-specific properties.,COMPLETO,118,1
+81,N09-1003_P06-1127_1,Evaluable,Comparison,Alta,Table compares results of methods.,COMPLETO,118,1
+82,P11-1049_W04-1013_1,Evaluable,Application,Alta,Uses the ROUGE toolkit with standard options.,COMPLETO,118,1
+83,N12-1092_W11-2705_0,Evaluable,Background,Alta,Lists prior question generation approaches.,COMPLETO,118,1
+84,W12-2013_E93-1006_0,Evaluable,Background,Alta,Describes early approaches taking all fragments.,COMPLETO,118,1
+85,N10-1133_W04-1013_1,Evaluable,Application,Alta,Uses the ROUGE package for evaluation.,COMPLETO,118,1
+86,D08-1112_W04-3202_0,Evaluable,Background,Media,"Notes prior practice of normalizing by length, which is then contrasted.",COMPLETO,118,1
+87,W11-0316_W00-0405_0,Evaluable,Basis,Media,Idea inspired by extraction-based summarization.,COMPLETO,118,1
+88,W10-2917_N06-1014_0,Evaluable,Application,Alta,Uses BerkeleyAligner as a sub-model.,COMPLETO,118,1
+89,D11-1109_P05-1012_0,Evaluable,Background,Alta,Reviews prior graph-based models.,COMPLETO,118,1
+90,N09-1026_P05-1033_0,Evaluable,Comparison,Alta,Contrasts with prior work restricting rule form.,COMPLETO,118,1
+91,E09-1035_W03-0405_1,Evaluable,Background,Alta,Lists prior bootstrapping pattern work.,COMPLETO,118,1
+92,P13-1020_P11-1049_0,Evaluable,Background,Alta,Cites prior joint extraction and compression models.,COMPLETO,118,1
+93,S12-1002_D09-1120_0,Evaluable,Background,Alta,Reports prior findings on rule-based coreference.,COMPLETO,118,1
+94,D09-1106_N03-1017_0,Evaluable,Background,Alta,Describes word alignments as a source for phrase-based models.,COMPLETO,118,1
+95,J13-1005_P03-1054_2,Evaluable,Comparison,Alta,Compares method with the cited markovization strategy.,COMPLETO,118,1
+96,P13-2013_N07-1054_1,Evaluable,Evidence,Media,Cited findings support the sparsity argument.,COMPLETO,118,1
+97,D13-1144_D11-1116_0,Evaluable,Application,Alta,Uses the FANSE parser to create dependency trees.,COMPLETO,118,1
+98,J99-3001_P98-2204_0,Evaluable,Background,Media,Mentions a proposal giving a significant improvement.,COMPLETO,118,1
+99,D12-1125_D11-1006_5,Evaluable,Comparison,Alta,Baseline results compared in the table.,COMPLETO,118,1
+100,N12-2010_D08-1020_1,Evaluable,Background,Alta,Lists prior discourse-based coherence work.,COMPLETO,118,1

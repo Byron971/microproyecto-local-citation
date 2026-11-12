@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P11-2100_D10-1037_0,Evaluable,Background,Media,Describes prior work among a list of approaches.,COMPLETO,109,1
+2,W11-2124_W10-1704_0,Evaluable,Background,Media,Describes a prior application of the n-gram approach.,COMPLETO,109,1
+3,P98-2230_J90-2002_0,Evaluable,Identification of the Originator,Alta,The statistical model 'introduced by IBM' is attributed to its source.,COMPLETO,109,1
+4,D10-1063_N06-1033_0,Evaluable,Comparison,Alta,Compares performance against a system using the cited binarization technique.,COMPLETO,109,1
+5,N10-1062_N09-1069_0,Evaluable,Further Reading,Alta,'see ... for an overview' directs the reader to more detail.,COMPLETO,109,1
+6,W12-3302_N12-1057_0,Evaluable,Further Reading,Alta,Refers to the cited work for more details on annotations.,COMPLETO,109,1
+7,P11-1144_N10-1138_3,Evaluable,Application,Alta,Models are trained following the cited work without modification.,COMPLETO,109,1
+8,W04-0706_W03-2607_0,Evaluable,Background,Alta,Lists previous work on anaphora resolution using lexical knowledge.,COMPLETO,109,1
+9,W10-4205_J88-2003_0,Evaluable,Background,Media,Describes prior work on temporal connectives and lexical information.,COMPLETO,109,1
+10,J00-4004_J91-4003_0,Evaluable,Evidence,Media,Supports the claim that adjuncts are handled separately in aspectual class.,COMPLETO,109,1
+11,D11-1097_D10-1113_8,Evaluable,Comparison,Alta,Discusses comparability of results with the cited work and another.,COMPLETO,109,1
+12,N06-2049_W03-1728_1,Evaluable,Identification of the Originator,Alta,'First used in Chinese word segmentation by' credits the originator.,COMPLETO,109,1
+13,D13-1109_N13-1056_0,Evaluable,Gap,Alta,Prior work 'stops short of using these lexicons in translation'.,COMPLETO,109,1
+14,W97-1005_W95-0103_4,Evaluable,Comparison,Alta,Qualitatively contrasts the cited approach with the authors' MS1.,COMPLETO,109,1
+15,S12-1028_P10-2029_0,Evaluable,Application,Alta,Uses Reconcile as a freely available tool.,COMPLETO,109,1
+16,N12-1013_P06-1028_1,Evaluable,Background,Media,"Lists prior methods minimizing loss in graphical models, then contrasted.",COMPLETO,109,1
+17,W11-0417_P04-1082_0,Evaluable,Background,Alta,Lists prior approaches to empty category recovery.,COMPLETO,109,1
+18,D13-1108_D11-1020_5,Evaluable,Comparison,Media,Contrasts the authors' model with the limitation of the cited head-dependents rules.,COMPLETO,109,1
+19,A00-1031_A92-1018_0,Evaluable,Background,Media,"Summarizes comparisons of tagging approaches, citing statistical taggers.",COMPLETO,109,1
+20,P10-1149_D09-1025_0,Evaluable,Background,Media,Notes recent demonstrated benefits of combining sources.,COMPLETO,109,1
+21,P13-1077_P03-1021_0,Evaluable,Application,Alta,Uses minimum error rate training as is.,COMPLETO,109,1
+22,W13-2117_W12-2602_0,Evaluable,Gap,Alta,"Cited works focus on one component, a limitation motivating the full pipeline.",COMPLETO,109,1
+23,P11-1101_W07-2303_3,Evaluable,Comparison,Alta,Compares sentence length and realisations with the cited work.,COMPLETO,109,1
+24,P01-1007_E99-1008_2,Evaluable,Evidence,Alta,Cited result supports the cubic parse time claim.,COMPLETO,109,1
+25,P03-1059_W03-1010_2,Evaluable,Further Reading,Alta,'See ... for further details'.,COMPLETO,109,1
+26,P10-1113_N09-1037_0,Evaluable,Background,Media,Reviews prior joint-learning work showing effectiveness.,COMPLETO,109,1
+27,W12-1702_W02-0109_0,Evaluable,Application,Alta,Uses the NLTK lemmatiser as a tool.,COMPLETO,109,1
+28,J08-2003_P00-1065_2,Evaluable,Evidence,Alta,Cited works show the reranking module is mandatory for state-of-the-art accuracy.,COMPLETO,109,1
+29,W03-1016_W01-0802_0,Evaluable,Evidence,Alta,Supports the claim that content selection is most important.,COMPLETO,109,1
+30,W12-2006_W11-2838_2,Evaluable,Further Reading,Alta,'see ... for discussion'.,COMPLETO,109,1
+31,N13-1121_P11-1137_1,Evaluable,Comparison,Alta,Contrasts own name-based approach with prior content-based work.,COMPLETO,109,1
+32,P12-3011_P96-1031_0,Evaluable,Application,Alta,Uses the cited rewrite algorithm in the implementation.,COMPLETO,109,1
+33,D10-1067_W06-2912_0,Evaluable,Background,Alta,Lists recent works on unsupervised parsing.,COMPLETO,109,1
+34,W12-3203_D08-1038_1,Evaluable,Background,Alta,Lists works applying topic models to scientific literature.,COMPLETO,109,1
+35,D09-1095_S07-1033_0,Evaluable,Background,Media,Describes systems from the shared task and their resources.,COMPLETO,109,1
+36,W10-1921_W09-1301_0,Evaluable,Identification of the Originator,Media,Term 'static relations' is attributed to the cited work that introduced it.,COMPLETO,109,1
+37,P95-1007_W93-0307_0,Evaluable,Identification of the Originator,Alta,'coined the term' credits the originator.,COMPLETO,109,1
+38,W11-2144_P07-2045_0,Evaluable,Application,Alta,Uses the Moses decoder.,COMPLETO,109,1
+39,W12-5302_P04-1014_1,Evaluable,Application,Alta,Uses a CCG parser as a component.,COMPLETO,109,1
+40,J09-3003_P97-1023_0,Evaluable,Identification of the Originator,Alta,'Pioneered by the work of' credits the originator.,COMPLETO,109,1
+41,P13-2064_J07-2003_0,Evaluable,Basis,Media,Rule extraction builds on the hierarchical phrase-based system.,COMPLETO,109,1
+42,W09-2603_P07-1027_0,Evaluable,Gap,Media,Cited supervised approaches lack evaluation on problematic argument classes.,COMPLETO,109,1
+43,D13-1097_P13-1161_0,Evaluable,Background,Alta,Lists prior sentiment analysis work.,COMPLETO,109,1
+44,P08-1058_P07-1065_2,Evaluable,Comparison,Alta,Contrasts the proposed construction with cited ones regarding errors.,COMPLETO,109,1
+45,J07-2002_P98-2127_0,Evaluable,Background,Alta,Lists applications of distributional models.,COMPLETO,109,1
+46,D11-1001_P11-1163_0,Evaluable,Gap,Alta,Points out the tree assumption limitation of the cited model.,COMPLETO,109,1
+47,W13-3510_S12-1019_1,Evaluable,Evidence,Media,Comparison result supports the claim about feature superiority.,COMPLETO,109,1
+48,D10-1038_E06-1035_2,Evaluable,Evidence,Alta,Supports claim that topic segmentation is nontrivial and subjective.,COMPLETO,109,1
+49,P11-1064_N10-1081_0,Evaluable,Evidence,Alta,Supports the claim that self-referential base measures are deficient.,COMPLETO,109,1
+50,W08-1810_W05-0635_1,Evaluable,Comparison,Media,"Evaluates SwiRL's precision, coverage and speed against alternatives.",COMPLETO,109,1
+51,W08-2101_W05-0630_0,Evaluable,Comparison,Alta,Results table comparing performance with the cited system.,COMPLETO,109,1
+52,W03-1001_P02-1039_0,Evaluable,Background,Alta,Lists phrase-based systems from prior work.,COMPLETO,109,1
+53,S13-2040_D12-1128_3,Evaluable,Evidence,Alta,Cited studies corroborate the authors' results.,COMPLETO,109,1
+54,W04-0832_W03-1007_0,Evaluable,Evidence,Alta,Supports the claim that such features are powerful.,COMPLETO,109,1
+55,P13-1053_W13-0215_0,Evaluable,Gap,Alta,"Prior work only used simple majority voting, motivating the study.",COMPLETO,109,1
+56,P03-1010_A92-1021_0,Evaluable,Application,Alta,Uses Brill's tagger as a tool.,COMPLETO,109,1
+57,S13-1044_D10-1030_2,Evaluable,Comparison,Alta,Explicitly states differences from the most closely related work.,COMPLETO,109,1
+58,D11-1093_P94-1019_1,Evaluable,Basis,Media,Presents the cited similarity measure that the work uses as a formulation base.,COMPLETO,109,1
+59,W06-2904_P98-2127_0,Evaluable,Background,Alta,Lists methods for distributional similarity.,COMPLETO,109,1
+60,J05-4002_P99-1004_4,Evaluable,Comparison,Alta,Contrasts own treatment of test data with the cited work.,COMPLETO,109,1
+61,N13-1027_P10-1031_0,Evaluable,Evidence,Media,Supports the claim that learning all knowledge automatically is not yet feasible.,COMPLETO,109,1
+62,W10-1732_E99-1010_0,Evaluable,Application,Alta,Uses mkcls for word clustering.,COMPLETO,109,1
+63,P12-1095_P10-1113_0,Evaluable,Application,Alta,Uses the cited semantic role labeler.,COMPLETO,109,1
+64,N09-3014_P03-1069_0,Evaluable,Comparison,Alta,'in contrast' with previous topic-modeling approach.,COMPLETO,109,1
+65,P11-1067_W10-2902_3,Evaluable,Application,Alta,Experiments run on the cited algorithm.,COMPLETO,109,1
+66,W13-2517_P09-1098_0,Evaluable,Background,Alta,Lists applications of bilingual corpora.,COMPLETO,109,1
+67,D08-1062_N06-1039_0,Evaluable,Evidence,Media,Supports the commonly held assumption in relation discovery.,COMPLETO,109,1
+68,J11-4003_E95-1009_0,Evaluable,Evidence,Media,Supports the claim of congruence between Levenshtein distance and traditional methods.,COMPLETO,109,1
+69,W04-2321_P03-1006_0,Evaluable,Further Reading,Alta,'see ... for more details'.,COMPLETO,109,1
+70,W09-3835_N06-1020_0,Evaluable,Background,Alta,Describes state-of-the-art reranking systems.,COMPLETO,109,1
+71,P08-1050_E03-1040_6,Evaluable,Comparison,Alta,Explicitly notes differences from the cited experiments.,COMPLETO,109,1
+72,D09-1115_N07-1029_0,Evaluable,Background,Alta,Lists confusion-network system combination methods.,COMPLETO,109,1
+73,J96-2002_E91-1023_1,Evaluable,Background,Media,Refers to a cited phonological representation as an alternative approach.,COMPLETO,109,1
+74,D13-1014_N13-1090_0,Evaluable,Evidence,Alta,Supports claim that embeddings capture linear relationships.,COMPLETO,109,1
+75,N13-1110_N10-1061_0,Evaluable,Background,Media,Cites state-of-the-art systems with recall gap.,COMPLETO,109,1
+76,D13-1089_P98-2127_1,Evaluable,Comparison,Alta,Says the scheme is more generic than cited schemes.,COMPLETO,109,1
+77,P10-1074_N09-4006_1,Evaluable,Application,Alta,Uses the OntoNotes dataset.,COMPLETO,109,1
+78,W10-2918_P08-1036_0,Evaluable,Gap,Alta,Notes shortcomings (post-processing required) of the cited models.,COMPLETO,109,1
+79,D11-1015_N07-1038_0,Evaluable,Gap,Media,Describes prior work then 'Nonetheless' notes its limitation.,COMPLETO,109,1
+80,P07-1096_N03-1033_3,Evaluable,Basis,Media,Feature set follows the cited work's use of prefixes and suffixes.,COMPLETO,109,1
+81,D09-1002_P06-2057_0,Evaluable,Background,Alta,Describes a common strategy from prior work.,COMPLETO,109,1
+82,W06-1664_N03-1032_0,Evaluable,Background,Alta,Summarizes the cited comparative investigation and results.,COMPLETO,109,1
+83,D10-1037_N09-1037_0,Evaluable,Evidence,Media,Cites common practice to justify the chi-square analysis.,COMPLETO,109,1
+84,S13-1002_P08-1028_1,Evaluable,Application,Media,Uses component-wise multiplication composition from the cited work.,COMPLETO,109,1
+85,N13-2007_P07-2045_0,Evaluable,Application,Alta,Uses the Moses SMT system.,COMPLETO,109,1
+86,E12-1045_D11-1080_0,Evaluable,Comparison,Alta,Contrasts the hybrid LM with class-based and local LMs.,COMPLETO,109,1
+87,W12-5503_W01-1626_0,Evaluable,Background,Alta,Describes prior work on subjectivity identification.,COMPLETO,109,1
+88,P07-1079_N06-2033_0,Evaluable,Evidence,Alta,Supports claim that parser combination yields high accuracy.,COMPLETO,109,1
+89,N09-2043_W06-0204_0,Evaluable,Background,Alta,Lists pattern induction approaches.,COMPLETO,109,1
+90,P12-1084_P04-1019_2,Evaluable,Background,Media,Cited among previous annotation work.,COMPLETO,109,1
+91,N13-1032_N03-1017_0,Evaluable,Background,Alta,Describes phrase-based systems and their limitations generally.,COMPLETO,109,1
+92,W13-2206_W11-2164_0,Evaluable,Evidence,Media,Supports the claim about MT in crisis situations.,COMPLETO,109,1
+93,W10-2415_W03-0425_0,Evaluable,Comparison,Alta,Compares own ranking and F1 with the best-performing system.,COMPLETO,109,1
+94,S12-1060_W02-0109_1,Evaluable,Application,Alta,Uses NLTK POS tagger.,COMPLETO,109,1
+95,D12-1062_S07-1014_1,Evaluable,Background,Alta,Describes the TempEval challenges.,COMPLETO,109,1
+96,S12-1108_W07-1401_0,Evaluable,Background,Alta,Lists RTE challenges as prior work.,COMPLETO,109,1
+97,W06-2934_E06-1011_0,Evaluable,Background,Media,Describes the cited parsing framework and its performance.,COMPLETO,109,1
+98,D09-1075_W08-0336_1,Evaluable,Application,Alta,Uses the Stanford Chinese segmenter.,COMPLETO,109,1
+99,D11-1001_W09-1401_0,Evaluable,Background,Alta,Describes the shared tasks that gave rise to the area.,COMPLETO,109,1
+100,W13-2244_W05-0635_0,Evaluable,Application,Alta,Uses SwiRL to annotate sentences.,COMPLETO,109,1

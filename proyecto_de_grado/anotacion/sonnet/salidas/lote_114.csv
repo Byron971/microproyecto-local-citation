@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N07-1050_W02-2016_1,Evaluable,Evidence,Media,"Se cita para respaldar que SVM ha mostrado buen desempeño en esta tarea, justificando la decisión metodológica.",COMPLETO,114,1
+2,W05-0906_N04-1019_0,Evaluable,Background,Media,Se citan métodos de evaluación basados en unidades semánticas finas como contexto de similitud con los nuggets.,COMPLETO,114,1
+3,P07-2052_E06-1011_0,Evaluable,Comparison,Alta,Aparece en una tabla que compara el desempeño de analizadores con el propio.,COMPLETO,114,1
+4,D10-1062_P07-2045_1,Evaluable,Application,Alta,Se usa Moses directamente con parámetros por defecto para entrenar los sistemas de traducción.,COMPLETO,114,1
+5,P05-1045_E99-1001_0,Evaluable,Comparison,Media,En trabajos relacionados se contrasta el enfoque ad hoc multietapa de la obra citada con el modelo propio.,COMPLETO,114,1
+6,W13-3307_P12-1041_0,Evaluable,Application,Media,"Se cuantizan los conteos en bins siguiendo la fórmula del trabajo citado, usándola sin modificación.",COMPLETO,114,1
+7,P13-3008_D11-1010_0,Evaluable,Gap,Media,"Se describe el enfoque de paráfrasis desde corpus paralelos y se señala su limitación (requiere L1, diccionarios y corpus por idioma).",COMPLETO,114,1
+8,D11-1062_W10-0733_0,Evaluable,Comparison,Media,"Se contrasta la tarea de traducción de oraciones individuales con la propia, señalando diferencias.",COMPLETO,114,1
+9,N04-1011_W02-1007_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los analizadores rinden mejor con puntuación.,COMPLETO,114,1
+10,D09-1160_P03-1004_2,Evaluable,Further Reading,Alta,Remite al lector a la obra citada para el cálculo detallado.,COMPLETO,114,1
+11,N03-1028_W02-2018_2,Evaluable,Evidence,Alta,Respalda la afirmación sobre la lentitud del escalado iterativo.,COMPLETO,114,1
+12,W12-5503_P09-3003_0,Evaluable,Evidence,Media,"Respalda que el CRF lineal se ha usado con éxito en sistemas NER de vanguardia, justificando su elección.",COMPLETO,114,1
+13,P10-2051_P04-1021_0,Evaluable,Background,Media,Describe modelos previos propuestos para DOM como contexto de trabajo relacionado.,COMPLETO,114,1
+14,D11-1113_P10-1001_0,Evaluable,Background,Media,Enumera complejidades de algoritmos de trabajos previos para describir el estado del área.,COMPLETO,114,1
+15,P07-2033_N04-3012_0,Evaluable,Application,Alta,Se usan directamente medidas del paquete WordNet::Similarity.,COMPLETO,114,1
+16,W12-5112_W07-1007_0,Evaluable,Background,Alta,Enumera aplicaciones en dominios técnicos como contexto general.,COMPLETO,114,1
+17,P11-2083_P10-1011_0,Evaluable,Background,Alta,Enumera estudios previos sobre extracción de léxicos bilingües desde corpus comparables.,COMPLETO,114,1
+18,W11-3213_W09-3520_0,Evaluable,Background,Alta,Describe en trabajos relacionados un sistema previo de transliteración basado en subcadenas.,COMPLETO,114,1
+19,N10-1005_N07-1051_3,Evaluable,Application,Media,"Se emplea el algoritmo max-rule-product descrito en la obra citada, aunque luego se extiende.",COMPLETO,114,1
+20,D10-1049_P09-1011_9,Evaluable,Comparison,Alta,Compara el modelo generativo citado con el propio señalando similitudes y diferencias.,COMPLETO,114,1
+21,P06-1123_N06-1033_0,Evaluable,Comparison,Alta,Contrasta el uso de alineamientos manuales con estudios que usaron alineamientos automáticos.,COMPLETO,114,1
+22,W13-2204_W10-1704_0,Evaluable,Application,Alta,Se aplica el esquema de preprocesamiento del trabajo citado para normalizar el alemán.,COMPLETO,114,1
+23,P06-1059_W04-1219_0,Evaluable,Evidence,Media,Se cita el mejor resultado en JNLPBA para respaldar que Bio-NER es más difícil.,COMPLETO,114,1
+24,J13-3007_P10-1134_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el algoritmo no requiere reentrenamiento al cambiar de dominio.,COMPLETO,114,1
+25,Q13-1012_P10-1001_1,Evaluable,Comparison,Alta,Compara la exactitud propia con sistemas de tercer orden basados en grafos.,COMPLETO,114,1
+26,W09-1103_J04-3001_2,Evaluable,Comparison,Alta,"Se comparan resultados con los de la obra citada, cuyos detalles de etiquetas POS se contrastan.",COMPLETO,114,1
+27,W13-5306_W02-0902_1,Evaluable,Evidence,Alta,"Los experimentos preliminares concuerdan con hallazgos citados, respaldando la observación.",COMPLETO,114,1
+28,W13-3210_N10-1013_2,Evaluable,Evidence,Alta,Respalda la idea de que varios prototipos modelan mejor el significado.,COMPLETO,114,1
+29,D09-1003_P00-1065_0,Evaluable,Identification of the Originator,Alta,Se reconoce a los autores como los primeros en describir un sistema estadístico de roles semánticos.,COMPLETO,114,1
+30,W03-2304_W90-0112_0,Evaluable,Further Reading,Media,El 'see also' remite a una fuente adicional sobre el costo de portar sistemas a nuevos dominios.,COMPLETO,114,1
+31,J05-3003_A97-1052_2,Evaluable,Background,Media,Describe un análisis previo de subcategorización frente a COMLEX como antecedente.,COMPLETO,114,1
+32,D11-1018_W11-2102_0,Evaluable,Evidence,Alta,Respalda que las funciones de pérdida correlacionan con juicios humanos.,COMPLETO,114,1
+33,W11-2102_D11-1017_1,Evaluable,Further Reading,Media,Remite a trabajo conjunto relacionado donde se optimiza el reordenamiento automáticamente.,COMPLETO,114,1
+34,W11-0212_P00-1065_0,Evaluable,Basis,Media,El algoritmo propuesto se construye de forma similar a un bootstrapping de la obra citada.,COMPLETO,114,1
+35,P09-1043_P07-1079_0,Evaluable,Comparison,Alta,Se compara el trabajo citado con el actual ('similar to our work') señalando diferencias.,COMPLETO,114,1
+36,D12-1015_N09-1001_0,Evaluable,Comparison,Media,Se menciona trabajo de subjetividad de sentidos y se indica que su tarea es diferente de la propia.,COMPLETO,114,1
+37,N10-1135_P09-1068_0,Evaluable,Evidence,Media,Respalda la expectativa de que los vecinos más cercanos son informativos.,COMPLETO,114,1
+38,P11-1144_W03-1007_0,Evaluable,Background,Alta,Enumera trabajo temprano de etiquetado de roles de marcos semánticos.,COMPLETO,114,1
+39,D09-1095_S07-1033_2,Evaluable,Basis,Media,Las características basadas en Wikipedia se construyeron siguiendo la observación de la obra citada.,COMPLETO,114,1
+40,P13-1089_D12-1102_7,Evaluable,Comparison,Alta,Aparece en una tabla comparando reducción de llamadas de inferencia frente a otros métodos.,COMPLETO,114,1
+41,W04-3254_W02-0406_1,Evaluable,Evidence,Alta,Respalda que el juicio humano de solapamiento de información es inestable.,COMPLETO,114,1
+42,J11-3004_W07-2216_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el problema es intratable sin el supuesto de independencia.,COMPLETO,114,1
+43,W10-1903_W09-1401_1,Evaluable,Evidence,Media,Respalda que el método de extracción de eventos es competitivo con el estado del arte.,COMPLETO,114,1
+44,P12-1064_P10-1050_1,Evaluable,Background,Media,Presenta el algoritmo de decodificación escalonada previo que sirve de base a la sección de métodos.,COMPLETO,114,1
+45,W12-0103_N04-1008_0,Evaluable,Comparison,Media,"Describe un trabajo como estrategia similar con formulación más rica, vinculándolo con el anterior.",COMPLETO,114,1
+46,J13-2004_E09-1055_0,Evaluable,Identification of the Originator,Alta,Indica que el algoritmo fue originalmente publicado por la obra citada.,COMPLETO,114,1
+47,W12-4211_J90-2002_0,Evaluable,Background,Alta,Presenta el sistema Candide como antecedente histórico de la TA estadística.,COMPLETO,114,1
+48,N13-2008_P08-1088_0,Evaluable,Background,Alta,Enumera trabajos previos sobre señales para inducción de léxicos bilingües.,COMPLETO,114,1
+49,N10-1110_N03-1028_0,Evaluable,Evidence,Media,Respalda que la verosimilitud puede maximizarse con técnicas estándar de optimización convexa.,COMPLETO,114,1
+50,P12-1087_P09-1113_7,Evaluable,Application,Media,Se sigue el trabajo previo en el uso de la métrica de datos retenidos de Freebase.,COMPLETO,114,1
+51,W13-3733_E12-1006_0,Evaluable,Background,Media,Menciona analizadores con distintos formalismos cuyas salidas pueden mapearse a dependencias como contexto.,COMPLETO,114,1
+52,W11-1813_P08-4003_0,Evaluable,Background,Alta,Enumera resolutores de correferencia existentes.,COMPLETO,114,1
+53,P09-1103_P08-1064_0,Evaluable,Gap,Media,"Se señala que la obra citada halló inútiles las reglas no contiguas, contrastando con otros resultados y motivando el estudio.",COMPLETO,114,1
+54,N06-1055_W04-2705_0,Evaluable,Basis,Alta,El Chinese Nombank extiende el marco de anotación del English Nombank.,COMPLETO,114,1
+55,W99-0108_P87-1022_0,Evaluable,Background,Alta,Describe un algoritmo previo de interpretación de pronombres basado en centering.,COMPLETO,114,1
+56,N13-1003_N12-1047_0,Evaluable,Gap,Alta,"Señala que trabajos previos se centraron en el aprendizaje y no en las características, justificando el aporte.",COMPLETO,114,1
+57,N13-1055_P11-1092_0,Evaluable,Background,Alta,Enumera enfoques existentes de entrenamiento para corrección gramatical.,COMPLETO,114,1
+58,P12-1082_D09-1060_0,Evaluable,Comparison,Alta,Se indica que el trabajo citado es cercano al propio y se contrastan los enfoques.,COMPLETO,114,1
+59,D09-1002_P06-4020_0,Evaluable,Application,Alta,Se emplea el analizador RASP sin modificación.,COMPLETO,114,1
+60,P13-1043_W05-1513_4,Evaluable,Comparison,Alta,Aparece en una tabla comparando tiempos de ejecución de analizadores.,COMPLETO,114,1
+61,N13-1060_N03-1017_2,Evaluable,Comparison,Alta,Se contrasta la observación propia con la conclusión del trabajo citado ('consistent with').,COMPLETO,114,1
+62,W10-0202_W04-2326_0,Evaluable,Evidence,Alta,Respalda el consenso sobre el uso de rasgos léxicos para detectar emociones.,COMPLETO,114,1
+63,W11-0815_W03-1812_0,Evaluable,Evidence,Media,Respalda la afirmación de que las aplicaciones de PLN requieren mecanismos para tratar las MWE.,COMPLETO,114,1
+64,W06-1319_P88-1012_0,Evaluable,Comparison,Alta,Se señalan similitudes entre el enfoque propio y el trabajo citado.,COMPLETO,114,1
+65,W11-1109_P07-1049_1,Evaluable,Comparison,Alta,Se compara el desempeño del sistema propio con el del trabajo citado.,COMPLETO,114,1
+66,W13-3522_W06-2505_0,Evaluable,Evidence,Alta,Respalda que las distinciones de sentido se capturan mediante traducciones.,COMPLETO,114,1
+67,W06-1105_P04-1053_4,Evaluable,Comparison,Alta,Contrasta los datos usados con los del trabajo citado y señala ventajas de los propios.,COMPLETO,114,1
+68,W06-1670_W03-1022_1,Evaluable,Background,Media,Introduce el término 'supersenses' como concepto previo del trasfondo.,COMPLETO,114,1
+69,P09-1054_P08-1109_1,Evaluable,Evidence,Media,"Ejemplifica el uso de CRF de árbol en análisis sintáctico, respaldando la afirmación.",COMPLETO,114,1
+70,W12-3104_W11-2105_4,Evaluable,Improvement / Modification,Alta,Se hacen dos cambios a la métrica AMBER descrita en la obra citada.,COMPLETO,114,1
+71,W13-3733_W10-2910_0,Evaluable,Evidence,Alta,Respalda que el análisis de dependencias es útil en aplicaciones como análisis de sentimiento.,COMPLETO,114,1
+72,W09-1119_N04-1043_0,Evaluable,Evidence,Media,Respalda que los clústeres de palabras han mejorado el desempeño en NER.,COMPLETO,114,1
+73,S12-1071_S10-1043_0,Evaluable,Background,Media,Resume lo observado por otro participante sobre características útiles.,COMPLETO,114,1
+74,P10-1049_N03-1017_0,Evaluable,Background,Alta,Describe el funcionamiento general de la traducción basada en frases.,COMPLETO,114,1
+75,D10-1067_D08-1093_0,Evaluable,Background,Media,Enumera trabajos previos de análisis sintáctico supervisado para contrastar con la tarea no supervisada.,COMPLETO,114,1
+76,W13-4038_E09-1066_0,Evaluable,Evidence,Media,Respalda que los recursos semánticos de dominio abierto ayudan a mejorar la predicción.,COMPLETO,114,1
+77,P13-1107_W08-0336_0,Evaluable,Application,Alta,Se usa el segmentador de Stanford con el estándar CTB sin modificación.,COMPLETO,114,1
+78,N09-1037_W05-0636_1,Evaluable,Gap,Alta,"Señala que el trabajo previo no logró mejorar ninguna de las tareas, mostrando un vacío.",COMPLETO,114,1
+79,P11-1130_N09-1046_3,Evaluable,Comparison,Alta,Se relaciona el trabajo citado con el propio y se contrastan los enfoques.,COMPLETO,114,1
+80,D13-1196_D12-1110_0,Evaluable,Background,Alta,Describe una línea emergente de investigación en semántica distribucional composicional.,COMPLETO,114,1
+81,D13-1057_N12-1087_2,Evaluable,Evidence,Media,Respalda la afirmación matemática sobre la aproximación a una delta de Kronecker.,COMPLETO,114,1
+82,D13-1094_P09-1077_0,Evaluable,Background,Alta,Enumera trabajos sobre modelos supervisados para relaciones implícitas.,COMPLETO,114,1
+83,P11-1125_J07-2003_0,Evaluable,Background,Media,Se menciona el sistema SCFG original como antecedente del que se desarrolló el toolkit.,COMPLETO,114,1
+84,E09-1031_W01-0701_1,Evaluable,Comparison,Alta,Contrasta el esquema unidimensional propio con el enfoque multidimensional del trabajo citado.,COMPLETO,114,1
+85,W13-1715_D12-1064_0,Evaluable,Evidence,Media,"Respalda que las características sintácticas pueden ser útiles, motivando la decisión de explorarlas.",COMPLETO,114,1
+86,D11-1076_P08-1004_1,Evaluable,Background,Alta,Describe en trabajos relacionados el sistema TextRunner como fuente de entrada de otro método.,COMPLETO,114,1
+87,D10-1050_N10-1125_3,Evaluable,Comparison,Alta,El modelo propio se compara contra el modelo probabilístico del trabajo citado.,COMPLETO,114,1
+88,P04-1086_P00-1030_0,Evaluable,Evidence,Alta,Respalda que la información sintáctica predice bien la acentuación.,COMPLETO,114,1
+89,P11-1118_W06-1612_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la referencia puente y el estado de la información en conversación.,COMPLETO,114,1
+90,N10-1061_D09-1120_6,Evaluable,Comparison,Alta,Se compara la salida propia con el sistema determinista citado.,COMPLETO,114,1
+91,W13-2905_P03-1055_0,Evaluable,Background,Alta,Enumera trabajos previos sobre categorías vacías en análisis sintáctico.,COMPLETO,114,1
+92,P11-1047_J07-2003_0,Evaluable,Background,Alta,Enumera modelos de traducción sintácticos que PSCFG subsume.,COMPLETO,114,1
+93,W09-2302_N03-1017_0,Evaluable,Gap,Media,Describe métodos existentes de alineamiento y luego señala que son insuficientes.,COMPLETO,114,1
+94,P11-2044_D08-1084_4,Evaluable,Comparison,Alta,Se contrasta el tiempo de decodificación reportado por la obra citada con la reimplementación propia.,COMPLETO,114,1
+95,D13-1172_D10-1006_0,Evaluable,Background,Alta,Enumera enfoques de modelos de tópicos en trabajos previos.,COMPLETO,114,1
+96,W10-3101_P07-1125_1,Evaluable,Evidence,Alta,"La cita respalda la afirmación sobre cómo identificar aserciones especulativas, justificando la anotación.",COMPLETO,114,1
+97,J01-2005_J89-4001_0,Evaluable,Gap,Alta,Se citan técnicas existentes y se indica que no aplican a derivaciones no mínimas.,COMPLETO,114,1
+98,D13-1077_N13-1111_1,Evaluable,Evidence,Alta,Respalda el hallazgo de que menos del 40% de los anáforas puente son definidas.,COMPLETO,114,1
+99,W10-1411_N10-1093_2,Evaluable,Background,Alta,Describe los hallazgos del trabajo previo sobre rasgos clausales.,COMPLETO,114,1
+100,E12-1003_N10-1137_0,Evaluable,Evidence,Alta,Respalda que la línea base es fuerte y difícil de superar.,COMPLETO,114,1

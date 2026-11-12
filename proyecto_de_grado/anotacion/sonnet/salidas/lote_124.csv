@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W10-3305_P07-2042_0,Evaluable,Comparison,Alta,Compara la precisión del sistema propio con la del trabajo citado.,COMPLETO,124,1
+2,D11-1006_W04-0307_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre formalismos de parsing.,COMPLETO,124,1
+3,D09-1079_P08-1058_1,Evaluable,Improvement / Modification,Alta,El modelo propio es una variante del filtro Bloomier por lotes citado.,COMPLETO,124,1
+4,W10-1727_P09-1089_0,Evaluable,Comparison,Alta,Contrasta el enfoque del trabajo citado (WordNet) con el propio.,COMPLETO,124,1
+5,D08-1007_N01-1013_1,Evaluable,Background,Media,Enumera enfoques basados en WordNet comparados por otro trabajo.,COMPLETO,124,1
+6,W11-2165_P05-1033_1,Evaluable,Background,Media,Menciona trabajos previos con estructuras bilingües con huecos.,COMPLETO,124,1
+7,D12-1028_W11-0303_0,Evaluable,Evidence,Media,El análisis lingüístico citado respalda la afirmación sobre las etiquetas POS no supervisadas.,COMPLETO,124,1
+8,P99-1012_P95-1021_0,Evaluable,Identification of the Originator,Alta,Indica quién describió primero el problema (first described).,COMPLETO,124,1
+9,D10-1120_P10-1131_1,Evaluable,Comparison,Media,El método propio supera a los métodos no supervisados del estado del arte citados.,COMPLETO,124,1
+10,P92-1047_P92-1047_0,Evaluable,Further Reading,Alta,Remite a la fuente para los detalles de la encuesta.,COMPLETO,124,1
+11,N10-1129_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador POS citado sin modificarlo.,COMPLETO,124,1
+12,W12-4510_D10-1048_0,Evaluable,Background,Alta,Describe trabajo previo con modelos basados en reglas.,COMPLETO,124,1
+13,Q13-1007_D10-1120_2,Evaluable,Comparison,Media,Compara con sistemas que incorporan las reglas del trabajo citado de forma determinista.,COMPLETO,124,1
+14,J08-1003_E06-1011_0,Evaluable,Comparison,Media,Contrasta las dependencias etiquetadas propias con las no etiquetadas del trabajo citado.,COMPLETO,124,1
+15,N10-1068_N09-1005_1,Evaluable,Comparison,Alta,Compara la exactitud obtenida con la mejor reportada en la tarea.,COMPLETO,124,1
+16,P13-1131_N06-1039_0,Evaluable,Background,Media,Cita aplicaciones de las reglas de inferencia como contexto general.,COMPLETO,124,1
+17,W07-0729_P03-1021_0,Evaluable,Application,Alta,Usa MERT para ajustar los pesos.,COMPLETO,124,1
+18,J08-1002_W02-2030_3,Evaluable,Comparison,Alta,Señala explícitamente la diferencia entre esos estudios y el trabajo actual.,COMPLETO,124,1
+19,W09-1117_W06-2920_0,Evaluable,Background,Media,Cita desarrollos recientes en parsing de dependencias multilingüe como contexto.,COMPLETO,124,1
+20,P13-4006_N12-1076_0,Evaluable,Background,Media,"Describe hallazgos del trabajo citado sobre modelos de significado en contexto, como motivación de trabajo futuro.",COMPLETO,124,1
+21,W10-2809_P06-1044_0,Evaluable,Application,Alta,Usa el conjunto de datos de verbos biomédicos citado en los experimentos.,COMPLETO,124,1
+22,N07-1010_P03-1023_1,Evaluable,Further Reading,Media,Remite a la literatura para las características del modelo de enlace.,COMPLETO,124,1
+23,W09-1122_P06-1101_0,Evaluable,Background,Alta,Ejemplos de aplicaciones que usan parsing como preprocesamiento.,COMPLETO,124,1
+24,W11-0215_W09-1403_0,Evaluable,Background,Media,Resume resultados previos de extracción de información biomédica.,COMPLETO,124,1
+25,D10-1067_P06-1043_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el rendimiento cae en adaptación de dominio.,COMPLETO,124,1
+26,P11-1047_N06-1033_0,Evaluable,Further Reading,Alta,Remite a la fuente para una discusión más amplia.,COMPLETO,124,1
+27,N13-1015_N07-1051_0,Evaluable,Comparison,Alta,Compara la exactitud reportada con la de este trabajo.,COMPLETO,124,1
+28,P93-1019_E89-1008_0,Evaluable,Identification of the Originator,Alta,Indica que los investigadores de Edimburgo sugirieron primero el uso de FDL.,COMPLETO,124,1
+29,W09-3823_W02-1506_0,Evaluable,Application,Alta,Usa el parser XLE para analizar las oraciones.,COMPLETO,124,1
+30,W11-2019_P10-2009_2,Evaluable,Basis,Media,El análisis actual continúa los resultados previos de los mismos autores.,COMPLETO,124,1
+31,J91-4003_J88-2003_0,Evaluable,Background,Media,Remite a trabajos sobre estructura de eventos (cf.) como contexto.,COMPLETO,124,1
+32,W13-3733_N13-1070_1,Evaluable,Basis,Media,Reporta evaluaciones publicadas por primera vez en el trabajo citado.,COMPLETO,124,1
+33,P96-1006_A92-1021_0,Evaluable,Evidence,Media,Respalda la disponibilidad de etiquetadores POS precisos.,COMPLETO,124,1
+34,P12-2003_D11-1123_0,Evaluable,Background,Alta,Ejemplos de aplicaciones como análisis de sentimiento.,COMPLETO,124,1
+35,N13-1107_P11-1056_0,Evaluable,Background,Alta,Enumera sistemas tradicionales de extracción de relaciones.,COMPLETO,124,1
+36,N13-1115_P12-1099_2,Evaluable,Comparison,Alta,Contrasta explícitamente el enfoque propio con el citado.,COMPLETO,124,1
+37,N09-1013_W02-1012_0,Evaluable,Background,Media,Describe el trabajo previo sobre el uso de información POS en alineamiento.,COMPLETO,124,1
+38,W10-2919_S07-1094_0,Evaluable,Comparison,Alta,Compara los resultados propios con los de otros participantes de SemEval.,COMPLETO,124,1
+39,P12-1109_P11-1037_8,Evaluable,Comparison,Alta,Compara la ganancia de rendimiento frente al trabajo citado.,COMPLETO,124,1
+40,W11-0612_W10-2010_0,Evaluable,Comparison,Media,Los resultados propios se contrastan con y apoyan los hallazgos citados sobre entropía.,COMPLETO,124,1
+41,D12-1086_D10-1083_0,Evaluable,Evidence,Alta,Respalda la cifra de 95% de palabras con su etiqueta más frecuente.,COMPLETO,124,1
+42,W13-2263_P06-1055_0,Evaluable,Application,Alta,Usa el Berkeley Parser sin modificarlo.,COMPLETO,124,1
+43,D12-1020_P06-1124_0,Evaluable,Background,Media,Menciona usos previos exitosos de procesos Pitman-Yor en modelos n-grama.,COMPLETO,124,1
+44,W09-3930_W07-1401_2,Evaluable,Basis,Alta,La representación de cláusulas está inspirada en el trabajo previo.,COMPLETO,124,1
+45,E09-1090_N03-1028_0,Evaluable,Application,Alta,Sigue los conjuntos de características del trabajo previo.,COMPLETO,124,1
+46,D11-1031_P96-1024_1,Evaluable,Application,Alta,Usa el algoritmo de parsing de riesgo mínimo citado para decodificar.,COMPLETO,124,1
+47,D12-1063_P10-1131_0,Evaluable,Background,Media,Enumera sistemas previos ausentes de la tabla por no reportar todas las longitudes.,COMPLETO,124,1
+48,W10-2210_W02-0603_0,Evaluable,Background,Alta,Enumera métodos de segmentación morfológica no supervisada.,COMPLETO,124,1
+49,D12-1047_P10-2041_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los datos deben coincidir con el dominio.,COMPLETO,124,1
+50,E09-1072_W03-0410_0,Evaluable,Basis,Media,La estrategia propia sigue el enfoque de clasificación de verbos citado.,COMPLETO,124,1
+51,P10-1075_A97-1015_0,Evaluable,Evidence,Alta,Respalda que la exactitud del parsing se degrada fuera del dominio.,COMPLETO,124,1
+52,P07-1091_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford con su gramática por defecto.,COMPLETO,124,1
+53,N12-1052_D11-1006_1,Evaluable,Improvement / Modification,Alta,Aumenta el sistema de transferencia directa citado con características de clústeres.,COMPLETO,124,1
+54,W04-2505_P03-1002_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre las dependencias del reconocimiento de estructuras predicado-argumento.,COMPLETO,124,1
+55,D12-1052_P11-1092_0,Evaluable,Background,Alta,Revisa trabajos previos de corrección por clasificación.,COMPLETO,124,1
+56,D09-1135_W07-1204_0,Evaluable,Background,Alta,Describe trabajo previo en la revisión de literatura.,COMPLETO,124,1
+57,W09-3718_P95-1028_0,Evaluable,Background,Media,Atribuye una postura a varios autores como contexto de la discusión.,COMPLETO,124,1
+58,N13-1001_W04-3250_1,Evaluable,Application,Alta,Usa el remuestreo bootstrap para pruebas de significancia.,COMPLETO,124,1
+59,W12-3127_P10-1035_0,Evaluable,Evidence,Alta,"Respalda que CCG es libre de contexto, justificando la elección.",COMPLETO,124,1
+60,P12-2001_D10-1002_0,Evaluable,Comparison,Alta,Aparece en una tabla comparativa de resultados.,COMPLETO,124,1
+61,D13-1059_P12-1024_0,Evaluable,Background,Alta,Enumera algoritmos de aprendizaje espectral propuestos.,COMPLETO,124,1
+62,W09-4106_W00-1804_1,Evaluable,Application,Alta,Usa la prueba isFunctional descrita en el trabajo citado.,COMPLETO,124,1
+63,P11-1029_P07-1008_1,Evaluable,Gap,Media,"Señala la dificultad reportada de recolectar datos con comodines, motivando el enfoque propio.",COMPLETO,124,1
+64,P11-1157_D10-1069_0,Evaluable,Identification of the Originator,Media,Atribuye la propuesta del uptraining al trabajo citado.,COMPLETO,124,1
+65,P07-1108_P04-1083_0,Evaluable,Background,Alta,Enumera métodos de traducción basados en sintaxis.,COMPLETO,124,1
+66,D12-1077_N10-1128_0,Evaluable,Background,Alta,Enumera trabajos previos de reglas de reordenamiento.,COMPLETO,124,1
+67,D11-1079_N04-4026_0,Evaluable,Comparison,Media,Contrasta el modelo de reordenamiento léxico con la característica propia.,COMPLETO,124,1
+68,D12-1025_P09-1088_0,Evaluable,Background,Alta,Cita usos generales de la inferencia bayesiana en PLN.,COMPLETO,124,1
+69,S12-1012_W09-0215_1,Evaluable,Application,Media,Usa la medida ClarkeDE propuesta en el trabajo citado.,COMPLETO,124,1
+70,D12-1107_P07-1065_0,Evaluable,Background,Alta,Revisa trabajos sobre compresión de modelos de lenguaje.,COMPLETO,124,1
+71,D13-1077_P10-1005_0,Evaluable,Basis,Alta,Las características se inspiran en el trabajo citado.,COMPLETO,124,1
+72,P01-1064_A00-2004_4,Evaluable,Comparison,Alta,Explica diferencias entre los resultados propios y los del artículo citado.,COMPLETO,124,1
+73,N13-1050_P11-1038_0,Evaluable,Background,Alta,Enumera trabajo previo sobre sustitución de palabras.,COMPLETO,124,1
+74,P13-1172_D12-1123_7,Evaluable,Application,Media,Sigue el procedimiento del trabajo citado para fijar la confianza previa.,COMPLETO,124,1
+75,D10-1064_E09-1082_2,Evaluable,Evidence,Media,Respalda que los resultados concuerdan con trabajos que usan paráfrasis humanas.,COMPLETO,124,1
+76,W11-1609_N06-1058_0,Evaluable,Background,Media,Describe un resultado previo sobre referencias sintéticas con WordNet.,COMPLETO,124,1
+77,W13-4307_W09-3001_1,Evaluable,Background,Media,Describe cómo trabajos previos definen clases de emoción.,COMPLETO,124,1
+78,W04-1118_W99-0604_0,Evaluable,Application,Alta,Usa GIZA++ para entrenar los modelos de alineamiento.,COMPLETO,124,1
+79,P13-2109_W06-2920_0,Evaluable,Application,Alta,Usa los conjuntos de datos de las tareas compartidas CoNLL.,COMPLETO,124,1
+80,D12-1124_P07-1053_0,Evaluable,Background,Alta,Enumera trabajo relacionado de predicción de cantidades reales con texto.,COMPLETO,124,1
+81,W12-3160_P05-1012_0,Evaluable,Background,Media,Indica que MIRA funciona bien en parsing y otras tareas.,COMPLETO,124,1
+82,P13-1131_D10-1106_0,Evaluable,Background,Alta,Menciona recursos de reglas de inferencia previos.,COMPLETO,124,1
+83,W10-4322_P97-1035_0,Evaluable,Evidence,Media,Respalda que la recompensa se aproxima con medidas objetivas.,COMPLETO,124,1
+84,P13-1010_P05-1018_9,Evaluable,Comparison,Alta,Compara la exactitud propia con la reportada en el trabajo citado.,COMPLETO,124,1
+85,W07-2202_P05-1011_1,Evaluable,Comparison,Alta,Contrasta las características unigrama del trabajo citado con las del trabajo posterior.,COMPLETO,124,1
+86,W12-3151_P07-2045_0,Evaluable,Application,Alta,El sistema se construye sobre Moses.,COMPLETO,124,1
+87,P10-1016_P07-1039_0,Evaluable,Background,Alta,Menciona investigaciones sobre el impacto de herramientas de segmentación.,COMPLETO,124,1
+88,N13-1019_P08-2068_0,Evaluable,Background,Alta,Enumera trabajos previos con modelos de tópicos para segmentación.,COMPLETO,124,1
+89,W05-0811_P00-1056_0,Evaluable,Application,Alta,Ejecuta GIZA++ para producir alineamientos IBM Model 4.,COMPLETO,124,1
+90,J13-1005_P05-1022_4,Evaluable,Background,Media,Describe el estado del arte del trabajo citado en reranking.,COMPLETO,124,1
+91,P12-1108_P07-1096_0,Evaluable,Background,Alta,Cita el estado del arte en etiquetado POS supervisado.,COMPLETO,124,1
+92,D09-1007_N09-1073_0,Evaluable,Background,Alta,Enumera técnicas recientes de aceleración del parsing.,COMPLETO,124,1
+93,D12-1038_W03-1728_0,Evaluable,Evidence,Media,Respalda la formalización de la segmentación como etiquetado de secuencias.,COMPLETO,124,1
+94,D13-1129_D11-1109_1,Evaluable,Comparison,Alta,Compara resultados con el parser citado en la tabla.,COMPLETO,124,1
+95,P10-1142_N09-1065_2,Evaluable,Background,Alta,Menciona métodos propuestos previamente para puntuar NPs extraídas automáticamente.,COMPLETO,124,1
+96,W06-1619_P05-1011_1,Evaluable,Basis,Media,El modelo híbrido se presenta como extensión del modelo previo citado.,COMPLETO,124,1
+97,P10-1145_J07-2003_0,Evaluable,Background,Alta,Presenta Hiero como sistema sintáctico de referencia.,COMPLETO,124,1
+98,N12-1032_W06-2932_2,Evaluable,Application,Alta,"Usa MSTParser, que los autores indican emplear.",COMPLETO,124,1
+99,J10-2004_W04-3250_0,Evaluable,Application,Alta,Usa el método bootstrap pareado para calcular p-valores.,COMPLETO,124,1
+100,D12-1117_P09-1031_2,Evaluable,Comparison,Alta,Es uno de los sistemas contra los que se compara el algoritmo propio.,COMPLETO,124,1

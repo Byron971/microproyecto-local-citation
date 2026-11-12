@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P09-2016_P07-1007_0,Evaluable,Gap,Media,"Se señala que las técnicas previas requieren ejemplos positivos y negativos, lo cual no aplica al problema actual.",COMPLETO,122,1
+2,P10-1112_P09-2012_0,Evaluable,Background,Alta,,COMPLETO,122,1
+3,P11-1057_P04-1036_1,Evaluable,Gap,Media,"Se señala el fracaso de los enfoques monolingües, lo que motiva los enfoques bilingües.",COMPLETO,122,1
+4,D10-1018_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,122,1
+5,N13-1065_N10-1026_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+6,W11-1002_W05-0904_0,Evaluable,Background,Media,Describe el trabajo previo STM y luego señala su limitación; predomina la descripción.,COMPLETO,122,1
+7,P13-3025_P05-1012_0,Evaluable,Application,Alta,,COMPLETO,122,1
+8,D13-1115_D12-1130_3,Evaluable,Comparison,Media,Los resultados se declaran consistentes con otros trabajos.,COMPLETO,122,1
+9,W11-2129_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,122,1
+10,J08-1002_P04-1014_2,Evaluable,Background,Alta,,COMPLETO,122,1
+11,P13-1059_P02-1051_0,Evaluable,Background,Alta,,COMPLETO,122,1
+12,W11-0135_W07-1409_0,Evaluable,Background,Alta,,COMPLETO,122,1
+13,P04-1005_N01-1016_3,Evaluable,Comparison,Alta,,COMPLETO,122,1
+14,N09-1064_N03-1030_0,Evaluable,Gap,Media,"Trabajo previo se apoya solo en información sintáctica y léxica, lo que motiva el trabajo.",COMPLETO,122,1
+15,W13-2238_N03-1017_1,Evaluable,Background,Media,Describe resultados de trabajo previo sobre un modelo.,COMPLETO,122,1
+16,W13-1613_E09-1005_0,Evaluable,Basis,Alta,,COMPLETO,122,1
+17,J13-3006_P98-2127_2,Evaluable,Background,Media,Describe una medida de similitud exitosa en semántica léxica.,COMPLETO,122,1
+18,P12-1109_N07-1025_0,Evaluable,Basis,Media,La hipótesis está motivada por investigación en WSD.,COMPLETO,122,1
+19,D09-1122_W04-3206_0,Evaluable,Comparison,Alta,,COMPLETO,122,1
+20,D10-1091_P06-1091_1,Evaluable,Background,Media,Describe la motivación y el método de un trabajo previo sobre oracle decoding.,COMPLETO,122,1
+21,P13-2001_P12-2035_0,Evaluable,Background,Alta,,COMPLETO,122,1
+22,W10-3815_N06-1032_0,Evaluable,Comparison,Media,Se describe trabajo previo en relación con el modelo evaluado.,COMPLETO,122,1
+23,W02-1601_P96-1016_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la lingüística teórica.,COMPLETO,122,1
+24,W10-2915_J07-2003_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+25,N12-1085_W11-1510_0,Evaluable,Further Reading,Alta,,COMPLETO,122,1
+26,P11-1006_D08-1047_3,Evaluable,Comparison,Alta,Método usado como línea base.,COMPLETO,122,1
+27,N12-1047_D11-1125_3,Evaluable,Application,Media,Se implementa PRO siguiendo el trabajo citado.,COMPLETO,122,1
+28,W04-1506_A97-1014_0,Evaluable,Evidence,Alta,,COMPLETO,122,1
+29,D13-1007_N13-1037_1,Evaluable,Background,Media,Reporta una crítica previa a la tarea de normalización.,COMPLETO,122,1
+30,P10-1112_P05-1033_0,Evaluable,Background,Alta,,COMPLETO,122,1
+31,P11-1106_N01-1021_2,Evaluable,Identification of the Originator,Media,Atribuye la teoría de la sorpresa a su fuente.,COMPLETO,122,1
+32,D10-1004_P10-1001_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+33,W06-0124_W03-1709_0,Evaluable,Application,Alta,,COMPLETO,122,1
+34,D12-1066_N10-1017_0,Evaluable,Background,Alta,,COMPLETO,122,1
+35,W13-3302_W97-0207_0,Evaluable,Evidence,Media,El trabajo citado demostró la intuición mencionada.,COMPLETO,122,1
+36,W12-5503_P09-3003_1,Evaluable,Application,Media,Se extraen características basadas en el trabajo citado.,COMPLETO,122,1
+37,N10-1003_N07-1051_4,Evaluable,Comparison,Alta,,COMPLETO,122,1
+38,P08-1098_J04-3001_1,Evaluable,Background,Alta,,COMPLETO,122,1
+39,N07-1015_P04-1054_1,Evaluable,Background,Media,Describe trabajo previo con kernels de árboles y sus limitaciones.,COMPLETO,122,1
+40,P13-1020_D12-1022_3,Evaluable,Application,Alta,Se usan las mismas particiones de datos.,COMPLETO,122,1
+41,P10-1057_W06-1613_0,Evaluable,Background,Alta,,COMPLETO,122,1
+42,D12-1011_W12-3016_0,Evaluable,Evidence,Media,Respalda un dato sobre menciones no enlazables.,COMPLETO,122,1
+43,W07-2318_E91-1028_2,Evaluable,Gap,Media,Señala el mal desempeño del algoritmo citado en un nuevo dominio.,COMPLETO,122,1
+44,P01-1005_P98-1029_0,Evaluable,Identification of the Originator,Media,Reconoce quién definió el concepto de complementariedad.,COMPLETO,122,1
+45,P13-1089_W10-2924_0,Evaluable,Background,Media,Se citan trabajos previos sobre la tarea.,COMPLETO,122,1
+46,W11-0311_D09-1020_0,Evaluable,Identification of the Originator,Media,Los autores indican que introdujeron la tarea SWSD en el trabajo citado.,COMPLETO,122,1
+47,P11-1037_N04-1043_0,Evaluable,Background,Alta,,COMPLETO,122,1
+48,W04-1217_W03-0424_0,Evaluable,Evidence,Media,Respalda que los sistemas NER usan el etiquetado del mismo documento.,COMPLETO,122,1
+49,W00-1007_P98-2204_2,Evaluable,Basis,Media,Se adoptan las restricciones de ranking del trabajo citado.,COMPLETO,122,1
+50,S13-2029_P91-1034_0,Evaluable,Background,Alta,,COMPLETO,122,1
+51,P08-1037_W00-1320_0,Evaluable,Basis,Alta,,COMPLETO,122,1
+52,W04-0103_J00-2014_0,Evaluable,Evidence,Media,Respalda la existencia de una función de ranking independiente del idioma.,COMPLETO,122,1
+53,N13-2008_W02-0902_0,Evaluable,Background,Alta,,COMPLETO,122,1
+54,W13-2810_N10-1015_0,Evaluable,Background,Media,Enumera trabajos previos que remendaron modelos.,COMPLETO,122,1
+55,P05-1040_E03-1068_2,Evaluable,Basis,Alta,,COMPLETO,122,1
+56,W06-0701_W00-1427_0,Evaluable,Application,Alta,,COMPLETO,122,1
+57,P13-2020_P11-2033_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+58,N04-1012_W02-2018_0,Evaluable,Application,Alta,,COMPLETO,122,1
+59,E09-1014_W07-2303_1,Evaluable,Background,Media,Reporta resultados del trabajo citado.,COMPLETO,122,1
+60,W10-1411_P09-1040_3,Evaluable,Comparison,Alta,,COMPLETO,122,1
+61,D12-1106_D10-1003_0,Evaluable,Evidence,Alta,,COMPLETO,122,1
+62,P06-1114_N03-1022_0,Evaluable,Background,Alta,,COMPLETO,122,1
+63,P05-1059_N03-1016_0,Evaluable,Comparison,Media,Relaciona la técnica propia con métodos A* y señala una diferencia.,COMPLETO,122,1
+64,W08-0607_P07-1125_1,Evaluable,Background,Alta,,COMPLETO,122,1
+65,W07-1706_W06-2609_0,Evaluable,Background,Alta,,COMPLETO,122,1
+66,W13-2806_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,122,1
+67,P99-1013_P99-1013_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para la prueba detallada.,COMPLETO,122,1
+68,N13-1011_W02-0902_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+69,W13-4005_E09-1022_4,Evaluable,Application,Alta,Se usa el conjunto de datos del trabajo citado.,COMPLETO,122,1
+70,W12-3148_P10-2041_0,Evaluable,Background,Media,Describe el trabajo citado que compara enfoques de selección de datos.,COMPLETO,122,1
+71,P11-2125_W96-0213_0,Evaluable,Application,Alta,,COMPLETO,122,1
+72,D12-1089_P11-1027_0,Evaluable,Background,Alta,,COMPLETO,122,1
+73,W13-3504_N09-1024_4,Evaluable,Comparison,Alta,,COMPLETO,122,1
+74,P98-2204_P87-1022_1,Evaluable,Background,Alta,,COMPLETO,122,1
+75,W13-2902_W03-1004_3,Evaluable,Comparison,Media,El algoritmo adaptado se reporta como línea base en la tabla.,COMPLETO,122,1
+76,N04-3004_P00-1010_0,Evaluable,Application,Alta,,COMPLETO,122,1
+77,W06-1807_P04-1014_0,Evaluable,Application,Alta,,COMPLETO,122,1
+78,N04-1042_N04-1039_1,Evaluable,Basis,Media,Se describe y adopta el prior exponencial propuesto en el trabajo citado.,COMPLETO,122,1
+79,P08-3001_W02-0908_0,Evaluable,Evidence,Alta,,COMPLETO,122,1
+80,D13-1141_S12-1049_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+81,W05-1510_P05-1011_2,Evaluable,Background,Alta,,COMPLETO,122,1
+82,Q13-1025_P12-2003_1,Evaluable,Comparison,Media,El fenómeno observado coincide con el del trabajo citado.,COMPLETO,122,1
+83,W03-1009_P02-1026_1,Evaluable,Further Reading,Alta,Remite al trabajo previo para la derivación detallada.,COMPLETO,122,1
+84,W11-2306_W11-2703_0,Evaluable,Further Reading,Alta,,COMPLETO,122,1
+85,D09-1115_P08-1115_0,Evaluable,Background,Media,Aporta información sobre las redes de confusión.,COMPLETO,122,1
+86,P13-1056_W11-2503_0,Evaluable,Basis,Media,El modelo de concatenación se basa en variantes propuestas previamente.,COMPLETO,122,1
+87,E12-1052_W07-1210_0,Evaluable,Background,Alta,,COMPLETO,122,1
+88,W11-0115_P05-1016_0,Evaluable,Background,Media,Cita la hipótesis distribucional como idea fundamental del campo.,COMPLETO,122,1
+89,W13-3602_W10-1004_2,Evaluable,Basis,Alta,,COMPLETO,122,1
+90,D11-1108_P03-1021_1,Evaluable,Background,Alta,,COMPLETO,122,1
+91,S10-1087_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,122,1
+92,J13-2004_N10-1118_0,Evaluable,Background,Alta,,COMPLETO,122,1
+93,W05-0620_W05-0634_7,Evaluable,Comparison,Alta,,COMPLETO,122,1
+94,P13-1033_N03-1017_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+95,D13-1064_Q13-1015_4,Evaluable,Application,Alta,,COMPLETO,122,1
+96,P04-1070_P04-1069_2,Evaluable,Background,Alta,,COMPLETO,122,1
+97,W09-2605_P06-1064_4,Evaluable,Comparison,Alta,,COMPLETO,122,1
+98,D10-1078_P10-2040_2,Evaluable,Comparison,Alta,,COMPLETO,122,1
+99,P13-1012_D09-1101_5,Evaluable,Comparison,Media,Se compara contra un sistema tipo el del trabajo citado.,COMPLETO,122,1
+100,N09-1009_W02-1009_0,Evaluable,Evidence,Media,Apoya la eficacia del atado de parámetros.,COMPLETO,122,1

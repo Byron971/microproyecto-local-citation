@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W03-2604_P02-1014_0,Evaluable,Background,Media,"Describes corpus-based approaches in general, noting cost-effectiveness and performance.",COMPLETO,110,1
+2,P13-1127_D09-1001_0,Evaluable,Background,Alta,,COMPLETO,110,1
+3,W09-3005_J97-4004_0,Evaluable,Further Reading,Media,cf. points to a source for the definition of tokenization.,COMPLETO,110,1
+4,W12-0203_P11-2053_0,Evaluable,Background,Alta,,COMPLETO,110,1
+5,P13-1106_D11-1001_0,Evaluable,Comparison,Alta,Compares the dual decomposition algorithm and models with the cited work.,COMPLETO,110,1
+6,W09-4201_J93-1007_2,Evaluable,Application,Alta,Refers to the algorithm they implemented.,COMPLETO,110,1
+7,P11-1114_P07-1075_0,Evaluable,Background,Alta,,COMPLETO,110,1
+8,P10-1097_P08-2008_0,Evaluable,Background,Media,Notes prior uses of second-order vectors in a syntactic setting.,COMPLETO,110,1
+9,W06-3109_W01-1408_0,Evaluable,Background,Alta,,COMPLETO,110,1
+10,W09-3608_N07-1031_0,Evaluable,Evidence,Media,Supports the claim that Castanet worked well on a different kind of text.,COMPLETO,110,1
+11,D09-1004_W06-1617_1,Evaluable,Background,Media,Lists prior works on features for SRL.,COMPLETO,110,1
+12,D11-1116_N10-1115_2,Evaluable,Further Reading,Alta,See ... for more explanation.,COMPLETO,110,1
+13,W12-0704_W09-0435_0,Evaluable,Background,Alta,,COMPLETO,110,1
+14,N09-3004_P07-1002_0,Evaluable,Evidence,Alta,Supports the claim that constraints aid better sentence synthesis.,COMPLETO,110,1
+15,D10-1068_W02-1210_0,Evaluable,Application,Alta,Uses the Jacy grammar.,COMPLETO,110,1
+16,P04-1043_P02-1031_2,Evaluable,Comparison,Alta,Compares accuracy with the best previous result.,COMPLETO,110,1
+17,P11-3018_N03-1033_0,Evaluable,Application,Alta,Uses the Stanford tagger.,COMPLETO,110,1
+18,P10-2056_N09-1053_0,Evaluable,Comparison,Alta,Explicitly compares similarity and differences with the cited approach.,COMPLETO,110,1
+19,W13-2221_E03-1076_0,Evaluable,Application,Alta,Applies the compound splitting method.,COMPLETO,110,1
+20,W96-0404_P95-1021_1,Evaluable,Further Reading,Alta,,COMPLETO,110,1
+21,W04-1217_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,110,1
+22,P12-2056_W08-0336_2,Evaluable,Comparison,Alta,Observation consistent with the cited finding.,COMPLETO,110,1
+23,P10-4002_E09-1061_0,Evaluable,Background,Alta,,COMPLETO,110,1
+24,P13-3008_P10-2021_0,Evaluable,Background,Media,Common approach in related work on collocation error correction.,COMPLETO,110,1
+25,P13-2089_P12-1065_0,Evaluable,Comparison,Alta,Results are consistent with the cited finding.,COMPLETO,110,1
+26,D13-1134_D10-1040_0,Evaluable,Gap,Media,"Notes that the cited models do not update the probability model, a limitation.",COMPLETO,110,1
+27,W09-2307_W08-0336_0,Evaluable,Application,Alta,,COMPLETO,110,1
+28,D09-1133_P03-1002_0,Evaluable,Background,Alta,,COMPLETO,110,1
+29,D13-1201_P07-2045_2,Evaluable,Application,Alta,Uses Moses decoding.,COMPLETO,110,1
+30,P13-2109_P10-1001_3,Evaluable,Application,Alta,Follows the pruning strategy of the cited work.,COMPLETO,110,1
+31,W09-3939_D08-1069_3,Evaluable,Comparison,Alta,Compares f-score with the cited model.,COMPLETO,110,1
+32,D13-1177_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser.,COMPLETO,110,1
+33,D08-1113_N07-1046_0,Evaluable,Comparison,Alta,Contrasts their approach with the competing one.,COMPLETO,110,1
+34,S10-1091_P07-1096_0,Evaluable,Application,Alta,Uses bpos for POS tagging.,COMPLETO,110,1
+35,W13-2219_W11-2123_0,Evaluable,Application,Alta,Uses KenLM.,COMPLETO,110,1
+36,W11-2132_W08-0509_0,Evaluable,Application,Alta,Uses multi-threaded GIZA++.,COMPLETO,110,1
+37,P09-1039_W06-2920_0,Evaluable,Evidence,Media,cf. supports the claim that dependency trees are nearly projective.,COMPLETO,110,1
+38,W10-2105_W06-1615_0,Evaluable,Background,Alta,Reviews prior positive results.,COMPLETO,110,1
+39,P12-2061_N03-1017_0,Evaluable,Background,Alta,,COMPLETO,110,1
+40,J13-3006_W01-0703_0,Evaluable,Background,Alta,,COMPLETO,110,1
+41,J10-2001_P04-1009_0,Evaluable,Background,Alta,Describes related work extending an approach.,COMPLETO,110,1
+42,W09-1104_W06-2920_1,Evaluable,Comparison,Alta,Compares their parser performance to the CoNLL-X average.,COMPLETO,110,1
+43,P12-1044_P03-1002_0,Evaluable,Evidence,Media,Supports the claim that tasks benefit from an SCF lexicon.,COMPLETO,110,1
+44,P13-1079_P05-1033_0,Evaluable,Background,Alta,,COMPLETO,110,1
+45,E09-1072_W08-2104_0,Evaluable,Comparison,Alta,Compares their gold standard results with those previously reported.,COMPLETO,110,1
+46,N10-1137_N07-1070_0,Evaluable,Evidence,Media,Cited finding motivates and supports the argument for inducing roles.,COMPLETO,110,1
+47,P13-1039_N13-1104_1,Evaluable,Comparison,Alta,Describes PROFINDER and states similarity to the current work.,COMPLETO,110,1
+48,P12-2003_N03-1033_0,Evaluable,Application,Alta,Uses the Stanford tagger.,COMPLETO,110,1
+49,W09-1406_W08-2125_1,Evaluable,Basis,Alta,Approach is inspired by the cited labeller.,COMPLETO,110,1
+50,W01-1605_W99-0307_1,Evaluable,Background,Media,Prior annotation research and its findings.,COMPLETO,110,1
+51,W12-5210_W01-1413_0,Evaluable,Background,Alta,,COMPLETO,110,1
+52,W06-1105_P04-1053_0,Evaluable,Gap,Media,"Notes previous representations were limited to TxD, motivating the new one.",COMPLETO,110,1
+53,W05-0610_W03-0425_0,Evaluable,Comparison,Alta,Compares results with the best CoNLL-2003 system.,COMPLETO,110,1
+54,W13-4912_P11-2123_0,Evaluable,Background,Alta,,COMPLETO,110,1
+55,D13-1038_W06-1411_1,Evaluable,Evidence,Alta,Supports the claim about importance of group descriptions.,COMPLETO,110,1
+56,S10-1069_P09-2014_0,Evaluable,Evidence,Media,Supports the claim that cross-framework evaluation is difficult.,COMPLETO,110,1
+57,P12-1039_W06-1417_0,Evaluable,Background,Alta,,COMPLETO,110,1
+58,W12-3121_P07-1038_0,Evaluable,Background,Alta,,COMPLETO,110,1
+59,J05-4005_W03-1721_0,Evaluable,Gap,Media,Points out a limitation of treating OOV identification separately.,COMPLETO,110,1
+60,W10-4165_E09-1013_0,Evaluable,Background,Alta,Describes related work.,COMPLETO,110,1
+61,D12-1086_P10-2040_1,Evaluable,Comparison,Alta,Result listed in a comparison table.,COMPLETO,110,1
+62,W11-4004_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,110,1
+63,P12-1084_W06-1612_5,Evaluable,Comparison,Alta,Compares accuracy with state-of-the-art.,COMPLETO,110,1
+64,E12-1079_P11-4017_0,Evaluable,Application,Alta,,COMPLETO,110,1
+65,W12-4802_D09-1111_0,Evaluable,Gap,Media,Notes discriminative models are impractical for higher order n-grams.,COMPLETO,110,1
+66,W10-1734_E03-1076_5,Evaluable,Application,Alta,Uses the gold standard.,COMPLETO,110,1
+67,D13-1156_D12-1022_0,Evaluable,Comparison,Alta,Lists the system's performance for comparison.,COMPLETO,110,1
+68,W11-2118_N07-1029_3,Evaluable,Comparison,Alta,Compares approach to MBR primary.,COMPLETO,110,1
+69,P13-2120_W05-0616_1,Evaluable,Further Reading,Alta,Refers reader for technical exposition.,COMPLETO,110,1
+70,W13-2232_D09-1092_1,Evaluable,Improvement / Modification,Media,Extends online variational Bayes to polylingual topic models.,COMPLETO,110,1
+71,D10-1073_N10-1010_0,Evaluable,Evidence,Media,Supports claim of superior performance of the method in a related problem.,COMPLETO,110,1
+72,P08-1115_N04-1001_0,Evaluable,Application,Alta,Uses a Chinese NE tagger.,COMPLETO,110,1
+73,D13-1041_N10-1072_2,Evaluable,Further Reading,Alta,,COMPLETO,110,1
+74,W10-2503_N04-1014_0,Evaluable,Identification of the Originator,Alta,WXTTs were proposed by the cited work.,COMPLETO,110,1
+75,W13-3212_P11-1015_2,Evaluable,Evidence,Alta,Supports observation that LDA does not necessarily outperform LSI.,COMPLETO,110,1
+76,J92-2004_P87-1032_0,Evaluable,Background,Alta,,COMPLETO,110,1
+77,P09-1106_N07-1029_3,Evaluable,Background,Media,Describes the TER-based alignment method.,COMPLETO,110,1
+78,W13-2008_W12-4304_0,Evaluable,Further Reading,Alta,,COMPLETO,110,1
+79,E99-1001_P98-2140_0,Evaluable,Further Reading,Alta,See ... for more details.,COMPLETO,110,1
+80,P10-1084_N09-1041_0,Evaluable,Background,Alta,,COMPLETO,110,1
+81,D08-1021_P05-1074_3,Evaluable,Comparison,Alta,Compares quality against the baseline.,COMPLETO,110,1
+82,E09-1081_E09-1085_0,Evaluable,Further Reading,Alta,,COMPLETO,110,1
+83,P08-1025_N04-1022_0,Evaluable,Identification of the Originator,Media,Credits the proposers of the MBR decoding framework.,COMPLETO,110,1
+84,W99-0622_P96-1025_0,Evaluable,Background,Alta,,COMPLETO,110,1
+85,P04-1027_W00-0400_0,Evaluable,Evidence,Media,Supports claim about usefulness of automatic metrics.,COMPLETO,110,1
+86,W12-3150_P05-1033_0,Evaluable,Background,Alta,,COMPLETO,110,1
+87,J96-1001_J93-1007_0,Evaluable,Application,Alta,Uses XTRACT.,COMPLETO,110,1
+88,P03-1036_W02-0603_4,Evaluable,Comparison,Alta,Method compared to existing segmentation methods.,COMPLETO,110,1
+89,E12-1013_W09-0437_0,Evaluable,Evidence,Media,Supports claim that search-space exploration enables diagnostic analysis.,COMPLETO,110,1
+90,J09-1002_E99-1010_0,Evaluable,Application,Alta,Uses the cited method to train bilingual word classes.,COMPLETO,110,1
+91,P13-1145_D12-1062_0,Evaluable,Gap,Alta,Few studies exist and their approaches cannot be applied directly.,COMPLETO,110,1
+92,J13-4007_P11-1132_0,Evaluable,Evidence,Alta,Supports claim that classifiers identify translated text.,COMPLETO,110,1
+93,W04-2602_A92-1018_0,Evaluable,Evidence,Media,Supports claim that partial tagging with HMM performs well.,COMPLETO,110,1
+94,W10-2915_P05-1033_1,Evaluable,Comparison,Alta,Contrasts with the cited work's learning problem.,COMPLETO,110,1
+95,D13-1090_P09-1053_1,Evaluable,Comparison,Alta,Result in a comparison table.,COMPLETO,110,1
+96,W09-0436_N03-1017_0,Evaluable,Application,Alta,Uses a reimplementation of Moses.,COMPLETO,110,1
+97,S12-1079_S12-1051_1,Evaluable,Further Reading,Alta,Refers to the task description paper for details.,COMPLETO,110,1
+98,W06-1311_W04-0706_0,Evaluable,Background,Alta,Reviews prior results.,COMPLETO,110,1
+99,W08-1103_W07-1001_0,Evaluable,Background,Alta,,COMPLETO,110,1
+100,P10-1096_D09-1136_0,Evaluable,Background,Alta,,COMPLETO,110,1
