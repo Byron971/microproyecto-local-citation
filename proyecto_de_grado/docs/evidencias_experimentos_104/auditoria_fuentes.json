@@ -1,0 +1,78 @@
+{
+  "acuerdo_pares": {
+    "qlora~jurado": {
+      "n": 14380,
+      "acuerdo": 0.7075104311543811
+    },
+    "qlora~haiku": {
+      "n": 0,
+      "acuerdo": null
+    },
+    "qlora~gpt": {
+      "n": 199,
+      "acuerdo": 0.6984924623115578
+    },
+    "jurado~haiku": {
+      "n": 0,
+      "acuerdo": null
+    },
+    "jurado~gpt": {
+      "n": 163,
+      "acuerdo": 0.7423312883435583
+    },
+    "haiku~gpt": {
+      "n": 0,
+      "acuerdo": null
+    }
+  },
+  "precision_qlora_por_p": {
+    "qlora_vs_haiku_p[0.5,0.6)": {
+      "n": 0,
+      "precision": null
+    },
+    "qlora_vs_haiku_p[0.6,0.7)": {
+      "n": 0,
+      "precision": null
+    },
+    "qlora_vs_haiku_p[0.7,0.8)": {
+      "n": 0,
+      "precision": null
+    },
+    "qlora_vs_haiku_p[0.8,0.9)": {
+      "n": 0,
+      "precision": null
+    },
+    "qlora_vs_haiku_p[0.9,0.95)": {
+      "n": 0,
+      "precision": null
+    },
+    "qlora_vs_haiku_p[0.95,1.0)": {
+      "n": 0,
+      "precision": null
+    },
+    "qlora_vs_gpt_p[0.5,0.6)": {
+      "n": 15,
+      "precision": 0.6666666666666666
+    },
+    "qlora_vs_gpt_p[0.6,0.7)": {
+      "n": 25,
+      "precision": 0.28
+    },
+    "qlora_vs_gpt_p[0.7,0.8)": {
+      "n": 16,
+      "precision": 0.75
+    },
+    "qlora_vs_gpt_p[0.8,0.9)": {
+      "n": 32,
+      "precision": 0.5625
+    },
+    "qlora_vs_gpt_p[0.9,0.95)": {
+      "n": 13,
+      "precision": 0.6923076923076923
+    },
+    "qlora_vs_gpt_p[0.95,1.0)": {
+      "n": 82,
+      "precision": 0.9512195121951219
+    }
+  }
+}

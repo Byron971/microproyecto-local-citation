@@ -1,0 +1,22 @@
+[
+  {
+    "run": "scibert-A-natural-sinpesos-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 5.538499843737554,
+    "checkpoint_sha256": "0591ced42ce112e1d2c78178a3abb732ebd0d5d7ffd95095f8577b153e4bec89"
+  },
+  {
+    "run": "specter-A-natural-sinpesos-s42",
+    "encoder": "specter",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 5.600946937477147,
+    "checkpoint_sha256": "0a41d05ad7a6b74b3da45a4f57a22741c95c18d4b50cb8d6fb0e4e92e44e6bae"
+  }
+]
