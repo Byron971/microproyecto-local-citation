@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W13-2259_N07-1050_0,Evaluable,Evidence,Media,La cita respalda el dato de que hasta una de cada cuatro oraciones en los treebanks tiene estructuras no proyectivas.,COMPLETO,76,1
+2,W11-0814_W04-3230_0,Evaluable,Application,Alta,,COMPLETO,76,1
+3,W03-1017_J04-3002_2,Evaluable,Evidence,Media,Se reportan resultados del trabajo citado que confirman la expectativa planteada.,COMPLETO,76,1
+4,D09-1135_P03-1054_0,Evaluable,Evidence,Media,La cita respalda la afirmación sobre la escasez fundamental de la información de dependencias léxicas.,COMPLETO,76,1
+5,P02-1053_P97-1023_2,Evaluable,Comparison,Media,Se propone como trabajo futuro comparar empíricamente PMI-IR con el algoritmo del trabajo citado.,COMPLETO,76,1
+6,P08-1050_P07-1032_0,Evaluable,Application,Alta,,COMPLETO,76,1
+7,W13-3507_E12-1042_0,Evaluable,Background,Media,"Resume el estado de la literatura previa sobre algoritmos espectrales, con éxito experimental limitado.",COMPLETO,76,1
+8,E12-2006_W11-2123_0,Evaluable,Application,Alta,,COMPLETO,76,1
+9,P07-1078_E03-1008_4,Evaluable,Gap,Media,"Se señalan resultados previos sin mejora del analizador base, marcando una limitación de trabajos previos.",COMPLETO,76,1
+10,P07-1096_N03-1033_4,Evaluable,Comparison,Alta,,COMPLETO,76,1
+11,W09-3901_E06-1009_4,Evaluable,Application,Media,Se emplea el algoritmo de agrupamiento aglomerativo siguiendo los trabajos citados.,COMPLETO,76,1
+12,W10-4221_W08-1138_0,Evaluable,Application,Alta,,COMPLETO,76,1
+13,N09-1053_N09-1051_0,Evaluable,Further Reading,Alta,,COMPLETO,76,1
+14,D10-1121_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,76,1
+15,W04-0211_J94-2004_0,Evaluable,Further Reading,Media,Remite al lector a una discusión adicional sobre la relación entre sintaxis y estructura del discurso.,COMPLETO,76,1
+16,P13-1036_P11-1002_4,Evaluable,Comparison,Media,Los métodos del trabajo citado se presentan como líneas base frente al nuevo método en la tabla de resultados.,COMPLETO,76,1
+17,D13-1064_W06-2920_0,Evaluable,Evidence,Media,Respalda la afirmación de que existen treebanks y analizadores de dependencias para muchos idiomas.,COMPLETO,76,1
+18,W13-3202_P06-1055_1,Evaluable,Application,Alta,,COMPLETO,76,1
+19,P11-1128_D09-1076_1,Evaluable,Background,Media,Describe los resultados de un trabajo previo sobre adjunción en traducción automática.,COMPLETO,76,1
+20,W11-2929_N06-2033_0,Evaluable,Further Reading,Media,Se mencionan posibles usos futuros y trabajos de combinación de analizadores como referencias complementarias.,COMPLETO,76,1
+21,W11-1901_N01-1008_0,Evaluable,Background,Alta,,COMPLETO,76,1
+22,J13-4007_P11-1132_2,Evaluable,Evidence,Media,El hallazgo del trabajo citado sobre marcadores cohesivos respalda la observación de explicitación.,COMPLETO,76,1
+23,P11-2116_W08-1138_2,Evaluable,Comparison,Alta,,COMPLETO,76,1
+24,J09-4008_W06-0707_0,Evaluable,Evidence,Media,Se citan estudios que respaldan la afirmación de que ROUGE correlaciona con juicios humanos.,COMPLETO,76,1
+25,Q13-1011_W04-3219_0,Evaluable,Background,Alta,,COMPLETO,76,1
+26,E09-1001_E09-1052_0,Evaluable,Evidence,Baja,Respalda la afirmación de que la semántica debe tener una interpretación lógicamente sólida.,COMPLETO,76,1
+27,P05-1066_P01-1067_1,Evaluable,Background,Alta,,COMPLETO,76,1
+28,W07-1906_P07-1063_0,Evaluable,Comparison,Alta,,COMPLETO,76,1
+29,P12-1039_P06-2034_0,Evaluable,Background,Alta,,COMPLETO,76,1
+30,D09-1119_W00-0726_0,Evaluable,Evidence,Media,Respalda la afirmación de que los mejores sistemas de chunking usan información léxica extensamente.,COMPLETO,76,1
+31,P87-1032_P85-1013_0,Evaluable,Further Reading,Media,El 'see' remite a un trabajo donde se trata la herencia múltiple.,COMPLETO,76,1
+32,W12-5503_W11-0704_0,Evaluable,Evidence,Alta,,COMPLETO,76,1
+33,N13-1056_E12-1014_1,Evaluable,Application,Alta,,COMPLETO,76,1
+34,W04-2906_N04-4035_0,Evaluable,Evidence,Baja,La cita respalda los hallazgos sobre diferencias significativas en posición final de segmento.,COMPLETO,76,1
+35,N12-1048_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,76,1
+36,P09-1108_P03-1054_2,Evaluable,Further Reading,Alta,,COMPLETO,76,1
+37,S13-2110_N03-1033_0,Evaluable,Application,Alta,,COMPLETO,76,1
+38,D11-1116_N10-1115_4,Evaluable,Application,Media,Se usa el algoritmo G&E (de la cita) como una de las opciones evaluadas en los experimentos.,COMPLETO,76,1
+39,P13-2064_P10-1017_0,Evaluable,Background,Media,Describe trabajos previos relacionados con grafos e hipergrafos en alineamiento.,COMPLETO,76,1
+40,W10-2926_D09-1012_1,Evaluable,Comparison,Alta,,COMPLETO,76,1
+41,W06-1623_J88-2006_1,Evaluable,Background,Alta,,COMPLETO,76,1
+42,W13-4034_P97-1035_0,Evaluable,Evidence,Media,Respalda la afirmación sobre el objetivo del aprendizaje por refuerzo (satisfacción del usuario como recompensa).,COMPLETO,76,1
+43,P10-4014_S01-1005_1,Evaluable,Comparison,Alta,,COMPLETO,76,1
+44,W09-3817_N06-1007_1,Evaluable,Background,Alta,,COMPLETO,76,1
+45,D13-1168_P09-1045_1,Evaluable,Evidence,Alta,,COMPLETO,76,1
+46,D11-1118_D10-1067_0,Evaluable,Background,Media,Describe mejoras posteriores del analizador CCL mediante aprendizaje 'zoomed'.,COMPLETO,76,1
+47,W12-3004_D11-1142_2,Evaluable,Background,Media,"Describe el funcionamiento de ReVerb, uno de los sistemas que se comparan.",COMPLETO,76,1
+48,J08-2003_W05-0625_3,Evaluable,Evidence,Alta,,COMPLETO,76,1
+49,P13-1010_P08-2011_0,Evaluable,Evidence,Alta,,COMPLETO,76,1
+50,W07-1016_W06-3309_3,Evaluable,Evidence,Media,Respalda la afirmación de que los resultados empeoran con resúmenes no estructurados.,COMPLETO,76,1
+51,N13-1007_P01-1008_0,Evaluable,Background,Alta,,COMPLETO,76,1
+52,W12-1707_J91-4003_0,Evaluable,Background,Media,Presenta la explicación lexicalista de la metonimia lógica basada en estructuras qualia.,COMPLETO,76,1
+53,N07-1055_P06-2103_0,Evaluable,Comparison,Alta,,COMPLETO,76,1
+54,P12-2022_N09-1062_1,Evaluable,Background,Media,"Describe el P0 canónico de trabajos previos, que luego se extiende.",COMPLETO,76,1
+55,P13-1147_D10-1057_0,Evaluable,Further Reading,Media,"Sugiere enfoques alternativos como la identificación de dominio, remitiendo a la fuente.",COMPLETO,76,1
+56,N13-1056_D12-1025_0,Evaluable,Background,Alta,,COMPLETO,76,1
+57,D12-1037_D11-1004_0,Evaluable,Background,Alta,,COMPLETO,76,1
+58,D09-1123_W06-3119_0,Evaluable,Background,Media,Describe un modelo previo de traducción basada en sintaxis y su relación con otro.,COMPLETO,76,1
+59,W13-5305_A00-2004_0,Evaluable,Application,Alta,,COMPLETO,76,1
+60,D11-1108_P01-1067_0,Evaluable,Background,Alta,,COMPLETO,76,1
+61,W11-2916_W95-0103_1,Evaluable,Background,Alta,,COMPLETO,76,1
+62,D11-1070_P07-1125_0,Evaluable,Background,Alta,,COMPLETO,76,1
+63,W12-3411_P06-3013_1,Evaluable,Application,Alta,,COMPLETO,76,1
+64,D13-1116_D11-1022_0,Evaluable,Background,Media,Revisa trabajos previos que muestran la utilidad de la descomposición dual.,COMPLETO,76,1
+65,W02-2103_P98-1116_1,Evaluable,Basis,Alta,,COMPLETO,76,1
+66,N10-1018_P06-1032_0,Evaluable,Comparison,Alta,,COMPLETO,76,1
+67,W06-1105_P04-1053_2,Evaluable,Gap,Media,"Señala que los enfoques previos se limitan a representaciones TxD, justificando el trabajo actual.",COMPLETO,76,1
+68,P11-1033_W10-2906_0,Evaluable,Background,Alta,,COMPLETO,76,1
+69,W11-0144_E09-1081_2,Evaluable,Basis,Media,"El modelo incremental citado, con la noción de compromiso, es el fundamento conceptual del módulo.",COMPLETO,76,1
+70,P13-1077_P09-1104_0,Evaluable,Background,Alta,,COMPLETO,76,1
+71,N07-2043_P05-1047_2,Evaluable,Comparison,Alta,,COMPLETO,76,1
+72,E12-1009_W07-2218_0,Evaluable,Background,Alta,,COMPLETO,76,1
+73,W07-0714_W05-0904_1,Evaluable,Comparison,Alta,,COMPLETO,76,1
+74,W12-0504_W09-0613_0,Evaluable,Application,Alta,,COMPLETO,76,1
+75,P13-1080_P11-1083_4,Evaluable,Further Reading,Alta,,COMPLETO,76,1
+76,J02-3003_P98-2204_1,Evaluable,Gap,Media,Señala una limitación del enfoque previo: no maneja anáfora intraoracional sin más especificaciones.,COMPLETO,76,1
+77,P13-1043_P08-1068_1,Evaluable,Evidence,Media,Respalda la afirmación de que los clusters de palabras son intermediarios léxicos útiles en el análisis de dependencias.,COMPLETO,76,1
+78,W98-1124_A97-1042_1,Evaluable,Evidence,Alta,,COMPLETO,76,1
+79,N06-1019_W02-2018_0,Evaluable,Application,Alta,,COMPLETO,76,1
+80,P10-2003_P03-1021_1,Evaluable,Application,Alta,,COMPLETO,76,1
+81,P06-2029_P91-1030_1,Evaluable,Identification of the Originator,Alta,,COMPLETO,76,1
+82,D13-1064_P12-1075_0,Evaluable,Background,Media,Describe la práctica estándar en trabajos previos de asignar tipos a los predicados antes de agrupar.,COMPLETO,76,1
+83,J06-3003_N03-1032_0,Evaluable,Comparison,Alta,,COMPLETO,76,1
+84,P06-1110_W05-1515_3,Evaluable,Comparison,Alta,,COMPLETO,76,1
+85,D09-1092_W02-0902_0,Evaluable,Comparison,Alta,,COMPLETO,76,1
+86,W09-3528_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,76,1
+87,P01-1032_A00-2026_0,Evaluable,Background,Media,Resume trabajos recientes que mejoran la desambiguación con modelos basados en contexto.,COMPLETO,76,1
+88,P10-4014_S01-1005_0,Evaluable,Evidence,Media,Respalda la afirmación de que el aprendizaje supervisado ha sido el enfoque WSD más exitoso.,COMPLETO,76,1
+89,W12-5619_P11-1160_0,Evaluable,Background,Alta,,COMPLETO,76,1
+90,P95-1041_A92-1018_0,Evaluable,Application,Alta,,COMPLETO,76,1
+91,D10-1053_W02-1018_0,Evaluable,Gap,Alta,,COMPLETO,76,1
+92,D12-1012_P10-1014_3,Evaluable,Comparison,Alta,,COMPLETO,76,1
+93,W13-2006_P11-1163_1,Evaluable,Application,Alta,,COMPLETO,76,1
+94,N13-1027_P03-1044_0,Evaluable,Background,Alta,,COMPLETO,76,1
+95,W09-0603_N03-1017_0,Evaluable,Application,Alta,,COMPLETO,76,1
+96,P11-1126_P09-1107_3,Evaluable,Comparison,Alta,,COMPLETO,76,1
+97,J13-3003_D08-1094_3,Evaluable,Background,Alta,,COMPLETO,76,1
+98,A97-1035_A97-1034_0,Evaluable,Evidence,Media,Respalda la afirmación de que LT NSL es ineficiente con acceso no secuencial a los datos.,COMPLETO,76,1
+99,J03-4002_J88-2003_0,Evaluable,Background,Alta,,COMPLETO,76,1
+100,W13-3516_P11-2037_0,Evaluable,Background,Alta,,COMPLETO,76,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,E09-1069_W05-1513_2,Evaluable,Application,Media,Features were taken from the cited works and used in the classifier.,COMPLETO,72,1
+2,W12-1808_W11-2014_0,Evaluable,Evidence,Media,Cited as support for the claim that processing smaller chunks improves user experience.,COMPLETO,72,1
+3,W06-2607_W05-0407_0,Evaluable,Basis,Media,The paper carries out tree kernel engineering building on the cited approach.,COMPLETO,72,1
+4,D08-1078_P07-2045_0,Evaluable,Application,Alta,Uses Moses with standard settings for the experiments.,COMPLETO,72,1
+5,P13-1127_W10-2903_0,Evaluable,Comparison,Alta,Explicit F-score comparison against a state-of-the-art semantic parser.,COMPLETO,72,1
+6,S10-1031_D09-1137_1,Evaluable,Evidence,Media,"Supports the claim that Wikipedia is a valuable source, motivating the feature.",COMPLETO,72,1
+7,W04-2614_N04-2004_2,Evaluable,Evidence,Media,Supports the claim that verbal meaning composition is syntactic.,COMPLETO,72,1
+8,W10-2506_W09-3801_0,Evaluable,Comparison,Media,Contrast with prior work (labeled hypergraphs allowing tree-based language models); the citation anchors a difference from existing approaches.,COMPLETO,72,1
+9,D12-1091_W04-3250_1,Evaluable,Evidence,Media,Justifies the choice of bootstrap method as one of the most widely used.,COMPLETO,72,1
+10,W06-2503_N01-1010_0,Evaluable,Background,Alta,Enumerates previous work on grouping WordNet senses.,COMPLETO,72,1
+11,W13-2221_W11-2126_0,Evaluable,Background,Media,Cites prior work on string-to-tree models for morphologically rich target languages.,COMPLETO,72,1
+12,J13-4002_P06-2066_1,Evaluable,Evidence,Alta,Supports the claim that most non-projective structures in treebanks are non-planar.,COMPLETO,72,1
+13,W07-0717_N03-1017_1,Evaluable,Application,Alta,Uses the phrase induction algorithm described in the cited work.,COMPLETO,72,1
+14,W12-3805_W09-1304_1,Evaluable,Background,Media,Describes the proposal of the cited work (one example per cue) as prior work solving the nesting problem.,COMPLETO,72,1
+15,J07-4002_P05-1022_0,Evaluable,Background,Media,Cites rerankers as a known approach in a future-work remark; general reference to existing methods.,COMPLETO,72,1
+16,P12-1100_P01-1067_0,Evaluable,Evidence,Media,Supports the claim that syntactic cohesion explains most translation movement.,COMPLETO,72,1
+17,E12-1009_W09-1210_0,Evaluable,Comparison,Alta,Result table compares the system's scores with the cited parser.,COMPLETO,72,1
+18,P99-1006_J88-2006_0,Evaluable,Background,Media,"Notes that anaphoric treatment of tense is implicit in prior work, contrasted with what is new.",COMPLETO,72,1
+19,W11-0303_W97-0207_0,Evaluable,Evidence,Media,Supports the claim that punctuation has high semantic entropy.,COMPLETO,72,1
+20,D08-1066_W06-3105_3,Evaluable,Comparison,Alta,Explicitly contrasts the bilingual segmentations with monolingual ones in the cited model.,COMPLETO,72,1
+21,W13-3506_N01-1025_1,Evaluable,Comparison,Alta,Table of NP chunking results comparing against the cited system.,COMPLETO,72,1
+22,P08-1041_W04-3252_0,Evaluable,Background,Alta,Lists prior summarization methods using graph ranking.,COMPLETO,72,1
+23,E91-1031_J89-4001_0,Evaluable,Further Reading,Media,Refers the reader to sources for extending parsing methods to unification grammars.,COMPLETO,72,1
+24,P09-1008_P03-1013_1,Evaluable,Evidence,Media,"Supports the claim that lexicalization helps in parsing, including for German.",COMPLETO,72,1
+25,W10-4326_N03-1030_0,Evaluable,Background,Alta,Reviews prior supervised relation recognition work and the corpora they used.,COMPLETO,72,1
+26,N12-1051_P99-1008_0,Evaluable,Background,Alta,Lists prior work on term relation discovery within taxonomy learning subtasks.,COMPLETO,72,1
+27,E09-1091_P02-1051_0,Evaluable,Gap,Media,Cites machine transliteration systems to point out their limitation (incorrect transliterations).,COMPLETO,72,1
+28,P06-1046_W05-1011_0,Evaluable,Background,Media,Reports a prior finding on frequency-based ordering of SASH that motivates the following approach.,COMPLETO,72,1
+29,P06-1120_J98-4009_0,Evaluable,Evidence,Alta,Supports a factual claim about the number of multi-word expressions relative to single words.,COMPLETO,72,1
+30,P10-1115_D09-1092_0,Evaluable,Gap,Media,"Notes prior models require aligned documents, a limitation that motivates the unaligned setting.",COMPLETO,72,1
+31,W10-2803_P08-2063_0,Evaluable,Evidence,Media,Cites a finding (linear change in similarity effects) as evidence for a continuous representation of meaning.,COMPLETO,72,1
+32,W06-2906_P99-1008_1,Evaluable,Comparison,Media,Compares observed poor performance on small data with the same observation in the cited work.,COMPLETO,72,1
+33,P13-2025_W12-3101_0,Evaluable,Background,Media,"Describes prior works defining new annotation protocols, before stating their limitations.",COMPLETO,72,1
+34,W03-1308_A92-1021_0,Evaluable,Application,Alta,Uses the Brill tagger to obtain part of speech tags.,COMPLETO,72,1
+35,D12-1117_P09-1031_1,Evaluable,Improvement / Modification,Alta,Extends the incremental clustering framework proposed by the cited work.,COMPLETO,72,1
+36,P89-1003_P84-1008_2,Evaluable,Basis,Media,Definition is motivated by the linguistic intention of negation as given by the cited author.,COMPLETO,72,1
+37,E12-1003_W06-1601_1,Evaluable,Evidence,Media,Supports the claim that the baseline is strong and difficult to beat.,COMPLETO,72,1
+38,W07-2216_P05-1012_5,Evaluable,Evidence,Media,Supports that the risk definition is common as it corresponds to labeled dependency accuracy.,COMPLETO,72,1
+39,W00-1306_P97-1003_0,Evaluable,Background,Media,Notes that recent high-quality parsers rely on treebanks; general statement about the field.,COMPLETO,72,1
+40,J13-4004_D08-1031_1,Evaluable,Background,Media,Lists previous studies that used the same test partition.,COMPLETO,72,1
+41,E09-1034_P06-2066_1,Evaluable,Basis,Media,Concepts being defined are taken from the cited work and underlie the current analysis.,COMPLETO,72,1
+42,W13-3725_P09-3002_0,Evaluable,Evidence,Media,Supports the definition of a chunk used in the paper.,COMPLETO,72,1
+43,D08-1021_P05-1074_5,Evaluable,Comparison,Alta,Compares baseline scores obtained here with those reported in the cited work and explains the difference.,COMPLETO,72,1
+44,W10-1715_W06-3119_0,Evaluable,Evidence,Media,Cited for the technique of relaxing the restriction with composite labels.,COMPLETO,72,1
+45,Q13-1012_N12-1015_0,Evaluable,Application,Alta,Uses the early-update averaged perceptron algorithm to train parsers.,COMPLETO,72,1
+46,W12-1907_N10-1082_0,Evaluable,Evidence,Media,Supports the claim about the influence of hierarchical PYP priors on tag distributions.,COMPLETO,72,1
+47,W12-3007_W09-3302_0,Evaluable,Background,Alta,Lists prior efforts exploiting Wikipedia as an entity resource.,COMPLETO,72,1
+48,J10-1002_W06-3815_0,Evaluable,Further Reading,Alta,Refers the reader to the source for more details on the graph transformation step.,COMPLETO,72,1
+49,D13-1111_N12-1059_2,Evaluable,Comparison,Media,Notes similarity with prior work that evaluated hypothesis lists via system combination.,COMPLETO,72,1
+50,W02-1040_W99-0611_0,Evaluable,Background,Alta,Describes prior work applying an unsupervised approach to definite NP resolution.,COMPLETO,72,1
+51,N10-1129_N04-1039_0,Evaluable,Application,Media,Uses parameter estimates / method from the cited work to approximate linear distortion.,COMPLETO,72,1
+52,N09-1065_N07-1010_3,Evaluable,Comparison,Media,Duplicated baseline of the cited work is used as a comparison point.,COMPLETO,72,1
+53,D09-1023_J07-2003_2,Evaluable,Background,Media,"Reports that the cited work introduced cube pruning as a decoding method, setting up techniques for non-local features.",COMPLETO,72,1
+54,W09-1218_P05-1073_1,Evaluable,Comparison,Alta,"Explicitly compares the model to re-ranking, noting similarities and differences.",COMPLETO,72,1
+55,W04-2614_N04-2004_1,Evaluable,Basis,Media,"The framework builds on the Minimalist Program, the theoretical foundation of the work.",COMPLETO,72,1
+56,W13-4908_E12-2012_0,Evaluable,Application,Alta,Uses MaltOptimizer to fine-tune MaltParser.,COMPLETO,72,1
+57,W12-3126_P03-1021_0,Evaluable,Application,Alta,Uses minimum error-rate training to tune weights.,COMPLETO,72,1
+58,P09-1056_W06-1615_2,Evaluable,Comparison,Alta,States HMM-smoothing improves over SCL in experiments.,COMPLETO,72,1
+59,P06-4007_P05-1026_2,Evaluable,Identification of the Originator,Alta,'First introduced in' attributes the predictive questioning approach to the cited work.,COMPLETO,72,1
+60,W13-0803_D08-1065_2,Evaluable,Application,Alta,Uses Lattice MBR decoding in the experiment.,COMPLETO,72,1
+61,P12-3022_P05-1033_2,Evaluable,Application,Alta,Uses the k-best algorithms as described in the cited work.,COMPLETO,72,1
+62,D10-1002_N10-1003_6,Evaluable,Comparison,Alta,Compares own results as rivaling products of latent variable grammars.,COMPLETO,72,1
+63,W11-1601_P07-2045_1,Evaluable,Improvement / Modification,Media,Introduces a variant of a phrase-based MT system adapted for text simplification.,COMPLETO,72,1
+64,P13-1143_W11-2843_0,Evaluable,Comparison,Alta,The cited system is one of two systems compared against in experiments.,COMPLETO,72,1
+65,W13-5306_P01-1058_0,Evaluable,Application,Alta,Uses the CETEMPúblico corpus to extract the tag dictionary.,COMPLETO,72,1
+66,D10-1049_W09-0603_0,Evaluable,Background,Alta,Lists related work on surface realization from PCFG-like grammars.,COMPLETO,72,1
+67,W06-3607_P06-2055_0,Evaluable,Further Reading,Alta,Refers to the cited work for the complete list of features.,COMPLETO,72,1
+68,J02-3001_W99-0632_0,Evaluable,Evidence,Alta,Supports the claim that subcategorization frames help disambiguate word senses.,COMPLETO,72,1
+69,W06-0103_W04-1102_0,Evaluable,Basis,Alta,The current work builds on the preliminary study's probabilistic models.,COMPLETO,72,1
+70,W13-3307_E12-3001_0,Evaluable,Evidence,Alta,Supports the claim that MT systems perform poorly on pronoun forms.,COMPLETO,72,1
+71,W13-4006_P02-1047_0,Evaluable,Identification of the Originator,Alta,Word pairs 'as introduced by' the cited work.,COMPLETO,72,1
+72,E09-1059_W00-0405_1,Evaluable,Comparison,Media,Contrasts the approach with standard summarization that promotes sentence diversity.,COMPLETO,72,1
+73,W13-3616_P08-1021_1,Evaluable,Basis,Media,Rule features follow those described in the cited work.,COMPLETO,72,1
+74,P06-2079_J04-3002_0,Evaluable,Further Reading,Alta,'see ... for details' refers the reader to further sources.,COMPLETO,72,1
+75,P13-1153_D08-1030_0,Evaluable,Background,Media,Cites prior reported (high) results in the literature.,COMPLETO,72,1
+76,W13-3517_D08-1031_6,Evaluable,Comparison,Alta,States the baseline outperforms the cited system by a number of points.,COMPLETO,72,1
+77,Q13-1007_W12-1909_2,Evaluable,Comparison,Alta,Compares the system to results from the cited challenge.,COMPLETO,72,1
+78,E09-1025_P08-1078_0,Evaluable,Background,Alta,Describes current work proposing selectional preferences for inference rules.,COMPLETO,72,1
+79,P09-1042_P05-1012_1,Evaluable,Application,Alta,Uses the cited dependency parser to parse the English source.,COMPLETO,72,1
+80,N07-1013_W04-3252_0,Evaluable,Further Reading,Media,"'For examples, see' directs the reader to sources on graph construction.",COMPLETO,72,1
+81,W07-0716_W04-3219_0,Evaluable,Background,Alta,Notes most previous paraphrase work focused on quality rather than coverage.,COMPLETO,72,1
+82,W09-1803_P02-1014_0,Evaluable,Background,Alta,Narrates prior work on correlation clustering for coreference and its extensions.,COMPLETO,72,1
+83,W10-1741_P09-1087_0,Evaluable,Evidence,Media,Supports the claim that outperforming higher order n-gram models is difficult.,COMPLETO,72,1
+84,W11-1812_W09-1301_0,Evaluable,Evidence,Media,Justifies the task design choice based on results of previous studies.,COMPLETO,72,1
+85,P99-1026_P96-1009_0,Evaluable,Background,Alta,Lists previous spoken dialogue systems sharing an assumption.,COMPLETO,72,1
+86,W09-4410_W06-2609_2,Evaluable,Comparison,Alta,Explicitly compares similarities and differences with the cited data.,COMPLETO,72,1
+87,W10-0731_D09-1020_2,Evaluable,Application,Alta,Uses the dataset provided by the cited work as gold standard.,COMPLETO,72,1
+88,W08-1403_E03-1026_1,Evaluable,Application,Alta,Uses the Uplug word alignment system to create dictionaries.,COMPLETO,72,1
+89,P12-1076_P09-1113_2,Evaluable,Application,Media,Follows the cited work's experimental setup (Wikipedia and Freebase).,COMPLETO,72,1
+90,P12-1099_W07-0733_0,Evaluable,Background,Alta,Describes existing interpolation methods in a large body of work.,COMPLETO,72,1
+91,W01-1605_W99-0307_0,Evaluable,Background,Alta,Lists prior hierarchical discourse analyses on small corpora.,COMPLETO,72,1
+92,W09-2306_P08-1064_6,Evaluable,Comparison,Media,Figure contrasts an example as negative for the definition of DPR in the cited work.,COMPLETO,72,1
+93,P12-1072_W11-2202_5,Evaluable,Application,Alta,Follows the cited work in using string edit distance as the score.,COMPLETO,72,1
+94,P08-1114_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser to analyze source sentences.,COMPLETO,72,1
+95,P13-1039_P08-1028_0,Evaluable,Background,Media,"Cites prior work showing representations can be contextually modified, as an example.",COMPLETO,72,1
+96,P06-1079_P02-1014_2,Evaluable,Comparison,Alta,The cited model is one of the compared baseline models.,COMPLETO,72,1
+97,D09-1069_P04-1021_1,Evaluable,Evidence,Alta,Reports a prior finding to support the claim about transliteration with/without Chinese phonemes.,COMPLETO,72,1
+98,W13-3514_N10-1138_0,Evaluable,Application,Alta,Uses SEMAFOR to obtain semantic frames.,COMPLETO,72,1
+99,W13-0119_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford Parser to obtain part-of-speech features.,COMPLETO,72,1
+100,W10-4308_E09-1081_1,Evaluable,Basis,Alta,Presents the IU-model from the cited work as the model underlying the discussion.,COMPLETO,72,1

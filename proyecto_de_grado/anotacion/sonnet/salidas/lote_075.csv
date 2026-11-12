@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N10-3009_W03-2102_2,Evaluable,Evidence,Baja,Cita respalda la afirmación de que las opiniones se expresan indirectamente por tipos de palabras y anotación de estados privados.,COMPLETO,75,1
+2,W04-2807_W02-0813_1,Evaluable,Application,Alta,Usa el mismo sistema de máxima entropía de la obra citada.,COMPLETO,75,1
+3,W12-1623_N03-1030_3,Evaluable,Comparison,Alta,Contrasta explícitamente su método de extracción de rasgos con el de trabajos previos.,COMPLETO,75,1
+4,P13-2061_P10-1049_2,Evaluable,Comparison,Alta,Señala la similitud entre su 'one count' cutoff y el leaving-one-out.,COMPLETO,75,1
+5,D12-1080_D11-1001_0,Evaluable,Background,Alta,Ejemplo de trabajo reciente en extracción de información.,COMPLETO,75,1
+6,D13-1054_D12-1110_0,Evaluable,Background,Alta,Enumera desarrollos recientes de aprendizaje profundo en PLN.,COMPLETO,75,1
+7,W10-3911_W09-1406_0,Evaluable,Background,Media,Revisa trabajos previos que usan información de dependencias y su desempeño.,COMPLETO,75,1
+8,D13-1054_P07-2045_0,Evaluable,Background,Alta,Enumeración de trabajos sobre modelado de reordenamiento de frases.,COMPLETO,75,1
+9,W10-2005_W04-0308_0,Evaluable,Evidence,Media,Respalda que los rasgos tienen alta precisión en el parser de Nivre.,COMPLETO,75,1
+10,W13-2405_P08-1028_0,Evaluable,Basis,Media,El trabajo está motivado por la composicionalidad distribucional y adopta la suma vectorial.,COMPLETO,75,1
+11,W10-1715_W07-0733_0,Evaluable,Application,Media,Aplica la interpolación lineal de modelos de lenguaje ya explorada previamente.,COMPLETO,75,1
+12,D10-1037_N07-1038_0,Evaluable,Evidence,Media,Respalda que se requiere información del tema de la oración en entornos multi-aspecto.,COMPLETO,75,1
+13,N03-3004_W97-0322_0,Evaluable,Basis,Alta,El objetivo es extender el trabajo previo de discriminación.,COMPLETO,75,1
+14,N06-1062_W02-0603_1,Evaluable,Identification of the Originator,Media,Indica que el algoritmo se desarrolló originalmente para finés.,COMPLETO,75,1
+15,P05-1038_W04-3224_0,Evaluable,Background,Media,Resume hallazgos previos sobre el aporte de la información léxica.,COMPLETO,75,1
+16,S13-2105_W09-1401_0,Evaluable,Evidence,Alta,Respalda la afirmación de que combinar herramientas mejora resultados.,COMPLETO,75,1
+17,J01-2004_P98-1035_3,Evaluable,Comparison,Alta,Compara la perplejidad de su modelo con el trabajo citado.,COMPLETO,75,1
+18,N13-1001_P11-1105_4,Evaluable,Application,Media,Emplea el marco log-lineal estándar sin modificarlo.,COMPLETO,75,1
+19,P08-1079_P04-1053_0,Evaluable,Background,Alta,Enumera estudios sobre relaciones entre entidades nombradas.,COMPLETO,75,1
+20,J08-3003_P97-1003_0,Evaluable,Background,Media,Menciona el parser de Collins como ejemplo de parser aplicado a otros idiomas.,COMPLETO,75,1
+21,D12-1004_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador POS de Stanford.,COMPLETO,75,1
+22,W13-2327_W05-0308_0,Evaluable,Background,Media,Presenta la noción de estados privados como concepto previo.,COMPLETO,75,1
+23,J02-2003_W99-0901_0,Evaluable,Further Reading,Media,Remite a enfoques alternativos descritos en otros trabajos.,COMPLETO,75,1
+24,N12-1087_P06-1065_0,Evaluable,Comparison,Alta,Contrasta la cantidad de datos etiquetados con enfoques supervisados citados.,COMPLETO,75,1
+25,W13-2230_N13-1001_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles.,COMPLETO,75,1
+26,W06-1105_P99-1004_0,Evaluable,Background,Media,Describe hallazgos previos sobre medidas de similitud.,COMPLETO,75,1
+27,W13-3523_P08-1088_0,Evaluable,Background,Alta,Indica que el tema es un área de investigación activa.,COMPLETO,75,1
+28,N07-3010_P98-2127_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los recursos genéricos no se ajustan al dominio.,COMPLETO,75,1
+29,W12-2011_P11-1019_1,Evaluable,Evidence,Alta,Respalda que los errores impactan la predicción del nivel.,COMPLETO,75,1
+30,P09-1037_P05-1033_0,Evaluable,Background,Alta,Presenta los modelos jerárquicos como línea de trabajo existente.,COMPLETO,75,1
+31,W04-2314_W01-0902_0,Evaluable,Evidence,Media,Respalda que la evaluación depende del propósito de la métrica.,COMPLETO,75,1
+32,P09-1007_E06-1011_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados con sistemas del estado del arte.,COMPLETO,75,1
+33,N09-3005_N09-4006_0,Evaluable,Application,Media,Usa el inventario de sentidos y el corpus de OntoNotes.,COMPLETO,75,1
+34,N09-3014_P05-1018_3,Evaluable,Comparison,Alta,Compara el modelo desarrollado con otros sistemas.,COMPLETO,75,1
+35,E12-1003_P11-1149_0,Evaluable,Background,Alta,Enumera trabajos semisupervisados sobre representaciones semánticas.,COMPLETO,75,1
+36,W11-2841_P07-1065_0,Evaluable,Application,Alta,Usa RandLM para construir el modelo de lenguaje.,COMPLETO,75,1
+37,P07-1091_P05-1066_2,Evaluable,Gap,Alta,Señala la debilidad de depender de reglas manuales.,COMPLETO,75,1
+38,J10-3002_P06-1097_1,Evaluable,Application,Alta,Sigue el procedimiento de reducción de vocabulario del trabajo citado.,COMPLETO,75,1
+39,W10-2803_N10-1013_0,Evaluable,Background,Alta,Enumera enfoques de prototipos múltiples.,COMPLETO,75,1
+40,W12-4303_W06-1613_1,Evaluable,Evidence,Alta,Respalda que anotaciones similares logran acuerdo aceptable.,COMPLETO,75,1
+41,D13-1160_P13-1127_0,Evaluable,Background,Alta,Enumera trabajos previos sobre interpretación de lenguaje natural.,COMPLETO,75,1
+42,W08-1113_E06-1040_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre las medidas de similitud con corpus.,COMPLETO,75,1
+43,P12-2042_P09-1068_0,Evaluable,Comparison,Alta,Contrasta su alcance con el de trabajos que estudian una sola relación.,COMPLETO,75,1
+44,W07-1506_P05-1013_0,Evaluable,Basis,Alta,El enfoque fue inspirado por el trabajo citado.,COMPLETO,75,1
+45,N13-1035_W07-0733_1,Evaluable,Background,Media,Describe una alternativa existente de interpolación log-lineal.,COMPLETO,75,1
+46,D10-1063_J07-2003_0,Evaluable,Background,Media,Menciona la técnica de cube growing sin usarla.,COMPLETO,75,1
+47,W13-5414_J91-4003_0,Evaluable,Identification of the Originator,Alta,Indica que la teoría fue propuesta en la obra citada.,COMPLETO,75,1
+48,W07-0704_W06-3110_0,Evaluable,Further Reading,Media,Remite a técnicas para probabilidades posteriores como trabajo futuro.,COMPLETO,75,1
+49,W11-1901_P10-1142_0,Evaluable,Further Reading,Alta,Remite a artículos de revisión para conocer el progreso.,COMPLETO,75,1
+50,W13-3817_P88-1012_1,Evaluable,Background,Media,Enumera enfoques para estimar la probabilidad de explicaciones abductivas.,COMPLETO,75,1
+51,J05-1005_A92-1014_5,Evaluable,Comparison,Alta,Compara su método con una estrategia distinta basada en similitud.,COMPLETO,75,1
+52,N13-1021_N06-1014_0,Evaluable,Application,Alta,Usa el alineador de Berkeley.,COMPLETO,75,1
+53,W00-0905_P98-2184_0,Evaluable,Background,Alta,Resume hallazgos previos sobre diferencias de frecuencia entre corpus.,COMPLETO,75,1
+54,W03-2314_E91-1028_0,Evaluable,Gap,Alta,Señala la limitación de los algoritmos existentes en dominios abiertos.,COMPLETO,75,1
+55,N12-2010_P09-1025_0,Evaluable,Background,Alta,Describe trabajo previo sobre generación de historias.,COMPLETO,75,1
+56,W11-0607_P07-1028_1,Evaluable,Basis,Media,El enfoque se inspiró en el trabajo citado.,COMPLETO,75,1
+57,W10-1715_P07-2045_0,Evaluable,Application,Alta,Los sistemas se basan en el toolkit Moses.,COMPLETO,75,1
+58,W06-1640_W06-0302_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles de parámetros.,COMPLETO,75,1
+59,N09-1041_P03-2021_0,Evaluable,Evidence,Media,Respalda que un sistema de resumen debe facilitar el descubrimiento de contenido.,COMPLETO,75,1
+60,W06-1105_P97-1008_0,Evaluable,Background,Media,Describe hallazgos previos sobre medidas de similitud.,COMPLETO,75,1
+61,D10-1109_P09-1023_0,Evaluable,Evidence,Media,Respalda que las definiciones pueden responderse con artículos de Wikipedia.,COMPLETO,75,1
+62,P02-1032_J98-4000_0,Evaluable,Further Reading,Alta,Remite a una revisión general mediante 'see ... for a nice overview'.,COMPLETO,75,1
+63,W10-2601_P04-3013_0,Evaluable,Further Reading,Media,Fórmula 'see also' que dirige a literatura adicional.,COMPLETO,75,1
+64,D13-1111_D12-1065_0,Evaluable,Background,Alta,Describe aplicaciones previas de los DPP.,COMPLETO,75,1
+65,D13-1093_P10-1001_0,Evaluable,Application,Media,Usa poda con modelo de primer orden siguiendo el trabajo citado.,COMPLETO,75,1
+66,D12-1015_P97-1023_3,Evaluable,Background,Alta,Describe trabajos previos que usaron reglas de conjunción.,COMPLETO,75,1
+67,N12-1026_W04-3201_1,Evaluable,Comparison,Media,Contrasta su pérdida constante con la pérdida directa del enfoque max-margin.,COMPLETO,75,1
+68,Q13-1007_D10-1120_1,Evaluable,Background,Alta,Indica que los sistemas del estado del arte usan estos modelos.,COMPLETO,75,1
+69,W06-0507_W03-0405_0,Evaluable,Background,Alta,Enumera aplicaciones de enfoques similares.,COMPLETO,75,1
+70,D09-1122_P05-1074_0,Evaluable,Comparison,Alta,Señala la similitud con medidas direccionales propuestas por otros.,COMPLETO,75,1
+71,W11-0316_P07-1059_0,Evaluable,Background,Alta,Enumera aplicaciones de SMT.,COMPLETO,75,1
+72,W03-2106_P88-1012_0,Evaluable,Comparison,Alta,Contrasta la teoría IAT con el enfoque actual.,COMPLETO,75,1
+73,W12-5701_P07-2045_0,Evaluable,Application,Alta,Usa Moses para entrenar el sistema base.,COMPLETO,75,1
+74,D09-1160_P03-1004_4,Evaluable,Comparison,Alta,Compara el número de vectores de soporte con el del trabajo citado.,COMPLETO,75,1
+75,W12-3137_J07-2003_0,Evaluable,Background,Media,Describe el modelo jerárquico en que se basan los sistemas.,COMPLETO,75,1
+76,D13-1019_P12-1005_2,Evaluable,Application,Alta,Sigue el procedimiento de entrenamiento del trabajo citado.,COMPLETO,75,1
+77,W07-2217_W03-1022_0,Evaluable,Further Reading,Alta,"Usa 'e.g., see' para remitir a detalles del promedio del perceptrón.",COMPLETO,75,1
+78,D11-1017_D10-1092_1,Evaluable,Evidence,Media,Respalda que pocas reglas de reordenamiento logran buenos resultados.,COMPLETO,75,1
+79,P12-2004_P02-1017_2,Evaluable,Background,Media,"Describe el modelo CCM del trabajo citado, que usa el trabajo actual.",COMPLETO,75,1
+80,P08-3005_W05-0904_1,Evaluable,Comparison,Alta,HWCM se compara con otras métricas en la tabla de resultados.,COMPLETO,75,1
+81,W97-0114_A94-1006_0,Evaluable,Background,Alta,Enumera métodos previos de alineación y adquisición de reglas.,COMPLETO,75,1
+82,W06-1667_P04-1054_0,Evaluable,Background,Alta,Enumera algoritmos supervisados previos de extracción de relaciones.,COMPLETO,75,1
+83,D13-1053_W02-1039_3,Evaluable,Evidence,Alta,Respalda la afirmación de fuerte cohesión frasal.,COMPLETO,75,1
+84,E12-2004_P11-4005_0,Evaluable,Application,Media,Usa los textos chinos del trabajo citado para el experimento.,COMPLETO,75,1
+85,W13-0116_P09-1077_0,Evaluable,Background,Alta,Resume hallazgos de trabajos previos sobre relaciones de discurso.,COMPLETO,75,1
+86,N13-1007_P10-1134_2,Evaluable,Comparison,Alta,Compara su método con los métodos supervisados citados.,COMPLETO,75,1
+87,W09-2012_W02-0109_0,Evaluable,Application,Alta,Usa NLTK para el stemming.,COMPLETO,75,1
+88,W13-4912_W10-1412_0,Evaluable,Background,Media,Reporta un fenómeno similar observado en hebreo en trabajo previo.,COMPLETO,75,1
+89,P13-1031_W12-3154_1,Evaluable,Evidence,Alta,Respalda que el desajuste de dominio importa para rasgos densos.,COMPLETO,75,1
+90,N10-1095_D09-1161_0,Evaluable,Comparison,Alta,Indica que el enfoque citado es el más cercano y lo contrasta.,COMPLETO,75,1
+91,W11-0327_D10-1075_0,Evaluable,Gap,Media,Señala la limitación de requerir reentrenamiento por dominio.,COMPLETO,75,1
+92,P10-1128_D08-1069_1,Evaluable,Evidence,Alta,Respalda la decisión de crear modelos separados por rasgos.,COMPLETO,75,1
+93,W13-1201_N06-1024_0,Evaluable,Background,Alta,Describe mejoras previas de parsers de dependencias.,COMPLETO,75,1
+94,P09-1063_P08-1064_1,Evaluable,Evidence,Alta,Respalda que la ausencia de mapeos no sintácticos deteriora la traducción.,COMPLETO,75,1
+95,P11-1140_P08-2064_0,Evaluable,Background,Media,Describe un divisor de compuestos previo.,COMPLETO,75,1
+96,P05-1040_E03-1068_4,Evaluable,Background,Media,Recuerda un argumento planteado en trabajo previo.,COMPLETO,75,1
+97,W10-1761_P08-1114_1,Evaluable,Comparison,Alta,Contrasta su modelo con el trabajo citado.,COMPLETO,75,1
+98,D13-1184_P11-1138_2,Evaluable,Application,Media,Usa la similitud TF-IDF coseno con el contexto léxico.,COMPLETO,75,1
+99,D11-1137_P10-1001_5,Evaluable,Comparison,Alta,Compara su modelo de grandsibling con el del trabajo citado.,COMPLETO,75,1
+100,P10-1158_P09-1025_6,Evaluable,Comparison,Alta,Compara las historias generadas contra el sistema citado.,COMPLETO,75,1

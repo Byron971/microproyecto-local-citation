@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D11-1045_N04-4026_0,Evaluable,Background,Media,Enumera trabajos previos que generalizan modelos de distorsión.,COMPLETO,82,1
+2,D11-1017_P05-1012_0,Evaluable,Background,Alta,Cita sobre el progreso del campo tras el Penn Treebank.,COMPLETO,82,1
+3,D13-1121_P98-2127_0,Evaluable,Application,Alta,Aplica la medida de similitud distribucional citada sin modificarla.,COMPLETO,82,1
+4,P06-2074_P02-1060_0,Evaluable,Gap,Media,Señala una limitación de clasificadores: el rendimiento cae con corpus pequeños.,COMPLETO,82,1
+5,N09-3017_S07-1044_0,Evaluable,Comparison,Alta,Compara resultados propios con el sistema KU entre otros.,COMPLETO,82,1
+6,P13-4025_P09-1051_0,Evaluable,Comparison,Media,"Compara colecciones de paráfrasis, incluida la basada en Wikipedia.",COMPLETO,82,1
+7,P13-2136_D09-1092_0,Evaluable,Background,Alta,Lista aplicaciones previas de aprendizaje multilingüe.,COMPLETO,82,1
+8,W97-1511_W96-0114_1,Evaluable,Further Reading,Alta,Remite a más detalle en la obra citada.,COMPLETO,82,1
+9,P07-1080_P06-1110_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados con otros sistemas.,COMPLETO,82,1
+10,W06-1670_W03-1022_2,Evaluable,Gap,Media,"Trabajo previo se centró en adquisición léxica, no en etiquetado.",COMPLETO,82,1
+11,D08-1031_P02-1014_3,Evaluable,Evidence,Alta,"Respalda que predecir anaforicidad explícitamente ayuda, justificando el diseño.",COMPLETO,82,1
+12,W10-0907_P08-1004_1,Evaluable,Background,Media,Describe trabajo previo en open IE; también atribuye el modelo.,COMPLETO,82,1
+13,W09-0418_P97-1017_0,Evaluable,Background,Media,Ejemplifica enfoques previos de transliteración; podría ser originador.,COMPLETO,82,1
+14,J05-1005_E95-1016_0,Evaluable,Background,Alta,Enumera enfoques estadísticos previos de adquisición.,COMPLETO,82,1
+15,D13-1105_W02-0604_0,Evaluable,Background,Alta,Enumera trabajos de aprendizaje morfológico minimamente supervisado.,COMPLETO,82,1
+16,N10-1008_D09-1017_0,Evaluable,Basis,Alta,El trabajo actual continúa el trabajo previo propio del primer nivel.,COMPLETO,82,1
+17,W11-3808_P06-1055_0,Evaluable,Application,Alta,Usa el parser de Berkeley sin modificarlo en los experimentos.,COMPLETO,82,1
+18,P12-2038_D11-1148_0,Evaluable,Background,Alta,Describe trabajo previo sobre rasgos sintácticos en la tarea.,COMPLETO,82,1
+19,P10-2033_P08-1009_0,Evaluable,Gap,Media,Señala que enfoques con restricciones de cohesión no son efectivos en este caso.,COMPLETO,82,1
+20,W12-6338_W03-1706_1,Evaluable,Background,Media,Resume lo que propusieron trabajos previos sobre rasgos.,COMPLETO,82,1
+21,P07-1120_P05-1022_2,Evaluable,Background,Media,Describe el pipeline previo extendido con reranking discriminativo.,COMPLETO,82,1
+22,P12-1060_W06-1615_0,Evaluable,Background,Media,Menciona SCL al describir trabajo relacionado multilingüe.,COMPLETO,82,1
+23,W11-1701_P09-1026_1,Evaluable,Background,Media,Resume hallazgos previos sobre relaciones discursivas y postura.,COMPLETO,82,1
+24,P06-1060_N04-1001_1,Evaluable,Application,Alta,Usa un clasificador de máxima entropía implementado según la obra citada.,COMPLETO,82,1
+25,D12-1041_P06-1065_0,Evaluable,Evidence,Alta,Respalda que las características ya han probado ser útiles.,COMPLETO,82,1
+26,W09-1104_P04-1062_0,Evaluable,Background,Alta,Enumera trabajos previos en parsing no supervisado.,COMPLETO,82,1
+27,W12-1642_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford para obtener análisis.,COMPLETO,82,1
+28,W07-1512_P01-1067_0,Evaluable,Background,Alta,Enumera modelos SMT con gramática libre de contexto.,COMPLETO,82,1
+29,P08-1020_P05-1008_1,Evaluable,Basis,Alta,Combina y extiende investigación previa en NLG estadístico.,COMPLETO,82,1
+30,W11-2117_P07-2045_0,Evaluable,Application,Alta,Usa el tokenizador de Moses.,COMPLETO,82,1
+31,W10-2925_P08-1109_1,Evaluable,Comparison,Media,Compara con algoritmos síncronos de mini-lotes en multiprocesador.,COMPLETO,82,1
+32,W08-1506_W07-1806_0,Evaluable,Further Reading,Media,Remite a una versión temprana del demo descrita en la obra citada.,COMPLETO,82,1
+33,S10-1087_P04-1036_0,Evaluable,Background,Media,Describe el método previo de sentido predominante; motiva el trabajo.,COMPLETO,82,1
+34,N12-1087_W10-2902_3,Evaluable,Comparison,Media,Relaciona hallazgos citados con los propios y los extiende.,COMPLETO,82,1
+35,P03-1071_P93-1020_0,Evaluable,Evidence,Alta,Respalda la afirmación de que cambios de tema muestran silencios más largos.,COMPLETO,82,1
+36,N13-1006_D10-1030_0,Evaluable,Gap,Alta,Describe trabajo previo y su limitación (requiere corpus anotado).,COMPLETO,82,1
+37,N12-1056_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador de Stanford para procesar los datos.,COMPLETO,82,1
+38,N03-3006_P97-1032_0,Evaluable,Evidence,Media,Respalda que un etiquetador manual puede igualar a uno estadístico.,COMPLETO,82,1
+39,D13-1103_W02-0109_0,Evaluable,Application,Alta,Usa NLTK para preprocesar páginas.,COMPLETO,82,1
+40,J99-4002_J98-4009_1,Evaluable,Evidence,Media,Respalda la afirmación sobre el aprendizaje de reglas léxicas semiproductivas.,COMPLETO,82,1
+41,E12-3008_W98-0609_0,Evaluable,Evidence,Media,Respalda la descripción de la estructura de compuestos alemanes.,COMPLETO,82,1
+42,P13-1020_D12-1022_0,Evaluable,Comparison,Alta,Contrasta tiempos de ejecución con otros sistemas.,COMPLETO,82,1
+43,P11-1057_D09-1048_2,Evaluable,Basis,Alta,El trabajo se apoya en la clasificación de parámetros propuesta por la obra citada.,COMPLETO,82,1
+44,W13-2301_N13-1044_0,Evaluable,Background,Alta,Enumera trabajo previo en etiquetado morfológico del árabe.,COMPLETO,82,1
+45,S07-1100_P04-1014_0,Evaluable,Application,Alta,Usa el parser CCG sin ajustes.,COMPLETO,82,1
+46,W13-4005_E09-1022_0,Evaluable,Basis,Alta,El trabajo se construye sobre el sistema COREF.,COMPLETO,82,1
+47,D11-1075_P06-2027_0,Evaluable,Gap,Media,"Trabajos previos en IE no supervisada, seguidos de crítica a sus limitaciones.",COMPLETO,82,1
+48,W11-2806_P10-2011_0,Evaluable,Evidence,Alta,Respalda la afirmación de alineamiento subconsciente en selección de contenido.,COMPLETO,82,1
+49,P08-1111_W02-1503_0,Evaluable,Background,Alta,Enumera proyectos de ingeniería gramatical multilingüe.,COMPLETO,82,1
+50,W13-2309_N03-1030_0,Evaluable,Background,Alta,Señala áreas que han recibido atención reciente.,COMPLETO,82,1
+51,N13-1008_N06-1039_0,Evaluable,Background,Alta,Resume trabajo previo en agrupamiento relacional.,COMPLETO,82,1
+52,W03-1007_P00-1065_5,Evaluable,Comparison,Alta,Compara resultados del sistema citado con el propio.,COMPLETO,82,1
+53,N13-1040_P06-1055_0,Evaluable,Evidence,Media,Respalda que los parsers no lexicalizados son competitivos.,COMPLETO,82,1
+54,P05-1006_P97-1003_0,Evaluable,Application,Alta,Usa el parser de Collins para procesar las oraciones.,COMPLETO,82,1
+55,D11-1045_P06-1067_0,Evaluable,Evidence,Alta,Respalda que el modelo de lenguaje es inadecuado para el reordenamiento.,COMPLETO,82,1
+56,W10-1709_W08-0509_0,Evaluable,Application,Alta,Usa MGIZA++ para alinear el corpus.,COMPLETO,82,1
+57,W99-0621_W95-0107_5,Evaluable,Comparison,Alta,Resultados propios comparables a los del trabajo citado.,COMPLETO,82,1
+58,P11-2120_D10-1120_1,Evaluable,Comparison,Alta,Aparece en tabla de resultados comparados con otros sistemas.,COMPLETO,82,1
+59,W13-3518_P10-1001_0,Evaluable,Comparison,Alta,Tabla que compara con sistemas del estado del arte.,COMPLETO,82,1
+60,E97-1014_P96-1036_3,Evaluable,Basis,Baja,Aplica el marco de centering funcional del trabajo citado.,COMPLETO,82,1
+61,W13-3601_D11-1010_0,Evaluable,Background,Alta,Resume investigación previa sobre errores de artículos y preposiciones.,COMPLETO,82,1
+62,W07-2204_W01-0521_0,Evaluable,Comparison,Media,Los resultados confirman la afirmación del trabajo citado.,COMPLETO,82,1
+63,A00-2001_P94-1001_0,Evaluable,Basis,Media,Poesio y Traum siguen la propuesta de obligaciones discursivas del trabajo citado.,COMPLETO,82,1
+64,P10-1078_W09-1802_0,Evaluable,Basis,Media,Modelo de máxima cobertura resuelto con ILP siguiendo el trabajo citado.,COMPLETO,82,1
+65,W13-3306_W09-2404_0,Evaluable,Background,Alta,Enumera estudios previos sobre cohesión léxica en SMT.,COMPLETO,82,1
+66,P13-2106_P10-2042_1,Evaluable,Basis,Media,Presupone familiaridad con el muestreo por bloques previo sobre el que se construye.,COMPLETO,82,1
+67,W13-3201_D12-1110_4,Evaluable,Background,Alta,Describe marcos previos de composición semántica.,COMPLETO,82,1
+68,D09-1073_P07-1090_0,Evaluable,Background,Alta,Enumera modelos de reordenamiento previos.,COMPLETO,82,1
+69,W04-3219_N03-1017_0,Evaluable,Evidence,Alta,Respalda la afirmación de que sistemas basados en frases superan a los de palabras.,COMPLETO,82,1
+70,N10-1035_P07-1021_0,Evaluable,Identification of the Originator,Media,Indica dónde se estudió primero la buena anidación.,COMPLETO,82,1
+71,P03-1071_A00-2004_0,Evaluable,Background,Alta,Enumera enfoques previos de segmentación basados en cohesión.,COMPLETO,82,1
+72,P11-1022_P09-1105_0,Evaluable,Evidence,Alta,Respalda la intuición sobre la colocación como indicador.,COMPLETO,82,1
+73,P04-1037_W97-0209_0,Evaluable,Background,Alta,Enumera enfoques no supervisados previos.,COMPLETO,82,1
+74,D11-1026_P06-1004_1,Evaluable,Background,Alta,Describe el método previo de corte mínimo para segmentación.,COMPLETO,82,1
+75,D09-1040_N06-1003_5,Evaluable,Application,Media,Sigue el diseño experimental del trabajo citado para comparar.,COMPLETO,82,1
+76,W10-1753_W05-0904_0,Evaluable,Identification of the Originator,Alta,Indica quién exploró primero la sintaxis en evaluación de MT.,COMPLETO,82,1
+77,W10-1745_W09-0406_0,Evaluable,Further Reading,Alta,Remite a detalles de rasgos en la obra citada.,COMPLETO,82,1
+78,P10-1018_D08-1103_0,Evaluable,Comparison,Media,Compara la técnica propia con recursos de antonimia existentes.,COMPLETO,82,1
+79,D09-1034_P08-2002_0,Evaluable,Background,Alta,Resume trabajo reciente sobre surprisal.,COMPLETO,82,1
+80,N09-1027_P05-1010_0,Evaluable,Basis,Media,Adopta la formulación de etiquetas implícitas refinando no terminales.,COMPLETO,82,1
+81,W12-3004_P08-1004_1,Evaluable,Evidence,Media,Respalda que el umbral es independiente del dominio.,COMPLETO,82,1
+82,W05-0813_W03-0301_0,Evaluable,Comparison,Alta,Compara con resultados AER reportados por los participantes.,COMPLETO,82,1
+83,P13-1081_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para generar alineamientos.,COMPLETO,82,1
+84,J11-3004_P05-1013_1,Evaluable,Evidence,Alta,Respalda la observación de que las estructuras no proyectivas son levemente no proyectivas.,COMPLETO,82,1
+85,W10-3802_P09-1104_0,Evaluable,Background,Alta,Enumera trabajos previos exitosos con el enfoque.,COMPLETO,82,1
+86,P98-2164_P97-1032_1,Evaluable,Evidence,Alta,Respalda la existencia de una desambiguación correcta absoluta.,COMPLETO,82,1
+87,P13-1029_D11-1006_0,Evaluable,Background,Alta,Enumera trabajos de transferencia en parsing.,COMPLETO,82,1
+88,W97-1016_P91-1030_1,Evaluable,Background,Media,Reconoce el esfuerzo inicial en el área; contexto histórico.,COMPLETO,82,1
+89,N06-1010_W03-0425_0,Evaluable,Background,Alta,Enumera enfoques supervisados de NER.,COMPLETO,82,1
+90,W08-0202_W08-0206_0,Evaluable,Further Reading,Alta,Remite a la obra citada para el diseño del curso.,COMPLETO,82,1
+91,W12-3127_P07-2045_0,Evaluable,Application,Alta,Usa los scripts de Moses para tokenizar.,COMPLETO,82,1
+92,P12-1036_D09-1159_0,Evaluable,Background,Alta,Enumera enfoques previos de extracción de aspectos.,COMPLETO,82,1
+93,E06-1025_P97-1023_0,Evaluable,Background,Alta,Enumera trabajo reciente sobre orientación de términos subjetivos.,COMPLETO,82,1
+94,P10-1056_P05-1018_0,Evaluable,Gap,Media,Señala la limitación de estudios previos con pocos resumidores.,COMPLETO,82,1
+95,W11-2102_D10-1092_3,Evaluable,Gap,Alta,Señala que las métricas previas sobrestiman el reordenamiento.,COMPLETO,82,1
+96,D08-1014_E06-1025_0,Evaluable,Background,Alta,Enumera aplicaciones previas del análisis de subjetividad.,COMPLETO,82,1
+97,P13-1008_W06-0901_0,Evaluable,Background,Alta,Enumera trabajos previos de extracción de eventos en pipeline.,COMPLETO,82,1
+98,D11-1038_P08-1040_0,Evaluable,Background,Alta,Enumera aplicaciones de la simplificación.,COMPLETO,82,1
+99,W06-3105_W02-1018_1,Evaluable,Comparison,Alta,Compara el modelo propio con el modelo conjunto citado.,COMPLETO,82,1
+100,P01-1052_W99-0501_0,Evaluable,Basis,Alta,El trabajo forma parte de un proyecto mayor descrito en la obra citada.,COMPLETO,82,1

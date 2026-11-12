@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P10-1160_P08-1090_0,Evaluable,Basis,Media,"Features inspired by the cited work and a similar PMI score is used, building on it.",COMPLETO,83,1
+2,P13-1100_P11-1052_6,Evaluable,Comparison,Alta,Compares own ROUGE-1 score with the cited system's reported score.,COMPLETO,83,1
+3,J02-2002_J91-4003_0,Evaluable,Basis,Media,Qualia structure from the Generative Lexicon is the conceptual framework used to constrain the function's applicability.,COMPLETO,83,1
+4,P11-1141_P08-1101_0,Evaluable,Evidence,Alta,Cited as confirming the claim that joint segmentation and tagging helps.,COMPLETO,83,1
+5,W98-0901_P97-1040_1,Evaluable,Background,Media,Listed among previous researches supporting the assumption of a finite candidate set.,COMPLETO,83,1
+6,W11-2128_N06-1003_2,Evaluable,Background,Media,Describes prior work on paraphrasing OOV words; own work framed as extension.,COMPLETO,83,1
+7,P13-1123_W10-4301_0,Evaluable,Gap,Media,"Notes prior incremental NLG relies on templates, which limits flexibility.",COMPLETO,83,1
+8,P12-2001_N06-2033_0,Evaluable,Application,Media,Uses constituent recombination framework to combine parsers.,COMPLETO,83,1
+9,P10-1037_J04-3001_1,Evaluable,Background,Alta,Summarizes previous active learning methods for parsing.,COMPLETO,83,1
+10,P11-1012_P07-1034_0,Evaluable,Background,Alta,Describes instance weighting solution to domain adaptation from prior work.,COMPLETO,83,1
+11,P13-1148_P12-1020_1,Evaluable,Comparison,Alta,Own results are explicitly said to be consistent with the cited finding.,COMPLETO,83,1
+12,W11-2035_N06-2010_0,Evaluable,Evidence,Media,Cited author's observation supports the claim that coreference work targets written text.,COMPLETO,83,1
+13,D11-1117_W10-2902_3,Evaluable,Application,Media,Uses the uniform initializer from the cited work as default setting.,COMPLETO,83,1
+14,P13-2032_D11-1090_1,Evaluable,Background,Alta,Describes prior related work on semi-supervised segmentation.,COMPLETO,83,1
+15,D08-1017_P05-1012_4,Evaluable,Application,Alta,Uses MSTParser as is.,COMPLETO,83,1
+16,W06-1518_P00-1065_1,Evaluable,Evidence,Media,Cited work's rationale justifies use of a simple decision list learner.,COMPLETO,83,1
+17,N13-1136_P05-1018_1,Evaluable,Background,Alta,Enumerates algorithms for sentence reordering.,COMPLETO,83,1
+18,J13-4004_D08-1068_0,Evaluable,Background,Media,Lists prior work recognizing the importance of global inference.,COMPLETO,83,1
+19,P10-1097_D08-1094_0,Evaluable,Comparison,Alta,States the method resembles cited approaches and then contrasts with them.,COMPLETO,83,1
+20,W08-1007_P03-1013_0,Evaluable,Background,Media,Summarizes earlier findings on lexicalization for German parsing.,COMPLETO,83,1
+21,W13-2217_N10-1129_0,Evaluable,Application,Alta,System adds the future cost component of the cited distortion model.,COMPLETO,83,1
+22,E09-1023_P05-1040_0,Evaluable,Background,Media,Describes earlier extension of the method to discontinuous constituency annotation.,COMPLETO,83,1
+23,J11-1005_P07-1106_4,Evaluable,Comparison,Alta,Compares own previous model results with the current model in a table.,COMPLETO,83,1
+24,W07-0409_P00-1056_0,Evaluable,Background,Alta,Introduction describing recent phrase-based SMT work.,COMPLETO,83,1
+25,P12-2076_P08-1076_0,Evaluable,Evidence,Media,Cited to support the claim about approximating generative models in semi-supervised CRFs.,COMPLETO,83,1
+26,P06-2007_P99-1004_1,Evaluable,Evidence,Media,Supports that related phrases can be identified via distributional similarity.,COMPLETO,83,1
+27,W11-0311_D09-1020_4,Evaluable,Background,Media,Describes the source of expert gold-standard labels in prior study.,COMPLETO,83,1
+28,D13-1162_P09-1045_0,Evaluable,Background,Alta,Lists prior lexicon induction work.,COMPLETO,83,1
+29,P10-1061_D08-1014_2,Evaluable,Evidence,Alta,"Supports claim that SVM performs well, justifying the classifier choice.",COMPLETO,83,1
+30,W06-1622_W04-2418_1,Evaluable,Comparison,Alta,Reports F1 improvement over the cited result.,COMPLETO,83,1
+31,W11-1011_N07-1051_0,Evaluable,Application,Alta,Uses the Berkeley parser grammars to parse the data.,COMPLETO,83,1
+32,D13-1170_P03-1054_1,Evaluable,Application,Alta,Uses the Stanford Parser to parse sentences.,COMPLETO,83,1
+33,D10-1017_W06-1615_0,Evaluable,Comparison,Alta,Related work section stating how the work differs from prior SSL studies.,COMPLETO,83,1
+34,W11-2011_W06-1412_0,Evaluable,Background,Alta,Reviews previous work on context-sensitive generation.,COMPLETO,83,1
+35,W12-2701_P06-1124_0,Evaluable,Further Reading,Media,Directs reader to source for Bayesian interpretation of smoothing.,COMPLETO,83,1
+36,W07-2305_E06-1045_1,Evaluable,Comparison,Alta,Own result agrees with results of the cited studies.,COMPLETO,83,1
+37,P13-1010_P05-1018_11,Evaluable,Comparison,Alta,Compares own system results with those reported by the cited work.,COMPLETO,83,1
+38,D09-1115_N07-1029_1,Evaluable,Application,Media,Adopts features similar to those in cited work.,COMPLETO,83,1
+39,S07-1098_P06-1095_0,Evaluable,Evidence,Media,"Cited as supporting the benefits of an ML-based approach, justifying the choice.",COMPLETO,83,1
+40,P98-2204_P83-1007_2,Evaluable,Identification of the Originator,Alta,Rules attributed as defined by the cited authors.,COMPLETO,83,1
+41,D09-1087_N06-1020_1,Evaluable,Comparison,Alta,Compares own improvement to that obtained in the cited work.,COMPLETO,83,1
+42,N03-1036_J91-4003_0,Evaluable,Evidence,Media,Supports the claim that generative processes explain new meanings.,COMPLETO,83,1
+43,P12-3010_P04-3019_0,Evaluable,Background,Alta,Lists existing concordancers using word alignment before noting drawbacks.,COMPLETO,83,1
+44,P12-1071_P08-1108_0,Evaluable,Background,Alta,Describes stacked learning applied to dependency parsing in prior work.,COMPLETO,83,1
+45,N09-1070_N04-1019_0,Evaluable,Basis,Media,Metric is similar to Pyramid; built on its idea with adaptation.,COMPLETO,83,1
+46,P12-1083_P11-2111_1,Evaluable,Application,Media,Implements features described in the cited work.,COMPLETO,83,1
+47,P13-1106_N10-1015_0,Evaluable,Background,Alta,Summarizes previous work showing bitexts with NER tags help.,COMPLETO,83,1
+48,W13-2009_W11-0214_1,Evaluable,Further Reading,Alta,Refers reader to the cited work for discussion not covered here.,COMPLETO,83,1
+49,P11-1144_S07-1048_0,Evaluable,Gap,Media,Describes prior attempts to address FrameNet's coverage problem.,COMPLETO,83,1
+50,W12-3312_P09-1113_1,Evaluable,Application,Alta,Adopts the distant supervision approach on a Chinese dataset.,COMPLETO,83,1
+51,W07-2305_E06-1045_0,Evaluable,Comparison,Media,"Compares prior systems, linking them through similar technique and human evaluation results.",COMPLETO,83,1
+52,W13-2206_W12-3139_0,Evaluable,Background,Alta,Describes how prior work handled large LM corpora.,COMPLETO,83,1
+53,P10-1112_N07-1051_5,Evaluable,Comparison,Alta,Table compares accuracies with the cited parser.,COMPLETO,83,1
+54,P13-1066_P12-1034_0,Evaluable,Basis,Alta,Current paper further improves the authors' earlier work.,COMPLETO,83,1
+55,W09-2112_P08-1021_2,Evaluable,Background,Media,Reports a finding of prior work on preposition errors as context.,COMPLETO,83,1
+56,W09-1325_W07-1008_1,Evaluable,Comparison,Alta,Contrasts own tool design with OSCAR3.,COMPLETO,83,1
+57,D13-1177_P09-1046_0,Evaluable,Gap,Media,Notes that many temporal ordering systems did not consider the SUPER relation.,COMPLETO,83,1
+58,W12-5619_D10-1004_1,Evaluable,Application,Alta,Uses the same feature set as the cited work.,COMPLETO,83,1
+59,N12-1044_W10-2405_0,Evaluable,Background,Alta,States prior adaptation of G2P systems to transliteration.,COMPLETO,83,1
+60,W09-2306_P03-1011_0,Evaluable,Background,Alta,Lists syntax-based SMT models.,COMPLETO,83,1
+61,D13-1077_P12-1084_3,Evaluable,Application,Media,Presents the local feature set used from the cited work.,COMPLETO,83,1
+62,W10-3807_N09-2004_0,Evaluable,Background,Alta,Describes prior application of SRL to SMT.,COMPLETO,83,1
+63,D13-1084_P12-1102_0,Evaluable,Gap,Alta,"Points out the cited work's data was artificial, a limitation.",COMPLETO,83,1
+64,P07-2046_N03-1017_0,Evaluable,Identification of the Originator,Media,"Moses is described as an extension of Pharaoh, crediting its origin.",COMPLETO,83,1
+65,D13-1105_W02-0604_1,Evaluable,Comparison,Alta,Contrasts letter-based models of cited work with the abstract-stem approach.,COMPLETO,83,1
+66,P06-2004_P97-1003_0,Evaluable,Application,Alta,Uses Collins' parser as the supervised component.,COMPLETO,83,1
+67,P86-1016_J85-4010_0,Evaluable,Background,Media,Describes the cited work's approach to perspective choice as prior work.,COMPLETO,83,1
+68,P06-1095_P04-1074_0,Evaluable,Comparison,Media,Compares reported accuracies of prior systems with differing task definitions.,COMPLETO,83,1
+69,D10-1013_W10-0735_0,Evaluable,Basis,Alta,Section contains material originally reported in the cited own work.,COMPLETO,83,1
+70,W06-2914_A00-2004_2,Evaluable,Comparison,Alta,Compares own system against C99 segmenter.,COMPLETO,83,1
+71,P11-2006_D10-1035_0,Evaluable,Background,Alta,Describes recent related work on bootstrapping.,COMPLETO,83,1
+72,D10-1122_P00-1037_1,Evaluable,Comparison,Alta,Contrasts own requirements with those of the cited work.,COMPLETO,83,1
+73,W10-1411_P09-1040_2,Evaluable,Application,Alta,Uses features from the cited work as starting point for selection.,COMPLETO,83,1
+74,N06-1020_W01-0521_0,Evaluable,Background,Alta,Reports prior finding that out-of-domain data helps parsing.,COMPLETO,83,1
+75,D13-1052_P11-1125_0,Evaluable,Background,Alta,Lists offline system combination approaches.,COMPLETO,83,1
+76,N13-1115_P12-1099_3,Evaluable,Application,Alta,Exploits the ensemble decoding idea from the cited work.,COMPLETO,83,1
+77,N12-1029_W96-0213_0,Evaluable,Application,Alta,Uses the maximum entropy POS tagger.,COMPLETO,83,1
+78,W12-1509_W10-4301_4,Evaluable,Background,Media,"Describes prior incremental responsiveness via fillers, contrasted with own work.",COMPLETO,83,1
+79,W04-2406_N03-3004_0,Evaluable,Evidence,Alta,Cited findings support the choice of average link clustering.,COMPLETO,83,1
+80,W11-0505_P10-1058_0,Evaluable,Background,Media,"Mentions ILP-based models as potentially useful, giving context.",COMPLETO,83,1
+81,P11-1118_P08-2011_6,Evaluable,Comparison,Alta,Results compared to cited work's accuracies.,COMPLETO,83,1
+82,W03-1015_N03-1023_2,Evaluable,Further Reading,Alta,Refers reader to cited work for details of methods.,COMPLETO,83,1
+83,Q13-1025_P05-1010_0,Evaluable,Background,Alta,States existing unlexicalized latent variable parsing gives comparable accuracy.,COMPLETO,83,1
+84,N12-1004_N03-1017_0,Evaluable,Background,Alta,Describes standard heuristic for phrase alignment in MT.,COMPLETO,83,1
+85,W09-1319_W06-3305_0,Evaluable,Application,Alta,Priority model adopted from cited work to detect disease mentions.,COMPLETO,83,1
+86,P11-1062_W03-1011_0,Evaluable,Application,Alta,Uses a Cover score implementation as one of the features.,COMPLETO,83,1
+87,D09-1095_S07-1033_1,Evaluable,Background,Media,Reports the prior observation that PMWs as features help for organization names.,COMPLETO,83,1
+88,D13-1068_D11-1040_0,Evaluable,Evidence,Media,Cited work supports the claim that component summaries should be correlated.,COMPLETO,83,1
+89,P06-1046_W02-0908_0,Evaluable,Evidence,Alta,Cited finding supports the motivation that more data yields gains.,COMPLETO,83,1
+90,P01-1007_E99-1008_3,Evaluable,Evidence,Media,Cited for the result that simple PRCG yields a CFL.,COMPLETO,83,1
+91,D12-1052_W11-2838_2,Evaluable,Application,Alta,Uses evaluation metrics as defined in the HOO report.,COMPLETO,83,1
+92,W09-0417_W08-0302_0,Evaluable,Gap,Alta,Notes prior attempts failed to show important gains.,COMPLETO,83,1
+93,P12-1079_N03-1017_0,Evaluable,Application,Alta,Applies the grow-diag-final-and refinement rule.,COMPLETO,83,1
+94,W06-2904_W02-1039_0,Evaluable,Background,Alta,Reports prior finding on cohesion of dependency structures.,COMPLETO,83,1
+95,W12-1623_N03-1030_2,Evaluable,Comparison,Alta,Contrasts the boundary labels of cited work with the beginning labels used here.,COMPLETO,83,1
+96,Q13-1010_N07-1050_0,Evaluable,Background,Alta,Lists existing incremental parsers by grammar type.,COMPLETO,83,1
+97,P08-1109_W04-3201_1,Evaluable,Gap,Alta,Notes the cited work achieved only small gains and suggests why.,COMPLETO,83,1
+98,W11-4004_N10-1121_2,Evaluable,Background,Alta,Lists prior uses of the lexicon for opinion holder extraction.,COMPLETO,83,1
+99,D12-1018_P10-3017_0,Evaluable,Background,Alta,Related work enumerating prior feature extraction approaches.,COMPLETO,83,1
+100,N10-1106_N04-1001_0,Evaluable,Evidence,Media,Cited to support that word-level units give good performance for English.,COMPLETO,83,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W10-2006_P02-1026_0,Evaluable,Identification of the Originator,Media,Presenta el estudio como uno de los primeros en investigar la constancia de la entropía y atribuye la hipótesis CER a sus autores.,COMPLETO,70,1
+2,J02-3002_A00-2035_0,Evaluable,Evidence,Media,Respalda la cifra de error de POS tagging reportada en el trabajo citado.,COMPLETO,70,1
+3,W10-4149_N06-1020_1,Evaluable,Gap,Media,"Se usa para ilustrar un inconveniente del auto-entrenamiento (la calidad de los datos anotados automáticamente), en un pasaje sobre los límites de los métodos previos.",COMPLETO,70,1
+4,W08-0302_J90-2002_0,Evaluable,Background,Media,Describe los sistemas de traducción basados en frases y los modelos IBM originales como contexto general.,COMPLETO,70,1
+5,P13-3019_W12-3101_0,Evaluable,Further Reading,Media,"Remite a otras posibilidades de ranking que el texto no desarrolla, en el marco de trabajo futuro.",COMPLETO,70,1
+6,W11-4511_P06-1097_1,Evaluable,Evidence,Media,Respalda la afirmación de que el alineamiento discriminativo facilita incorporar nuevas características.,COMPLETO,70,1
+7,W10-0733_J07-2003_0,Evaluable,Application,Alta,"Usan Joshua, implementación abierta del sistema jerárquico citado, como uno de los sistemas MT evaluados.",COMPLETO,70,1
+8,N13-1005_N12-1034_0,Evaluable,Comparison,Baja,Menciona los paráfrasis de eventos como trabajo reciente y contrasta la tarea de New Event Detection con la propia.,COMPLETO,70,1
+9,W13-0125_N10-1045_0,Evaluable,Gap,Alta,Señala la escasez de estudios no ingleses y que hay casi ninguna tecnología de TE disponible.,COMPLETO,70,1
+10,N13-1136_N09-1041_0,Evaluable,Gap,Media,"Los trabajos previos tratan selección y ordenación por separado, lo que justifica un modelo conjunto.",COMPLETO,70,1
+11,E03-3003_P93-1024_0,Evaluable,Evidence,Media,Sustenta la idoneidad del clustering para investigación lingüística en tareas de clasificación.,COMPLETO,70,1
+12,D09-1023_P07-2045_2,Evaluable,Application,Alta,Emplean el pipeline de Moses tal cual para obtener características de traducción léxica.,COMPLETO,70,1
+13,P13-1074_P11-2033_0,Evaluable,Basis,Alta,Declaran que parten de ese trabajo y lo extienden a flujos de palabras con predicción de puntuación.,COMPLETO,70,1
+14,N10-1129_W06-3108_0,Evaluable,Background,Alta,Enumera modelos de reordenamiento local propuestos previamente.,COMPLETO,70,1
+15,J11-1007_P05-1013_0,Evaluable,Background,Alta,Enumera los grupos que han promovido los modelos basados en transiciones.,COMPLETO,70,1
+16,P08-1009_W02-1039_2,Evaluable,Evidence,Media,"Respalda que la cohesión no siempre se mantiene, citando un estudio que contó tales casos.",COMPLETO,70,1
+17,W13-4018_P97-1035_0,Evaluable,Background,Media,"Presenta PARADISE como trabajo conocido para determinar la satisfacción automáticamente, y describe su enfoque.",COMPLETO,70,1
+18,N13-1110_P11-1082_0,Evaluable,Background,Alta,"Resume enfoques previos que recurrieron a ontologías para resolver estos errores, antes de criticarlos.",COMPLETO,70,1
+19,W10-2906_P09-1009_1,Evaluable,Background,Alta,Describe dos métodos recientes de inducción no supervisada en una revisión de categorías de trabajo previo.,COMPLETO,70,1
+20,J12-2004_W09-1418_0,Evaluable,Further Reading,Alta,Remite a implementaciones prácticas de emparejamiento de claves e eventos.,COMPLETO,70,1
+21,W09-1902_D08-1112_0,Evaluable,Evidence,Media,Respalda la afirmación de que el aprendizaje activo para secuencias debe seleccionar secuencias completas.,COMPLETO,70,1
+22,D10-1120_P10-1131_0,Evaluable,Evidence,Media,Respalda la afirmación de que aprender correspondencias interlingüísticas reduce la ambigüedad sintáctica.,COMPLETO,70,1
+23,W11-0902_P00-1065_0,Evaluable,Comparison,Media,Indica que la característica de ruta sintáctica es similar a la del trabajo citado.,COMPLETO,70,1
+24,N13-1019_N12-1064_3,Evaluable,Comparison,Alta,Compara los resultados numéricos propios con los publicados en el trabajo citado.,COMPLETO,70,1
+25,J13-3003_D10-1113_1,Evaluable,Background,Alta,Clasifica y enumera enfoques existentes que agrupan contextos en sentidos.,COMPLETO,70,1
+26,W12-2025_P03-1004_0,Evaluable,Application,Alta,Usan la herramienta YamCha para el chunking.,COMPLETO,70,1
+27,W12-5903_W04-3250_0,Evaluable,Application,Alta,Aplican el bootstrap resampling descrito en el trabajo citado para pruebas de significancia.,COMPLETO,70,1
+28,D13-1111_N09-1046_0,Evaluable,Application,Alta,Emplean el segmentador CRF citado para dividir compuestos alemanes.,COMPLETO,70,1
+29,P11-2005_P10-2041_3,Evaluable,Comparison,Alta,"Contrasta explícitamente las perplejidades obtenidas con las menores del trabajo citado, señalando la diferencia de datos.",COMPLETO,70,1
+30,P13-1123_W00-0306_1,Evaluable,Comparison,Media,Indica que su baseline de 5-gramas es similar al sistema del trabajo citado.,COMPLETO,70,1
+31,W11-0305_P08-1016_2,Evaluable,Comparison,Alta,Compara el desempeño de VE con el de WordEnds y otros algoritmos.,COMPLETO,70,1
+32,W13-5404_S12-1023_0,Evaluable,Gap,Media,"Describe un trabajo previo y señala que depende de recursos ricos, limitación que motiva el enfoque.",COMPLETO,70,1
+33,P11-1089_P96-1024_0,Evaluable,Identification of the Originator,Media,"Identifica la decodificación de mínimo riesgo bayesiano con la fuente que la propone, usada luego por otros.",COMPLETO,70,1
+34,J11-2001_N10-1119_0,Evaluable,Further Reading,Media,Con 'see also' remite a otros métodos que usan palabras semilla.,COMPLETO,70,1
+35,P13-2020_P10-1110_2,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados de análisis con otros sistemas.,COMPLETO,70,1
+36,D10-1067_P02-1017_0,Evaluable,Background,Alta,Enumera trabajos recientes de inducción de bracketing o dependencias.,COMPLETO,70,1
+37,N13-1018_N06-1046_0,Evaluable,Gap,Media,"Menciona enfoques de agregación y señala que la mayoría usa estructura sintáctica, a diferencia del nivel léxico propio.",COMPLETO,70,1
+38,J13-3003_D08-1094_4,Evaluable,Background,Alta,Enumera tareas en que se han evaluado los modelos vectoriales.,COMPLETO,70,1
+39,S13-2029_W09-2413_2,Evaluable,Comparison,Alta,Indica que la tendencia observada confirma los resultados de la primera tarea SemEval.,COMPLETO,70,1
+40,J12-4005_W07-1210_0,Evaluable,Background,Alta,Enumera trabajos de tratamiento semántico de texto no restringido.,COMPLETO,70,1
+41,W07-2202_W06-1619_4,Evaluable,Application,Media,Indica los datos del Penn Treebank con que se desarrolló el analizador Enju utilizado.,COMPLETO,70,1
+42,W13-2239_N10-1141_0,Evaluable,Background,Alta,Enumera enfoques previos para lograr diversidad entre sistemas.,COMPLETO,70,1
+43,W12-3102_W12-3143_0,Evaluable,Background,Baja,Cita en una lista de sistemas participantes la descripción del sistema PROMT.,COMPLETO,70,1
+44,N10-1118_P06-2066_1,Evaluable,Background,Alta,Resume trabajos previos que exploran la cobertura de gramáticas sobre treebanks de dependencias.,COMPLETO,70,1
+45,W12-1642_D09-1044_5,Evaluable,Comparison,Alta,Se incluyen los mejores resultados de GRE en una tabla comparativa con el método propio.,COMPLETO,70,1
+46,D10-1111_J04-3002_0,Evaluable,Background,Alta,Sitúa el trabajo en el área de análisis de subjetividad en la sección de trabajo relacionado.,COMPLETO,70,1
+47,E87-1024_P84-1047_2,Evaluable,Basis,Alta,El sistema adopta la técnica de análisis orientado a entidades del trabajo citado.,COMPLETO,70,1
+48,P04-1086_N03-1028_1,Evaluable,Evidence,Media,"Respalda que los métodos basados en gradiente suelen ser más eficientes, justificando su elección.",COMPLETO,70,1
+49,W09-3102_W03-1609_0,Evaluable,Background,Alta,"Enumera usos previos de corpus comparables, incluida la adquisición de paráfrasis.",COMPLETO,70,1
+50,W11-1410_W10-1502_5,Evaluable,Evidence,Media,Respalda el hallazgo de que el tamaño no es la variable más importante en la calidad de datos web.,COMPLETO,70,1
+51,E09-1023_P02-1017_0,Evaluable,Evidence,Media,Respalda la heurística del contexto más corto con apoyo de la inducción gramatical no supervisada.,COMPLETO,70,1
+52,W13-0808_W03-0301_0,Evaluable,Background,Media,Enumera conjuntos de datos usados en experimentos similares previos.,COMPLETO,70,1
+53,W12-2509_W10-0701_0,Evaluable,Gap,Alta,Señala que los trabajos previos fueron optimistas pero no contabilizaron el esfuerzo requerido.,COMPLETO,70,1
+54,N03-1017_P00-1056_0,Evaluable,Application,Alta,Usan el toolkit Giza++ para aprender alineamientos de frases.,COMPLETO,70,1
+55,P09-1084_P02-1031_1,Evaluable,Evidence,Alta,Los resultados citados respaldan la hipótesis de que el análisis sintáctico ayuda al SRL.,COMPLETO,70,1
+56,W00-0804_P99-1020_0,Evaluable,Comparison,Media,Compara su precisión de WSD con la reportada en la literatura.,COMPLETO,70,1
+57,P11-1134_N10-1146_0,Evaluable,Identification of the Originator,Alta,Atribuye la propuesta de CLTE al trabajo citado.,COMPLETO,70,1
+58,J10-4007_P07-1028_0,Evaluable,Identification of the Originator,Alta,Indica que el modelo EPP fue introducido por primera vez en el trabajo citado.,COMPLETO,70,1
+59,W08-2113_P06-2084_0,Evaluable,Further Reading,Media,Remite a listas exhaustivas de medidas de asociación de las que se toman las asimétricas.,COMPLETO,70,1
+60,W08-1107_P02-1013_0,Evaluable,Background,Media,"Describe trabajos previos que generan fórmulas lógicas, situando el enfoque en ese panorama.",COMPLETO,70,1
+61,P09-1087_P05-1034_0,Evaluable,Background,Alta,Enumera aplicaciones de modelos de dependencias en traducción automática.,COMPLETO,70,1
+62,W08-2228_W07-1409_0,Evaluable,Further Reading,Alta,Con 'See also' remite a fuentes adicionales sobre la tendencia.,COMPLETO,70,1
+63,W09-0634_W05-1606_1,Evaluable,Gap,Alta,"El trabajo citado señaló que el enfoque booleano estándar es problemático, lo que motiva el planteamiento propio.",COMPLETO,70,1
+64,E12-1032_P03-1069_0,Evaluable,Evidence,Media,Respalda que la métrica Kendall's tau se usa ampliamente en la evaluación de ordenación de oraciones.,COMPLETO,70,1
+65,N13-1140_P06-1124_3,Evaluable,Evidence,Media,Respalda la afirmación de que Kneser-Ney aproxima la predictiva posterior con priors PYP jerárquicos.,COMPLETO,70,1
+66,N13-1032_P06-1067_1,Evaluable,Comparison,Alta,Compara la ganancia en BLEU con un sistema estándar con modelo de distorsión lexicalizado.,COMPLETO,70,1
+67,W13-2320_W10-1411_0,Evaluable,Further Reading,Alta,"Con 'however, see' remite a trabajos sobre el impacto de los marcadores de caso.",COMPLETO,70,1
+68,P11-2078_P03-1021_0,Evaluable,Application,Alta,Usan MERT para ajustar los pesos de las características.,COMPLETO,70,1
+69,P04-3021_P99-1033_0,Evaluable,Background,Alta,"Enumera aplicaciones de modelos de estados finitos, incluido el análisis sintáctico.",COMPLETO,70,1
+70,W08-2109_P08-1016_0,Evaluable,Comparison,Alta,Contrasta su algoritmo incremental con los algoritmos por lotes citados.,COMPLETO,70,1
+71,P07-1003_N06-1014_3,Evaluable,Comparison,Media,Sus resultados superan a GIZA++ y confirman los del trabajo citado.,COMPLETO,70,1
+72,J01-4003_P89-1031_0,Evaluable,Background,Alta,Enumera evaluaciones previas de resolución de pronombres en corpus.,COMPLETO,70,1
+73,W11-0601_W08-2109_1,Evaluable,Background,Alta,Enumera simulaciones recientes que usan conocimiento fonológico.,COMPLETO,70,1
+74,P11-1125_N09-2003_0,Evaluable,Application,Media,Emplean la representación compacta de estado del trabajo citado.,COMPLETO,70,1
+75,W13-4034_E09-1012_0,Evaluable,Background,Alta,Reporta la exactitud lograda en trabajo previo como parte de la revisión de literatura.,COMPLETO,70,1
+76,W10-1713_W09-0424_0,Evaluable,Application,Alta,Aplican el método de submuestreo disponible en Joshua.,COMPLETO,70,1
+77,P06-2089_E03-1005_1,Evaluable,Comparison,Alta,"Aparece en una tabla comparando precisión, recall y tiempo con otros analizadores.",COMPLETO,70,1
+78,N09-1029_P96-1021_0,Evaluable,Evidence,Media,Respalda la afirmación de que BTG se adopta ampliamente por su equilibrio entre eficiencia y expresividad.,COMPLETO,70,1
+79,W13-3203_A00-2011_1,Evaluable,Gap,Media,Describe intentos de incluir contexto sintáctico y señala que no construyen significado de frases.,COMPLETO,70,1
+80,W99-0621_W95-0107_6,Evaluable,Comparison,Media,"Contrasta con el trabajo citado, que solo estudió base NPs cortos, para explicar diferencias de resultados.",COMPLETO,70,1
+81,W05-0618_P04-1051_0,Evaluable,Gap,Alta,"Contrasta con trabajos previos que resolvían solo una o dos tareas, frente a la formulación general propuesta.",COMPLETO,70,1
+82,W06-1617_W04-2705_3,Evaluable,Evidence,Media,Respalda la cifra de acuerdo entre anotadores de NomBank con pruebas preliminares.,COMPLETO,70,1
+83,W12-3305_E09-1013_1,Evaluable,Application,Media,Consideran LDA como uno de los modelos latentes que emplean.,COMPLETO,70,1
+84,D11-1039_N06-1056_0,Evaluable,Background,Alta,Enumera técnicas aplicadas al aprendizaje supervisado de analizadores semánticos.,COMPLETO,70,1
+85,D10-1094_W10-1004_4,Evaluable,Evidence,Media,Se cita para sostener el argumento de que los baselines de clase más frecuente no son relevantes.,COMPLETO,70,1
+86,D09-1123_P05-1033_0,Evaluable,Background,Alta,"Describe trabajos previos de traducción sintactificada, indicando que otro modelo extiende el citado.",COMPLETO,70,1
+87,P09-2036_N09-1026_3,Evaluable,Evidence,Media,Respalda que la binarización es útil y bien conocida para el análisis sintáctico.,COMPLETO,70,1
+88,W11-0315_P07-1096_0,Evaluable,Comparison,Alta,Compara su exactitud con la del sistema de estado del arte citado.,COMPLETO,70,1
+89,E12-1008_W06-2920_1,Evaluable,Evidence,Media,Respalda que la versión pseudo-proyectiva de MaltParser fue de los mejores sistemas en CoNLL-X.,COMPLETO,70,1
+90,J10-3003_P05-1074_0,Evaluable,Background,Media,Describe el método popular de paráfrasis con corpus bilingües y su funcionamiento.,COMPLETO,70,1
+91,P10-1154_W06-1663_0,Evaluable,Gap,Alta,"Señala la insuficiencia de la información de los recursos para WSD, lo que motiva extenderlos.",COMPLETO,70,1
+92,D11-1037_D09-1085_4,Evaluable,Basis,Media,Indica que está entre los trabajos más relacionados y que adoptan su enfoque.,COMPLETO,70,1
+93,J90-1011_J92-2007_0,Evaluable,Further Reading,Alta,Se menciona el libro como lectura suplementaria recomendada.,COMPLETO,70,1
+94,N07-1050_W02-2016_0,Evaluable,Background,Alta,Enumera lenguas en que el análisis de dependencias guiado por datos ha funcionado.,COMPLETO,70,1
+95,P08-1068_P05-1013_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando exactitudes de analizadores checos.,COMPLETO,70,1
+96,W13-4917_P09-2056_1,Evaluable,Application,Alta,Usan la herramienta de conversión de constituyentes a dependencias citada.,COMPLETO,70,1
+97,W10-1205_N07-1038_3,Evaluable,Comparison,Alta,Compara resultados de MaxEnt con los del algoritmo Good Grief.,COMPLETO,70,1
+98,W11-1804_W09-1401_2,Evaluable,Further Reading,Alta,Remite al trabajo para detalles de los criterios de emparejamiento.,COMPLETO,70,1
+99,W11-2165_N03-1017_0,Evaluable,Background,Alta,Presenta el éxito de los modelos de traducción por frases como punto de partida histórico de una tendencia.,COMPLETO,70,1
+100,P09-1051_W06-1621_0,Evaluable,Basis,Media,"Siguen el trabajo citado que acuñó el término lexical reference, base de su enfoque.",COMPLETO,70,1

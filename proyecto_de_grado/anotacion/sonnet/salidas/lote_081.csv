@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P12-1066_P04-1060_0,Evaluable,Background,Alta,Enumeración de trabajos previos que usan corpus paralelos en análisis multilingüe.,COMPLETO,81,1
+2,W13-2242_P07-2045_0,Evaluable,Application,Alta,Usa Moses tal cual para el true-casing.,COMPLETO,81,1
+3,J94-1001_P91-1002_0,Evaluable,Evidence,Media,Respalda la afirmación de que las restricciones sortales simplifican las gramáticas.,COMPLETO,81,1
+4,P04-1017_P98-2204_1,Evaluable,Basis,Media,Las características Apposition y NoAntecedent están inspiradas en el trabajo citado.,COMPLETO,81,1
+5,J12-1003_W09-2504_1,Evaluable,Background,Media,Describe un recurso previo (Argument-mapped WordNet) como trabajo relacionado.,COMPLETO,81,1
+6,P08-1045_W98-1005_0,Evaluable,Comparison,Alta,Contrasta explícitamente su método con los enfoques generativos citados.,COMPLETO,81,1
+7,W13-0112_P08-1028_2,Evaluable,Application,Media,Usa los conjuntos de datos de referencia proporcionados por la obra citada para evaluar.,COMPLETO,81,1
+8,W01-0702_W99-0707_3,Evaluable,Comparison,Media,Compara el riesgo del método actual con las técnicas de edición de memoria del trabajo citado mediante un reanálisis.,COMPLETO,81,1
+9,E06-2026_P04-1051_0,Evaluable,Background,Alta,Trabajos relacionados que enumeran aplicaciones de ILP en PLN.,COMPLETO,81,1
+10,P06-2013_W95-0107_0,Evaluable,Identification of the Originator,Alta,Indica que Ramshaw y Marcus fueron los primeros en plantear el reconocimiento de sintagmas nominales base como aprendizaje automático.,COMPLETO,81,1
+11,D08-1033_P07-1035_0,Evaluable,Background,Media,"Describe el uso previo de muestreo en PLN para contrastarlo con el uso propio, pero la cita es de trabajos previos.",COMPLETO,81,1
+12,W12-0704_P07-2045_0,Evaluable,Application,Alta,Emplea Moses para el entrenamiento y la decodificación.,COMPLETO,81,1
+13,W94-0311_J91-4003_4,Evaluable,Basis,Alta,El trabajo se desarrolla dentro del marco de la Teoría del Léxico Generativo.,COMPLETO,81,1
+14,W10-2806_P04-1036_0,Evaluable,Background,Alta,Enumera aplicaciones de técnicas vectoriales en PLN en la introducción.,COMPLETO,81,1
+15,N13-1093_S12-1035_0,Evaluable,Background,Media,Menciona tareas compartidas que popularizaron la tarea de alcance de la negación.,COMPLETO,81,1
+16,P12-1084_W06-1612_0,Evaluable,Gap,Alta,Señala las limitaciones del trabajo previo sobre aprendizaje de IS (solo diálogo conversacional).,COMPLETO,81,1
+17,J08-3003_P96-1025_2,Evaluable,Application,Media,Sigue una estrategia similar de interpolación con estimaciones de menor contexto.,COMPLETO,81,1
+18,P11-1065_P05-1033_2,Evaluable,Comparison,Alta,Compara su sistema con la línea base jerárquica de Chiang.,COMPLETO,81,1
+19,D11-1011_D09-1099_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre reordenamiento de conocimiento extraído.,COMPLETO,81,1
+20,W13-3814_D11-1096_1,Evaluable,Background,Media,Presenta extensiones semánticas de TKs como trabajo relacionado antes de discutirlas.,COMPLETO,81,1
+21,J05-2005_J03-4002_0,Evaluable,Gap,Media,"Se cita a quienes defienden estructuras de árbol, posición contra la que se argumenta.",COMPLETO,81,1
+22,D12-1121_P95-1031_0,Evaluable,Background,Alta,Indica el uso amplio del sesgo de dispersión en aprendizaje gramatical no supervisado.,COMPLETO,81,1
+23,W09-1321_P98-1013_0,Evaluable,Application,Alta,Usa los marcos de FrameNet para clasificar las expresiones.,COMPLETO,81,1
+24,J09-4006_P98-2206_0,Evaluable,Comparison,Media,Menciona trabajos no supervisados y los contrasta como menos precisos y más complicados que el propio.,COMPLETO,81,1
+25,P13-1115_P10-1044_2,Evaluable,Identification of the Originator,Alta,Indica que la métrica AUC fue empleada por primera vez para evaluar SP por el trabajo citado.,COMPLETO,81,1
+26,P03-1043_P98-2127_0,Evaluable,Evidence,Media,Respalda la justificación del uso de semillas conceptuales con el principio del agrupamiento basado en análisis sintáctico.,COMPLETO,81,1
+27,N13-2009_P05-1033_0,Evaluable,Background,Media,Explica que SCFG fue repopularizado para SMT por la obra citada; atribución histórica secundaria.,COMPLETO,81,1
+28,W12-3154_W07-0717_0,Evaluable,Background,Alta,Enumera enfoques de interpolación de tablas de frases en trabajos previos.,COMPLETO,81,1
+29,D12-1127_W06-2920_0,Evaluable,Application,Alta,Usa los corpus etiquetados de las tareas compartidas CoNLL.,COMPLETO,81,1
+30,P13-2067_N09-2004_0,Evaluable,Comparison,Alta,"Contrasta el modelo de dos pasadas citado, que reordena demasiado tarde, con su enfoque.",COMPLETO,81,1
+31,S12-1060_P08-1028_0,Evaluable,Basis,Alta,La medida está motivada por la idea de composicionalidad de vectores distribucionales.,COMPLETO,81,1
+32,P05-1004_W03-1022_5,Evaluable,Comparison,Alta,Sus resultados superan a los del trabajo citado.,COMPLETO,81,1
+33,E99-1024_W95-0104_0,Evaluable,Evidence,Alta,Respalda que los métodos estadísticos han tenido éxito en la corrección ortográfica contextual.,COMPLETO,81,1
+34,J13-4003_P10-1142_0,Evaluable,Further Reading,Alta,Remite a un survey para más detalles sobre sistemas supervisados.,COMPLETO,81,1
+35,Q13-1019_P08-1037_0,Evaluable,Background,Media,Presenta un hallazgo previo que antecede y motiva la propuesta propia.,COMPLETO,81,1
+36,P13-1172_D12-1123_3,Evaluable,Background,Alta,Describe el método del trabajo citado en la revisión de literatura.,COMPLETO,81,1
+37,W11-2150_P03-1021_1,Evaluable,Application,Alta,Usa GIZA++/mkcls para el alineamiento de palabras.,COMPLETO,81,1
+38,W12-2307_J00-2014_0,Evaluable,Basis,Media,El problema se formula dentro del marco de la Teoría de la Optimidad.,COMPLETO,81,1
+39,W09-2804_W04-1013_0,Evaluable,Evidence,Media,Respalda la decisión de evaluación mencionando esquemas existentes como ROUGE.,COMPLETO,81,1
+40,W13-3706_P03-1056_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la naturaleza aislante del chino.,COMPLETO,81,1
+41,W13-2228_P03-1021_0,Evaluable,Background,Media,Describe MERT como antecedente de PRO.,COMPLETO,81,1
+42,W06-0119_P06-2108_2,Evaluable,Further Reading,Alta,Remite al trabajo citado para los detalles de WSM.,COMPLETO,81,1
+43,N09-1001_W04-3239_0,Evaluable,Background,Alta,Enumera trabajos de minería de opiniones a nivel de oración.,COMPLETO,81,1
+44,W04-3202_N04-1012_3,Evaluable,Evidence,Alta,Respalda la elección del muestreo por incertidumbre.,COMPLETO,81,1
+45,D09-1122_W03-1011_0,Evaluable,Background,Alta,Clasifica estudios previos de adquisición de paráfrasis.,COMPLETO,81,1
+46,W12-3312_N10-1072_0,Evaluable,Evidence,Baja,Respalda el procedimiento de decidir si la entidad está en la KB.,COMPLETO,81,1
+47,D13-1059_P02-1017_1,Evaluable,Application,Alta,Usa el subconjunto WSJ10 como en el trabajo citado.,COMPLETO,81,1
+48,D10-1117_P10-1130_0,Evaluable,Background,Baja,Nota al pie que remite a una excepción en trabajo previo.,COMPLETO,81,1
+49,P12-1023_E06-1011_4,Evaluable,Application,Media,Usa las características de segundo orden definidas en el trabajo citado.,COMPLETO,81,1
+50,N10-1076_N07-2014_2,Evaluable,Comparison,Alta,Reporta los resultados publicados de Habash como punto de referencia.,COMPLETO,81,1
+51,D11-1109_P10-1110_2,Evaluable,Comparison,Alta,Compara resultados con H&S10 en la tabla y describe su enfoque.,COMPLETO,81,1
+52,J08-1002_P05-1022_0,Evaluable,Background,Media,Menciona técnicas de reranking como alternativas posibles.,COMPLETO,81,1
+53,J12-1003_P08-2012_1,Evaluable,Comparison,Alta,Señala que la restricción es equivalente a la del trabajo citado salvo por la dirección de las aristas.,COMPLETO,81,1
+54,P06-1084_N04-4038_0,Evaluable,Background,Alta,Describe el trabajo pionero en etiquetado de árabe con corpus.,COMPLETO,81,1
+55,P13-2063_N06-1033_0,Evaluable,Background,Alta,Enumera esfuerzos previos por mejorar la eficiencia de decodificación.,COMPLETO,81,1
+56,W12-3205_P06-1004_0,Evaluable,Background,Alta,Enumera métodos de segmentación temática.,COMPLETO,81,1
+57,E12-3002_P09-1076_0,Evaluable,Evidence,Alta,Respalda que el género afecta la distribución de relaciones discursivas.,COMPLETO,81,1
+58,P11-2094_D08-1023_0,Evaluable,Application,Alta,Usa el algoritmo de muestreo descrito en el trabajo citado.,COMPLETO,81,1
+59,E03-1005_P96-1025_2,Evaluable,Comparison,Alta,Compara resultados con otros analizadores estadísticos en la tabla.,COMPLETO,81,1
+60,P13-1105_P12-1066_0,Evaluable,Background,Alta,Enumera trabajos de proyección sintáctica multilingüe.,COMPLETO,81,1
+61,N12-1064_N09-1040_0,Evaluable,Further Reading,Media,Remite con 'see' a algoritmos jerárquicos no desarrollados en el texto.,COMPLETO,81,1
+62,P11-1114_P08-1030_0,Evaluable,Background,Alta,Describe enfoques globales previos en extracción de eventos.,COMPLETO,81,1
+63,W13-3203_J98-1004_0,Evaluable,Background,Alta,Enumera aplicaciones de modelos semánticos distribucionales.,COMPLETO,81,1
+64,S13-2021_W07-1407_0,Evaluable,Application,Alta,Usa el conjunto de medidas de similitud superficial del trabajo citado.,COMPLETO,81,1
+65,P09-1087_P05-1012_6,Evaluable,Comparison,Alta,Compara la exactitud con la implementación O(n3) del trabajo citado.,COMPLETO,81,1
+66,W06-1660_W03-0428_0,Evaluable,Background,Alta,Enumera algoritmos usados en NER.,COMPLETO,81,1
+67,P10-1033_P09-1104_1,Evaluable,Evidence,Alta,Respalda el diseño de características con el hallazgo de que las probabilidades posteriores de HMM sirven para podar.,COMPLETO,81,1
+68,E06-2015_P00-1065_0,Evaluable,Background,Alta,Cita trabajos de SRL como parte del contexto de la investigación.,COMPLETO,81,1
+69,W10-3009_W09-1304_0,Evaluable,Background,Alta,Describe el enfoque del trabajo citado en la revisión de literatura.,COMPLETO,81,1
+70,P11-1134_N10-1045_0,Evaluable,Identification of the Originator,Alta,Atribuye la propuesta de CLTE al trabajo citado.,COMPLETO,81,1
+71,P05-1004_W03-1022_7,Evaluable,Comparison,Alta,Indica que superan significativamente al perceptrón supervisado citado.,COMPLETO,81,1
+72,W10-2004_P08-2002_1,Evaluable,Background,Media,Resume un hallazgo previo sobre surprisal y tiempos de lectura.,COMPLETO,81,1
+73,N13-2010_P12-1038_3,Evaluable,Comparison,Media,Describe el trabajo citado y a continuación lo contrasta con el propio.,COMPLETO,81,1
+74,W13-0119_P09-1068_1,Evaluable,Evidence,Alta,Respalda la efectividad de PMI con su uso en cadenas narrativas.,COMPLETO,81,1
+75,W04-1007_W03-0424_0,Evaluable,Application,Alta,Usa el etiquetador C&C entrenado con datos MUC7.,COMPLETO,81,1
+76,D13-1091_P98-2127_0,Evaluable,Background,Alta,Enumera direcciones de trabajo sobre medidas de similitud.,COMPLETO,81,1
+77,D09-1128_P07-1068_0,Evaluable,Background,Alta,Enumera características lingüísticas estudiadas en correferencia.,COMPLETO,81,1
+78,E12-1051_D08-1107_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la frecuencia de instancias en consultas web.,COMPLETO,81,1
+79,N12-1047_N03-1017_0,Evaluable,Application,Alta,Usa la simetrización diag-and de la obra citada.,COMPLETO,81,1
+80,D11-1037_D09-1085_2,Evaluable,Comparison,Alta,Compara sus estimaciones de frecuencia con las reportadas en el trabajo citado.,COMPLETO,81,1
+81,D12-1098_P05-1077_4,Evaluable,Evidence,Media,Justifica el valor del parámetro por su uso en trabajo previo a gran escala.,COMPLETO,81,1
+82,P04-1076_N04-1039_0,Evaluable,Application,Alta,Adopta el esquema de suavizado con prior exponencial.,COMPLETO,81,1
+83,P10-1079_W09-2010_1,Evaluable,Background,Alta,Describe trabajos previos de normalización de texto.,COMPLETO,81,1
+84,W01-0520_P98-1116_0,Evaluable,Background,Alta,Enumera interés reciente en enfoques estocásticos de generación.,COMPLETO,81,1
+85,P98-2204_P83-1007_0,Evaluable,Basis,Alta,La propuesta está inspirada en el modelo de centrado.,COMPLETO,81,1
+86,P11-1063_P05-1033_0,Evaluable,Background,Alta,Trabajos relacionados que describen modelos que no usan sintaxis.,COMPLETO,81,1
+87,W12-3306_W11-3905_0,Evaluable,Background,Alta,Describe la contribución de trabajo previo relacionado.,COMPLETO,81,1
+88,D13-1166_P08-1028_0,Evaluable,Background,Alta,Presenta una categoría de modelos iniciada por un trabajo influyente.,COMPLETO,81,1
+89,W09-1120_P07-1049_4,Evaluable,Application,Alta,Usa el analizador incremental citado en los experimentos.,COMPLETO,81,1
+90,W06-2303_W05-0634_0,Evaluable,Comparison,Alta,Compara resultados con otros sistemas en la tabla.,COMPLETO,81,1
+91,P13-2060_P05-1033_1,Evaluable,Background,Alta,Enumera motores de SMT a los que se aplicó boosting y bagging.,COMPLETO,81,1
+92,W12-1642_W11-0503_4,Evaluable,Application,Media,Emplea la línea base de resumen por el diálogo más largo como en trabajos previos.,COMPLETO,81,1
+93,W09-3523_W06-1607_0,Evaluable,Evidence,Media,Respalda que el suavizado léxico contrarresta el sesgo de las frases largas.,COMPLETO,81,1
+94,J08-4004_W04-0210_0,Evaluable,Background,Media,Menciona trabajo propio previo como excepción a la suposición.,COMPLETO,81,1
+95,D09-1038_W06-1600_0,Evaluable,Background,Baja,Cita modelos sintácticos a los que no se integra fácilmente la binarización; el resumen del trabajo citado es irrelevante.,COMPLETO,81,1
+96,D10-1100_P04-1043_1,Evaluable,Background,Alta,Indica el uso exitoso previo de kernels PT en SRL.,COMPLETO,81,1
+97,D11-1080_W98-1121_0,Evaluable,Evidence,Alta,Respalda que la probabilidad conjunta mejora la perplejidad.,COMPLETO,81,1
+98,W04-3214_W03-1007_3,Evaluable,Comparison,Alta,Compara sus resultados con los de sistemas existentes.,COMPLETO,81,1
+99,J05-4002_W03-1011_4,Evaluable,Basis,Alta,El marco actual extiende una forma preliminar presentada en el trabajo citado.,COMPLETO,81,1
+100,W11-1901_N10-1061_0,Evaluable,Background,Alta,Enumera técnicas de aprendizaje mejoradas en correferencia.,COMPLETO,81,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W10-2809_W04-3213_0,Evaluable,Gap,Media,Señala que las clasificaciones fijas disponibles no son completas y son inadecuadas para dominios específicos.,COMPLETO,85,1
+2,W02-1004_P98-1029_0,Evaluable,Background,Alta,Enumera aplicaciones de la combinación de clasificadores.,COMPLETO,85,1
+3,W10-3813_P03-1021_0,Evaluable,Application,Alta,Usa MERT tal como fue propuesto.,COMPLETO,85,1
+4,W10-1734_E03-1076_0,Evaluable,Background,Media,Resume el resultado central de un trabajo previo sobre división de compuestos.,COMPLETO,85,1
+5,N13-1121_P09-1116_3,Evaluable,Background,Alta,Enumera trabajos que usan clustering como rasgos en distintas tareas.,COMPLETO,85,1
+6,W13-5415_J91-4003_0,Evaluable,Identification of the Originator,Media,Remite al origen del concepto con su nombre original (cospecification).,COMPLETO,85,1
+7,N10-1005_P05-1010_1,Evaluable,Application,Alta,Utiliza los modelos PCFG-LA sin modificarlos.,COMPLETO,85,1
+8,E12-1009_D10-1004_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados de parsers.,COMPLETO,85,1
+9,W06-1666_P04-1013_0,Evaluable,Gap,Media,"Se señala la limitación de un enfoque previo, no aplicable a métodos de parsing actuales; la cita está en la lista de métodos de estado del arte.",COMPLETO,85,1
+10,N13-1052_P96-1024_0,Evaluable,Background,Media,Describe la observación y el algoritmo del trabajo citado como antecedente.,COMPLETO,85,1
+11,P09-1054_W04-1213_0,Evaluable,Application,Alta,Usa el conjunto de datos de la tarea compartida.,COMPLETO,85,1
+12,P12-1072_W11-2202_6,Evaluable,Comparison,Alta,Compara el enfoque con la implementación original del modelo citado como baseline.,COMPLETO,85,1
+13,S10-1004_D09-1027_0,Evaluable,Background,Alta,Enumera sistemas recientes de extracción de frases clave.,COMPLETO,85,1
+14,P13-4033_N03-1017_0,Evaluable,Background,Media,Describe el algoritmo de búsqueda en haz comúnmente usado en SMT basada en frases.,COMPLETO,85,1
+15,D11-1096_P06-2010_0,Evaluable,Evidence,Media,Respalda la afirmación de que los tree kernels por sí solos rinden menos que rasgos manuales.,COMPLETO,85,1
+16,P13-1100_E09-1089_0,Evaluable,Background,Alta,Enumera trabajos previos de resumen automático en trabajos relacionados.,COMPLETO,85,1
+17,J07-2002_P04-1003_3,Evaluable,Background,Alta,Enumera estudios de modelado del priming semántico.,COMPLETO,85,1
+18,W98-1218_W98-1226_0,Evaluable,Evidence,Media,Respalda la afirmación de que la ley de Zipf fundamenta la evaluación de parsers.,COMPLETO,85,1
+19,N10-1129_W09-0435_0,Evaluable,Comparison,Media,Contrasta con trabajos que tampoco requieren generar retículos.,COMPLETO,85,1
+20,P13-1077_P09-1088_1,Evaluable,Application,Alta,Inicializa con árboles creados mediante el método de factorización citado.,COMPLETO,85,1
+21,W11-1908_P08-4003_1,Evaluable,Application,Alta,Usa la herramienta BART en los experimentos.,COMPLETO,85,1
+22,W08-0409_N06-1014_0,Evaluable,Evidence,Alta,Respalda la afirmación de que mejorar AER no implica mejor traducción.,COMPLETO,85,1
+23,W11-1901_D09-1101_0,Evaluable,Background,Alta,Enumera avances en técnicas de aprendizaje para correferencia.,COMPLETO,85,1
+24,J13-1006_P03-1054_2,Evaluable,Improvement / Modification,Alta,Adapta la estimación SX a PLCFRS.,COMPLETO,85,1
+25,W09-0418_W08-0334_0,Evaluable,Background,Alta,Resume investigación reciente sobre adaptación de modelos en SMT.,COMPLETO,85,1
+26,J10-3009_P00-1056_0,Evaluable,Application,Alta,Ejecuta GIZA++ sobre los corpus paralelos.,COMPLETO,85,1
+27,P05-1004_W02-0908_0,Evaluable,Background,Media,Describe hallazgos de un trabajo previo que justifica usar SEXTANT; función más bien de soporte contextual.,COMPLETO,85,1
+28,D10-1044_D09-1074_0,Evaluable,Comparison,Alta,Contrasta la granularidad a nivel de frase con el trabajo previo que pondera oraciones.,COMPLETO,85,1
+29,N13-1125_N06-1024_3,Evaluable,Background,Media,Describe trabajo previo que recasteó reglas como rasgos de clasificadores.,COMPLETO,85,1
+30,P99-1079_P98-2204_0,Evaluable,Gap,Media,"Señala que las comparaciones previas usan corpus pequeños, justificando el trabajo.",COMPLETO,85,1
+31,W98-1008_E89-1008_3,Evaluable,Comparison,Alta,"Contrasta el enfoque actual con el trabajo citado, que no define especificación parcial de cadenas.",COMPLETO,85,1
+32,N10-1140_N03-1017_1,Evaluable,Application,Alta,Usa las probabilidades léxicas ponderadas como característica del sistema.,COMPLETO,85,1
+33,W12-3159_N03-1017_0,Evaluable,Evidence,Media,Respalda la importancia de la estimación de costo futuro para minimizar errores de búsqueda.,COMPLETO,85,1
+34,D13-1160_D11-1142_1,Evaluable,Background,Alta,Enumera trabajos de extracción abierta de información.,COMPLETO,85,1
+35,P11-4019_P10-1014_1,Evaluable,Further Reading,Alta,Remite al manual de AQL para más detalles.,COMPLETO,85,1
+36,W09-3820_W08-1006_1,Evaluable,Evidence,Media,Respalda la afirmación sobre problemas de dispersión al añadir etiquetas de función.,COMPLETO,85,1
+37,W07-2218_P07-1080_6,Evaluable,Evidence,Alta,Confirma la expectativa de mejor desempeño de la aproximación de campo medio.,COMPLETO,85,1
+38,P06-2123_N06-2049_0,Evaluable,Further Reading,Alta,Remite al artículo propio para descripciones detalladas.,COMPLETO,85,1
+39,P11-1065_W02-1018_0,Evaluable,Identification of the Originator,Alta,Indica dónde se discutió por primera vez el entrenamiento de un modelo conjunto.,COMPLETO,85,1
+40,W12-2001_N10-1086_0,Evaluable,Background,Alta,Enumera enfoques de ranking para generación de preguntas.,COMPLETO,85,1
+41,W12-5105_W04-3221_0,Evaluable,Application,Alta,Usa el conjunto de datos AAMP como prueba de evaluación.,COMPLETO,85,1
+42,P12-1023_E06-1011_3,Evaluable,Application,Alta,"Implementa los parsers basados en el modelo citado, usando MSTParser.",COMPLETO,85,1
+43,W07-1306_P06-1035_1,Evaluable,Comparison,Media,Contrasta el hallazgo sobre escalamiento con la conclusión del estudio previo.,COMPLETO,85,1
+44,P11-1070_P08-1068_1,Evaluable,Application,Alta,Sigue el procedimiento de etiquetado del trabajo citado.,COMPLETO,85,1
+45,W13-3302_N12-1046_0,Evaluable,Background,Alta,Describe trabajos previos que sugirieron un principio de una traducción por discurso.,COMPLETO,85,1
+46,S13-2033_S13-2029_0,Evaluable,Further Reading,Alta,Remite a la descripción detallada de la tarea.,COMPLETO,85,1
+47,P08-1094_W05-0902_0,Evaluable,Evidence,Alta,Respalda la observación de que la calidad mejora con la longitud del resumen.,COMPLETO,85,1
+48,W08-1501_N03-1017_0,Evaluable,Application,Alta,Usa un SMT basado en frases para generar listas n-best.,COMPLETO,85,1
+49,W07-0909_W04-3206_0,Evaluable,Background,Alta,Enumera algoritmos de adquisición de paráfrasis y reglas de implicación.,COMPLETO,85,1
+50,W10-4202_W01-0802_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la importancia del contenido para los usuarios.,COMPLETO,85,1
+51,E12-1002_P10-2001_0,Evaluable,Background,Alta,Resume trabajos que usan paráfrasis por pivoteo en SMT.,COMPLETO,85,1
+52,W04-3211_P02-1031_1,Evaluable,Comparison,Alta,Compara el rendimiento del método con el algoritmo bayesiano citado.,COMPLETO,85,1
+53,W11-2923_P03-1054_1,Evaluable,Comparison,Alta,Contrasta la noción de anotación interna/externa propia con la del trabajo citado.,COMPLETO,85,1
+54,W05-0811_W98-1005_0,Evaluable,Comparison,Alta,"Contrasta el modelo propio, sin modelado de pronunciación, con trabajos previos.",COMPLETO,85,1
+55,W05-0836_N03-1017_1,Evaluable,Application,Alta,Usa el decodificador Pharaoh en los experimentos.,COMPLETO,85,1
+56,D10-1026_P08-1058_0,Evaluable,Background,Alta,Resume avances recientes basados en filtros de Bloom.,COMPLETO,85,1
+57,P13-1048_N03-1030_1,Evaluable,Application,Media,Usa los conjuntos de dominancia como rasgos del parser.,COMPLETO,85,1
+58,D08-1024_P08-1114_2,Evaluable,Background,Media,Describe la contribución del trabajo citado dentro de la literatura relacionada.,COMPLETO,85,1
+59,P08-1096_P02-1014_1,Evaluable,Background,Alta,Describe trabajo previo que mejoró un enfoque anterior.,COMPLETO,85,1
+60,W02-2105_A00-2026_0,Evaluable,Background,Alta,Resume trabajos previos que añaden información sintáctica.,COMPLETO,85,1
+61,P11-1128_D09-1076_3,Evaluable,Application,Alta,Sigue el procedimiento de conteo y normalización del trabajo citado.,COMPLETO,85,1
+62,W11-0107_P88-1012_1,Evaluable,Gap,Media,"Señala que el trabajo citado solo da pautas informales, lo que motiva la elaboración propia.",COMPLETO,85,1
+63,P13-4030_W10-0701_0,Evaluable,Background,Alta,Contextualiza el crowdsourcing en lingüística computacional.,COMPLETO,85,1
+64,E09-1050_P02-1051_0,Evaluable,Background,Media,Describe un sistema previo de transliteración en trabajos relacionados.,COMPLETO,85,1
+65,W12-3125_P07-2045_1,Evaluable,Background,Alta,Revisa brevemente los modelos de reordenamiento léxico existentes.,COMPLETO,85,1
+66,P12-3007_W03-2108_0,Evaluable,Background,Alta,Ejemplifica sistemas de diálogo orientados al chat.,COMPLETO,85,1
+67,P07-1032_N04-1013_1,Evaluable,Background,Media,Menciona conversiones de dependencias realizadas en otros parsers.,COMPLETO,85,1
+68,W08-1007_A97-1014_0,Evaluable,Basis,Baja,Cita el treebank Negra como recurso; podría ser Application pero el contexto es descriptivo del estudio previo.,COMPLETO,85,1
+69,W11-1602_W04-3219_0,Evaluable,Background,Alta,Enumera trabajos sobre reescritura de oraciones completas.,COMPLETO,85,1
+70,S12-1100_P98-2127_1,Evaluable,Application,Alta,Usa el tesauro de Lin como recurso de similitud distribucional.,COMPLETO,85,1
+71,P12-1081_P10-1001_2,Evaluable,Improvement / Modification,Alta,Usa el parser y amplía su conjunto de rasgos.,COMPLETO,85,1
+72,W09-1607_A97-1042_0,Evaluable,Basis,Alta,Los experimentos se basan en el trabajo citado.,COMPLETO,85,1
+73,W10-1738_W09-0434_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el sistema jerárquico no es competitivo para ese par de lenguas.,COMPLETO,85,1
+74,D08-1024_N04-4038_0,Evaluable,Application,Alta,Usa AMIRA para tokenizar.,COMPLETO,85,1
+75,W13-2603_J08-3007_0,Evaluable,Comparison,Media,Indica que el modelo citado es similar al descrito por los autores.,COMPLETO,85,1
+76,W97-0307_A97-1014_0,Evaluable,Further Reading,Alta,Remite para más detalles de las especificaciones del esquema de anotación.,COMPLETO,85,1
+77,W07-0412_N06-1033_0,Evaluable,Evidence,Alta,Respalda que las construcciones no binarizables son raras.,COMPLETO,85,1
+78,W10-1744_W09-0408_0,Evaluable,Basis,Alta,El sistema actual es una mejora del sistema previo citado.,COMPLETO,85,1
+79,W10-0906_P98-1013_0,Evaluable,Background,Alta,Enumera recursos manuales de conocimiento de sentido común.,COMPLETO,85,1
+80,S13-2029_S13-2031_0,Evaluable,Background,Alta,Describe el sistema HLTDI como trabajo previo.,COMPLETO,85,1
+81,D13-1003_P12-2011_0,Evaluable,Background,Alta,Describe categorías de enfoques previos de extracción de relaciones.,COMPLETO,85,1
+82,P96-1020_J94-4009_0,Evaluable,Basis,Baja,"Los patrones se convierten en las representaciones formales del trabajo citado, que sirven de base.",COMPLETO,85,1
+83,J09-3004_W02-0908_0,Evaluable,Background,Media,Resume el argumento de un trabajo previo sobre rasgos informativos.,COMPLETO,85,1
+84,W10-4335_E03-1069_0,Evaluable,Gap,Media,Contrasta con estudios previos para justificar el corpus propio.,COMPLETO,85,1
+85,W13-2814_N03-1017_0,Evaluable,Background,Alta,Cita trabajos sobre alineamiento de palabras como contexto general.,COMPLETO,85,1
+86,W12-3133_P07-2045_0,Evaluable,Application,Alta,Usa el script de Moses para limpiar los corpus.,COMPLETO,85,1
+87,W09-0213_P08-1028_0,Evaluable,Evidence,Media,Respalda la afirmación de que el modelo multiplicativo rinde mejor.,COMPLETO,85,1
+88,W13-4908_N06-2033_0,Evaluable,Basis,Alta,MaltBlender se basa en el trabajo citado.,COMPLETO,85,1
+89,W06-0110_N01-1025_0,Evaluable,Evidence,Alta,Respalda que SVM tiene alto rendimiento en tareas de clasificación.,COMPLETO,85,1
+90,P05-1023_W96-0213_0,Evaluable,Application,Alta,Usa el etiquetador públicamente disponible.,COMPLETO,85,1
+91,N04-1003_W03-0405_0,Evaluable,Gap,Media,"Señala que pocos trabajos abordan solo un aspecto del problema, contrastando con el actual.",COMPLETO,85,1
+92,W12-0113_N03-1017_0,Evaluable,Application,Alta,Usa las heurísticas de extracción de frases descritas.,COMPLETO,85,1
+93,W13-2107_P07-1043_1,Evaluable,Background,Alta,Enumera trabajos sobre gramáticas léxicas.,COMPLETO,85,1
+94,J12-2001_P07-1125_3,Evaluable,Application,Media,Se usa el conjunto de datos Drosophila para evaluar.,COMPLETO,85,1
+95,W11-2208_D08-1109_0,Evaluable,Background,Alta,Cita trabajos que muestran la utilidad del aprendizaje multilingüe.,COMPLETO,85,1
+96,Q13-1020_P06-1055_0,Evaluable,Application,Alta,Usa el parser de Berkeley.,COMPLETO,85,1
+97,P13-1079_N10-1062_1,Evaluable,Background,Media,"Describe trabajos previos de EM en línea, con críticas leves.",COMPLETO,85,1
+98,W10-1903_W09-1403_1,Evaluable,Comparison,Alta,Compara el desempeño con los mejores resultados reportados.,COMPLETO,85,1
+99,S10-1075_P00-1010_1,Evaluable,Evidence,Alta,Respalda que el enfoque basado en reglas logra alta precisión.,COMPLETO,85,1
+100,P05-1039_P99-1035_0,Evaluable,Evidence,Alta,Respalda que la lexicalización aporta poco en alemán.,COMPLETO,85,1
