@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D11-1097_P93-1024_0,Evaluable,Background,Media,,COMPLETO,52,1
+2,D08-1009_P06-2105_0,Evaluable,Background,Media,,COMPLETO,52,1
+3,P11-2035_D10-1102_0,Evaluable,Comparison,Alta,,COMPLETO,52,1
+4,N09-1003_P94-1019_0,Evaluable,Comparison,Alta,,COMPLETO,52,1
+5,P12-2011_N07-4013_0,Evaluable,Background,Media,,COMPLETO,52,1
+6,P12-1097_D11-1035_0,Evaluable,Evidence,Media,,COMPLETO,52,1
+7,P13-1077_P11-1064_4,Evaluable,Application,Alta,,COMPLETO,52,1
+8,W12-4802_P04-1021_1,Evaluable,Basis,Alta,,COMPLETO,52,1
+9,D13-1198_D10-1113_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+10,D09-1038_J07-2003_1,Evaluable,Background,Media,,COMPLETO,52,1
+11,P98-2163_P88-1012_0,Evaluable,Evidence,Media,,COMPLETO,52,1
+12,N04-1016_A97-1025_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+13,W01-0713_W00-0717_0,Evaluable,Application,Media,,COMPLETO,52,1
+14,P10-2016_W09-0401_1,Evaluable,Background,Media,,COMPLETO,52,1
+15,W11-2602_N04-4015_0,Evaluable,Background,Alta,,COMPLETO,52,1
+16,W97-0802_J91-4003_0,Evaluable,Further Reading,Media,,COMPLETO,52,1
+17,P12-2031_D10-1106_0,Evaluable,Background,Alta,,COMPLETO,52,1
+18,P07-1061_P98-1100_2,Evaluable,Application,Alta,,COMPLETO,52,1
+19,N13-1131_E09-1099_0,Evaluable,Gap,Alta,,COMPLETO,52,1
+20,S10-1093_P98-2127_0,Evaluable,Application,Alta,,COMPLETO,52,1
+21,S12-1076_S12-1051_1,Evaluable,Further Reading,Alta,,COMPLETO,52,1
+22,J11-1008_N10-1118_1,Evaluable,Background,Media,,COMPLETO,52,1
+23,D11-1109_P05-1012_1,Evaluable,Improvement / Modification,Alta,,COMPLETO,52,1
+24,P10-1052_P09-2071_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+25,W12-3307_A00-2004_3,Evaluable,Comparison,Alta,,COMPLETO,52,1
+26,N09-1001_W08-1207_0,Evaluable,Evidence,Alta,,COMPLETO,52,1
+27,D13-1182_D11-1069_0,Evaluable,Background,Alta,,COMPLETO,52,1
+28,W10-2101_W09-1905_2,Evaluable,Background,Media,,COMPLETO,52,1
+29,P07-1069_P04-1015_1,Evaluable,Application,Alta,,COMPLETO,52,1
+30,P07-1096_P04-1015_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+31,D09-1038_N06-1033_0,Evaluable,Gap,Media,,COMPLETO,52,1
+32,W08-2208_W07-1409_0,Evaluable,Evidence,Alta,,COMPLETO,52,1
+33,W12-3134_W11-2123_0,Evaluable,Basis,Media,,COMPLETO,52,1
+34,N03-2017_W02-1039_2,Evaluable,Comparison,Alta,,COMPLETO,52,1
+35,P13-2020_P07-1096_0,Evaluable,Application,Alta,,COMPLETO,52,1
+36,N12-1019_W06-1603_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+37,W00-0733_A00-2007_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+38,D13-1036_D11-1027_3,Evaluable,Comparison,Media,,COMPLETO,52,1
+39,N07-1051_P05-1022_4,Evaluable,Comparison,Alta,,COMPLETO,52,1
+40,W12-3709_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,52,1
+41,P13-1137_D10-1049_0,Evaluable,Basis,Media,,COMPLETO,52,1
+42,P08-1114_P03-2041_0,Evaluable,Evidence,Media,,COMPLETO,52,1
+43,D13-1157_D10-1049_3,Evaluable,Comparison,Alta,,COMPLETO,52,1
+44,W08-2101_W05-0624_0,Evaluable,Comparison,Alta,,COMPLETO,52,1
+45,W09-1106_W04-2403_0,Evaluable,Background,Alta,,COMPLETO,52,1
+46,P06-1073_N04-1001_0,Evaluable,Evidence,Alta,,COMPLETO,52,1
+47,D12-1009_N10-1020_3,Evaluable,Further Reading,Media,,COMPLETO,52,1
+48,P06-2042_N01-1025_0,Evaluable,Application,Alta,,COMPLETO,52,1
+49,D12-1025_P11-1002_4,Evaluable,Comparison,Alta,,COMPLETO,52,1
+50,W11-2405_P11-2096_0,Evaluable,Background,Media,,COMPLETO,52,1
+51,J13-4006_P07-1071_0,Evaluable,Background,Alta,,COMPLETO,52,1
+52,P98-2123_P97-1032_0,Evaluable,Background,Media,,COMPLETO,52,1
+53,E12-3008_P06-1124_0,Evaluable,Basis,Media,,COMPLETO,52,1
+54,W13-2214_P03-1021_0,Evaluable,Background,Media,,COMPLETO,52,1
+55,J10-4006_W02-0908_3,Evaluable,Evidence,Media,,COMPLETO,52,1
+56,P09-1031_W02-1111_0,Evaluable,Background,Alta,,COMPLETO,52,1
+57,W09-0609_W08-1131_0,Evaluable,Background,Alta,,COMPLETO,52,1
+58,W13-4008_W11-0705_0,Evaluable,Background,Alta,,COMPLETO,52,1
+59,W04-1118_W99-0604_1,Evaluable,Further Reading,Alta,,COMPLETO,52,1
+60,P10-1073_D09-1036_1,Evaluable,Gap,Alta,,COMPLETO,52,1
+61,W09-2110_P06-1032_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+62,N07-1020_P01-1063_0,Evaluable,Comparison,Alta,,COMPLETO,52,1
+63,W02-1012_P00-1056_0,Evaluable,Improvement / Modification,Alta,,COMPLETO,52,1
+64,W12-5903_N03-1017_0,Evaluable,Application,Alta,,COMPLETO,52,1
+65,P12-1020_N06-1041_0,Evaluable,Application,Media,,COMPLETO,52,1
+66,J08-4005_P00-1056_0,Evaluable,Evidence,Alta,,COMPLETO,52,1
+67,D12-1091_P09-1104_0,Evaluable,Application,Alta,,COMPLETO,52,1
+68,W13-4916_D09-1161_1,Evaluable,Evidence,Media,,COMPLETO,52,1
+69,W09-0410_J07-2003_0,Evaluable,Basis,Alta,,COMPLETO,52,1
+70,W12-3128_P07-1005_0,Evaluable,Comparison,Alta,,COMPLETO,52,1
+71,D12-1066_P11-2096_0,Evaluable,Background,Alta,,COMPLETO,52,1
+72,Q13-1020_D12-1079_0,Evaluable,Comparison,Alta,,COMPLETO,52,1
+73,N13-1103_D11-1140_0,Evaluable,Comparison,Alta,,COMPLETO,52,1
+74,P99-1039_P95-1028_0,Evaluable,Basis,Alta,,COMPLETO,52,1
+75,W04-0411_W98-0707_0,Evaluable,Background,Media,,COMPLETO,52,1
+76,P06-1043_N06-1020_3,Evaluable,Comparison,Alta,,COMPLETO,52,1
+77,P04-1081_S01-1040_0,Evaluable,Evidence,Media,,COMPLETO,52,1
+78,P09-1108_N04-1022_0,Evaluable,Background,Alta,,COMPLETO,52,1
+79,E06-1051_P05-1052_1,Evaluable,Evidence,Alta,,COMPLETO,52,1
+80,W99-0617_W98-1121_0,Evaluable,Basis,Alta,,COMPLETO,52,1
+81,W08-2004_P06-1051_1,Evaluable,Identification of the Originator,Alta,,COMPLETO,52,1
+82,D11-1036_P08-1006_1,Evaluable,Background,Media,,COMPLETO,52,1
+83,J13-1005_D08-1092_1,Evaluable,Gap,Alta,,COMPLETO,52,1
+84,D10-1108_P10-1044_0,Evaluable,Background,Alta,,COMPLETO,52,1
+85,W97-0614_P96-1009_0,Evaluable,Background,Alta,,COMPLETO,52,1
+86,W11-2149_P10-1049_0,Evaluable,Further Reading,Alta,,COMPLETO,52,1
+87,P11-2127_P09-2012_1,Evaluable,Comparison,Alta,,COMPLETO,52,1
+88,P13-1092_N12-3006_0,Evaluable,Application,Alta,,COMPLETO,52,1
+89,D12-1043_D08-1020_0,Evaluable,Background,Media,,COMPLETO,52,1
+90,W06-1638_P03-1054_2,Evaluable,Evidence,Media,,COMPLETO,52,1
+91,N13-1048_P06-1096_2,Evaluable,Comparison,Alta,,COMPLETO,52,1
+92,W07-1022_W95-0107_0,Evaluable,Background,Media,,COMPLETO,52,1
+93,P13-1043_P10-1110_0,Evaluable,Background,Alta,,COMPLETO,52,1
+94,W02-2016_P98-1083_1,Evaluable,Background,Alta,,COMPLETO,52,1
+95,P13-1001_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,52,1
+96,N09-2043_P03-1044_0,Evaluable,Background,Alta,,COMPLETO,52,1
+97,J92-1001_A88-1014_0,Evaluable,Further Reading,Media,,COMPLETO,52,1
+98,W13-2262_N04-4015_0,Evaluable,Background,Alta,,COMPLETO,52,1
+99,P01-1014_P98-1032_0,Evaluable,Evidence,Alta,,COMPLETO,52,1
+100,P89-1007_P83-1007_2,Evaluable,Basis,Alta,,COMPLETO,52,1

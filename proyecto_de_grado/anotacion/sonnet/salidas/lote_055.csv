@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N13-1074_W07-0717_1,Evaluable,Application,Media,Se usa la interpolación lineal tal como se describe en el trabajo citado.,COMPLETO,55,1
+2,P13-1113_D08-1035_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que los patrones de co-ocurrencia permiten detectar cambios de subtema.,COMPLETO,55,1
+3,W10-2917_N03-1017_0,Evaluable,Application,Alta,Se usa Moses para decodificar.,COMPLETO,55,1
+4,P11-2051_W08-0509_0,Evaluable,Application,Alta,Se usa MGIZA para alinear las oraciones.,COMPLETO,55,1
+5,W10-1761_W06-3119_1,Evaluable,Comparison,Alta,Contrasta explícitamente el enfoque propio con el del trabajo citado.,COMPLETO,55,1
+6,W07-1306_W97-1102_1,Evaluable,Background,Media,Reseña intentos previos basados en comparación interlingüística.,COMPLETO,55,1
+7,D13-1015_W10-0719_0,Evaluable,Application,Media,Se emplea crowdsourcing para construir el estándar de oro.,COMPLETO,55,1
+8,W03-1007_P00-1065_1,Evaluable,Improvement / Modification,Alta,"Extienden el trabajo citado de tres maneras (maxent, nuevas características).",COMPLETO,55,1
+9,D12-1129_P10-1134_1,Evaluable,Further Reading,Media,Señala enfoques supervisados más sofisticados que no se usan ni se desarrollan.,COMPLETO,55,1
+10,P06-1140_P05-1018_0,Evaluable,Further Reading,Media,Nota al pie que remite a otra aplicación de SVM ranking en generación.,COMPLETO,55,1
+11,Q13-1024_D10-1058_0,Evaluable,Evidence,Media,Respalda la afirmación de que los modelos secuenciales igualan a los basados en fertilidad y justifica la elección del modelo.,COMPLETO,55,1
+12,P99-1063_J91-4003_1,Evaluable,Evidence,Media,Respalda la afirmación de que contexto y conocimiento del mundo importan en el significado.,COMPLETO,55,1
+13,W05-0101_N04-4030_0,Evaluable,Application,Baja,Estudiantes aplicaron la herramienta de generación de jerarquías citada a un problema.,COMPLETO,55,1
+14,P05-1058_P03-1012_0,Evaluable,Background,Alta,Reseña trabajos previos con modelos estadísticos de alineamiento.,COMPLETO,55,1
+15,W09-3820_P08-1109_0,Evaluable,Background,Media,"Describe literatura previa sobre aprendizaje discriminativo y su costo, mencionando una excepción.",COMPLETO,55,1
+16,P05-3011_P05-1055_1,Evaluable,Further Reading,Alta,Remite al lector para detalles del algoritmo de PSPL.,COMPLETO,55,1
+17,D09-1008_P08-1114_0,Evaluable,Background,Media,Describe trabajo previo y sus limitaciones al introducir rasgos de etiquetas de constituyentes.,COMPLETO,55,1
+18,W12-0706_W00-0717_0,Evaluable,Background,Alta,Resume trabajos que indujeron categorías gramaticales por agrupamiento de contextos.,COMPLETO,55,1
+19,W07-0705_W02-0505_0,Evaluable,Further Reading,Media,El 'see for example' remite a una fuente sobre transliteración.,COMPLETO,55,1
+20,P11-2052_N10-1137_2,Evaluable,Comparison,Alta,Los resultados propios concuerdan con los reportados en el trabajo citado.,COMPLETO,55,1
+21,W07-1211_P05-1024_0,Evaluable,Gap,Media,Ilustra una limitación (restricciones de tamaño) de un trabajo previo similar a la propia.,COMPLETO,55,1
+22,W11-3201_P04-1021_3,Evaluable,Background,Media,Indica que la mayoría de los sistemas usan el marco DOM propuesto en el trabajo citado.,COMPLETO,55,1
+23,W11-0328_N01-1025_0,Evaluable,Comparison,Alta,Compara la precisión del modelo propio con la del sistema citado.,COMPLETO,55,1
+24,J92-2005_P84-1058_0,Evaluable,Evidence,Alta,Respalda la afirmación de que una frase idiomática rara vez se interpreta no idiomáticamente.,COMPLETO,55,1
+25,A97-1010_P94-1041_0,Evaluable,Comparison,Alta,Contrasta el porcentaje de turnos con reparaciones con el del propio estudio.,COMPLETO,55,1
+26,D08-1020_N04-1025_0,Evaluable,Evidence,Media,Respalda que palabras raras o terminología técnica dificultan la lectura.,COMPLETO,55,1
+27,P07-1032_E03-1025_1,Evaluable,Background,Media,Describe trabajo previo de comparación de analizadores.,COMPLETO,55,1
+28,P10-2060_N09-2029_0,Evaluable,Background,Media,Clasifica resumidores previos por estilo de salida.,COMPLETO,55,1
+29,P11-2027_W07-0718_0,Evaluable,Further Reading,Alta,Remite a la descripción completa de la campaña WMT-07.,COMPLETO,55,1
+30,E09-3006_P03-1023_0,Evaluable,Gap,Media,"Señala que los algoritmos previos no abordan específicamente el problema, motivando el enfoque.",COMPLETO,55,1
+31,D11-1046_N10-1014_1,Evaluable,Comparison,Media,"Contrasta con trabajos que generan alineamientos sintácticos con ITG sincrónico, del que el trabajo se aparta.",COMPLETO,55,1
+32,N03-1010_J90-2002_0,Evaluable,Identification of the Originator,Alta,Atribuye los modelos IBM de reemplazo de palabras a sus autores originales.,COMPLETO,55,1
+33,P08-1040_P00-1065_0,Evaluable,Evidence,Media,Respalda que las características de análisis sintáctico son muy útiles.,COMPLETO,55,1
+34,W12-5108_W04-3250_0,Evaluable,Application,Alta,Usa el método de bootstrap pareado citado para la significancia estadística.,COMPLETO,55,1
+35,W06-1637_P04-1005_0,Evaluable,Evidence,Media,Respalda la afirmación de que las reparaciones repiten parte del contexto previo.,COMPLETO,55,1
+36,W04-0713_P96-1036_0,Evaluable,Background,Media,Resume trabajos que asignan mayor prominencia a entidades conocidas o tópicas.,COMPLETO,55,1
+37,D09-1140_D08-1049_3,Evaluable,Comparison,Alta,"Compara resultados propios con los del trabajo citado, señalando diferencias de datos.",COMPLETO,55,1
+38,W10-2915_J07-2003_1,Evaluable,Background,Media,Describe trabajos existentes que asumen alineamientos dados.,COMPLETO,55,1
+39,P91-1009_P86-1031_3,Evaluable,Evidence,Media,Respalda la afirmación de que compartir el valor de GR es característica definitoria.,COMPLETO,55,1
+40,D12-1131_E03-1008_0,Evaluable,Background,Alta,Enumera técnicas previas de adaptación (co-training) que han resultado útiles.,COMPLETO,55,1
+41,W09-1009_P06-1109_0,Evaluable,Background,Alta,Lista trabajos previos de aprendizaje no supervisado en la introducción.,COMPLETO,55,1
+42,D09-1133_P07-1027_0,Evaluable,Comparison,Media,Contrasta el desempeño reportado en SRL nominal del inglés con el del chino.,COMPLETO,55,1
+43,W13-3522_P05-1074_0,Evaluable,Background,Media,Describe el enfoque de paráfrasis por pivote introducido en el trabajo citado como antecedente.,COMPLETO,55,1
+44,D08-1062_P04-1053_3,Evaluable,Comparison,Alta,Compara la precisión de un enfoque más complejo con los rasgos tf×idf del trabajo citado y el actual.,COMPLETO,55,1
+45,W06-2603_W05-0601_0,Evaluable,Further Reading,Media,Menciona alternativas refinadas (densidad conceptual) sin desarrollarlas.,COMPLETO,55,1
+46,D10-1108_P08-1078_0,Evaluable,Background,Alta,Enumera tareas de PLN que dependen de conocimiento semántico.,COMPLETO,55,1
+47,S13-1042_P04-1036_0,Evaluable,Basis,Media,El refinamiento está inspirado en la heurística del sentido más frecuente.,COMPLETO,55,1
+48,D09-1158_P07-1034_1,Evaluable,Comparison,Alta,El método se compara con una variante de bootstrapping balanceado propuesta antes.,COMPLETO,55,1
+49,W06-3806_W05-1203_1,Evaluable,Evidence,Baja,Se respalda la decisión metodológica de usar detectores de similitud con la práctica de otros trabajos.,COMPLETO,55,1
+50,E12-1046_W02-0902_0,Evaluable,Gap,Media,Describe métodos previos y critica la calidad de su léxico semilla.,COMPLETO,55,1
+51,J08-3003_W06-2928_0,Evaluable,Comparison,Alta,Aparece en una tabla comparativa de resultados de sistemas.,COMPLETO,55,1
+52,D13-1093_P11-2033_1,Evaluable,Comparison,Alta,Aparece en tabla que compara analizadores en precisión y velocidad.,COMPLETO,55,1
+53,P11-2076_P08-1114_0,Evaluable,Gap,Media,Reseña métodos previos y señala que no usaron contexto a nivel de documento.,COMPLETO,55,1
+54,P13-2020_P10-1110_0,Evaluable,Comparison,Alta,El resultado propio se compara como mejor que analizadores basados en transiciones.,COMPLETO,55,1
+55,P10-1111_P07-2051_1,Evaluable,Comparison,Alta,"Contrasta explícitamente: a diferencia del trabajo citado, no usan marcos predefinidos.",COMPLETO,55,1
+56,P06-1051_N04-3012_0,Evaluable,Application,Alta,Se usa el paquete wn::similarity para calcular distancias.,COMPLETO,55,1
+57,J10-4006_J06-3003_0,Evaluable,Application,Media,Siguen el procedimiento de validación cruzada leave-one-out del trabajo citado.,COMPLETO,55,1
+58,P01-1056_N01-1003_1,Evaluable,Further Reading,Alta,Remite a más detalle sobre el árbol de planes de oraciones.,COMPLETO,55,1
+59,W13-2806_W09-2307_0,Evaluable,Evidence,Media,Respalda que el chino muestra menos dependencias y mayor variabilidad de etiquetas.,COMPLETO,55,1
+60,P13-1039_N09-1041_1,Evaluable,Background,Alta,Enumera trabajos previos sobre modelos de contenido en resumen.,COMPLETO,55,1
+61,D12-1138_N10-1066_1,Evaluable,Background,Alta,Reseña literatura sobre aprendizaje estructural.,COMPLETO,55,1
+62,P13-1131_P12-2023_0,Evaluable,Comparison,Media,Señala que el trabajo citado usa un enfoque similar al propio en otra tarea.,COMPLETO,55,1
+63,W09-0417_W08-0302_1,Evaluable,Application,Media,Se estiman puntajes de contexto con frecuencias relativas siguiendo el método citado.,COMPLETO,55,1
+64,W12-2013_N09-1062_0,Evaluable,Background,Alta,Describe modelos bayesianos no paramétricos previos para TSG.,COMPLETO,55,1
+65,W10-3813_W09-0424_0,Evaluable,Application,Alta,Se usa el decodificador Joshua en los experimentos.,COMPLETO,55,1
+66,W12-0703_P01-1064_0,Evaluable,Improvement / Modification,Alta,Extienden los algoritmos de programación dinámica citados usando modelos de tópicos.,COMPLETO,55,1
+67,W13-1609_P10-1141_3,Evaluable,Further Reading,Alta,Remite a las fórmulas exactas de las variantes delta TFIDF.,COMPLETO,55,1
+68,D11-1064_W98-1121_0,Evaluable,Evidence,Alta,Respalda que incorporar sintaxis mejora el modelo de lenguaje.,COMPLETO,55,1
+69,P11-2094_P04-1021_1,Evaluable,Application,Alta,Siguen el modelo de traducción n-grama del trabajo citado.,COMPLETO,55,1
+70,P11-2025_P03-1054_0,Evaluable,Application,Alta,Se usa el analizador PCFG de Stanford para procesar el corpus.,COMPLETO,55,1
+71,P07-1040_N07-1029_3,Evaluable,Comparison,Alta,Compara el nuevo método con la línea base del trabajo citado.,COMPLETO,55,1
+72,D10-1120_P09-2001_0,Evaluable,Evidence,Media,Respalda que aprender correspondencias interlingüísticas reduce la ambigüedad sintáctica.,COMPLETO,55,1
+73,P12-2007_P08-1114_0,Evaluable,Comparison,Alta,Contrasta el enfoque propio con el modelado de restricciones suaves.,COMPLETO,55,1
+74,D09-1085_E03-1005_0,Evaluable,Background,Alta,Introduce el estado del arte en analizadores estadísticos.,COMPLETO,55,1
+75,W08-2140_P00-1065_0,Evaluable,Evidence,Media,Respalda que las características sintácticas han sido particularmente útiles.,COMPLETO,55,1
+76,W10-4223_N06-1058_0,Evaluable,Background,Alta,Lista usos previos de la paráfrasis en evaluación de TA.,COMPLETO,55,1
+77,D13-1115_P11-1096_0,Evaluable,Background,Alta,Enumera tareas previas como localización de usuarios de Twitter.,COMPLETO,55,1
+78,D13-1106_W12-2703_0,Evaluable,Evidence,Media,Respalda que las redes recurrentes superan a las feed-forward en perplejidad y WER.,COMPLETO,55,1
+79,N13-1041_P09-1113_0,Evaluable,Background,Media,Resume hallazgos previos sobre rutas de dependencia para relaciones de opinión.,COMPLETO,55,1
+80,W10-2910_D09-1159_0,Evaluable,Background,Alta,Enumera trabajos que usan rasgos sintácticos para extraer tópicos y titulares de opinión.,COMPLETO,55,1
+81,P10-1110_P05-1012_3,Evaluable,Comparison,Alta,Compara la complejidad temporal del analizador propio con la de MST.,COMPLETO,55,1
+82,P13-2150_D09-1012_1,Evaluable,Comparison,Alta,Comparan resultados con los del trabajo citado y repiten sus experimentos.,COMPLETO,55,1
+83,N10-1130_N09-1026_0,Evaluable,Background,Alta,"Enumera algoritmos existentes para STSG, entre ellos binarización.",COMPLETO,55,1
+84,N13-1121_D11-1120_2,Evaluable,Application,Alta,Usan los datos de género del trabajo citado.,COMPLETO,55,1
+85,N09-1026_P03-1054_0,Evaluable,Comparison,Media,Contrasta que sus reglas no pueden markovizarse como en el trabajo citado.,COMPLETO,55,1
+86,N09-2051_W97-0319_0,Evaluable,Background,Alta,Reseña literatura de correferencia basada en aprendizaje automático.,COMPLETO,55,1
+87,W03-0410_P00-1065_0,Evaluable,Background,Alta,Enumera enfoques supervisados previos que extraen información de verbos.,COMPLETO,55,1
+88,D13-1026_W02-1018_0,Evaluable,Background,Alta,Reseña propuestas previas de modelos generativos para gramáticas sincrónicas.,COMPLETO,55,1
+89,J05-3003_P98-1115_0,Evaluable,Background,Media,Resume la observación previa de que las gramáticas de treebank son grandes y crecen.,COMPLETO,55,1
+90,W12-3404_P11-1112_4,Evaluable,Comparison,Alta,Compara la línea base propia con la reportada en el trabajo citado.,COMPLETO,55,1
+91,Q13-1019_N10-1115_1,Evaluable,Application,Alta,Se usa el analizador de dependencias citado para preprocesar.,COMPLETO,55,1
+92,W13-2254_W07-0718_0,Evaluable,Evidence,Media,Respalda que ULC mejora la correlación con juicios humanos.,COMPLETO,55,1
+93,D12-1026_P00-1056_1,Evaluable,Application,Alta,Se usa GIZA++ para el alineamiento de palabras.,COMPLETO,55,1
+94,N09-1063_N06-1022_0,Evaluable,Background,Alta,Describe la poda de grueso a fino como enfoque previo eficaz.,COMPLETO,55,1
+95,W11-1908_P02-1014_0,Evaluable,Comparison,Alta,Compara el sistema propio con reimplementaciones de líneas base.,COMPLETO,55,1
+96,N13-1037_N10-1020_0,Evaluable,Background,Alta,"Enumera trabajos previos de PLN para Twitter, entre ellos modelado de diálogo.",COMPLETO,55,1
+97,P09-1041_P07-1049_1,Evaluable,Background,Alta,Reseña enfoques previos de análisis no supervisado.,COMPLETO,55,1
+98,W11-2402_P11-2098_1,Evaluable,Basis,Alta,El trabajo extiende el modelo base del trabajo citado.,COMPLETO,55,1
+99,D11-1137_J07-2003_0,Evaluable,Identification of the Originator,Media,Cube pruning fue originalmente propuesto en el trabajo citado.,COMPLETO,55,1
+100,N07-1055_P06-2103_6,Evaluable,Comparison,Alta,Compara el desempeño propio con el modelo de mezcla citado.,COMPLETO,55,1

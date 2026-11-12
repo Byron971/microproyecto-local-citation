@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D09-1135_N07-1051_0,Evaluable,Background,Alta,Cita en lista de parsers PCFG para describir el estado del área.,COMPLETO,53,1
+2,P11-3001_P03-1021_0,Evaluable,Application,Alta,Usa MERT tal cual para optimizar pesos.,COMPLETO,53,1
+3,W05-0828_A94-1016_0,Evaluable,Identification of the Originator,Alta,Idea 'pioneered in' la cita.,COMPLETO,53,1
+4,P12-1016_D11-1080_0,Evaluable,Gap,Media,"Señala limitación: sus clases no incluían rasgos flexivos, justificando el modelo propio.",COMPLETO,53,1
+5,W10-2913_P01-1030_0,Evaluable,Identification of the Originator,Alta,ILP en MT apareció por primera vez en ese trabajo.,COMPLETO,53,1
+6,P08-2039_N06-2013_0,Evaluable,Evidence,Media,Respalda la afirmación de que la segmentación morfológica beneficia la SMT.,COMPLETO,53,1
+7,W03-0506_W97-0704_0,Evaluable,Background,Alta,Enumeración de enfoques de resumen automático.,COMPLETO,53,1
+8,P13-3012_W99-0611_1,Evaluable,Application,Media,Relaciones tomadas de trabajos previos y usadas en su sistema.,COMPLETO,53,1
+9,P12-1007_D09-1036_6,Evaluable,Basis,Media,"Incorporan características sugeridas por el trabajo citado, ampliando el sistema base.",COMPLETO,53,1
+10,S13-1043_S12-1001_3,Evaluable,Comparison,Alta,Compara mejoras con las del estudio original.,COMPLETO,53,1
+11,P13-1012_D09-1101_1,Evaluable,Comparison,Alta,Compara su sistema con la reimplementación de un sistema a nivel de entidad.,COMPLETO,53,1
+12,P13-2061_P10-1049_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre frecuencia y fiabilidad de pares de frases.,COMPLETO,53,1
+13,N13-1026_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador POS estándar.,COMPLETO,53,1
+14,W11-1913_P10-1142_0,Evaluable,Further Reading,Alta,Remite a un survey como visión general.,COMPLETO,53,1
+15,P07-1087_P00-1037_0,Evaluable,Background,Alta,Revisa técnicas previas para palabras confusas.,COMPLETO,53,1
+16,P01-1030_P97-1047_0,Evaluable,Background,Media,Describe estrategia común de decodificación en trabajos previos.,COMPLETO,53,1
+17,D12-1125_D08-1092_0,Evaluable,Background,Alta,Resume trabajos previos de transferencia sintáctica con datos paralelos.,COMPLETO,53,1
+18,W13-3307_E12-3001_3,Evaluable,Comparison,Alta,Sus hallazgos coinciden con experiencias de otros trabajos.,COMPLETO,53,1
+19,N03-2016_P01-1030_0,Evaluable,Application,Alta,Usa el decodificador greedy citado.,COMPLETO,53,1
+20,S13-1043_S12-1001_2,Evaluable,Further Reading,Alta,Remite para descripción detallada de rasgos.,COMPLETO,53,1
+21,J13-4004_D08-1068_2,Evaluable,Background,Media,Indica qué trabajos usaron ese subconjunto para pruebas.,COMPLETO,53,1
+22,P06-2122_P04-1060_0,Evaluable,Comparison,Alta,Sus resultados coinciden con los hallazgos citados.,COMPLETO,53,1
+23,P10-1112_E93-1006_1,Evaluable,Basis,Media,Gramática de fragmentos completos basada en TSG/DOP.,COMPLETO,53,1
+24,P11-1052_W96-0213_0,Evaluable,Application,Alta,Usa el etiquetador de máxima entropía.,COMPLETO,53,1
+25,P08-1060_P07-1008_4,Evaluable,Evidence,Media,Aporta datos que respaldan que los patrones son ruidosos.,COMPLETO,53,1
+26,D12-1133_P97-1003_0,Evaluable,Background,Alta,Trabajos previos sobre enfoque pipeline.,COMPLETO,53,1
+27,N12-1043_N03-2002_0,Evaluable,Background,Media,Introduce el concepto de FLM para describir trabajos previos.,COMPLETO,53,1
+28,P11-2048_P10-1030_1,Evaluable,Comparison,Alta,Compara su F1 con resultado previo.,COMPLETO,53,1
+29,W09-3825_N07-1051_0,Evaluable,Comparison,Alta,Contrasta resultados reportados con los propios.,COMPLETO,53,1
+30,W10-1735_W09-0434_0,Evaluable,Background,Media,Antecedente que muestra deficiencias de reordenamiento en PSMT.,COMPLETO,53,1
+31,E97-1063_W97-0207_4,Evaluable,Evidence,Baja,Respalda la entropía traduccional como rasgo prometedor.,COMPLETO,53,1
+32,W10-1760_D09-1075_0,Evaluable,Background,Alta,Trabajo relacionado descrito.,COMPLETO,53,1
+33,J98-4001_P91-1006_0,Evaluable,Comparison,Alta,Compara su enfoque con enfoques previos basados en planes.,COMPLETO,53,1
+34,W12-1629_W09-3936_0,Evaluable,Background,Alta,Revisión de estudios previos.,COMPLETO,53,1
+35,W05-0302_J93-3006_0,Evaluable,Evidence,Media,Respalda que las propiedades matemáticas de las estructuras de rasgos están bien entendidas.,COMPLETO,53,1
+36,N04-1041_P99-1008_0,Evaluable,Background,Alta,Sección de trabajo previo.,COMPLETO,53,1
+37,W11-1826_W09-1403_0,Evaluable,Comparison,Alta,Contrasta su tratamiento de triggers con el de otros trabajos.,COMPLETO,53,1
+38,D11-1097_D10-1113_5,Evaluable,Background,Media,Describe cómo otros autores particionaron el conjunto de datos.,COMPLETO,53,1
+39,D09-1031_W09-1905_2,Evaluable,Further Reading,Alta,Remite a más detalles.,COMPLETO,53,1
+40,W09-1901_P02-1016_0,Evaluable,Background,Alta,Revisa aplicaciones previas de aprendizaje activo.,COMPLETO,53,1
+41,P10-1118_W05-0619_0,Evaluable,Evidence,Alta,Respalda que la suposición de costos uniformes es inválida.,COMPLETO,53,1
+42,D11-1016_P10-1093_1,Evaluable,Background,Alta,Resume resultado teórico del trabajo citado.,COMPLETO,53,1
+43,P13-2073_N06-2013_0,Evaluable,Background,Alta,Revisa trabajo previo sobre lenguas morfológicamente ricas.,COMPLETO,53,1
+44,P12-3003_N10-1009_0,Evaluable,Background,Alta,Categoriza enfoques existentes.,COMPLETO,53,1
+45,W10-1761_P07-2045_0,Evaluable,Application,Alta,Usa herramientas de Moses.,COMPLETO,53,1
+46,W06-1636_P03-1054_9,Evaluable,Comparison,Alta,Compara su precisión con la gramática manual citada.,COMPLETO,53,1
+47,J13-2004_E09-1053_0,Evaluable,Further Reading,Media,Remite a un resultado en esa dirección.,COMPLETO,53,1
+48,W09-2205_W06-1615_4,Evaluable,Application,Media,Usa SCL para adaptación y lo compara con self-training.,COMPLETO,53,1
+49,D11-1001_W09-1402_5,Evaluable,Comparison,Alta,Compara resultados con sistemas previos.,COMPLETO,53,1
+50,W12-1626_P00-1013_0,Evaluable,Gap,Media,Señala limitación del aprendizaje de parámetros en trabajos previos.,COMPLETO,53,1
+51,P10-1099_P00-1065_0,Evaluable,Background,Media,Describe rasgos de ruta estándar en SRL.,COMPLETO,53,1
+52,J12-2001_W09-1105_0,Evaluable,Background,Alta,Traza el desarrollo del enfoque.,COMPLETO,53,1
+53,W09-0106_N03-2002_0,Evaluable,Background,Alta,Describe el enfoque de FLM.,COMPLETO,53,1
+54,D09-1040_N06-1003_7,Evaluable,Comparison,Alta,Compara ganancias con la técnica de pivoting.,COMPLETO,53,1
+55,J12-2005_W09-1304_8,Evaluable,Background,Alta,Describe estudio previo sobre alcance de negación.,COMPLETO,53,1
+56,P04-2010_P02-1014_0,Evaluable,Background,Alta,Describe el trabajo previo que amplió con rasgos.,COMPLETO,53,1
+57,P10-1021_P10-2012_0,Evaluable,Further Reading,Alta,Remite para discusión detallada.,COMPLETO,53,1
+58,P11-2045_E12-1030_0,Evaluable,Background,Alta,Describe trabajo previo (sistema BEAR).,COMPLETO,53,1
+59,W11-2011_P10-1159_0,Evaluable,Background,Alta,Trabajo previo descrito.,COMPLETO,53,1
+60,P11-1158_N03-1016_3,Evaluable,Comparison,Alta,Compara su análisis con el aplicado a CFG.,COMPLETO,53,1
+61,P06-2028_P96-1025_0,Evaluable,Further Reading,Alta,Remite para explicación detallada del procedimiento.,COMPLETO,53,1
+62,W08-1127_W00-1401_0,Evaluable,Application,Alta,Usa la versión de distancia de edición descrita.,COMPLETO,53,1
+63,W13-3829_D10-1004_0,Evaluable,Application,Alta,Usa TurboParser para etiquetar y analizar.,COMPLETO,53,1
+64,P11-1118_N06-1020_0,Evaluable,Application,Alta,Usa el parser citado.,COMPLETO,53,1
+65,W10-3002_W09-1304_0,Evaluable,Background,Alta,Trabajo previo sobre alcance de hedges.,COMPLETO,53,1
+66,W06-1623_J88-2005_1,Evaluable,Background,Alta,Trabajo relacionado sobre orden temporal.,COMPLETO,53,1
+67,P10-1006_W03-0405_0,Evaluable,Evidence,Media,Respalda la elección de single-link por su uso extendido.,COMPLETO,53,1
+68,W00-0733_W99-0629_0,Evaluable,Comparison,Alta,Compara resultados con los citados.,COMPLETO,53,1
+69,D13-1080_P06-1101_0,Evaluable,Background,Alta,Trabajo previo sobre rutas de dependencia.,COMPLETO,53,1
+70,P01-1056_P98-1116_0,Evaluable,Background,Alta,Enfoques recientes de entrenamiento automático en NLG.,COMPLETO,53,1
+71,D13-1016_N09-2046_0,Evaluable,Background,Alta,Describe extensiones previas de SCL.,COMPLETO,53,1
+72,D10-1083_P09-1057_2,Evaluable,Gap,Media,Describe el método y su costo computacional como limitación.,COMPLETO,53,1
+73,W13-2229_W13-3308_0,Evaluable,Background,Alta,Describe usos previos de Docent.,COMPLETO,53,1
+74,W09-3711_P08-1028_0,Evaluable,Evidence,Media,Respalda que los modelos semánticos caracterizan el significado en contexto.,COMPLETO,53,1
+75,P12-2034_P11-1032_3,Evaluable,Comparison,Alta,Contrasta sus resultados con los reportados.,COMPLETO,53,1
+76,W12-3603_W06-2716_0,Evaluable,Background,Alta,Describe el formato LAF.,COMPLETO,53,1
+77,P11-2080_N03-1017_1,Evaluable,Basis,Media,Extienden el lexical weighting.,COMPLETO,53,1
+78,D11-1035_W09-0424_0,Evaluable,Application,Alta,Usa Joshua en sus experimentos.,COMPLETO,53,1
+79,P10-1128_P03-1023_0,Evaluable,Background,Alta,Lista de trabajos previos.,COMPLETO,53,1
+80,E97-1046_J90-2002_0,Evaluable,Comparison,Alta,Contrasta sus modelos con los propuestos por la cita.,COMPLETO,53,1
+81,E12-1078_W10-1834_0,Evaluable,Application,Alta,Usa la herramienta descrita para extraer constituyentes.,COMPLETO,53,1
+82,P01-1039_A00-1044_0,Evaluable,Background,Alta,Ejemplos de trabajo previo.,COMPLETO,53,1
+83,W09-1106_W06-2909_0,Evaluable,Background,Alta,Lista de modelos de aprendizaje previos.,COMPLETO,53,1
+84,D09-1115_N07-1029_2,Evaluable,Application,Media,Usa el esquema de votación de la cita.,COMPLETO,53,1
+85,D12-1129_P10-1029_0,Evaluable,Comparison,Alta,Contrasta su objetivo con el enfoque más cercano.,COMPLETO,53,1
+86,W11-3712_W06-1652_0,Evaluable,Background,Alta,Contexto general del campo.,COMPLETO,53,1
+87,P12-3027_P05-1074_0,Evaluable,Background,Alta,Describe método previo de extracción de paráfrasis.,COMPLETO,53,1
+88,W09-0603_W05-0908_0,Evaluable,Evidence,Alta,Respalda que NIST correlaciona mejor con juicios humanos.,COMPLETO,53,1
+89,J12-2001_W10-1103_0,Evaluable,Background,Alta,Informa adaptación previa de NegEx al sueco.,COMPLETO,53,1
+90,W09-1418_P07-1125_0,Evaluable,Background,Alta,Revisa estudios previos.,COMPLETO,53,1
+91,P12-1084_W04-2327_0,Evaluable,Gap,Alta,Señala limitaciones de corpus existentes.,COMPLETO,53,1
+92,P07-1080_W04-3201_0,Evaluable,Comparison,Alta,Aparece en tabla de resultados comparados.,COMPLETO,53,1
+93,P13-1140_E12-1014_1,Evaluable,Application,Alta,Sigue el método de estimación de reordenamiento sin modificarlo.,COMPLETO,53,1
+94,J13-4002_N10-1115_0,Evaluable,Background,Alta,Enumera sistemas de transición existentes.,COMPLETO,53,1
+95,N09-1027_N04-1022_0,Evaluable,Background,Alta,Trabajo relacionado descrito.,COMPLETO,53,1
+96,D12-1028_D11-1118_0,Evaluable,Evidence,Media,Respalda que las etiquetas no supervisadas pueden ser más útiles.,COMPLETO,53,1
+97,D11-1045_P06-1077_0,Evaluable,Background,Alta,Lista de métodos con sintaxis.,COMPLETO,53,1
+98,P09-1092_W07-2303_3,Evaluable,Improvement / Modification,Alta,Añade nuevos rasgos al modelo original.,COMPLETO,53,1
+99,P13-1106_P09-1104_0,Evaluable,Comparison,Alta,Compara el tamaño de datos con trabajos previos.,COMPLETO,53,1
+100,W13-3518_D08-1017_0,Evaluable,Comparison,Media,Contrasta su parser con el enfoque de stacking.,COMPLETO,53,1

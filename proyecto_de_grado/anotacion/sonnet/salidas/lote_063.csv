@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P10-1099_W01-0521_0,Evaluable,Evidence,Media,La cita respalda la afirmación concreta de que los analizadores sintácticos causan problemas en SRL de dominio abierto.,COMPLETO,63,1
+2,P12-1023_P08-1076_1,Evaluable,Basis,Media,Se describe cómo otros trabajos extendieron el SSSCM citado; es descripción de trabajo previo que usa el modelo como base.,COMPLETO,63,1
+3,W12-1634_W10-4356_5,Evaluable,Evidence,Alta,Los hallazgos previos sustentan la decisión de no usar características sintácticas.,COMPLETO,63,1
+4,P06-2089_W05-1513_6,Evaluable,Comparison,Alta,Compara explícitamente la velocidad del parser actual con el del trabajo citado.,COMPLETO,63,1
+5,W13-1014_W06-1207_0,Evaluable,Further Reading,Baja,Remite a un trabajo relacionado como dirección futura; podría ser Background.,COMPLETO,63,1
+6,W12-5005_P03-1004_0,Evaluable,Application,Alta,Se usa la herramienta YamCha tal cual para entrenar los modelos.,COMPLETO,63,1
+7,W99-0633_A92-1021_0,Evaluable,Evidence,Media,Se cita al autor para respaldar la descripción del tagger como independiente de conocimiento lingüístico específico.,COMPLETO,63,1
+8,W06-0112_W95-0107_0,Evaluable,Identification of the Originator,Alta,Usa 'introduced' para atribuir el método de aprendizaje basado en transformaciones al trabajo citado.,COMPLETO,63,1
+9,S10-1074_W03-0424_0,Evaluable,Application,Alta,Se emplea el C&C tagger para el etiquetado POS.,COMPLETO,63,1
+10,W13-3508_A00-1043_0,Evaluable,Background,Alta,Resume literatura previa sobre reducción de oraciones.,COMPLETO,63,1
+11,D12-1039_P11-1038_7,Evaluable,Comparison,Alta,Se compara el diccionario aprendido con el diccionario manual usado en el trabajo citado.,COMPLETO,63,1
+12,Q13-1022_D12-1044_2,Evaluable,Basis,Alta,El algoritmo se especializa para la clase de árboles 1-Inherit introducida en el trabajo citado.,COMPLETO,63,1
+13,P12-2054_W99-0901_0,Evaluable,Background,Alta,Describe trabajo previo sobre multinomiales con estructura de árbol en la sección de modelos de tópicos.,COMPLETO,63,1
+14,N12-1073_W06-1613_1,Evaluable,Evidence,Alta,Respalda la afirmación de que este tipo de anotación logra acuerdo entre anotadores aceptable.,COMPLETO,63,1
+15,P12-1023_P05-1012_4,Evaluable,Application,Alta,"Se entrena el parser usando las características definidas en el trabajo citado, sin modificarlas.",COMPLETO,63,1
+16,W12-3406_P91-1030_0,Evaluable,Background,Media,Describe el método estándar para PP-attachment con referencia a trabajos previos; podría ser Evidence.,COMPLETO,63,1
+17,D10-1011_N10-1124_0,Evaluable,Gap,Media,"Señala que la anotación a nivel de oración dio solo una pequeña mejora, motivando un enfoque distinto.",COMPLETO,63,1
+18,N10-1069_P04-1015_0,Evaluable,Background,Media,Enumera trabajos de parsing donde se requiere inferencia aproximada.,COMPLETO,63,1
+19,W02-1041_P01-1039_4,Evaluable,Comparison,Alta,Compara los resultados propios con los reportados en el trabajo citado.,COMPLETO,63,1
+20,P13-2060_P05-1033_0,Evaluable,Application,Alta,Se usan las mismas características descritas en el trabajo citado.,COMPLETO,63,1
+21,J13-4004_D08-1068_3,Evaluable,Comparison,Alta,Aparece en una tabla comparativa de resultados.,COMPLETO,63,1
+22,P08-1079_P99-1008_0,Evaluable,Background,Alta,Enumera trabajos previos sobre descubrimiento de relaciones como la merónimia.,COMPLETO,63,1
+23,W09-1702_P08-1088_4,Evaluable,Evidence,Alta,El análisis de errores citado respalda la afirmación de que el problema persiste.,COMPLETO,63,1
+24,P09-1090_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para el ajuste de pesos.,COMPLETO,63,1
+25,W04-2207_W03-0302_1,Evaluable,Comparison,Alta,Contrasta explícitamente el método de alineación propuesto con el del trabajo citado.,COMPLETO,63,1
+26,P11-1156_N10-1115_0,Evaluable,Comparison,Alta,Aparece en una tabla que compara resultados finales con otros sistemas.,COMPLETO,63,1
+27,P11-3001_N03-1017_0,Evaluable,Application,Media,"Se usa un sistema de traducción basada en frases similar al citado, sin indicar modificación sustancial.",COMPLETO,63,1
+28,W07-2208_P06-1037_0,Evaluable,Background,Alta,Lista trabajos previos de supertagging.,COMPLETO,63,1
+29,W01-0708_W00-0726_0,Evaluable,Further Reading,Alta,'see also' remite a una fuente para más detalles sobre el marcado de chunks.,COMPLETO,63,1
+30,W06-3601_P05-1033_1,Evaluable,Comparison,Alta,Contrasta la expresividad del modelo propio con los modelos formalmente sintácticos citados.,COMPLETO,63,1
+31,S10-1063_W04-2421_0,Evaluable,Application,Alta,Se usa la herramienta CCG SRL para obtener roles semánticos.,COMPLETO,63,1
+32,N13-1050_W11-2210_0,Evaluable,Background,Alta,"Resume trabajos previos centrados en sustitución de palabras, antes de contrastar con el trabajo actual.",COMPLETO,63,1
+33,W13-3720_P06-2066_0,Evaluable,Identification of the Originator,Media,"Atribuye el nombre 'edge-degree' al trabajo citado, aclarando orígenes de la métrica.",COMPLETO,63,1
+34,W04-3213_P00-1065_6,Evaluable,Comparison,Alta,"Compara explícitamente el trabajo citado con el actual (roles, corpus, estándar humano).",COMPLETO,63,1
+35,N13-1089_W97-0209_0,Evaluable,Basis,Media,La semántica de preferencias selectivas citada es la información adicional que el modelo incorpora.,COMPLETO,63,1
+36,D13-1176_W13-3214_2,Evaluable,Further Reading,Alta,Remite a un tratamiento formal de la construcción para más detalles.,COMPLETO,63,1
+37,W10-4359_W04-2504_0,Evaluable,Background,Alta,Enumera trabajos previos en la sección de trabajo relacionado.,COMPLETO,63,1
+38,N13-1037_P11-1037_0,Evaluable,Background,Alta,Enumera enfoques de normalización.,COMPLETO,63,1
+39,D13-1014_D12-1110_1,Evaluable,Background,Media,"Describe el modelo MV-RNN en trabajo relacionado, sin contraste explícito.",COMPLETO,63,1
+40,D11-1114_E09-1055_0,Evaluable,Gap,Media,"Señala que los algoritmos previos son exponenciales en el grado de brecha, justificando la contribución.",COMPLETO,63,1
+41,P11-1085_W06-3119_0,Evaluable,Comparison,Media,Contrasta el uso de fragmentos sintácticos rotos con el enfoque propio de fragmentos óptimos.,COMPLETO,63,1
+42,W11-1607_N06-1020_0,Evaluable,Application,Alta,Se emplea el parser de Charniak autoentrenado.,COMPLETO,63,1
+43,W10-1617_A00-2026_1,Evaluable,Comparison,Alta,Señala similitud (plantillas) y diferencia (entrada mínima) con el trabajo citado.,COMPLETO,63,1
+44,W13-3409_N12-1020_0,Evaluable,Comparison,Media,Compara el acuerdo de anotadores con el de textos similares.,COMPLETO,63,1
+45,P98-2204_P96-1036_0,Evaluable,Basis,Media,"El autor generaliza los criterios de ordenamiento del trabajo citado, construyendo sobre ellos.",COMPLETO,63,1
+46,D09-1073_W06-3108_0,Evaluable,Background,Alta,Enumera modelos de reordenamiento previos.,COMPLETO,63,1
+47,E12-1051_P10-1136_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la frecuencia de instancias en documentos y consultas web.,COMPLETO,63,1
+48,D12-1077_D11-1018_0,Evaluable,Background,Media,Describe trabajo reciente que motiva el presente; podría ser Gap.,COMPLETO,63,1
+49,W09-3510_N03-1017_0,Evaluable,Application,Alta,Se usan sistemas de traducción basada en frases para la transliteración.,COMPLETO,63,1
+50,D13-1161_P11-1060_0,Evaluable,Background,Alta,Enumera aplicaciones de analizadores semánticos.,COMPLETO,63,1
+51,P04-1062_P93-1024_0,Evaluable,Background,Media,Cita trabajos donde DA se usa para introducir complejidad gradual en modelos de agrupamiento.,COMPLETO,63,1
+52,N13-1064_W11-2020_5,Evaluable,Gap,Alta,Señala que los métodos citados modelan inadecuadamente el carácter secuencial de los datos.,COMPLETO,63,1
+53,N13-1003_N12-1023_0,Evaluable,Gap,Alta,"Indica que el trabajo previo se centró en el aprendizaje y no en las características, justificando el enfoque.",COMPLETO,63,1
+54,W13-3604_P08-1021_1,Evaluable,Evidence,Media,Respalda la clasificación de los errores SVA y Vform como errores sintácticos.,COMPLETO,63,1
+55,Q13-1007_W12-1912_4,Evaluable,Comparison,Alta,Compara el efecto del parámetro propio con el esquema de upweighting del trabajo citado.,COMPLETO,63,1
+56,D12-1052_W11-2838_1,Evaluable,Further Reading,Alta,Remite al artículo de visión general para detalles de la tarea.,COMPLETO,63,1
+57,W12-3145_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para sintonizar pesos.,COMPLETO,63,1
+58,S13-2059_S13-2052_0,Evaluable,Application,Media,Se participa en la tarea compartida citada; el trabajo usa su marco y datos.,COMPLETO,63,1
+59,P10-1090_D08-1022_0,Evaluable,Application,Media,Se calcula la probabilidad del subárbol según el procedimiento de los trabajos citados.,COMPLETO,63,1
+60,N13-1027_D11-1075_0,Evaluable,Comparison,Alta,Contrasta el método propio (sin parsing ni diccionarios) con los enfoques actuales.,COMPLETO,63,1
+61,P10-1116_W09-2001_0,Evaluable,Comparison,Alta,Reconoce uso previo de modelos de tópicos y contrasta con el enfoque propio.,COMPLETO,63,1
+62,W07-2305_W06-1403_0,Evaluable,Application,Alta,Se aprovecha la capacidad perifrástica del realizador OpenCCG sin modificarlo.,COMPLETO,63,1
+63,W11-1012_W08-0510_2,Evaluable,Application,Alta,Se usa el decodificador MosesChart.,COMPLETO,63,1
+64,W12-2602_W00-0400_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el acuerdo entre anotadores en resumen es bajo.,COMPLETO,63,1
+65,W04-3214_P00-1065_3,Evaluable,Comparison,Alta,Compara los resultados propios con los reportados por el trabajo citado.,COMPLETO,63,1
+66,N07-1022_P96-1027_1,Evaluable,Background,Media,"Historia del desarrollo de generación con charts; también atribuye una idea, pero domina el recuento histórico.",COMPLETO,63,1
+67,P05-1023_W04-3201_0,Evaluable,Background,Media,Describe el método de parsing de margen máximo como trabajo previo que supera la limitación del reranking.,COMPLETO,63,1
+68,P12-1016_P11-1140_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la segmentación mejora la traducción en finés.,COMPLETO,63,1
+69,P11-1130_P07-2045_0,Evaluable,Application,Alta,Se usa el decodificador de búsqueda en haz (Moses) sin modificación.,COMPLETO,63,1
+70,W13-3818_P98-2127_3,Evaluable,Comparison,Alta,Contrasta explícitamente el uso de 10 vecinos frente a los 200 del trabajo citado.,COMPLETO,63,1
+71,P08-2007_W02-1018_0,Evaluable,Gap,Alta,Señala que no se conocen algoritmos exactos de tiempo polinomial para los modelos citados.,COMPLETO,63,1
+72,P10-1004_P05-3003_0,Evaluable,Application,Alta,La implementación se basa en la herramienta Utool.,COMPLETO,63,1
+73,P13-1043_N06-1020_0,Evaluable,Comparison,Alta,Aparece en una tabla comparativa de resultados.,COMPLETO,63,1
+74,W09-1109_P08-1028_0,Evaluable,Background,Media,Describe el enfoque actual de modelos vectoriales antes de proponer el modelo de regiones.,COMPLETO,63,1
+75,P03-1014_E03-1052_0,Evaluable,Further Reading,Media,Nota al pie que remite a la sección 6 y al trabajo citado para comparación.,COMPLETO,63,1
+76,P10-1034_D08-1022_3,Evaluable,Application,Media,"Se adapta el árbol HPSG para ajustarse a los algoritmos de extracción citados, que se usan en esencia tal cual.",COMPLETO,63,1
+77,D13-1053_D08-1022_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los modelos árbol-a-cadena solo superan a los jerárquicos con enfoques basados en bosques.,COMPLETO,63,1
+78,J10-4006_N03-1032_0,Evaluable,Comparison,Alta,Fuente de un modelo comparado en la tabla de resultados.,COMPLETO,63,1
+79,P89-1003_P84-1008_0,Evaluable,Basis,Media,La interpretación de la negación se motiva en el enfoque de Karttunen citado.,COMPLETO,63,1
+80,P13-1127_P09-1110_0,Evaluable,Background,Alta,Enumera avances recientes en traducción a consultas de bases de datos.,COMPLETO,63,1
+81,W11-0320_W10-2913_2,Evaluable,Basis,Media,Se refiere a lo afirmado en el trabajo previo propio y lo refina.,COMPLETO,63,1
+82,W09-1314_W07-1008_0,Evaluable,Further Reading,Baja,Menciona herramientas de NER biomédico como posible mejora futura; podría ser Background.,COMPLETO,63,1
+83,N07-1007_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ para alinear el corpus.,COMPLETO,63,1
+84,D12-1051_P06-2013_3,Evaluable,Comparison,Alta,Sección de comparación con otros modelos que describe los hallazgos del trabajo citado.,COMPLETO,63,1
+85,D13-1155_W08-1105_2,Evaluable,Improvement / Modification,Alta,Parte del método no supervisado citado y reemplaza el peso ad hoc por una función lineal aprendida.,COMPLETO,63,1
+86,D13-1003_P12-2011_2,Evaluable,Application,Alta,Las probabilidades se calculan como en el trabajo citado.,COMPLETO,63,1
+87,W04-0810_A92-1021_0,Evaluable,Application,Alta,Se usa el tagger de Brill en el preprocesamiento.,COMPLETO,63,1
+88,P12-2004_P02-1017_0,Evaluable,Background,Media,Presenta el CCM como antecedente que fue el primero en superar la línea base; el trabajo lo reparametriza.,COMPLETO,63,1
+89,W13-2123_W00-0306_0,Evaluable,Evidence,Media,Se citan enfoques de aprendizaje para justificar que no se aplican fácilmente a este problema.,COMPLETO,63,1
+90,E12-1032_P11-2022_1,Evaluable,Evidence,Alta,Respalda el argumento de que la información oracular no debe usarse.,COMPLETO,63,1
+91,J08-2004_W04-3212_2,Evaluable,Evidence,Alta,Se cita como prueba de que la estrategia de poda fue exitosa.,COMPLETO,63,1
+92,W12-3155_P07-2045_0,Evaluable,Application,Alta,El sistema base se construye con el toolkit Moses.,COMPLETO,63,1
+93,D10-1033_W95-0107_0,Evaluable,Basis,Media,La formulación como clasificación de secuencias sigue la del chunking citado; podría ser Background.,COMPLETO,63,1
+94,W09-1117_P08-1088_2,Evaluable,Background,Alta,Describe trabajo previo en aprendizaje de léxicos bilingües.,COMPLETO,63,1
+95,D08-1095_P98-2127_0,Evaluable,Evidence,Alta,Respalda la afirmación de que sujeto y objeto son relaciones de dependencia más salientes.,COMPLETO,63,1
+96,E09-1074_P98-2127_0,Evaluable,Background,Alta,Enumera modelos computacionales de similitud semántica.,COMPLETO,63,1
+97,P12-2050_W03-1022_0,Evaluable,Background,Alta,Enumera trabajos previos de etiquetado automático de supersentidos.,COMPLETO,63,1
+98,D12-1071_D09-1101_0,Evaluable,Background,Media,Enumera resolvedores de correferencia como ejemplos del estado del arte para argumentar su limitación.,COMPLETO,63,1
+99,W06-0124_W02-2035_0,Evaluable,Evidence,Alta,Respalda la afirmación de que boosting sirve para NER independiente del idioma.,COMPLETO,63,1
+100,N10-1113_E03-1087_0,Evaluable,Application,Alta,"El sistema usa FSPar, un parser existente, como componente.",COMPLETO,63,1

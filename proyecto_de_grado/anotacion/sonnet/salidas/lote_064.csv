@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P13-2007_P11-1027_0,Evaluable,Application,Alta,Uses the Berkeley LM package as-is for n-gram models.,COMPLETO,64,1
+2,D12-1113_D10-1048_4,Evaluable,Basis,Media,Current work integrates the strengths of the cited rule-based sieve system into a machine learning framework.,COMPLETO,64,1
+3,W03-2102_J94-2004_0,Evaluable,Background,Alta,General description of subjective language.,COMPLETO,64,1
+4,N07-1022_N06-1056_0,Evaluable,Basis,Alta,Builds the generation system by inverting WASP.,COMPLETO,64,1
+5,W10-1723_W09-0427_0,Evaluable,Evidence,Alta,Supports the claim that OOV handling improves translation quality.,COMPLETO,64,1
+6,W11-1109_D10-1120_0,Evaluable,Background,Alta,Summarizes progress in unsupervised dependency parsing.,COMPLETO,64,1
+7,P10-1037_P05-1012_0,Evaluable,Background,Media,"Lists prior algorithms compared in other work, as context for choosing Sassano's.",COMPLETO,64,1
+8,E12-2004_P11-4012_0,Evaluable,Background,Alta,"Reviews related IMT work, then contrasts with own method.",COMPLETO,64,1
+9,W04-0907_W02-2016_0,Evaluable,Background,Media,Mentions CaboCha as an available parser option for handling ambiguity.,COMPLETO,64,1
+10,P08-1113_W01-1413_1,Evaluable,Identification of the Originator,Alta,Credited with the first proposal to mine translations from the web.,COMPLETO,64,1
+11,N13-1056_D09-1092_0,Evaluable,Background,Alta,Lists prior work showing topical information is a useful signal.,COMPLETO,64,1
+12,W13-2902_W03-1004_1,Evaluable,Improvement / Modification,Alta,Adapted the cited clustering method with changes to the number of clusters.,COMPLETO,64,1
+13,P08-1078_W07-1401_0,Evaluable,Application,Media,"Adopts the terminology (t, h) of the textual entailment literature.",COMPLETO,64,1
+14,D11-1036_P08-1006_0,Evaluable,Background,Alta,"Describes existing evaluation methods, including task-based embedding evaluation.",COMPLETO,64,1
+15,D10-1096_W09-1403_0,Evaluable,Basis,Media,"The work aims to enhance JREX, the cited extractor.",COMPLETO,64,1
+16,N10-1128_P01-1067_0,Evaluable,Basis,Alta,The reordering forests are inspired by the cited model.,COMPLETO,64,1
+17,N10-1128_N03-1028_0,Evaluable,Comparison,Media,Notes the objective is similar to the fully observed CRF training scenario but differs in latent structure.,COMPLETO,64,1
+18,D13-1047_N07-1051_0,Evaluable,Application,Alta,Uses the Berkeley Parser to obtain parse trees.,COMPLETO,64,1
+19,P10-2002_P05-1034_0,Evaluable,Background,Alta,One of several syntax-based SMT works cited.,COMPLETO,64,1
+20,W06-3603_W05-1515_0,Evaluable,Background,Media,Reports a prior finding about decision trees in parsing.,COMPLETO,64,1
+21,D10-1064_N06-1003_0,Evaluable,Evidence,Alta,Supports the claim that paraphrase-based instances improve translation with little data.,COMPLETO,64,1
+22,D12-1106_P05-1018_0,Evaluable,Background,Alta,Reviews entity-based coherence approaches.,COMPLETO,64,1
+23,W07-2319_W04-0210_0,Evaluable,Background,Alta,Describes related work on GNOME annotation.,COMPLETO,64,1
+24,P10-1022_P07-1031_0,Evaluable,Background,Media,"Describes prior NP annotation work that the current changes build on, as context.",COMPLETO,64,1
+25,W09-2901_P00-1056_1,Evaluable,Application,Alta,GIZA++ used as a preprocessing tool.,COMPLETO,64,1
+26,W13-0804_P05-1033_0,Evaluable,Identification of the Originator,Alta,Hierarchical phrase-based translation was first proposed by the cited work.,COMPLETO,64,1
+27,W12-4802_P00-1031_1,Evaluable,Background,Alta,Lists early noisy channel input methods.,COMPLETO,64,1
+28,P09-1004_N07-1070_0,Evaluable,Evidence,Alta,Supports the claim that results drop out of domain via WSJ-Brown results.,COMPLETO,64,1
+29,E12-3008_N06-1014_0,Evaluable,Application,Alta,Uses the Berkeley Aligner for word alignment.,COMPLETO,64,1
+30,D13-1026_W07-0403_0,Evaluable,Background,Alta,Lists generative approaches to learning synchronous grammars.,COMPLETO,64,1
+31,P11-1128_P03-2041_1,Evaluable,Background,Media,Refers to tree parsing as a known problem framing.,COMPLETO,64,1
+32,D13-1051_P09-1107_1,Evaluable,Background,Alta,Describes prior work integrating modules.,COMPLETO,64,1
+33,P13-1105_P10-1002_1,Evaluable,Application,Media,Uses direct projection methods to obtain positive instances.,COMPLETO,64,1
+34,P11-1092_P03-1004_0,Evaluable,Application,Alta,Uses YamCha for chunking.,COMPLETO,64,1
+35,J06-4004_J90-2002_0,Evaluable,Identification of the Originator,Media,Credits the first SMT systems of the early nineties.,COMPLETO,64,1
+36,D11-1096_P04-1054_0,Evaluable,Gap,Media,"Notes the cited kernel is not a convolution kernel, a limitation.",COMPLETO,64,1
+37,W11-2119_W10-1748_3,Evaluable,Identification of the Originator,Alta,Says the approach was first described in the cited work.,COMPLETO,64,1
+38,P11-1006_P00-1037_0,Evaluable,Comparison,Media,Describes the cited approach then contrasts with own discriminative approach.,COMPLETO,64,1
+39,N10-1013_P93-1024_0,Evaluable,Evidence,Alta,Supports the distributional hypothesis.,COMPLETO,64,1
+40,P98-2208_P97-1029_1,Evaluable,Further Reading,Alta,Refers the reader to the cited work for more features.,COMPLETO,64,1
+41,P07-1042_W05-1605_0,Evaluable,Basis,Alta,The proposal draws on ideas from the cited work.,COMPLETO,64,1
+42,E97-1063_P97-1039_3,Evaluable,Comparison,Alta,Reports the cited results to compare with the word-to-word model.,COMPLETO,64,1
+43,J94-1001_J91-2001_1,Evaluable,Background,Media,Cites prior work on set-valued entities.,COMPLETO,64,1
+44,P13-1036_P11-1002_1,Evaluable,Basis,Media,Training objective follows the suggestion of the cited work.,COMPLETO,64,1
+45,W11-2106_P05-1074_0,Evaluable,Evidence,Alta,Supports the claim with similar observations from previous researchers.,COMPLETO,64,1
+46,W13-2241_P13-2097_0,Evaluable,Evidence,Alta,Cites own prior result to justify using a reduced dataset.,COMPLETO,64,1
+47,W12-1511_W11-2821_0,Evaluable,Background,Alta,Describes the project context with related publications.,COMPLETO,64,1
+48,W11-2826_W09-0613_0,Evaluable,Application,Alta,Builds the system on top of the SimpleNLG package.,COMPLETO,64,1
+49,J05-1003_N03-1028_0,Evaluable,Further Reading,Alta,Says 'see also' for more recent work on CRFs.,COMPLETO,64,1
+50,W08-2137_W04-3212_1,Evaluable,Improvement / Modification,Alta,New pruning algorithm motivated by and extending the cited one.,COMPLETO,64,1
+51,W05-0620_W05-0634_6,Evaluable,Comparison,Alta,"Compares results to the best published results, noting non-comparability.",COMPLETO,64,1
+52,W12-3404_D11-1122_0,Evaluable,Background,Alta,Reviews prior role induction work.,COMPLETO,64,1
+53,P08-1068_N04-1043_4,Evaluable,Basis,Alta,"Approach inspired by the cited work, applied to dependency parsing.",COMPLETO,64,1
+54,W13-5411_W11-2214_0,Evaluable,Application,Alta,Uses the SSpaces package for Random Indexing.,COMPLETO,64,1
+55,W10-4216_W05-1510_0,Evaluable,Evidence,Alta,Supports the claim that maxent models are viable for fluency ranking.,COMPLETO,64,1
+56,Q13-1007_P10-2036_0,Evaluable,Comparison,Alta,Table compares the system with the cited one.,COMPLETO,64,1
+57,P07-1062_N03-1030_1,Evaluable,Evidence,Alta,Supports the claim of high human agreement.,COMPLETO,64,1
+58,W11-3213_W03-1508_0,Evaluable,Background,Alta,Lists phoneme-based transliteration studies.,COMPLETO,64,1
+59,W13-0803_W06-3119_2,Evaluable,Background,Alta,Lists approaches that improved with syntactic labels.,COMPLETO,64,1
+60,P06-1100_W97-0313_0,Evaluable,Background,Alta,Lists prior knowledge mining work.,COMPLETO,64,1
+61,N13-1018_P11-1062_2,Evaluable,Evidence,Media,Supports the rationale that combining scores yields a better model.,COMPLETO,64,1
+62,W10-3018_P04-1014_0,Evaluable,Application,Alta,Uses the C&C parser as a tool.,COMPLETO,64,1
+63,D13-1083_P03-1021_0,Evaluable,Comparison,Alta,MERT is a baseline compared against.,COMPLETO,64,1
+64,P10-1089_W01-0521_0,Evaluable,Evidence,Alta,Supports the claim that parsers perform poorly on other genres.,COMPLETO,64,1
+65,P11-1052_E09-1089_4,Evaluable,Comparison,Alta,Outperforms the cited system in results.,COMPLETO,64,1
+66,W10-2405_A00-2038_0,Evaluable,Application,Alta,Uses the ALINE aligner as is.,COMPLETO,64,1
+67,W98-1001_A92-1021_0,Evaluable,Evidence,Media,Supports the claim of up to 85% accuracy on unknown words.,COMPLETO,64,1
+68,W13-0806_P11-1064_0,Evaluable,Background,Alta,Lists work learning alignments through transduction grammars.,COMPLETO,64,1
+69,W13-4601_W03-0428_0,Evaluable,Evidence,Alta,Supports the claim that character substrings help NER.,COMPLETO,64,1
+70,W11-0327_P07-1033_0,Evaluable,Background,Alta,Describes prior domain adaptation work.,COMPLETO,64,1
+71,D13-1072_P12-1015_0,Evaluable,Application,Alta,Takes the Window2 models built in the cited work.,COMPLETO,64,1
+72,W13-4066_W13-4069_0,Evaluable,Further Reading,Alta,Refers to a separate publication for the structured model investigation.,COMPLETO,64,1
+73,W13-3520_P10-1023_0,Evaluable,Evidence,Alta,Supports the claim that Wikipedia suits multilingual applications.,COMPLETO,64,1
+74,D11-1019_W09-0424_0,Evaluable,Comparison,Alta,Joshua is run for comparison.,COMPLETO,64,1
+75,W10-3304_P05-1074_1,Evaluable,Evidence,Alta,Supports the claim that manual alignment raises paraphrase correctness.,COMPLETO,64,1
+76,D13-1028_P02-1014_1,Evaluable,Background,Alta,Lists statistical coreference approaches.,COMPLETO,64,1
+77,P13-1153_W10-2417_3,Evaluable,Comparison,Alta,Baseline results from the cited work are compared with own tables.,COMPLETO,64,1
+78,D11-1137_P03-1021_0,Evaluable,Application,Alta,Tunes parameters using MERT.,COMPLETO,64,1
+79,D12-1039_P02-1019_0,Evaluable,Background,Alta,Reviews prior error model work.,COMPLETO,64,1
+80,E09-1017_E06-1038_0,Evaluable,Background,Alta,Lists sentence compression work.,COMPLETO,64,1
+81,W11-2142_P07-2045_0,Evaluable,Application,Alta,Uses MERT from the Moses toolkit.,COMPLETO,64,1
+82,N13-1107_P10-1013_0,Evaluable,Background,Alta,Lists Open IE work that received attention.,COMPLETO,64,1
+83,P05-1067_N04-1014_0,Evaluable,Background,Alta,Reviews related tree-based MT work.,COMPLETO,64,1
+84,N13-2012_P08-2043_1,Evaluable,Evidence,Alta,Supports the claim linking entrainment to turn-taking and task success.,COMPLETO,64,1
+85,W13-4917_W06-2920_1,Evaluable,Background,Alta,Describes previous shared tasks.,COMPLETO,64,1
+86,N03-1023_E03-1008_0,Evaluable,Background,Alta,Lists NLP tasks where multi-view algorithms were applied.,COMPLETO,64,1
+87,J07-3004_P03-1046_1,Evaluable,Evidence,Alta,Supports the claim that raising the frequency threshold alleviates the problem.,COMPLETO,64,1
+88,W11-2168_D08-1023_2,Evaluable,Gap,Media,"Footnote notes experiments use short sentences, a limitation.",COMPLETO,64,1
+89,W11-0408_P08-2008_1,Evaluable,Application,Alta,Uses the cited WSD system.,COMPLETO,64,1
+90,W99-0901_W97-0209_0,Evaluable,Application,Alta,"Uses the training sets, test sets and evaluation method of the cited work.",COMPLETO,64,1
+91,N13-1032_P02-1039_0,Evaluable,Background,Alta,Lists syntax-based MT models.,COMPLETO,64,1
+92,W09-0412_P03-1021_0,Evaluable,Application,Alta,Uses MERT to set feature weights.,COMPLETO,64,1
+93,W03-2414_A97-1014_0,Evaluable,Background,Media,Describes the NEGRA annotation format.,COMPLETO,64,1
+94,J03-4002_P02-1003_0,Evaluable,Evidence,Alta,Supports the claim that the problem is intractable.,COMPLETO,64,1
+95,N10-1014_W06-3105_0,Evaluable,Evidence,Alta,Supports the claim that unsupervised models degenerate.,COMPLETO,64,1
+96,N13-1064_W12-1819_1,Evaluable,Further Reading,Media,Uses 'cf.' to point to work on online adaptation.,COMPLETO,64,1
+97,W96-0410_W94-0317_0,Evaluable,Evidence,Media,Supports the claim that rhetorical connection should be described with adjuncts.,COMPLETO,64,1
+98,D12-1038_P11-2095_0,Evaluable,Background,Alta,Lists semi/unsupervised segmentation technologies.,COMPLETO,64,1
+99,P05-2009_P99-1008_0,Evaluable,Background,Alta,Describes prior work on part-whole relations.,COMPLETO,64,1
+100,P13-2081_N13-1044_0,Evaluable,Application,Alta,Uses MADA-ARZ to tokenize the EDA corpora.,COMPLETO,64,1

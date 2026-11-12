@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D12-1047_P10-2048_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que la traducción automática sigue lejos de ser perfecta.,COMPLETO,48,1
+2,P05-1010_P03-1054_2,Evaluable,Comparison,Alta,Compara el resultado propio con el del parser PCFG no lexicalizado de Klein y Manning.,COMPLETO,48,1
+3,A00-1020_P98-2143_0,Evaluable,Background,Media,Cita trabajos previos sobre métodos pobres en conocimiento para resolución de anáforas.,COMPLETO,48,1
+4,W13-0114_W11-0908_1,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados de sistemas previos con este trabajo.,COMPLETO,48,1
+5,N09-1015_P03-1021_0,Evaluable,Background,Media,Describe MERT como método habitual de optimización de pesos en SMT.,COMPLETO,48,1
+6,D08-1018_N06-1022_3,Evaluable,Background,Media,"Describe la binarización con codificaciones no equivalentes y cabeza de trabajos previos, contrastada luego con el enfoque propio.",COMPLETO,48,1
+7,N06-1010_W03-0428_0,Evaluable,Background,Alta,Agrupa trabajos de NER supervisado para describir el estado del área.,COMPLETO,48,1
+8,D11-1066_P03-1003_0,Evaluable,Background,Media,Cita literatura sobre preguntas de definición como contexto del tema.,COMPLETO,48,1
+9,W09-1305_P07-1079_0,Evaluable,Application,Alta,El sistema usa el parser ENJU tal cual.,COMPLETO,48,1
+10,D12-1133_E06-1011_1,Evaluable,Comparison,Alta,Aparece en una tabla comparando parsers con los resultados propios.,COMPLETO,48,1
+11,S13-1035_P12-3029_1,Evaluable,Further Reading,Alta,"'For further details regarding the tagger, see' remite a más detalles.",COMPLETO,48,1
+12,D08-1024_P03-1021_0,Evaluable,Identification of the Originator,Alta,'Since its introduction by' atribuye el origen de MERT.,COMPLETO,48,1
+13,P13-1039_N13-1104_0,Evaluable,Background,Alta,Describe la evolución de trabajos previos sobre modelos de tópicos y frames.,COMPLETO,48,1
+14,D10-1047_P10-1127_1,Evaluable,Application,Alta,Usa el corpus descrito en la obra citada para entrenar y probar.,COMPLETO,48,1
+15,P13-1089_W10-2924_1,Evaluable,Background,Alta,Cita estudios previos de la tarea de extracción de entidades y relaciones.,COMPLETO,48,1
+16,W06-1633_P02-1014_4,Evaluable,Comparison,Alta,Compara el desempeño del Belltree propio con Link-Best.,COMPLETO,48,1
+17,D12-1077_W11-2102_1,Evaluable,Background,Media,Señala que la fragmentación de chunks se ha usado en evaluación previa.,COMPLETO,48,1
+18,P13-1089_D12-1102_6,Evaluable,Comparison,Alta,Compara el enfoque propio con el Teorema 1 del trabajo citado como línea base.,COMPLETO,48,1
+19,D13-1191_P12-1042_0,Evaluable,Background,Alta,Revisa trabajos previos sobre detección de subgrupos.,COMPLETO,48,1
+20,D09-1086_P05-1012_0,Evaluable,Application,Media,Usa las características de un parser de dependencias de aristas factorizadas.,COMPLETO,48,1
+21,W13-2212_P11-1105_0,Evaluable,Application,Alta,Integra el modelo OSM citado en el decodificador Moses.,COMPLETO,48,1
+22,P12-1087_W10-0732_1,Evaluable,Comparison,Media,Contrasta explícitamente el foco del trabajo citado (recolección) con el propio.,COMPLETO,48,1
+23,P03-1062_W99-0619_0,Evaluable,Background,Alta,Agrupa estudios previos sobre colocación de acentos tonales.,COMPLETO,48,1
+24,P08-1046_J99-3006_0,Evaluable,Background,Media,Describe enfoques previos de DOP y gramáticas de sustitución de árboles para presentar gramáticas adaptadoras.,COMPLETO,48,1
+25,W02-2116_P98-2199_1,Evaluable,Comparison,Media,Dice que el trabajo sigue a trabajos previos de agregación cuyas reglas carecen de evidencia empírica.,COMPLETO,48,1
+26,D09-1039_P03-2041_0,Evaluable,Basis,Baja,El formalismo de fragmentos DOT se apoya en el trabajo citado.,COMPLETO,48,1
+27,W13-3517_D10-1099_0,Evaluable,Background,Alta,Enumera tareas donde las bases de conocimiento han mejorado el desempeño.,COMPLETO,48,1
+28,S10-1054_W09-2412_1,Evaluable,Further Reading,Alta,Remite a una descripción detallada de la tarea.,COMPLETO,48,1
+29,J10-1004_P05-1005_1,Evaluable,Background,Alta,Enumera trabajos previos que agrupan sentidos en clases.,COMPLETO,48,1
+30,W09-2307_N06-1014_0,Evaluable,Application,Alta,Usa el alineador de Berkeley para alinear los datos.,COMPLETO,48,1
+31,W13-3510_D12-1050_1,Evaluable,Comparison,Alta,Compara explícitamente los resultados propios con los de dos estudios previos.,COMPLETO,48,1
+32,W09-4105_P05-1022_0,Evaluable,Comparison,Alta,Compara el F1 obtenido con el mejor parser de inglés.,COMPLETO,48,1
+33,D13-1168_P08-1088_2,Evaluable,Application,Media,Sigue el preprocesamiento de trabajos previos.,COMPLETO,48,1
+34,W10-2417_N03-1028_0,Evaluable,Evidence,Media,Respalda la afirmación sobre las ventajas de los CRF.,COMPLETO,48,1
+35,W11-2504_P08-1077_0,Evaluable,Background,Alta,Enumera trabajos que usan representaciones simples de contexto.,COMPLETO,48,1
+36,P08-1061_P06-1043_1,Evaluable,Comparison,Alta,Contrasta explícitamente el enfoque propio con el auto-entrenamiento citado.,COMPLETO,48,1
+37,W09-4507_W04-1219_1,Evaluable,Evidence,Alta,Los hallazgos citados respaldan la utilidad de las características POS.,COMPLETO,48,1
+38,W11-0411_W09-3025_0,Evaluable,Background,Media,Cita estudios sobre dificultades conocidas de la anotación.,COMPLETO,48,1
+39,W08-1111_N01-1003_0,Evaluable,Further Reading,Media,'see also' remite a trabajos relacionados.,COMPLETO,48,1
+40,W13-3513_W06-2502_0,Evaluable,Evidence,Media,Respalda la elección de VRC porque dio los mejores resultados en discriminación de sentidos.,COMPLETO,48,1
+41,W02-1018_W99-0604_1,Evaluable,Comparison,Alta,Contrasta el modelo propio con enfoques previos.,COMPLETO,48,1
+42,D11-1085_P09-1067_3,Evaluable,Application,Alta,Usa Joshua tal cual para los experimentos.,COMPLETO,48,1
+43,P11-1123_P01-1067_1,Evaluable,Background,Alta,Describe el estado del arte en traducción automática.,COMPLETO,48,1
+44,D13-1187_P11-1032_0,Evaluable,Background,Alta,Enumera aplicaciones del análisis de sentimiento.,COMPLETO,48,1
+45,P13-2061_N03-1017_1,Evaluable,Background,Media,Describe las probabilidades convencionales de traducción de frases.,COMPLETO,48,1
+46,S12-1006_W98-1124_0,Evaluable,Evidence,Media,Respalda la afirmación de que la predicción de relaciones retóricas es útil para resumir.,COMPLETO,48,1
+47,P95-1020_P94-1009_0,Evaluable,Background,Media,Cita trabajos previos sobre implicaturas y relaciones del discurso.,COMPLETO,48,1
+48,J10-3008_N04-1022_1,Evaluable,Application,Alta,Aplica MBR con la pérdida BLEU del trabajo citado.,COMPLETO,48,1
+49,D13-1116_P05-1010_1,Evaluable,Background,Alta,Describe el resultado de un trabajo previo sobre aproximación de PCFG-LA.,COMPLETO,48,1
+50,P11-1027_P05-1033_0,Evaluable,Background,Alta,Describe cómo operan los decodificadores con modelos de lenguaje integrados.,COMPLETO,48,1
+51,D11-1035_P03-1021_0,Evaluable,Background,Media,Presenta MERT como el algoritmo de ajuste habitual.,COMPLETO,48,1
+52,W09-0410_E03-1076_0,Evaluable,Application,Alta,Aplica el método de división de compuestos del trabajo citado.,COMPLETO,48,1
+53,W12-0701_W11-0303_6,Evaluable,Comparison,Alta,Compara resultados propios con tablas del trabajo citado.,COMPLETO,48,1
+54,P13-1106_W10-2906_0,Evaluable,Background,Alta,Enumera trabajos previos que usan bitextos anotados con NER.,COMPLETO,48,1
+55,W13-5104_W10-3018_0,Evaluable,Background,Media,Cita trabajos previos de clasificación de especulación para contrastarlos con el objetivo propio.,COMPLETO,48,1
+56,W04-3213_P00-1065_1,Evaluable,Comparison,Alta,Contrasta el enfoque propio con el uso de subconjuntos simples de información.,COMPLETO,48,1
+57,P10-1142_N09-1065_1,Evaluable,Background,Alta,Describe el modelo cluster-ranking propuesto previamente.,COMPLETO,48,1
+58,D11-1020_P05-1034_1,Evaluable,Evidence,Media,Respalda la afirmación de que las dependencias se adaptan mejor a modelos lexicalizados.,COMPLETO,48,1
+59,D10-1004_D08-1017_0,Evaluable,Comparison,Alta,Compara con resultados de parsers previos.,COMPLETO,48,1
+60,P10-1078_W09-1802_1,Evaluable,Improvement / Modification,Alta,'We adapted the model presented by' indica adaptación.,COMPLETO,48,1
+61,W08-0304_N03-1017_0,Evaluable,Application,Alta,Extrae frases con el procedimiento típico descrito en el trabajo citado.,COMPLETO,48,1
+62,W13-1611_P11-1016_0,Evaluable,Gap,Media,Contrasta el análisis fino por objetivo con el enfoque más grueso del trabajo propio.,COMPLETO,48,1
+63,J12-2006_W09-0424_2,Evaluable,Application,Alta,Usa el toolkit Joshua para extraer la gramática.,COMPLETO,48,1
+64,D10-1091_W09-0437_1,Evaluable,Basis,Media,Sigue la propuesta de trabajos previos de calcular puntuaciones oráculo.,COMPLETO,48,1
+65,P09-1053_P05-1012_0,Evaluable,Application,Alta,Emplea el parser descrito en el trabajo citado.,COMPLETO,48,1
+66,W06-1615_W96-0213_4,Evaluable,Comparison,Alta,Compara la reducción de error de SCL con el sistema citado.,COMPLETO,48,1
+67,D11-1046_N07-1051_0,Evaluable,Application,Alta,Usa el parser de Berkeley para obtener árboles.,COMPLETO,48,1
+68,D12-1003_P11-1133_0,Evaluable,Background,Alta,Enumera enfoques previos para calcular similitudes.,COMPLETO,48,1
+69,P05-1019_W03-1011_0,Evaluable,Evidence,Alta,Respalda la proposición de que la similitud distribucional correlaciona con la semántica.,COMPLETO,48,1
+70,P11-1128_J07-2003_3,Evaluable,Comparison,Alta,Compara el sistema propio con un sistema jerárquico.,COMPLETO,48,1
+71,W13-1202_W11-0116_0,Evaluable,Background,Media,Menciona información general sobre eventos como duraciones típicas.,COMPLETO,48,1
+72,W13-3517_P11-1082_2,Evaluable,Comparison,Media,Señala la similitud con sistemas de correferencia existentes.,COMPLETO,48,1
+73,D10-1049_P09-1011_8,Evaluable,Application,Alta,Usa el modelo no supervisado citado para producir escenarios alineados.,COMPLETO,48,1
+74,E06-3001_P98-2204_1,Evaluable,Background,Alta,"Enumera modelos previos que integran sintaxis, semántica y discurso.",COMPLETO,48,1
+75,N13-1050_P07-2045_1,Evaluable,Application,Alta,Construye sistemas con Moses.,COMPLETO,48,1
+76,P98-1058_E95-1032_1,Evaluable,Further Reading,Alta,'see ... for a discussion' remite a una discusión adicional.,COMPLETO,48,1
+77,P06-1033_P97-1003_0,Evaluable,Evidence,Media,El parser de Collins ejemplifica la afirmación sobre transformaciones internas.,COMPLETO,48,1
+78,P10-1020_P05-1018_3,Evaluable,Comparison,Alta,Contrasta explícitamente la configuración óptima con la reportada.,COMPLETO,48,1
+79,J10-2002_D08-1020_0,Evaluable,Background,Alta,Describe un hallazgo previo sobre legibilidad.,COMPLETO,48,1
+80,P06-1122_E99-1010_1,Evaluable,Background,Media,Cita trabajo previo de agrupamiento bilingüe y lo contrasta brevemente.,COMPLETO,48,1
+81,W12-1707_P99-1004_0,Evaluable,Background,Media,Remite a medidas de similitud disponibles.,COMPLETO,48,1
+82,D12-1022_P11-1049_2,Evaluable,Comparison,Alta,'Our work differs from' contrasta explícitamente.,COMPLETO,48,1
+83,P13-1058_N09-2004_1,Evaluable,Evidence,Alta,Respalda la afirmación de que BLEU premia fluidez más que adecuación.,COMPLETO,48,1
+84,N13-1121_P09-1116_2,Evaluable,Basis,Media,Sigue la decisión metodológica del trabajo citado ('Like').,COMPLETO,48,1
+85,W11-2163_N03-1017_0,Evaluable,Application,Alta,Usa la heurística de simetrización grow-diag-final-and.,COMPLETO,48,1
+86,W12-1642_D09-1044_1,Evaluable,Comparison,Media,Describe el trabajo más relevante y lo relaciona con el propio.,COMPLETO,48,1
+87,P09-1065_P03-1021_2,Evaluable,Improvement / Modification,Alta,'We extend the MERT algorithm' indica extensión.,COMPLETO,48,1
+88,P06-2056_P98-2206_0,Evaluable,Background,Alta,Describe trabajos previos de segmentación con sus resultados.,COMPLETO,48,1
+89,N13-1102_N09-2028_0,Evaluable,Background,Alta,Describe un método previo de detección de disfluencias.,COMPLETO,48,1
+90,P11-1037_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford para extraer características.,COMPLETO,48,1
+91,J02-3003_P98-2204_0,Evaluable,Background,Alta,Describe la modificación del modelo de centración propuesta en el trabajo citado.,COMPLETO,48,1
+92,P13-1081_P11-2037_0,Evaluable,Comparison,Alta,Compara la precisión del modelo propio con los resultados citados.,COMPLETO,48,1
+93,P11-1037_D09-1015_0,Evaluable,Background,Alta,Clasifica soluciones de NER citando enfoques de aprendizaje automático.,COMPLETO,48,1
+94,D12-1125_P05-1010_0,Evaluable,Background,Alta,Presenta trabajos relacionados de refinamiento de categorías sintácticas.,COMPLETO,48,1
+95,P09-2035_P03-1021_0,Evaluable,Application,Alta,Usa MERT para ajustar los pesos.,COMPLETO,48,1
+96,W12-2513_W10-1803_1,Evaluable,Basis,Alta,El trabajo se apoya en la definición de eventos sociales propuesta previamente por los autores.,COMPLETO,48,1
+97,W13-4008_W10-0214_2,Evaluable,Evidence,Alta,Los resultados previos confirman el hallazgo actual.,COMPLETO,48,1
+98,N06-1023_P03-1054_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los parsers no lexicalizados logran exactitud casi equivalente.,COMPLETO,48,1
+99,N12-1015_P07-1096_1,Evaluable,Comparison,Alta,Contrasta las características del trabajo citado con la ventana local propia.,COMPLETO,48,1
+100,S13-2031_P07-1003_0,Evaluable,Application,Alta,Usa el alineador de Berkeley con configuración casi por defecto.,COMPLETO,48,1

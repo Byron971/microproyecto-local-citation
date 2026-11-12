@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P13-1002_N03-1017_1,Evaluable,Application,Alta,Usa el método de refinamiento de alineaciones tal cual en su configuración.,COMPLETO,62,1
+2,W09-0903_P00-1065_1,Evaluable,Evidence,Alta,Respalda la afirmación de que los predicados son verbos o sustantivos y justifica la decisión.,COMPLETO,62,1
+3,P07-1077_E06-1010_0,Evaluable,Further Reading,Alta,Remite a un artículo de revisión sobre restricciones formales.,COMPLETO,62,1
+4,P10-3001_P94-1001_2,Evaluable,Basis,Media,La investigación actual continúa la línea iniciada por el trabajo citado.,COMPLETO,62,1
+5,S13-1044_N07-1070_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el rendimiento cae fuera del dominio.,COMPLETO,62,1
+6,W11-2138_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para alineaciones de palabras.,COMPLETO,62,1
+7,W07-0102_W06-3506_2,Evaluable,Comparison,Alta,Contrasta el método propio con el trabajo citado (incluye sustantivos).,COMPLETO,62,1
+8,J93-2005_J91-4003_0,Evaluable,Basis,Alta,Asume el marco del léxico generativo como fundamento.,COMPLETO,62,1
+9,J08-3003_W04-3224_0,Evaluable,Gap,Media,"Señala que la mayoría lo trata como todo-o-nada, salvo pocos estudios.",COMPLETO,62,1
+10,E12-1026_P07-2045_0,Evaluable,Application,Alta,Usa Moses para tokenizar y pasar a minúsculas.,COMPLETO,62,1
+11,W10-0716_W09-3910_0,Evaluable,Evidence,Alta,Respalda la afirmación de alto acuerdo con la formulación de 3 clases.,COMPLETO,62,1
+12,W09-0612_W06-1405_0,Evaluable,Background,Alta,Describe trabajo previo sobre modelado computacional del alineamiento.,COMPLETO,62,1
+13,W05-0907_W04-1013_1,Evaluable,Comparison,Alta,Compara ORANGE con el marco propio señalando similitudes.,COMPLETO,62,1
+14,W12-2009_P05-1074_0,Evaluable,Application,Media,Usa el método pivote para generar paráfrasis que luego se filtran y ordenan.,COMPLETO,62,1
+15,W10-4342_W09-3937_0,Evaluable,Further Reading,Media,Nota al pie que remite a otros trabajos sobre el tema.,COMPLETO,62,1
+16,P13-1009_N12-1049_3,Evaluable,Basis,Alta,El formalismo está fuertemente inspirado en el trabajo citado.,COMPLETO,62,1
+17,J02-3004_P88-1012_1,Evaluable,Background,Media,Describe el análisis lingüístico previo de los compuestos nominales mediante razonamiento pragmático.,COMPLETO,62,1
+18,D11-1046_N10-1015_1,Evaluable,Gap,Alta,"Indica que, hasta donde se sabe, solo ese trabajo usó sintaxis fuente en alineación.",COMPLETO,62,1
+19,W04-1907_W04-1007_0,Evaluable,Further Reading,Alta,Remite a resultados detallados en otra fuente.,COMPLETO,62,1
+20,P07-1080_W96-0213_0,Evaluable,Application,Alta,Usa un etiquetador público para obtener etiquetas POS.,COMPLETO,62,1
+21,D09-1047_W05-0625_0,Evaluable,Background,Media,Resume investigación previa sobre aprendizaje conjunto de roles semánticos.,COMPLETO,62,1
+22,W13-3516_W01-0521_0,Evaluable,Evidence,Alta,Respalda la afirmación de degradación de modelos WSJ fuera de dominio.,COMPLETO,62,1
+23,P10-1046_P07-1028_5,Evaluable,Comparison,Alta,Compara los resultados propios con los del trabajo citado.,COMPLETO,62,1
+24,N12-1025_W09-3407_0,Evaluable,Background,Alta,Enumera trabajos previos de transliteración por pares de lenguas.,COMPLETO,62,1
+25,D10-1057_D08-1072_3,Evaluable,Application,Alta,Sigue la extracción de rasgos del trabajo citado sin modificarla.,COMPLETO,62,1
+26,W09-0608_P99-1018_0,Evaluable,Background,Alta,Presenta investigación previa sobre el orden de modificadores.,COMPLETO,62,1
+27,D12-1063_W11-0303_1,Evaluable,Comparison,Alta,Compara la precisión de DBM-1 con la de DMV en el trabajo citado.,COMPLETO,62,1
+28,P13-1059_W11-1215_0,Evaluable,Background,Alta,Enumera tareas de acceso a información multilingüe.,COMPLETO,62,1
+29,W09-1122_W01-0706_0,Evaluable,Comparison,Media,Reporta hallazgos previos con los que el estudio propio coincide.,COMPLETO,62,1
+30,J10-3004_N06-1041_0,Evaluable,Evidence,Media,Respalda que la precisión uno a uno es una métrica estándar.,COMPLETO,62,1
+31,P08-2009_P07-1096_1,Evaluable,Basis,Media,El sistema se apoya en el etiquetado bidireccional citado como enfoque adecuado.,COMPLETO,62,1
+32,P13-2032_W06-0116_0,Evaluable,Background,Alta,Resume estudios previos sobre etiquetado de secuencias de caracteres.,COMPLETO,62,1
+33,P08-2051_N04-1019_0,Evaluable,Background,Alta,Enumera métodos de evaluación existentes.,COMPLETO,62,1
+34,W05-0827_J90-2002_0,Evaluable,Identification of the Originator,Media,Atribuye el enfoque de canal fuente al trabajo que lo introdujo.,COMPLETO,62,1
+35,D11-1109_P08-1101_3,Evaluable,Comparison,Alta,Se presentan los resultados de Z&C08 como sistema de comparación.,COMPLETO,62,1
+36,N09-1025_P02-1039_0,Evaluable,Application,Alta,Usa el analizador de tipo CKY citado en el decodificador.,COMPLETO,62,1
+37,P06-1034_W02-1022_0,Evaluable,Gap,Media,"Contrasta trabajos previos que no asocian significado, salvo una excepción.",COMPLETO,62,1
+38,Q13-1010_P10-1110_1,Evaluable,Gap,Media,"Señala que los analizadores no predicen palabras futuras, salvo la excepción citada.",COMPLETO,62,1
+39,W12-3134_P03-1021_0,Evaluable,Background,Media,Presenta MERT como algoritmo popular de referencia para contrastar con PRO.,COMPLETO,62,1
+40,P89-1003_P86-1038_0,Evaluable,Identification of the Originator,Media,Atribuye a Rounds y Kasper el desarrollo del cálculo lógico.,COMPLETO,62,1
+41,W07-1201_W06-1517_0,Evaluable,Evidence,Media,Respalda la afirmación de que MC-TAG no cumple esas propiedades.,COMPLETO,62,1
+42,P12-2028_P06-1013_0,Evaluable,Background,Alta,Describe la medida más popular en el trabajo relacionado.,COMPLETO,62,1
+43,W13-3517_N07-1011_0,Evaluable,Evidence,Media,Justifica el procedimiento de evaluación estándar usado por primera vez en la obra citada.,COMPLETO,62,1
+44,W09-2503_W04-3219_1,Evaluable,Background,Alta,Describe trabajo previo de paráfrasis con SMT.,COMPLETO,62,1
+45,W11-1801_W10-1905_0,Evaluable,Background,Alta,Indica estudios previos basados en la tarea compartida.,COMPLETO,62,1
+46,W03-0401_P97-1003_1,Evaluable,Background,Alta,Presenta los primeros trabajos sobre desambiguación sintáctica.,COMPLETO,62,1
+47,P12-1028_P05-1050_0,Evaluable,Background,Alta,Enumera aplicaciones de los modelos de dominio en distintas tareas.,COMPLETO,62,1
+48,P13-1139_W12-3101_1,Evaluable,Background,Baja,Retoma una objeción previa para motivar los modelos IRT.,COMPLETO,62,1
+49,W11-2912_N06-1024_0,Evaluable,Background,Media,Reporta el resultado previo de recuperar categorías vacías.,COMPLETO,62,1
+50,E12-1047_N10-1118_0,Evaluable,Evidence,Media,Respalda la definición de complejidad de análisis.,COMPLETO,62,1
+51,D09-1077_P99-1053_0,Evaluable,Background,Alta,Resume enfoques recientes sobre modelado sintáctico de reparaciones.,COMPLETO,62,1
+52,D12-1106_N07-1055_1,Evaluable,Background,Media,Enumera trabajos que usan la evaluación estándar de coherencia.,COMPLETO,62,1
+53,P04-1017_P87-1022_1,Evaluable,Evidence,Alta,Respalda la sugerencia de la teoría de centrado con la que coinciden los hallazgos.,COMPLETO,62,1
+54,N12-1054_N06-1022_1,Evaluable,Background,Alta,Resume trabajo previo sobre análisis por pasadas.,COMPLETO,62,1
+55,N12-1052_P11-2033_0,Evaluable,Improvement / Modification,Alta,Extiende el modelo de rasgos citado con plantillas de clusters.,COMPLETO,62,1
+56,W12-5302_S07-1013_3,Evaluable,Evidence,Media,Indica la fuente de los valores de acuerdo entre anotadores.,COMPLETO,62,1
+57,W04-0106_W02-0603_1,Evaluable,Comparison,Alta,Contrasta el modelo propio con trabajos previos en cuanto a morfotáctica.,COMPLETO,62,1
+58,Q13-1008_W10-4327_0,Evaluable,Evidence,Media,Respalda que muchos rasgos son útiles en resumen.,COMPLETO,62,1
+59,W05-0622_W04-2419_0,Evaluable,Background,Alta,Reporta el uso previo de máxima entropía en SRL.,COMPLETO,62,1
+60,W11-2923_P03-1054_3,Evaluable,Comparison,Alta,Compara las anotaciones propias con las del trabajo citado.,COMPLETO,62,1
+61,W12-6308_P04-1015_0,Evaluable,Application,Media,Prueba la técnica de actualización temprana del trabajo citado.,COMPLETO,62,1
+62,D13-1033_P04-2011_0,Evaluable,Further Reading,Media,Remite a trabajos donde la sintaxis ayuda a la predicción de lemas y POS.,COMPLETO,62,1
+63,D13-1047_W04-1013_0,Evaluable,Application,Alta,Usa la métrica ROUGE para evaluar.,COMPLETO,62,1
+64,P12-1081_P91-1030_0,Evaluable,Evidence,Alta,Respalda que la adjunción del PP depende del objeto de la preposición.,COMPLETO,62,1
+65,P04-1070_P04-1069_1,Evaluable,Further Reading,Alta,Indicado con 'See also' para remitir a más detalle.,COMPLETO,62,1
+66,P09-1087_P96-1021_0,Evaluable,Background,Media,Describe los altos costos computacionales conocidos en trabajos previos.,COMPLETO,62,1
+67,P06-2101_N04-1022_1,Evaluable,Background,Alta,Enumera áreas donde MBR ha logrado mejoras.,COMPLETO,62,1
+68,P11-1144_W04-2008_0,Evaluable,Background,Alta,Resume trabajo temprano de etiquetado de roles semánticos de marcos.,COMPLETO,62,1
+69,J10-4005_W06-1600_0,Evaluable,Evidence,Alta,Respalda que las reglas de transferencia no constituyentes son útiles para MT.,COMPLETO,62,1
+70,W03-0417_W97-1011_0,Evaluable,Background,Alta,Enumera métodos propuestos previamente para el problema.,COMPLETO,62,1
+71,W07-1022_W95-0107_1,Evaluable,Background,Media,Cita la definición de baseNP dada en el trabajo previo.,COMPLETO,62,1
+72,P12-2057_P03-1021_0,Evaluable,Background,Media,Describe el procedimiento estándar de MERT.,COMPLETO,62,1
+73,D09-1008_N07-1008_2,Evaluable,Comparison,Alta,Contrasta explícitamente el enfoque propio con el citado.,COMPLETO,62,1
+74,D13-1171_P11-1016_2,Evaluable,Comparison,Alta,Señala que el trabajo citado es el más similar al propio y marca diferencias.,COMPLETO,62,1
+75,E06-3002_J91-4003_1,Evaluable,Background,Media,Describe el modelo GL como marco previo en léxicos para discurso.,COMPLETO,62,1
+76,P06-2014_P01-1067_1,Evaluable,Background,Media,Describe modelos árbol-a-cadena previos y su tratamiento de sintaxis.,COMPLETO,62,1
+77,P04-1020_P02-1014_1,Evaluable,Gap,Alta,Señala que los trabajos existentes están localmente optimizados y dejan otras opciones inexploradas.,COMPLETO,62,1
+78,W13-4006_W10-0214_0,Evaluable,Evidence,Alta,Respalda que un baseline de unigramas es difícil de superar.,COMPLETO,62,1
+79,W09-1707_P93-1034_0,Evaluable,Background,Alta,Presenta el enfoque de etiquetado distribucional como ejemplo.,COMPLETO,62,1
+80,P06-1009_W02-2018_0,Evaluable,Evidence,Media,Respalda que L-BFGS funciona bien para modelos log-lineales.,COMPLETO,62,1
+81,W12-3139_W11-2132_0,Evaluable,Background,Alta,Reporta mejoras de otros grupos con aprendizaje semisupervisado.,COMPLETO,62,1
+82,W07-0731_N03-1017_0,Evaluable,Evidence,Media,Respalda la afirmación sobre dispersión de datos en modelos basados en frases.,COMPLETO,62,1
+83,P11-2005_P10-2041_2,Evaluable,Background,Alta,Describe trabajos previos de submuestreo para selección de dominio.,COMPLETO,62,1
+84,P09-2031_P05-1033_3,Evaluable,Application,Alta,Reimplementa Hiero como sistema base.,COMPLETO,62,1
+85,P06-1123_N06-1033_1,Evaluable,Evidence,Alta,Respalda que la descomposición mejora la generalización.,COMPLETO,62,1
+86,W10-3807_W07-0718_0,Evaluable,Background,Media,Reporta hallazgos previos de correlación de la métrica con juicios humanos.,COMPLETO,62,1
+87,W10-2501_N04-1014_0,Evaluable,Background,Alta,Enumera ejemplos de transductores de árboles.,COMPLETO,62,1
+88,W03-1602_W01-1402_0,Evaluable,Background,Alta,Cita enfoques de transferencia semántica previos.,COMPLETO,62,1
+89,P13-1076_P08-1101_0,Evaluable,Gap,Alta,Señala la limitación de depender de grandes datos etiquetados.,COMPLETO,62,1
+90,D08-1065_P08-1025_0,Evaluable,Background,Alta,Enumera áreas donde MBR ha dado mejoras.,COMPLETO,62,1
+91,D10-1094_N10-1018_3,Evaluable,Evidence,Alta,Respalda que tasas de error similares se reportan en otros corpus.,COMPLETO,62,1
+92,N13-1116_J07-2003_0,Evaluable,Background,Alta,Describe trabajo previo que trata el modelo de lenguaje como caja negra.,COMPLETO,62,1
+93,E03-1058_P99-1046_1,Evaluable,Evidence,Media,Justifica el uso de la matriz de similitud y su representación gráfica.,COMPLETO,62,1
+94,P13-1150_P06-2065_0,Evaluable,Comparison,Alta,Describe el precedente más cercano para contrastarlo con el modelo propio.,COMPLETO,62,1
+95,W11-0603_N04-1011_0,Evaluable,Gap,Alta,Señala que el trabajo previo se centró en análisis supervisado y supuestos distintos.,COMPLETO,62,1
+96,P09-1114_P07-1034_3,Evaluable,Basis,Alta,El modelo se basa en trabajo previo propio.,COMPLETO,62,1
+97,W13-2901_P11-2117_0,Evaluable,Comparison,Media,Contrasta el enfoque propio con el trabajo previo.,COMPLETO,62,1
+98,E09-1090_P06-2089_2,Evaluable,Comparison,Alta,Compara la precisión del analizador con enfoques tradicionales.,COMPLETO,62,1
+99,D13-1047_P11-1049_3,Evaluable,Comparison,Alta,Presenta el trabajo citado como sistema contra el que se compara.,COMPLETO,62,1
+100,P09-1039_E06-1011_2,Evaluable,Evidence,Alta,Respalda que incluir rasgos de hermanos y abuelos es beneficioso.,COMPLETO,62,1

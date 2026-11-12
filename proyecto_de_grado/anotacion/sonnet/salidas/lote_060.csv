@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D11-1059_P09-1057_0,Evaluable,Background,Alta,Enumera sistemas recientes de inducción de clases sintácticas como panorama del área.,COMPLETO,60,1
+2,D11-1066_P06-2010_1,Evaluable,Evidence,Media,Respalda la afirmación de que STK es estado del arte en SRL.,COMPLETO,60,1
+3,P03-2035_J91-4003_0,Evaluable,Background,Media,Describe enfoques previos que adoptan el marco del Generative Lexicon.,COMPLETO,60,1
+4,W04-3111_P03-1002_0,Evaluable,Background,Media,Menciona etiquetadores semánticos previos entrenados con PropBank.,COMPLETO,60,1
+5,J13-3003_D09-1046_2,Evaluable,Evidence,Media,Respalda la afirmación de que los datos WSsim sirven para evaluar sistemas WSD de forma graduada.,COMPLETO,60,1
+6,S10-1025_S07-1009_1,Evaluable,Application,Media,Se usa la métrica de mode recall/precision definida en la tarea citada.,COMPLETO,60,1
+7,P11-1061_P07-1096_0,Evaluable,Evidence,Alta,"Respalda la afirmación de que los etiquetadores supervisados se acercan al acuerdo entre anotadores, con cifra concreta.",COMPLETO,60,1
+8,P13-2150_D09-1012_2,Evaluable,Comparison,Media,"Nota que el trabajo citado no reportó resultados en esa versión de la tarea, limitando la comparación.",COMPLETO,60,1
+9,P08-1067_N07-1051_0,Evaluable,Comparison,Alta,Tabla que compara resultados finales con otros sistemas.,COMPLETO,60,1
+10,N13-1105_P98-2127_0,Evaluable,Background,Alta,"Enumera aplicaciones previas del análisis semántico latente, entre ellas adquisición de léxico.",COMPLETO,60,1
+11,P11-1114_P06-1061_0,Evaluable,Background,Alta,Enumera conjuntos de datos conocidos de IE.,COMPLETO,60,1
+12,P11-2093_W04-3230_2,Evaluable,Evidence,Media,Respalda la afirmación de que etiquetas POS más finas dieron pequeñas mejoras.,COMPLETO,60,1
+13,P13-1001_P03-1054_0,Evaluable,Application,Alta,Usan el parser de Stanford tal cual para obtener árboles de dependencia.,COMPLETO,60,1
+14,D08-1006_P07-1010_1,Evaluable,Evidence,Media,Respalda la afirmación de que los clasificadores lineales no discriminan oraciones reales de las muestreadas de un trigrama.,COMPLETO,60,1
+15,W09-1704_W03-1609_0,Evaluable,Background,Alta,Describe trabajo previo sobre extracción de paráfrasis con anclas.,COMPLETO,60,1
+16,D13-1013_N13-1083_0,Evaluable,Background,Alta,Cita ejemplos de estudios previos de detección de disfluencias en la comunidad del habla.,COMPLETO,60,1
+17,W10-0804_N09-2044_0,Evaluable,Background,Media,Menciona n-gramas POS puros usados en la literatura como alternativa existente.,COMPLETO,60,1
+18,P12-1018_P06-3003_1,Evaluable,Application,Media,"Prueban métodos propuestos previamente (co-ocurrencia, Dice, chi-cuadrado) en experimentos preliminares.",COMPLETO,60,1
+19,P13-2009_P00-1056_1,Evaluable,Application,Alta,Usan GIZA++ (IBM Model 4) para el alineamiento.,COMPLETO,60,1
+20,W11-0310_P10-2008_0,Evaluable,Basis,Alta,Se apoyan en el uso de PCFG para atribución de autoría propuesto por el trabajo citado; 'therefore' indica que lo adoptan.,COMPLETO,60,1
+21,D13-1043_N13-1107_1,Evaluable,Background,Media,Describe el método TreeKernel como sistema previo de extracción.,COMPLETO,60,1
+22,W07-2202_W06-1619_2,Evaluable,Application,Alta,El parser HPSG usado en el estudio es Nino.,COMPLETO,60,1
+23,P11-1141_W03-1025_0,Evaluable,Gap,Alta,Contrasta con trabajos previos que consideraban las palabras planas sin analizar su estructura.,COMPLETO,60,1
+24,W12-2032_N10-1018_5,Evaluable,Evidence,Alta,Respalda el dato de que más del 90% del uso de preposiciones y artículos es correcto.,COMPLETO,60,1
+25,N10-1021_D09-1079_0,Evaluable,Background,Alta,Ejemplo reciente de problemas en el modelo de streaming.,COMPLETO,60,1
+26,N13-1053_P11-1032_6,Evaluable,Comparison,Alta,Compara el lenguaje de reseñas negativas falsas con el de reseñas positivas falsas del trabajo citado.,COMPLETO,60,1
+27,W00-1206_W97-0713_0,Evaluable,Background,Alta,Enumera trabajos de resumen basados en estructura discursiva.,COMPLETO,60,1
+28,J08-2004_W04-3212_5,Evaluable,Evidence,Alta,Respalda la afirmación de que las características difieren entre detección y clasificación de argumentos.,COMPLETO,60,1
+29,P13-1077_P11-1064_0,Evaluable,Comparison,Alta,Señala trabajo similar previo y critica sus fallos frente al actual.,COMPLETO,60,1
+30,D11-1005_D08-1092_0,Evaluable,Background,Alta,Enumera enfoques de transferencia entre lenguas mediante restricciones en el aprendizaje.,COMPLETO,60,1
+31,W11-2119_D09-1147_0,Evaluable,Comparison,Alta,Relaciona el método con CoBLEU del trabajo citado y señala la diferencia (función diferenciable).,COMPLETO,60,1
+32,P09-1068_P08-1090_5,Evaluable,Comparison,Media,Contrasta cómo construyen esquemas (eventos) frente a las cadenas narrativas previas (slots de eventos).,COMPLETO,60,1
+33,W06-1208_J02-3004_2,Evaluable,Comparison,Alta,Compara sus resultados con los reportados por el trabajo citado.,COMPLETO,60,1
+34,D10-1084_P98-2188_3,Evaluable,Evidence,Alta,Justifica la elección de CRF y SVM-HMM por su efectividad mostrada previamente.,COMPLETO,60,1
+35,D13-1107_W07-0733_1,Evaluable,Comparison,Alta,Compara el método con sistemas adaptados a cada dominio.,COMPLETO,60,1
+36,D12-1001_P06-1111_0,Evaluable,Background,Alta,Cita métodos con poca supervisión manual como trabajo previo sobre el problema.,COMPLETO,60,1
+37,P06-1096_N03-1017_6,Evaluable,Comparison,Alta,Compara el modelo con Pharaoh y reporta la mejora.,COMPLETO,60,1
+38,W02-1019_P00-1056_1,Evaluable,Identification of the Originator,Alta,Atribuye la métrica AER a su fuente original ('introduced by').,COMPLETO,60,1
+39,S13-1044_D10-1030_1,Evaluable,Evidence,Media,Respalda la afirmación de que los argumentos correspondientes no llevan la misma etiqueta aunque los esquemas sean compatibles.,COMPLETO,60,1
+40,W12-4303_P11-3015_1,Evaluable,Application,Alta,Usan el conjunto de datos citado como punto de partida.,COMPLETO,60,1
+41,E12-1068_P08-1059_1,Evaluable,Improvement / Modification,Alta,Adaptan el trabajo citado y señalan su limitación.,COMPLETO,60,1
+42,N10-1080_N06-1014_0,Evaluable,Application,Alta,Usan el alineador Berkeley cross-EM.,COMPLETO,60,1
+43,W06-1640_P00-1023_0,Evaluable,Background,Media,Cita técnicas tradicionales de correferencia como contexto.,COMPLETO,60,1
+44,D09-1003_W04-3213_0,Evaluable,Gap,Alta,Señala la limitación del trabajo citado (pocos roles VerbNet) y la escasez de investigación semisupervisada.,COMPLETO,60,1
+45,D13-1125_S13-2077_0,Evaluable,Basis,Baja,La fórmula de prior polarity se toma de trabajos previos; podría ser Application.,COMPLETO,60,1
+46,D13-1108_P05-1034_1,Evaluable,Background,Alta,Enumera trabajos de modelos basados en dependencias.,COMPLETO,60,1
+47,D12-1085_P05-1013_1,Evaluable,Application,Alta,Usan el algoritmo de proyectivización descrito en el trabajo citado.,COMPLETO,60,1
+48,W13-3508_W08-1105_0,Evaluable,Background,Alta,Describe sistemas previos de compresión basados en aristas de dependencia.,COMPLETO,60,1
+49,P11-1002_N06-1020_0,Evaluable,Comparison,Alta,Contrasta su método con el auto-entrenamiento.,COMPLETO,60,1
+50,P07-1030_W04-2609_1,Evaluable,Background,Alta,Menciona trabajos que usan bases de datos como WordNet.,COMPLETO,60,1
+51,J13-4002_N07-1050_2,Evaluable,Background,Alta,Describe un parser previo para estructuras de dependencia con grado de arco acotado.,COMPLETO,60,1
+52,W12-5707_D08-1065_0,Evaluable,Background,Alta,Enumera trabajos de combinación de sistemas.,COMPLETO,60,1
+53,D12-1133_P05-1012_1,Evaluable,Comparison,Alta,Tabla que compara con otros parsers.,COMPLETO,60,1
+54,W13-0206_J88-2003_0,Evaluable,Background,Media,Resume lo que los autores citados destacan sobre 'when'.,COMPLETO,60,1
+55,P12-1027_P07-1106_1,Evaluable,Comparison,Alta,Tabla que compara el método con sistemas del estado del arte.,COMPLETO,60,1
+56,P05-1013_P03-1055_1,Evaluable,Comparison,Alta,Señala similitud con el enfoque del trabajo citado.,COMPLETO,60,1
+57,D13-1203_P10-2029_0,Evaluable,Background,Alta,Enumera sistemas de correferencia basados en aprendizaje.,COMPLETO,60,1
+58,N12-1018_P07-1126_0,Evaluable,Background,Alta,Ejemplo de investigación previa en anotación de imágenes con NLP.,COMPLETO,60,1
+59,D12-1105_W06-1638_0,Evaluable,Gap,Media,"Excepción notable que no logró mejoras sustanciales, lo que señala una limitación.",COMPLETO,60,1
+60,S10-1004_N04-4005_0,Evaluable,Background,Alta,Enumera sistemas recientes de extracción de frases clave.,COMPLETO,60,1
+61,N12-1052_P10-1131_1,Evaluable,Comparison,Alta,Compara los resultados base con enfoques no supervisados recientes.,COMPLETO,60,1
+62,P13-1160_N10-1122_0,Evaluable,Gap,Media,"Estudios existentes evalúan solo indirectamente, lo que justifica el nuevo conjunto de datos.",COMPLETO,60,1
+63,P09-1068_W04-3213_0,Evaluable,Gap,Media,Señala que intentos no supervisados previos requerían corpus semilla etiquetado.,COMPLETO,60,1
+64,J10-3003_N07-1071_0,Evaluable,Background,Media,Resume trabajo reciente sobre filtrado de inferencias incorrectas.,COMPLETO,60,1
+65,W07-1101_P05-2003_0,Evaluable,Further Reading,Alta,'see ... for a survey' remite a una revisión.,COMPLETO,60,1
+66,P12-1106_N06-1057_0,Evaluable,Background,Alta,Describe el enfoque de la evaluación de resúmenes en cobertura de contenido.,COMPLETO,60,1
+67,P05-1031_W03-2106_0,Evaluable,Evidence,Alta,Respalda la cifra de que las NSU son ~10% del diálogo.,COMPLETO,60,1
+68,P12-1111_N03-1033_0,Evaluable,Background,Media,Ejemplo de trabajos que usan conjuntos de rasgos ricos.,COMPLETO,60,1
+69,J95-4008_J94-4009_2,Evaluable,Further Reading,Media,Remite a la fuente para la justificación lingüística de la representación.,COMPLETO,60,1
+70,Q13-1012_P10-1001_2,Evaluable,Evidence,Alta,Respalda la afirmación de que los rasgos de orden superior son esenciales.,COMPLETO,60,1
+71,W09-0417_P07-2045_0,Evaluable,Application,Alta,Sistema base construido con Moses con configuración por defecto.,COMPLETO,60,1
+72,W06-2703_W03-0424_0,Evaluable,Application,Alta,Entrenan el etiquetador C&C con configuración por defecto.,COMPLETO,60,1
+73,P11-1158_N09-1063_2,Evaluable,Application,Media,Usan el algoritmo A* jerárquico del trabajo citado.,COMPLETO,60,1
+74,J99-4002_J93-3006_1,Evaluable,Basis,Media,Las condiciones de buena formación asumidas se basan en el trabajo citado.,COMPLETO,60,1
+75,W11-2143_N03-1017_0,Evaluable,Application,Alta,Extraen la gramática con las heurísticas estándar de SMT basado en frases.,COMPLETO,60,1
+76,W12-3138_W10-1708_0,Evaluable,Background,Alta,Resume trabajos previos que mostraron mejoras con sustitución.,COMPLETO,60,1
+77,W09-3513_W98-1005_0,Evaluable,Background,Alta,Enumera estudios de transliteración por idioma (árabe).,COMPLETO,60,1
+78,W05-0639_P02-1031_0,Evaluable,Background,Alta,Resume sistemas SRL previos que exploraron rasgos léxicos.,COMPLETO,60,1
+79,W09-2417_P86-1004_1,Evaluable,Comparison,Media,Contrasta el trabajo citado (léxicos especiales) con la alternativa propuesta de aprender información semántica.,COMPLETO,60,1
+80,W10-2006_P02-1026_1,Evaluable,Background,Media,Resume estudios previos que asumieron correlación lineal.,COMPLETO,60,1
+81,W13-3510_P09-1116_0,Evaluable,Comparison,Alta,Contrasta rasgos locales y superficiales del trabajo citado con los propios más profundos.,COMPLETO,60,1
+82,P12-2062_D09-1127_0,Evaluable,Background,Alta,Resume trabajo previo sobre traducción observada que mejora el análisis.,COMPLETO,60,1
+83,P06-2082_J04-3001_1,Evaluable,Background,Alta,Enumera trabajos de muestreo selectivo en PLN.,COMPLETO,60,1
+84,P05-1021_P98-2143_0,Evaluable,Background,Alta,Ejemplo de enfoques previos de resolución de anáfora con conocimiento limitado.,COMPLETO,60,1
+85,W08-0306_P06-1096_1,Evaluable,Evidence,Alta,Respalda la decisión de usar actualizaciones locales mediante el hallazgo reportado.,COMPLETO,60,1
+86,P13-4017_S12-1032_0,Evaluable,Background,Media,Describe las implementaciones del marco de puntuación en trabajos previos.,COMPLETO,60,1
+87,P10-1099_W06-1615_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los etiquetadores POS sufren caída fuera de dominio.,COMPLETO,60,1
+88,D13-1064_Q13-1015_1,Evaluable,Background,Alta,Enumera representaciones previas de predicados binarios.,COMPLETO,60,1
+89,W10-2102_P08-1105_1,Evaluable,Background,Alta,Describe lo que hizo el trabajo citado sobre recuperación de blogs.,COMPLETO,60,1
+90,W08-1116_W98-1411_1,Evaluable,Background,Alta,Presenta el antecedente histórico del primer planificador de texto estocástico.,COMPLETO,60,1
+91,P13-2026_N04-1019_0,Evaluable,Evidence,Alta,Respalda que el método produce rankings confiables de sistemas.,COMPLETO,60,1
+92,J13-4004_D09-1120_6,Evaluable,Comparison,Alta,Tabla que compara con otros resultados reportados.,COMPLETO,60,1
+93,P11-1126_P03-1021_0,Evaluable,Application,Alta,Usan MERT para ajustar los pesos.,COMPLETO,60,1
+94,W12-4512_W11-1921_0,Evaluable,Background,Alta,Enumera enfoques estadísticos de correferencia.,COMPLETO,60,1
+95,P10-1128_D08-1068_0,Evaluable,Background,Alta,Enumera investigaciones previas sobre pistas lingüísticas en aprendizaje automático.,COMPLETO,60,1
+96,P11-2035_P10-1110_0,Evaluable,Comparison,Alta,Compara rendimiento y velocidad con el sistema citado.,COMPLETO,60,1
+97,J03-1004_P95-1028_1,Evaluable,Background,Alta,Cita estudios computacionales sobre generación de alcance.,COMPLETO,60,1
+98,W09-1119_P98-2186_0,Evaluable,Comparison,Media,Notan que el buen desempeño de la política voraz coincide con lo observado en POS tagging.,COMPLETO,60,1
+99,W11-2132_P07-1004_0,Evaluable,Background,Alta,Describe trabajo de seguimiento que refinó el enfoque previo.,COMPLETO,60,1
+100,W12-1905_P11-2056_0,Evaluable,Evidence,Media,Respalda la afirmación de que se requieren muchos reinicios aleatorios.,COMPLETO,60,1

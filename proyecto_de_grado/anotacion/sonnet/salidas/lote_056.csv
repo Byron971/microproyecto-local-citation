@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W12-3150_J07-2003_2,Evaluable,Application,Alta,Uses the default Moses rule extraction settings taken from the cited work.,COMPLETO,56,1
+2,P89-1003_P86-1038_1,Evaluable,Basis,Media,The proof builds on the original logic of Kasper and Rounds to show NP-hardness.,COMPLETO,56,1
+3,D09-1017_E06-1039_0,Evaluable,Background,Alta,Cited in a list of prior sentiment summarization work.,COMPLETO,56,1
+4,W06-1203_W03-1812_3,Evaluable,Comparison,Alta,Compares the authors' method with the cited method applied to their materials.,COMPLETO,56,1
+5,N06-2010_W98-1501_0,Evaluable,Evidence,Media,Supports the claim that coreference resolution is fundamental to ambitious applications.,COMPLETO,56,1
+6,P06-1071_W05-1519_4,Evaluable,Comparison,Alta,Reports improvement over the baseline algorithm from the cited work.,COMPLETO,56,1
+7,W13-3817_P88-1012_5,Evaluable,Background,Media,Describes what the cited authors say about weights and discusses their example.,COMPLETO,56,1
+8,W07-0307_P03-1006_0,Evaluable,Application,Alta,Uses the AT&T GRM toolkit to encode FSMs.,COMPLETO,56,1
+9,W07-2216_E06-1011_4,Evaluable,Basis,Alta,Current study completes the picture by extending the cited FNP-hardness result to vertical Markovization.,COMPLETO,56,1
+10,D10-1038_N09-1042_0,Evaluable,Background,Alta,Cited as an example of topic models successful for monologue segmentation.,COMPLETO,56,1
+11,P06-2048_P03-1054_1,Evaluable,Comparison,Alta,Compares parser performance to the cited unlexicalized PCFG parser.,COMPLETO,56,1
+12,D12-1133_E06-1011_0,Evaluable,Background,Alta,Lists graph-based parsing models as background.,COMPLETO,56,1
+13,P09-1011_D08-1035_0,Evaluable,Comparison,Alta,Explicitly states similarity and difference of the segmentation aspect versus the cited models.,COMPLETO,56,1
+14,A94-1006_J93-1006_0,Evaluable,Background,Alta,Lists bilingual alignment methods and their uses.,COMPLETO,56,1
+15,W04-2406_W97-0322_2,Evaluable,Evidence,Alta,Cited findings support the decision to use average link clustering.,COMPLETO,56,1
+16,P13-2018_D12-1046_2,Evaluable,Evidence,Alta,Supports the claim that VV/NN confusion is a major source of parsing errors.,COMPLETO,56,1
+17,N09-2064_N07-1051_0,Evaluable,Comparison,Alta,Appears in a results table comparing parsers.,COMPLETO,56,1
+18,W10-0735_N06-1003_0,Evaluable,Background,Alta,Lists prior work using paraphrases in translation.,COMPLETO,56,1
+19,W13-5415_J91-4003_4,Evaluable,Background,Media,Describes examples from the cited work on constitutive roles and sense selection.,COMPLETO,56,1
+20,D12-1080_P11-1062_0,Evaluable,Background,Alta,Cited as an example of joint inference applied to other NLP problems.,COMPLETO,56,1
+21,W12-5702_W09-0424_0,Evaluable,Background,Alta,Lists hypothesis alignment strategies proposed in recent years.,COMPLETO,56,1
+22,D10-1026_P07-1065_0,Evaluable,Background,Alta,Describes recent advances in Bloom filter based language models.,COMPLETO,56,1
+23,W13-4916_D10-1004_0,Evaluable,Application,Alta,Applies the cited turboparser in the scoring step.,COMPLETO,56,1
+24,P10-3016_N06-1020_0,Evaluable,Background,Alta,Lists tasks where self-training was shown to help.,COMPLETO,56,1
+25,D12-1107_W11-2123_0,Evaluable,Background,Media,"Lists data structure compression work, contrasted with the present focus.",COMPLETO,56,1
+26,W12-2418_W11-0203_1,Evaluable,Comparison,Alta,States the task definition is similar to the one given in the cited work.,COMPLETO,56,1
+27,P10-2067_W08-0509_0,Evaluable,Improvement / Modification,Alta,Uses an extended version of MGIZA++ for constrained alignment.,COMPLETO,56,1
+28,D10-1002_N10-1003_0,Evaluable,Background,Media,Describes a recent finding of the cited work as context for the problem.,COMPLETO,56,1
+29,P09-1088_W06-3105_1,Evaluable,Evidence,Alta,Supports the claim about degenerate maximum likelihood solutions.,COMPLETO,56,1
+30,N07-1022_E06-1040_1,Evaluable,Evidence,Alta,Supports the claim that BLEU and NIST correlate with human judgments.,COMPLETO,56,1
+31,N12-1027_P10-1108_1,Evaluable,Background,Media,Cited as an example of backward use of the translation model.,COMPLETO,56,1
+32,N07-1072_P00-1065_1,Evaluable,Evidence,Media,Supports the importance of PP attachment for extracting semantic role patterns.,COMPLETO,56,1
+33,W13-0111_W11-0908_0,Evaluable,Background,Alta,Describes the cited later work as part of the literature review.,COMPLETO,56,1
+34,D11-1079_P08-1009_1,Evaluable,Evidence,Alta,Quotes the cited finding to support the argument about cohesion constraints.,COMPLETO,56,1
+35,W11-0328_W04-1213_0,Evaluable,Application,Alta,Uses the shared task data for NER experiments.,COMPLETO,56,1
+36,P04-1064_N03-2036_0,Evaluable,Background,Alta,Cited among works on phrase-based MT using word alignments.,COMPLETO,56,1
+37,W11-2815_P10-1159_0,Evaluable,Background,Media,Cited as an example of generating REs in the context of discourse.,COMPLETO,56,1
+38,P09-1021_P03-1021_1,Evaluable,Application,Alta,Uses MERT as the training method.,COMPLETO,56,1
+39,D13-1103_N03-1033_0,Evaluable,Application,Alta,The system uses the Stanford POS tagger.,COMPLETO,56,1
+40,W12-3307_P01-1064_3,Evaluable,Comparison,Alta,Appears in a table comparing results of algorithms.,COMPLETO,56,1
+41,W06-0803_P04-1036_0,Evaluable,Background,Alta,Cited for WSD as a related problem studied extensively.,COMPLETO,56,1
+42,E09-1017_P07-1044_0,Evaluable,Background,Media,"Related work description, contrasting approaches, mainly describing the cited work.",COMPLETO,56,1
+43,D12-1058_D08-1021_1,Evaluable,Application,Alta,Uses the grading scales proposed by the cited work.,COMPLETO,56,1
+44,P01-1031_W01-1616_0,Evaluable,Further Reading,Alta,Defers detailed analysis to the cited work.,COMPLETO,56,1
+45,D12-1011_P09-1113_0,Evaluable,Background,Alta,Lists previous studies on distant supervision.,COMPLETO,56,1
+46,D10-1094_N10-1018_1,Evaluable,Basis,Media,Training on artificial errors is in the spirit of the cited work.,COMPLETO,56,1
+47,N13-1121_D10-1021_0,Evaluable,Background,Alta,Lists work inferring user properties from content.,COMPLETO,56,1
+48,W10-4154_W04-0701_0,Evaluable,Background,Alta,Lists research on person name disambiguation.,COMPLETO,56,1
+49,W04-3244_A00-2004_0,Evaluable,Gap,Media,"Cited segmentation algorithms all use non-structural cosine similarity, motivating the present work.",COMPLETO,56,1
+50,W12-1901_P11-1145_1,Evaluable,Comparison,Alta,Contrasts the cited Bayesian method with the current model.,COMPLETO,56,1
+51,P13-2109_D10-1125_3,Evaluable,Comparison,Alta,Appears in a results table comparing accuracy and speed.,COMPLETO,56,1
+52,W00-1305_P97-1006_0,Evaluable,Background,Alta,Lists applications of finite mixture models.,COMPLETO,56,1
+53,P08-1049_P07-2045_0,Evaluable,Application,Alta,Experiments use the Moses SMT system.,COMPLETO,56,1
+54,W11-0311_D09-1020_1,Evaluable,Gap,Alta,Points out limitations (ad hoc manual rules) of the cited approach.,COMPLETO,56,1
+55,J05-3004_P02-1014_4,Evaluable,Evidence,Alta,Supports the claim that anaphoricity should be determined before antecedent selection.,COMPLETO,56,1
+56,D11-1001_W09-1406_6,Evaluable,Comparison,Media,Contrasts the authors' findings with cited results on joint modeling against weaker baselines.,COMPLETO,56,1
+57,P11-2011_P10-1092_1,Evaluable,Evidence,Media,Supports the claim that long-distance dissimilation patterns exist in phonology.,COMPLETO,56,1
+58,P12-2001_N09-2064_0,Evaluable,Application,Media,Uses constituent recombination framework to combine parsers.,COMPLETO,56,1
+59,W12-3122_W07-0718_1,Evaluable,Comparison,Alta,Compares the regression model against commonly used MT metrics.,COMPLETO,56,1
+60,P06-2066_W05-1505_1,Evaluable,Comparison,Alta,Confirms previous studies' findings on non-projectivity.,COMPLETO,56,1
+61,W08-1005_N07-1051_2,Evaluable,Further Reading,Media,Refers to the cited work for a relation of the approximation to other algorithms.,COMPLETO,56,1
+62,N07-1072_P06-1068_0,Evaluable,Evidence,Media,Cited result supports the claim that weighting keywords performs well.,COMPLETO,56,1
+63,W03-0210_P01-1014_0,Evaluable,Comparison,Alta,Explicitly contrasts the focus with the cited work.,COMPLETO,56,1
+64,W02-2101_W01-0813_1,Evaluable,Improvement / Modification,Alta,Expands the authors' previous tagset.,COMPLETO,56,1
+65,J11-1007_W02-2016_0,Evaluable,Background,Alta,Lists groups promoting transition-based models.,COMPLETO,56,1
+66,N06-1012_N01-1025_0,Evaluable,Comparison,Alta,Compares the model's results with those of the cited work.,COMPLETO,56,1
+67,P13-2140_P07-1005_0,Evaluable,Evidence,Media,Supports the claim that ambiguity harms machine translation.,COMPLETO,56,1
+68,W07-1512_J07-2003_0,Evaluable,Comparison,Alta,Contrasts the authors' unordered rules with context-free rules in cited frameworks.,COMPLETO,56,1
+69,W12-2036_W11-2842_0,Evaluable,Background,Media,Describes the authors' previous system as context for participation.,COMPLETO,56,1
+70,N12-1015_P10-1110_5,Evaluable,Comparison,Alta,Compares achieved accuracy as better than the cited result.,COMPLETO,56,1
+71,P98-2230_P96-1021_0,Evaluable,Background,Alta,Describes Wu's prior polynomial-time algorithm as motivation.,COMPLETO,56,1
+72,D13-1109_P10-2041_0,Evaluable,Further Reading,Media,Points to more sophisticated methods for identifying in-domain pages as possible alternatives.,COMPLETO,56,1
+73,D13-1198_N13-1133_4,Evaluable,Further Reading,Alta,Refers the reader to the cited work for a detailed description of features.,COMPLETO,56,1
+74,E12-1045_W05-0821_0,Evaluable,Evidence,Alta,Supports the claim that large LMs and reordering wipe out POS-LM improvements.,COMPLETO,56,1
+75,P11-1056_N07-1015_0,Evaluable,Gap,Media,"Notes that prior approaches assume given arguments, offering only a partial solution.",COMPLETO,56,1
+76,N12-1022_N12-1016_0,Evaluable,Further Reading,Media,Points to alternative metrics that may be better than the proposed one.,COMPLETO,56,1
+77,P11-2011_J95-4011_0,Evaluable,Background,Alta,Lists computational work on phonological tiers.,COMPLETO,56,1
+78,D09-1003_W04-2419_1,Evaluable,Evidence,Alta,Supports the claim that discriminative models outperform generative ones.,COMPLETO,56,1
+79,D13-1129_P05-1001_0,Evaluable,Basis,Media,The proposed approach builds on the feature transformation idea from the cited work.,COMPLETO,56,1
+80,J01-4003_P89-1031_2,Evaluable,Comparison,Alta,Contrasts the authors' evaluation procedure with that of the cited work.,COMPLETO,56,1
+81,P12-1023_P08-1068_0,Evaluable,Application,Alta,Follows the cited work's setup for POS tagging with jackknifing.,COMPLETO,56,1
+82,W99-0103_P83-1007_0,Evaluable,Identification of the Originator,Alta,"Credits Grosz, Joshi and Weinstein as developers of centering theory.",COMPLETO,56,1
+83,W11-2124_D08-1039_0,Evaluable,Background,Alta,Describes the cited work in related work.,COMPLETO,56,1
+84,N07-1046_W03-1508_1,Evaluable,Comparison,Alta,Compares improvements over a baseline similar to the cited approaches.,COMPLETO,56,1
+85,P11-1156_P08-1076_0,Evaluable,Evidence,Alta,Cited findings of log-linear relationship support the authors' observation.,COMPLETO,56,1
+86,W04-3215_P02-1042_4,Evaluable,Comparison,Alta,Contrasts the new supertagging method with the previous one in results.,COMPLETO,56,1
+87,W03-0108_A97-1051_0,Evaluable,Application,Alta,Uses the Alembic tagger to obtain tagged corpora.,COMPLETO,56,1
+88,W07-2322_W05-1617_0,Evaluable,Gap,Media,"Cited work shows incompatibilities between OWL and M-PIRO's model, motivating the new approach.",COMPLETO,56,1
+89,D13-1158_W04-1013_0,Evaluable,Application,Alta,ROUGE is cited as the evaluation metric.,COMPLETO,56,1
+90,W10-3804_W08-0409_0,Evaluable,Comparison,Alta,States the idea is similar to the cited work.,COMPLETO,56,1
+91,P05-1071_N04-4038_3,Evaluable,Comparison,Alta,"Compares evaluation with the cited work, noting results are not directly comparable.",COMPLETO,56,1
+92,W11-1902_P07-1068_0,Evaluable,Background,Alta,Lists previous coreference work using these databases.,COMPLETO,56,1
+93,P10-1001_P05-1012_2,Evaluable,Improvement / Modification,Alta,"Features based on previous work, extended with lexicalized versions.",COMPLETO,56,1
+94,Q13-1027_W05-0908_0,Evaluable,Application,Alta,Uses approximate randomization as in the cited work.,COMPLETO,56,1
+95,W07-2216_E06-1011_1,Evaluable,Basis,Alta,Explicitly extends the cited work's hardness result.,COMPLETO,56,1
+96,S13-1036_P09-1002_1,Evaluable,Background,Alta,Describes the cited findings and the proposal of USIM as context.,COMPLETO,56,1
+97,N12-1044_P11-1041_1,Evaluable,Application,Alta,Applies the cited reranking approach to the tasks.,COMPLETO,56,1
+98,P01-1019_P89-1005_0,Evaluable,Further Reading,Media,Refers to the cited work for the treatment of adjectives like former.,COMPLETO,56,1
+99,W96-0110_W96-0110_1,Evaluable,Further Reading,Alta,Refers interested readers to the cited work for details of the learning algorithm.,COMPLETO,56,1
+100,D10-1080_N10-1005_2,Evaluable,Evidence,Alta,Supports the claim that automatic break indexes can misalign with syntactic boundaries.,COMPLETO,56,1

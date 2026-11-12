@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D09-1060_E06-1011_0,Evaluable,Evidence,Alta,La cita respalda la afirmación concreta de que la exactitud de dependencias parciales es mucho mayor que la de árboles completos.,COMPLETO,50,1
+2,D13-1022_W06-3602_0,Evaluable,Further Reading,Alta,Remite al lector ('See') a fuentes para detalles de estructuras de datos de búsqueda.,COMPLETO,50,1
+3,P10-1049_W99-0604_1,Evaluable,Background,Media,Se menciona la extracción de tabla de frases por heurísticas de alineación como método previo con el que el modelo EM no compite.,COMPLETO,50,1
+4,W11-2168_P10-1052_0,Evaluable,Evidence,Media,Respalda la afirmación de que los modelos dispersos permiten optimizar los cálculos forward-backward.,COMPLETO,50,1
+5,P11-3015_W06-1613_0,Evaluable,Background,Media,"Describe el trabajo previo (corpus de 2829 oraciones, 12 clases) en la revisión de literatura; con matiz de limitación.",COMPLETO,50,1
+6,N13-1044_N13-1066_0,Evaluable,Background,Media,"Cita CODA como ortografía convencional propuesta y usada en PLN, aportando contexto.",COMPLETO,50,1
+7,J10-4006_P98-2127_3,Evaluable,Comparison,Media,"Contrasta la medida de Lin con el coseno, indicando que funciona mejor en algunas tareas.",COMPLETO,50,1
+8,D09-1161_N06-2033_1,Evaluable,Background,Media,"Describe un trabajo previo que mejora el esquema de votación por constituyentes, en la revisión de literatura.",COMPLETO,50,1
+9,D11-1044_D09-1023_0,Evaluable,Comparison,Media,"Contrasta el sistema actual con sistemas QG de traducción previos, avanzando sustancialmente sobre ellos.",COMPLETO,50,1
+10,P12-2007_N03-1017_0,Evaluable,Application,Alta,Usa la heurística de refinamiento grow-diag-final-and tal cual en su configuración experimental.,COMPLETO,50,1
+11,P13-2145_D12-1080_1,Evaluable,Gap,Alta,Señala la limitación del trabajo previo (solo oraciones con TE) para justificar la nueva fuente de información.,COMPLETO,50,1
+12,N13-1093_P05-1053_0,Evaluable,Improvement / Modification,Media,"Selecciona 27 de los 51 rasgos del trabajo citado para construir su conjunto de rasgos, adaptándolos.",COMPLETO,50,1
+13,A97-1041_P95-1053_0,Evaluable,Background,Alta,Enumera sistemas previos en la sección de trabajo relacionado.,COMPLETO,50,1
+14,W11-1804_W11-1808_0,Evaluable,Evidence,Media,Respalda el dato del 56% F-score del sistema FAUST como mejor resultado en la tarea.,COMPLETO,50,1
+15,P13-2136_P98-2193_0,Evaluable,Background,Alta,Enumera aplicaciones de proyección de anotación interlingüe en trabajo relacionado.,COMPLETO,50,1
+16,N13-1069_W10-0701_1,Evaluable,Background,Alta,Resume el contenido del trabajo citado en la sección de trabajo previo.,COMPLETO,50,1
+17,E09-1082_D08-1078_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la complejidad morfológica del finés dificulta alineación y traducción.,COMPLETO,50,1
+18,W03-0433_W02-2035_0,Evaluable,Evidence,Media,Sustenta la afirmación de que boosting permite modelos NER independientes del idioma con buen desempeño.,COMPLETO,50,1
+19,W08-1122_W01-0521_1,Evaluable,Evidence,Media,La sugerencia del citado se usa como explicación de los resultados observados.,COMPLETO,50,1
+20,W06-0302_W03-2102_0,Evaluable,Application,Alta,Usa el corpus MPQA para desarrollar y evaluar sus enfoques.,COMPLETO,50,1
+21,P11-2036_P09-2012_1,Evaluable,Comparison,Alta,Los resultados del trabajo citado se presentan en tabla junto a los propios para compararlos.,COMPLETO,50,1
+22,N12-1092_N10-1086_3,Evaluable,Comparison,Alta,Contrasta explícitamente el esquema de anotación del trabajo citado con el propio.,COMPLETO,50,1
+23,W04-1012_P03-1048_0,Evaluable,Evidence,Media,Una observación similar previa respalda que distintas medidas ordenan los resúmenes de forma distinta.,COMPLETO,50,1
+24,N12-1037_P11-4010_0,Evaluable,Comparison,Media,Establece una analogía entre BLAST para MT y el sistema propio para corrección de errores.,COMPLETO,50,1
+25,D13-1040_N06-1039_0,Evaluable,Background,Alta,Enumera enfoques previos de descubrimiento de relaciones.,COMPLETO,50,1
+26,W08-0113_W95-0107_0,Evaluable,Basis,Media,"Se apoya en el enfoque de chunking como etiquetado, base del método de representar tokens en capas.",COMPLETO,50,1
+27,W12-2020_P11-2088_0,Evaluable,Background,Alta,Enumera trabajos previos sobre utilidad de comentarios de revisión.,COMPLETO,50,1
+28,P11-1052_W04-1013_1,Evaluable,Application,Alta,Usa ROUGE como criterio principal de evaluación.,COMPLETO,50,1
+29,J12-2001_P07-1125_1,Evaluable,Background,Alta,Describe el trabajo previo sobre clasificación de hedges como literatura relacionada.,COMPLETO,50,1
+30,W10-2906_D08-1092_2,Evaluable,Basis,Media,"Parametriza la vista bilingüe con emparejamientos uno a uno como en el trabajo citado, base del modelo.",COMPLETO,50,1
+31,W12-4402_N03-1017_0,Evaluable,Identification of the Originator,Media,Indica que el enfoque SMT fue desarrollado inicialmente para traducción automática.,COMPLETO,50,1
+32,D08-1042_P08-1068_0,Evaluable,Background,Alta,Resume el progreso en parsers de dependencias.,COMPLETO,50,1
+33,J12-4005_J91-4003_2,Evaluable,Background,Alta,Presenta una postura teórica en la literatura sobre nominalizaciones.,COMPLETO,50,1
+34,P12-1095_N03-1017_0,Evaluable,Comparison,Media,Contrasta modelos discriminativos con los generativos convencionales descritos en la cita.,COMPLETO,50,1
+35,J02-2003_E95-1016_4,Evaluable,Comparison,Alta,Los enfoques citados se eligen como comparación en estimación basada en clases.,COMPLETO,50,1
+36,W06-1615_W96-0213_3,Evaluable,Comparison,Alta,El modelo citado aparece como línea base en la tabla de resultados comparados.,COMPLETO,50,1
+37,D10-1067_P07-1052_0,Evaluable,Background,Media,"Enumera trabajos de parsing supervisado como contexto, antes de contrastarlos con la tarea no supervisada.",COMPLETO,50,1
+38,D11-1075_P06-2027_1,Evaluable,Comparison,Alta,Contrasta explícitamente el objetivo del trabajo citado con el propio.,COMPLETO,50,1
+39,W13-5507_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford Parser para analizar las oraciones.,COMPLETO,50,1
+40,W08-0901_J08-3007_0,Evaluable,Further Reading,Alta,Remite a una visión general de estrategias de implementación de morfología de estados finitos.,COMPLETO,50,1
+41,P98-2221_P97-1047_0,Evaluable,Background,Alta,Cita sistemas SMT que emplean modelos de alineación basados en palabras.,COMPLETO,50,1
+42,D12-1015_P10-1139_0,Evaluable,Background,Alta,Enumera temas de investigación en análisis de sentimiento.,COMPLETO,50,1
+43,W07-1308_J01-3009_0,Evaluable,Basis,Alta,La discusión se enmarca en la teoría de sistemas de escritura de la obra citada.,COMPLETO,50,1
+44,D11-1042_W04-1013_0,Evaluable,Background,Media,Menciona ROUGE como medida estándar de facto en resumen automático.,COMPLETO,50,1
+45,W12-3153_D08-1090_2,Evaluable,Comparison,Alta,Contrasta con trabajo previo ('In contrast to previous work').,COMPLETO,50,1
+46,D09-1092_D08-1038_0,Evaluable,Background,Alta,Enumera aplicaciones de modelos de tópicos.,COMPLETO,50,1
+47,D13-1196_P07-1031_0,Evaluable,Application,Alta,Usa las anotaciones de estructura de frases nominales del recurso citado.,COMPLETO,50,1
+48,E06-1036_P97-1051_1,Evaluable,Comparison,Media,"Contrasta la noción de paralelismo propia, más amplia, con la definición semántica del trabajo citado.",COMPLETO,50,1
+49,P11-1003_P10-1146_0,Evaluable,Background,Media,Enumera sistemas SMT sintácticos para señalar su dependencia de alineaciones de palabras.,COMPLETO,50,1
+50,W05-1510_A00-2023_1,Evaluable,Further Reading,Media,Remite a la discusión detallada de las ventajas de bosques en generación.,COMPLETO,50,1
+51,D08-1107_N03-1033_0,Evaluable,Application,Alta,Experimenta con el Stanford Tagger como herramienta disponible.,COMPLETO,50,1
+52,W12-1634_W10-4356_6,Evaluable,Comparison,Alta,Compara la exactitud obtenida con la reportada en el trabajo previo.,COMPLETO,50,1
+53,W11-2701_P05-2003_0,Evaluable,Evidence,Media,Respalda la afirmación de que PMI es la mejor medida de extracción de colocaciones.,COMPLETO,50,1
+54,P13-1092_D11-1140_2,Evaluable,Comparison,Alta,Compara resultados propios con los sistemas ZC07 y FUBL.,COMPLETO,50,1
+55,W11-0221_N03-1027_0,Evaluable,Background,Alta,Enumera enfoques de adaptación de dominio en trabajo relacionado.,COMPLETO,50,1
+56,W11-0815_J98-4009_0,Evaluable,Evidence,Alta,Respalda la estimación sobre el número de MWEs en el léxico de un hablante nativo.,COMPLETO,50,1
+57,W07-2208_W04-0307_0,Evaluable,Background,Alta,Enumera trabajos sobre supertagging.,COMPLETO,50,1
+58,P08-1007_W07-0738_1,Evaluable,Background,Alta,Describe el trabajo previo que propuso usar roles semánticos para evaluar MT.,COMPLETO,50,1
+59,W06-3915_J88-2003_0,Evaluable,Basis,Media,Asume la estructura de núcleo de evento del trabajo citado como fundamento de la definición.,COMPLETO,50,1
+60,P08-1069_N06-1033_0,Evaluable,Background,Alta,Enumera trabajos de k-arización de SCFG como contexto.,COMPLETO,50,1
+61,N10-1147_P06-4020_0,Evaluable,Application,Alta,Usa el parser RASP para analizar el BNC.,COMPLETO,50,1
+62,J05-3002_N04-4001_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los resúmenes humanos combinan información de varios documentos.,COMPLETO,50,1
+63,S13-2031_P91-1034_0,Evaluable,Background,Media,Presenta antecedentes históricos de la desambiguación léxica como clasificación en SMT temprana.,COMPLETO,50,1
+64,W07-0210_W06-2801_2,Evaluable,Evidence,Media,Respalda la afirmación de que la asortatividad varía entre redes de documentos.,COMPLETO,50,1
+65,W11-2102_P03-1021_0,Evaluable,Application,Media,Usa el sistema SMT descrito en la cita para los experimentos.,COMPLETO,50,1
+66,P11-2010_N09-1022_0,Evaluable,Background,Media,Enumera tareas donde el modelo alfa-beta funcionó mejor.,COMPLETO,50,1
+67,P08-1035_E06-1038_1,Evaluable,Comparison,Alta,Contrasta el enfoque propio con trabajos previos que buscan soluciones globalmente óptimas.,COMPLETO,50,1
+68,Q13-1014_W11-2105_0,Evaluable,Application,Alta,Se implementan técnicas usadas en AMBER.,COMPLETO,50,1
+69,D10-1015_W05-0820_0,Evaluable,Application,Alta,Usa los datos inglés-finés de la tarea compartida 2005.,COMPLETO,50,1
+70,W13-4915_W06-2920_0,Evaluable,Application,Media,Emplea el formato de datos estándar de CoNLL-X como entrada de MaltParser.,COMPLETO,50,1
+71,W03-1313_W03-2416_0,Evaluable,Basis,Alta,Declara construir sobre trabajo previo ('we build on previous work').,COMPLETO,50,1
+72,D13-1079_P10-1014_0,Evaluable,Evidence,Media,Respalda el dato de rendimiento de sistemas basados en reglas para NER.,COMPLETO,50,1
+73,P07-1090_N03-1017_0,Evaluable,Background,Media,Describe el modelo básico de reordenamiento de frases como estado previo del área.,COMPLETO,50,1
+74,W10-2401_P04-1021_0,Evaluable,Background,Alta,Enumera trabajos previos sobre transliteración.,COMPLETO,50,1
+75,W06-0204_W06-0202_0,Evaluable,Evidence,Media,Un análisis previo respalda que el modelo de cadenas enlazadas es el más útil.,COMPLETO,50,1
+76,J04-3002_J94-2004_0,Evaluable,Background,Alta,Define la subjetividad con referencias generales.,COMPLETO,50,1
+77,P11-2018_W10-2910_5,Evaluable,Comparison,Media,"Relaciona los resultados actuales con los resultados previos propios, coincidiendo en la mejora de recall.",COMPLETO,50,1
+78,W00-1010_P94-1001_1,Evaluable,Background,Alta,Describe el modelo de obligaciones del trabajo citado en la sección de trabajo relacionado.,COMPLETO,50,1
+79,P08-1061_P06-1043_2,Evaluable,Comparison,Alta,Señala que los resultados no son directamente comparables con los del trabajo citado.,COMPLETO,50,1
+80,P13-1072_D11-1090_3,Evaluable,Comparison,Alta,El sistema citado aparece como línea base en la tabla de resultados.,COMPLETO,50,1
+81,P13-1039_P06-2027_0,Evaluable,Background,Alta,Enumera métodos heurísticos previos de inducción de plantillas.,COMPLETO,50,1
+82,W12-0507_E06-1025_0,Evaluable,Background,Alta,Enumera aplicaciones del análisis de opinión.,COMPLETO,50,1
+83,D08-1007_P98-2127_1,Evaluable,Application,Alta,Usa Minipar para analizar el corpus.,COMPLETO,50,1
+84,P13-2019_E06-1011_2,Evaluable,Application,Media,Implementa el parser de segundo orden con partes de hermanos del trabajo citado.,COMPLETO,50,1
+85,D11-1042_P07-1038_0,Evaluable,Background,Alta,Enumera enfoques basados en regresión para evaluación de MT.,COMPLETO,50,1
+86,N06-1003_N03-1017_0,Evaluable,Background,Alta,Enumera trabajos sobre traducción basada en frases.,COMPLETO,50,1
+87,D12-1058_P05-1074_0,Evaluable,Identification of the Originator,Media,Reconoce el trabajo que estableció los corpus paralelos bilingües como fuente de paráfrasis.,COMPLETO,50,1
+88,W10-2401_N03-1017_0,Evaluable,Identification of the Originator,Media,Indica que el enfoque fue desarrollado inicialmente para traducción automática.,COMPLETO,50,1
+89,P10-1041_P05-1017_3,Evaluable,Comparison,Alta,Compara explícitamente la exactitud propia con la del trabajo citado.,COMPLETO,50,1
+90,D12-1131_N09-1068_0,Evaluable,Background,Alta,Enumera enfoques de adaptación de parsers.,COMPLETO,50,1
+91,W11-0118_W10-1809_1,Evaluable,Further Reading,Media,Remite a las guías de anotación del trabajo citado para detalles sobre cuantificación.,COMPLETO,50,1
+92,P12-1018_P11-1064_3,Evaluable,Further Reading,Media,Remite a la fuente para la especificación bayesiana de Pt.,COMPLETO,50,1
+93,D12-1039_W11-2210_4,Evaluable,Evidence,Alta,Respalda la afirmación de que los enfoques de diccionario tienen alta precisión y bajo recall.,COMPLETO,50,1
+94,W09-0427_W06-3115_1,Evaluable,Comparison,Alta,Contrasta explícitamente el enfoque propio con el del trabajo citado.,COMPLETO,50,1
+95,Q13-1011_D11-1054_0,Evaluable,Background,Alta,Enumera aplicaciones de SMT.,COMPLETO,50,1
+96,E12-1042_P96-1024_0,Evaluable,Evidence,Alta,Respalda que la decodificación MBR da buen desempeño empírico.,COMPLETO,50,1
+97,J13-4008_P10-2012_1,Evaluable,Evidence,Alta,Respalda la afirmación de que los corpus de eye-tracking son el referente para modelos de procesamiento humano.,COMPLETO,50,1
+98,W12-3130_P08-1059_0,Evaluable,Evidence,Media,Respalda que la complejidad del espacio de búsqueda aumenta con información detallada.,COMPLETO,50,1
+99,J02-4001_W00-0400_0,Evaluable,Further Reading,Alta,Remite al lector a un libro como introducción al estado del arte.,COMPLETO,50,1
+100,N12-1010_W11-2019_0,Evaluable,Background,Media,"Menciona otro trabajo reciente que incorpora la encuesta, contextualizando su uso.",COMPLETO,50,1

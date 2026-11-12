@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P12-1064_P10-1050_2,Evaluable,Evidence,Media,The cited work is used to support the complexity proof of the algorithm.,COMPLETO,47,1
+2,W09-1412_P05-1012_1,Evaluable,Application,Media,Dependency parse features are used directly from the cited work's parser.,COMPLETO,47,1
+3,W05-0611_W95-0107_0,Evaluable,Identification of the Originator,Alta,'as introduced by' attributes the IOB coding to its source.,COMPLETO,47,1
+4,D10-1098_P01-1039_0,Evaluable,Background,Alta,It lists prior work on NER over informal text.,COMPLETO,47,1
+5,W09-3926_P97-1035_0,Evaluable,Identification of the Originator,Alta,'framework introduced by' credits the original source of PARADISE.,COMPLETO,47,1
+6,P08-1061_N06-1020_1,Evaluable,Comparison,Alta,It explicitly contrasts the current approach with the cited self-training technique.,COMPLETO,47,1
+7,D10-1030_D08-1092_0,Evaluable,Background,Media,The text reviews previous research showing that bilingual constraints help parsing.,COMPLETO,47,1
+8,W10-2406_W09-3510_0,Evaluable,Evidence,Alta,The cited work supports the claim that BLEU is a reasonable proxy.,COMPLETO,47,1
+9,P11-1127_D08-1065_0,Evaluable,Background,Alta,It describes prior techniques for widening the MBR search space.,COMPLETO,47,1
+10,S07-1062_W06-2909_1,Evaluable,Background,Media,It describes the structured features defined in previous work and used successfully with tree kernels.,COMPLETO,47,1
+11,P05-1012_N03-1028_0,Evaluable,Evidence,Media,It supports the claim that discriminative models perform better in tasks such as shallow parsing.,COMPLETO,47,1
+12,E12-1073_P01-1008_0,Evaluable,Background,Alta,It describes what prior work did in paraphrase acquisition.,COMPLETO,47,1
+13,W06-2908_P04-1043_0,Evaluable,Background,Alta,It lists prior studies on semantic role labeling.,COMPLETO,47,1
+14,D09-1044_W04-1017_5,Evaluable,Application,Alta,It uses the same frequency list resource derived by the cited work.,COMPLETO,47,1
+15,P06-1052_P05-3003_4,Evaluable,Application,Alta,It uses the utool tool directly to convert MRS to dominance graphs.,COMPLETO,47,1
+16,P13-1085_W05-1002_0,Evaluable,Background,Alta,"It lists tasks that use predicate-argument information, including SRL.",COMPLETO,47,1
+17,P11-1104_N04-4026_0,Evaluable,Background,Alta,It enumerates previous methods that model phrase movement.,COMPLETO,47,1
+18,D11-1017_P06-1055_1,Evaluable,Application,Alta,The BerkeleyParser is run and its output used as a comparison system.,COMPLETO,47,1
+19,W11-1912_P10-1142_0,Evaluable,Evidence,Media,The cited survey supports the claim about the mention-pair model's flaws.,COMPLETO,47,1
+20,D09-1038_J07-2003_2,Evaluable,Application,Alta,"The pruning strategy is similar to cube pruning of the cited work, used directly.",COMPLETO,47,1
+21,W12-3307_P03-1071_0,Evaluable,Application,Alta,It uses the WSJ corpus provided by the cited work as an evaluation dataset.,COMPLETO,47,1
+22,P13-1012_P10-2029_0,Evaluable,Comparison,Alta,It explicitly contrasts the model with classical pairwise systems.,COMPLETO,47,1
+23,W12-0704_W09-0435_2,Evaluable,Evidence,Alta,The cited work supports the claim about using left-wildcard rules.,COMPLETO,47,1
+24,D12-1129_W06-2609_0,Evaluable,Gap,Media,"It reviews pattern-based approaches and contrasts them with the current joint bootstrapping, implying a limitation.",COMPLETO,47,1
+25,N10-1079_N03-1017_1,Evaluable,Further Reading,Alta,'see ... for more details' directs the reader to the source.,COMPLETO,47,1
+26,J04-3002_P99-1004_0,Evaluable,Background,Media,It explains the general concept of distributional similarity.,COMPLETO,47,1
+27,E12-1009_P08-1068_0,Evaluable,Comparison,Alta,The cited result appears in a results table compared against the authors' scores.,COMPLETO,47,1
+28,P99-1013_P99-1013_0,Evaluable,Further Reading,Alta,It points to an extended version containing the omitted proofs.,COMPLETO,47,1
+29,W12-3205_N09-1042_0,Evaluable,Background,Alta,It lists methods used for topic segmentation.,COMPLETO,47,1
+30,W00-1908_W95-0107_0,Evaluable,Background,Media,"It mentions other evaluations such as chunking, noting they are not comparable.",COMPLETO,47,1
+31,N13-1121_W12-2108_3,Evaluable,Background,Media,It describes a corpus released recently by the cited work in the language ID area.,COMPLETO,47,1
+32,D11-1034_N09-4002_0,Evaluable,Evidence,Media,The cited work supports the commonly held assumption that more data is better.,COMPLETO,47,1
+33,P13-2063_W96-0213_0,Evaluable,Application,Alta,Labellers are trained with maximum-entropy models following the cited work.,COMPLETO,47,1
+34,J08-4004_W04-2327_1,Evaluable,Evidence,Alta,The authors' earlier work supports the claim that values above 0.8 ensure quality.,COMPLETO,47,1
+35,W12-3404_P11-1112_1,Evaluable,Application,Media,It follows common practice in assuming oracle argument identification.,COMPLETO,47,1
+36,W12-1506_P98-1116_0,Evaluable,Background,Alta,It lists early work in stochastic generation.,COMPLETO,47,1
+37,N12-1051_P05-1014_0,Evaluable,Background,Alta,It lists applications that benefit from lexical resources.,COMPLETO,47,1
+38,N13-1056_W02-0902_0,Evaluable,Background,Alta,It summarizes previous work on signals for bilingual lexicon induction.,COMPLETO,47,1
+39,P93-1010_P88-1012_1,Evaluable,Basis,Media,The authors use the default conditional and axioms formalized in the cited work as the foundation of their framework.,COMPLETO,47,1
+40,P06-2089_W05-1513_3,Evaluable,Basis,Alta,The approach is an extension of the cited work.,COMPLETO,47,1
+41,W11-2035_N06-2010_1,Evaluable,Comparison,Alta,It compares results and corpus differences with the cited work.,COMPLETO,47,1
+42,W13-0602_J91-4003_0,Evaluable,Background,Media,It points to the notion of co-composition in Generative Lexicon as a related point of contact.,COMPLETO,47,1
+43,D12-1039_P11-1038_1,Evaluable,Gap,Media,It describes cascaded approaches and criticizes them for poor identification performance.,COMPLETO,47,1
+44,D10-1018_N06-1014_0,Evaluable,Application,Alta,The Berkeley aligner is used to align the training bitext.,COMPLETO,47,1
+45,W11-2402_W06-1621_0,Evaluable,Evidence,Media,The cited work supports the usual assumption that every hypothesis term must be entailed.,COMPLETO,47,1
+46,W03-1024_N01-1025_0,Evaluable,Evidence,Alta,"It supports the claim that SVMs perform well in NLP tasks, justifying the choice of SVM.",COMPLETO,47,1
+47,P13-2021_P09-2012_1,Evaluable,Basis,Alta,The model extends earlier work on Bayesian TSG induction.,COMPLETO,47,1
+48,W12-1909_W12-1912_1,Evaluable,Comparison,Alta,"It compares system performance across references, noting which system wins.",COMPLETO,47,1
+49,P11-2029_D10-1052_0,Evaluable,Background,Alta,It lists studies in the supervised word alignment line of work.,COMPLETO,47,1
+50,N06-2032_N03-3009_1,Evaluable,Comparison,Alta,It compares the authors' Pk and WD scores with the cited work's reported scores.,COMPLETO,47,1
+51,N09-1034_P08-2014_2,Evaluable,Background,Media,It notes that the ACC measure was used in prior work.,COMPLETO,47,1
+52,P07-1051_E03-1005_2,Evaluable,Evidence,Alta,The cited DOP result supports the claim that parser accuracy drops across domains.,COMPLETO,47,1
+53,W07-2204_P06-1043_0,Evaluable,Background,Alta,It presents prior research showing self-training helps reranking parsers.,COMPLETO,47,1
+54,N12-1023_D11-1125_1,Evaluable,Gap,Alta,"The cited work showed that MERT struggles with many parameters, a limitation motivating this work.",COMPLETO,47,1
+55,N13-1115_N12-1026_1,Evaluable,Background,Alta,It lists recent research directions in SMT parameter tuning.,COMPLETO,47,1
+56,P07-2009_P04-1014_2,Evaluable,Evidence,Media,"The cited work demonstrates the speed gains from supertagging, supporting the claim.",COMPLETO,47,1
+57,P13-1104_P09-1040_3,Evaluable,Comparison,Alta,It relates other transition-based algorithms to the proposed one by similarity of approach.,COMPLETO,47,1
+58,W12-3150_J07-2003_1,Evaluable,Application,Alta,Cube pruning is applied directly to populate the stacks.,COMPLETO,47,1
+59,W11-2140_N03-1017_0,Evaluable,Application,Alta,The grow-diag-final-and symmetrization method is used directly.,COMPLETO,47,1
+60,D12-1125_P08-1068_0,Evaluable,Evidence,Media,The cited work supports the claim that clustering has been used successfully in parsing.,COMPLETO,47,1
+61,D08-1103_P02-1047_0,Evaluable,Evidence,Alta,It supports the claim that antonyms often indicate contrast.,COMPLETO,47,1
+62,D13-1144_W13-0907_1,Evaluable,Comparison,Alta,It compares the authors' results against the previous score from the cited work.,COMPLETO,47,1
+63,W11-0313_D09-1009_0,Evaluable,Evidence,Alta,Prior work supports the claim that combining instance and feature labeling reduces annotation cost.,COMPLETO,47,1
+64,P06-1137_J93-3006_0,Evaluable,Background,Media,It introduces unification grammars with citations on their origin and description.,COMPLETO,47,1
+65,W03-1017_J04-3002_3,Evaluable,Comparison,Alta,It compares the classifier's performance with the accuracy reported in the cited work.,COMPLETO,47,1
+66,W07-1211_W06-0202_0,Evaluable,Evidence,Alta,The cited findings support the claim that the pattern model choice matters for IE.,COMPLETO,47,1
+67,P06-1046_W02-0908_1,Evaluable,Background,Alta,"It describes the method of the cited work, which uses canonical attributes.",COMPLETO,47,1
+68,S10-1056_W09-2414_1,Evaluable,Basis,Media,The approach rests on the assumption elaborated in the cited work.,COMPLETO,47,1
+69,N13-1139_P09-1015_2,Evaluable,Application,Alta,"The data was processed to match the cited work's setup, reusing their dataset.",COMPLETO,47,1
+70,P05-1003_N03-1028_1,Evaluable,Evidence,Alta,"The cited work shows gradient-based algorithms converge faster, supporting the claim.",COMPLETO,47,1
+71,N09-1046_P08-1115_3,Evaluable,Background,Alta,It summarizes prior work using lattices for segmentation alternatives.,COMPLETO,47,1
+72,E12-1047_N10-1118_3,Evaluable,Evidence,Alta,The citation supports the claim that obtaining optimal binarizations is exponential.,COMPLETO,47,1
+73,P13-1162_W12-3810_2,Evaluable,Background,Alta,It lists prior work on subjectivity detection.,COMPLETO,47,1
+74,D13-1121_E03-1040_0,Evaluable,Background,Alta,It lists researchers working on automatic verb classification.,COMPLETO,47,1
+75,D09-1034_P08-2002_2,Evaluable,Comparison,Alta,The results are described as consistent with those of the cited work.,COMPLETO,47,1
+76,P99-1011_P94-1022_0,Evaluable,Evidence,Alta,The cited regular form for TAGs supports the argument about generative capacity.,COMPLETO,47,1
+77,J10-2004_P03-1054_1,Evaluable,Evidence,Alta,"The cited work shows that refining VP and IN improves parsing, justifying the choice.",COMPLETO,47,1
+78,W10-1406_P09-2012_1,Evaluable,Background,Alta,It reviews recent work applying nonparametric learning to TSG induction.,COMPLETO,47,1
+79,D13-1039_D11-1049_0,Evaluable,Background,Alta,It lists methods for open-domain relation acquisition.,COMPLETO,47,1
+80,P07-1119_W98-1005_1,Evaluable,Comparison,Alta,It explicitly contrasts the transducer with those of the cited work.,COMPLETO,47,1
+81,W12-3710_P11-2065_2,Evaluable,Basis,Media,The durational features are inspired by conversation analysis in the cited work.,COMPLETO,47,1
+82,E12-1054_W10-1004_0,Evaluable,Evidence,Alta,The cited work supports the claim that error annotation is difficult and costly.,COMPLETO,47,1
+83,D13-1044_P06-1051_0,Evaluable,Gap,Alta,It notes the cited solution is too computationally expensive for large QA datasets.,COMPLETO,47,1
+84,P99-1017_E91-1028_1,Evaluable,Background,Media,It describes an early extension of the RE algorithms to relations.,COMPLETO,47,1
+85,W13-1738_N04-3002_0,Evaluable,Background,Alta,It lists tutorial dialogue systems as prior work.,COMPLETO,47,1
+86,P12-1014_P09-1010_0,Evaluable,Background,Alta,It places the work within the grounded language acquisition literature.,COMPLETO,47,1
+87,P05-1032_N03-1017_1,Evaluable,Background,Media,It reports the cited work's suggestion on limiting phrase length.,COMPLETO,47,1
+88,W04-0907_J02-3004_0,Evaluable,Comparison,Media,It likens the approach to the cited work's use of surface information for nominalization disambiguation.,COMPLETO,47,1
+89,W12-2513_W10-1803_3,Evaluable,Further Reading,Alta,'please refer to' directs the reader for details on other subcategories.,COMPLETO,47,1
+90,D10-1064_P09-1089_0,Evaluable,Background,Alta,It summarizes prior work showing paraphrasing gains in translation.,COMPLETO,47,1
+91,N13-1140_P11-1072_0,Evaluable,Background,Alta,It lists prior hybrid models in speech recognition.,COMPLETO,47,1
+92,W13-2213_N13-1001_3,Evaluable,Evidence,Alta,The cited experiments support the claim that MML filtering lowers BLEU in some cases.,COMPLETO,47,1
+93,D10-1091_W09-0437_4,Evaluable,Comparison,Alta,It states the conclusion is shared with the cited work.,COMPLETO,47,1
+94,P12-1075_P04-1053_1,Evaluable,Background,Alta,It describes the clustering approach of the cited work.,COMPLETO,47,1
+95,D11-1017_W01-0521_0,Evaluable,Evidence,Alta,The cited work supports the observation that parser performance varies across domains.,COMPLETO,47,1
+96,W06-1636_P03-1054_8,Evaluable,Comparison,Alta,It compares the model's performance with those of the cited work.,COMPLETO,47,1
+97,S12-1081_S12-1051_0,Evaluable,Background,Media,It refers to the STS task for which the systems were entered.,COMPLETO,47,1
+98,W12-4402_D08-1037_0,Evaluable,Background,Alta,It lists previous research efforts on transliteration.,COMPLETO,47,1
+99,W13-0114_P91-1003_0,Evaluable,Background,Alta,It describes early studies treating implicit arguments as anaphora or coreference.,COMPLETO,47,1
+100,P09-1073_W04-3239_0,Evaluable,Comparison,Media,It contrasts the features used with the Bact syntactic pattern learning of the cited work.,COMPLETO,47,1
