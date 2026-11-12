@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P09-1114_P04-1054_0,Evaluable,Background,Alta,Describes the state of the art in relation extraction with supervised methods.,COMPLETO,105,1
+2,J11-4005_A92-1021_0,Evaluable,Application,Alta,The Brill tagger is used as-is for POS tagging.,COMPLETO,105,1
+3,P10-1147_W06-3105_0,Evaluable,Comparison,Media,"Cited models are contrasted with the current one: they stipulate a segmentation, whereas this model does not.",COMPLETO,105,1
+4,P09-1042_P05-1013_0,Evaluable,Background,Alta,Enumerates supervised dependency parsing approaches as background.,COMPLETO,105,1
+5,P10-1035_P08-1038_0,Evaluable,Further Reading,Media,"Footnote pointing to a work that argues for adding the D combinator to CCG, which the text does not develop.",COMPLETO,105,1
+6,W06-2924_W99-0707_0,Evaluable,Comparison,Media,Contrasts the present work with earlier work (it could compare fewer learner configurations).,COMPLETO,105,1
+7,P05-1066_P03-1011_0,Evaluable,Background,Alta,Lists work on syntax in SMT as the context for the paper.,COMPLETO,105,1
+8,J13-4006_W10-1811_0,Evaluable,Evidence,Alta,Supports the specific claim that the simple rule recovers only 88% of PropBank arguments.,COMPLETO,105,1
+9,W01-0719_W95-0107_0,Evaluable,Application,Alta,Uses the Ramshaw and Marcus base NP chunker as a tool.,COMPLETO,105,1
+10,W10-2419_W02-1201_1,Evaluable,Background,Alta,Describes earlier NER work on Urdu as part of the history of the area.,COMPLETO,105,1
+11,W11-0410_W05-1306_0,Evaluable,Background,Alta,Lists corpus-linguistics publications on annotation science.,COMPLETO,105,1
+12,W02-2004_W01-0726_0,Evaluable,Further Reading,Alta,Refers the reader to sources for applications of boosting to NLP.,COMPLETO,105,1
+13,J05-4002_P91-1030_0,Evaluable,Background,Media,Describes a prior observation about PP attachment that sets up the problem.,COMPLETO,105,1
+14,W11-2126_W06-1600_0,Evaluable,Comparison,Media,Explicitly says the feature is similar to the one used in the cited work.,COMPLETO,105,1
+15,P07-2040_P86-1031_0,Evaluable,Application,Alta,The authors use centering theory directly to determine referability of noun phrases.,COMPLETO,105,1
+16,P11-1084_N03-1017_0,Evaluable,Application,Alta,Standard phrase extraction heuristics from the cited work are applied.,COMPLETO,105,1
+17,P09-1103_P03-2041_1,Evaluable,Basis,Media,The proposed grammar builds on and covers earlier tree-based alignment grammars.,COMPLETO,105,1
+18,D10-1119_P06-2034_0,Evaluable,Background,Alta,Cites related approaches to semantic parsing that are not logic-based.,COMPLETO,105,1
+19,P11-2069_P08-1089_0,Evaluable,Further Reading,Media,Points to work on paraphrase pattern acquisition as an example for future work.,COMPLETO,105,1
+20,W13-2117_P11-1062_1,Evaluable,Comparison,Media,Says the supervised approach is similar to previous approaches in TE.,COMPLETO,105,1
+21,P11-1012_P07-1034_2,Evaluable,Background,Alta,Related-work overview of cross-domain transfer.,COMPLETO,105,1
+22,W09-3722_S07-1016_1,Evaluable,Comparison,Alta,Own results are compared with those provided by the task organizers.,COMPLETO,105,1
+23,D10-1003_P08-1109_0,Evaluable,Gap,Alta,Highlights a limitation of current parsers (they use only intra-sentential features) to motivate the work.,COMPLETO,105,1
+24,W13-2515_P11-1020_1,Evaluable,Evidence,Media,Supports the claim that the metrics correlate highly with human judgments.,COMPLETO,105,1
+25,W13-2708_P10-4005_0,Evaluable,Gap,Alta,Notes WebLicht's limitation for social scientists to justify the authors' tool.,COMPLETO,105,1
+26,E06-1045_E06-1040_1,Evaluable,Comparison,Media,Relates a possible finding of this work to the earlier finding that subjects preferred generated displays.,COMPLETO,105,1
+27,P10-3010_P06-2041_0,Evaluable,Background,Alta,Reviews margin-based learning approaches in parsing.,COMPLETO,105,1
+28,W09-0607_E06-2020_0,Evaluable,Background,Alta,Lists recent NLG work on georeferenced data.,COMPLETO,105,1
+29,P12-2011_P11-1145_0,Evaluable,Background,Alta,Lists techniques used for semantic representation.,COMPLETO,105,1
+30,W10-4010_W04-1013_0,Evaluable,Application,Alta,ROUGE metrics are used to evaluate the summaries.,COMPLETO,105,1
+31,P10-1152_P08-2007_0,Evaluable,Background,Alta,Lists settings where Viterbi EM has been used.,COMPLETO,105,1
+32,E97-1063_W97-0207_1,Evaluable,Evidence,Alta,Supports the claim that frequent words are translated less consistently.,COMPLETO,105,1
+33,W09-3308_N09-4006_0,Evaluable,Background,Alta,Lists labeled data resources as examples.,COMPLETO,105,1
+34,W10-2304_S01-1005_0,Evaluable,Background,Alta,Mentions Senseval evaluation campaigns as context for WSD.,COMPLETO,105,1
+35,Q13-1006_P07-1049_1,Evaluable,Comparison,Alta,The authors' models are compared against the cited parser's performance.,COMPLETO,105,1
+36,P07-1010_P03-1004_0,Evaluable,Background,Media,Describes the PKI method as existing prior work on fast kernel computation.,COMPLETO,105,1
+37,W11-0604_W01-0521_0,Evaluable,Evidence,Alta,Cited work supports the claim of diminishing returns of lexicalization.,COMPLETO,105,1
+38,E97-1030_W95-0108_0,Evaluable,Background,Alta,Related-work description of a mixture approach.,COMPLETO,105,1
+39,N09-2004_P01-1030_0,Evaluable,Comparison,Alta,Compares the two-pass approach with ReWrite's greedy reordering.,COMPLETO,105,1
+40,D13-1111_N12-1059_3,Evaluable,Comparison,Alta,Contrasts the computational expense of this approach with the more efficient cited method.,COMPLETO,105,1
+41,P06-1071_N01-1016_0,Evaluable,Application,Media,The authors follow the cited convention for dividing disfluent utterances.,COMPLETO,105,1
+42,W12-2903_P03-1054_0,Evaluable,Application,Alta,The Stanford parser is used for parsing.,COMPLETO,105,1
+43,E06-1015_P00-1065_2,Evaluable,Application,Alta,Uses the standard features defined in the cited work.,COMPLETO,105,1
+44,P09-1108_P06-1055_1,Evaluable,Application,Alta,Experiments are run with the cited state-split grammars.,COMPLETO,105,1
+45,W03-0416_P98-2124_7,Evaluable,Comparison,Alta,Contrasts the top-down strategy with the bottom-up approaches of the cited works.,COMPLETO,105,1
+46,W11-2843_N10-1018_1,Evaluable,Evidence,Alta,Supports the claim that mistakes of non-native speakers are systematic and depend on L1.,COMPLETO,105,1
+47,D09-1093_P00-1037_0,Evaluable,Background,Alta,Reviews prior work on spelling correction.,COMPLETO,105,1
+48,N12-1045_P06-1124_0,Evaluable,Background,Alta,Describes the popularity of nonparametric Bayesian modeling in NLP.,COMPLETO,105,1
+49,P10-1139_W06-1641_0,Evaluable,Background,Alta,Describes prior work on opinion retrieval models.,COMPLETO,105,1
+50,W09-1216_P00-1065_0,Evaluable,Identification of the Originator,Alta,Says most of these features were introduced by the cited work.,COMPLETO,105,1
+51,N13-1085_W11-1406_0,Evaluable,Background,Media,Introduces WCPM as an existing measure of reading level.,COMPLETO,105,1
+52,W13-3518_N07-1049_0,Evaluable,Background,Alta,Lists approaches to the problem of greedy parsers.,COMPLETO,105,1
+53,P13-1162_W10-0719_0,Evaluable,Evidence,Alta,"Supports the claim that the test is effective in eliciting attentiveness, justifying the procedure.",COMPLETO,105,1
+54,P08-1078_N07-1071_3,Evaluable,Application,Alta,Applies the final binary match score as presented in the cited work.,COMPLETO,105,1
+55,P01-1064_A00-2004_1,Evaluable,Background,Alta,Describes related work on measuring cohesion/similarity.,COMPLETO,105,1
+56,D13-1018_P10-1134_2,Evaluable,Background,Alta,Describes prior work on definition extraction in related work.,COMPLETO,105,1
+57,W03-0433_N01-1006_0,Evaluable,Application,Alta,The fnTBL toolkit is used for the experiments.,COMPLETO,105,1
+58,S07-1052_E06-1011_0,Evaluable,Application,Alta,MSTParser is used to parse the data.,COMPLETO,105,1
+59,P13-1050_P03-1003_0,Evaluable,Background,Alta,Enumerates prior QA approaches.,COMPLETO,105,1
+60,P13-2008_N03-1017_0,Evaluable,Comparison,Media,The feature is modeled similarly to the cited distortion model.,COMPLETO,105,1
+61,N10-1130_W09-3801_0,Evaluable,Further Reading,Media,"The 'see, for example' phrasing refers the reader to a source for a known construction.",COMPLETO,105,1
+62,W01-1611_P94-1001_0,Evaluable,Basis,Media,"Obligations as motivation for action come from the cited work, on which the framework builds.",COMPLETO,105,1
+63,W13-4008_N12-1072_0,Evaluable,Background,Alta,Related-work description of approaches using dialogue structure.,COMPLETO,105,1
+64,W10-2915_W09-0424_1,Evaluable,Application,Alta,The Joshua decoder is used as is.,COMPLETO,105,1
+65,W13-2229_W13-3308_2,Evaluable,Comparison,Alta,Contrasts the results of the cited works with each other and with the present setup.,COMPLETO,105,1
+66,D12-1073_P11-2118_0,Evaluable,Background,Alta,"Describes hLLDA, including its limitations, as prior work.",COMPLETO,105,1
+67,J13-4004_P03-1054_0,Evaluable,Application,Alta,The Stanford parser is used to parse documents.,COMPLETO,105,1
+68,P07-1003_W05-0812_0,Evaluable,Background,Alta,Lists prior work addressing word alignment and syntax.,COMPLETO,105,1
+69,P10-1049_W06-3105_2,Evaluable,Comparison,Alta,States that the present work differs from the cited work.,COMPLETO,105,1
+70,W13-3308_P03-1021_0,Evaluable,Background,Alta,Lists optimization techniques including MERT.,COMPLETO,105,1
+71,D09-1106_P08-1115_1,Evaluable,Background,Alta,Lists recent studies of a wider annotation pipeline in SMT.,COMPLETO,105,1
+72,W05-0407_P00-1065_0,Evaluable,Background,Alta,Lists ML approaches to predicate argument extraction.,COMPLETO,105,1
+73,W11-0135_W07-1412_0,Evaluable,Background,Alta,Describes existing TE systems as examples of a general approach.,COMPLETO,105,1
+74,W11-0415_W10-2209_0,Evaluable,Background,Media,Mentions other corpus-based projects in historical linguistics.,COMPLETO,105,1
+75,W07-0810_P91-1022_0,Evaluable,Background,Alta,Lists proposed sentence alignment techniques.,COMPLETO,105,1
+76,Q13-1005_D11-1140_2,Evaluable,Improvement / Modification,Alta,The authors generalize the previous work by allowing templates that abstract subsets of constants.,COMPLETO,105,1
+77,W10-1735_W09-0435_0,Evaluable,Comparison,Media,Relates the cited work to the current one and describes its rules in contrast.,COMPLETO,105,1
+78,P11-1096_W03-0108_0,Evaluable,Background,Alta,Gives an application example of geographic IR.,COMPLETO,105,1
+79,W10-3814_P05-1033_3,Evaluable,Improvement / Modification,Alta,The authors propose improvements to the cited hierarchical phrase-based model.,COMPLETO,105,1
+80,P03-1008_W98-0720_1,Evaluable,Comparison,Alta,Contrasts the present evaluation using an annotated corpus with previous approaches.,COMPLETO,105,1
+81,P11-1145_D09-1001_7,Evaluable,Comparison,Alta,Compares the model with the baselines considered in the cited work.,COMPLETO,105,1
+82,P11-2058_E03-1069_1,Evaluable,Evidence,Alta,Supports the decision to use lexical features through studies suggesting an association.,COMPLETO,105,1
+83,W11-3808_P03-1054_0,Evaluable,Application,Alta,The Stanford parser is used in the experiments.,COMPLETO,105,1
+84,W12-2101_W06-1615_1,Evaluable,Identification of the Originator,Alta,States that SCL was first proposed by the cited work.,COMPLETO,105,1
+85,W09-3109_N03-1015_0,Evaluable,Background,Alta,Lists uses of comparable corpora.,COMPLETO,105,1
+86,W04-2504_P00-1065_0,Evaluable,Background,Media,Refers to semantic roles as described in the cited work to explain the concept.,COMPLETO,105,1
+87,W12-3404_E12-1003_1,Evaluable,Application,Alta,Purity and collocation measures are used as in the cited work.,COMPLETO,105,1
+88,N09-1001_P97-1023_0,Evaluable,Background,Alta,Related-work overview of opinion mining at word level.,COMPLETO,105,1
+89,D08-1110_P98-1002_1,Evaluable,Background,Alta,Describes Sankoff's production model in related work.,COMPLETO,105,1
+90,W05-1511_E03-1052_0,Evaluable,Application,Media,Applies a hybrid parsing technique with a CFG chunk parser.,COMPLETO,105,1
+91,E12-1041_N01-1021_1,Evaluable,Background,Alta,Lists uses of phrase structure grammars as language models.,COMPLETO,105,1
+92,W11-1405_W10-1010_0,Evaluable,Background,Alta,Describes prior work on structural events for speech assessment.,COMPLETO,105,1
+93,D09-1038_N06-1033_7,Evaluable,Application,Alta,The baseline system uses the cited synchronous binarization.,COMPLETO,105,1
+94,P06-2014_P01-1067_2,Evaluable,Background,Media,Describes the cited generative tree-to-string model that related work built on.,COMPLETO,105,1
+95,P13-1152_A00-2026_0,Evaluable,Background,Alta,Lists subsequent work on trainable generation.,COMPLETO,105,1
+96,D11-1020_W06-3601_1,Evaluable,Comparison,Alta,Contrasts the linear-time model with cubic-time cited work.,COMPLETO,105,1
+97,D13-1109_P11-1002_0,Evaluable,Comparison,Alta,States similarity with the cited work and differences in setting.,COMPLETO,105,1
+98,W10-1750_W08-0309_0,Evaluable,Evidence,Alta,Supports the claim that combining metric scores is effective.,COMPLETO,105,1
+99,J11-2002_N01-1024_0,Evaluable,Background,Alta,Lists works using string edit distance for morphology.,COMPLETO,105,1
+100,J03-1003_E91-1028_0,Evaluable,Background,Alta,Lists previous researchers on referring expression generation.,COMPLETO,105,1

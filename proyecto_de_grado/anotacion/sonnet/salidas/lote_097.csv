@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P07-1068_P98-2127_0,Evaluable,Evidence,Alta,Cita respalda la afirmación de que la clase semántica de un NP se infiere de NPs distribucionalmente similares.,COMPLETO,97,1
+2,E12-1069_P03-1004_1,Evaluable,Application,Media,Usan la herramienta Yamcha (SVM) tal cual como etiquetador; el título citado es de un método relacionado.,COMPLETO,97,1
+3,Q13-1032_W05-0202_0,Evaluable,Evidence,Media,Respalda la afirmación de que la auto-consistencia del calificador fue un problema en estudios previos.,COMPLETO,97,1
+4,A94-1006_P88-1025_0,Evaluable,Background,Media,"Enumera aplicaciones previas de listas de términos, incluida la recuperación de información.",COMPLETO,97,1
+5,E91-1023_E89-1008_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre la morfología verbal del árabe.,COMPLETO,97,1
+6,D12-1047_P11-2078_0,Evaluable,Background,Media,"Lista métodos existentes de similitud (TF-IDF, centroide, CLS) para describir el estado del área antes de señalar su limitación.",COMPLETO,97,1
+7,P06-1043_A97-1015_0,Evaluable,Evidence,Media,Se reporta una observación del trabajo citado sobre datos de dominio para respaldar el argumento de dominios específicos.,COMPLETO,97,1
+8,W13-4813_P11-2117_1,Evaluable,Application,Alta,Usan directamente el corpus Simple Wikipedia como datos de entrenamiento.,COMPLETO,97,1
+9,W03-0430_N03-1028_0,Evaluable,Background,Alta,"Ejemplo de éxitos empíricos de CRFs en tareas previas, como contexto general.",COMPLETO,97,1
+10,J96-1001_J93-1007_2,Evaluable,Basis,Media,El supuesto de un solo sentido por colocación se basó en experiencia previa con colocaciones en inglés del trabajo citado.,COMPLETO,97,1
+11,W07-0410_P03-1021_0,Evaluable,Background,Media,"Menciona técnicas de optimización disponibles, entre ellas MERT, como contexto.",COMPLETO,97,1
+12,W10-3911_W01-0521_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los parsers rinden mal fuera del dominio de entrenamiento.,COMPLETO,97,1
+13,P02-1032_J91-4003_0,Evaluable,Basis,Media,El análisis se apoya en la estructura de qualia de Pustejovsky como marco conceptual.,COMPLETO,97,1
+14,P95-1008_J92-2003_0,Evaluable,Background,Alta,Revisa tratamientos formales previos de defaults en formalismos de atributo-valor.,COMPLETO,97,1
+15,W13-2124_P98-1116_0,Evaluable,Background,Media,Ejemplifica enfoques estadísticos en la descripción del sistema; el uso es contextual.,COMPLETO,97,1
+16,W06-3407_P93-1020_1,Evaluable,Basis,Alta,Su definición de tópico se construye sobre el trabajo citado.,COMPLETO,97,1
+17,P08-1089_P05-1074_2,Evaluable,Comparison,Alta,Compara su modelo log-lineal con el modelo basado en MLE del trabajo citado.,COMPLETO,97,1
+18,P87-1012_P84-1027_0,Evaluable,Basis,Media,Siguen la formulación del trabajo citado para la realización de reglas basadas en unificación.,COMPLETO,97,1
+19,N13-2009_P05-1074_0,Evaluable,Background,Media,Describe el método previo de paráfrasis por pivote en la revisión de literatura.,COMPLETO,97,1
+20,W12-0501_P97-1023_2,Evaluable,Identification of the Originator,Media,Se califica de trabajo pionero y se describe su método de extracción de polaridad por conjunciones.,COMPLETO,97,1
+21,J05-3002_N03-1029_0,Evaluable,Further Reading,Media,Remite a trabajos de restauración de puntuación que podrían ayudar en trabajo futuro.,COMPLETO,97,1
+22,W13-3304_P13-1113_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para una exposición más detallada del perfil de asociación de palabras.,COMPLETO,97,1
+23,W08-0908_W07-1604_0,Evaluable,Background,Alta,Agrupa trabajos previos sobre detección automática de errores en L2.,COMPLETO,97,1
+24,Q13-1027_D11-1045_1,Evaluable,Comparison,Alta,"Compara su modelo con el modelo TSP, señalando diferencias importantes.",COMPLETO,97,1
+25,J95-2004_A92-1021_3,Evaluable,Further Reading,Alta,Remite al trabajo citado para una discusión extendida de la precisión del etiquetador.,COMPLETO,97,1
+26,W11-2149_J07-2003_0,Evaluable,Identification of the Originator,Alta,Indica que el enfoque jerárquico fue introducido por el trabajo citado.,COMPLETO,97,1
+27,S10-1005_E06-2001_0,Evaluable,Application,Alta,Usan el corpus ItWaC como fuente de datos para seleccionar los verbos.,COMPLETO,97,1
+28,N13-1126_D11-1006_2,Evaluable,Background,Media,Describe trabajo previo que combinó treebanks deslexicalizados de varios idiomas.,COMPLETO,97,1
+29,P07-1011_W05-0904_0,Evaluable,Evidence,Media,Respalda la afirmación de que las oraciones erróneas tienen palabras localmente correctas pero incoherentes.,COMPLETO,97,1
+30,P99-1013_P84-1027_1,Evaluable,Basis,Alta,La semántica denotacional presentada es esencialmente similar a la definición del trabajo citado.,COMPLETO,97,1
+31,D13-1064_D12-1018_0,Evaluable,Further Reading,Media,Señala medidas de similitud más sofisticadas para explorar en trabajo futuro.,COMPLETO,97,1
+32,S13-2092_W12-0607_0,Evaluable,Background,Alta,Agrupa estudios previos sobre redes sociales como contexto general.,COMPLETO,97,1
+33,W09-2504_P08-1078_0,Evaluable,Further Reading,Baja,Se menciona como enfoque a seguir en trabajo futuro para reglas sensibles al contexto.,COMPLETO,97,1
+34,P12-1036_P08-1031_0,Evaluable,Background,Alta,Enumera trabajos existentes basados en modelos de tópicos.,COMPLETO,97,1
+35,D11-1130_P06-1046_0,Evaluable,Evidence,Media,Respalda la afirmación de que estos métodos son altamente escalables.,COMPLETO,97,1
+36,P12-1028_N07-1071_0,Evaluable,Evidence,Media,Respalda la afirmación de que los DMs superan a recursos como WordNet con pocos ejemplos.,COMPLETO,97,1
+37,D11-1066_P06-2010_2,Evaluable,Background,Alta,"Enumera aplicaciones previas de kernels, previo a señalar la novedad propia.",COMPLETO,97,1
+38,W12-0513_D09-1120_0,Evaluable,Background,Alta,Enumera enfoques recientes de resolución de anáfora.,COMPLETO,97,1
+39,D10-1026_P08-1058_2,Evaluable,Background,Alta,Describe modelos de lenguaje aleatorizados previos basados en filtros Bloom.,COMPLETO,97,1
+40,W13-2263_P07-1003_1,Evaluable,Background,Media,Describe un modelo de distorsión propuesto previamente como parte del trasfondo técnico.,COMPLETO,97,1
+41,P06-1017_P04-1054_0,Evaluable,Background,Alta,Agrupa métodos supervisados previos de extracción de relaciones.,COMPLETO,97,1
+42,W13-2260_P07-2045_0,Evaluable,Application,Alta,Usan la herramienta Moses sin modificación para extraer la SCFG.,COMPLETO,97,1
+43,W01-0514_A00-2004_3,Evaluable,Further Reading,Alta,Remite al trabajo citado para detalles de implementación y optimizaciones.,COMPLETO,97,1
+44,W10-4102_W03-1210_0,Evaluable,Gap,Alta,Señala que se ha hecho poco trabajo sobre relaciones causales generales en dominios abiertos.,COMPLETO,97,1
+45,W02-2107_A00-2026_0,Evaluable,Background,Media,Indica que en aplicaciones simples se han usado directamente oraciones portadoras en NLG basada en corpus.,COMPLETO,97,1
+46,W10-1747_P05-3026_0,Evaluable,Comparison,Alta,Contrasta su enfoque con enfoques existentes que consideran una sola oración.,COMPLETO,97,1
+47,W09-3707_P08-1052_0,Evaluable,Further Reading,Alta,Remite con 'see also' a trabajo relacionado sobre patrones.,COMPLETO,97,1
+48,W12-5115_J91-4003_0,Evaluable,Evidence,Media,Respalda la afirmación de que la oración es ambigua entre dos lecturas.,COMPLETO,97,1
+49,W11-2843_D10-1094_0,Evaluable,Improvement / Modification,Media,Sus clasificadores se construyen sobre elementos de sistemas previos.,COMPLETO,97,1
+50,W10-1905_W09-1401_2,Evaluable,Evidence,Media,Respalda la afirmación de que el uso de salida de parsers correlacionó con alto rango en la tarea.,COMPLETO,97,1
+51,P09-1077_P02-1047_4,Evaluable,Comparison,Baja,"Contrasta el uso solo de sustantivos, verbos o adjetivos con su ranking de características.",COMPLETO,97,1
+52,D11-1143_W05-0619_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el aprendizaje activo selecciona ejemplos difíciles que toman más tiempo.,COMPLETO,97,1
+53,P08-2054_P03-1054_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la capacidad de desambiguación de PCFG depende de la expresividad del esqueleto simbólico.,COMPLETO,97,1
+54,P12-2029_P11-1112_1,Evaluable,Background,Alta,Describe el trabajo previo en SRL no supervisado y sus características.,COMPLETO,97,1
+55,D11-1031_P03-1021_0,Evaluable,Evidence,Alta,Respalda la afirmación de que optimizar métricas específicas mejora el desempeño.,COMPLETO,97,1
+56,W09-2413_P07-1005_0,Evaluable,Evidence,Alta,Respalda la afirmación de que SMT se beneficia de un módulo WSD.,COMPLETO,97,1
+57,W02-2001_W00-1427_0,Evaluable,Application,Alta,Usan la herramienta morph para lematizar los datos.,COMPLETO,97,1
+58,P06-1123_W04-3224_0,Evaluable,Application,Alta,Usan un parser disponible sin modificarlo.,COMPLETO,97,1
+59,D09-1077_P06-1021_0,Evaluable,Background,Media,Resume enfoques recientes que modelan la sintaxis de reparaciones.,COMPLETO,97,1
+60,N06-1006_P03-1054_0,Evaluable,Application,Alta,Usan el parser de Stanford directamente.,COMPLETO,97,1
+61,W06-2912_E06-2025_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para una comparación teórica de estimadores.,COMPLETO,97,1
+62,W01-1011_W95-0107_1,Evaluable,Application,Alta,Usan el chunker de base NP de Ramshaw y Marcus para extraer frases nominales.,COMPLETO,97,1
+63,J10-3003_P01-1008_0,Evaluable,Background,Alta,Describe el método del trabajo citado dentro de una revisión de técnicas.,COMPLETO,97,1
+64,W12-6313_W03-1728_0,Evaluable,Background,Alta,Enumera enfoques existentes de segmentación del chino.,COMPLETO,97,1
+65,N04-1001_P02-1014_0,Evaluable,Background,Alta,Agrupa trabajos previos sobre NER y correferencia.,COMPLETO,97,1
+66,W06-3108_E99-1010_0,Evaluable,Application,Alta,Usan la herramienta mkcls para entrenar clases de palabras.,COMPLETO,97,1
+67,P13-1020_D11-1022_2,Evaluable,Evidence,Alta,Su hallazgo experimental es consistente con hallazgos previos citados.,COMPLETO,97,1
+68,E97-1063_P97-1039_1,Evaluable,Evidence,Alta,Respalda la afirmación de que las palabras frecuentes se traducen con menos consistencia.,COMPLETO,97,1
+69,W06-0607_W05-0308_1,Evaluable,Application,Media,Adoptan las categorías de sentimiento y argumentación propuestas por el trabajo citado.,COMPLETO,97,1
+70,E06-3006_W03-1107_0,Evaluable,Comparison,Alta,Contrasta el trabajo más parecido con su enfoque aplicado a documentos completos.,COMPLETO,97,1
+71,J10-1001_P03-1054_2,Evaluable,Comparison,Alta,Compara sus resultados con los del trabajo citado.,COMPLETO,97,1
+72,P09-1103_P07-2045_0,Evaluable,Application,Alta,Usan Moses con configuración por defecto como sistema base.,COMPLETO,97,1
+73,P98-1089_P95-1028_0,Evaluable,Basis,Baja,La jerarquía semántica sigue la representación del trabajo citado.,COMPLETO,97,1
+74,W12-5901_W10-1749_0,Evaluable,Identification of the Originator,Media,Se indica que LRscore fue introducido en el trabajo citado.,COMPLETO,97,1
+75,W12-1617_N06-2031_1,Evaluable,Background,Alta,Describe un enfoque previo de medición de adaptación entre interlocutores.,COMPLETO,97,1
+76,D09-1040_N06-1003_8,Evaluable,Comparison,Alta,Compara sus paráfrasis con las paráfrasis por pivote del trabajo citado.,COMPLETO,97,1
+77,W12-2108_D11-1120_0,Evaluable,Background,Alta,Enumera estudios previos que usan Twitter para investigar variación lingüística.,COMPLETO,97,1
+78,W10-0303_P00-1065_2,Evaluable,Gap,Media,Señala la limitada cobertura de dominio de los corpus etiquetados para SRL.,COMPLETO,97,1
+79,D12-1063_D10-1120_1,Evaluable,Background,Media,Describe una clase de técnicas previas que asumen conocimiento de etiquetas POS.,COMPLETO,97,1
+80,D08-1091_N07-1051_3,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados del parser propio con el trabajo citado.,COMPLETO,97,1
+81,W13-2412_W95-0107_0,Evaluable,Application,Alta,Usan el esquema de anotación BIO del trabajo citado.,COMPLETO,97,1
+82,D13-1023_W11-2123_0,Evaluable,Background,Alta,Enumera métodos previos para mejorar la eficiencia de modelos de lenguaje.,COMPLETO,97,1
+83,P10-2001_P05-1074_0,Evaluable,Application,Alta,Adquieren la lista de paráfrasis usando directamente el método citado.,COMPLETO,97,1
+84,D09-1134_P07-1036_0,Evaluable,Comparison,Alta,"Compara su modelo con el aprendizaje guiado por restricciones, un modelo de punta.",COMPLETO,97,1
+85,W11-2803_W11-2803_0,Evaluable,Further Reading,Alta,Remite a trabajos citados para una explicación detallada de los módulos.,COMPLETO,97,1
+86,P10-3018_W06-2920_0,Evaluable,Background,Alta,Menciona las tareas compartidas CoNLL como trasfondo del análisis de dependencias.,COMPLETO,97,1
+87,W04-2216_P00-1037_0,Evaluable,Background,Alta,Describe el sistema previo de Brill y Moore y su desempeño.,COMPLETO,97,1
+88,J06-3003_P00-1065_0,Evaluable,Background,Media,Explica el concepto de marcos semánticos y roles según el trabajo citado.,COMPLETO,97,1
+89,A00-1031_W96-0102_0,Evaluable,Background,Alta,Enumera taggers previos no estadísticos como contexto general.,COMPLETO,97,1
+90,D09-1073_P03-1021_0,Evaluable,Application,Alta,Usan el entrenamiento MER de Och para su sistema.,COMPLETO,97,1
+91,W08-2140_P08-1040_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para la descripción detallada del sistema de simplificación.,COMPLETO,97,1
+92,W09-2402_J91-4003_1,Evaluable,Evidence,Media,Respalda la afirmación sobre polisemia productiva de la palabra chapter.,COMPLETO,97,1
+93,P06-1003_P03-1071_0,Evaluable,Comparison,Alta,Compara su rendimiento con métodos previos de segmentación no supervisada.,COMPLETO,97,1
+94,J13-3005_P06-2032_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre las desventajas de los nombres globales.,COMPLETO,97,1
+95,Q13-1016_D12-1069_0,Evaluable,Background,Alta,Enumera enfoques previos de entrenamiento de analizadores semánticos con supervisión débil.,COMPLETO,97,1
+96,W12-0114_P07-1018_0,Evaluable,Evidence,Media,Respalda la afirmación sobre el beneficio de la traducción en cadena entre lenguas con investigación previa propia.,COMPLETO,97,1
+97,W11-3210_P06-1011_0,Evaluable,Background,Alta,Enumera trabajos previos de extracción de oraciones paralelas en corpus casi paralelos.,COMPLETO,97,1
+98,P12-1007_N03-1030_0,Evaluable,Background,Alta,Enumera sistemas previos de análisis del discurso.,COMPLETO,97,1
+99,P13-1089_D12-1102_5,Evaluable,Application,Alta,Siguen el montaje experimental del trabajo citado.,COMPLETO,97,1
+100,P10-1021_D09-1045_3,Evaluable,Application,Alta,Siguen el procedimiento del trabajo citado para construir el espacio semántico.,COMPLETO,97,1

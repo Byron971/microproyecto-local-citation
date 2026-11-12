@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P13-1043_P05-1012_0,Evaluable,Background,Media,Cites graph-based chart parsers as general context for greedy local parsing.,COMPLETO,88,1
+2,P13-1016_P07-2045_0,Evaluable,Background,Media,Describes phrase-based SMT as a widely used method.,COMPLETO,88,1
+3,W09-1119_P08-1076_0,Evaluable,Evidence,Media,Supports the claim that unlabeled text improves NER performance.,COMPLETO,88,1
+4,P12-1002_N06-1014_0,Evaluable,Background,Media,Lists examples of adapted algorithms for ranking in SMT.,COMPLETO,88,1
+5,N12-1073_W06-1613_2,Evaluable,Background,Alta,Describes prior work on citation classification.,COMPLETO,88,1
+6,W11-1902_P02-1014_0,Evaluable,Basis,Media,New sieves draw on previous coreference work using these databases.,COMPLETO,88,1
+7,P04-1043_P00-1065_0,Evaluable,Background,Alta,"Enumerates ML approaches for argument identification, then contrasts with the current approach.",COMPLETO,88,1
+8,P08-1099_P07-1036_2,Evaluable,Comparison,Alta,Results are compared with those reported by CRR07.,COMPLETO,88,1
+9,E06-1025_P97-1023_2,Evaluable,Comparison,Alta,"Explicit performance comparison among methods, including the cited one.",COMPLETO,88,1
+10,W07-2305_P96-1027_0,Evaluable,Background,Media,Situates work in the tradition of symbolic chart realisation.,COMPLETO,88,1
+11,J13-4008_N01-1021_0,Evaluable,Comparison,Alta,Compares the PLTAG parser's performance with a standard surprisal model.,COMPLETO,88,1
+12,W04-2907_N04-1017_0,Evaluable,Comparison,Alta,Results are stated to be comparable to previous methods.,COMPLETO,88,1
+13,D11-1022_D10-1004_4,Evaluable,Evidence,Media,Cites the table for the convex hull definition supporting the stated formula.,COMPLETO,88,1
+14,P13-1020_D12-1065_0,Evaluable,Background,Media,Mentions probabilistic models such as DPPs as prior work before pointing out limitations.,COMPLETO,88,1
+15,N03-3003_W03-2317_1,Evaluable,Evidence,Media,Refers to the authors' own preliminary experiments as support for adapting the models.,COMPLETO,88,1
+16,W11-1913_N10-1061_0,Evaluable,Evidence,Media,Supports the claim that semantic information is important for further improvement.,COMPLETO,88,1
+17,D12-1120_W06-1615_0,Evaluable,Background,Media,Summarizes recent findings that distributional features help domain adaptation.,COMPLETO,88,1
+18,P06-3006_W02-2018_0,Evaluable,Further Reading,Alta,Refers the reader to sources for a detailed description of CRFs.,COMPLETO,88,1
+19,D10-1076_P06-1124_0,Evaluable,Further Reading,Media,Points to a source offering a Bayesian interpretation of smoothing.,COMPLETO,88,1
+20,N12-1015_P04-1015_0,Evaluable,Background,Media,Refers to the popular early-update heuristic as existing prior work that the framework justifies.,COMPLETO,88,1
+21,N13-1055_P11-1092_4,Evaluable,Basis,Media,Adopts a feature design following prior work (writer's original preposition).,COMPLETO,88,1
+22,P10-1004_P83-1009_0,Evaluable,Comparison,Media,Related work contrasting Hobbs' restricted quantifier treatment with the present one.,COMPLETO,88,1
+23,D13-1130_P06-1004_0,Evaluable,Comparison,Alta,Contrasts algorithms that need the number of segments and may reach higher accuracy.,COMPLETO,88,1
+24,P10-1064_P03-1021_0,Evaluable,Application,Alta,Uses MERT as is for tuning.,COMPLETO,88,1
+25,J10-2001_W06-1403_2,Evaluable,Background,Media,Mentions follow-up work building on this article's approach.,COMPLETO,88,1
+26,P10-1001_W96-0213_0,Evaluable,Application,Alta,Uses MXPOST tagger for POS tagging.,COMPLETO,88,1
+27,W09-3811_W06-2932_1,Evaluable,Comparison,Alta,Gives results of best CoNLL-X systems for comparison.,COMPLETO,88,1
+28,W12-2108_W10-0701_0,Evaluable,Evidence,Alta,Supports claim that AMT crowdsourcing provides high-quality data.,COMPLETO,88,1
+29,W11-1610_N10-1131_0,Evaluable,Background,Alta,Lists previous sentence compression research in related work.,COMPLETO,88,1
+30,W07-2305_A00-2023_0,Evaluable,Background,Media,Situates work within the statistical realisation tradition.,COMPLETO,88,1
+31,W09-2415_P00-1065_0,Evaluable,Comparison,Alta,Contrasts the current task with semantic role labeling.,COMPLETO,88,1
+32,W05-1509_P03-1054_1,Evaluable,Improvement / Modification,Alta,Extends a technique presented in the cited work.,COMPLETO,88,1
+33,P10-2025_P05-1074_0,Evaluable,Evidence,Media,Supports the claim that a foreign word represents a sense in synonym modeling.,COMPLETO,88,1
+34,N09-1010_D08-1109_6,Evaluable,Evidence,Media,Supports the claim about English having the lowest trigram tag entropy.,COMPLETO,88,1
+35,W10-1732_P07-2045_0,Evaluable,Application,Alta,Uses Moses scripts for word alignment.,COMPLETO,88,1
+36,P13-1043_P11-2033_0,Evaluable,Background,Media,Describes state of the art for transition-based parsers.,COMPLETO,88,1
+37,Q13-1007_W12-1912_3,Evaluable,Gap,Media,"Points out that simple generative models are not robust to sparsity, motivating the nonparametric model.",COMPLETO,88,1
+38,W04-3246_W02-0506_0,Evaluable,Evidence,Media,Supports the estimate of the number of Arabic roots.,COMPLETO,88,1
+39,W10-4007_N03-1015_0,Evaluable,Gap,Alta,Describes prior work and points out its major drawback.,COMPLETO,88,1
+40,D11-1076_P05-1053_0,Evaluable,Further Reading,Alta,Refers reader to a comprehensive overview of advanced features.,COMPLETO,88,1
+41,W07-2202_W06-2902_0,Evaluable,Comparison,Media,Relates the cited approach to the current one as a similar strategy.,COMPLETO,88,1
+42,P11-2001_P03-1006_0,Evaluable,Evidence,Media,Supports the claim that failure transitions reflect the semantics of smoothing.,COMPLETO,88,1
+43,W08-1002_P03-1013_0,Evaluable,Comparison,Media,Relates reported PCFG results on German to the current work's results.,COMPLETO,88,1
+44,P13-1041_P08-1068_0,Evaluable,Evidence,Media,"Supports the claim that word clusters improve various tasks, including dependency parsing.",COMPLETO,88,1
+45,D13-1027_D09-1120_0,Evaluable,Background,Media,Describes a common approach to performance analysis.,COMPLETO,88,1
+46,P07-3007_W06-1641_0,Evaluable,Background,Alta,Describes prior sentiment retrieval models.,COMPLETO,88,1
+47,P12-1081_P08-1068_0,Evaluable,Background,Media,Describes prior approaches that improved parsing with unlabeled data.,COMPLETO,88,1
+48,E95-1001_E95-1002_0,Evaluable,Further Reading,Alta,Refers to the source for construction of underspecified representations.,COMPLETO,88,1
+49,W09-0417_W08-0310_0,Evaluable,Evidence,Media,Authors' previous experiments support the claim about normalization tools.,COMPLETO,88,1
+50,S07-1010_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ for word alignment.,COMPLETO,88,1
+51,W10-1734_P03-1021_0,Evaluable,Application,Alta,Uses MERT to tune weights.,COMPLETO,88,1
+52,P13-1030_P10-2042_1,Evaluable,Application,Alta,Uses the cited MCMC induction technique to obtain the TSG.,COMPLETO,88,1
+53,P06-2054_P00-1065_1,Evaluable,Evidence,Media,Supports the claim that syntax and semantics are correlated in SRL.,COMPLETO,88,1
+54,N13-1016_N09-1041_0,Evaluable,Background,Alta,Lists applications of topic modelling in NLP.,COMPLETO,88,1
+55,D08-1066_N06-1033_2,Evaluable,Evidence,Media,Supports the definition of binarizable permutation.,COMPLETO,88,1
+56,W13-0111_S12-1001_3,Evaluable,Comparison,Alta,Explicitly distinguishes the current work from cited approaches while noting similarities.,COMPLETO,88,1
+57,D09-1062_P05-1017_0,Evaluable,Gap,Alta,Points out that lexicon-construction work evaluates in isolation from NLP tasks.,COMPLETO,88,1
+58,P07-2040_P04-1054_0,Evaluable,Background,Alta,Summarizes supervised approaches to relation detection.,COMPLETO,88,1
+59,W11-1610_P05-1074_0,Evaluable,Application,Alta,Uses the paraphrase extraction approach of the cited work.,COMPLETO,88,1
+60,P07-1115_P05-1076_0,Evaluable,Improvement / Modification,Alta,Improved technique expands on ideas explored in cited work.,COMPLETO,88,1
+61,Q13-1031_W07-0103_1,Evaluable,Comparison,Alta,Compares own metaphor recognition with the KZ method.,COMPLETO,88,1
+62,P10-1037_P02-1016_1,Evaluable,Background,Media,Describes how previous active learning work selects sentences.,COMPLETO,88,1
+63,P80-1004_P79-1002_0,Evaluable,Basis,Media,Builds on the author's earlier mechanism and extends it to another aspect.,COMPLETO,88,1
+64,W10-1404_P07-1122_0,Evaluable,Application,Media,"Applies dependency-tree transformations shown by the cited work, adapted to Basque.",COMPLETO,88,1
+65,E12-1032_P05-1018_4,Evaluable,Application,Alta,Follows the cited work's feature extraction setup.,COMPLETO,88,1
+66,N10-1015_P09-1104_4,Evaluable,Basis,Media,Pruning uses the same basic idea as the cited work but more aggressively.,COMPLETO,88,1
+67,D10-1096_P08-1006_2,Evaluable,Evidence,Media,Cited experiments support the claim that dependency parsers are faster.,COMPLETO,88,1
+68,N10-1138_W96-0213_0,Evaluable,Application,Alta,Uses MXPOST for POS tags.,COMPLETO,88,1
+69,E09-1011_P00-1056_0,Evaluable,Application,Alta,Uses GIZA++ for alignment.,COMPLETO,88,1
+70,P11-1003_P10-1034_1,Evaluable,Basis,Media,Follows the authors' previous work in using HPSG forests.,COMPLETO,88,1
+71,D11-1095_N09-4006_0,Evaluable,Background,Alta,Lists existing verb classifications.,COMPLETO,88,1
+72,P00-1051_W98-1427_0,Evaluable,Background,Media,Mentions an existing system as example of related work.,COMPLETO,88,1
+73,D12-1063_W11-0303_2,Evaluable,Comparison,Alta,Compares with state-of-the-art results of other systems.,COMPLETO,88,1
+74,W08-0317_P07-2045_0,Evaluable,Background,Media,Notes factored models as a way to integrate categories in the SMT framework.,COMPLETO,88,1
+75,E12-1003_D11-1122_0,Evaluable,Background,Media,Notes that identification can be tackled by heuristics as in prior work.,COMPLETO,88,1
+76,W00-1014_P91-1007_0,Evaluable,Background,Media,Compares plan-based systems generally; cites examples (c.f.).,COMPLETO,88,1
+77,E12-1026_P11-1132_0,Evaluable,Evidence,Alta,Supports the claim that translated texts can be classified automatically with high accuracy.,COMPLETO,88,1
+78,W13-2807_J90-2002_1,Evaluable,Background,Media,Reports prior improvements over baseline from reordering.,COMPLETO,88,1
+79,W08-2113_P06-1101_0,Evaluable,Background,Media,Describes the best-known prior work in pattern extraction.,COMPLETO,88,1
+80,D13-1112_N12-1015_2,Evaluable,Evidence,Media,Cited work supports the claim that standard update reinforces errors.,COMPLETO,88,1
+81,J08-4003_W06-2920_0,Evaluable,Background,Alta,Reports results of the CoNLL-X evaluation as context.,COMPLETO,88,1
+82,J05-4002_P04-1036_0,Evaluable,Background,Alta,Describes prior work on finding predominant senses.,COMPLETO,88,1
+83,D11-1110_P09-1009_0,Evaluable,Comparison,Media,Contrasts bilingual grammar induction with syntax projection.,COMPLETO,88,1
+84,W11-1601_P07-2045_0,Evaluable,Improvement / Modification,Alta,Extends the phrase-based system by adding phrasal deletion.,COMPLETO,88,1
+85,D13-1112_P03-1021_0,Evaluable,Background,Media,Notes MERT as the classical default training algorithm.,COMPLETO,88,1
+86,W06-1503_P98-1033_0,Evaluable,Basis,Alta,Extends earlier work on multilingual metagrammars.,COMPLETO,88,1
+87,S12-1002_N07-1011_0,Evaluable,Comparison,Alta,Contrasts own clustering model with the cited probabilistic model.,COMPLETO,88,1
+88,W09-0437_P03-1021_0,Evaluable,Application,Alta,Uses MERT for optimization.,COMPLETO,88,1
+89,P12-1076_P10-1030_0,Evaluable,Gap,Alta,Cited works noted noise in DS data but did not address it directly.,COMPLETO,88,1
+90,J11-4007_W09-0609_0,Evaluable,Background,Alta,Describes related work on human referring expression behavior.,COMPLETO,88,1
+91,P08-2036_S07-1044_0,Evaluable,Background,Media,Reports prior results using language models for WSD.,COMPLETO,88,1
+92,W04-3112_A92-1018_0,Evaluable,Application,Alta,Uses the Xerox POS tagger as a component.,COMPLETO,88,1
+93,D13-1155_E06-1038_1,Evaluable,Gap,Media,"Notes the cited features are limited to syntactic categories, lacking lexicalization.",COMPLETO,88,1
+94,E12-1017_W09-3302_0,Evaluable,Evidence,Alta,Supports claim that entity class occurrence rates differ between news and Wikipedia.,COMPLETO,88,1
+95,W13-4018_W11-2020_2,Evaluable,Basis,Media,Follows the cited work in using a linear-kernel SVM.,COMPLETO,88,1
+96,W03-1026_E99-1023_0,Evaluable,Further Reading,Alta,Refers to the source describing IOB schemes in detail.,COMPLETO,88,1
+97,P09-1051_P98-2127_1,Evaluable,Application,Alta,Uses the Lin similarity resource as described in the cited work.,COMPLETO,88,1
+98,D09-1112_J08-2003_1,Evaluable,Background,Alta,Notes prior work applying tree kernels to semantic trees for re-ranking.,COMPLETO,88,1
+99,W06-3504_W04-2604_0,Evaluable,Background,Media,Describes how VerbNet was extended in prior work.,COMPLETO,88,1
+100,D10-1102_W10-2903_0,Evaluable,Background,Media,Cites researchers who have analyzed joint multilevel models.,COMPLETO,88,1

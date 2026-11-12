@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P10-1003_N06-1014_0,Evaluable,Application,Alta,Uses an existing word aligner as-is.,COMPLETO,90,1
+2,P93-1039_P87-1030_0,Evaluable,Gap,Alta,Notes that the cited work did not capture collaborative negotiation of proposals.,COMPLETO,90,1
+3,P11-1130_P03-1021_1,Evaluable,Application,Alta,Uses MERT to tune weights.,COMPLETO,90,1
+4,W02-1103_W98-0709_0,Evaluable,Basis,Alta,The current work is described as an extension of the cited approach.,COMPLETO,90,1
+5,P13-2094_P08-1036_0,Evaluable,Background,Alta,Reviews prior work on multi-aspect rating prediction.,COMPLETO,90,1
+6,W11-0140_W09-3726_1,Evaluable,Comparison,Media,The merge operator is described as similar to the cited one.,COMPLETO,90,1
+7,W11-2164_W11-1209_0,Evaluable,Background,Alta,Lists prior work on mining comparable data.,COMPLETO,90,1
+8,W12-1633_W09-0609_0,Evaluable,Background,Alta,Notes that referring expressions are well studied in NLG.,COMPLETO,90,1
+9,J12-4003_P86-1004_0,Evaluable,Background,Media,Describes past work on implicit argument identification.,COMPLETO,90,1
+10,W11-0329_D10-1025_3,Evaluable,Comparison,Alta,The approach is compared with the methods studied in the cited work.,COMPLETO,90,1
+11,P12-1066_D11-1006_0,Evaluable,Background,Alta,Reviews prior approaches to direct transfer of delexicalized parsers.,COMPLETO,90,1
+12,W12-2108_P11-1137_0,Evaluable,Background,Alta,Lists prior studies using Twitter.,COMPLETO,90,1
+13,J13-3003_P10-2017_0,Evaluable,Background,Alta,Categorizes prior approaches to word meaning in context.,COMPLETO,90,1
+14,N12-1062_D11-1125_0,Evaluable,Background,Media,Describes the PRO method in a related-work overview; the verb 'introduced' gives it a hint of originator attribution.,COMPLETO,90,1
+15,W04-2505_P00-1065_1,Evaluable,Identification of the Originator,Alta,The features were 'first proposed' in the cited work.,COMPLETO,90,1
+16,S13-2043_P12-3012_2,Evaluable,Evidence,Media,"Back-off strategies are said to have proved useful in the cited work, which justifies the design choice.",COMPLETO,90,1
+17,P13-2029_W02-0109_0,Evaluable,Application,Alta,Uses NLTK for preprocessing.,COMPLETO,90,1
+18,Q13-1011_W11-2843_0,Evaluable,Background,Alta,Describes the best system of a shared task in related work.,COMPLETO,90,1
+19,D10-1108_P09-1031_1,Evaluable,Background,Alta,Reviews prior taxonomy learning approaches.,COMPLETO,90,1
+20,W12-3305_P06-1013_1,Evaluable,Application,Media,Uses the feature scheme of appending POS to lexical features from the cited work.,COMPLETO,90,1
+21,W11-2824_W03-2314_0,Evaluable,Background,Alta,Lists prior work on syntactic simplification.,COMPLETO,90,1
+22,D11-1069_N03-1033_0,Evaluable,Application,Alta,Uses the Stanford POS tagger.,COMPLETO,90,1
+23,W99-0629_W99-0707_0,Evaluable,Further Reading,Alta,Refers the reader to the cited work for more information on the algorithms.,COMPLETO,90,1
+24,D09-1138_P98-1013_1,Evaluable,Background,Alta,Describes the resources that SemLink maps between.,COMPLETO,90,1
+25,N10-1123_W09-1406_2,Evaluable,Comparison,Alta,Compares error reduction against the previous best joint approach.,COMPLETO,90,1
+26,P10-1044_N07-1071_0,Evaluable,Comparison,Alta,Shows improvement over the cited system.,COMPLETO,90,1
+27,W13-2230_N12-1047_0,Evaluable,Application,Alta,Uses batch-mira for parameter tuning.,COMPLETO,90,1
+28,N13-2012_P08-2043_0,Evaluable,Background,Alta,Summarizes a prior finding on entrainment.,COMPLETO,90,1
+29,N13-1136_E09-1089_1,Evaluable,Comparison,Alta,The cited system's results appear in a comparison table.,COMPLETO,90,1
+30,W13-3517_P11-1138_1,Evaluable,Further Reading,Media,Points to the Wikifier as a possible future tool; it is closer to a pointer to an external resource than any other function.,COMPLETO,90,1
+31,D13-1155_A00-2024_0,Evaluable,Background,Alta,Enumerates rule-based approaches.,COMPLETO,90,1
+32,N04-1016_P99-1018_0,Evaluable,Further Reading,Alta,The 'see ... for an overview' phrasing refers the reader to the overview.,COMPLETO,90,1
+33,D13-1177_P11-1163_0,Evaluable,Background,Alta,Reviews prior event extraction methods.,COMPLETO,90,1
+34,W09-3811_W07-2216_0,Evaluable,Evidence,Alta,Supports the claim that exact non-projective parsing is intractable.,COMPLETO,90,1
+35,W06-1802_W06-2609_0,Evaluable,Background,Alta,Describes the findings of a prior study.,COMPLETO,90,1
+36,D11-1035_W09-0401_0,Evaluable,Evidence,Alta,Supports the claim that new metrics correlate better with human judgment than BLEU.,COMPLETO,90,1
+37,D11-1019_P07-2045_0,Evaluable,Comparison,Media,The string-to-tree model is said to outperform Moses and Hiero.,COMPLETO,90,1
+38,W07-0728_W05-0822_0,Evaluable,Further Reading,Alta,Points to the cited work for a general description of PORTAGE.,COMPLETO,90,1
+39,E06-1011_P05-1012_1,Evaluable,Basis,Media,Builds on the formulation proposed in the cited work.,COMPLETO,90,1
+40,N09-2053_P08-1030_0,Evaluable,Background,Alta,Mentions prior supervised English event extraction systems.,COMPLETO,90,1
+41,P10-1044_D08-1007_0,Evaluable,Evidence,Media,Supports the claim that preferences benefit pronoun resolution.,COMPLETO,90,1
+42,W12-2409_P10-1142_0,Evaluable,Further Reading,Alta,"Space does not allow a thorough review, so the reader is referred to the cited surveys.",COMPLETO,90,1
+43,W11-0305_P08-1016_0,Evaluable,Gap,Media,Notes a limitation shared by the cited algorithms.,COMPLETO,90,1
+44,P13-2085_P10-1015_0,Evaluable,Background,Alta,Summarizes prior work extracting social networks from novels.,COMPLETO,90,1
+45,S13-1003_N07-1025_0,Evaluable,Evidence,Media,Supports the claim that Wikipedia links supervise WSD systems.,COMPLETO,90,1
+46,D11-1142_P11-1062_0,Evaluable,Background,Alta,Lists uses of Open IE output.,COMPLETO,90,1
+47,W07-1214_W06-1620_0,Evaluable,Background,Alta,Gives examples of prior work on deep lexical acquisition.,COMPLETO,90,1
+48,D13-1036_D11-1027_4,Evaluable,Comparison,Media,Contrasts the prior evaluation methodology with the current approach.,COMPLETO,90,1
+49,N13-1126_P12-1066_4,Evaluable,Application,Alta,Uses the same treebanks and experimental setup as the cited work.,COMPLETO,90,1
+50,N13-1110_P12-1041_0,Evaluable,Gap,Media,"Previous systems used distributional semantics, but similarity is not coreference, which exposes a limitation.",COMPLETO,90,1
+51,W11-2160_P06-1055_0,Evaluable,Application,Alta,Uses the Berkeley Parser.,COMPLETO,90,1
+52,P09-2072_W02-2018_0,Evaluable,Evidence,Alta,Justifies including LBFGS because the cited work reported it is better.,COMPLETO,90,1
+53,P01-1052_A88-1032_0,Evaluable,Identification of the Originator,Alta,The predicative treatment was 'first reported' in the cited work.,COMPLETO,90,1
+54,D12-1077_D11-1018_4,Evaluable,Comparison,Alta,The cited method is one of the pre-ordering settings compared against.,COMPLETO,90,1
+55,J08-2001_P00-1065_3,Evaluable,Background,Alta,Refers to the seminal work from which later SRL studies stem.,COMPLETO,90,1
+56,W06-1662_P03-1069_0,Evaluable,Background,Alta,Lists prior work on sentence ordering in summarization.,COMPLETO,90,1
+57,P10-2034_P02-1017_0,Evaluable,Background,Alta,Related work on grammar induction.,COMPLETO,90,1
+58,W11-2142_P10-1049_0,Evaluable,Application,Alta,Applies the forced alignment procedure described in the cited work.,COMPLETO,90,1
+59,P12-2062_P09-1020_0,Evaluable,Comparison,Alta,The result is described as consistent with previously published results.,COMPLETO,90,1
+60,P11-1064_P10-1147_1,Evaluable,Comparison,Alta,Contrasts the supervised discriminative approach with the current unsupervised generative one.,COMPLETO,90,1
+61,W09-3533_W05-1302_0,Evaluable,Background,Media,Lists prior work on name matching.,COMPLETO,90,1
+62,W10-3107_W09-1304_0,Evaluable,Background,Media,Describes the corpus's use in prior classifier work with 'see e.g.'.,COMPLETO,90,1
+63,P04-1032_P01-1019_0,Evaluable,Evidence,Media,Supports the claim that underspecified descriptions are easier to derive.,COMPLETO,90,1
+64,D13-1139_N04-1014_0,Evaluable,Background,Alta,Cites tree-based MT as prior context.,COMPLETO,90,1
+65,J03-4003_P96-1025_0,Evaluable,Basis,Media,Builds on the cited models' finding about the importance of distance.,COMPLETO,90,1
+66,W12-1509_P10-1103_1,Evaluable,Basis,Alta,The current work extends the cited prior work.,COMPLETO,90,1
+67,J10-3002_P03-1021_4,Evaluable,Basis,Media,The work is described as an application of the cited linear model to word alignment.,COMPLETO,90,1
+68,P12-1046_N10-1003_1,Evaluable,Application,Media,Follows the cited work in combining multiple models.,COMPLETO,90,1
+69,D12-1133_P08-1068_1,Evaluable,Comparison,Alta,The cited result appears in a comparison table.,COMPLETO,90,1
+70,P08-1078_N07-1071_5,Evaluable,Comparison,Alta,Contrasts the current evaluation methodology with previous ones.,COMPLETO,90,1
+71,P00-1023_W98-1119_3,Evaluable,Comparison,Alta,Compares the accuracy obtained with the figure reported in the cited work.,COMPLETO,90,1
+72,J04-3002_W02-2034_0,Evaluable,Basis,Alta,The article expands and integrates the cited work.,COMPLETO,90,1
+73,Q13-1011_P04-1015_0,Evaluable,Application,Media,Uses a discriminative reranking framework from the cited work.,COMPLETO,90,1
+74,E12-1050_P08-2009_2,Evaluable,Comparison,Alta,Compares accuracy with results for other languages.,COMPLETO,90,1
+75,W09-2508_N04-1041_0,Evaluable,Background,Alta,Lists other co-occurrence methods.,COMPLETO,90,1
+76,P08-1046_W05-0615_1,Evaluable,Comparison,Alta,Contrasts the current approach with the cited one on distinguishing positions.,COMPLETO,90,1
+77,W03-1613_W98-0705_0,Evaluable,Gap,Alta,Highlights limitations of WSD for IR in the cited results.,COMPLETO,90,1
+78,P12-1046_P03-1054_0,Evaluable,Evidence,Alta,Supports the claim that treebank PCFGs perform poorly.,COMPLETO,90,1
+79,D12-1056_P00-1031_1,Evaluable,Background,Alta,Lists early work on text input methods.,COMPLETO,90,1
+80,P06-1051_W05-1203_0,Evaluable,Background,Media,"Mentions lexical-similarity-based models as the point of contrast, which is a description of prior approaches.",COMPLETO,90,1
+81,E09-1034_P06-2066_2,Evaluable,Evidence,Alta,Supports the claim that most treebank structures are well-nested.,COMPLETO,90,1
+82,P12-2056_P09-1104_0,Evaluable,Application,Alta,Uses the hand-aligned data from the cited work.,COMPLETO,90,1
+83,W96-0410_J94-2004_0,Evaluable,Background,Media,Cites prior work on modality and psychological states.,COMPLETO,90,1
+84,D13-1040_D11-1135_4,Evaluable,Application,Alta,Uses the corpus created by the cited authors.,COMPLETO,90,1
+85,N13-1097_W10-0701_0,Evaluable,Application,Alta,Uses Mechanical Turk for labeling.,COMPLETO,90,1
+86,J06-4003_P01-1025_0,Evaluable,Evidence,Alta,The cited evaluation confirms the usefulness of likelihood ratios.,COMPLETO,90,1
+87,D12-1052_W11-2843_0,Evaluable,Application,Alta,Uses the feature set proposed in the cited work.,COMPLETO,90,1
+88,W02-2105_P98-1116_1,Evaluable,Comparison,Alta,Explicit comparison with the Nitrogen system.,COMPLETO,90,1
+89,N13-1080_D12-1124_2,Evaluable,Application,Alta,Uses the dataset introduced in the cited work.,COMPLETO,90,1
+90,P07-1011_A00-2019_3,Evaluable,Comparison,Alta,Compares the technique with ALEK.,COMPLETO,90,1
+91,D08-1060_P07-1089_0,Evaluable,Gap,Alta,Points out the complexity of the cited approach.,COMPLETO,90,1
+92,W09-1120_P02-1017_0,Evaluable,Background,Alta,Notes progress in the field.,COMPLETO,90,1
+93,D13-1129_E06-1011_2,Evaluable,Comparison,Alta,Identifies a system in a comparison with previous work.,COMPLETO,90,1
+94,P08-1011_N07-1051_0,Evaluable,Application,Alta,Uses the Berkeley parser.,COMPLETO,90,1
+95,N12-1044_W11-3201_0,Evaluable,Background,Alta,Describes the shared tasks as a forum.,COMPLETO,90,1
+96,P09-2018_W03-1011_1,Evaluable,Gap,Alta,Notes that few works investigate directional similarity measures.,COMPLETO,90,1
+97,P13-1020_D11-1022_0,Evaluable,Application,Alta,Employs AD3 to solve the relaxation.,COMPLETO,90,1
+98,W04-0915_E03-3006_1,Evaluable,Further Reading,Alta,Details are said to be described elsewhere.,COMPLETO,90,1
+99,W06-1636_P05-1010_3,Evaluable,Comparison,Alta,Compares model performance with the cited models.,COMPLETO,90,1
+100,D09-1117_P07-2045_2,Evaluable,Application,Media,The cited component is included in the decoder's partial hypothesis scores.,COMPLETO,90,1

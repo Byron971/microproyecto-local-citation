@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J10-2004_N06-1033_1,Evaluable,Background,Media,"Remite a trabajos previos que abordan la binarización de reglas como cuestión relacionada, situando el tema.",COMPLETO,104,1
+2,P05-1003_W02-2018_0,Evaluable,Evidence,Alta,La cita respalda la afirmación de que los algoritmos basados en gradiente convergen más rápido que el escalamiento iterativo.,COMPLETO,104,1
+3,P11-1042_N06-2013_0,Evaluable,Evidence,Media,Respalda la afirmación de que la segmentación óptima depende del conjunto de prueba o del tamaño de los datos.,COMPLETO,104,1
+4,P10-1151_W07-2218_0,Evaluable,Background,Alta,Enumera modelos de análisis de dependencias propuestos para situar el área.,COMPLETO,104,1
+5,N12-2011_P04-1053_0,Evaluable,Identification of the Originator,Alta,Usa 'as introduced by' para atribuir el enfoque de agrupamiento de pares de entidades a Hasegawa et al.,COMPLETO,104,1
+6,D11-1107_W06-1412_0,Evaluable,Gap,Alta,"Señala una excepción y su limitación (solo elegía el tipo de referencia), contrastándola con el trabajo actual.",COMPLETO,104,1
+7,D11-1022_D08-1017_0,Evaluable,Comparison,Media,"Se incluyen los mejores resultados publicados, entre ellos los métodos híbridos citados, para compararlos con el modelo propio.",COMPLETO,104,1
+8,N06-1012_W04-3201_0,Evaluable,Background,Alta,"Enumera aplicaciones de modelos discriminativos en PLN, incluido el análisis sintáctico.",COMPLETO,104,1
+9,P06-2122_P05-1059_2,Evaluable,Application,Alta,Aplica una técnica de poda del trabajo citado tal cual.,COMPLETO,104,1
+10,W96-0110_W96-0110_0,Evaluable,Further Reading,Alta,'Please refer to' remite a los detalles del conjunto de casos.,COMPLETO,104,1
+11,D11-1141_N09-1019_1,Evaluable,Comparison,Media,Se comparan los resultados del modelo con los de sistemas previos en una tabla.,COMPLETO,104,1
+12,W13-2212_N12-1047_0,Evaluable,Application,Alta,Utiliza k-best MIRA como método de ajuste.,COMPLETO,104,1
+13,D09-1145_P07-1125_1,Evaluable,Background,Alta,"Describe trabajo previo que extendió otro anterior, dentro de una revisión de literatura.",COMPLETO,104,1
+14,P13-1010_P06-2103_0,Evaluable,Background,Alta,Revisión de usos previos del modelo de entity grid.,COMPLETO,104,1
+15,P03-1071_P01-1064_1,Evaluable,Comparison,Alta,Se evalúa el sistema propio frente a dos algoritmos de segmentación de referencia.,COMPLETO,104,1
+16,E09-1064_P98-2127_0,Evaluable,Background,Alta,"Enumera recursos desarrollados, incluidos los basados en similitud distribucional.",COMPLETO,104,1
+17,P04-1051_P03-1069_0,Evaluable,Background,Alta,Agrupa literatura reciente sobre coherencia local.,COMPLETO,104,1
+18,W91-0103_P89-1005_0,Evaluable,Background,Media,"Describe cómo las gramáticas propagan la semántica, con referencia a enfoques previos.",COMPLETO,104,1
+19,S13-1043_E09-1018_2,Evaluable,Comparison,Alta,Contrasta los resultados de los modelos citados con los del modelo propio basado en entity grid.,COMPLETO,104,1
+20,W99-0405_P98-1032_1,Evaluable,Gap,Media,Señala la limitación de las variables (léxicas y análisis superficial) que motiva el trabajo actual.,COMPLETO,104,1
+21,P09-1074_D08-1031_3,Evaluable,Background,Media,Remite a trabajos con rendimiento de vanguardia en ACE para situar el sistema usado.,COMPLETO,104,1
+22,W09-1120_P06-1109_0,Evaluable,Background,Alta,Cita el progreso reciente en análisis no supervisado.,COMPLETO,104,1
+23,P06-2064_W04-2609_1,Evaluable,Gap,Media,Describe el trabajo citado señalando problemas de escalabilidad y portabilidad.,COMPLETO,104,1
+24,D09-1149_P05-1053_0,Evaluable,Background,Alta,Enumera métodos supervisados propuestos para la tarea RDC.,COMPLETO,104,1
+25,D13-1053_N03-1017_0,Evaluable,Evidence,Alta,Respalda la afirmación de que usar solo frases sintácticas es demasiado restrictivo.,COMPLETO,104,1
+26,N07-1010_P02-1014_2,Evaluable,Comparison,Alta,Contrasta explícitamente el entrenamiento acoplado propio con el independiente del trabajo citado.,COMPLETO,104,1
+27,P11-1094_P03-2026_0,Evaluable,Background,Alta,Enumera métodos previos basados en clasificadores para detectar errores.,COMPLETO,104,1
+28,J10-3009_P03-1021_0,Evaluable,Application,Alta,Usa MERT tal cual para ajustar los pesos.,COMPLETO,104,1
+29,P10-1147_W99-0604_0,Evaluable,Identification of the Originator,Media,'First pursued' atribuye a los trabajos citados el origen del paradigma basado en frases.,COMPLETO,104,1
+30,W11-0316_W04-3252_2,Evaluable,Comparison,Alta,TextRank es uno de los métodos base con los que se compara el método propio.,COMPLETO,104,1
+31,N06-2025_E06-1015_0,Evaluable,Further Reading,Alta,Remite a la fuente para la descripción formal.,COMPLETO,104,1
+32,P12-1083_N03-1030_0,Evaluable,Background,Alta,Sección de trabajo relacionado sobre análisis del discurso a nivel de oración.,COMPLETO,104,1
+33,W07-1033_W04-1213_2,Evaluable,Evidence,Media,Los estudios previos respaldan que las características de analizadores superficiales contribuyen al rendimiento.,COMPLETO,104,1
+34,W12-3131_W11-2123_0,Evaluable,Application,Alta,El sistema usa la biblioteca KenLM para la inferencia del modelo de lenguaje.,COMPLETO,104,1
+35,D10-1100_E06-1015_2,Evaluable,Application,Alta,Usa el paquete SVM-LightTK para la clasificación.,COMPLETO,104,1
+36,W10-3106_W09-1304_2,Evaluable,Comparison,Media,Menciona estudios que usan BioScope para comparar los resultados de BioExcom.,COMPLETO,104,1
+37,D12-1052_P11-1027_0,Evaluable,Application,Alta,Usa Berkeley LM como modelo de lenguaje en el decodificador.,COMPLETO,104,1
+38,W10-1735_N04-4038_0,Evaluable,Application,Alta,Anota los datos con el chunker AMIRA.,COMPLETO,104,1
+39,E03-1004_P01-1030_0,Evaluable,Comparison,Alta,Compara los resultados con el sistema estadístico GIZA++/ISI ReWrite Decoder.,COMPLETO,104,1
+40,N12-1004_P10-1147_2,Evaluable,Improvement / Modification,Alta,El procedimiento estándar de extracción se extiende para manejar enlaces posibles.,COMPLETO,104,1
+41,J12-1003_D10-1106_0,Evaluable,Background,Alta,Enumera investigación activa sobre adquisición de reglas de implicación.,COMPLETO,104,1
+42,W10-2806_W01-0514_0,Evaluable,Background,Alta,Enumera aplicaciones de técnicas vectoriales en PLN.,COMPLETO,104,1
+43,W05-1511_E03-1052_1,Evaluable,Background,Alta,Describe trabajo previo sobre híbridos de análisis profundo y superficial.,COMPLETO,104,1
+44,P03-1023_P02-1014_2,Evaluable,Comparison,Alta,El enfoque se compara experimentalmente con los trabajos listados.,COMPLETO,104,1
+45,W05-1001_N04-1032_0,Evaluable,Comparison,Media,Contrasta el hallazgo citado sobre la caída de F-score con el análisis automático frente al perfecto con los resultados propios.,COMPLETO,104,1
+46,D12-1131_N03-1033_1,Evaluable,Application,Alta,Usa el etiquetador de Stanford tal cual.,COMPLETO,104,1
+47,D13-1038_W08-1109_2,Evaluable,Comparison,Alta,'Consistent with previous work' vincula el hallazgo propio con el previo.,COMPLETO,104,1
+48,W12-4404_P11-2010_2,Evaluable,Comparison,Alta,"Contrasta el trabajo citado con el método propio, que no asume el mismo alfabeto.",COMPLETO,104,1
+49,S13-1009_S12-1051_1,Evaluable,Further Reading,Alta,Remite a la descripción completa de las métricas.,COMPLETO,104,1
+50,W04-3241_P02-1026_4,Evaluable,Identification of the Originator,Alta,'First proposed by' atribuye el principio de entropía constante al trabajo citado.,COMPLETO,104,1
+51,P11-2022_W07-2321_0,Evaluable,Gap,Media,"Describe un intento previo que no halló mejora significativa, dentro de la escasez de intentos.",COMPLETO,104,1
+52,W04-0212_W04-2703_1,Evaluable,Further Reading,Alta,Remite a una discusión extensa de la fiabilidad entre anotadores.,COMPLETO,104,1
+53,P12-1041_D09-1120_0,Evaluable,Gap,Media,Enumera trabajos con bases de conocimiento y señala que su alcance es limitado.,COMPLETO,104,1
+54,D13-1006_N12-3006_0,Evaluable,Application,Alta,Usa el etiquetador de MSR SPLAT para extraer sustantivos.,COMPLETO,104,1
+55,P12-3022_P07-2045_0,Evaluable,Comparison,Alta,Compara las precisiones de traducción de Akamon con las de Moses.,COMPLETO,104,1
+56,W05-1510_P98-1116_0,Evaluable,Improvement / Modification,Alta,'Our method extends their approach' amplía el enfoque de Nitrogen.,COMPLETO,104,1
+57,J13-3007_P10-1134_0,Evaluable,Application,Alta,Emplea WCLs como clasificador para identificar oraciones de definición.,COMPLETO,104,1
+58,W13-3604_P12-1101_0,Evaluable,Application,Alta,Usa el Treelet Language Model para corregir errores SVA y Vform.,COMPLETO,104,1
+59,W01-1512_W99-0802_1,Evaluable,Further Reading,Media,'See ... for related discussion' remite a una discusión relacionada.,COMPLETO,104,1
+60,W11-2168_W06-3105_0,Evaluable,Gap,Alta,Señala que los modelos generativos no han logrado mejorar las heurísticas de entrenamiento.,COMPLETO,104,1
+61,W11-1405_P05-1025_0,Evaluable,Gap,Alta,Indica que estos esfuerzos no se han aplicado a datos de habla.,COMPLETO,104,1
+62,P04-1014_P03-1046_1,Evaluable,Further Reading,Alta,Remite a introducciones sobre análisis estadístico con CCG.,COMPLETO,104,1
+63,D13-1077_P12-1084_2,Evaluable,Comparison,Media,Remite a los altos resultados del trabajo citado para comparar con la categoría específica.,COMPLETO,104,1
+64,W12-0507_D08-1014_0,Evaluable,Evidence,Alta,Respalda la afirmación de que un enfoque en dos pasos suele ser beneficioso.,COMPLETO,104,1
+65,W07-2305_W06-1405_0,Evaluable,Background,Media,Describe un sistema relacionado (CRAG-2) dentro del trabajo relacionado.,COMPLETO,104,1
+66,W02-0810_S01-1040_0,Evaluable,Improvement / Modification,Alta,El sistema extiende el sistema JHU citado.,COMPLETO,104,1
+67,D09-1004_N06-1055_0,Evaluable,Gap,Media,"Aunque se citan pocos estudios empíricos, el trabajo citado reporta un resultado en chino que contrasta con la necesidad de aprendizaje integrado.",COMPLETO,104,1
+68,P12-1084_D11-1099_7,Evaluable,Comparison,Alta,Compara la exactitud del enfoque propio con la del estado del arte citado.,COMPLETO,104,1
+69,Q13-1015_P12-1075_1,Evaluable,Background,Alta,Enumera algoritmos propuestos para agrupar predicados.,COMPLETO,104,1
+70,D13-1027_N13-2001_0,Evaluable,Gap,Alta,"Señala que el trabajo previo solo hizo análisis manual a pequeña escala, motivando la herramienta nueva.",COMPLETO,104,1
+71,W13-3820_P98-1013_0,Evaluable,Background,Alta,Describe el recurso FrameNet como contexto.,COMPLETO,104,1
+72,W06-1632_W06-2305_0,Evaluable,Application,Alta,Usa el analizador CDG para analizar los textos.,COMPLETO,104,1
+73,P11-1123_P02-1002_0,Evaluable,Background,Alta,Agrupa algoritmos de entrenamiento eficientes existentes.,COMPLETO,104,1
+74,W10-3010_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford sin modificarlo.,COMPLETO,104,1
+75,N13-1126_P12-1066_2,Evaluable,Basis,Media,"El modelo generativo citado es la base del enfoque actual, que lo extiende.",COMPLETO,104,1
+76,N13-1121_P09-1116_0,Evaluable,Evidence,Media,Justifica el uso de PMI siguiendo trabajo previo de agrupamiento distribucional.,COMPLETO,104,1
+77,E97-1008_P93-1024_1,Evaluable,Identification of the Originator,Media,"Indica que la función estaba implícita en el trabajo anterior de agrupamiento distribucional, estableciendo su origen.",COMPLETO,104,1
+78,N10-1119_E09-1077_2,Evaluable,Background,Alta,Describe estudios previos de léxicos de polaridad basados en WordNet.,COMPLETO,104,1
+79,W13-3517_P11-1082_3,Evaluable,Comparison,Alta,Contrasta el trabajo citado con el método propio.,COMPLETO,104,1
+80,P11-1085_D10-1060_0,Evaluable,Gap,Alta,Señala que no aprovechaban suficientemente el contexto rico del árbol.,COMPLETO,104,1
+81,D11-1114_P09-1040_1,Evaluable,Comparison,Alta,Contrasta la operación de intercambio del trabajo citado con el sistema de Attardi.,COMPLETO,104,1
+82,N13-1010_P10-1121_1,Evaluable,Identification of the Originator,Alta,'First proposed in' atribuye la formulación incremental al trabajo citado.,COMPLETO,104,1
+83,E12-1047_N10-1118_2,Evaluable,Gap,Alta,"Critica que el trabajo citado pasa por alto un aspecto, lo que produce binarizaciones subóptimas.",COMPLETO,104,1
+84,D08-1063_E99-1023_0,Evaluable,Application,Media,Usa la codificación de partes de mención presentada en el trabajo citado.,COMPLETO,104,1
+85,D12-1003_W11-1206_2,Evaluable,Gap,Alta,Señala la limitación del método citado: sensibilidad al parámetro k.,COMPLETO,104,1
+86,N06-2032_N03-3009_0,Evaluable,Evidence,Alta,Respalda que la información léxica es valiosa para identificar límites de historias.,COMPLETO,104,1
+87,P08-1116_W04-3219_2,Evaluable,Evidence,Alta,Respalda la afirmación de que los métodos basados en patrones tienen generalidad limitada.,COMPLETO,104,1
+88,Q13-1016_W10-2903_0,Evaluable,Background,Alta,Enumera anotaciones menos restrictivas usadas en trabajo previo de análisis semántico.,COMPLETO,104,1
+89,E09-1062_D08-1078_0,Evaluable,Background,Alta,Resume trabajo reciente sobre predicción de calidad de traducción.,COMPLETO,104,1
+90,P13-1092_N10-1083_1,Evaluable,Application,Alta,Los parámetros se estiman con EM con características del trabajo citado.,COMPLETO,104,1
+91,W08-2102_E06-1011_2,Evaluable,Improvement / Modification,Media,Las características son una extensión de las citadas para cubrir dependencias de abuelo.,COMPLETO,104,1
+92,D13-1068_D11-1040_1,Evaluable,Background,Alta,Describe trabajos previos sobre resumen de líneas de tiempo.,COMPLETO,104,1
+93,P10-1158_W02-2111_1,Evaluable,Comparison,Alta,Compara las tasas de cruce y mutación propias con las del trabajo previo.,COMPLETO,104,1
+94,P10-2017_W09-2506_2,Evaluable,Background,Media,Resume enfoques previos de la tarea de clasificación de paráfrasis en contexto.,COMPLETO,104,1
+95,W13-0125_P05-1074_0,Evaluable,Comparison,Alta,Los fenómenos observados se contrastan con los de estudios previos sobre inglés y prensa.,COMPLETO,104,1
+96,W04-0822_P04-1081_0,Evaluable,Background,Media,"Describe el modelo WSD propuesto en el trabajo citado, que sirve de contexto.",COMPLETO,104,1
+97,W11-2158_W08-0509_0,Evaluable,Application,Alta,Usa la versión multihilo de GIZA++ tal cual.,COMPLETO,104,1
+98,W07-0704_P07-1017_0,Evaluable,Background,Alta,Resume trabajo reciente sobre posprocesamiento morfológico.,COMPLETO,104,1
+99,W01-1626_J94-2004_1,Evaluable,Further Reading,Alta,"'For references to work on subjectivity, please see' remite a otras fuentes.",COMPLETO,104,1
+100,W10-3814_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford para generar los análisis.,COMPLETO,104,1

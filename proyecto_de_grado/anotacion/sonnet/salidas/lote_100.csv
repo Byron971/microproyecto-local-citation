@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D11-1006_P06-1055_0,Evaluable,Background,Alta,Enumera trabajos previos de análisis sintáctico de constituyentes.,COMPLETO,100,1
+2,W00-0901_W98-1506_0,Evaluable,Evidence,Media,Se cita lo señalado por los autores para respaldar la decisión de no usar la prueba de hipótesis.,COMPLETO,100,1
+3,E09-1090_P08-1109_2,Evaluable,Comparison,Alta,Aparece en una tabla que compara resultados y tiempos con el sistema propio.,COMPLETO,100,1
+4,D09-1120_D08-1068_0,Evaluable,Comparison,Media,El conjunto de datos se usa para comparar contra el trabajo citado.,COMPLETO,100,1
+5,W10-2803_S07-1016_1,Evaluable,Evidence,Media,Respalda la afirmación de que los sentidos más gruesos mejoran en torno a un 10% el ITA y la exactitud.,COMPLETO,100,1
+6,N13-1123_D10-1007_0,Evaluable,Gap,Media,Describe el modelo previo con una limitación o diferencia para motivar el trabajo propio.,COMPLETO,100,1
+7,P13-2016_N09-3014_0,Evaluable,Background,Media,"Describe trabajos previos sobre ordenación de oraciones, aunque señala una limitación.",COMPLETO,100,1
+8,D13-1172_E12-1021_1,Evaluable,Gap,Alta,Señala una restricción del modelo citado.,COMPLETO,100,1
+9,P13-2109_W06-2932_0,Evaluable,Comparison,Alta,Se incluye entre los analizadores más precisos con los que se compara en la tabla.,COMPLETO,100,1
+10,W11-0135_W09-2507_0,Evaluable,Background,Alta,Enumera trabajos previos sobre la construcción de corpus de inferencia.,COMPLETO,100,1
+11,P11-1156_E06-1011_2,Evaluable,Comparison,Alta,Aparece en una tabla que compara la exactitud con la del sistema propio.,COMPLETO,100,1
+12,D08-1068_P07-1107_1,Evaluable,Comparison,Alta,Contrasta explícitamente los supuestos del trabajo actual con los del citado.,COMPLETO,100,1
+13,D11-1001_W09-1406_0,Evaluable,Gap,Media,Los modelos conjuntos se presentan con limitaciones (menor exactitud) que justifican el enfoque.,COMPLETO,100,1
+14,N12-1052_N04-1043_2,Evaluable,Comparison,Alta,Compara las mejoras relativas obtenidas con los resultados previos.,COMPLETO,100,1
+15,P11-2074_N07-1008_1,Evaluable,Basis,Media,El modelo de máxima entropía propuesto en el trabajo citado se resume como punto de partida.,COMPLETO,100,1
+16,P12-1109_P11-1037_2,Evaluable,Background,Alta,Revisa trabajos previos sobre normalización de textos.,COMPLETO,100,1
+17,N10-1061_D09-1120_5,Evaluable,Comparison,Alta,Compara el modelo propio con el sistema determinista citado.,COMPLETO,100,1
+18,J13-3003_D08-1094_1,Evaluable,Background,Alta,Lista de trabajos sobre significado de palabras en contexto.,COMPLETO,100,1
+19,W13-3210_J13-3003_1,Evaluable,Evidence,Media,Respalda la afirmación de que los datos Usim sirven para evaluar la similitud en contexto.,COMPLETO,100,1
+20,W13-5412_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford sin modificarlo.,COMPLETO,100,1
+21,D13-1160_P12-1045_0,Evaluable,Background,Alta,Enumera trabajos previos sobre seguimiento de instrucciones de navegación.,COMPLETO,100,1
+22,D11-1108_W07-0716_0,Evaluable,Background,Alta,Enumera trabajos que usan paráfrasis en tareas de traducción y resumen.,COMPLETO,100,1
+23,D09-1134_P07-1036_1,Evaluable,Comparison,Alta,Compara con los resultados publicados por el trabajo citado.,COMPLETO,100,1
+24,D10-1057_P08-2059_4,Evaluable,Background,Media,Describe un resultado previo sobre aprendizaje activo con confianza.,COMPLETO,100,1
+25,W10-0733_W09-0424_0,Evaluable,Comparison,Media,Se eligen sistemas de referencia de vanguardia para comparar con el propio.,COMPLETO,100,1
+26,J11-1005_P07-1106_2,Evaluable,Comparison,Alta,Sección dedicada a comparar el segmentador actual con el trabajo previo de los autores.,COMPLETO,100,1
+27,D11-1017_W10-2906_1,Evaluable,Comparison,Alta,Señala la similitud entre el autoentrenamiento propuesto y el reentrenamiento del trabajo citado.,COMPLETO,100,1
+28,W10-2105_P08-1108_1,Evaluable,Comparison,Alta,Aparece en una tabla que compara analizadores con el estado del arte.,COMPLETO,100,1
+29,N13-3004_W12-2416_0,Evaluable,Comparison,Alta,Compara la herramienta con otras herramientas de anotación.,COMPLETO,100,1
+30,E09-1044_N04-1022_0,Evaluable,Application,Alta,Se aplica la reordenación MBR tal como fue propuesta.,COMPLETO,100,1
+31,D12-1080_P09-1046_0,Evaluable,Background,Alta,Enumera trabajos previos sobre relaciones temporales.,COMPLETO,100,1
+32,W03-0105_E99-1001_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la utilidad limitada de los gazetteers.,COMPLETO,100,1
+33,W13-1001_J98-4009_0,Evaluable,Evidence,Alta,Respalda la estimación sobre el número de expresiones multipalabra.,COMPLETO,100,1
+34,P13-1104_P12-2071_0,Evaluable,Application,Alta,Usa el etiquetador del trabajo citado para generar las etiquetas POS.,COMPLETO,100,1
+35,W11-1006_P07-1005_0,Evaluable,Background,Media,Describe trabajos previos que lograron mejoras con WSD en traducción.,COMPLETO,100,1
+36,D10-1067_P06-1109_1,Evaluable,Comparison,Alta,Contrasta las condiciones de entrenamiento de los modelos citados con las del trabajo actual.,COMPLETO,100,1
+37,W12-3404_D11-1122_3,Evaluable,Application,Media,Se emplea la línea base de función sintáctica usada en el trabajo citado.,COMPLETO,100,1
+38,P02-1044_J98-1004_0,Evaluable,Further Reading,Media,"Remite a otros trabajos relacionados con la expresión 'see, for example'.",COMPLETO,100,1
+39,P08-1090_P05-1018_0,Evaluable,Basis,Alta,El modelo propuesto se inspira en los modelos de coherencia basados en entidades.,COMPLETO,100,1
+40,P13-1081_N06-1024_0,Evaluable,Background,Alta,Trabajos relacionados sobre categorías vacías.,COMPLETO,100,1
+41,N09-1018_W08-2125_1,Evaluable,Comparison,Alta,Compara explícitamente la observación propia con la del trabajo citado.,COMPLETO,100,1
+42,D12-1109_P05-1033_1,Evaluable,Application,Alta,Emplea la técnica de cube pruning de los autores citados.,COMPLETO,100,1
+43,W11-1015_P10-1146_1,Evaluable,Comparison,Alta,Aparece en una tabla que compara métodos de extracción de reglas.,COMPLETO,100,1
+44,W13-3306_P07-1005_0,Evaluable,Background,Alta,Describe trabajos previos que aplicaron WSD a SMT.,COMPLETO,100,1
+45,D12-1059_P97-1054_0,Evaluable,Background,Alta,Enumera modelos previos de adquisición dentro del marco CCG.,COMPLETO,100,1
+46,W12-3124_W10-1748_0,Evaluable,Application,Alta,Se usa el optimizador distribuido citado para ajustar los pesos.,COMPLETO,100,1
+47,P11-1126_P09-1065_0,Evaluable,Gap,Media,Describe el método citado y señala una limitación (depende de la correspondencia entre nodos).,COMPLETO,100,1
+48,D10-1033_W03-0425_0,Evaluable,Background,Alta,Enumera investigación reciente sobre reconocimiento de entidades nombradas.,COMPLETO,100,1
+49,P04-1003_P04-1003_0,Evaluable,Further Reading,Alta,Remite a una versión más larga del artículo para el experimento no descrito.,COMPLETO,100,1
+50,W11-2162_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para optimizar los pesos.,COMPLETO,100,1
+51,P07-1069_P04-1015_0,Evaluable,Background,Alta,Enumera aplicaciones previas de modelos similares en otras tareas.,COMPLETO,100,1
+52,P13-2105_P05-1022_0,Evaluable,Application,Media,Se usa la técnica de reranking discriminativo para entrenar el transformador.,COMPLETO,100,1
+53,J07-2002_P99-1004_2,Evaluable,Gap,Alta,Señala la limitación de usar solo un subconjunto fijo de relaciones sin distinción cualitativa.,COMPLETO,100,1
+54,N10-1003_W01-0521_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para la configuración exacta.,COMPLETO,100,1
+55,P11-2076_P03-1040_1,Evaluable,Evidence,Alta,Respalda la decisión de extraer sintagmas nominales porque se traducen como bloques.,COMPLETO,100,1
+56,W12-2004_P11-1118_0,Evaluable,Application,Alta,Usa el Brown Coherence Toolkit para construir las rejillas de entidades.,COMPLETO,100,1
+57,D13-1164_D10-1004_0,Evaluable,Further Reading,Media,"Remite a la literatura de programación lineal para la relajación, con 'e.g., see'.",COMPLETO,100,1
+58,P10-1100_D08-1073_0,Evaluable,Background,Alta,Menciona el interés reciente en aprender conocimiento tipo guion.,COMPLETO,100,1
+59,P13-2002_D10-1058_2,Evaluable,Gap,Alta,Describe el enfoque previo de Poisson con parámetro global y propone uno alternativo.,COMPLETO,100,1
+60,D13-1176_D12-1110_1,Evaluable,Comparison,Alta,Contrasta la ventaja de no requerir árbol sintáctico frente a modelos que sí lo requieren.,COMPLETO,100,1
+61,W13-0214_P92-1004_0,Evaluable,Background,Media,Describe la representación de la interpretación en dos niveles como antecedente.,COMPLETO,100,1
+62,J89-1003_P85-1013_1,Evaluable,Basis,Media,El sistema se apoya en las gramáticas lógicas modulares definidas en el trabajo citado.,COMPLETO,100,1
+63,P13-1100_W04-1013_0,Evaluable,Application,Alta,Se usa la métrica ROUGE para evaluar.,COMPLETO,100,1
+64,D10-1102_P07-1055_1,Evaluable,Background,Media,"Ejemplifica modelos conjuntos de dos niveles, antes de señalar su limitación.",COMPLETO,100,1
+65,P09-1024_W04-1013_0,Evaluable,Application,Alta,Usa el kit ROUGE disponible públicamente.,COMPLETO,100,1
+66,P11-1125_N07-1029_2,Evaluable,Application,Media,Emplea las medidas de confianza de conteo de reglas definidas en el trabajo citado.,COMPLETO,100,1
+67,W13-2254_W08-0332_0,Evaluable,Background,Alta,Enumera trabajos sobre la métrica ULC antes de señalar la falta de uso en ajuste.,COMPLETO,100,1
+68,N12-1050_N09-2004_0,Evaluable,Evidence,Media,Respalda la afirmación de que las representaciones superficiales han resultado útiles en traducción automática.,COMPLETO,100,1
+69,N10-1080_N03-1017_1,Evaluable,Application,Alta,Usa la heurística grow-diag-final para fusionar alineaciones.,COMPLETO,100,1
+70,N04-1035_W02-1039_1,Evaluable,Basis,Alta,Se propone aprender de los estudios citados y extender sus resultados.,COMPLETO,100,1
+71,P10-2012_N01-1021_0,Evaluable,Background,Alta,Describe los modelos de sorpresa como parte del estado del campo.,COMPLETO,100,1
+72,N09-1003_E09-1005_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles del algoritmo.,COMPLETO,100,1
+73,W13-3204_W05-0821_0,Evaluable,Identification of the Originator,Alta,Indica que la idea fue introducida por los autores citados.,COMPLETO,100,1
+74,W00-1302_J94-2004_0,Evaluable,Comparison,Media,Contrasta el hallazgo propio con el reportado por el trabajo citado sobre agentividad por segmentos.,COMPLETO,100,1
+75,D13-1123_D09-1001_0,Evaluable,Comparison,Alta,Contrasta explícitamente el enfoque propio con otras propuestas de transformación a forma lógica.,COMPLETO,100,1
+76,W09-0210_P06-1044_0,Evaluable,Evidence,Media,Respalda la afirmación de que las clasificaciones fijas son inadecuadas para dominios específicos.,COMPLETO,100,1
+77,E12-1003_D11-1122_3,Evaluable,Application,Alta,Se mantiene la configuración general del trabajo citado para evaluar.,COMPLETO,100,1
+78,W06-3603_W04-3201_1,Evaluable,Application,Media,Se sigue el protocolo experimental de entrenamiento y prueba del trabajo citado.,COMPLETO,100,1
+79,W13-3503_W09-3206_1,Evaluable,Comparison,Alta,Aparece en una lista que compara resultados de distintos métodos.,COMPLETO,100,1
+80,D11-1070_W09-1418_0,Evaluable,Background,Alta,Describe trabajos previos antes de contrastarlos con el enfoque propio.,COMPLETO,100,1
+81,P10-1034_P07-2045_1,Evaluable,Application,Alta,Usa la estrategia de balanceo grow-diag-final-and.,COMPLETO,100,1
+82,W09-0420_P07-2045_0,Evaluable,Application,Alta,Los sistemas se basan en el decodificador Moses.,COMPLETO,100,1
+83,N10-1106_W03-1026_0,Evaluable,Background,Media,"Indica que para el chino el carácter se considera la unidad adecuada, según la literatura.",COMPLETO,100,1
+84,W06-1667_P04-1054_1,Evaluable,Comparison,Alta,Aparece en una tabla que compara esfuerzos existentes en la tarea ACE RDC.,COMPLETO,100,1
+85,D12-1132_E09-1100_1,Evaluable,Gap,Alta,Señala que no se ha proporcionado una descripción detallada de la anotación de estructuras de palabra.,COMPLETO,100,1
+86,P08-1109_W04-3201_2,Evaluable,Comparison,Alta,Contrasta la complejidad y ganancias del trabajo previo con el propio.,COMPLETO,100,1
+87,W11-2214_W97-0322_1,Evaluable,Evidence,Alta,Respalda la afirmación de que la información POS puede mejorar el rendimiento.,COMPLETO,100,1
+88,D13-1036_P09-1068_4,Evaluable,Background,Alta,Describe trabajos relacionados sobre aprendizaje de guiones.,COMPLETO,100,1
+89,N10-1118_E09-1055_1,Evaluable,Background,Media,Describe el algoritmo previo de extracción de reglas LCFRS.,COMPLETO,100,1
+90,W11-2160_N04-1022_0,Evaluable,Application,Alta,Aplica la reordenación MBR.,COMPLETO,100,1
+91,N09-1013_P03-1021_0,Evaluable,Application,Alta,Se emplea MET para ajustar el sistema.,COMPLETO,100,1
+92,W10-0102_W08-0509_0,Evaluable,Improvement / Modification,Alta,Usa una versión extendida de MGIZA++ para alineación semisupervisada.,COMPLETO,100,1
+93,W13-3205_P04-1054_0,Evaluable,Background,Alta,Enumera diferentes núcleos de árbol propuestos.,COMPLETO,100,1
+94,J11-3002_P98-1116_0,Evaluable,Background,Alta,Describe el trabajo seminal previo en generación estadística.,COMPLETO,100,1
+95,P12-1099_P05-1003_0,Evaluable,Evidence,Alta,Se apoya en lo discutido en el trabajo citado para sustentar la afirmación sobre los LOP.,COMPLETO,100,1
+96,D10-1091_E09-1061_0,Evaluable,Background,Media,Introduce el principio general de los sistemas de traducción basados en frases.,COMPLETO,100,1
+97,W12-5209_N12-1051_1,Evaluable,Comparison,Media,"Se presenta como método similar al trabajo propio, con contraste posterior.",COMPLETO,100,1
+98,D12-1081_D09-1160_0,Evaluable,Application,Alta,Se usa el analizador J.DepP descrito en el trabajo citado.,COMPLETO,100,1
+99,D11-1108_P01-1008_0,Evaluable,Background,Alta,Describe el tipo de corpus usado previamente para extraer paráfrasis.,COMPLETO,100,1
+100,D10-1015_N03-1017_3,Evaluable,Application,Alta,Se usa la fórmula original de puntuación léxica de frases sin modificarla.,COMPLETO,100,1
