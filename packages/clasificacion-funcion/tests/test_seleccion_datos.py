@@ -130,3 +130,55 @@ def test_auditar_fuentes_acuerdo_y_precision_por_tramo():
     assert par["n"] == 4 and par["acuerdo"] == pytest.approx(0.75)
     assert a["acuerdo_pares"]["qlora~gpt"] == {"n": 0, "acuerdo": None}
     assert sum(v["n"] for k, v in a["precision_qlora_por_p"].items() if "haiku" in k) == 4
+
+
+# ------------------------------------------------------------------ pista Sonnet (D7..D9)
+def _con_sonnet(f, alta_cada=2):
+    """Etiqueta Sonnet a toda cita normal de `f` (la clase del QLoRA); Alta en 1 de cada `alta_cada`."""
+    for k, (cid, q) in enumerate(sorted(f.qlora.items())):
+        if cid.startswith("P10-1"):
+            f.sonnet[cid] = {"label": q["label"], "confianza": "Alta" if k % alta_cada == 0 else "Media"}
+    return f
+
+
+def test_fuentes_sonnet_vacio_por_defecto_y_pool_lo_incluye():
+    f = fuentes(2)
+    assert f.sonnet == {}
+    assert all(x["sonnet"] is None for x in sd.construir_pool(f)[0])
+    pool, _ = sd.construir_pool(_con_sonnet(f))
+    assert all(x["sonnet"] for x in pool)
+
+
+def test_variantes_sonnet_mismas_citas_de_d1_sin_v_y_con_filtros():
+    f = _con_sonnet(fuentes(30))
+    res = sd.construir_todo(f, tope=12, tamano_v=40, n_particiones=20)
+    d1 = res["variantes"]["qlora_p50"]
+    ids_d1, ids_v = {x["context_id"] for x in d1}, {x["context_id"] for x in res["v"]}
+    d7, d8, d9 = (res["variantes"][n] for n in sd.VARIANTES_SONNET)
+    assert d7 and {x["context_id"] for x in d7} <= ids_d1          # solo citas de D1
+    assert not ({x["context_id"] for x in d7} & ids_v)             # ninguna de V
+    assert all(x["fuente"] == "sonnet" and x["etiqueta_entrenamiento"] == x["sonnet"]["label"] for x in d7)
+    assert d8 and all(x["sonnet"]["confianza"] == "Alta" for x in d8) and len(d8) < len(d7)
+    assert max(sd.conteos(d9).values()) <= 12                      # tope por clase respetado
+    assert {x["context_id"] for x in d9} <= {x["context_id"] for x in d7}
+    assert res["fugas"]["total_fugas"] == 0
+    for n in sd.VARIANTES_SONNET:
+        assert res["fugas"]["por_variante"][n] is not None
+
+
+def test_sonnet_cap_prioriza_alta():
+    f = _con_sonnet(fuentes(30))
+    res = sd.construir_todo(f, tope=3, tamano_v=40, n_particiones=20)
+    d7, d9 = res["variantes"]["sonnet"], res["variantes"]["sonnet_cap"]
+    for clase in dominio.CATEGORIAS:
+        altas = sum(x["sonnet"]["confianza"] == "Alta" for x in d7 if x["etiqueta_entrenamiento"] == clase)
+        elegidas = [x for x in d9 if x["etiqueta_entrenamiento"] == clase]
+        assert sum(x["sonnet"]["confianza"] == "Alta" for x in elegidas) == min(altas, 3)
+
+
+def test_v_sonnet_cambia_solo_las_etiquetas():
+    f = _con_sonnet(fuentes(30))
+    res = sd.construir_todo(f, tope=12, tamano_v=40, n_particiones=20)
+    vs = res["v_sonnet"]
+    assert vs and {x["context_id"] for x in vs} <= {x["context_id"] for x in res["v"]}
+    assert all(x["etiqueta_entrenamiento"] == x["sonnet"]["label"] for x in vs)

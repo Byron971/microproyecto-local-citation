@@ -200,3 +200,38 @@ def test_entrenar_con_objetivo_peso_y_callback(base, tmp_path):
                       tmp_path / "kd", torch.device("cpu"), al_terminar_epoca=vistas.append)
     assert [v["epoca"] for v in vistas] == [1, 2] == [h["epoca"] for h in res["historial"]]
     assert all(v["loss_train"] == v["loss_train"] for v in vistas)  # finita (no NaN)
+
+
+def test_preparar_ejemplos_conserva_objetivo_y_peso(base):
+    _, tok = base
+    entradas = conjunto(4)
+    entradas[0].update(objetivo=[0.7, 0.3] + [0.0] * 7, peso=0.4)
+    res = ejemplos(tok, entradas, "B")
+    assert res[0]["objetivo"] == [0.7, 0.3] + [0.0] * 7 and res[0]["peso"] == 0.4
+    assert "objetivo" not in res[1] and "peso" not in res[1]  # solo cuando la entrada los trae
+
+
+def test_perdida_kd_y_ponderada_cambia_el_entrenamiento_pasando_por_preparar_ejemplos(base, tmp_path):
+    """Regresion: `preparar_ejemplos` descartaba `objetivo`/`peso` y kd/ponderado == duro."""
+    ruta, tok = base
+    hp = ct.Hiperparametros(max_len=128, epocas=1, batch_size=4, acumulacion=2)
+
+    def perdida(extra, nombre):
+        entradas = conjunto(20)
+        for e in entradas:
+            e.update(extra(e))
+        ct.fijar_determinismo(1)
+        res = ct.entrenar(ct.ClasificadorCLS(ruta, 1), ejemplos(tok, entradas, "B"),
+                          ejemplos(tok, conjunto(8, 100), "B"), tok.pad_id, 1, hp,
+                          tmp_path / nombre, torch.device("cpu"))
+        return res["historial"][0]["loss_train"]
+
+    duro = perdida(lambda e: {}, "duro")
+    kd = perdida(lambda e: {"objetivo": [0.6 if i == e["indice"] else 0.05 for i in range(9)]}, "kd")
+    pond = perdida(lambda e: {"peso": 0.2 if e["indice"] == 0 else 1.0}, "pond")
+    assert kd != duro and pond != duro
+
+
+def test_entrenar_reporta_pico_de_memoria_gpu_solo_en_cuda(base, tmp_path):
+    _, res, _ = entrenar(base, tmp_path)
+    assert "gpu_mem_pico_gb" in res and res["gpu_mem_pico_gb"] is None  # CPU

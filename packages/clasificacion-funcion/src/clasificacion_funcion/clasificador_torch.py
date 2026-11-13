@@ -26,6 +26,8 @@ from . import dominio, exportar, revision
 
 # Debe fijarse antes de la primera operacion CUDA para que los matmul sean deterministas.
 os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+# Menos fragmentacion de memoria en corridas largas (tambien antes de la primera operacion CUDA).
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
 
 @dataclass(frozen=True)
@@ -110,8 +112,12 @@ def preparar_ejemplos(entradas: list[dict], tipo: str, tokenizador, max_len: int
     for e in entradas:
         segmentos = dominio.tokenizar_segmentos(dominio.construir_segmentos(e, tipo), tokenizador)
         r = dominio.ensamblar(segmentos, max_len, tokenizador.cls_id, tokenizador.sep_id)
-        ejemplos.append({"context_id": e["context_id"], "input_ids": r["input_ids"],
-                         "truncados": r["truncados"], "indice": e.get("indice")})
+        ejemplo = {"context_id": e["context_id"], "input_ids": r["input_ids"],
+                   "truncados": r["truncados"], "indice": e.get("indice")}
+        for campo in ("objetivo", "peso"):  # perdidas kd / ponderado: no deben perderse aqui
+            if e.get(campo) is not None:
+                ejemplo[campo] = e[campo]
+        ejemplos.append(ejemplo)
     return ejemplos
 
 
@@ -242,6 +248,8 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
     if any(e["indice"] is None for e in (*train, *val)):
         raise ValueError("train y val deben tener etiquetas.")
     fijar_determinismo(semilla)
+    if dispositivo.type == "cuda":
+        torch.cuda.reset_peak_memory_stats(dispositivo)
     modelo.to(dispositivo)
     salida.mkdir(parents=True, exist_ok=True)
     sin_decay = ("bias", "LayerNorm.weight")
@@ -307,6 +315,8 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
         "parada_temprana": len(historial) < hp.epocas,
         "historial": historial, "metricas_val": mejor, "checkpoint_sha256": sha,
         "segundos_entrenamiento": round(time.perf_counter() - t_inicio, 1),
+        "gpu_mem_pico_gb": (round(torch.cuda.max_memory_allocated(dispositivo) / 1024 ** 3, 3)
+                            if dispositivo.type == "cuda" else None),
         "hardware": hardware(),
     }
 

@@ -23,6 +23,7 @@ TAMANO_V = 2300
 N_PARTICIONES = 300
 TOPE_CLASE = 2000
 VARIANTES = ("qlora_p50", "qlora_p80", "jurado", "hibrido", "natural", "haiku_solo")
+VARIANTES_SONNET = ("sonnet", "sonnet_alta", "sonnet_cap")
 # Jerarquia de calidad de la etiqueta (menor = mejor). Fijada a priori.
 NIVELES = {1: "jurado_3de3", 2: "haiku", 3: "jurado_2de3_coincide_qlora", 4: "qlora_p>=0.9",
            5: "jurado_2de3", 6: "qlora_p>=0.5"}
@@ -40,6 +41,7 @@ class Fuentes:
     contextos: dict[str, dict]   # {"citing_id", "refid", "masked_text"}
     ids_gold: set[str]           # manifiesto v2 + TG2700 (nunca entran ni sus citantes)
     ids_excluidos: set[str] = field(default_factory=set)  # taller + piloto
+    sonnet: dict[str, dict] = field(default_factory=dict)  # {"label", "confianza"}; solo Evaluable
     anios_excluidos: tuple[int, ...] = ANIOS_EXCLUIDOS
 
 
@@ -124,7 +126,8 @@ def construir_pool(f: Fuentes) -> tuple[list[dict], dict]:
         else:
             fila = {"context_id": cid, "citing_id": ctx["citing_id"], "cited_id": ctx["refid"],
                     "anio": anio_de(cid), "qlora": f.qlora.get(cid), "jurado": f.jurado.get(cid),
-                    "haiku": _clase(f.haiku.get(cid)), "gpt": _clase(f.gpt.get(cid))}
+                    "haiku": _clase(f.haiku.get(cid)), "gpt": _clase(f.gpt.get(cid)),
+                    "sonnet": f.sonnet.get(cid)}
             fila["etiqueta"], fila["nivel"] = nivel_etiqueta(fila)
             if fila["etiqueta"] is None:
                 descartes["sin_etiqueta_confiable"] += 1
@@ -234,6 +237,24 @@ def construir_variantes(pool: list[dict], ids_v: set[str], f: Fuentes, tope: int
             "haiku_solo": haiku}
 
 
+def construir_variantes_sonnet(d1: list[dict], f: Fuentes, tope: int = TOPE_CLASE) -> dict[str, list[dict]]:
+    """Pista S: D7..D9 sobre las MISMAS citas de D1 (ya sin V ni dev_haiku) con etiqueta Sonnet.
+
+    D7 `sonnet`: toda cita de D1 con etiqueta Sonnet (tambien las de Haiku: pista pura).
+    D8 `sonnet_alta`: D7 con confianza Alta. D9 `sonnet_cap`: D7 con tope por clase, Alta primero."""
+    d7 = [_con_etiqueta(x, x["sonnet"]["label"], "sonnet") for x in d1 if x.get("sonnet")]
+    d8 = [x for x in d7 if x["sonnet"]["confianza"] == "Alta"]
+    clave = lambda x: (x["sonnet"]["confianza"] != "Alta", -(x["qlora"]["p"] if x["qlora"] else 0.0),
+                       x["context_id"])
+    d9 = _por_clase(d7, clave, tope)
+    return {"sonnet": d7, "sonnet_alta": d8, "sonnet_cap": d9}
+
+
+def v_sonnet(v: list[dict]) -> list[dict]:
+    """V con la etiqueta Sonnet como `etiqueta_entrenamiento` (solo citas con etiqueta Sonnet)."""
+    return [_con_etiqueta(x, x["sonnet"]["label"], "sonnet") for x in v if x.get("sonnet")]
+
+
 # ------------------------------------------------------------------ fugas
 def _casos(filas: list[dict], f: Fuentes) -> list[dict]:
     return [{"context_id": x["context_id"], "citing_id": x["citing_id"], "cited_id": x["cited_id"],
@@ -294,9 +315,14 @@ def construir_todo(f: Fuentes, semilla: int = SEMILLA_V, tope: int = TOPE_CLASE,
     descartados = {}
     for n, filas in variantes.items():
         variantes[n], descartados[n] = depurar_texto_repetido(filas, v, f)
+    sonnet = construir_variantes_sonnet(variantes["qlora_p50"], f, tope)
+    for n, filas in sonnet.items():
+        sonnet[n], descartados[n] = depurar_texto_repetido(filas, v, f)
+    variantes.update(sonnet)
     fugas = verificar(variantes, v, f)
     fugas["descartados_por_texto_repetido_con_v"] = descartados
-    return {"pool": pool, "v": v, "variantes": variantes, "info_pool": info_pool, "fugas": fugas}
+    return {"pool": pool, "v": v, "v_sonnet": v_sonnet(v), "variantes": variantes,
+            "info_pool": info_pool, "fugas": fugas}
 
 
 def conteos(filas: list[dict], clave: str = "etiqueta_entrenamiento") -> dict[str, int]:
@@ -320,6 +346,8 @@ def escribir_artefactos(res: dict, destino: Path, evidencias: Path,
     evidencias.mkdir(parents=True, exist_ok=True)
     columnas = ["context_id", "citing_id", "etiqueta_entrenamiento", "fuente", "p", "nivel"]
     listas = {**res["variantes"], "validacion": res["v"]}
+    if res.get("v_sonnet"):
+        listas["validacion_sonnet"] = res["v_sonnet"]
     shas = {}
     for nombre, filas in listas.items():
         ruta = destino / f"{nombre}.csv"

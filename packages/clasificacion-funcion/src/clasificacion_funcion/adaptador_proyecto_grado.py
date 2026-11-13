@@ -11,7 +11,7 @@ from auditoria_corpus import adaptador_proyecto_grado as _auditoria
 from proyecto_de_grado.src.data.preparar_preetiquetado import leer_exclusiones
 from proyecto_de_grado.src.data.validar_splits import load_split_index
 
-from .seleccion_datos import Fuentes
+from .seleccion_datos import Fuentes, _clase
 
 REPO = Path(__file__).resolve().parents[4]
 RAW = REPO / "data/raw"
@@ -23,6 +23,8 @@ TEST_GOLD_MANIFIESTO = ANOTACION / "test_gold/TEST_GOLD_2700_MANIFIESTO.csv"
 GOLD_V2 = ANOTACION / "test_gold_v2/manifiesto_ids.csv"
 GRUPO_GOLD_V2 = "testgold"  # el manifiesto tambien trae 20 filas `calibracion3`
 JURADO = REPO / "v3_Jueces/jurado_18000_v3.csv"
+# Salida de `anotacion_sonnet.consolidar` (scripts/anotar_sonnet.py consolidar).
+ETIQUETAS_SONNET = ANOTACION / "sonnet/etiquetas_sonnet.csv"
 REFERENCIA_GPT = REPO / "v3_Jueces/referencia_gpt_200.jsonl"
 # Etiquetas QLoRA v2 de las 18.000 y de las 43.014 restantes (misma version del modelo).
 PREDS_QLORA = (REPO / "local_workflows/qlora_18000_preds_v2.jsonl",
@@ -116,6 +118,23 @@ def _leer_jsonl(ruta) -> list[dict]:
         return [json.loads(linea) for linea in f if linea.strip()]
 
 
+def cargar_sonnet(ruta: Path = ETIQUETAS_SONNET) -> dict[str, dict]:
+    """{context_id: {"label", "confianza"}} solo de filas Evaluable con una de las 9 clases.
+
+    Vacio si el consolidado no existe (las fuentes siguen funcionando sin pista Sonnet)."""
+    if not Path(ruta).exists():
+        return {}
+    salida = {}
+    for fila in leer_csv(ruta):
+        if (fila.get("¿Evaluable?") or "").strip() != "Evaluable":
+            continue
+        clase = _clase(fila.get("Función principal"))
+        if clase:
+            salida[fila["context_id"]] = {"label": clase,
+                                          "confianza": (fila.get("Confianza") or "").strip()}
+    return salida
+
+
 def cargar_fuentes_104(fuentes: "FuentesProyectoGrado | None" = None) -> Fuentes:
     """Fuentes del issue #104: QLoRA v2, jurado, Haiku, GPT, contextos y exclusiones."""
     fp = fuentes or FuentesProyectoGrado()
@@ -132,7 +151,7 @@ def cargar_fuentes_104(fuentes: "FuentesProyectoGrado | None" = None) -> Fuentes
     ids_gold = {f["context_id"] for f in leer_csv(fp._manifiesto)} | set(fp.ids_gold_v2())
     return Fuentes(qlora=qlora, jurado=jurado, haiku=haiku, haiku_train=set(split["train"]),
                    haiku_val=set(split["val"]), gpt=gpt, contextos=cargar_papers_contextos(fp._raw),
-                   ids_gold=ids_gold, ids_excluidos=fp.exclusiones())
+                   ids_gold=ids_gold, ids_excluidos=fp.exclusiones(), sonnet=cargar_sonnet())
 
 
 def cargar_papers_contextos(raw=RAW) -> dict:

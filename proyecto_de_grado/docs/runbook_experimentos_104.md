@@ -61,3 +61,60 @@ nohup uv run --project ../packages/clasificacion-funcion jupyter nbconvert --to 
 
 ## Pendiente tras la corrida
 La interpretación breve de resultados que pide el issue se escribe después, con los números reales.
+
+---
+
+# Parte 2: pista Sonnet, grilla de hiperparámetros, épocas y arreglo de la pérdida
+
+Notebook `notebooks/05_experimentos_104_part2.ipynb` (orquestador; el 04 queda como registro de la Parte 1).
+Mismo experimento MLflow, así que los runs de la Parte 1 con la misma configuración se reanudan.
+
+## Pistas de etiquetas
+- **Pista M («mixta»)**: entrenamiento D1–D6 (QLoRA, jurado, Haiku); V con la mejor etiqueta disponible.
+- **Pista S («sonnet»)**: entrenamiento D7 `sonnet` (todas las citas de D1 con etiqueta Sonnet), D8 `sonnet_alta`
+  (solo confianza Alta) y D9 `sonnet_cap` (tope por clase, Alta primero); V con etiquetas Sonnet (`v_sonnet`, las mismas citas).
+- Dentro de una pista, early stopping y elección usan **su** `val`. **`val` no es comparable entre pistas**: todo run
+  también se evalúa en `val_mixta`, `val_sonnet`, `dev_haiku` y `ref_gpt`. La comparación final espera al Test Gold.
+- Las etiquetas Sonnet se consolidan en `proyecto_de_grado/anotacion/sonnet/etiquetas_sonnet.csv`
+  (`scripts/anotar_sonnet.py consolidar`; el notebook lo hace en la fase 0).
+
+## Runs de la Parte 1 inválidos
+`preparar_ejemplos` descartaba `objetivo` y `peso`, así que `scibert-A-natural-kd-s42` y
+`scibert-A-natural-ponderado-s42` fueron copias del run duro. Ya está corregido; la fase 0 los marca
+(`registro_mlflow.invalidar`: tag `invalido=<motivo>` + KILLED) junto con `tfidf-lr-d1` (se re-corre para tener los
+conjuntos nuevos). No se reanudan y se excluyen de las tablas.
+
+## Fases
+| Fase | Qué corre |
+|---|---|
+| 0 | Datos (D1–D9, V, V_sonnet), fugas = 0, manifiesto, invalidar los 3 runs |
+| 1 | Re-evaluar 10 checkpoints de la Parte 1 en `val_mixta`/`val_sonnet` (`ex.reevaluar_checkpoint`, sin reentrenar) |
+| 2 | Pista M: TF-IDF, `kd` y `ponderado` sobre `natural` (s42) |
+| 3 | Pista S: TF-IDF y SciBERT en D7, D8, D9 (s42) |
+| 4 | Grilla por pista sobre su mejor configuración: lr {1e-5, 3e-5, 5e-5} × épocas {4, 10}, paciencia 3 (alterna pistas) |
+| 5 | Semillas 1234 y 2026 de la mejor configuración de cada pista |
+| 6 | SPECTER con la mejor configuración de cada pista |
+| 7 | Smoke test de inferencia de los 2 ganadores |
+| 8 | Tablas por pista, media ± std entre semillas, bootstrap pareado, `resumen_part2.csv` y manifiesto |
+
+Regla de elección: dentro de una pista, mayor macro-F1 en su propia `val`. Micro-lote (8) y `max_len` (512) no cambian
+en la grilla; ante `OutOfMemoryError` se reintenta una vez con micro-lote 4 y acumulación 4. El pico de memoria queda
+en MLflow (`gpu_mem_pico_gb`).
+
+## Comandos
+Primero `DRY = True` en la celda de parámetros (experimento `-dry`, 64 casos, 1 época):
+```bash
+cd notebooks && uv run --project ../packages/clasificacion-funcion jupyter nbconvert --to notebook --execute \
+  --output-dir /tmp --output dry_part2.ipynb 05_experimentos_104_part2.ipynb
+```
+Luego `DRY = False` y la noche (`HORAS_MAX = 10`):
+```bash
+cd notebooks
+nohup uv run --project ../packages/clasificacion-funcion jupyter nbconvert --to notebook --execute \
+  --inplace --ExecutePreprocessor.timeout=-1 05_experimentos_104_part2.ipynb > ../part2_104.log 2>&1 &
+```
+Vigilar `nvidia-smi` en el primer run. Disco: ~25 checkpoints nuevos × 440 MB ≈ 11 GB.
+
+> **Entorno**: `mlflow.db` fue migrado con mlflow 3.18 (`local_workflows/.venv`); el entorno del paquete fija 3.15.1 y
+> **no puede abrir esa base** («out-of-date database schema»). Antes de lanzar, alinear versiones (p. ej. subir `mlflow`
+> en el grupo `experimentos`) o ejecutar con el entorno con el que se corrió la Parte 1. No migrar la base sin respaldo.

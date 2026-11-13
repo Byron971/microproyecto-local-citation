@@ -2,6 +2,7 @@
 
 Importa torch y mlflow (grupos `modelo` + `experimentos`). El notebook solo orquesta."""
 import json
+import random
 import time
 from pathlib import Path
 
@@ -60,10 +61,15 @@ def con_modo_perdida(casos: list[dict], modo: str) -> list[dict]:
 
 
 def conjuntos_eval(v_filas: list[dict], f: seleccion_datos.Fuentes) -> dict[str, list[dict]]:
-    """V completa, `dev_haiku` (etiqueta Haiku) y `ref_gpt` (etiqueta GPT), subconjuntos de V."""
+    """V completa (`val`, con las etiquetas de la pista), `val_mixta` (etiqueta = `etiqueta`),
+    `val_sonnet` (etiqueta = Sonnet), `dev_haiku` y `ref_gpt` (subconjuntos de V)."""
     def con(filas, clave):
-        return [{**x, "etiqueta_entrenamiento": x[clave]} for x in filas if x[clave]]
+        return [{**x, "etiqueta_entrenamiento": x[clave]} for x in filas if x.get(clave)]
+    con_sonnet = [{**x, "etiqueta_entrenamiento": x["sonnet"]["label"]}
+                  for x in v_filas if x.get("sonnet")]
     return {"val": v_filas,
+            "val_mixta": con(v_filas, "etiqueta"),
+            "val_sonnet": con_sonnet,
             "dev_haiku": con([x for x in v_filas if x["context_id"] in f.haiku_val], "haiku"),
             "ref_gpt": con([x for x in v_filas if x["context_id"] in f.gpt], "gpt")}
 
@@ -79,6 +85,44 @@ def _predicciones(modelo, ejemplos, pad_id, dev) -> tuple[list[int], list[list[f
 
 
 # ---------------------------------------------------------------- corrida de un encoder
+def _evaluar_conjuntos(sets: dict[str, list[dict]], modelo, tok, dev, hp: ct.Hiperparametros,
+                       f: seleccion_datos.Fuentes, papers: dict, omitir: set[str] = frozenset()
+                       ) -> dict[str, list[dict]]:
+    """Predice y registra (en el run activo) cada conjunto salvo los de `omitir`. Devuelve las
+    predicciones de `val` (para `predicciones_val.jsonl`) si se evaluo."""
+    salida = {}
+    for prefijo, filas in sets.items():
+        if prefijo in omitir or not filas:
+            continue
+        casos, _ = casos_a(filas, f, papers)
+        if not casos:
+            continue
+        ej = ct.preparar_ejemplos(_limpio(casos), "A", tok, hp.max_len)
+        pred, probs, lat = _predicciones(modelo, ej, tok.pad_id, dev)
+        m = dominio.metricas([e["indice"] for e in ej], pred)
+        registro_mlflow.log_metricas(prefijo, m)
+        registro_mlflow.log_matriz_confusion(m, prefijo)
+        mlflow.log_metric(f"{prefijo}_latencia_ms", lat)
+        if prefijo == "val":
+            salida["val"] = [{"context_id": e["context_id"], "pred": p, "probs": pr}
+                             for e, p, pr in zip(ej, pred, probs)]
+    return salida
+
+
+def _cargar_modelo(run_dir: Path, encoder: str, manifiesto_modelo: Path | None = None) -> tuple:
+    """(manifiesto, hp, tokenizador, dispositivo, modelo) desde la carpeta de un run, verificando
+    el sha del checkpoint. Camino comun de `smoke_inferencia` y `reevaluar_checkpoint`."""
+    man = json.loads((run_dir / "manifiesto_entrenamiento.json").read_text(encoding="utf-8"))
+    hp = ct.Hiperparametros(**man["hiperparametros"])
+    ruta = _ruta_encoder(encoder, manifiesto_modelo)
+    tok = ct.TokenizadorHF(ruta)
+    dev = dispositivo("auto")
+    modelo = ct.ClasificadorCLS(ruta, man["semilla"], hp.dropout)
+    ct.cargar_checkpoint(modelo, run_dir / "model.safetensors", man["checkpoint_sha256"])
+    modelo.to(dev)
+    return man, hp, tok, dev, modelo
+
+
 def entrenar_y_registrar(nombre: str, config: dict, train_filas: list[dict], v_filas: list[dict],
                          f: seleccion_datos.Fuentes, papers: dict, carpeta: Path, *,
                          encoder: str = "scibert", semilla: int = 42, modo: str = "duro",
@@ -120,22 +164,9 @@ def entrenar_y_registrar(nombre: str, config: dict, train_filas: list[dict], v_f
         registro_mlflow.log_dataset("val", [c["context_id"] for c in v_casos],
                                     [c["_fila"]["etiqueta_entrenamiento"] for c in v_casos], "validation")
         mlflow.log_metric("segundos_entrenamiento", resultado["segundos_entrenamiento"])
-        pred_val = None
-        for prefijo, filas in sets.items():
-            if not filas:
-                continue
-            casos, _ = casos_a(filas, f, papers)
-            if not casos:
-                continue
-            ej = ct.preparar_ejemplos(_limpio(casos), "A", tok, hp.max_len)
-            pred, probs, lat = _predicciones(modelo, ej, tok.pad_id, dev)
-            m = dominio.metricas([e["indice"] for e in ej], pred)
-            registro_mlflow.log_metricas(prefijo, m)
-            registro_mlflow.log_matriz_confusion(m, prefijo)
-            mlflow.log_metric(f"{prefijo}_latencia_ms", lat)
-            if prefijo == "val":
-                pred_val = [{"context_id": e["context_id"], "pred": p, "probs": pr}
-                            for e, p, pr in zip(ej, pred, probs)]
+        if resultado.get("gpu_mem_pico_gb") is not None:
+            mlflow.log_metric("gpu_mem_pico_gb", resultado["gpu_mem_pico_gb"])
+        pred_val = _evaluar_conjuntos(sets, modelo, tok, dev, hp, f, papers).get("val")
         (salida / "predicciones_val.jsonl").write_text(
             "\n".join(json.dumps(r) for r in pred_val or []) + "\n", encoding="utf-8")
         mlflow.log_artifact(str(salida / "predicciones_val.jsonl"))
@@ -178,16 +209,9 @@ def smoke_inferencia(run_dir: Path, encoder: str, v_filas: list[dict], f: selecc
                      papers: dict, n: int = 32, manifiesto_modelo: Path | None = None) -> dict:
     """Carga el checkpoint verificando su sha, predice `n` casos de V y exige reproducir las
     predicciones registradas al entrenar."""
-    man = json.loads((run_dir / "manifiesto_entrenamiento.json").read_text(encoding="utf-8"))
-    hp = ct.Hiperparametros(**man["hiperparametros"])
+    man, hp, tok, dev, modelo = _cargar_modelo(run_dir, encoder, manifiesto_modelo)
     lineas = (run_dir / "predicciones_val.jsonl").read_text(encoding="utf-8").splitlines()
     registradas = {r["context_id"]: r for r in map(json.loads, (l for l in lineas if l.strip()))}
-    ruta = _ruta_encoder(encoder, manifiesto_modelo)
-    tok = ct.TokenizadorHF(ruta)
-    dev = dispositivo("auto")
-    modelo = ct.ClasificadorCLS(ruta, man["semilla"], hp.dropout)
-    ct.cargar_checkpoint(modelo, run_dir / "model.safetensors", man["checkpoint_sha256"])
-    modelo.to(dev)
     casos, _ = casos_a([x for x in v_filas if x["context_id"] in registradas][:n], f, papers)
     ej = ct.preparar_ejemplos(_limpio(casos), "A", tok, hp.max_len)
     pred, probs, lat = _predicciones(modelo, ej, tok.pad_id, dev)
@@ -198,3 +222,50 @@ def smoke_inferencia(run_dir: Path, encoder: str, v_filas: list[dict], f: selecc
     return {"run": run_dir.name, "encoder": encoder, "casos": len(ej), "ok": ok,
             "predicciones_distintas": len(distintas), "max_dif_probabilidad": dif,
             "latencia_ms": lat, "checkpoint_sha256": man["checkpoint_sha256"]}
+
+
+# ---------------------------------------------------------------- reevaluacion y bootstrap
+def reevaluar_checkpoint(run_id: str, carpeta: Path, encoder: str, v_filas: list[dict],
+                         f: seleccion_datos.Fuentes, papers: dict,
+                         manifiesto_modelo: Path | None = None) -> list[str]:
+    """Registra en el run EXISTENTE los conjuntos de evaluacion que le faltan (sin reentrenar).
+
+    `carpeta` es la carpeta del run (con `model.safetensors`). Devuelve los conjuntos agregados."""
+    sets = conjuntos_eval(v_filas, f)
+    previas = mlflow.get_run(run_id).data.metrics
+    faltan = {k for k in sets if f"{k}_f1_macro" not in previas}
+    if not faltan:
+        return []
+    _, hp, tok, dev, modelo = _cargar_modelo(Path(carpeta), encoder, manifiesto_modelo)
+    with mlflow.start_run(run_id=run_id):
+        _evaluar_conjuntos({k: sets[k] for k in sets if k in faltan}, modelo, tok, dev, hp, f, papers)
+    return sorted(k for k in faltan if sets[k])
+
+
+def leer_predicciones(carpeta: Path) -> dict[str, int]:
+    """{context_id: indice predicho} de `predicciones_val.jsonl` de un run."""
+    lineas = (Path(carpeta) / "predicciones_val.jsonl").read_text(encoding="utf-8").splitlines()
+    return {r["context_id"]: r["pred"] for r in map(json.loads, (l for l in lineas if l.strip()))}
+
+
+def bootstrap_diferencia(pred_a: list[int], pred_b: list[int], etiquetas: list[int],
+                         n: int = 1000, semilla: int = 2026) -> dict:
+    """Bootstrap pareado de F1-macro(A) - F1-macro(B): los mismos casos remuestreados para
+    ambos. Devuelve la diferencia observada, el IC95% percentil y la fraccion de remuestras con A > B."""
+    if not len(pred_a) == len(pred_b) == len(etiquetas):
+        raise ValueError("pred_a, pred_b y etiquetas deben tener la misma longitud.")
+    if not etiquetas:
+        raise ValueError("Se necesita al menos un caso.")
+    rng = random.Random(semilla)
+    total = len(etiquetas)
+    macro = lambda pred, idx: dominio.metricas([etiquetas[i] for i in idx],  # noqa: E731
+                                               [pred[i] for i in idx])["f1_macro"]
+    todos = range(total)
+    diffs = []
+    for _ in range(n):
+        idx = [rng.randrange(total) for _ in todos]
+        diffs.append(macro(pred_a, idx) - macro(pred_b, idx))
+    diffs.sort()
+    return {"diferencia": macro(pred_a, todos) - macro(pred_b, todos),
+            "ic95": (diffs[int(0.025 * n)], diffs[min(n - 1, int(0.975 * n))]),
+            "prob_a_mayor": sum(d > 0 for d in diffs) / n, "n_remuestras": n, "casos": total}

@@ -57,6 +57,14 @@ def corrida_terminada(config_sha: str, experimento: str | None = None) -> str | 
     return runs[0].info.run_id if runs else None
 
 
+def invalidar(run_id: str, motivo: str) -> None:
+    """Marca un run como invalido: tag `invalido=<motivo>` y estado KILLED, de modo que
+    `corrida_terminada` (solo FINISHED) ya no lo reanuda y el mismo config se vuelve a correr."""
+    cliente = mlflow.MlflowClient()
+    cliente.set_tag(run_id, "invalido", motivo)
+    cliente.set_terminated(run_id, "KILLED")
+
+
 @contextmanager
 def abrir_corrida(nombre: str, config: dict, tags: dict | None = None, hardware: dict | None = None):
     """Abre un run con params, tags de trazabilidad y hardware. Rinde `None` si ya existe uno

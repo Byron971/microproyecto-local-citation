@@ -72,3 +72,17 @@ def test_backfill_a4_idempotente(tmp_path):
     assert rm.registrar_corridas_a4(tmp_path / "corridas", "prueba-104", **kw) == []
     df = rm.exportar_manifiesto(tmp_path / "ev", "prueba-104")
     assert len(df) == 1 and (tmp_path / "ev/manifiesto_experimentos.csv").is_file()
+
+
+def test_corrida_invalidada_no_se_reanuda():
+    config = {"variante": "kd", "semilla": 42}
+    with rm.abrir_corrida("scibert-kd", config) as run:
+        mlflow.log_metric("val_f1_macro", 0.5)
+    csha = rm.sha_config(config)
+    assert rm.corrida_terminada(csha) == run.info.run_id
+    rm.invalidar(run.info.run_id, "perdida_no_aplicada")
+    datos = mlflow.get_run(run.info.run_id)
+    assert datos.info.status == "KILLED" and datos.data.tags["invalido"] == "perdida_no_aplicada"
+    assert rm.corrida_terminada(csha) is None
+    with rm.abrir_corrida("scibert-kd", config) as nuevo:
+        assert nuevo is not None and nuevo.info.run_id != run.info.run_id
