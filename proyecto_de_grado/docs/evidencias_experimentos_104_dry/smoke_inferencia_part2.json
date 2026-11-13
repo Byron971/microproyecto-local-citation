@@ -1,0 +1,24 @@
+[
+  {
+    "pista": "mixta",
+    "run": "scibert-A-natural-lr5e-05-e4-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 9.33007253124174,
+    "checkpoint_sha256": "4202ac600f45a577ec17baa21f9884e8fe5d1f48bb8c202996a4e74a62a0fb0c"
+  },
+  {
+    "pista": "sonnet",
+    "run": "scibert-S-sonnet_alta-lr3e-05-e4-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 6.558814375011934,
+    "checkpoint_sha256": "c5fda7eb452bcb5dae44dff88eed1facfe30992c73138795d7effe7f49a41d4c"
+  }
+]

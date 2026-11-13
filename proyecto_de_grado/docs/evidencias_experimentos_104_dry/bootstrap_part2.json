@@ -1,0 +1,74 @@
+[
+  {
+    "comparacion": "mixta:scibert-A-natural-lr5e-05-e4-s42 vs M:natural(P1)",
+    "conjunto": "val_mixta",
+    "diferencia": 0.021009946383080694,
+    "ic95": [
+      -0.02093509689154574,
+      0.06926406926406925
+    ],
+    "prob_a_mayor": 0.83,
+    "n_remuestras": 200,
+    "casos": 64
+  },
+  {
+    "comparacion": "mixta:scibert-A-natural-lr5e-05-e4-s42 vs M:natural(P1)",
+    "conjunto": "val_sonnet",
+    "diferencia": 0.039608395559452295,
+    "ic95": [
+      -0.009847091880188799,
+      0.08687541665512324
+    ],
+    "prob_a_mayor": 0.95,
+    "n_remuestras": 200,
+    "casos": 64
+  },
+  {
+    "comparacion": "sonnet:scibert-S-sonnet_alta-lr3e-05-e4-s42 vs M:natural(P1)",
+    "conjunto": "val_mixta",
+    "diferencia": 0.018762270593256525,
+    "ic95": [
+      -0.03488177291380953,
+      0.07570388058192935
+    ],
+    "prob_a_mayor": 0.755,
+    "n_remuestras": 200,
+    "casos": 64
+  },
+  {
+    "comparacion": "sonnet:scibert-S-sonnet_alta-lr3e-05-e4-s42 vs M:natural(P1)",
+    "conjunto": "val_sonnet",
+    "diferencia": 0.024371541612920933,
+    "ic95": [
+      -0.032378785690211354,
+      0.07754355145659494
+    ],
+    "prob_a_mayor": 0.82,
+    "n_remuestras": 200,
+    "casos": 64
+  },
+  {
+    "comparacion": "S vs M",
+    "conjunto": "val_mixta",
+    "diferencia": -0.002247675789824169,
+    "ic95": [
+      -0.04809666910123528,
+      0.04154064458723955
+    ],
+    "prob_a_mayor": 0.495,
+    "n_remuestras": 200,
+    "casos": 64
+  },
+  {
+    "comparacion": "S vs M",
+    "conjunto": "val_sonnet",
+    "diferencia": -0.015236853946531362,
+    "ic95": [
+      -0.06061313414254588,
+      0.03005863370705826
+    ],
+    "prob_a_mayor": 0.27,
+    "n_remuestras": 200,
+    "casos": 64
+  }
+]
