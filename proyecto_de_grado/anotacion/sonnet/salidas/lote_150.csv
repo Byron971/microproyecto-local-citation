@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,Q13-1011_P04-1015_1,Evaluable,Application,Alta,Usa directamente el algoritmo de reranking con perceptrón promediado.,COMPLETO,150,1
+2,N04-1035_W02-1039_3,Evaluable,Comparison,Media,Se elige el francés para comparar el estudio con el trabajo citado.,COMPLETO,150,1
+3,D13-1111_N03-1017_0,Evaluable,Background,Media,Presenta los modelos basados en frases como enfoque general en el que se centra el trabajo.,COMPLETO,150,1
+4,N10-1145_P09-1053_1,Evaluable,Background,Alta,Enumera trabajos previos que aplicaron modelos de reordenamiento a tareas semánticas.,COMPLETO,150,1
+5,W13-2907_P11-2117_0,Evaluable,Background,Media,"Indica que Simple Wikipedia se usa en clasificación de legibilidad y simplificación, citando trabajos previos.",COMPLETO,150,1
+6,D10-1057_N04-4028_0,Evaluable,Background,Alta,Reseña trabajo previo sobre estimación de confianza en extracción de información.,COMPLETO,150,1
+7,E12-1009_P10-1001_3,Evaluable,Evidence,Media,Respalda la decisión de excluir la puntuación en la evaluación siguiendo trabajos previos.,COMPLETO,150,1
+8,P09-1102_W05-1304_1,Evaluable,Basis,Media,El trabajo actual parte del artículo original y su formulación de etiquetas.,COMPLETO,150,1
+9,W13-4048_W12-1604_0,Evaluable,Gap,Alta,"Contrasta que el trabajo citado exploró la mirada del oyente, no la del hablante, justificando el estudio actual.",COMPLETO,150,1
+10,W10-3707_W09-3539_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el bengalí tiene orden de frases relativamente libre.,COMPLETO,150,1
+11,W01-1013_W98-0705_0,Evaluable,Evidence,Media,"Sustenta que la base de conocimiento léxico puede usarse en recuperación de información, ya demostrado en otros proyectos.",COMPLETO,150,1
+12,P12-2038_D11-1148_1,Evaluable,Background,Alta,Revisa trabajos previos que usan rasgos sintácticos en clasificadores no kernelizados.,COMPLETO,150,1
+13,W13-4914_W10-1411_2,Evaluable,Evidence,Media,Respalda la afirmación de que el efecto de los rasgos morfológicos en el análisis sintáctico está bien documentado.,COMPLETO,150,1
+14,P07-1087_P03-1020_0,Evaluable,Background,Alta,Describe el enfoque de trabajos previos en restauración de mayúsculas.,COMPLETO,150,1
+15,N09-1046_J07-2003_0,Evaluable,Application,Alta,Las reglas de la gramática se extrajeron y puntuaron como se describe en el trabajo citado.,COMPLETO,150,1
+16,W11-1410_W10-1406_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el coreano tiene orden de palabras relativamente libre.,COMPLETO,150,1
+17,W08-2122_P07-1080_0,Evaluable,Basis,Media,"El modelo se basa en las ISBN, cuyo buen desempeño en constituyentes se cita, y se extiende a partir de ellas.",COMPLETO,150,1
+18,W07-2217_E06-1011_1,Evaluable,Background,Media,Cita trabajos que mostraron que las representaciones de orden superior mejoran el análisis.,COMPLETO,150,1
+19,D09-1073_P07-1089_0,Evaluable,Background,Alta,Enumera métodos sintácticos como estado del arte en traducción automática estadística.,COMPLETO,150,1
+20,W06-2505_W99-0508_0,Evaluable,Background,Media,Describe un estudio previo que analiza traducciones a otras lenguas como ejemplo de la idea.,COMPLETO,150,1
+21,P13-1004_P11-1022_0,Evaluable,Background,Alta,Enumera aplicaciones previas de la estimación de calidad.,COMPLETO,150,1
+22,W10-3304_P07-2045_0,Evaluable,Application,Alta,Usa la configuración estándar de Moses para generar alineamientos.,COMPLETO,150,1
+23,P09-1094_W04-3219_0,Evaluable,Evidence,Media,Respalda la afirmación de que la cobertura de patrones de paráfrasis es insuficiente.,COMPLETO,150,1
+24,D13-1044_P13-2125_1,Evaluable,Further Reading,Alta,Remite a otro trabajo donde se describen con más detalle los experimentos.,COMPLETO,150,1
+25,D09-1147_P03-1021_0,Evaluable,Gap,Media,Señala una limitación de MERT que motiva la propuesta de CoBLEU.,COMPLETO,150,1
+26,P06-1058_J98-1004_0,Evaluable,Evidence,Media,Respalda que agrupar contextos de palabras ambiguas para WSD tiene buen desempeño.,COMPLETO,150,1
+27,W05-1511_N04-1013_3,Evaluable,Application,Media,Emplea la técnica de inhibición de constituyentes grandes del trabajo citado.,COMPLETO,150,1
+28,W06-2303_W05-0628_0,Evaluable,Comparison,Alta,Se compara en una tabla el resultado del trabajo citado con el del propio analizador.,COMPLETO,150,1
+29,W11-2125_N07-2008_0,Evaluable,Background,Media,Describe trabajo previo que usa palabras hapax para identificar documentos paralelos.,COMPLETO,150,1
+30,P13-1117_D12-1001_0,Evaluable,Background,Alta,Enumera métodos de transferencia de modelos entre lenguas.,COMPLETO,150,1
+31,D11-1022_D10-1004_5,Evaluable,Comparison,Alta,"Compara resultados con los de otras familias de analizadores, incluidos los turbo parsers.",COMPLETO,150,1
+32,W09-2601_D08-1052_0,Evaluable,Background,Alta,Presenta analizadores previos desarrollados para el treebank LTAG-spinal.,COMPLETO,150,1
+33,W09-2816_W07-2302_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalle sobre la anotación.,COMPLETO,150,1
+34,D12-1046_N07-1051_0,Evaluable,Comparison,Alta,Se compara el resultado del trabajo citado con el del sistema propio en una tabla.,COMPLETO,150,1
+35,W12-2004_P10-4006_0,Evaluable,Application,Alta,Usa el paquete S-Space para entrenar un modelo ISA.,COMPLETO,150,1
+36,D11-1005_P10-1131_1,Evaluable,Background,Media,Cita trabajos que usan DMV con resultados de vanguardia en inducción de gramáticas de dependencias.,COMPLETO,150,1
+37,W03-2304_P99-1018_0,Evaluable,Background,Alta,Enumera trabajos previos de aprendizaje automático en realización sintáctica y léxica.,COMPLETO,150,1
+38,D12-1092_W09-2307_0,Evaluable,Application,Alta,Usa el Stanford Parser para generar árboles sintácticos.,COMPLETO,150,1
+39,J10-3002_J07-2003_0,Evaluable,Application,Alta,Usa Hiero como uno de los sistemas de traducción en los experimentos.,COMPLETO,150,1
+40,P08-1055_E06-1009_1,Evaluable,Background,Alta,Resume investigaciones previas sobre respuestas cooperativas y preferencias del usuario.,COMPLETO,150,1
+41,W12-3152_J07-2003_1,Evaluable,Comparison,Alta,Compara gramáticas Hiero con gramáticas SAMT como punto principal del trabajo.,COMPLETO,150,1
+42,D12-1056_W11-3502_0,Evaluable,Background,Alta,Enumera enfoques discriminativos previos para métodos de entrada de texto.,COMPLETO,150,1
+43,D13-1002_D12-1062_4,Evaluable,Comparison,Alta,Reporta resultados del trabajo citado como referencia para comparar con los propios.,COMPLETO,150,1
+44,N09-1062_P06-1055_0,Evaluable,Background,Media,Describe modelos de refinamiento de gramática como trabajo relacionado.,COMPLETO,150,1
+45,W13-5008_P04-2006_0,Evaluable,Evidence,Media,Respalda la afirmación sobre patrones comunes de paráfrasis.,COMPLETO,150,1
+46,P13-3019_P04-3008_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la exactitud del analizador.,COMPLETO,150,1
+47,P99-1015_J88-2003_2,Evaluable,Evidence,Media,Sustenta la afirmación sobre coerción aspectual con el ejemplo y la fuente.,COMPLETO,150,1
+48,P11-2052_W07-1513_0,Evaluable,Evidence,Alta,Respalda que PropBank puede usarse directamente en otras lenguas.,COMPLETO,150,1
+49,P12-1048_N03-1017_1,Evaluable,Application,Media,Adopta la definición del trabajo citado para la formulación.,COMPLETO,150,1
+50,P13-2119_P10-2041_0,Evaluable,Basis,Alta,El método empleado se construye sobre el trabajo citado.,COMPLETO,150,1
+51,W01-0720_W97-1010_1,Evaluable,Comparison,Alta,Compara la tasa de cruces con la reportada por Osborne y Briscoe.,COMPLETO,150,1
+52,D12-1037_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para obtener los alineamientos de palabras.,COMPLETO,150,1
+53,P10-1040_P08-1068_2,Evaluable,Background,Media,Describe un hallazgo previo sobre representaciones de palabras en análisis de dependencias.,COMPLETO,150,1
+54,P12-1069_W04-0308_1,Evaluable,Background,Alta,Describe el algoritmo arc-standard como trabajo previo.,COMPLETO,150,1
+55,P13-4017_S12-1032_1,Evaluable,Application,Alta,Usa los modelos PLM descritos en los trabajos citados como líneas base.,COMPLETO,150,1
+56,W11-1916_N10-1061_0,Evaluable,Comparison,Alta,Contrasta con el trabajo previo al no usar los datos Bllip ni Wikipedia.,COMPLETO,150,1
+57,P03-1056_P98-1115_0,Evaluable,Further Reading,Media,Remite a fuentes para la discusión sobre la ambigüedad lingüística y artificial.,COMPLETO,150,1
+58,W04-3213_P00-1065_3,Evaluable,Evidence,Alta,Respalda la afirmación con el hallazgo del trabajo citado sobre roles de FrameNet y temáticos.,COMPLETO,150,1
+59,D10-1050_P10-1058_1,Evaluable,Application,Alta,Usa el procedimiento descrito en el trabajo citado para combinar las representaciones.,COMPLETO,150,1
+60,E09-1017_P00-1041_0,Evaluable,Background,Alta,"Enumera aplicaciones previas, incluida la generación de titulares.",COMPLETO,150,1
+61,J10-2003_W08-1804_0,Evaluable,Application,Media,"Usa la configuración de recuperación de pasajes determinada en el trabajo citado, del mismo grupo.",COMPLETO,150,1
+62,D11-1059_N06-1041_0,Evaluable,Background,Alta,Enumera trabajos previos de etiquetado no supervisado con modelos de secuencia.,COMPLETO,150,1
+63,D10-1090_N06-1058_0,Evaluable,Background,Alta,Enumera trabajos previos sobre generación de paráfrasis.,COMPLETO,150,1
+64,W13-2301_W12-2301_2,Evaluable,Application,Alta,El LDC usó el analizador CALIMA del trabajo citado.,COMPLETO,150,1
+65,J01-2002_P98-1029_3,Evaluable,Background,Media,Describe trabajos previos que demostraron mejoras al combinar etiquetadores.,COMPLETO,150,1
+66,A94-1006_P91-1022_0,Evaluable,Background,Alta,Enumera métodos de alineamiento bilingüe y sus usos.,COMPLETO,150,1
+67,J94-2006_P86-1031_0,Evaluable,Background,Alta,Enumera trabajos que discuten o amplían el marco de centrado.,COMPLETO,150,1
+68,W04-3215_P03-1046_3,Evaluable,Comparison,Alta,Compara los resultados del analizador con los del trabajo citado.,COMPLETO,150,1
+69,W11-1611_W06-1422_0,Evaluable,Evidence,Media,Respalda la afirmación de que la evaluación en tareas compartidas tiene beneficios.,COMPLETO,150,1
+70,N10-1061_D09-1101_3,Evaluable,Comparison,Alta,Compara los resultados propios con los del modelo de ranking de clústeres citado.,COMPLETO,150,1
+71,P06-1004_W01-0514_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los esquemas de ponderación importan en segmentación.,COMPLETO,150,1
+72,J99-3002_P94-1017_0,Evaluable,Background,Baja,Menciona un algoritmo de la familia de análisis como antecedente.,COMPLETO,150,1
+73,W13-0803_P05-1033_2,Evaluable,Comparison,Alta,Se compara con líneas base de traducción jerárquica de vanguardia.,COMPLETO,150,1
+74,N13-1016_N10-1125_0,Evaluable,Background,Alta,Enumera aplicaciones previas de los modelos de tópicos.,COMPLETO,150,1
+75,W08-2102_W04-3201_2,Evaluable,Gap,Media,Señala la limitación del trabajo previo (oraciones de máximo 15 palabras).,COMPLETO,150,1
+76,D12-1091_P07-2045_0,Evaluable,Application,Alta,Usa Moses como modelo base de traducción.,COMPLETO,150,1
+77,D10-1069_N10-1003_3,Evaluable,Comparison,Alta,Se comparan en una tabla los resultados de uptraining con distintos conjuntos.,COMPLETO,150,1
+78,W09-2605_P06-1064_1,Evaluable,Comparison,Alta,Contrasta explícitamente este estudio con el trabajo citado.,COMPLETO,150,1
+79,P12-1084_P04-1019_0,Evaluable,Gap,Media,"Señala que estos enfoques solo abordan la selección del antecedente, no el reconocimiento.",COMPLETO,150,1
+80,P12-1071_P08-1101_0,Evaluable,Application,Alta,Usa la práctica estándar de conversión a dependencias del trabajo citado.,COMPLETO,150,1
+81,N09-3016_P03-1021_0,Evaluable,Application,Alta,Adopta el criterio de optimización de parámetros del trabajo citado.,COMPLETO,150,1
+82,W04-3214_P00-1065_2,Evaluable,Further Reading,Media,Remite al trabajo citado para el problema de marcos sin datos de entrenamiento.,COMPLETO,150,1
+83,W11-1604_P01-1008_0,Evaluable,Identification of the Originator,Alta,Atribuye la primera sugerencia de usar corpus paralelos monolingües.,COMPLETO,150,1
+84,D09-1069_P04-1021_7,Evaluable,Gap,Media,"Presenta la respuesta previa que este trabajo contradice, justificando el estudio.",COMPLETO,150,1
+85,P13-2024_W04-1013_0,Evaluable,Identification of the Originator,Alta,Atribuye a ROUGE su introducción como sustituto de la evaluación humana.,COMPLETO,150,1
+86,D10-1026_P08-1058_6,Evaluable,Comparison,Alta,Compara el espacio requerido por el algoritmo Bloomier con el del método propio.,COMPLETO,150,1
+87,P10-1107_P06-2065_0,Evaluable,Comparison,Alta,Compara el método con la línea base de descifrado citada.,COMPLETO,150,1
+88,P07-2052_P03-1054_0,Evaluable,Evidence,Media,Respalda que los analizadores no lexicalizados logran precisión casi equivalente.,COMPLETO,150,1
+89,P01-1021_P98-2130_0,Evaluable,Background,Alta,Enumera versiones recientes de gramáticas de dependencias.,COMPLETO,150,1
+90,D08-1081_W05-0905_0,Evaluable,Background,Alta,Describe trabajo previo sobre rasgos prosódicos en resumen de habla.,COMPLETO,150,1
+91,P10-2056_N09-1051_0,Evaluable,Comparison,Alta,Señala similitud y diferencia entre el esquema de adaptación propio y el citado.,COMPLETO,150,1
+92,W09-1116_P06-1005_3,Evaluable,Evidence,Alta,Respalda que el género es rasgo clave en resolución estadística de pronombres.,COMPLETO,150,1
+93,J13-4004_N07-1011_3,Evaluable,Background,Alta,Enumera trabajos recientes sobre correferencia conjunta.,COMPLETO,150,1
+94,W09-2504_W07-1206_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la interpretación de roles temáticos es inconsistente entre verbos.,COMPLETO,150,1
+95,W12-3401_P08-1037_0,Evaluable,Background,Alta,Reseña trabajo previo sobre clases semánticas de WordNet en análisis generativo.,COMPLETO,150,1
+96,W06-2404_N01-1025_1,Evaluable,Application,Alta,Usa la herramienta YamCha para el chunking.,COMPLETO,150,1
+97,P06-1043_W01-0521_0,Evaluable,Comparison,Alta,Señala trabajos directamente comparables con el actual.,COMPLETO,150,1
+98,W12-3307_A00-2004_1,Evaluable,Application,Alta,Usa el conjunto de datos de Choi para evaluar el algoritmo.,COMPLETO,150,1
+99,W08-0315_W07-0718_0,Evaluable,Evidence,Alta,Respalda que el enfoque basado en N-gramas es comparable a sistemas de frases.,COMPLETO,150,1
+100,D09-1009_N06-1041_3,Evaluable,Comparison,Alta,Compara la precisión obtenida con la del trabajo citado.,COMPLETO,150,1

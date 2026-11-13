@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W09-3412_P08-2024_2,Evaluable,Background,Media,Se cita trabajo previo del mismo grupo sobre autoría de ítems de prueba para situar el contexto.,COMPLETO,158,1
+2,W10-2601_P06-1043_0,Evaluable,Comparison,Alta,El método propio se compara con enfoques de vanguardia como self-training y SCL.,COMPLETO,158,1
+3,P12-1089_P10-2054_1,Evaluable,Application,Media,Los documentos se preprocesan extrayendo sintagmas nominales de forma similar al trabajo citado.,COMPLETO,158,1
+4,N13-1093_P04-1043_0,Evaluable,Application,Alta,Se usa directamente el kernel PET como componente del kernel híbrido.,COMPLETO,158,1
+5,P10-1112_P96-1024_2,Evaluable,Further Reading,Alta,Se remite a las fuentes para los detalles de los objetivos de inferencia.,COMPLETO,158,1
+6,P10-1074_W05-0636_0,Evaluable,Background,Media,Se menciona un intento fallido previo de parsing y SRL conjuntos como antecedente.,COMPLETO,158,1
+7,W13-2005_W09-1401_0,Evaluable,Basis,Alta,La tarea actual se construye sobre ediciones previas del shared task.,COMPLETO,158,1
+8,W13-2259_W99-0604_0,Evaluable,Application,Alta,Se emplea Giza++ para el alineamiento de palabras sin modificarlo.,COMPLETO,158,1
+9,J89-4005_P86-1038_0,Evaluable,Comparison,Alta,Se contrastan las estructuras atributo-valor con las formulaciones de unificación citadas.,COMPLETO,158,1
+10,W07-2206_P04-1014_0,Evaluable,Background,Alta,Enumeración de trabajos previos que aplican métodos estadísticos a gramáticas lingüísticas.,COMPLETO,158,1
+11,W13-3515_D11-1142_0,Evaluable,Application,Alta,Se usa la base de datos de hechos extraída por ReVerb para implementar el enfoque.,COMPLETO,158,1
+12,P12-3014_P10-1124_4,Evaluable,Application,Alta,Se aplica el método descrito por el trabajo citado para extraer proposiciones.,COMPLETO,158,1
+13,W00-0110_J91-4003_0,Evaluable,Basis,Media,La teoría del léxico generativo es el marco sobre el que se construye el trabajo.,COMPLETO,158,1
+14,W04-0713_P98-2204_1,Evaluable,Comparison,Alta,Se comparan resultados con los de BFP y STR98.,COMPLETO,158,1
+15,W12-3404_P06-1146_0,Evaluable,Background,Alta,Describe los enfoques de annotation-by-projection propuestos previamente.,COMPLETO,158,1
+16,D10-1048_P10-2007_0,Evaluable,Evidence,Media,Respalda la afirmación de que el matching ingenuo de núcleos genera enlaces espurios.,COMPLETO,158,1
+17,P13-1139_W12-3102_0,Evaluable,Background,Alta,Relata la evolución de heurísticas de ranking en los organizadores de WMT 2012.,COMPLETO,158,1
+18,P99-1016_W97-0313_0,Evaluable,Evidence,Media,Respalda la idea de que los sustantivos en conjunciones o apositivos tienden a ser semánticamente similares.,COMPLETO,158,1
+19,P13-2083_A00-2011_0,Evaluable,Evidence,Media,Se apoya en el trabajo citado para sostener que modelar cada relación sintáctica por separado da más poder expresivo.,COMPLETO,158,1
+20,P05-1020_N01-1008_1,Evaluable,Background,Media,"Ejemplos de funciones de puntuación, como la regla de Dempster-Shafer y sus variantes, en la literatura.",COMPLETO,158,1
+21,P10-1037_W02-2016_1,Evaluable,Evidence,Alta,Justifica elegir kernels cúbicos porque resultaron efectivos en parsing de dependencias del japonés.,COMPLETO,158,1
+22,P00-1051_W99-0106_0,Evaluable,Evidence,Media,Respalda la afirmación de que el acuerdo en segmentación del discurso exige entrenamiento intensivo.,COMPLETO,158,1
+23,J08-3003_P03-1013_0,Evaluable,Evidence,Media,Respalda que aplicar a otra lengua un parser desarrollado para inglés reduce la precisión.,COMPLETO,158,1
+24,P12-3005_N10-1027_0,Evaluable,Evidence,Alta,Sustenta la decisión de no realizar detección explícita de codificación.,COMPLETO,158,1
+25,D13-1082_N03-1017_0,Evaluable,Application,Alta,Se usa el sistema Moses tal cual en los experimentos.,COMPLETO,158,1
+26,W09-2605_P06-1064_3,Evaluable,Comparison,Alta,Se contrasta el número de tipos léxicos aprendidos con el del trabajo citado.,COMPLETO,158,1
+27,D12-1056_N10-1064_0,Evaluable,Background,Alta,Enumera enfoques previos de recolección de datos de errores ortográficos.,COMPLETO,158,1
+28,W13-3815_P12-1013_0,Evaluable,Further Reading,Media,Remite al trabajo sobre restricciones estructurales en grafos de implicación.,COMPLETO,158,1
+29,P11-1044_N03-1017_0,Evaluable,Application,Alta,Se construye el sistema de transliteración con el toolkit Moses.,COMPLETO,158,1
+30,N13-1126_P05-1012_1,Evaluable,Comparison,Alta,Se contrasta la exactitud del modelo generativo con la del parser arc-factored.,COMPLETO,158,1
+31,W10-4205_J88-2005_0,Evaluable,Background,Alta,Describe sistemas tempranos basados en reglas para analizar duraciones y ordenamiento de eventos.,COMPLETO,158,1
+32,N06-2025_P04-1054_1,Evaluable,Comparison,Alta,Se afirma que el kernel genera un espacio de rasgos más rico que los definidos en trabajos previos.,COMPLETO,158,1
+33,W11-2908_W08-1006_0,Evaluable,Background,Alta,Resume resultados previos sobre lexicalización de PCFG en alemán.,COMPLETO,158,1
+34,P10-1068_P98-1029_1,Evaluable,Evidence,Media,Respalda que se ha reportado un aumento de exactitud con combinaciones de ensemble.,COMPLETO,158,1
+35,P11-2116_W08-1131_0,Evaluable,Comparison,Alta,Se compara con las puntuaciones de los mejores sistemas del REG Challenge 2008.,COMPLETO,158,1
+36,P10-2007_E09-1018_0,Evaluable,Evidence,Alta,Respalda que la anáfora pronominal puede aprenderse de datos sin anotar.,COMPLETO,158,1
+37,D08-1069_P02-1014_3,Evaluable,Identification of the Originator,Media,Atribuye a Ng y Cardie la introducción del clasificador de anaforicidad como filtro.,COMPLETO,158,1
+38,P06-2079_J04-3002_1,Evaluable,Comparison,Alta,Los resultados se contrastan con exactitudes del 94-97% reportadas previamente.,COMPLETO,158,1
+39,P03-1013_W01-0521_0,Evaluable,Evidence,Media,Sustenta la afirmación de que las estadísticas bi-léxicas son escasas para algunas gramáticas.,COMPLETO,158,1
+40,W06-3005_P94-1019_0,Evaluable,Background,Media,Describe la medida wup de Wu y Palmer como antecedente.,COMPLETO,158,1
+41,N09-1046_N06-2013_1,Evaluable,Evidence,Alta,Respalda que la sobresegmentación degrada la calidad de traducción.,COMPLETO,158,1
+42,N06-1005_W01-0808_0,Evaluable,Application,Alta,Se usan las capacidades de generación de NLPWIN para generar las cadenas de búsqueda.,COMPLETO,158,1
+43,W09-2208_N04-4028_0,Evaluable,Application,Alta,Se emplea el algoritmo forward-backward restringido para calcular puntuaciones de confianza.,COMPLETO,158,1
+44,P99-1040_P98-2129_0,Evaluable,Evidence,Alta,Respalda que el desempeño del reconocimiento de voz predice la satisfacción del usuario.,COMPLETO,158,1
+45,W12-2204_W03-2317_0,Evaluable,Evidence,Media,Sustenta que lecturas más rápidas se relacionan con textos más legibles.,COMPLETO,158,1
+46,W12-0115_W10-1708_0,Evaluable,Improvement / Modification,Alta,Se trabaja con una versión extendida del sistema híbrido previo del grupo.,COMPLETO,158,1
+47,S07-1057_P05-1006_1,Evaluable,Comparison,Alta,Contraste explícito con el uso de hiperónimos en el trabajo citado.,COMPLETO,158,1
+48,D13-1089_W02-1029_2,Evaluable,Comparison,Alta,Se contrasta con las mejores medidas propuestas por los trabajos citados.,COMPLETO,158,1
+49,P12-1096_P05-1034_0,Evaluable,Background,Alta,"Presenta una categoría de enfoques previos, los modelos árbol-a-cadena.",COMPLETO,158,1
+50,D09-1116_W04-3242_0,Evaluable,Basis,Alta,El modelo toma elementos prestados de trabajos previos.,COMPLETO,158,1
+51,P09-1002_S07-1009_0,Evaluable,Background,Media,Presenta la tarea LEXSUB y quién la propuso como contexto.,COMPLETO,158,1
+52,W13-0112_D12-1110_0,Evaluable,Background,Media,Describe el modelo MV-RNN como trabajo previo relacionado.,COMPLETO,158,1
+53,W12-1504_P10-1159_1,Evaluable,Gap,Alta,Se señala que sus enfoques solo eligen entre instrucción o expresión referencial y no consideran otros casos.,COMPLETO,158,1
+54,E12-1008_W06-2920_2,Evaluable,Application,Alta,Se usan los conjuntos de datos del shared task CoNLL-X para evaluar.,COMPLETO,158,1
+55,P09-1041_W07-2216_1,Evaluable,Evidence,Alta,Respalda que incluir rasgos sobre múltiples arcos hace intratable la inferencia exacta.,COMPLETO,158,1
+56,Q13-1014_W05-0104_0,Evaluable,Background,Media,Se señala que el trabajo citado describe una versión de la tarea clásica de alineamiento.,COMPLETO,158,1
+57,E97-1062_P96-1025_0,Evaluable,Comparison,Alta,Se contrasta el parser BLD con el sistema propio en contexto y conocimiento requerido.,COMPLETO,158,1
+58,E06-1003_P98-2127_0,Evaluable,Background,Alta,Ejemplos de enfoques previos de clustering de términos.,COMPLETO,158,1
+59,D12-1084_W11-1208_1,Evaluable,Improvement / Modification,Alta,El trabajo propio extiende una idea previa a la extracción de fragmentos parafrásticos.,COMPLETO,158,1
+60,W13-3713_P09-3002_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para una clasificación más detallada.,COMPLETO,158,1
+61,W03-0419_W95-0107_0,Evaluable,Identification of the Originator,Alta,Atribuye el esquema de etiquetado IOB a quien lo propuso originalmente.,COMPLETO,158,1
+62,P89-1024_P88-1003_0,Evaluable,Further Reading,Alta,Remite al tratamiento computacional de lecturas distributivas/colectivas.,COMPLETO,158,1
+63,W02-0905_J91-4003_0,Evaluable,Identification of the Originator,Alta,Se adopta la terminología de Pustejovsky para el fenómeno de cocomposición.,COMPLETO,158,1
+64,W13-2209_W12-3102_0,Evaluable,Application,Alta,Se usa el conjunto de prueba newstest2012 como datos de desarrollo.,COMPLETO,158,1
+65,W13-5403_J91-4003_3,Evaluable,Evidence,Media,Respalda la afirmación sobre la compatibilidad con sustantivos referencialmente opacos.,COMPLETO,158,1
+66,D11-1061_N10-1020_0,Evaluable,Background,Alta,Enumera estudios previos sobre propiedades de Twitter y microblogs.,COMPLETO,158,1
+67,W07-2216_P05-1012_2,Evaluable,Basis,Alta,Se parte de la correspondencia entre árboles de expansión y grafos de dependencias señalada por McDonald et al.,COMPLETO,158,1
+68,D12-1090_D11-1035_0,Evaluable,Evidence,Alta,Respalda que afinar contra mejores métricas mejora el desempeño del sistema.,COMPLETO,158,1
+69,E12-1050_P07-1096_3,Evaluable,Comparison,Alta,Se compara la exactitud obtenida con el estado del arte para inglés.,COMPLETO,158,1
+70,W06-3004_P05-1026_3,Evaluable,Basis,Media,La similitud conceptual usada fue descrita originalmente en el trabajo citado y se emplea aquí.,COMPLETO,158,1
+71,J04-1004_J97-4004_0,Evaluable,Evidence,Alta,Respalda la afirmación de que palabras y tokens son bloques básicos de las teorías lingüísticas.,COMPLETO,158,1
+72,W12-0502_P98-2127_0,Evaluable,Background,Alta,Enumera enfoques clave previos para extraer relaciones semánticas.,COMPLETO,158,1
+73,W11-2158_W11-2132_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para una comparación detallada.,COMPLETO,158,1
+74,D11-1118_P93-1024_2,Evaluable,Evidence,Alta,La cita textual respalda el argumento sobre la insuficiencia de datos por la ley de Zipf.,COMPLETO,158,1
+75,P10-3016_P00-1065_0,Evaluable,Identification of the Originator,Alta,Atribuye la introducción del etiquetado de roles semánticos al trabajo citado.,COMPLETO,158,1
+76,W13-2505_N03-2016_0,Evaluable,Evidence,Alta,Respalda que los cognados son efectivos en el alineamiento de palabras.,COMPLETO,158,1
+77,P12-2063_N12-1006_0,Evaluable,Application,Alta,Se usa el corpus web levantino del trabajo citado para evaluar.,COMPLETO,158,1
+78,W13-0112_D10-1113_0,Evaluable,Background,Alta,Enumera estudios sobre significado de palabras en contexto.,COMPLETO,158,1
+79,W12-4105_P10-1154_2,Evaluable,Evidence,Alta,Respalda que las relaciones semánticas y definiciones de WordNet sirven para desambiguación.,COMPLETO,158,1
+80,P09-1091_A00-2023_0,Evaluable,Background,Alta,Enumera modelos n-grama previos para clasificar candidatos de generación.,COMPLETO,158,1
+81,W06-2920_P05-1012_1,Evaluable,Basis,Alta,La búsqueda del mejor análisis como árbol de expansión máxima parte del trabajo citado.,COMPLETO,158,1
+82,P98-1112_A97-1028_0,Evaluable,Background,Alta,Enumera trabajos recientes sobre la tarea de entidades nombradas.,COMPLETO,158,1
+83,N10-1129_N06-2013_0,Evaluable,Background,Alta,Menciona trabajo previo sobre preprocesamiento de la lengua fuente.,COMPLETO,158,1
+84,W13-2815_P07-1003_0,Evaluable,Application,Alta,Se usa el Berkeley Aligner con configuración casi por defecto.,COMPLETO,158,1
+85,W04-2410_P02-1030_0,Evaluable,Evidence,Alta,Respalda que más datos producen tesauros de mejor calidad.,COMPLETO,158,1
+86,P02-1039_P01-1067_3,Evaluable,Further Reading,Alta,Remite al trabajo citado para los detalles de la fórmula.,COMPLETO,158,1
+87,W11-0906_W10-1811_0,Evaluable,Evidence,Alta,Respalda que se pueden recuperar los chunks originales desde los núcleos con pérdida mínima.,COMPLETO,158,1
+88,P10-1061_D08-1014_0,Evaluable,Background,Alta,Describe un enfoque previo con traducción automática y herramientas existentes.,COMPLETO,158,1
+89,P08-1098_P02-1016_0,Evaluable,Background,Alta,Enumera trabajos de aprendizaje activo para análisis sintáctico.,COMPLETO,158,1
+90,W05-1512_P03-1054_4,Evaluable,Comparison,Alta,Se compara el desempeño del mejor modelo con PCFG no lexicalizadas previas.,COMPLETO,158,1
+91,P08-1087_P07-2045_0,Evaluable,Application,Alta,Se emplea Moses para los sistemas de traducción factorizada.,COMPLETO,158,1
+92,W11-2017_J88-2003_0,Evaluable,Background,Media,Referencia la distinción de aspecto definida en el trabajo citado.,COMPLETO,158,1
+93,P12-1045_W08-0336_0,Evaluable,Application,Alta,Se usa el segmentador chino de Stanford para segmentar las oraciones.,COMPLETO,158,1
+94,D13-1160_W10-2903_1,Evaluable,Background,Alta,Enumera trabajos previos de parsing semántico guiado por el mundo.,COMPLETO,158,1
+95,P04-1051_P03-1069_4,Evaluable,Gap,Media,Señala un supuesto erróneo del trabajo citado sobre el algoritmo de Majority Ordering.,COMPLETO,158,1
+96,J05-1005_W95-0103_0,Evaluable,Background,Alta,Enumera trabajos previos de resolución de adjunción que usan secuencias vp–np–pp.,COMPLETO,158,1
+97,P11-1080_D10-1004_0,Evaluable,Background,Alta,Menciona esquemas de inferencia aproximada existentes.,COMPLETO,158,1
+98,S13-1013_S12-1076_2,Evaluable,Improvement / Modification,Alta,Se modifican las ediciones de stemming y sinonimia del PERP original.,COMPLETO,158,1
+99,J08-4004_W04-0210_1,Evaluable,Background,Media,Se refiere a trabajo previo propio donde se observó la calidad de anotación según el coeficiente.,COMPLETO,158,1
+100,J12-2005_W09-1304_1,Evaluable,Identification of the Originator,Alta,Atribuye a Morante y Daelemans el haber sido pioneros en resolver el alcance de la especulación.,COMPLETO,158,1

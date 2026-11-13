@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D10-1069_P06-1043_2,Evaluable,Background,Media,Describes prior work: the cited paper first improved a parser via self-training.,COMPLETO,146,1
+2,D11-1017_P97-1003_0,Evaluable,Background,Alta,Lists parsing work following the Penn Treebank as general field context.,COMPLETO,146,1
+3,W97-0205_W91-0209_0,Evaluable,Further Reading,Alta,'See the literature on animal grinding' directs the reader to additional sources.,COMPLETO,146,1
+4,P12-2064_N04-2006_0,Evaluable,Background,Alta,Enumerates prior work on article error correction.,COMPLETO,146,1
+5,W06-2932_W06-2920_3,Evaluable,Comparison,Alta,Compares own results with the average performance of systems reported in the shared task.,COMPLETO,146,1
+6,D08-1037_P08-2014_3,Evaluable,Comparison,Alta,"Contrasts results with those published in the cited work, explaining differences.",COMPLETO,146,1
+7,W03-1009_P02-1026_2,Evaluable,Comparison,Alta,Compares the effect size with that in the authors' previous work on WSJ.,COMPLETO,146,1
+8,P12-2062_D08-1092_0,Evaluable,Background,Media,Summarizes previous work showing target translation helps source parsing.,COMPLETO,146,1
+9,W07-2208_P05-1011_9,Evaluable,Comparison,Alta,The cited model is a baseline compared against in experiments.,COMPLETO,146,1
+10,P07-1032_P06-4020_1,Evaluable,Comparison,Alta,The CCG parser is stated to outperform RASP on DepBank.,COMPLETO,146,1
+11,P04-1020_P02-1014_3,Evaluable,Further Reading,Alta,'Details can be found in' refers the reader to additional information.,COMPLETO,146,1
+12,P13-4002_P11-1096_1,Evaluable,Background,Alta,Describes prior work introducing grid-based geolocation in related work.,COMPLETO,146,1
+13,D11-1127_D10-1027_0,Evaluable,Background,Alta,Reviews prior decoding approaches in the related work.,COMPLETO,146,1
+14,P06-1098_N03-1017_2,Evaluable,Evidence,Media,Cites the window size constraint as used in phrase-based models to support the interpretation of the rules.,COMPLETO,146,1
+15,W11-4004_N10-1121_1,Evaluable,Application,Alta,Adopts the definition of opinion holders from the cited work.,COMPLETO,146,1
+16,D08-1048_P98-1013_1,Evaluable,Background,Alta,Introduces the FrameNet project as context.,COMPLETO,146,1
+17,W97-0114_P91-1022_0,Evaluable,Background,Alta,Lists several methods for sentence alignment as prior work.,COMPLETO,146,1
+18,W13-0125_D08-1007_0,Evaluable,Evidence,Media,Supports the claim that this effect is usually ignored in machine learning.,COMPLETO,146,1
+19,W09-3834_N06-2019_0,Evaluable,Background,Alta,Reports similar findings from prior studies on deleting repairs and fillers.,COMPLETO,146,1
+20,N04-1011_W02-1007_2,Evaluable,Application,Alta,Uses the evaluation methodology described in the cited work.,COMPLETO,146,1
+21,D13-1013_J13-1002_0,Evaluable,Evidence,Media,Cited finding that root placement affects accuracy supports the design choice.,COMPLETO,146,1
+22,P12-1108_P07-1096_4,Evaluable,Comparison,Alta,Cited system's results appear in a table compared with the proposed models.,COMPLETO,146,1
+23,W08-1207_P97-1023_0,Evaluable,Comparison,Alta,Contrasts own view of polarity with that of other researchers.,COMPLETO,146,1
+24,D11-1037_P06-1111_0,Evaluable,Evidence,Media,Cited finding supports the claim that seeds bring strong improvements.,COMPLETO,146,1
+25,W13-3408_D10-1100_0,Evaluable,Background,Alta,Notes widespread use of convolution kernels in NLP.,COMPLETO,146,1
+26,W05-1005_W03-1812_0,Evaluable,Background,Media,"Describes how previous studies determine compositionality, before contrasting with own approach.",COMPLETO,146,1
+27,W07-1217_P06-4020_0,Evaluable,Application,Alta,Uses the RASP 2 parser as a comparison system/tool in the evaluation.,COMPLETO,146,1
+28,P11-2075_P07-1034_0,Evaluable,Basis,Alta,Analysis builds on the labeling and instance mismatch concepts of the cited work.,COMPLETO,146,1
+29,P10-1062_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit as the SMT system.,COMPLETO,146,1
+30,N07-1055_P05-1018_0,Evaluable,Improvement / Modification,Alta,Adapts the cited model by relaxing independence assumptions.,COMPLETO,146,1
+31,P10-3001_P94-1001_0,Evaluable,Background,Media,Describes prior work introducing discourse obligations as part of related work.,COMPLETO,146,1
+32,W09-0434_W04-3250_0,Evaluable,Application,Alta,Uses bootstrap resampling method for confidence intervals.,COMPLETO,146,1
+33,N07-1002_W05-0307_0,Evaluable,Evidence,Media,"Cites works supporting the use of givenness, contrast and animacy features.",COMPLETO,146,1
+34,P13-1020_N04-1019_0,Evaluable,Application,Alta,Uses Pyramid scores as evaluation metric.,COMPLETO,146,1
+35,D13-1205_P11-1043_0,Evaluable,Application,Alta,Uses the cited aligner to word-align parallel sentences.,COMPLETO,146,1
+36,N09-1005_W06-1672_0,Evaluable,Background,Alta,Enumerates techniques used in prior work.,COMPLETO,146,1
+37,W02-1008_N01-1008_0,Evaluable,Improvement / Modification,Alta,Presents a fully automated variant of the cited example selection algorithm.,COMPLETO,146,1
+38,W12-3307_P08-2068_2,Evaluable,Comparison,Alta,Contrasts runtime of TopicTiling with other topic-model-based algorithms.,COMPLETO,146,1
+39,N06-1018_N03-2019_0,Evaluable,Background,Alta,Lists prior work on temporal information processing.,COMPLETO,146,1
+40,W00-1327_A97-1052_2,Evaluable,Comparison,Alta,Contrasts own filtering method with the statistical filter used in the cited work.,COMPLETO,146,1
+41,P13-2140_E12-1060_0,Evaluable,Background,Alta,Lists prior methods for word sense induction.,COMPLETO,146,1
+42,W13-3507_P12-1024_0,Evaluable,Basis,Media,"Their algorithm builds on the cited spectral L-PCFG algorithm, adapting it to R-HMMs.",COMPLETO,146,1
+43,J09-1005_W97-0207_0,Evaluable,Background,Alta,Describes prior work on MWE identification using another language.,COMPLETO,146,1
+44,N12-1035_N03-1017_0,Evaluable,Application,Media,Estimates probabilities by relative frequency following the cited method.,COMPLETO,146,1
+45,P13-1072_D11-1090_2,Evaluable,Comparison,Alta,Cited segmenter is a baseline compared against.,COMPLETO,146,1
+46,W10-0735_P08-1115_0,Evaluable,Background,Alta,Lists prior work improving performance via alternative input representations.,COMPLETO,146,1
+47,N12-2004_P07-1065_0,Evaluable,Gap,Media,"Notes the cited method is randomized and subject to false positives, unsuitable for desired use.",COMPLETO,146,1
+48,J13-3003_S07-1016_1,Evaluable,Evidence,Alta,Supports the claim that coarse-grained sense groups improve agreement and WSD accuracy.,COMPLETO,146,1
+49,D13-1014_J91-4003_0,Evaluable,Basis,Alta,The work is inspired by type coercion and co-compositionality from Generative Lexicon theory.,COMPLETO,146,1
+50,W93-0112_P91-1030_0,Evaluable,Comparison,Media,"Contrasts own method with statistical bigram analysis, which cannot obtain the same clusters.",COMPLETO,146,1
+51,P11-2121_P05-1013_0,Evaluable,Evidence,Alta,Supports the factual claim that non-projective dependencies are fewer.,COMPLETO,146,1
+52,D10-1072_N09-1037_0,Evaluable,Comparison,Alta,States that the spirit of the work resembles the cited joint parsing/NER work.,COMPLETO,146,1
+53,W04-2503_P98-1013_0,Evaluable,Application,Media,Uses FrameNet as the resource providing the connection to events.,COMPLETO,146,1
+54,D12-1111_J06-3003_1,Evaluable,Background,Alta,Lists related work in the area.,COMPLETO,146,1
+55,N07-1072_P00-1065_0,Evaluable,Gap,Alta,"Notes existing taggers perform poorly on other corpora, justifying own approach.",COMPLETO,146,1
+56,W03-0314_W02-1018_0,Evaluable,Comparison,Media,"Describes related work going beyond word-level translation, contrasting with the present non-probabilistic lexicons.",COMPLETO,146,1
+57,W04-0822_P04-1081_3,Evaluable,Comparison,Alta,Compares KPCA with naive Bayes and maximum entropy results.,COMPLETO,146,1
+58,W12-1642_W11-0503_3,Evaluable,Application,Alta,Uses the clustering algorithm from previous work.,COMPLETO,146,1
+59,D11-1118_D10-1069_0,Evaluable,Background,Alta,Describes prior observations about POS-less parsing.,COMPLETO,146,1
+60,P08-1059_N07-1007_1,Evaluable,Comparison,Alta,Related work contrasted with own focus on inflection prediction.,COMPLETO,146,1
+61,N12-1009_P11-3015_0,Evaluable,Background,Alta,Describes prior work noticing the same issue in sentiment analysis.,COMPLETO,146,1
+62,W07-0407_N06-1015_0,Evaluable,Background,Media,"Describes prior work extending matching-based alignment, which the paper builds on.",COMPLETO,146,1
+63,P09-1031_W04-3205_0,Evaluable,Background,Alta,Lists prior work on various relation types.,COMPLETO,146,1
+64,P11-1160_P09-1042_1,Evaluable,Gap,Alta,States existing parsers cannot learn from partially connected parses.,COMPLETO,146,1
+65,P12-1001_D11-1125_1,Evaluable,Improvement / Modification,Alta,PMO-PRO generalizes the PRO algorithm.,COMPLETO,146,1
+66,W11-2926_P10-1001_2,Evaluable,Gap,Alta,Points out existing span-based approaches do not model such relations.,COMPLETO,146,1
+67,P06-1054_W00-1201_1,Evaluable,Comparison,Alta,Cited model's results are listed in a comparison table.,COMPLETO,146,1
+68,W08-0317_P07-2045_1,Evaluable,Application,Alta,Uses the Moses decoder.,COMPLETO,146,1
+69,D11-1006_P09-1042_4,Evaluable,Comparison,Alta,"Compares own system to the similar PR system, with results.",COMPLETO,146,1
+70,W10-0731_D09-1020_1,Evaluable,Evidence,Media,"Cited point supports the claim that lexicons are built on words rather than senses, causing false hits.",COMPLETO,146,1
+71,W99-0209_W97-0315_0,Evaluable,Evidence,Media,Cited findings support the claim about proper nouns' usefulness.,COMPLETO,146,1
+72,N13-1037_P11-1036_0,Evaluable,Background,Alta,Lists applications of Twitter data mining.,COMPLETO,146,1
+73,P10-1097_P08-1028_0,Evaluable,Comparison,Alta,States the method resembles the cited approach and goes further.,COMPLETO,146,1
+74,W09-0607_E06-2020_1,Evaluable,Background,Media,Describes a prior prototype system as context.,COMPLETO,146,1
+75,W12-1630_W11-2019_0,Evaluable,Application,Alta,Uses the cited user satisfaction survey.,COMPLETO,146,1
+76,W10-3113_W09-1410_1,Evaluable,Comparison,Alta,Compares reported results with the cited work's on the same dataset.,COMPLETO,146,1
+77,N07-1030_P00-1023_0,Evaluable,Background,Alta,Lists prior work treating coreference as pairwise classification.,COMPLETO,146,1
+78,D10-1039_W02-0109_0,Evaluable,Application,Alta,Uses the NLTK lemmatizer.,COMPLETO,146,1
+79,P98-2192_P93-1017_2,Evaluable,Comparison,Alta,Contrasts the coverage of own formalism with the cited formalisms.,COMPLETO,146,1
+80,W13-2015_W09-1401_0,Evaluable,Background,Alta,Introduces the shared task as context for bio-event extraction.,COMPLETO,146,1
+81,W94-0311_J91-4003_3,Evaluable,Basis,Media,Relies on generative mechanisms of Generative Lexicon theory as conceptual foundation.,COMPLETO,146,1
+82,N09-1066_W06-1613_1,Evaluable,Background,Alta,Related work summary of analyses of citation networks.,COMPLETO,146,1
+83,W13-4911_W11-0417_1,Evaluable,Comparison,Alta,States findings are consistent with the cited conclusions.,COMPLETO,146,1
+84,W12-6327_N04-4028_0,Evaluable,Application,Media,Uses a refinement of the BIO coding scheme from the cited work.,COMPLETO,146,1
+85,W05-1511_N04-1013_2,Evaluable,Evidence,Alta,Cited research supports the assumption that predicate-argument relations can be represented under feature locality.,COMPLETO,146,1
+86,W11-0702_W10-0214_0,Evaluable,Evidence,Alta,Prior results support the decision to use unigram features.,COMPLETO,146,1
+87,N07-1008_P03-1021_0,Evaluable,Gap,Alta,States the cited methods are not scalable to many features.,COMPLETO,146,1
+88,D10-1020_N09-1069_0,Evaluable,Background,Alta,Lists prior work improving HMM inference.,COMPLETO,146,1
+89,P10-1034_J07-2003_0,Evaluable,Basis,Media,The glue rules extend those described in the cited work.,COMPLETO,146,1
+90,W10-4221_W08-1138_1,Evaluable,Comparison,Alta,Own findings are said to correspond with those of the cited work.,COMPLETO,146,1
+91,P10-1110_N09-1073_0,Evaluable,Comparison,Alta,Contrasts own parser with the cited almost-linear-time parser.,COMPLETO,146,1
+92,P07-1061_P01-1064_0,Evaluable,Background,Alta,Lists topic segmentation systems based on word reiteration.,COMPLETO,146,1
+93,P90-1018_J80-1003_0,Evaluable,Identification of the Originator,Alta,Says the original work on Slot Grammar appeared in the cited work.,COMPLETO,146,1
+94,N10-1129_P05-1066_0,Evaluable,Background,Alta,Mentions prior work on source-language preprocessing.,COMPLETO,146,1
+95,J09-1003_W02-2111_0,Evaluable,Background,Media,Summarizes authors' own earlier work presenting a genetic algorithm approach.,COMPLETO,146,1
+96,W09-0408_P05-3026_0,Evaluable,Improvement / Modification,Alta,The system is an enhancement of the cited previous work.,COMPLETO,146,1
+97,W05-1516_P93-1024_0,Evaluable,Background,Alta,Lists methods for distributional similarity.,COMPLETO,146,1
+98,J08-1003_N04-1013_4,Evaluable,Comparison,Alta,Compares own f-score with previous best results of the cited work.,COMPLETO,146,1
+99,E09-1011_P08-2039_0,Evaluable,Background,Alta,Notes prior evidence that segmentation benefits English-to-Arabic translation.,COMPLETO,146,1
+100,P10-1066_N09-1041_0,Evaluable,Comparison,Alta,Notes similarity in word separation approach but different task.,COMPLETO,146,1

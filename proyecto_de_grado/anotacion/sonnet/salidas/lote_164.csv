@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W09-1704_P08-1030_0,Evaluable,Application,Alta,Aplica las técnicas de inferencia entre documentos tal como se describen en la obra citada.,COMPLETO,164,1
+2,S13-1034_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador POS de Stanford como herramienta.,COMPLETO,164,1
+3,P13-1138_N07-1021_1,Evaluable,Comparison,Media,"Explica por qué no se compara con otros sistemas estadísticos de generación, contrastando su alcance.",COMPLETO,164,1
+4,W06-2909_P05-1073_3,Evaluable,Application,Media,Sigue el enfoque de reranking descrito en la obra citada para implementar su modelo.,COMPLETO,164,1
+5,D10-1013_P08-1115_0,Evaluable,Background,Alta,Lista trabajos previos que aplican lattices a problemas de TA estadística.,COMPLETO,164,1
+6,N10-1137_P98-2247_0,Evaluable,Background,Alta,Describe trabajo previo en adquisición de léxico con recursos como taxonomías de alternancias.,COMPLETO,164,1
+7,J99-3001_P96-1057_0,Evaluable,Background,Media,Se refiere al propio trabajo previo de los autores sobre centering en alemán.,COMPLETO,164,1
+8,P12-1099_N03-1017_1,Evaluable,Application,Alta,Usa un sistema estándar basado en frases como línea base.,COMPLETO,164,1
+9,N13-1027_W12-3003_0,Evaluable,Gap,Media,Describe el trabajo citado y señala su limitación: resultados no evaluados en extracción de información real.,COMPLETO,164,1
+10,W97-0311_P97-1063_1,Evaluable,Application,Media,Los modelos de traducción se indujeron usando el método del trabajo citado.,COMPLETO,164,1
+11,W06-1654_P02-1030_1,Evaluable,Evidence,Alta,Respalda la afirmación sobre la menor precisión en términos de baja frecuencia.,COMPLETO,164,1
+12,D13-1064_W13-2322_1,Evaluable,Comparison,Media,Presenta AMR y lo contrasta con la propuesta propia por ser menos abstracta.,COMPLETO,164,1
+13,D11-1096_P05-1050_0,Evaluable,Background,Alta,Enumera trabajos que usan kernels estructurales.,COMPLETO,164,1
+14,D12-1046_P08-1109_0,Evaluable,Background,Media,Cita optimización estocástica como algoritmo de aprendizaje en línea efectivo; contexto general antes de su propia elección.,COMPLETO,164,1
+15,P11-1149_W10-2903_1,Evaluable,Further Reading,Alta,Remite al lector a la obra citada para la descripción completa de las restricciones.,COMPLETO,164,1
+16,W13-2126_N06-1003_0,Evaluable,Background,Alta,"Enumera aplicaciones de la paráfrasis, incluida la traducción automática.",COMPLETO,164,1
+17,D13-1159_P12-1055_0,Evaluable,Gap,Media,Describe un trabajo previo y a continuación señala su limitación (pocas clases de entidades).,COMPLETO,164,1
+18,S13-1013_S12-1076_5,Evaluable,Application,Media,"El sistema combina un modelo de edición ya entrenado del trabajo citado, usado en su forma existente.",COMPLETO,164,1
+19,Q13-1024_W02-1039_2,Evaluable,Basis,Media,El trabajo citado aporta la hipótesis de cohesión de dependencias que el trabajo actual prueba en chino-inglés.,COMPLETO,164,1
+20,W10-1406_P06-1055_0,Evaluable,Application,Alta,Emplea las reglas de agrupación de palabras desconocidas del trabajo citado.,COMPLETO,164,1
+21,P11-2057_W07-1409_0,Evaluable,Comparison,Alta,Contrasta explícitamente su enfoque con el de estudios previos.,COMPLETO,164,1
+22,W13-2232_D09-1092_7,Evaluable,Application,Alta,Replica los resultados del trabajo citado para verificar la configuración experimental.,COMPLETO,164,1
+23,W13-2102_W12-1527_0,Evaluable,Background,Alta,Cita sistemas previos de generación desde bases de conocimiento.,COMPLETO,164,1
+24,P12-1066_D11-1006_2,Evaluable,Application,Alta,Usa el conjunto de etiquetas gruesas común propuesto en trabajos citados.,COMPLETO,164,1
+25,P05-1063_N03-1028_0,Evaluable,Evidence,Alta,Respalda la afirmación de que GCLM tiene ligeramente mayor precisión que el perceptrón.,COMPLETO,164,1
+26,P06-1120_P05-2003_0,Evaluable,Further Reading,Alta,Remite a revisiones de medidas de asociación.,COMPLETO,164,1
+27,W13-1103_P06-1047_2,Evaluable,Background,Media,"Describe cómo trabajos previos usan las puntuaciones para seleccionar texto, antes de contrastar.",COMPLETO,164,1
+28,D10-1030_D08-1092_1,Evaluable,Basis,Media,La característica está inspirada en el trabajo citado.,COMPLETO,164,1
+29,P13-1045_P02-1031_0,Evaluable,Evidence,Media,Respalda la afirmación de que las representaciones sintácticas son útiles para tareas posteriores.,COMPLETO,164,1
+30,N10-1119_E06-1039_0,Evaluable,Background,Alta,Cita aplicaciones de análisis de sentimiento como la agregación y el resumen.,COMPLETO,164,1
+31,P13-1089_D12-1102_3,Evaluable,Comparison,Alta,"Compara su condición con la del teorema previo, indicando que la generaliza.",COMPLETO,164,1
+32,W03-2416_W02-1706_0,Evaluable,Application,Alta,Anota el corpus usando las herramientas LTG.,COMPLETO,164,1
+33,W11-0310_D10-1021_1,Evaluable,Background,Alta,"Cita estudios previos de aprendizaje automático para identificar lenguaje femenino, antes de contrastar.",COMPLETO,164,1
+34,W11-0316_P03-1003_0,Evaluable,Background,Alta,"Enumera aplicaciones de la TA estadística, incluida la respuesta a preguntas.",COMPLETO,164,1
+35,J06-4004_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para calcular las alineaciones.,COMPLETO,164,1
+36,P12-1038_P10-1058_0,Evaluable,Evidence,Media,Respalda la elección de ILP por su uso exitoso en otras tareas de generación.,COMPLETO,164,1
+37,D09-1038_N06-1033_3,Evaluable,Comparison,Alta,Compara los resultados con el método de binarización síncrona.,COMPLETO,164,1
+38,W12-1642_D09-1044_0,Evaluable,Improvement / Modification,Alta,Modifica el sistema citado para adaptarlo al escenario de reuniones de un solo documento.,COMPLETO,164,1
+39,D12-1018_W04-3206_0,Evaluable,Application,Alta,Sigue el enfoque de anotación basado en reglas de los trabajos citados.,COMPLETO,164,1
+40,W06-3104_P04-1083_0,Evaluable,Comparison,Alta,Contrasta su enfoque con los basados en gramáticas síncronas estocásticas.,COMPLETO,164,1
+41,W05-0703_W98-1007_0,Evaluable,Background,Alta,Traza el desarrollo histórico de la morfología árabe con métodos de estados finitos.,COMPLETO,164,1
+42,D13-1051_N07-1029_2,Evaluable,Comparison,Alta,Compara las redes de confusión de alineación IHMM y TER.,COMPLETO,164,1
+43,N03-3004_W97-0322_1,Evaluable,Basis,Alta,"El trabajo se construye sobre dos enfoques previos, uno el citado.",COMPLETO,164,1
+44,W06-1633_P02-1014_3,Evaluable,Comparison,Alta,"Compara resultados entre tres algoritmos de agrupamiento, incluido Link-Best.",COMPLETO,164,1
+45,P12-1095_W04-3250_0,Evaluable,Application,Alta,Usa remuestreo bootstrap pareado para la significancia estadística.,COMPLETO,164,1
+46,P04-1058_P99-1070_0,Evaluable,Application,Media,Aplica la equivalencia con PCFG siguiendo el procedimiento citado.,COMPLETO,164,1
+47,N10-1035_N10-1118_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la complejidad del análisis sintáctico de LCFRS.,COMPLETO,164,1
+48,D11-1091_D10-1114_1,Evaluable,Application,Alta,Emplea el agrupamiento por niveles tal como se propone.,COMPLETO,164,1
+49,E06-1011_P05-1012_7,Evaluable,Comparison,Media,Relaciona los resultados citados sobre el checo con los propios.,COMPLETO,164,1
+50,Q13-1010_P03-1054_0,Evaluable,Application,Alta,Aplica binarización derecha según la práctica del trabajo citado.,COMPLETO,164,1
+51,D09-1157_E06-1015_1,Evaluable,Application,Alta,Adopta el kernel de subárbol sin modificarlo.,COMPLETO,164,1
+52,W09-3109_E09-1003_2,Evaluable,Evidence,Alta,Respalda la afirmación sobre la calidad de la TA inicial y la recuperación de oraciones.,COMPLETO,164,1
+53,P07-1078_W03-0407_0,Evaluable,Background,Alta,Resume trabajos previos de auto-entrenamiento con resultados pobres.,COMPLETO,164,1
+54,W04-1507_P93-1024_0,Evaluable,Background,Alta,Enumera estudios previos de agrupamiento distribucional de palabras.,COMPLETO,164,1
+55,P11-3001_P09-1104_1,Evaluable,Application,Alta,Usa el conjunto de oraciones alineadas manualmente del trabajo citado.,COMPLETO,164,1
+56,W10-3805_N03-1017_0,Evaluable,Identification of the Originator,Media,Indica que los modelos basados en frases fueron introducidos en el trabajo citado.,COMPLETO,164,1
+57,W13-1102_P11-1096_0,Evaluable,Evidence,Media,Respalda la afirmación de que palabras de redes sociales se vinculan con regiones geográficas.,COMPLETO,164,1
+58,W10-1618_W08-1107_2,Evaluable,Background,Media,Menciona colaboraciones previas del grupo en representación del conocimiento.,COMPLETO,164,1
+59,N13-1126_P12-1066_3,Evaluable,Gap,Alta,Señala que el modelo generativo del trabajo citado limita su desempeño.,COMPLETO,164,1
+60,W13-0307_S07-1014_0,Evaluable,Background,Alta,Describe las evaluaciones TempEval en trabajos relacionados.,COMPLETO,164,1
+61,D08-1018_P97-1003_1,Evaluable,Evidence,Media,Respalda la intuición lingüística de que las frases se organizan alrededor del núcleo.,COMPLETO,164,1
+62,W11-4002_P04-1075_0,Evaluable,Evidence,Media,Respalda que instancias con más características son más representativas.,COMPLETO,164,1
+63,P11-1011_D08-1107_2,Evaluable,Evidence,Alta,Respalda que la anotación de consultas es difícil.,COMPLETO,164,1
+64,D13-1130_P06-1004_2,Evaluable,Gap,Alta,Describe el intento previo y señala su limitación (número de segmentos conocido).,COMPLETO,164,1
+65,P07-1106_N06-2049_1,Evaluable,Comparison,Alta,Incluye el modelo citado para comparar resultados.,COMPLETO,164,1
+66,P98-1010_A92-1021_0,Evaluable,Identification of the Originator,Alta,Atribuye el paradigma basado en transformaciones al trabajo citado.,COMPLETO,164,1
+67,D13-1160_P11-1028_0,Evaluable,Background,Alta,"Enumera trabajos previos sobre interpretación de lenguaje natural, como juegos.",COMPLETO,164,1
+68,E12-1003_N10-1137_1,Evaluable,Application,Media,Implementa la línea base de función sintáctica siguiendo el trabajo citado.,COMPLETO,164,1
+69,N10-1146_P06-1051_0,Evaluable,Comparison,Alta,Compara con el método previo como línea base fuerte.,COMPLETO,164,1
+70,P13-1080_P10-1146_0,Evaluable,Evidence,Alta,Respalda que la sintaxis en ambos lados reduce la calidad de traducción.,COMPLETO,164,1
+71,W00-1418_W98-1404_0,Evaluable,Further Reading,Alta,Remite a otras obras para más información sobre ILEX.,COMPLETO,164,1
+72,W09-2001_W06-3506_1,Evaluable,Background,Alta,Enumera trabajos previos de detección de metáforas por violación de restricciones de selección.,COMPLETO,164,1
+73,W12-0502_W02-0908_0,Evaluable,Gap,Alta,Cita la precisión limitada de la mejor medida para señalar que los enfoques actuales son imperfectos.,COMPLETO,164,1
+74,P10-1149_D09-1098_0,Evaluable,Application,Alta,Usa el conjunto de pares clase-instancia puesto a disposición por el trabajo citado.,COMPLETO,164,1
+75,W10-1404_P08-1108_1,Evaluable,Background,Media,Describe trabajo previo sobre analizadores de dos etapas.,COMPLETO,164,1
+76,P12-1105_P97-1023_0,Evaluable,Background,Alta,Clasifica trabajos relacionados de inducción de léxicos de polaridad.,COMPLETO,164,1
+77,P10-1049_W06-3105_0,Evaluable,Evidence,Alta,Respalda que el método sufre sobreajuste según la literatura.,COMPLETO,164,1
+78,Q13-1005_D11-1140_0,Evaluable,Basis,Alta,Los algoritmos combinan ideas de trabajos previos de aprendizaje CCG supervisado.,COMPLETO,164,1
+79,P10-1058_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford para el análisis sintáctico.,COMPLETO,164,1
+80,P00-1052_P87-1022_0,Evaluable,Identification of the Originator,Media,Atribuye a los trabajos citados la propuesta del ranking de Cf por función gramatical.,COMPLETO,164,1
+81,P04-1084_P96-1016_0,Evaluable,Background,Media,Remite a la propiedad de preservación débil del lenguaje definida por el trabajo citado.,COMPLETO,164,1
+82,E91-1017_E89-1020_1,Evaluable,Further Reading,Alta,Remite a la definición formal dada en la obra citada.,COMPLETO,164,1
+83,W11-1302_E06-1015_0,Evaluable,Basis,Media,Sigue el enfoque de codificación en espacios de características de los trabajos citados.,COMPLETO,164,1
+84,W03-0413_W02-1020_0,Evaluable,Basis,Media,El enfoque decisional se apoya en el marco del trabajo citado.,COMPLETO,164,1
+85,P12-2001_D08-1092_0,Evaluable,Comparison,Alta,Aparece en una tabla comparativa de desempeño.,COMPLETO,164,1
+86,P10-1099_W01-0521_1,Evaluable,Evidence,Alta,Respalda que los analizadores sufren caída de rendimiento fuera de dominio.,COMPLETO,164,1
+87,W98-0601_J91-4003_3,Evaluable,Evidence,Media,Respalda la afirmación de que el verbo tiene un tercer argumento de material.,COMPLETO,164,1
+88,W09-3534_N04-1043_0,Evaluable,Background,Alta,Describe un método previo de aprendizaje semisupervisado con clases.,COMPLETO,164,1
+89,N10-1068_N03-1018_0,Evaluable,Background,Alta,Cita trabajos que usan WFST para modelos de lenguaje natural.,COMPLETO,164,1
+90,P09-1114_P05-1053_1,Evaluable,Background,Alta,Describe trabajo previo sobre características para extracción de relaciones.,COMPLETO,164,1
+91,D12-1093_D10-1107_0,Evaluable,Gap,Alta,Describe el trabajo citado y señala que está diseñado solo para taxonomías jerárquicas.,COMPLETO,164,1
+92,W12-5108_A94-1006_1,Evaluable,Comparison,Alta,Contrasta su método con trabajos previos que usan alineación palabra a palabra.,COMPLETO,164,1
+93,P11-1020_D10-1090_1,Evaluable,Background,Media,"Presenta PEM como métrica propuesta previamente, tras señalar problemas de BLEU.",COMPLETO,164,1
+94,D09-1066_E09-1098_2,Evaluable,Identification of the Originator,Alta,Indica que la co-dispersión fue introducida en el trabajo citado.,COMPLETO,164,1
+95,D12-1077_J07-2003_1,Evaluable,Application,Alta,Emplea cube-pruning para reducir el espacio de búsqueda.,COMPLETO,164,1
+96,P99-1071_P96-1025_0,Evaluable,Application,Alta,Usa un analizador superficial existente para preprocesar.,COMPLETO,164,1
+97,W02-1041_P01-1039_3,Evaluable,Comparison,Alta,"Compara con el etiquetador log-lineal citado, aunque una comparación directa no es posible.",COMPLETO,164,1
+98,P12-1024_P06-1055_1,Evaluable,Background,Alta,Remite a trabajos relacionados sobre L-PCFG con EM.,COMPLETO,164,1
+99,W13-4902_W10-1412_0,Evaluable,Background,Baja,Referencia a trabajo previo sobre características morfológicas en hebreo.,COMPLETO,164,1
+100,P00-1041_P99-1072_0,Evaluable,Background,Alta,Enumera trabajos previos de resumidores con estrategias de revisión.,COMPLETO,164,1

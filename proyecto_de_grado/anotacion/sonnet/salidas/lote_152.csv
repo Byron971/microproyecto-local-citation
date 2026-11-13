@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P13-2020_P08-1101_1,Evaluable,Application,Alta,Uses the head-finding rules of the cited work directly to convert trees.,COMPLETO,152,1
+2,D13-1064_Q13-1015_6,Evaluable,Background,Alta,Related work listing prior distributional semantics research.,COMPLETO,152,1
+3,W11-0910_P98-1013_1,Evaluable,Background,Media,Lists predicate lexicons such as FrameNet as general context.,COMPLETO,152,1
+4,D08-1093_P98-1035_0,Evaluable,Background,Alta,"Enumerates applications of parsers, with the cited work as an example.",COMPLETO,152,1
+5,W12-5704_N07-1029_1,Evaluable,Application,Alta,Uses the log-linear combination strategy described in the cited work.,COMPLETO,152,1
+6,N13-1115_P12-1001_3,Evaluable,Application,Alta,Follows the same experimental setup (weight settings) as the cited work.,COMPLETO,152,1
+7,D12-1062_D08-1073_0,Evaluable,Background,Alta,Lists prior systems for temporal relation extraction.,COMPLETO,152,1
+8,P08-1114_P05-1033_2,Evaluable,Background,Media,Describes what the cited authors conjectured about constituency boundaries in Hiero.,COMPLETO,152,1
+9,J13-3007_P10-1134_4,Evaluable,Evidence,Alta,Cited earlier findings support the current result that WCLs outperform other methods.,COMPLETO,152,1
+10,P11-3013_P08-1039_0,Evaluable,Background,Alta,Reports prior results of supervised learners on the NP structure data.,COMPLETO,152,1
+11,P12-1084_P09-1092_1,Evaluable,Evidence,Media,Supports the claim that information status influences word order.,COMPLETO,152,1
+12,W05-0407_P00-1065_1,Evaluable,Identification of the Originator,Alta,Standard features 'firstly proposed' in the cited work.,COMPLETO,152,1
+13,J92-2005_E89-1003_0,Evaluable,Background,Media,Describes the P-calculus modeling a shift-reduce strategy as related prior work.,COMPLETO,152,1
+14,D11-1017_D10-1092_0,Evaluable,Evidence,Alta,Supports the claim that order-sensitive metrics correlate better with human judgments.,COMPLETO,152,1
+15,Q13-1012_P10-1110_0,Evaluable,Background,Alta,Describes prior work on beam search and dynamic programming.,COMPLETO,152,1
+16,P09-1004_P07-1049_2,Evaluable,Application,Media,Follows the customary practice of the cited work of bounding sentence length.,COMPLETO,152,1
+17,E09-1059_W00-0405_0,Evaluable,Background,Media,Cites summarization frameworks that reduce redundancy as common practice.,COMPLETO,152,1
+18,P07-1071_A92-1021_0,Evaluable,Comparison,Alta,Compares tagger accuracy to the Brill tagger.,COMPLETO,152,1
+19,W13-0102_N10-1012_4,Evaluable,Comparison,Alta,Explicitly contrasts the PMI use with the cited work's.,COMPLETO,152,1
+20,D12-1008_P10-1103_1,Evaluable,Basis,Alta,Current work extends previous work in the same domain.,COMPLETO,152,1
+21,W13-2211_W11-2123_0,Evaluable,Application,Alta,Uses the KenLM toolkit to binarize LMs.,COMPLETO,152,1
+22,N13-1120_S12-1055_1,Evaluable,Comparison,Alta,Contrasts the current finding with the previous finding that SVMs do worse.,COMPLETO,152,1
+23,P10-1159_W09-3929_0,Evaluable,Background,Alta,Lists related work applying planning to NLG.,COMPLETO,152,1
+24,P10-1001_P08-1068_0,Evaluable,Evidence,Media,Cited tables show how performance varies with factorization.,COMPLETO,152,1
+25,D10-1108_D09-1099_3,Evaluable,Application,Alta,Uses the patterns and bootstrapping algorithm introduced by the cited work.,COMPLETO,152,1
+26,P11-1101_P98-1116_0,Evaluable,Background,Alta,Describes the first data-driven approach to surface realisation in related work.,COMPLETO,152,1
+27,P09-1104_W07-0403_0,Evaluable,Background,Alta,Lists prior work exploring ITG for word alignment.,COMPLETO,152,1
+28,D10-1114_N10-1013_1,Evaluable,Background,Alta,Describes the cited work's multiprototype approach as prior work.,COMPLETO,152,1
+29,W11-2139_P10-1146_0,Evaluable,Evidence,Alta,Supports the claim that syntactic features improve performance.,COMPLETO,152,1
+30,P08-1097_P01-1064_1,Evaluable,Comparison,Alta,Explicitly contrasts the objective criterion with the prior work.,COMPLETO,152,1
+31,P10-1096_D09-1037_0,Evaluable,Background,Alta,Lists prior uses of such models for segmentation problems.,COMPLETO,152,1
+32,W03-0309_J90-2002_0,Evaluable,Background,Alta,Describes the general components of an SMT system.,COMPLETO,152,1
+33,D09-1044_W04-1017_3,Evaluable,Basis,Media,Presents a generalised function of the cited approach to summarisation.,COMPLETO,152,1
+34,D11-1117_P10-1130_1,Evaluable,Application,Media,Uses the cited base system for the study.,COMPLETO,152,1
+35,D13-1023_W11-2123_2,Evaluable,Comparison,Alta,DALM is compared against KenLM.,COMPLETO,152,1
+36,W07-2201_N06-1020_0,Evaluable,Background,Alta,Describes prior successful self-learning for parsing.,COMPLETO,152,1
+37,P08-1106_P06-2084_0,Evaluable,Evidence,Alta,Cited to justify the choice of the independence test as a top performer.,COMPLETO,152,1
+38,W09-3207_W09-0201_0,Evaluable,Comparison,Alta,Cited work is a baseline (BL) in the results table.,COMPLETO,152,1
+39,P12-1109_W10-0513_0,Evaluable,Application,Media,Cites the corpus in which the OOV tokens were found; the data source is used.,COMPLETO,152,1
+40,W12-3019_P09-1068_0,Evaluable,Basis,Alta,States 'we build on prior work' on narrative chains and schemas.,COMPLETO,152,1
+41,D12-1015_P97-1023_1,Evaluable,Background,Alta,Describes previous work assigning majority polarity from context.,COMPLETO,152,1
+42,W12-2604_W05-0905_0,Evaluable,Background,Media,Cites works that cast doubt on ROUGE's correlation with human judgments.,COMPLETO,152,1
+43,W11-0710_N03-1033_0,Evaluable,Application,Alta,Uses the Stanford POS tagger for tagging.,COMPLETO,152,1
+44,P10-1109_N04-1014_3,Evaluable,Further Reading,Alta,Refers readers to cited works for a more detailed exposition.,COMPLETO,152,1
+45,P09-1114_N07-1015_3,Evaluable,Basis,Alta,The model is based on the authors' previous work.,COMPLETO,152,1
+46,D13-1109_W02-0902_0,Evaluable,Background,Alta,Lists prior work on learning bilingual lexicons from monolingual corpora.,COMPLETO,152,1
+47,J11-3004_W08-2134_0,Evaluable,Evidence,Media,Supports the claim that the MST parser achieves state-of-the-art performance.,COMPLETO,152,1
+48,N13-1095_P05-1053_0,Evaluable,Background,Alta,Cited as part of prior work on relation extraction.,COMPLETO,152,1
+49,D11-1097_P08-1028_2,Evaluable,Application,Alta,Uses the human similarity judgment data collected by the cited work.,COMPLETO,152,1
+50,D12-1131_N03-1033_0,Evaluable,Comparison,Alta,Reports error reduction relative to the Stanford tagger.,COMPLETO,152,1
+51,E09-1055_P06-2066_2,Evaluable,Comparison,Alta,Explicitly compares the approach with well-nested tree techniques.,COMPLETO,152,1
+52,P13-1147_P11-1053_1,Evaluable,Gap,Alta,Notes prior work used Brown clusters in feature-based RE but not in kernels.,COMPLETO,152,1
+53,N13-1055_P03-2026_0,Evaluable,Background,Alta,Describes prior work as first to evaluate such a model.,COMPLETO,152,1
+54,P11-1020_D10-1090_2,Evaluable,Comparison,Alta,Contrasts treatment of criteria ('Unlike').,COMPLETO,152,1
+55,W11-1207_N06-2013_0,Evaluable,Evidence,Alta,Justifies the choice of MADA-D2 scheme.,COMPLETO,152,1
+56,P12-2022_P09-2012_0,Evaluable,Background,Alta,Describes prior work using DP models in TSGs.,COMPLETO,152,1
+57,W09-3526_W09-1804_0,Evaluable,Evidence,Alta,Supports claim that small translation models lead to better alignment.,COMPLETO,152,1
+58,W11-2124_P07-2045_0,Evaluable,Application,Alta,Uses Moses scripts to build the phrase table.,COMPLETO,152,1
+59,E12-1010_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford Parser to parse sentences.,COMPLETO,152,1
+60,W10-1757_P05-1024_0,Evaluable,Background,Alta,Lists training algorithms from prior work.,COMPLETO,152,1
+61,W10-2606_W05-0625_0,Evaluable,Evidence,Alta,Supports claim that multiple parse trees improve results.,COMPLETO,152,1
+62,D12-1047_N03-1017_1,Evaluable,Application,Media,"Uses the estimation methods (relative frequency, lexical weighting) from the cited work.",COMPLETO,152,1
+63,Q13-1024_P03-1012_0,Evaluable,Background,Alta,Describes prior work using dependency cohesion as a hard constraint.,COMPLETO,152,1
+64,D12-1015_P97-1023_0,Evaluable,Background,Alta,Cites prior work generating polarity lexicons.,COMPLETO,152,1
+65,P07-3013_P98-1013_0,Evaluable,Comparison,Media,States compatibility of the authors' conception of events with FrameNet's.,COMPLETO,152,1
+66,P97-1034_P88-1015_3,Evaluable,Evidence,Alta,Supports the claim about repetitions and prompts indicating hearer initiative.,COMPLETO,152,1
+67,P10-1074_P09-1055_0,Evaluable,Background,Alta,Describes prior joint modeling work.,COMPLETO,152,1
+68,D13-1113_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser to generate grammar structure.,COMPLETO,152,1
+69,S12-1077_W07-1417_0,Evaluable,Application,Media,Uses the cited approach to compare sentence pair words.,COMPLETO,152,1
+70,N13-1056_D09-1092_1,Evaluable,Background,Alta,Lists prior work on bilingual lexicon induction signals.,COMPLETO,152,1
+71,W08-0336_N06-2013_0,Evaluable,Background,Alta,Reviews prior work showing preprocessing improves MT.,COMPLETO,152,1
+72,D11-1004_D08-1088_0,Evaluable,Evidence,Alta,Supports the claim about the computational complexity of exact search.,COMPLETO,152,1
+73,W11-3208_P04-1021_1,Evaluable,Basis,Media,The approach builds on joint source-channel models of the cited work.,COMPLETO,152,1
+74,D11-1146_P00-1041_0,Evaluable,Background,Alta,Lists typical tasks with summarization as an example.,COMPLETO,152,1
+75,D08-1007_P07-1010_0,Evaluable,Comparison,Alta,Explicitly states the technique is similar to the cited approach.,COMPLETO,152,1
+76,W12-0513_P06-1006_0,Evaluable,Background,Alta,Lists recent approaches to anaphora resolution.,COMPLETO,152,1
+77,N10-1138_P03-1002_0,Evaluable,Background,Alta,Lists applications of frame-semantic structures.,COMPLETO,152,1
+78,N12-1052_P08-1068_1,Evaluable,Gap,Media,"Notes prior studies focused on few languages and tasks, motivating the current work.",COMPLETO,152,1
+79,J11-2001_A92-1021_0,Evaluable,Application,Alta,Uses the Brill tagger for POS.,COMPLETO,152,1
+80,P08-1033_W07-1013_0,Evaluable,Further Reading,Alta,Refers to the cited work for the detailed task description.,COMPLETO,152,1
+81,D12-1006_P97-1023_0,Evaluable,Background,Alta,Cites prior work on word polarity identification.,COMPLETO,152,1
+82,P96-1039_A94-1002_0,Evaluable,Basis,Baja,"'cf.' links the phase to prior work on sharing discourse entities, which it extends.",COMPLETO,152,1
+83,W11-2303_N07-2044_0,Evaluable,Background,Alta,Lists prediction methods in AAC devices.,COMPLETO,152,1
+84,P11-2052_N10-1137_0,Evaluable,Evidence,Alta,Prior findings on syntax-semantics correlations justify using syntactic annotations.,COMPLETO,152,1
+85,Q13-1003_N12-1094_0,Evaluable,Background,Alta,Describes related work on classifying visual words.,COMPLETO,152,1
+86,N13-1102_N09-2028_1,Evaluable,Comparison,Alta,The cited system appears in the comparison table.,COMPLETO,152,1
+87,P13-2017_D11-1006_1,Evaluable,Comparison,Alta,Contrasts results with the cited study.,COMPLETO,152,1
+88,P10-1047_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit for experiments.,COMPLETO,152,1
+89,D12-1127_P10-2040_0,Evaluable,Background,Alta,Describes prior approaches using dimensionality reduction and clustering.,COMPLETO,152,1
+90,P06-2066_E06-1010_1,Evaluable,Identification of the Originator,Alta,The notion of edge degree 'was introduced by' the cited work.,COMPLETO,152,1
+91,J07-1006_P98-2173_1,Evaluable,Background,Alta,Lists applications of conceptual authoring.,COMPLETO,152,1
+92,D12-1095_W09-3820_1,Evaluable,Evidence,Media,Cited as an example illustrating the point about real-valued features.,COMPLETO,152,1
+93,D12-1022_W00-0400_0,Evaluable,Further Reading,Alta,Refers to cited works for comprehensive overviews.,COMPLETO,152,1
+94,W13-0121_W07-1431_1,Evaluable,Evidence,Baja,Cited as the source of an example used in the text.,COMPLETO,152,1
+95,P12-1084_W06-1612_1,Evaluable,Background,Alta,"Related work describing prior IS detection algorithms, contrasted with the current approach.",COMPLETO,152,1
+96,D09-1120_D08-1068_5,Evaluable,Comparison,Alta,The cited system's results appear in the comparison table.,COMPLETO,152,1
+97,P04-1070_P04-1069_0,Evaluable,Further Reading,Alta,Refers the reader to the cited work for a discussion.,COMPLETO,152,1
+98,E12-1009_N10-1115_0,Evaluable,Further Reading,Media,'cf.' points to the cited work for parsing time factors.,COMPLETO,152,1
+99,P11-2015_P10-2008_0,Evaluable,Identification of the Originator,Alta,Credits the work as first reporting PCFG effectiveness for authorship.,COMPLETO,152,1
+100,P09-1056_W06-1615_1,Evaluable,Comparison,Alta,Results of previous systems as reported by the cited work are compared in the table.,COMPLETO,152,1

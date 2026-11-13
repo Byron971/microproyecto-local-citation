@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P11-2120_D10-1120_0,Evaluable,Comparison,Alta,Los resultados propios se comparan explícitamente con los de TARGETCIT.,COMPLETO,157,1
+2,W11-1212_N07-2008_0,Evaluable,Comparison,Alta,El sistema se compara con una línea base (TARGETCIT) y se muestra que la supera.,COMPLETO,157,1
+3,J12-2005_W09-1105_0,Evaluable,Comparison,Alta,Tabla que compara el sistema propio con el de TARGETCIT.,COMPLETO,157,1
+4,N10-1003_N06-2033_1,Evaluable,Background,Media,Describe técnicas previas de combinación basadas en esquemas de votación.,COMPLETO,157,1
+5,D13-1064_D09-1001_0,Evaluable,Background,Media,Resume trabajo reciente sobre aprendizaje de paráfrasis por agrupamiento.,COMPLETO,157,1
+6,W09-1201_W04-2705_0,Evaluable,Background,Media,Describe NomBank como recurso de anotación y su relación con PropBank.,COMPLETO,157,1
+7,P10-1100_P07-2044_0,Evaluable,Background,Media,Describe métodos típicos de sistemas previos de cadenas de eventos.,COMPLETO,157,1
+8,P12-1023_P05-1012_1,Evaluable,Application,Alta,Usa el analizador de primer orden de TARGETCIT tal cual para parsear datos.,COMPLETO,157,1
+9,D09-1133_N06-1055_3,Evaluable,Gap,Media,"Señala que agregar datos verbales sin más perjudicó el rendimiento, una limitación que motiva un tratamiento distinto.",COMPLETO,157,1
+10,W06-1623_J88-2005_2,Evaluable,Evidence,Media,Respalda la afirmación de que las expresiones temporales son marcadores fuertes de discontinuidad.,COMPLETO,157,1
+11,P06-1017_P04-1054_1,Evaluable,Comparison,Alta,Fila de tabla comparativa de métodos previos en ACE RDC.,COMPLETO,157,1
+12,J08-1002_J93-3006_0,Evaluable,Further Reading,Media,Remite a una monografía de referencia sobre estructuras de rasgos tipadas.,COMPLETO,157,1
+13,W12-6207_P03-2041_0,Evaluable,Background,Media,Entrada de una tabla que lista algoritmos estándar y sus referencias.,COMPLETO,157,1
+14,P11-1106_N01-1021_4,Evaluable,Application,Media,Aplica la definición de surprisal/Earley probabilístico del trabajo citado para calcular la medida.,COMPLETO,157,1
+15,D09-1023_P05-1033_0,Evaluable,Application,Media,"Usa rasgos de pares de frases con huecos tomados de trabajos previos, entre ellos TARGETCIT.",COMPLETO,157,1
+16,P12-1023_P08-1068_1,Evaluable,Comparison,Alta,Identifica un sistema de la tabla comparativa de analizadores basados en grafos.,COMPLETO,157,1
+17,P11-1001_W06-3119_0,Evaluable,Comparison,Alta,El rendimiento se iguala al del enfoque sintáctico de TARGETCIT.,COMPLETO,157,1
+18,W13-3306_W12-3156_0,Evaluable,Background,Alta,Enumera estudios previos sobre consistencia léxica en SMT.,COMPLETO,157,1
+19,P13-1125_P06-1067_1,Evaluable,Application,Alta,Emplea un sistema estándar basado en frases como herramienta experimental.,COMPLETO,157,1
+20,P10-2004_P03-1021_0,Evaluable,Application,Alta,Usa la técnica estándar MERT para ajustar parámetros.,COMPLETO,157,1
+21,P13-1115_D08-1007_5,Evaluable,Application,Media,Usa el esquema de ponderación de micro/macro AUC de TARGETCIT.,COMPLETO,157,1
+22,D12-1080_D10-1125_0,Evaluable,Background,Media,Enumera aplicaciones previas de inferencia conjunta en PLN.,COMPLETO,157,1
+23,W08-2101_W05-0625_0,Evaluable,Comparison,Media,Compara combinar con el mejor sistema de CoNLL 2005 frente al enfoque propio.,COMPLETO,157,1
+24,E12-1003_P11-1112_7,Evaluable,Background,Alta,Reseña trabajos previos sobre inducción de roles.,COMPLETO,157,1
+25,P09-1081_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford sin modificarlo.,COMPLETO,157,1
+26,E09-1084_W01-1007_0,Evaluable,Background,Alta,Reseña estudios previos sobre clasificación de géneros.,COMPLETO,157,1
+27,P13-1155_D12-1039_2,Evaluable,Comparison,Alta,Compara el diccionario inducido con HB-Dict de TARGETCIT.,COMPLETO,157,1
+28,J13-4002_W06-0202_0,Evaluable,Background,Alta,Enumera aplicaciones de las estructuras de dependencias.,COMPLETO,157,1
+29,P11-1049_W97-0710_0,Evaluable,Gap,Media,Critica que los modelos puntúan oraciones aisladamente sin optimizar la calidad del resumen.,COMPLETO,157,1
+30,D10-1011_N10-1124_1,Evaluable,Gap,Alta,Describe el estudio previo y señala su limitación por el tamaño reducido.,COMPLETO,157,1
+31,P08-1059_N06-1001_1,Evaluable,Comparison,Alta,Compara el método con TARGETCIT señalando la diferencia del uso de 1-best.,COMPLETO,157,1
+32,N10-3008_P06-1095_1,Evaluable,Application,Media,Usa el algoritmo de clausura de TARGETCIT para aumentar los datos.,COMPLETO,157,1
+33,W11-0307_W09-1402_2,Evaluable,Comparison,Alta,Compara el F-score propio con el del mejor sistema de BioNLP09ST.,COMPLETO,157,1
+34,W11-1301_P08-1028_1,Evaluable,Background,Media,Presenta el marco general de composicionalidad propuesto por TARGETCIT.,COMPLETO,157,1
+35,W13-4910_J08-3003_0,Evaluable,Background,Media,Reseña resultados negativos previos sobre morfología de concordancia.,COMPLETO,157,1
+36,J12-1003_P08-2012_0,Evaluable,Background,Alta,Enumera usos previos de ILP en PLN.,COMPLETO,157,1
+37,P06-2111_W02-0908_1,Evaluable,Background,Alta,Enumera trabajos relacionados sobre similitud distribucional.,COMPLETO,157,1
+38,J12-4003_W04-3206_0,Evaluable,Background,Alta,Resume estudios previos sobre adquisición de relaciones de implicación.,COMPLETO,157,1
+39,W03-1011_P98-2127_0,Evaluable,Background,Media,Menciona investigadores que proponen la similitud distribucional como predictor semántico.,COMPLETO,157,1
+40,P10-1113_P08-1101_0,Evaluable,Background,Alta,Cita intentos previos de aprendizaje conjunto de segmentación y etiquetado.,COMPLETO,157,1
+41,W12-0404_P11-1032_2,Evaluable,Evidence,Media,Respalda la decisión del tamaño del conjunto de datos.,COMPLETO,157,1
+42,W05-1001_P02-1031_2,Evaluable,Background,Media,Resume los hallazgos de un estudio previo sobre análisis completo y superficial.,COMPLETO,157,1
+43,N12-1061_P06-1055_0,Evaluable,Application,Alta,Usa el analizador de Berkeley sin modificaciones.,COMPLETO,157,1
+44,J12-3005_J91-4003_1,Evaluable,Basis,Media,"CoreLex se construye sobre la teoría del Generative Lexicon, base conceptual.",COMPLETO,157,1
+45,W13-2515_P11-1020_0,Evaluable,Background,Media,"Describe el trabajo previo que recolectó paráfrasis por crowdsourcing, y lo contrasta luego.",COMPLETO,157,1
+46,N10-1119_E09-1077_0,Evaluable,Background,Alta,Enumera formas de construir léxicos de polaridad.,COMPLETO,157,1
+47,D13-1129_P06-1043_1,Evaluable,Background,Alta,Reseña estudios previos de auto-entrenamiento y co-entrenamiento.,COMPLETO,157,1
+48,W05-1002_P00-1065_0,Evaluable,Background,Alta,Enumera enfoques previos de identificación y clasificación de argumentos.,COMPLETO,157,1
+49,N13-1032_P06-1067_2,Evaluable,Application,Alta,Usa un sistema estándar basado en frases en los experimentos.,COMPLETO,157,1
+50,W12-1707_P07-1028_0,Evaluable,Evidence,Media,Respalda la relevancia cognitiva de los roles temáticos con estudios sobre preferencias de selección.,COMPLETO,157,1
+51,W11-0909_P10-1044_0,Evaluable,Background,Media,Describe trabajo previo sobre preferencias de selección conjuntas.,COMPLETO,157,1
+52,W06-1647_N04-4038_0,Evaluable,Background,Alta,Trabajo relacionado sobre etiquetado POS en árabe.,COMPLETO,157,1
+53,D12-1113_P11-1082_1,Evaluable,Background,Media,"Describe sistemas de aprendizaje automático que entrenan un único modelo, como contraste posterior.",COMPLETO,157,1
+54,P11-2112_P09-1116_2,Evaluable,Comparison,Alta,Fila de tabla que compara resultados con sistemas previos.,COMPLETO,157,1
+55,P13-2019_D09-1060_2,Evaluable,Comparison,Alta,Compara resultados con sistemas que obtienen mejores resultados.,COMPLETO,157,1
+56,W07-1523_P03-1022_0,Evaluable,Evidence,Media,Respalda la elección de árboles de decisión por su viabilidad demostrada.,COMPLETO,157,1
+57,D11-1020_P05-1034_0,Evaluable,Background,Media,Describe modelos convencionales basados en dependencias y su limitación.,COMPLETO,157,1
+58,W07-1023_W97-1311_0,Evaluable,Comparison,Alta,Contrasta explícitamente las anotaciones propias con las de TARGETCIT.,COMPLETO,157,1
+59,D10-1039_P08-1017_0,Evaluable,Basis,Alta,El método se inspira en la expansión de consultas de TARGETCIT.,COMPLETO,157,1
+60,D09-1038_N06-1033_1,Evaluable,Application,Alta,Aplica el método de binarización sincrónica tal cual.,COMPLETO,157,1
+61,J90-4001_J80-1003_1,Evaluable,Identification of the Originator,Alta,Indica que el trabajo original de Slot Grammar apareció en TARGETCIT.,COMPLETO,157,1
+62,W11-1210_P08-1098_0,Evaluable,Background,Alta,Describe trabajo previo escaso sobre aprendizaje activo multitarea.,COMPLETO,157,1
+63,P12-1041_N10-1061_1,Evaluable,Comparison,Alta,Compara resultados con el estado del arte de TARGETCIT.,COMPLETO,157,1
+64,D13-1198_N13-1133_3,Evaluable,Application,Alta,Usa los rasgos tal como los propone el trabajo original.,COMPLETO,157,1
+65,D11-1118_W11-0303_2,Evaluable,Further Reading,Media,Remite al artículo concurrente donde se comenta brevemente el resultado.,COMPLETO,157,1
+66,P06-1104_P05-1053_0,Evaluable,Background,Alta,Enumera técnicas de extracción de relaciones en trabajos relacionados.,COMPLETO,157,1
+67,D12-1047_D08-1090_3,Evaluable,Comparison,Alta,Compara con el método CLWTM de TARGETCIT en la tabla de resultados.,COMPLETO,157,1
+68,D09-1088_P03-1054_2,Evaluable,Evidence,Media,Respalda la afirmación sobre modelos no lexicalizados con el resultado de TARGETCIT.,COMPLETO,157,1
+69,D13-1036_P09-1077_0,Evaluable,Evidence,Media,"Respalda la definición de CONTINGENT como abarcando causa, condición y habilitación.",COMPLETO,157,1
+70,N12-1044_P11-1041_0,Evaluable,Background,Alta,Describe trabajo previo en G2P con transliteraciones.,COMPLETO,157,1
+71,W12-0703_N09-1040_0,Evaluable,Evidence,Alta,Sustenta la afirmación de que la tarea se beneficia de los modelos de tópicos.,COMPLETO,157,1
+72,W13-2228_D11-1125_0,Evaluable,Application,Alta,Usa el método PRO como algoritmo de ajuste.,COMPLETO,157,1
+73,D09-1058_E06-1011_1,Evaluable,Evidence,Alta,Respalda la afirmación de que los modelos de segundo orden mejoran la precisión.,COMPLETO,157,1
+74,P12-1071_P10-1003_0,Evaluable,Background,Alta,Enumera recursos previos para mejorar el análisis sintáctico.,COMPLETO,157,1
+75,W13-4064_W11-2037_0,Evaluable,Basis,Media,Propone usar los gráficos de error-retorno de TARGETCIT para elegir el umbral.,COMPLETO,157,1
+76,P13-2126_W02-0109_0,Evaluable,Application,Alta,Usa la herramienta de lematización de NLTK.,COMPLETO,157,1
+77,P10-1044_P07-1028_0,Evaluable,Comparison,Alta,Compara con información mutua de TARGETCIT señalando un 85% más de recall.,COMPLETO,157,1
+78,P13-1058_P05-1005_0,Evaluable,Evidence,Alta,Respalda que el conocimiento de verbos es útil para la desambiguación de sentidos.,COMPLETO,157,1
+79,W09-3805_P04-1064_0,Evaluable,Evidence,Media,Respalda la afirmación de que los alineamientos son transitivos.,COMPLETO,157,1
+80,W13-2260_W12-6106_1,Evaluable,Basis,Alta,El trabajo se construye sobre el enfoque OS* de TARGETCIT.,COMPLETO,157,1
+81,W13-2223_P07-2045_0,Evaluable,Application,Alta,Usa el algoritmo MERT del kit Moses sin modificar.,COMPLETO,157,1
+82,P06-1043_N06-1020_4,Evaluable,Comparison,Media,Contrasta los resultados de TARGETCIT en WSJ con el dominio BROWN actual.,COMPLETO,157,1
+83,D12-1060_P09-2080_1,Evaluable,Gap,Media,Señala que se han aplicado algoritmos de grafos pero sin comparación.,COMPLETO,157,1
+84,P13-1015_W11-2902_1,Evaluable,Identification of the Originator,Alta,Indica que los IRTG fueron definidos por primera vez en TARGETCIT.,COMPLETO,157,1
+85,P10-1025_N07-1070_1,Evaluable,Evidence,Media,Respalda la sugerencia de que los rasgos léxicos son específicos de dominio.,COMPLETO,157,1
+86,W12-3137_N12-1035_0,Evaluable,Application,Media,Los modelos de inserción y eliminación se usan como componentes del sistema.,COMPLETO,157,1
+87,W13-4034_W10-4356_1,Evaluable,Comparison,Alta,Contrasta con trabajos previos que usaban anotación manual de tareas.,COMPLETO,157,1
+88,D11-1018_P11-1084_0,Evaluable,Comparison,Alta,Compara el enfoque con el modelo bosque a cadena de TARGETCIT.,COMPLETO,157,1
+89,D10-1014_P06-1055_0,Evaluable,Background,Alta,Reseña investigaciones previas con variables latentes para análisis sintáctico.,COMPLETO,157,1
+90,P13-1123_E09-1085_0,Evaluable,Background,Alta,Menciona interés reciente en el procesamiento incremental del diálogo.,COMPLETO,157,1
+91,D11-1066_W05-0630_0,Evaluable,Evidence,Alta,Respalda que STK es estado del arte en SRL.,COMPLETO,157,1
+92,D09-1151_W03-2607_0,Evaluable,Evidence,Alta,Respalda que la Web es útil para resolución de anáfora.,COMPLETO,157,1
+93,N10-1014_D09-1037_0,Evaluable,Background,Media,Menciona soluciones alternativas con priors informados.,COMPLETO,157,1
+94,N07-1030_W02-2018_0,Evaluable,Application,Alta,Usa el toolkit TADM para estimar parámetros.,COMPLETO,157,1
+95,W10-1604_P98-1013_0,Evaluable,Comparison,Alta,Contrasta el enfoque propio con investigaciones que usan redes semánticas como FrameNet.,COMPLETO,157,1
+96,D12-1005_P07-1065_0,Evaluable,Improvement / Modification,Alta,Extiende el mecanismo de almacenamiento con filtros Bloom a un entorno de streaming.,COMPLETO,157,1
+97,W12-6331_P03-1054_0,Evaluable,Evidence,Alta,Respalda que un PCFG simple de treebank no rinde bien.,COMPLETO,157,1
+98,P12-1024_P05-1010_1,Evaluable,Background,Alta,Enumera trabajos previos sobre L-PCFG con EM.,COMPLETO,157,1
+99,W10-1914_N10-1123_0,Evaluable,Background,Media,Menciona métodos previos que determinan combinaciones de argumentos fuera de Markov Logic.,COMPLETO,157,1
+100,P12-1002_J07-2003_0,Evaluable,Basis,Alta,El trabajo se basa en el marco de traducción jerárquica de TARGETCIT.,COMPLETO,157,1

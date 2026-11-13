@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W08-0504_P08-1006_1,Evaluable,Evidence,Media,Los hallazgos citados se combinan con los resultados propios para sustentar la conclusión sobre cómo mejorar el sistema.,COMPLETO,148,1
+2,W11-1208_D08-1021_2,Evaluable,Comparison,Alta,Compara la colección de fragmentos propia con el enfoque citado sobre el mismo corpus MSR (21% de solapamiento).,COMPLETO,148,1
+3,P12-1050_P07-2045_0,Evaluable,Application,Alta,"Se integran las matrices en el toolkit Moses, usado como herramienta.",COMPLETO,148,1
+4,P07-1017_P06-1132_0,Evaluable,Comparison,Alta,"Se señala la relación más cercana con el trabajo citado y se contrasta con el modelo propio, que lo generaliza.",COMPLETO,148,1
+5,W98-1301_P97-1040_0,Evaluable,Background,Alta,Resume trabajos previos sobre OT y relaciones regulares.,COMPLETO,148,1
+6,N13-1070_S12-1042_0,Evaluable,Application,Alta,El sistema citado de resolución de negación es el que se usa en el trabajo.,COMPLETO,148,1
+7,P11-4014_W09-3206_0,Evaluable,Background,Media,Lista propuestas relacionadas con el modelo propio como contexto general.,COMPLETO,148,1
+8,P99-1035_W98-1117_0,Evaluable,Comparison,Alta,"Compara las cifras reportadas con las propias, señalando que son ligeramente inferiores.",COMPLETO,148,1
+9,P12-2022_P11-2036_1,Evaluable,Basis,Media,Se sigue el trabajo previo para diseñar el muestreador Metropolis-Hastings por bloques.,COMPLETO,148,1
+10,J84-2002_P84-1046_0,Evaluable,Further Reading,Alta,Remite al lector a un análisis formal que no se desarrolla en el texto.,COMPLETO,148,1
+11,W12-6006_N09-3003_0,Evaluable,Background,Alta,Enumera trabajos previos sobre preguntas de seguimiento en IQA.,COMPLETO,148,1
+12,E97-1004_A94-1019_0,Evaluable,Further Reading,Alta,Con 'see' remite a otra fuente sobre variantes sintácticas en inglés.,COMPLETO,148,1
+13,P02-1038_W99-0604_2,Evaluable,Further Reading,Alta,"Omite detalles y remite a la fuente: 'For further details, see'.",COMPLETO,148,1
+14,W13-3720_W06-2920_0,Evaluable,Evidence,Media,Se cita la tabla del trabajo para respaldar la afirmación sobre arcos no proyectivos.,COMPLETO,148,1
+15,N13-1060_J07-2003_1,Evaluable,Further Reading,Alta,Remite a la fuente para más detalles del modelo.,COMPLETO,148,1
+16,S10-1040_P03-1054_0,Evaluable,Application,Alta,Se usa el analizador de Stanford como herramienta sin modificación.,COMPLETO,148,1
+17,W12-4404_P04-1021_2,Evaluable,Application,Media,"Se describe y emplea el modelo JSC citado, aunque también se señala su origen independiente.",COMPLETO,148,1
+18,D10-1113_D09-1045_1,Evaluable,Background,Alta,Revisa literatura previa sobre composición semántica.,COMPLETO,148,1
+19,P09-1009_P02-1017_2,Evaluable,Basis,Alta,El modelo CCM citado es la base adoptada para el modelo propio.,COMPLETO,148,1
+20,W03-1007_P00-1065_4,Evaluable,Comparison,Alta,Los resultados de G&J se presentan junto a los propios en la tabla.,COMPLETO,148,1
+21,P11-1047_P99-1070_1,Evaluable,Further Reading,Media,Remite con 'see' a fuentes para el sistema de ecuaciones no lineales.,COMPLETO,148,1
+22,W03-0205_P01-1048_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la información prosódica ayuda a predecir reacciones a errores.,COMPLETO,148,1
+23,P11-1064_W06-3105_0,Evaluable,Evidence,Alta,Sustenta la afirmación de que la extracción exhaustiva supera a los enfoques con sintaxis.,COMPLETO,148,1
+24,W05-1001_W04-1116_0,Evaluable,Gap,Media,Señala la baja cobertura de trabajos previos como limitación.,COMPLETO,148,1
+25,P13-1066_P09-1026_1,Evaluable,Background,Alta,Resume trabajos previos sobre posturas en debates.,COMPLETO,148,1
+26,W01-0807_W98-1406_0,Evaluable,Background,Media,"Lista trabajos que codifican reglas con restricciones, como contexto.",COMPLETO,148,1
+27,W13-4064_N03-1001_0,Evaluable,Background,Media,Describe hallazgos previos sobre enrutamiento de llamadas sin nivel de palabra.,COMPLETO,148,1
+28,P00-1006_P98-2158_0,Evaluable,Background,Alta,Enumera investigación reciente en SMT sobre decodificación.,COMPLETO,148,1
+29,D10-1018_P07-2045_0,Evaluable,Application,Alta,Se usa Moses como motor de traducción.,COMPLETO,148,1
+30,J08-1002_P03-1046_0,Evaluable,Comparison,Media,"Las medidas corresponden a las de otros estudios, aunque no son directamente comparables.",COMPLETO,148,1
+31,P13-2145_P12-1012_1,Evaluable,Comparison,Alta,"Contrasta el enfoque propio con el citado, que asume que el DCT está en el rango del evento.",COMPLETO,148,1
+32,W07-0706_P03-1021_0,Evaluable,Application,Alta,Se ajustan los pesos maximizando BLEU con el método citado.,COMPLETO,148,1
+33,P12-1071_P09-1006_1,Evaluable,Gap,Media,"Señala que es el único estudio previo que combina el treebank convertido, situando el vacío.",COMPLETO,148,1
+34,N13-1032_D11-1045_5,Evaluable,Background,Alta,Agrupa enfoques de reordenamiento previos.,COMPLETO,148,1
+35,W02-2006_P01-1063_0,Evaluable,Background,Alta,Revisa trabajo previo sobre inducción de paradigmas de afijos.,COMPLETO,148,1
+36,P07-1123_P06-1134_1,Evaluable,Evidence,Alta,Respalda la afirmación de que la subjetividad se asocia a significados.,COMPLETO,148,1
+37,W10-4109_W03-1011_0,Evaluable,Evidence,Media,Sustenta el supuesto de que la distribución de contextos implica el patrón sintáctico.,COMPLETO,148,1
+38,W13-1101_W11-2929_3,Evaluable,Comparison,Alta,Compara la precisión propia con la de métodos genéricos de detección de errores.,COMPLETO,148,1
+39,W13-0806_P11-1064_1,Evaluable,Comparison,Media,"Indica que el trabajo citado usa un método más similar al propio, con diferencia en el prior.",COMPLETO,148,1
+40,J13-4007_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para el ajuste.,COMPLETO,148,1
+41,D11-1135_P09-1113_1,Evaluable,Application,Alta,Se sigue el procedimiento de supervisión distante del trabajo previo (Freebase y NYT).,COMPLETO,148,1
+42,W13-1203_W04-0208_0,Evaluable,Background,Alta,Describe corpus y esquemas existentes como trasfondo.,COMPLETO,148,1
+43,W10-4205_W04-0208_0,Evaluable,Comparison,Media,Señala que otros modelos del tiempo admiten encapsulaciones similares.,COMPLETO,148,1
+44,P96-1032_E93-1036_1,Evaluable,Comparison,Alta,"Compara el análisis LR tabular con otras técnicas, incluida left-corner.",COMPLETO,148,1
+45,W13-4912_N13-1031_3,Evaluable,Comparison,Alta,Tabla que compara UPDT con el treebank persa.,COMPLETO,148,1
+46,E97-1014_P87-1022_0,Evaluable,Identification of the Originator,Alta,Indica 'first introduced by' para las transiciones de centering.,COMPLETO,148,1
+47,N12-1018_N10-1125_1,Evaluable,Gap,Media,Critica la práctica de trabajos previos de eliminar palabras clave no aprendibles.,COMPLETO,148,1
+48,D09-1115_A94-1016_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los consensos superan a los sistemas individuales.,COMPLETO,148,1
+49,D08-1102_D08-1110_0,Evaluable,Basis,Media,El marco propio se inspira en el trabajo citado.,COMPLETO,148,1
+50,P12-1071_P05-1012_0,Evaluable,Application,Media,Se usa el modelo de primer orden del trabajo citado.,COMPLETO,148,1
+51,E97-1018_J91-4003_0,Evaluable,Evidence,Alta,Respalda la preferencia por dispositivos generativos en el léxico.,COMPLETO,148,1
+52,S12-1009_W02-0908_0,Evaluable,Background,Alta,Enumera trabajos sobre construcción de tesauros.,COMPLETO,148,1
+53,E95-1015_E93-1006_1,Evaluable,Evidence,Media,La cita motiva y justifica la elección de la métrica de exactitud.,COMPLETO,148,1
+54,W11-2139_N03-1017_0,Evaluable,Application,Alta,Se usa la heurística de simetrización con Giza++.,COMPLETO,148,1
+55,W13-2124_E06-1040_0,Evaluable,Further Reading,Media,Con 'see generally' remite a literatura sobre evaluación.,COMPLETO,148,1
+56,P09-1054_P06-1091_0,Evaluable,Background,Alta,Menciona usos previos de SGD en NLP.,COMPLETO,148,1
+57,W07-2217_E06-1011_0,Evaluable,Background,Alta,Revisa trabajos previos sobre rasgos de segundo orden en análisis de dependencias.,COMPLETO,148,1
+58,N09-2009_W06-1621_1,Evaluable,Basis,Alta,"El trabajo se inspira en el trabajo citado, que acuñó la noción de referencia léxica.",COMPLETO,148,1
+59,D11-1015_N03-1030_0,Evaluable,Background,Alta,Revisa trabajos previos de clasificación del discurso.,COMPLETO,148,1
+60,W13-4706_W09-3510_0,Evaluable,Background,Alta,Enumera trabajos de transliteración con SMT.,COMPLETO,148,1
+61,W10-3101_P07-1125_0,Evaluable,Background,Alta,Enumera corpus y esquemas de anotación existentes.,COMPLETO,148,1
+62,W04-1503_J01-1004_0,Evaluable,Further Reading,Media,Con 'see' remite a un trabajo para la definición de un sistema de reescritura.,COMPLETO,148,1
+63,W12-3148_D11-1033_0,Evaluable,Background,Media,Describe trabajos previos de selección de datos para modelos de lenguaje y MT.,COMPLETO,148,1
+64,W13-2258_P05-1033_1,Evaluable,Identification of the Originator,Alta,Indica que la traducción jerárquica fue propuesta por el trabajo citado.,COMPLETO,148,1
+65,N09-1017_W06-1617_0,Evaluable,Background,Media,Describe evaluaciones previas basadas en instancias marcables.,COMPLETO,148,1
+66,N12-1026_D11-1125_5,Evaluable,Basis,Alta,El algoritmo propuesto se inspira en el algoritmo por lotes del trabajo citado.,COMPLETO,148,1
+67,P10-2033_P05-1066_1,Evaluable,Background,Alta,Describe trabajo previo sobre reordenamiento para otros pares de lenguas.,COMPLETO,148,1
+68,D11-1022_D10-1004_6,Evaluable,Comparison,Alta,Se compara con los resultados del sistema citado en la tabla.,COMPLETO,148,1
+69,P08-1007_P05-1012_0,Evaluable,Application,Alta,Se entrena y usa MSTParser para extraer relaciones.,COMPLETO,148,1
+70,W10-2009_N01-1021_1,Evaluable,Background,Media,Presenta la teoría de la sorpresa como trasfondo.,COMPLETO,148,1
+71,W02-0211_J88-2006_0,Evaluable,Background,Media,Remite a trabajos sobre inferencias temporales de forma general.,COMPLETO,148,1
+72,J95-4012_J92-2007_0,Evaluable,Further Reading,Alta,Lecturas sugeridas complementarias para el curso.,COMPLETO,148,1
+73,D12-1128_S10-1087_0,Evaluable,Comparison,Alta,Se compara el método con los sistemas de mejor desempeño.,COMPLETO,148,1
+74,N10-1119_E09-1059_1,Evaluable,Background,Alta,Cita trabajos previos sobre ordenar oraciones por polaridad.,COMPLETO,148,1
+75,J02-2001_E93-1055_3,Evaluable,Background,Media,Describe la visión de conjuntos de cuasi-sinónimos en trabajos previos.,COMPLETO,148,1
+76,D12-1038_P04-1015_0,Evaluable,Background,Alta,Enumera tareas donde el perceptrón se aplicó con éxito.,COMPLETO,148,1
+77,W05-0613_P88-1012_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la estructura del discurso es vital.,COMPLETO,148,1
+78,W09-2302_P05-1034_0,Evaluable,Gap,Media,Se critica que los enfoques previos incorporan estructura tras una alineación pobre.,COMPLETO,148,1
+79,W11-2929_W06-2932_0,Evaluable,Application,Alta,Se usa MSTParser como herramienta.,COMPLETO,148,1
+80,P06-1110_W05-1513_1,Evaluable,Comparison,Alta,Compara con trabajos que también generan ejemplos offline pero con O(n) ejemplos.,COMPLETO,148,1
+81,P10-1033_P05-1059_1,Evaluable,Evidence,Media,Respalda la elección de rasgos basados en Modelo 1.,COMPLETO,148,1
+82,N04-4025_W01-0514_0,Evaluable,Background,Alta,Enumera aplicaciones previas de LSA.,COMPLETO,148,1
+83,D13-1118_P06-1124_0,Evaluable,Evidence,Alta,Justifica la elección de HPYLM por su superioridad demostrada.,COMPLETO,148,1
+84,N10-1102_P07-1016_1,Evaluable,Background,Media,Reporta resultados previos sobre identificación de lengua de nombres.,COMPLETO,148,1
+85,W12-3122_N10-1045_0,Evaluable,Identification of the Originator,Alta,Indica que CLTE fue propuesto por el trabajo citado.,COMPLETO,148,1
+86,P99-1078_W97-0713_0,Evaluable,Background,Alta,Enumera metodologías previas de resumen automático.,COMPLETO,148,1
+87,W13-3814_D08-1094_0,Evaluable,Background,Media,Describe el trabajo previo del espacio vectorial estructurado.,COMPLETO,148,1
+88,N07-1030_P02-1014_2,Evaluable,Comparison,Alta,Compara la exactitud propia con la reportada en el trabajo citado.,COMPLETO,148,1
+89,W05-1202_P98-2127_2,Evaluable,Evidence,Alta,Respalda que las técnicas distribucionales funcionan bien con palabras frecuentes.,COMPLETO,148,1
+90,J09-2002_P00-1065_2,Evaluable,Background,Media,Describe el trabajo previo cuyas extensiones de rasgos de ruta se incluyen en otros sistemas.,COMPLETO,148,1
+91,W11-0303_D10-1018_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la puntuación señala dependencias de largo alcance.,COMPLETO,148,1
+92,W13-3508_P08-2007_0,Evaluable,Background,Alta,Enumera aplicaciones previas de ILP en NLP.,COMPLETO,148,1
+93,P12-2028_P04-1036_1,Evaluable,Background,Media,Presenta elesk como la medida más popular en trabajos previos.,COMPLETO,148,1
+94,D10-1049_W06-1417_0,Evaluable,Background,Alta,Enumera sistemas de generación existentes.,COMPLETO,148,1
+95,P12-1041_D09-1101_0,Evaluable,Application,Alta,Se usan las particiones estándar de datos reportadas en el trabajo citado.,COMPLETO,148,1
+96,W09-3535_P04-1075_1,Evaluable,Background,Alta,Enumera trabajos previos de aprendizaje activo.,COMPLETO,148,1
+97,W90-0119_P87-1030_1,Evaluable,Background,Media,Describe el trabajo previo propio que extiende a Joshi et al.,COMPLETO,148,1
+98,N09-1045_N07-2014_2,Evaluable,Evidence,Media,Se cita el sistema MADA para sustentar la tasa de error de diacríticos reportada.,COMPLETO,148,1
+99,P92-1033_J88-2005_1,Evaluable,Further Reading,Alta,Con 'See' remite a una adaptación del esquema en PUNDIT.,COMPLETO,148,1
+100,D13-1038_W12-1621_4,Evaluable,Background,Alta,Describe trabajo previo sobre semántica fundamentada para resolución de referencias.,COMPLETO,148,1
