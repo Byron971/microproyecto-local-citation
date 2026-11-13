@@ -171,3 +171,6 @@
 {"lote": 163, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 59013, "tokens_salida": 7017, "duracion_s": 38.47}
 {"lote": 164, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 54617, "tokens_salida": 7534, "duracion_s": 41.01}
 {"lote": 165, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 47214, "tokens_salida": 7283, "duracion_s": 39.4}
+{"lote": 168, "pasada": 1, "casos": 11, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 11832, "tokens_salida": 971, "duracion_s": 7.51}
+{"lote": 166, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 58892, "tokens_salida": 7479, "duracion_s": 41.2}
+{"lote": 167, "pasada": 1, "casos": 100, "prompt_sha256": "3773fb5bcbe987b5", "estado": "ok", "intentos": 1, "tokens_entrada": 54465, "tokens_salida": 7644, "duracion_s": 42.7}

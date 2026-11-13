@@ -1,0 +1,12 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D13-1172_E12-1021_2,Evaluable,Comparison,Media,"Se explica por qué no se compara con los modelos con semillas (incluido el citado), contrastándolos con DF-LDA; el citado se presenta como enfoque distinto.",COMPLETO,168,1
+2,D08-1018_N03-1016_2,Evaluable,Background,Media,Describe la codificación I-Trie y O-Trie como conocimiento previo del trabajo citado.,COMPLETO,168,1
+3,P10-2056_N09-1051_1,Evaluable,Evidence,Alta,La cita respalda la afirmación de que los valores de varianza se pueden elegir de forma fiable según el tamaño de los datos.,COMPLETO,168,1
+4,W11-2403_P08-1078_4,Evaluable,Background,Media,Describe el modelo de espacio vectorial introducido previamente para CP como antecedente de la propuesta basada en clasificación.,COMPLETO,168,1
+5,W13-2908_P11-2087_2,Evaluable,Background,Alta,Describe de forma general cómo los sistemas existentes usan un umbral de familiaridad léxica.,COMPLETO,168,1
+6,W10-4213_N10-1144_1,Evaluable,Evidence,Alta,"La cita demuestra que ciertos órdenes de información son inaceptables para algunos lectores, respaldando la afirmación del texto.",COMPLETO,168,1
+7,P09-2035_D08-1022_1,Evaluable,Application,Alta,Se usa directamente el extractor de reglas basado en bosques de la obra citada con un umbral de poda.,COMPLETO,168,1
+8,E99-1032_J88-2003_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que el cambio de estado es una propiedad definitoria de los eventos télicos.,COMPLETO,168,1
+9,W13-4906_P10-1110_2,Evaluable,Improvement / Modification,Alta,Se modifican los ítems propuestos en la obra citada adoptando otros más cercanos a otro trabajo.,COMPLETO,168,1
+10,Q13-1008_P10-1084_3,Evaluable,Comparison,Alta,Hybhsum se presenta como una de las líneas base con las que se compara el modelo propio.,COMPLETO,168,1
+11,J12-1003_D10-1106_1,Evaluable,Background,Alta,Enumera métodos previos que predicen relaciones semánticas entre predicados mediante similitud distribucional.,COMPLETO,168,1

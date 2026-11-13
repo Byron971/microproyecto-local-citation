@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J08-1002_W02-2018_1,Evaluable,Further Reading,Media,Cita remite a una comparación de algoritmos de optimización numérica para estimar los parámetros del modelo ME.,COMPLETO,166,1
+2,P09-1040_P06-2066_1,Evaluable,Evidence,Alta,Respalda la afirmación de que los árboles de dependencias tienden a ser proyectivos con pocas discontinuidades.,COMPLETO,166,1
+3,W04-2302_P98-1116_0,Evaluable,Further Reading,Media,Remite a trabajos donde se encuentran aplicaciones de análisis y TA con HALogen.,COMPLETO,166,1
+4,N12-1004_W06-3105_0,Evaluable,Evidence,Media,Respalda la afirmación de que elegir una única segmentación latente causa sesgos de modelado.,COMPLETO,166,1
+5,W04-2325_W01-1616_1,Evaluable,Background,Media,"Cita textual de la lectura léxica de las solicitudes de aclaración, como antecedente del trabajo.",COMPLETO,166,1
+6,D10-1067_W06-2912_1,Evaluable,Comparison,Media,"Contrasta los resultados de otros modelos (CCM, U-DOP) con el propio, notando que se entrenan en el corpus de prueba.",COMPLETO,166,1
+7,P03-1013_P97-1003_2,Evaluable,Background,Media,Tabla con resultados previos del modelo de Collins para distintos idiomas como contexto.,COMPLETO,166,1
+8,W10-1730_P00-1006_0,Evaluable,Further Reading,Alta,Remite a una discusión más profunda sobre las ventajas de maxent frente al canal ruidoso.,COMPLETO,166,1
+9,S13-1001_P08-1028_0,Evaluable,Background,Alta,Enumera trabajos previos con éxito en evaluaciones de similitud de frases.,COMPLETO,166,1
+10,W12-2004_P11-1118_2,Evaluable,Background,Media,Resume hallazgos previos sobre la combinación del entity-grid con otros modelos.,COMPLETO,166,1
+11,E09-3005_W01-0521_1,Evaluable,Background,Alta,Enumera trabajos previos de adaptación de dominio en parsing basados en datos.,COMPLETO,166,1
+12,D08-1076_P03-1021_0,Evaluable,Identification of the Originator,Media,Atribuye la propuesta de MERT para SMT al trabajo citado.,COMPLETO,166,1
+13,P10-1084_N09-1041_1,Evaluable,Background,Media,"Enumera métodos recientes basados en datos para resumen, antes de decir que el trabajo construye sobre ellos.",COMPLETO,166,1
+14,P09-1007_E09-1100_0,Evaluable,Basis,Media,El algoritmo de análisis sigue el trabajo citado de búsqueda de la secuencia de acciones más probable.,COMPLETO,166,1
+15,E12-1003_W07-1206_0,Evaluable,Evidence,Alta,Respalda la afirmación de que SRL ha beneficiado a la respuesta a preguntas.,COMPLETO,166,1
+16,P12-1099_P09-1065_0,Evaluable,Comparison,Alta,Declara que el trabajo es más similar al citado y describe sus diferencias de decodificación.,COMPLETO,166,1
+17,J12-2001_W09-1304_3,Evaluable,Basis,Media,Los sistemas siguen el esquema de tres etiquetas propuesto en el trabajo citado.,COMPLETO,166,1
+18,W11-2929_P10-1075_4,Evaluable,Comparison,Alta,Compara explícitamente las puntuaciones F1 obtenidas con las del método previo.,COMPLETO,166,1
+19,W13-2114_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford Parser tal cual para generar los árboles.,COMPLETO,166,1
+20,S10-1059_N10-1138_2,Evaluable,Background,Media,Describe el sistema SEMAFOR previo y sus limitaciones como antecedente del trabajo.,COMPLETO,166,1
+21,N13-1125_P11-2037_4,Evaluable,Background,Alta,Resume trabajos que integran la detección de categorías vacías en el análisis sintáctico.,COMPLETO,166,1
+22,W12-4202_P10-1146_0,Evaluable,Background,Alta,Enumera enfoques que incorporan información lingüística en SMT.,COMPLETO,166,1
+23,P13-1059_W04-3248_0,Evaluable,Gap,Media,"Cita trabajos con corpus comparables y señala sus limitaciones (semillas, errores de IE).",COMPLETO,166,1
+24,W10-3001_W10-3011_0,Evaluable,Comparison,Media,Contrasta estrategias de precisión/recall entre participantes del shared task.,COMPLETO,166,1
+25,W13-3703_E12-2012_2,Evaluable,Application,Alta,Usa MaltOptimizer tal cual en sus experimentos.,COMPLETO,166,1
+26,W12-3205_P03-1071_0,Evaluable,Background,Alta,Enumera métodos de segmentación temática previos.,COMPLETO,166,1
+27,P12-1014_P10-1083_0,Evaluable,Background,Alta,Sitúa el trabajo en el área de adquisición de lenguaje fundamentado citando trabajos previos.,COMPLETO,166,1
+28,N13-1115_J07-2003_0,Evaluable,Basis,Media,El sistema Hiero propio se basa en el modelo jerárquico citado.,COMPLETO,166,1
+29,W03-0425_W02-2010_2,Evaluable,Evidence,Media,Respalda la afirmación de que conservar solo los límites y reclasificar mejora los sistemas.,COMPLETO,166,1
+30,P04-1081_W02-1002_1,Evaluable,Comparison,Alta,Contrasta los resultados de maxent y naive Bayes entre dos comparaciones previas.,COMPLETO,166,1
+31,P13-2104_D09-1060_2,Evaluable,Improvement / Modification,Alta,Usa el mismo método de extracción pero con umbrales distintos.,COMPLETO,166,1
+32,W08-1122_W01-0521_0,Evaluable,Gap,Media,"Muestra que los parsers de WSJ pierden rendimiento en Brown, motivando el estudio de variación de dominio.",COMPLETO,166,1
+33,D13-1156_W09-1802_1,Evaluable,Evidence,Alta,Respalda que los ILP pequeños se resuelven en pocos segundos.,COMPLETO,166,1
+34,W10-2906_D08-1092_6,Evaluable,Comparison,Alta,Fila de tabla que compara resultados con el modelo supervisado citado.,COMPLETO,166,1
+35,W11-0327_N10-1004_0,Evaluable,Background,Media,Describe trabajo previo que introdujo la tarea de adaptación con múltiples fuentes.,COMPLETO,166,1
+36,P12-1087_P09-1113_0,Evaluable,Background,Alta,Introduce la supervisión distante con trabajos previos.,COMPLETO,166,1
+37,W09-0809_W07-0718_0,Evaluable,Evidence,Alta,Justifica el método de evaluación (ranking) por el mayor acuerdo entre anotadores.,COMPLETO,166,1
+38,P04-1048_W04-0909_0,Evaluable,Basis,Baja,El trabajo citado es base para identificar la estructura interna del frame.,COMPLETO,166,1
+39,N12-1052_D11-1006_3,Evaluable,Background,Media,Describe el enfoque del trabajo citado y sus supuestos.,COMPLETO,166,1
+40,N07-1022_P96-1027_0,Evaluable,Evidence,Media,Respalda que la misma tabla de análisis puede adaptarse a generación.,COMPLETO,166,1
+41,P09-1068_W04-3213_1,Evaluable,Background,Alta,Resume trabajos previos de bootstrapping y sus limitaciones.,COMPLETO,166,1
+42,J95-4008_J94-4009_0,Evaluable,Comparison,Media,Contrasta el enfoque del libro con el de otros investigadores de TA sobre divergencias.,COMPLETO,166,1
+43,D10-1007_W04-1013_1,Evaluable,Application,Alta,Usa la definición de ROUGE del trabajo citado para evaluar.,COMPLETO,166,1
+44,W13-2214_N12-1047_0,Evaluable,Background,Alta,Describe la práctica habitual de ajuste con pocas características.,COMPLETO,166,1
+45,P05-1014_W03-1011_2,Evaluable,Evidence,Media,Respalda que la medida de Lin es competitiva.,COMPLETO,166,1
+46,W12-1642_D09-1044_2,Evaluable,Application,Alta,Adopta las métricas ROUGE-1 y ROUGE-SU4 del trabajo citado.,COMPLETO,166,1
+47,D11-1142_W10-0907_0,Evaluable,Further Reading,Alta,Remite a una comparación más detallada de SRL y Open IE.,COMPLETO,166,1
+48,D11-1115_W03-2316_0,Evaluable,Application,Media,Usa OpenCCG como base del analizador sin modificarlo.,COMPLETO,166,1
+49,N13-1099_D10-1084_0,Evaluable,Background,Alta,Enumera estudios previos de etiquetado de actos de diálogo en foros.,COMPLETO,166,1
+50,P06-1098_P05-1033_1,Evaluable,Background,Media,Describe el modelo jerárquico y su restricción a forma binarizada como contexto.,COMPLETO,166,1
+51,D11-1016_P10-1093_0,Evaluable,Evidence,Media,Respalda que el marco de espacio matricial es elegante para modelar composición.,COMPLETO,166,1
+52,W09-3608_N04-4030_0,Evaluable,Evidence,Alta,Respalda que Castanet funciona bien en otro tipo de texto.,COMPLETO,166,1
+53,D13-1054_P06-1067_0,Evaluable,Background,Alta,Enumera trabajos sobre modelado de reordenamiento de frases.,COMPLETO,166,1
+54,P10-1110_P08-1068_0,Evaluable,Comparison,Media,Menciona técnicas semi-supervisadas con mayor precisión pero no comparables directamente.,COMPLETO,166,1
+55,W12-3015_D08-1009_0,Evaluable,Gap,Alta,"Señala que la inferencia no es profunda ni hay ontología, lo que motiva el trabajo.",COMPLETO,166,1
+56,W00-1304_W95-0107_2,Evaluable,Evidence,Media,Respalda que el chunking puede verse como tarea de etiquetado.,COMPLETO,166,1
+57,W11-1812_W09-1401_0,Evaluable,Background,Alta,Presenta el shared task previo del que este es continuación.,COMPLETO,166,1
+58,P08-1002_P98-2127_1,Evaluable,Application,Alta,Usa Minipar para analizar las oraciones.,COMPLETO,166,1
+59,N10-1128_J07-2003_0,Evaluable,Background,Alta,Cita trabajos sobre modelos basados en SCFG en la introducción.,COMPLETO,166,1
+60,N13-1055_W09-2112_0,Evaluable,Basis,Media,Sigue el procedimiento de introducir errores artificialmente de trabajos previos.,COMPLETO,166,1
+61,W12-3709_N03-1017_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles del modelo.,COMPLETO,166,1
+62,W13-3616_W00-1427_0,Evaluable,Application,Alta,Usa Morphg para generar inflexiones.,COMPLETO,166,1
+63,J12-4004_P11-1132_1,Evaluable,Evidence,Alta,Respalda con un estudio independiente que los marcadores discriminan textos traducidos.,COMPLETO,166,1
+64,S10-1074_E03-1071_0,Evaluable,Application,Alta,Usa el etiquetador C&C para POS.,COMPLETO,166,1
+65,W12-1509_W10-4301_0,Evaluable,Background,Alta,Resume trabajo previo sobre sistemas incrementales.,COMPLETO,166,1
+66,P13-2067_W08-0332_0,Evaluable,Background,Alta,Enumera trabajos sobre métricas agregadas como ULC.,COMPLETO,166,1
+67,S12-1028_P09-1045_1,Evaluable,Background,Alta,Enumera trabajos previos de expansión de léxicos por bootstrapping.,COMPLETO,166,1
+68,W13-0803_P07-2045_2,Evaluable,Background,Baja,Menciona Moses como herramienta cuyo extractor carece de cierta característica.,COMPLETO,166,1
+69,D10-1057_P07-1034_2,Evaluable,Background,Media,Menciona la reponderación de instancias como opción conocida.,COMPLETO,166,1
+70,D10-1058_P07-2045_0,Evaluable,Application,Alta,Usa el sistema Moses para evaluar BLEU.,COMPLETO,166,1
+71,W04-2807_W02-0813_0,Evaluable,Evidence,Alta,Respalda la cifra de rendimiento del mejor sistema WSD actual.,COMPLETO,166,1
+72,W03-2102_J94-2004_1,Evaluable,Basis,Media,El esquema de anotación se construyó sobre trabajo previo en subjetividad.,COMPLETO,166,1
+73,D12-1036_E06-1039_0,Evaluable,Background,Alta,"Revisa trabajos existentes sobre organización de reseñas, señalando su limitación.",COMPLETO,166,1
+74,D13-1099_P06-2010_0,Evaluable,Evidence,Alta,Respalda que el kernel de árbol ha sido efectivo en SRL.,COMPLETO,166,1
+75,W09-0610_W05-1627_0,Evaluable,Background,Media,Presenta trabajo relacionado sobre generación de expresiones referenciales espaciales.,COMPLETO,166,1
+76,J05-1005_A92-1014_0,Evaluable,Background,Alta,Enumera enfoques estocásticos previos de adquisición de requisitos lingüísticos.,COMPLETO,166,1
+77,D09-1103_P99-1079_0,Evaluable,Background,Alta,Enumera trabajos representativos de centering aplicado a correferencia.,COMPLETO,166,1
+78,W07-1501_W06-3813_0,Evaluable,Background,Alta,Enumera trabajos sobre grafos en el análisis de datos lingüísticos.,COMPLETO,166,1
+79,P06-1123_N03-1017_1,Evaluable,Evidence,Alta,Cita hallazgo previo para respaldar que las restricciones sintácticas no mejoraron SMT.,COMPLETO,166,1
+80,N10-1014_P05-1033_0,Evaluable,Background,Alta,Enumera enfoques que inducen la sintaxis de los datos.,COMPLETO,166,1
+81,W09-1104_N03-1017_0,Evaluable,Evidence,Media,Respalda que los enlaces bidireccionales son fiables pero de bajo recall.,COMPLETO,166,1
+82,W10-2401_W06-1672_0,Evaluable,Background,Alta,Enumera investigación previa sobre transliteración.,COMPLETO,166,1
+83,P13-2115_W04-3252_0,Evaluable,Background,Alta,Describe trabajos previos que combinan co-ocurrencia con PageRank.,COMPLETO,166,1
+84,N06-1021_P05-1012_3,Evaluable,Comparison,Alta,Compara los resultados propios con los mejores previamente publicados.,COMPLETO,166,1
+85,N12-1050_P11-1060_0,Evaluable,Gap,Alta,Señala que los sistemas previos ignoran la negación.,COMPLETO,166,1
+86,W10-3808_A00-2013_1,Evaluable,Basis,Media,El enfoque de MADA está inspirado en el trabajo citado.,COMPLETO,166,1
+87,D13-1202_S12-1019_0,Evaluable,Basis,Alta,Toma como punto de partida los experimentos del trabajo citado.,COMPLETO,166,1
+88,P13-1082_P07-2045_0,Evaluable,Application,Alta,Usa Moses en los experimentos.,COMPLETO,166,1
+89,W13-5415_J91-4003_2,Evaluable,Identification of the Originator,Alta,Atribuye la introducción de la co-composición al trabajo citado.,COMPLETO,166,1
+90,N01-1015_J90-2002_0,Evaluable,Comparison,Media,Contrasta el problema de alineación en SMT con el de letra a sonido.,COMPLETO,166,1
+91,W12-6308_P10-1110_2,Evaluable,Application,Alta,Aplica el algoritmo de decodificación del trabajo citado.,COMPLETO,166,1
+92,P09-2022_D08-1055_1,Evaluable,Comparison,Alta,Compara los resultados por caso con los del trabajo citado.,COMPLETO,166,1
+93,N06-1012_W03-0423_0,Evaluable,Background,Alta,Enumera aplicaciones de modelos discriminativos en PLN.,COMPLETO,166,1
+94,W13-3202_P13-1045_1,Evaluable,Comparison,Alta,Compara F-score del método propio con el del trabajo citado.,COMPLETO,166,1
+95,P97-1021_E93-1006_0,Evaluable,Background,Media,Describe resultados previos sobre DOP en el repaso del modelo.,COMPLETO,166,1
+96,D08-1085_P06-2065_1,Evaluable,Comparison,Alta,Compara la tasa de error con la del método EM citado.,COMPLETO,166,1
+97,N10-1130_P05-1033_1,Evaluable,Evidence,Media,Respalda que las STSG tienen poder suficiente para traducción basada en sintaxis.,COMPLETO,166,1
+98,W05-0630_W05-0407_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para el enfoque de resolución de solapamientos.,COMPLETO,166,1
+99,P12-1050_N04-4038_0,Evaluable,Application,Alta,Usa la herramienta AMIRA para anotar árabe.,COMPLETO,166,1
+100,D11-1110_P06-1043_0,Evaluable,Background,Alta,Enumera métodos semi-supervisados previos.,COMPLETO,166,1

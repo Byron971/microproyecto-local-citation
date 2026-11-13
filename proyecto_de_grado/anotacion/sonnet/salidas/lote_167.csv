@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J12-2006_W09-0424_1,Evaluable,Application,Alta,Usan el decodificador Joshua tal cual en sus experimentos.,COMPLETO,167,1
+2,P11-1086_N07-1051_0,Evaluable,Application,Alta,Emplean el Berkeley parser como herramienta para analizar las oraciones.,COMPLETO,167,1
+3,P06-2066_E06-1010_3,Evaluable,Background,Media,Describe los resultados del trabajo citado sobre grado de arista y tiempo de análisis como contexto.,COMPLETO,167,1
+4,D13-1185_N13-1104_0,Evaluable,Comparison,Media,Contrasta el modelo actual (basado en entidades) con el modelo secuencial HMM del trabajo citado.,COMPLETO,167,1
+5,W12-1634_D10-1084_3,Evaluable,Background,Media,Resume trabajos previos sobre modelado de actos de diálogo en diálogo textual tradicional.,COMPLETO,167,1
+6,A00-1031_W96-0213_1,Evaluable,Comparison,Alta,Compara los resultados del modelo de Markov con los del enfoque de máxima entropía.,COMPLETO,167,1
+7,E09-1085_E09-1081_0,Evaluable,Basis,Alta,"El sistema es una instancia específica del modelo general citado, que es su base conceptual.",COMPLETO,167,1
+8,D09-1101_P99-1048_0,Evaluable,Background,Alta,Enumera trabajos previos sobre detección de descripciones definidas no anafóricas.,COMPLETO,167,1
+9,W12-0704_W06-3108_0,Evaluable,Background,Media,Revisa trabajo previo que usó clases de palabras en un modelo de reordenamiento.,COMPLETO,167,1
+10,N09-2064_N06-2033_1,Evaluable,Background,Media,Describe la extensión del método de combinación de análisis propuesta en el trabajo citado.,COMPLETO,167,1
+11,W10-2103_W10-1411_0,Evaluable,Evidence,Media,Respalda la afirmación de que vibhakti y TAM son útiles en el análisis de dependencias del hindi.,COMPLETO,167,1
+12,P06-1071_W05-1519_2,Evaluable,Comparison,Alta,Compara resultados con el modelo que usa las variables del trabajo citado en una tabla.,COMPLETO,167,1
+13,E12-1032_P05-1018_6,Evaluable,Improvement / Modification,Media,"Además de las permutaciones del trabajo citado, crean otro conjunto distinto, ampliando el método.",COMPLETO,167,1
+14,W06-3108_J90-2002_0,Evaluable,Basis,Media,El enfoque actual generaliza el enfoque de canal fuente del trabajo citado.,COMPLETO,167,1
+15,W13-3733_P09-1087_0,Evaluable,Background,Alta,Indica la utilidad del análisis de dependencias en traducción automática como contexto general.,COMPLETO,167,1
+16,P12-1036_N10-1122_0,Evaluable,Background,Alta,Enumera trabajos previos sobre descubrimiento de aspectos y sentimientos.,COMPLETO,167,1
+17,D13-1007_W11-2210_0,Evaluable,Comparison,Media,"Describe el trabajo citado y lo relaciona con el propio método (distancia de edición, pares asociados).",COMPLETO,167,1
+18,W13-1702_P03-1054_0,Evaluable,Application,Alta,Usan el Stanford Parser tal cual para analizar las respuestas.,COMPLETO,167,1
+19,W11-0328_P10-1110_0,Evaluable,Application,Alta,Usan el mismo conjunto de plantillas de rasgos del trabajo citado.,COMPLETO,167,1
+20,P03-1036_P01-1063_0,Evaluable,Background,Alta,Enumera trabajos previos que asumen una raíz seguida de un sufijo.,COMPLETO,167,1
+21,W12-1901_D11-1122_1,Evaluable,Background,Media,Remite a trabajo previo en SRL no supervisado que usa heurísticas para la segunda etapa.,COMPLETO,167,1
+22,P11-2072_W06-3119_0,Evaluable,Background,Alta,Describe trabajos previos que extienden la gramática GHKM.,COMPLETO,167,1
+23,W11-2143_P10-1146_0,Evaluable,Evidence,Media,El éxito de los sistemas derivados de Hiero respalda que reglas parcialmente abstractas logran buena calidad.,COMPLETO,167,1
+24,E12-1055_W08-0334_0,Evaluable,Background,Alta,Enumera enfoques previos para fijar pesos de interpolación.,COMPLETO,167,1
+25,W12-2510_P10-1015_0,Evaluable,Background,Alta,Ejemplifica trabajos previos en análisis computacional de literatura.,COMPLETO,167,1
+26,P99-1023_P98-2186_1,Evaluable,Comparison,Alta,Aparece en una tabla que compara el rendimiento de distintos etiquetadores.,COMPLETO,167,1
+27,P13-1079_P08-2007_0,Evaluable,Background,Alta,"Indica que la estimación con muestreo de Gibbs es popular, como contexto previo.",COMPLETO,167,1
+28,D11-1006_P09-1042_3,Evaluable,Comparison,Alta,Describe el método PR como línea base contra la cual se comparan resultados.,COMPLETO,167,1
+29,W11-1902_N09-4006_1,Evaluable,Evidence,Baja,Las especificaciones de OntoNotes sustentan las heurísticas usadas para detectar menciones.,COMPLETO,167,1
+30,W13-3602_W12-2032_1,Evaluable,Evidence,Media,Justifica la elección de rasgos porque se usaron con éxito en trabajos previos.,COMPLETO,167,1
+31,W12-3709_P07-2045_0,Evaluable,Application,Alta,Usan Moses como uno de los sistemas de traducción para obtener datos.,COMPLETO,167,1
+32,W13-2232_D10-1025_2,Evaluable,Background,Alta,Revisa trabajos previos sobre CLIR.,COMPLETO,167,1
+33,P11-2107_W99-0619_0,Evaluable,Evidence,Media,Respalda que la medida es efectiva en una tarea similar.,COMPLETO,167,1
+34,P06-2104_P00-1065_1,Evaluable,Identification of the Originator,Alta,Indica que las rutas de árbol sintáctico fueron introducidas por el trabajo citado.,COMPLETO,167,1
+35,W05-1510_P05-1011_0,Evaluable,Background,Alta,Resume soluciones propuestas por estudios recientes para el análisis HPSG.,COMPLETO,167,1
+36,W13-2806_W08-0336_0,Evaluable,Application,Alta,Usan el segmentador de Stanford para segmentar las oraciones.,COMPLETO,167,1
+37,W12-2706_N10-1069_3,Evaluable,Evidence,Alta,Los hallazgos citados sustentan que el promediado regulariza el perceptrón.,COMPLETO,167,1
+38,N10-1058_N07-1070_0,Evaluable,Background,Media,Resume el hallazgo previo de los mismos autores sobre rasgos léxicos.,COMPLETO,167,1
+39,D11-1002_W10-2923_1,Evaluable,Basis,Alta,Se construye sobre el trabajo anterior que propuso la tarea de análisis de discurso en hilos.,COMPLETO,167,1
+40,D09-1038_N06-1033_6,Evaluable,Application,Alta,Usan el método de binarización sincrónica citado para obtener la SCFG inicial.,COMPLETO,167,1
+41,P12-1060_N06-1014_0,Evaluable,Application,Alta,Usan el alineador de Berkeley para estimar probabilidades de alineación.,COMPLETO,167,1
+42,P13-1115_P99-1004_0,Evaluable,Further Reading,Media,Remite a trabajo previo que estudió las funciones de distribución y deja el tema sin desarrollar.,COMPLETO,167,1
+43,P07-1051_P06-1109_0,Evaluable,Background,Alta,Describe el enfoque U-DOP como trabajo previo.,COMPLETO,167,1
+44,W11-1802_W09-1406_0,Evaluable,Comparison,Media,Muestra el rendimiento del sistema ganador de 2009 como referencia en la tabla de resultados.,COMPLETO,167,1
+45,W09-3834_N01-1016_0,Evaluable,Evidence,Media,Respalda que eliminar reparaciones y rellenos mejora el análisis.,COMPLETO,167,1
+46,W13-1613_E09-1005_1,Evaluable,Further Reading,Alta,Remite a una explicación detallada de PageRank.,COMPLETO,167,1
+47,W13-4706_W09-3522_0,Evaluable,Background,Alta,Enumera trabajos previos sobre transliteración con enfoques estadísticos.,COMPLETO,167,1
+48,P13-2144_W12-4102_0,Evaluable,Background,Media,Describe trabajo previo del grupo sobre redes sociales con signo.,COMPLETO,167,1
+49,W09-3840_P99-1061_0,Evaluable,Comparison,Baja,"Relaciona el método propuesto con las técnicas del trabajo citado, que generalizaría y unificaría.",COMPLETO,167,1
+50,P11-1124_P05-1033_0,Evaluable,Background,Media,Nombra el sistema jerárquico (Hiero) al que se refiere el estudio previo.,COMPLETO,167,1
+51,W12-4502_W06-2932_0,Evaluable,Evidence,Media,Justifica el uso del aprendizaje estructurado porque se ha aplicado con éxito en tareas similares.,COMPLETO,167,1
+52,W12-2203_N10-1144_0,Evaluable,Further Reading,Alta,Indica 'cf. ... for details' para más información sobre el conjunto de datos.,COMPLETO,167,1
+53,J13-1006_N06-1022_0,Evaluable,Background,Media,Menciona la poda y el análisis de grueso a fino como técnicas conocidas.,COMPLETO,167,1
+54,P10-1049_W06-3105_5,Evaluable,Basis,Baja,Los métodos aplicados parten de los problemas de sobreajuste descritos en el trabajo citado.,COMPLETO,167,1
+55,W13-2115_P10-1103_0,Evaluable,Background,Alta,Enumera trabajos previos sobre optimización conjunta de contenido y realización.,COMPLETO,167,1
+56,N09-1026_N06-1033_0,Evaluable,Background,Alta,Describe la binarización explícita de gramáticas como práctica existente.,COMPLETO,167,1
+57,W12-4802_P06-1092_0,Evaluable,Background,Alta,Describe el uso previo de n-gramas de caracteres en el modelo de canal ruidoso.,COMPLETO,167,1
+58,W11-1101_P05-1052_0,Evaluable,Background,Alta,Enumera trabajos previos con métodos de kernel para detección de relaciones.,COMPLETO,167,1
+59,E99-1026_P98-1083_1,Evaluable,Improvement / Modification,Alta,La lista de rasgos se amplía a partir de la lista de Haruno.,COMPLETO,167,1
+60,D12-1003_P08-1088_1,Evaluable,Gap,Media,Describe el modelo previo y señala su limitación con 'However'.,COMPLETO,167,1
+61,J95-3005_J95-1007_0,Evaluable,Further Reading,Alta,Remite a obras más sustanciales para profundizar en las ideas.,COMPLETO,167,1
+62,P10-1001_W07-2216_1,Evaluable,Application,Media,Usan el analizador no proyectivo citado para generar marginales en checo.,COMPLETO,167,1
+63,D10-1055_W07-0718_2,Evaluable,Comparison,Alta,Compara las correlaciones obtenidas con las reportadas en el estudio citado.,COMPLETO,167,1
+64,W13-1704_P11-1019_0,Evaluable,Application,Alta,Usan el conjunto de datos FCE sin modificación.,COMPLETO,167,1
+65,W10-4170_P98-2127_0,Evaluable,Background,Media,Presenta el concepto de agrupar palabras con contextos similares para descubrir sentidos.,COMPLETO,167,1
+66,P11-2070_D10-1063_0,Evaluable,Identification of the Originator,Media,Atribuye al trabajo citado la formalización del concepto de alcance de una regla.,COMPLETO,167,1
+67,W09-3402_P06-2013_0,Evaluable,Evidence,Alta,Justifica la elección de modelos discriminativos porque han funcionado bien en otros idiomas.,COMPLETO,167,1
+68,W13-3001_J99-4004_0,Evaluable,Further Reading,Alta,'Refer to ... and references therein' dirige a lectura adicional.,COMPLETO,167,1
+69,W96-0410_P85-1008_1,Evaluable,Basis,Alta,Su representación se apoya en el principio de promiscuidad ontológica del trabajo citado.,COMPLETO,167,1
+70,W11-0327_P07-1033_1,Evaluable,Gap,Media,Señala que las técnicas tradicionales requieren reentrenar para cada dominio.,COMPLETO,167,1
+71,J10-4006_W02-0908_4,Evaluable,Evidence,Alta,Respalda que otras medidas funcionan mejor que el coseno en algunas tareas.,COMPLETO,167,1
+72,W13-3733_P09-2079_0,Evaluable,Background,Alta,Indica que el análisis de dependencias es útil para análisis de sentimientos.,COMPLETO,167,1
+73,W09-3526_D08-1037_0,Evaluable,Background,Alta,Señala trabajos previos sobre modelado discriminativo para transliteración.,COMPLETO,167,1
+74,E09-1056_P08-1059_0,Evaluable,Further Reading,Media,Remite a un sistema basado en morfemas que no desarrolla ('see for instance').,COMPLETO,167,1
+75,W11-0116_P06-1050_1,Evaluable,Identification of the Originator,Alta,Atribuye al trabajo citado la propuesta original de las dos tareas de duración.,COMPLETO,167,1
+76,W12-3135_P06-1055_0,Evaluable,Application,Alta,Usan el analizador de Berkeley para analizar el lado alemán del corpus.,COMPLETO,167,1
+77,W06-1412_P02-1048_0,Evaluable,Background,Alta,Ejemplifica dominios de aplicación de agentes de navegación.,COMPLETO,167,1
+78,W06-2912_E03-1005_2,Evaluable,Comparison,Alta,Contrasta el rendimiento de U-DOP con el de analizadores supervisados de vanguardia.,COMPLETO,167,1
+79,D10-1050_N10-1125_4,Evaluable,Comparison,Alta,Compara los resultados ROUGE del modelo con los del trabajo citado.,COMPLETO,167,1
+80,P13-3025_P07-2045_0,Evaluable,Application,Alta,Usan Moses como sistema de traducción en los experimentos.,COMPLETO,167,1
+81,N07-3003_P05-1005_0,Evaluable,Evidence,Alta,Respalda que las medidas de relación semántica son útiles en WSD.,COMPLETO,167,1
+82,W12-2428_N03-1028_1,Evaluable,Evidence,Baja,Respalda el algoritmo de entrenamiento cuasi-Newton usado por CRF++.,COMPLETO,167,1
+83,P13-1059_P08-1058_0,Evaluable,Application,Alta,Convierten los modelos de lenguaje a filtros Bloom según el método citado.,COMPLETO,167,1
+84,P13-1096_D08-1049_0,Evaluable,Gap,Media,Señala que los pocos trabajos previos no abordan otras modalidades como las visuales.,COMPLETO,167,1
+85,E09-1034_W07-2216_0,Evaluable,Evidence,Alta,Respalda que el problema es intratable sin la suposición de independencia.,COMPLETO,167,1
+86,W02-1027_W98-0720_0,Evaluable,Gap,Alta,Critica que los trabajos previos no evalúan la fiabilidad de su anotación.,COMPLETO,167,1
+87,D13-1124_D11-1016_0,Evaluable,Background,Alta,Ejemplifica trabajos previos en semántica distribucional composicional.,COMPLETO,167,1
+88,W07-1523_W03-2117_0,Evaluable,Further Reading,Media,'cf.' remite a la fuente para la especificación de markables.,COMPLETO,167,1
+89,W05-0604_P99-1004_1,Evaluable,Background,Media,Menciona la divergencia skew como ejemplo de la familia de divergencias.,COMPLETO,167,1
+90,W03-2408_W97-0201_0,Evaluable,Evidence,Alta,Respalda con un estudio la afirmación de que se necesitan 500 ejemplos por palabra.,COMPLETO,167,1
+91,P11-1126_N10-1141_4,Evaluable,Background,Media,Indica que las técnicas recientes de decodificación por consenso usan estos rasgos.,COMPLETO,167,1
+92,W09-2903_W09-0213_0,Evaluable,Background,Alta,Enumera enfoques previos no supervisados de clasificación de idiomaticidad.,COMPLETO,167,1
+93,P08-1067_W04-3201_1,Evaluable,Gap,Media,Señala la limitación de trabajos previos que usan oraciones cortas o rasgos locales.,COMPLETO,167,1
+94,P98-1023_J91-4003_0,Ambiguo,,Baja,El contexto está truncado y confuso; podría ser Background o Evidence y no se puede determinar.,REGISTRADO,167,1
+95,W13-2901_P00-1056_0,Evaluable,Application,Alta,Usan Giza++ para determinar las alineaciones de palabras.,COMPLETO,167,1
+96,D09-1069_P04-1021_0,Evaluable,Background,Alta,Enumera modelos previos de transliteración inglés-chino.,COMPLETO,167,1
+97,W12-1012_P06-2071_0,Evaluable,Background,Alta,Describe métodos previos de agrupamiento de imágenes.,COMPLETO,167,1
+98,E12-1052_W10-4301_0,Evaluable,Background,Alta,Enumera trabajos recientes sobre procesamiento incremental en diálogo.,COMPLETO,167,1
+99,P13-1056_P09-1010_0,Evaluable,Background,Alta,Enumera trabajos previos sobre el problema de anclaje del lenguaje.,COMPLETO,167,1
+100,J08-2003_P04-1043_1,Evaluable,Gap,Media,Señala las limitaciones de los kernels de convolución en trabajos previos.,COMPLETO,167,1
