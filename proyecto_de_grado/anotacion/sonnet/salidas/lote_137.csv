@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N13-1001_N03-1017_0,Evaluable,Background,Alta,Enumera modelos de traducción previos como contexto general.,COMPLETO,137,1
+2,P11-3022_W08-0804_0,Evaluable,Background,Media,Describe el trabajo previo sobre hashing trick y lo relaciona con feature hashing.,COMPLETO,137,1
+3,P08-1047_N04-1043_0,Evaluable,Gap,Alta,Se señala que estos métodos no pueden producir los clusters MN requeridos.,COMPLETO,137,1
+4,D11-1141_W11-0704_0,Evaluable,Background,Media,Menciona trabajo reciente sobre normalización léxica de tuits.,COMPLETO,137,1
+5,N12-1044_W11-3201_1,Evaluable,Application,Alta,Usa los datos del shared task NEWS 2011 directamente.,COMPLETO,137,1
+6,P13-1020_P11-1049_5,Evaluable,Application,Alta,Genera extractos oráculo siguiendo el procedimiento descrito en la obra citada.,COMPLETO,137,1
+7,P09-2006_W03-1508_0,Evaluable,Evidence,Media,Respalda la afirmación de efectos adversos de los homófonos en E2C basado en fonemas.,COMPLETO,137,1
+8,W07-2219_P06-1055_0,Evaluable,Evidence,Media,Respalda la afirmación de que la división de categorías mejora las gramáticas.,COMPLETO,137,1
+9,P13-1020_P11-1049_6,Evaluable,Comparison,Alta,"Compara los resultados propios con los citados, confirmándolos.",COMPLETO,137,1
+10,Q13-1031_N10-1147_0,Evaluable,Background,Alta,Enumera enfoques recientes que usan preferencias de selección.,COMPLETO,137,1
+11,P05-2004_W01-0701_0,Evaluable,Background,Alta,Describe trabajo previo sobre tagger/chunker conjunto.,COMPLETO,137,1
+12,Q13-1019_S07-1005_0,Evaluable,Background,Alta,Presenta la tarea compartida SemEval 2007 como trabajo relacionado.,COMPLETO,137,1
+13,J05-4003_J03-3002_1,Evaluable,Evidence,Media,Los resultados citados respaldan que hay buenos datos disponibles en la Web.,COMPLETO,137,1
+14,J10-3003_W02-1022_0,Evaluable,Application,Media,Usa una versión simplificada de la medida de distancia de edición.,COMPLETO,137,1
+15,P96-1032_P94-1017_1,Evaluable,Further Reading,Alta,Indicado con 'See also' para remitir a otros trabajos.,COMPLETO,137,1
+16,W12-3150_W06-3119_0,Evaluable,Background,Alta,"Describe extensiones previas con anotación lingüística, como SAMT.",COMPLETO,137,1
+17,J08-2002_P00-1065_0,Evaluable,Identification of the Originator,Alta,Atribuye el inicio del etiquetado de roles semánticos al primer modelo estadístico.,COMPLETO,137,1
+18,E09-1031_P08-1101_0,Evaluable,Comparison,Alta,Contrasta resultados publicados de distintos sistemas en los mismos datos.,COMPLETO,137,1
+19,N10-1028_P07-2045_2,Evaluable,Basis,Media,El cálculo de aceptación se apoya en la prueba de Johnson et al.,COMPLETO,137,1
+20,W10-4356_W10-1009_0,Evaluable,Evidence,Alta,Respalda el hallazgo de que los HMM superaron a los bigramas.,COMPLETO,137,1
+21,D11-1044_P05-1033_2,Evaluable,Background,Media,Presenta la traducción jerárquica como sabiduría convencional del área.,COMPLETO,137,1
+22,J13-4003_P11-1082_3,Evaluable,Comparison,Alta,Compara las mejoras de otros sistemas con las propias.,COMPLETO,137,1
+23,N13-1016_W04-3252_0,Evaluable,Background,Alta,Enumera usos previos del algoritmo en tareas de PLN.,COMPLETO,137,1
+24,P13-2030_W12-2304_1,Evaluable,Further Reading,Alta,Remite a un tratamiento completo de la estimación de parámetros.,COMPLETO,137,1
+25,P13-1104_W04-0308_0,Evaluable,Background,Media,Describe el algoritmo arc-standard de Nivre como base de otros trabajos.,COMPLETO,137,1
+26,N09-1009_P08-1084_0,Evaluable,Background,Alta,Resume literatura sobre el uso de información de otro idioma.,COMPLETO,137,1
+27,D10-1094_N10-1018_4,Evaluable,Evidence,Media,Respalda el argumento de que los baselines de clase más frecuente no son relevantes.,COMPLETO,137,1
+28,W06-2911_W03-0425_1,Evaluable,Comparison,Media,Contrasta los problemas aquí con los experimentos de NER del trabajo citado.,COMPLETO,137,1
+29,W10-2502_N04-1014_0,Evaluable,Background,Alta,Enumera usos previos de transductores de árboles en traducción automática.,COMPLETO,137,1
+30,P94-1017_E93-1036_2,Evaluable,Evidence,Media,Respalda la afirmación sobre bosques de análisis no óptimamente densos.,COMPLETO,137,1
+31,P11-1127_P03-1021_1,Evaluable,Application,Alta,Usa MERT para ajustar los parámetros del sistema.,COMPLETO,137,1
+32,W13-2214_N03-1017_0,Evaluable,Application,Alta,Usa el método de simetrización grow-diag-final-and.,COMPLETO,137,1
+33,P12-1109_P11-1037_3,Evaluable,Improvement / Modification,Alta,Mejora el proceso de transformación de letras del trabajo citado.,COMPLETO,137,1
+34,D11-1002_W10-2923_2,Evaluable,Background,Alta,Enumera aplicaciones previas de actos de diálogo en distintos medios.,COMPLETO,137,1
+35,S10-1060_W00-1427_0,Evaluable,Application,Alta,Usa el lematizador morpha tal cual.,COMPLETO,137,1
+36,D13-1177_P08-2012_1,Evaluable,Background,Alta,Enumera ejemplos de restricciones globales en otras tareas.,COMPLETO,137,1
+37,W09-3926_W08-0126_0,Evaluable,Background,Alta,Ejemplifica el uso creciente de la simulación de usuarios.,COMPLETO,137,1
+38,P13-2105_P04-1015_0,Evaluable,Background,Media,Cita un uso exitoso del perceptrón promediado en análisis sintáctico.,COMPLETO,137,1
+39,P97-1051_J90-4001_0,Evaluable,Background,Alta,Resume la atención recibida por la elipsis de SV en la literatura.,COMPLETO,137,1
+40,D10-1002_D09-1161_1,Evaluable,Comparison,Alta,Compara el resultado propio con los mejores números conocidos.,COMPLETO,137,1
+41,W07-0706_P03-2041_1,Evaluable,Comparison,Alta,Contrasta el modelo con trabajos previos basados en dependencias.,COMPLETO,137,1
+42,P13-1043_N07-1051_0,Evaluable,Comparison,Alta,Compara precisión y velocidad con el analizador de Berkeley.,COMPLETO,137,1
+43,N09-1074_P06-1021_1,Evaluable,Comparison,Media,Se configura la evaluación para comparar equitativamente con el trabajo citado.,COMPLETO,137,1
+44,W11-4416_W05-0703_3,Evaluable,Background,Media,Describe el sistema MAGEAD como trabajo previo.,COMPLETO,137,1
+45,E03-1079_W95-0103_0,Evaluable,Background,Alta,Describe enfoques recientes que formalizan la desambiguación de PP como elección binaria.,COMPLETO,137,1
+46,S13-2063_W11-0705_0,Evaluable,Background,Media,Resume hallazgos previos sobre polaridades previas del léxico.,COMPLETO,137,1
+47,D10-1050_P09-1053_1,Evaluable,Comparison,Alta,Contrasta el uso exclusivo de grafos de dependencias con el enfoque propio.,COMPLETO,137,1
+48,W13-3508_N10-1066_0,Evaluable,Background,Alta,Enumera aplicaciones de ILP en tareas de PLN.,COMPLETO,137,1
+49,W07-2219_P05-1010_0,Evaluable,Evidence,Media,Respalda la afirmación de que dividir categorías mejora las gramáticas.,COMPLETO,137,1
+50,D13-1036_P08-1090_1,Evaluable,Background,Media,Indica que la mayoría de trabajos relacionados usa PMI.,COMPLETO,137,1
+51,P99-1071_P96-1025_1,Evaluable,Application,Alta,Usa el analizador de Collins sin modificarlo.,COMPLETO,137,1
+52,W13-4902_W06-2920_0,Evaluable,Evidence,Alta,Respalda la observación de menor precisión en lenguas flexivas.,COMPLETO,137,1
+53,P13-4006_P10-4006_0,Evaluable,Comparison,Alta,Contrasta el paquete S-Space con DISSECT.,COMPLETO,137,1
+54,J13-3004_P98-2127_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los tesauros distribucionales contienen opuestos.,COMPLETO,137,1
+55,S13-2088_S13-2052_0,Evaluable,Background,Media,Presenta la tarea compartida en la que participó el sistema.,COMPLETO,137,1
+56,W06-3602_W03-1001_0,Evaluable,Further Reading,Media,Remite a la fuente para los datos de cobertura.,COMPLETO,137,1
+57,W13-3403_W08-0211_0,Evaluable,Background,Media,Cita la creación de NACLO en 2007 como contexto.,COMPLETO,137,1
+58,P11-1042_P09-1104_0,Evaluable,Background,Alta,Enumera trabajos de alineación discriminativa como literatura relacionada.,COMPLETO,137,1
+59,N13-1129_E09-1085_0,Evaluable,Background,Alta,Remite a trabajos sobre comprensión incremental con 'see e.g.'.,COMPLETO,137,1
+60,D12-1025_P11-1025_4,Evaluable,Comparison,Alta,Compara su método con el trabajo citado en los mismos datos.,COMPLETO,137,1
+61,P03-1047_P01-1019_0,Evaluable,Evidence,Alta,Respalda la conjetura propia sobre las restricciones qeq.,COMPLETO,137,1
+62,W12-1642_D08-1081_0,Evaluable,Background,Baja,"Lista de trabajos previos sobre características, con poco contexto.",COMPLETO,137,1
+63,P05-1033_N03-1017_3,Evaluable,Application,Alta,Usa Pharaoh como sistema base.,COMPLETO,137,1
+64,N10-1129_N06-1014_1,Evaluable,Background,Alta,Enumera algoritmos de entrenamiento discriminativo propuestos.,COMPLETO,137,1
+65,N03-1004_P98-1029_0,Evaluable,Background,Alta,Enumera aplicaciones de métodos de ensamble en PLN.,COMPLETO,137,1
+66,N09-1033_P06-1102_0,Evaluable,Background,Alta,Enumera enfoques distribucionales de expansión de semillas.,COMPLETO,137,1
+67,W05-0211_A92-1022_0,Evaluable,Identification of the Originator,Media,Indica que el método tiene sus raíces en el esquema GEIG.,COMPLETO,137,1
+68,N13-1039_N13-1037_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre variación léxica y sintáctica.,COMPLETO,137,1
+69,W12-3401_W00-1320_0,Evaluable,Gap,Media,Señala un intento previo que no logró mejora.,COMPLETO,137,1
+70,W13-4205_W06-1650_1,Evaluable,Improvement / Modification,Media,Añade más características a las usadas en trabajos previos.,COMPLETO,137,1
+71,P13-1062_D11-1134_0,Evaluable,Gap,Alta,Describe NELL y señala su limitación con 'Unfortunately'.,COMPLETO,137,1
+72,D12-1083_N03-1030_2,Evaluable,Evidence,Media,Respalda la suposición común de árboles binarios.,COMPLETO,137,1
+73,W12-0703_P08-2068_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la tarea se beneficia de modelos de tópicos.,COMPLETO,137,1
+74,D11-1018_W11-2102_1,Evaluable,Further Reading,Alta,Remite a la fuente para más detalles del corpus.,COMPLETO,137,1
+75,D09-1020_P06-1134_0,Evaluable,Basis,Media,Adopta las definiciones de subjetivo y objetivo de los trabajos citados.,COMPLETO,137,1
+76,D11-1001_E06-1011_0,Evaluable,Evidence,Media,Respalda la afirmación de mejora análoga a modelos de segundo orden.,COMPLETO,137,1
+77,P08-1074_W00-0726_0,Evaluable,Background,Alta,Define la tarea de chunking citando la tarea compartida.,COMPLETO,137,1
+78,P88-1023_P83-1007_0,Evaluable,Basis,Alta,Adopta la noción de espacio de foco del trabajo citado.,COMPLETO,137,1
+79,W04-1510_P02-1003_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el problema es NP-completo.,COMPLETO,137,1
+80,W09-0609_W08-1109_2,Evaluable,Further Reading,Media,Remite a la fuente para las razones del descarte de participantes.,COMPLETO,137,1
+81,W12-0216_W09-0303_0,Evaluable,Background,Alta,Enumera literatura sobre alineamiento fonético.,COMPLETO,137,1
+82,W10-2913_W09-1804_0,Evaluable,Background,Media,Describe una función de costo propuesta recientemente por otros.,COMPLETO,137,1
+83,N13-1019_A00-2004_1,Evaluable,Background,Alta,Enumera algoritmos de segmentación previos como C99.,COMPLETO,137,1
+84,P13-2087_P11-1015_3,Evaluable,Application,Alta,Usa el conjunto de datos IMDB para evaluar.,COMPLETO,137,1
+85,D11-1022_D10-1004_2,Evaluable,Further Reading,Media,Remite a una tabla del trabajo citado para detalles.,COMPLETO,137,1
+86,W06-1608_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para alinear el corpus.,COMPLETO,137,1
+87,P11-1164_A92-1021_0,Evaluable,Identification of the Originator,Alta,Indica que Brill introdujo por primera vez TBL.,COMPLETO,137,1
+88,P10-1097_D08-1094_2,Evaluable,Further Reading,Media,Remite con 'see' a la literatura sobre preferencias de selección.,COMPLETO,137,1
+89,E12-1074_P07-2045_1,Evaluable,Application,Alta,Construye los sistemas SMT con Moses.,COMPLETO,137,1
+90,W10-3020_W09-1304_1,Evaluable,Basis,Media,Sigue el enfoque de etiquetado secuencial del trabajo previo.,COMPLETO,137,1
+91,W04-3253_P97-1023_1,Evaluable,Identification of the Originator,Media,Cita el origen del concepto de orientación semántica.,COMPLETO,137,1
+92,P12-2021_P09-2014_2,Evaluable,Background,Baja,Título de sección que introduce el método de conversión del trabajo citado.,COMPLETO,137,1
+93,D09-1110_N07-1071_0,Evaluable,Background,Alta,Resume trabajo previo sobre contextos de aplicación de reglas.,COMPLETO,137,1
+94,W02-1610_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para producir el modelo de traducción.,COMPLETO,137,1
+95,W08-1106_W00-1407_0,Evaluable,Basis,Media,La estrategia se basa en guías de la teoría de la argumentación.,COMPLETO,137,1
+96,J95-1006_P91-1030_1,Evaluable,Further Reading,Media,Indica que es una versión ampliada de un artículo citado en el libro.,COMPLETO,137,1
+97,D10-1017_P07-1096_1,Evaluable,Comparison,Alta,Compara el baseline con etiquetadores POS discriminativos de vanguardia.,COMPLETO,137,1
+98,P09-1006_P06-1043_2,Evaluable,Comparison,Alta,Los resultados propios confirman hallazgos previos en inglés.,COMPLETO,137,1
+99,P04-1061_P02-1017_0,Evaluable,Background,Alta,Enumera trabajos previos centrados en la capacidad generativa fuerte.,COMPLETO,137,1
+100,W09-1114_P08-1012_0,Evaluable,Background,Media,Menciona trabajos que usan inferencia bayesiana.,COMPLETO,137,1

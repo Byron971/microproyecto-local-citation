@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P11-2067_P05-1066_3,Evaluable,Comparison,Media,Contrasts TARGETCIT's finding that reordering helped with a reimplementation reaching the opposite conclusion.,COMPLETO,144,1
+2,D13-1116_D10-1125_0,Evaluable,Evidence,Media,Cited work supports the claim that dual decomposition is an elegant approach.,COMPLETO,144,1
+3,W10-0216_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser to annotate the data.,COMPLETO,144,1
+4,P06-2013_W04-1107_1,Evaluable,Background,Alta,Describes prior application of TBL to Chinese chunking.,COMPLETO,144,1
+5,P07-1063_W00-1407_0,Evaluable,Evidence,Alta,"Supports the claim about claim position and persuasiveness, used to justify a parameter.",COMPLETO,144,1
+6,W07-1101_P01-1025_1,Evaluable,Comparison,Alta,Own results are explicitly said to be consistent with those reported by the cited work.,COMPLETO,144,1
+7,W10-1710_E03-1076_0,Evaluable,Comparison,Alta,"Presents own component as an alternative to the cited statistical splitting method, contrasting them.",COMPLETO,144,1
+8,J08-4004_N04-1019_0,Evaluable,Background,Media,Lists prior work that applied alpha to coding tasks in CL.,COMPLETO,144,1
+9,N04-1001_W03-1026_1,Evaluable,Evidence,Media,Cited observation that character-based models outperform word-based ones supports the modeling choice.,COMPLETO,144,1
+10,P05-1002_W02-2018_0,Evaluable,Evidence,Alta,Empirical studies cited to justify choosing LMVM for CRF estimation.,COMPLETO,144,1
+11,D13-1171_P11-1016_0,Evaluable,Background,Alta,Reviews recent work on target-dependent sentiment prediction.,COMPLETO,144,1
+12,W04-2602_W00-0717_1,Evaluable,Comparison,Alta,Contrasts the corpus size used with that of the cited work.,COMPLETO,144,1
+13,W02-1041_P01-1039_2,Evaluable,Evidence,Alta,"Cited experience supports the claim that ASR errors hurt caller name extraction, justifying the design choice.",COMPLETO,144,1
+14,W02-2024_W95-0107_0,Evaluable,Identification of the Originator,Alta,Credits the source that originally put forward the IOB scheme.,COMPLETO,144,1
+15,P10-1035_N07-1051_3,Evaluable,Comparison,Alta,"Own scores are lower than those reported in the cited work, explicitly contrasted.",COMPLETO,144,1
+16,D12-1108_P07-2045_2,Evaluable,Application,Alta,Uses the Moses toolkit MERT implementation as is.,COMPLETO,144,1
+17,N04-1016_A97-1025_2,Evaluable,Comparison,Alta,Compares own best model's performance with the cited work's.,COMPLETO,144,1
+18,D13-1052_N03-1017_0,Evaluable,Background,Alta,Lists SMT model types as general context.,COMPLETO,144,1
+19,W13-0102_N10-1012_1,Evaluable,Comparison,Alta,Results are compared with the state-of-the-art proposed by the cited work.,COMPLETO,144,1
+20,W06-1006_W99-0610_1,Evaluable,Evidence,Media,Cited notice supports the claim that collocation extraction is hard in free-order languages.,COMPLETO,144,1
+21,W13-4008_W10-0214_1,Evaluable,Background,Alta,Describes prior approaches to stance classification.,COMPLETO,144,1
+22,J89-4005_P84-1008_0,Evaluable,Comparison,Alta,Contrasts the attribute-value structures with unification formulations in cited works.,COMPLETO,144,1
+23,E12-1052_E09-1081_0,Evaluable,Further Reading,Alta,"'See' pointing to the IU model, which is only briefly explained.",COMPLETO,144,1
+24,W13-2237_D11-1125_0,Evaluable,Background,Alta,Mentions related work on online MERT in SMT.,COMPLETO,144,1
+25,W13-2301_W12-2301_1,Evaluable,Application,Alta,Uses the CALIMA analyzer in the paper.,COMPLETO,144,1
+26,N12-1027_P10-1108_0,Evaluable,Evidence,Media,"Cited work demonstrates that backward application is standard, supporting the claim.",COMPLETO,144,1
+27,W10-1604_J90-2002_0,Evaluable,Identification of the Originator,Alta,Credits IBM researchers as the origin of SMT.,COMPLETO,144,1
+28,D13-1097_P05-1017_0,Evaluable,Background,Alta,Lists prior opinion mining approaches.,COMPLETO,144,1
+29,P11-2078_D08-1090_0,Evaluable,Background,Alta,Describes previous work on LM adaptation for SMT.,COMPLETO,144,1
+30,W10-4141_W04-3230_0,Evaluable,Comparison,Alta,CRF is among the well-known algorithms the method is compared against.,COMPLETO,144,1
+31,W09-1604_W08-0409_0,Evaluable,Further Reading,Media,'See ... for instance' directs the reader to bidirectional word alignment details.,COMPLETO,144,1
+32,P08-1009_W02-1039_0,Evaluable,Background,Media,"Defines the notion of syntactic cohesion, attributing the concept to the cited work.",COMPLETO,144,1
+33,P11-1103_N06-1014_1,Evaluable,Application,Alta,Uses the Berkeley aligner to create alignments.,COMPLETO,144,1
+34,P06-2002_P05-1060_2,Evaluable,Comparison,Alta,Compares own precision with that reported in the cited work.,COMPLETO,144,1
+35,W11-2405_P05-1074_0,Evaluable,Background,Media,Describes how prior work computes expected precision.,COMPLETO,144,1
+36,N13-1011_P08-1088_4,Evaluable,Comparison,Alta,"Contrasts own method, which uses no orthographic features, with cited approaches.",COMPLETO,144,1
+37,W10-1728_P07-1065_0,Evaluable,Application,Alta,Uses RandLM to estimate the large LM.,COMPLETO,144,1
+38,W12-3807_P03-1004_0,Evaluable,Application,Alta,Uses the Yamcha tool for tagging.,COMPLETO,144,1
+39,P06-2010_P00-1065_2,Evaluable,Basis,Alta,Features are extended from the cited work's flat parse tree features.,COMPLETO,144,1
+40,W12-3144_W09-0435_0,Evaluable,Basis,Media,Applies a modified reordering model with non-continuous rules built on the cited work.,COMPLETO,144,1
+41,D10-1080_N10-1005_0,Evaluable,Background,Alta,Reports recent prior work on integrating prosody.,COMPLETO,144,1
+42,W11-2136_P07-2045_0,Evaluable,Application,Alta,System is based on the Moses toolkit.,COMPLETO,144,1
+43,P12-1084_P05-1018_0,Evaluable,Background,Media,Refers to entity grids from the cited work as existing context to be filled in.,COMPLETO,144,1
+44,J97-4002_P92-1002_1,Evaluable,Identification of the Originator,Media,Attributes the constraint's use for ruling out VPE antecedents to the cited work.,COMPLETO,144,1
+45,N12-1009_N09-1066_1,Evaluable,Background,Alta,Lists prior uses of citing sentences.,COMPLETO,144,1
+46,N13-1055_D10-1094_2,Evaluable,Basis,Media,Follows prior work in artificially introducing errors.,COMPLETO,144,1
+47,W10-2311_W06-3802_0,Evaluable,Background,Alta,Describes general uses of graphs in prior work.,COMPLETO,144,1
+48,W13-1006_W03-1812_0,Evaluable,Background,Alta,Lists recent works on WSMs and semantic compositionality.,COMPLETO,144,1
+49,P07-1020_P04-1083_0,Evaluable,Comparison,Alta,Contrasts own BOW approach with parsing-based approaches.,COMPLETO,144,1
+50,S13-2027_P06-4020_0,Evaluable,Application,Alta,Uses the RASP toolchain to process data.,COMPLETO,144,1
+51,W12-2414_D09-1120_1,Evaluable,Comparison,Media,Own results are placed against the range reported by the cited work.,COMPLETO,144,1
+52,W13-0808_W11-2913_0,Evaluable,Background,Alta,Summarizes recent work on LCFRS parsing.,COMPLETO,144,1
+53,N09-2052_P08-1059_0,Evaluable,Application,Alta,The cited true-casing model is used as is.,COMPLETO,144,1
+54,D12-1047_W07-0717_1,Evaluable,Background,Alta,Related work section describing prior use of TF-IDF for LM adaptation.,COMPLETO,144,1
+55,P13-2002_D10-1058_0,Evaluable,Gap,Alta,Describes the cited work and notes it lacks efficient MAP inference.,COMPLETO,144,1
+56,W11-2701_N10-1012_0,Evaluable,Evidence,Media,Cited finding that PMI is best for topical coherence supports using PMI as a feature.,COMPLETO,144,1
+57,W12-0508_N10-1072_0,Evaluable,Background,Alta,Describes existing strategies for handling out-of-base entities.,COMPLETO,144,1
+58,P13-1092_P11-1145_0,Evaluable,Background,Alta,Describes prior work building on USP.,COMPLETO,144,1
+59,W10-1411_P07-1122_0,Evaluable,Comparison,Alta,Own results are described as consistent with earlier results.,COMPLETO,144,1
+60,D13-1038_W13-4010_0,Evaluable,Evidence,Alta,Cited data supports the claim that partners use different strategies for referential descriptions.,COMPLETO,144,1
+61,D12-1114_D09-1001_0,Evaluable,Background,Alta,States general prior use of Markov logic in NLP.,COMPLETO,144,1
+62,W11-2126_J07-2003_0,Evaluable,Application,Alta,Decoder uses cube pruning as described in the cited work.,COMPLETO,144,1
+63,P12-2056_W08-0336_0,Evaluable,Evidence,Alta,Supports the widely accepted claim about segmentation F-score and translation.,COMPLETO,144,1
+64,P03-1064_W99-0707_1,Evaluable,Comparison,Alta,Own chunker accuracy compared with voted MBL chunkers.,COMPLETO,144,1
+65,D12-1127_N06-1041_1,Evaluable,Background,Alta,Reviews prior methods generalizing from small dictionaries.,COMPLETO,144,1
+66,W13-2604_P12-1101_1,Evaluable,Identification of the Originator,Media,States that the score was first used by the cited work.,COMPLETO,144,1
+67,P11-2006_P09-1045_0,Evaluable,Background,Alta,"Describes previous approaches to reducing semantic drift, setting up the gap.",COMPLETO,144,1
+68,W13-3814_D11-1096_0,Evaluable,Improvement / Modification,Alta,Extends the kernel function of the cited work.,COMPLETO,144,1
+69,W11-1215_P06-1010_0,Evaluable,Background,Alta,Describes recent related research using comparable corpora.,COMPLETO,144,1
+70,W02-2103_A00-2023_1,Evaluable,Further Reading,Alta,Refers to the cited work for a fuller description of the ranker.,COMPLETO,144,1
+71,P11-1033_P09-1027_1,Evaluable,Evidence,Media,"Previous work shows translating labeled data is useful, supporting the approach.",COMPLETO,144,1
+72,W11-2903_J99-4004_1,Evaluable,Background,Media,Notes the usual deductive formulation of parsing from prior work.,COMPLETO,144,1
+73,W10-4154_N04-1003_0,Evaluable,Background,Alta,Lists prior research on person name disambiguation.,COMPLETO,144,1
+74,D10-1108_D09-1099_4,Evaluable,Evidence,Alta,"Cited discussion supports the difficulty of manual taxonomy evaluation, justifying the design.",COMPLETO,144,1
+75,P11-1062_W09-2504_0,Evaluable,Background,Alta,Lists prior work on acquiring entailment rules.,COMPLETO,144,1
+76,W13-0205_J06-3003_0,Evaluable,Background,Media,Presents the notion of attributional similarity from the cited work.,COMPLETO,144,1
+77,E12-1009_P10-1110_1,Evaluable,Comparison,Alta,Result table compares own parser against cited parser accuracies.,COMPLETO,144,1
+78,W11-2149_E03-1076_0,Evaluable,Application,Alta,Uses the cited compound splitting method for preprocessing.,COMPLETO,144,1
+79,W06-2202_W04-1213_0,Evaluable,Evidence,Media,Shared task example supports the claim that performance relies on tuning and domain hacks.,COMPLETO,144,1
+80,W12-4501_P06-1005_1,Evaluable,Application,Alta,Systems used the gender/number table from the cited work.,COMPLETO,144,1
+81,P11-1145_P06-1124_0,Evaluable,Evidence,Alta,Supports the claim that PY processes model power-law distributions.,COMPLETO,144,1
+82,W11-0307_N10-1123_2,Evaluable,Comparison,Alta,Compares own accuracy to the best prior joint inference result.,COMPLETO,144,1
+83,W12-4903_E12-1041_0,Evaluable,Background,Media,Reports a prior finding contrasting with the described study.,COMPLETO,144,1
+84,E97-1063_P97-1039_0,Evaluable,Background,Media,Lists prior work on bitext space correspondence representations.,COMPLETO,144,1
+85,D13-1203_P12-1041_0,Evaluable,Background,Alta,Lists prior high-precision approaches before concluding differently.,COMPLETO,144,1
+86,P13-4017_W11-2402_1,Evaluable,Application,Alta,Uses the cited PLM model as a baseline implementation.,COMPLETO,144,1
+87,W04-3230_N03-1028_1,Evaluable,Comparison,Alta,Explicitly contrasts own CRF formulation with widely used ones.,COMPLETO,144,1
+88,P13-1099_W04-1013_0,Evaluable,Background,Media,Mentions ROUGE as the standard metric used in summarization.,COMPLETO,144,1
+89,E06-1023_P03-1070_0,Evaluable,Evidence,Alta,Cited experimental confirmation supports the claim about negative and positive responses.,COMPLETO,144,1
+90,W05-1526_W04-0214_0,Evaluable,Basis,Media,"Modifies the cited probability model, building on prior role identification work.",COMPLETO,144,1
+91,P13-2027_N10-1012_0,Evaluable,Basis,Alta,Adopts the cited work's view of semantic coherence and applies its measure.,COMPLETO,144,1
+92,P11-1106_N01-1021_3,Evaluable,Background,Media,Reports a prior demonstration of what surprisal predicts.,COMPLETO,144,1
+93,W09-1704_D08-1021_0,Evaluable,Background,Alta,Describes prior paraphrase extraction methods.,COMPLETO,144,1
+94,N13-1048_N03-1017_1,Evaluable,Application,Alta,Extracts the phrase table using the cited method.,COMPLETO,144,1
+95,W11-1716_E06-1025_0,Evaluable,Background,Alta,Describes assumptions of related prior works.,COMPLETO,144,1
+96,D09-1044_W04-1013_0,Evaluable,Application,Alta,Uses ROUGE for evaluation.,COMPLETO,144,1
+97,P10-1151_P05-1012_0,Evaluable,Background,Alta,Lists recent dependency parsing models.,COMPLETO,144,1
+98,P10-1002_P05-1012_0,Evaluable,Background,Alta,Cites supervised dependency parsing state of the art.,COMPLETO,144,1
+99,W10-1407_W09-3808_0,Evaluable,Background,Media,Mentions other elaborate symbolic parsing algorithms existing in the literature.,COMPLETO,144,1
+100,W11-1410_W10-1502_1,Evaluable,Basis,Alta,The study builds from the cited work in two main ways.,COMPLETO,144,1

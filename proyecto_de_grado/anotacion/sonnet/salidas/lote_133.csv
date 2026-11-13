@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D13-1073_W06-2609_0,Evaluable,Background,Alta,,COMPLETO,133,1
+2,W11-0908_P86-1004_1,Evaluable,Identification of the Originator,Alta,'as first proposed by' attributes the anaphora resolution idea to its originator.,COMPLETO,133,1
+3,N10-1017_D08-1021_0,Evaluable,Comparison,Alta,,COMPLETO,133,1
+4,W04-3215_P02-1042_1,Evaluable,Background,Media,,COMPLETO,133,1
+5,W12-2032_D10-1094_5,Evaluable,Evidence,Alta,,COMPLETO,133,1
+6,D09-1073_P04-1043_1,Evaluable,Application,Alta,,COMPLETO,133,1
+7,W12-1703_P10-1119_0,Evaluable,Background,Media,,COMPLETO,133,1
+8,W03-1610_W02-1029_1,Evaluable,Evidence,Media,,COMPLETO,133,1
+9,P02-1044_W97-0322_0,Evaluable,Background,Media,,COMPLETO,133,1
+10,D13-1041_P11-1138_7,Evaluable,Comparison,Alta,,COMPLETO,133,1
+11,W13-4305_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,133,1
+12,W12-6333_P03-1054_2,Evaluable,Application,Alta,,COMPLETO,133,1
+13,S10-1007_W06-3813_0,Evaluable,Background,Alta,,COMPLETO,133,1
+14,D13-1203_P11-1082_0,Evaluable,Background,Alta,,COMPLETO,133,1
+15,W11-2128_P01-1008_0,Evaluable,Gap,Media,Describes prior work and then points out its limitation (monolingual parallel corpora are rare and small).,COMPLETO,133,1
+16,P05-1074_W03-1608_0,Evaluable,Evidence,Media,,COMPLETO,133,1
+17,W12-6004_S07-1062_0,Evaluable,Background,Alta,,COMPLETO,133,1
+18,W10-4146_P06-2089_0,Evaluable,Background,Media,,COMPLETO,133,1
+19,W09-1117_J07-2003_0,Evaluable,Background,Media,,COMPLETO,133,1
+20,W09-1109_P05-1014_0,Evaluable,Background,Alta,,COMPLETO,133,1
+21,D11-1031_W04-3201_0,Evaluable,Comparison,Baja,,COMPLETO,133,1
+22,N09-2054_P08-1100_0,Evaluable,Background,Alta,,COMPLETO,133,1
+23,W12-3148_N10-1062_0,Evaluable,Further Reading,Media,,COMPLETO,133,1
+24,N09-1001_W08-1207_2,Evaluable,Background,Alta,,COMPLETO,133,1
+25,P10-1151_P05-1012_1,Evaluable,Evidence,Media,,COMPLETO,133,1
+26,W09-3520_N07-1046_0,Evaluable,Comparison,Media,,COMPLETO,133,1
+27,N13-1031_W11-0408_0,Evaluable,Evidence,Media,,COMPLETO,133,1
+28,W11-0309_N10-1075_2,Evaluable,Background,Media,,COMPLETO,133,1
+29,W03-2604_P86-1031_2,Evaluable,Background,Media,,COMPLETO,133,1
+30,N09-1065_P02-1014_2,Evaluable,Basis,Media,,COMPLETO,133,1
+31,Q13-1006_N10-1005_0,Evaluable,Gap,Media,"Prior work is described as supervised and using hand-annotated prosody, in contrast to the unsupervised approach.",COMPLETO,133,1
+32,D12-1022_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,133,1
+33,P11-1156_P08-1068_0,Evaluable,Gap,Media,"Describes the cited approach and then states its limitation ('This approach, however, ignores...').",COMPLETO,133,1
+34,J01-4001_A00-1020_0,Evaluable,Background,Alta,,COMPLETO,133,1
+35,W08-0603_W06-3322_0,Evaluable,Background,Alta,,COMPLETO,133,1
+36,P11-2005_P10-2041_1,Evaluable,Comparison,Alta,,COMPLETO,133,1
+37,W13-2814_W04-3248_1,Evaluable,Background,Alta,,COMPLETO,133,1
+38,D11-1129_P08-1028_1,Evaluable,Application,Alta,The task/dataset provided by the cited work is used for evaluation.,COMPLETO,133,1
+39,P13-1070_D11-1120_3,Evaluable,Comparison,Alta,,COMPLETO,133,1
+40,N13-1037_W11-2210_0,Evaluable,Application,Alta,,COMPLETO,133,1
+41,W11-2168_P05-1033_0,Evaluable,Background,Media,,COMPLETO,133,1
+42,J04-4002_P01-1030_0,Evaluable,Gap,Alta,,COMPLETO,133,1
+43,N10-1058_P00-1065_0,Evaluable,Background,Alta,,COMPLETO,133,1
+44,D12-1125_D11-1006_2,Evaluable,Evidence,Media,,COMPLETO,133,1
+45,E99-1032_J91-4003_0,Evaluable,Evidence,Media,,COMPLETO,133,1
+46,N10-1129_W06-3108_1,Evaluable,Background,Alta,,COMPLETO,133,1
+47,D13-1166_D12-1050_0,Evaluable,Comparison,Alta,,COMPLETO,133,1
+48,P11-2100_P07-1055_2,Evaluable,Comparison,Media,,COMPLETO,133,1
+49,W13-3007_P11-2011_0,Evaluable,Evidence,Alta,,COMPLETO,133,1
+50,N07-1055_P06-2103_7,Evaluable,Comparison,Alta,,COMPLETO,133,1
+51,P08-1026_P05-3003_0,Evaluable,Basis,Alta,,COMPLETO,133,1
+52,W09-0621_W03-1004_0,Evaluable,Gap,Media,,COMPLETO,133,1
+53,P13-1043_N06-2033_1,Evaluable,Comparison,Alta,,COMPLETO,133,1
+54,D10-1003_N06-1020_0,Evaluable,Gap,Media,,COMPLETO,133,1
+55,J08-3003_P03-1054_1,Evaluable,Background,Alta,,COMPLETO,133,1
+56,N10-1005_N07-1051_1,Evaluable,Application,Alta,,COMPLETO,133,1
+57,D09-1004_W05-0625_1,Evaluable,Background,Alta,,COMPLETO,133,1
+58,W09-2814_W05-0618_0,Evaluable,Background,Alta,,COMPLETO,133,1
+59,J13-4004_P11-1079_0,Evaluable,Background,Alta,,COMPLETO,133,1
+60,N06-1021_P05-1012_10,Evaluable,Comparison,Alta,,COMPLETO,133,1
+61,W11-0116_P06-1050_9,Evaluable,Comparison,Alta,,COMPLETO,133,1
+62,W06-1606_P05-1033_0,Evaluable,Background,Alta,,COMPLETO,133,1
+63,E06-1039_P03-1048_2,Evaluable,Evidence,Baja,,COMPLETO,133,1
+64,W12-1637_W11-2006_0,Evaluable,Background,Media,,COMPLETO,133,1
+65,D12-1084_P09-1053_0,Evaluable,Comparison,Alta,,COMPLETO,133,1
+66,P10-2033_N03-1017_0,Evaluable,Gap,Media,Used to point out the limitations of standard phrase-based SMT.,COMPLETO,133,1
+67,P11-1042_P06-1009_1,Evaluable,Background,Alta,,COMPLETO,133,1
+68,P12-1109_P11-1037_9,Evaluable,Comparison,Alta,,COMPLETO,133,1
+69,W08-1701_A92-1039_1,Evaluable,Evidence,Alta,,COMPLETO,133,1
+70,D13-1040_P04-1053_1,Evaluable,Comparison,Alta,Used as a baseline method for comparison.,COMPLETO,133,1
+71,P04-1023_W03-0301_0,Evaluable,Background,Media,,COMPLETO,133,1
+72,N06-1020_P04-1013_0,Evaluable,Background,Alta,,COMPLETO,133,1
+73,W07-2216_E06-1011_3,Evaluable,Evidence,Alta,,COMPLETO,133,1
+74,D13-1182_D10-1084_0,Evaluable,Gap,Alta,,COMPLETO,133,1
+75,W12-3147_W11-2132_0,Evaluable,Further Reading,Alta,,COMPLETO,133,1
+76,J08-4003_W02-2016_2,Evaluable,Identification of the Originator,Alta,,COMPLETO,133,1
+77,D13-1052_N07-1051_0,Evaluable,Improvement / Modification,Alta,A modified version of the cited parser is used.,COMPLETO,133,1
+78,W12-3624_P07-1086_0,Evaluable,Evidence,Alta,,COMPLETO,133,1
+79,P10-1112_N07-1051_3,Evaluable,Basis,Alta,,COMPLETO,133,1
+80,W12-4802_P00-1031_0,Evaluable,Background,Alta,,COMPLETO,133,1
+81,D11-1044_N10-1141_0,Evaluable,Gap,Media,,COMPLETO,133,1
+82,P11-1003_D08-1022_0,Evaluable,Background,Alta,,COMPLETO,133,1
+83,N10-1115_D08-1052_1,Evaluable,Basis,Alta,,COMPLETO,133,1
+84,W04-0212_J88-2003_0,Evaluable,Evidence,Alta,,COMPLETO,133,1
+85,W11-2128_D08-1103_4,Evaluable,Basis,Alta,,COMPLETO,133,1
+86,W09-3817_E06-1011_0,Evaluable,Background,Alta,,COMPLETO,133,1
+87,W09-0203_W05-1003_0,Evaluable,Evidence,Media,,COMPLETO,133,1
+88,P10-2064_N09-1063_1,Evaluable,Further Reading,Alta,,COMPLETO,133,1
+89,W11-1802_W09-1418_0,Evaluable,Comparison,Alta,,COMPLETO,133,1
+90,P07-1036_P05-1073_2,Evaluable,Further Reading,Alta,,COMPLETO,133,1
+91,W13-2229_P12-3005_0,Evaluable,Application,Alta,,COMPLETO,133,1
+92,P10-1028_P02-1019_0,Evaluable,Background,Alta,,COMPLETO,133,1
+93,P11-2032_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,133,1
+94,P99-1064_J91-4003_1,Evaluable,Further Reading,Alta,,COMPLETO,133,1
+95,W12-1504_W06-1412_2,Evaluable,Gap,Alta,,COMPLETO,133,1
+96,J02-2003_W99-0901_1,Evaluable,Background,Media,,COMPLETO,133,1
+97,P13-1058_P08-1059_0,Evaluable,Background,Alta,,COMPLETO,133,1
+98,N12-1090_D08-1068_0,Evaluable,Gap,Media,,COMPLETO,133,1
+99,D12-1108_P07-2045_1,Evaluable,Application,Alta,,COMPLETO,133,1
+100,D12-1113_D10-1048_1,Evaluable,Background,Media,,COMPLETO,133,1

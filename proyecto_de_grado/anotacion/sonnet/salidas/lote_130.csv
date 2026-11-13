@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D12-1109_D10-1027_3,Evaluable,Application,Media,Follows the cited procedure for converting STSG rules to CFG rules without modification.,COMPLETO,130,1
+2,W09-0208_D08-1094_6,Evaluable,Comparison,Media,"Contrasts the parameter optimization results of the cited work with current results, finding it flawed.",COMPLETO,130,1
+3,S13-2029_W09-2413_1,Evaluable,Background,Media,Describes the task's organization at SemEval-2010 as context.,COMPLETO,130,1
+4,P13-1081_D10-1062_0,Evaluable,Comparison,Alta,Own error analysis findings are stated as consistent with the cited findings.,COMPLETO,130,1
+5,P11-1128_D09-1076_0,Evaluable,Background,Alta,Reviews prior work on probabilistic synchronous TAG in MT.,COMPLETO,130,1
+6,P09-1031_N04-1041_1,Evaluable,Background,Alta,Enumerates prior vector representations used in clustering approaches.,COMPLETO,130,1
+7,P11-1109_P01-1008_1,Evaluable,Gap,Media,Describes previous methods and notes their limitation (heavy manual labor) to motivate the current approach.,COMPLETO,130,1
+8,J12-2004_P07-1125_0,Evaluable,Background,Alta,Lists corpora annotated for uncertainty across domains.,COMPLETO,130,1
+9,P11-1161_D09-1025_0,Evaluable,Background,Alta,Related-work listing of tasks using query logs.,COMPLETO,130,1
+10,W09-3824_P03-1054_0,Evaluable,Background,Media,Situates the Berkeley parser within treebank transformation work reducing PCFG independence assumptions.,COMPLETO,130,1
+11,W11-2149_W06-3108_0,Evaluable,Application,Alta,Uses the discriminative reordering model from the cited work in their system.,COMPLETO,130,1
+12,P10-1001_W07-2216_0,Evaluable,Evidence,Alta,Hardness results support the claim that higher-order non-projective parsing is challenging.,COMPLETO,130,1
+13,W13-3209_D12-1110_0,Evaluable,Background,Alta,Lists tasks to which sentence-level models have been applied.,COMPLETO,130,1
+14,N10-1086_P98-1116_0,Evaluable,Evidence,Media,Supports the claim that overgenerate-and-rank has been applied successfully in generation.,COMPLETO,130,1
+15,P06-1023_P03-1054_3,Evaluable,Comparison,Alta,Compares own parser accuracy with the results reported in the cited work.,COMPLETO,130,1
+16,W13-2903_P08-1040_0,Evaluable,Background,Alta,Enumerates applications of text simplification.,COMPLETO,130,1
+17,P05-1024_N01-1025_0,Evaluable,Comparison,Alta,Own model's F-measure is compared against the cited SVM parser.,COMPLETO,130,1
+18,P13-1155_D12-1039_1,Evaluable,Comparison,Alta,Explicitly states similarities and differences with the cited approach.,COMPLETO,130,1
+19,P06-2002_W03-0405_1,Evaluable,Background,Alta,Lists applications of similar approaches.,COMPLETO,130,1
+20,D12-1111_J06-3003_2,Evaluable,Further Reading,Baja,"Points to further analyses of vector space model variants, though could be Background.",COMPLETO,130,1
+21,D10-1044_P07-1004_0,Evaluable,Background,Alta,Lists prior work on self-training with monolingual in-domain text.,COMPLETO,130,1
+22,P06-1066_W02-1039_0,Evaluable,Evidence,Alta,Supports the assumption that phrases cohere across languages.,COMPLETO,130,1
+23,D09-1106_P07-2045_0,Evaluable,Application,Alta,Uses Moses to translate the sets.,COMPLETO,130,1
+24,W11-2150_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser as a source-side parsing tool.,COMPLETO,130,1
+25,N13-1060_P12-1095_2,Evaluable,Comparison,Alta,Contrasts own model with the cited one on two aspects.,COMPLETO,130,1
+26,P10-1001_E06-1011_2,Evaluable,Background,Media,"Notes that higher-order sibling factorizations have been proposed, as context before extending it.",COMPLETO,130,1
+27,D11-1097_D10-1113_4,Evaluable,Background,Media,Describes the cited window-based model of lexical substitution as prior work.,COMPLETO,130,1
+28,J08-4003_E06-1011_0,Evaluable,Background,Alta,Traces development of spanning tree parsing.,COMPLETO,130,1
+29,D11-1141_N03-1033_0,Evaluable,Application,Media,Uses the Stanford POS tagger and reports its accuracy on Twitter data.,COMPLETO,130,1
+30,P13-2020_P11-2033_0,Evaluable,Comparison,Alta,Claims own result is better than the cited transition-based parsers.,COMPLETO,130,1
+31,D09-1151_W02-1112_0,Evaluable,Background,Alta,Reviews early studies using hand-crafted lexical knowledge.,COMPLETO,130,1
+32,P10-1160_P86-1004_0,Evaluable,Background,Alta,Related work describing an early attempt at recovering extra-sentential arguments.,COMPLETO,130,1
+33,P09-2045_E06-1039_0,Evaluable,Background,Alta,Describes related work enhancing earlier work with feature hierarchy.,COMPLETO,130,1
+34,D09-1112_E06-1015_1,Evaluable,Background,Alta,Cites works showing kernel methods are used for feature engineering.,COMPLETO,130,1
+35,W06-2303_P03-1054_0,Evaluable,Improvement / Modification,Alta,Extends a technique from the cited work to semantic role labels.,COMPLETO,130,1
+36,W11-0116_P06-1050_7,Evaluable,Comparison,Media,Notes difference between the cited evaluation (no decades bucket) and own system.,COMPLETO,130,1
+37,P13-1109_W11-2123_0,Evaluable,Application,Alta,Uses KenLM toolkit to build the language model.,COMPLETO,130,1
+38,D13-1157_N12-1093_4,Evaluable,Basis,Alta,Work builds on the cited model.,COMPLETO,130,1
+39,J08-1002_P97-1003_1,Evaluable,Comparison,Alta,Contrasts own results with those of CCG and PCFG parsers.,COMPLETO,130,1
+40,P11-2094_P04-1021_2,Evaluable,Application,Media,Uses Viterbi beam search decoding per the cited work; the abstract concerns a transliteration model but the citation is for the search method.,COMPLETO,130,1
+41,E12-1045_E99-1010_0,Evaluable,Application,Alta,Uses the cited clustering method to induce word classes for the LM.,COMPLETO,130,1
+42,W08-2137_W04-3212_0,Evaluable,Basis,Media,Features are motivated by and borrowed from constituent-tree SRL work.,COMPLETO,130,1
+43,P13-1067_D11-1016_0,Evaluable,Background,Alta,Related work listing sentiment analysis literature.,COMPLETO,130,1
+44,W09-0809_W08-0406_0,Evaluable,Background,Alta,Describes a prior reordering approach.,COMPLETO,130,1
+45,P12-1067_W02-0109_0,Evaluable,Application,Alta,Uses NLTK to compute POS tags.,COMPLETO,130,1
+46,N13-1104_N04-1019_0,Evaluable,Application,Alta,Summaries were segmented using the Pyramid method.,COMPLETO,130,1
+47,W06-3115_N03-1017_4,Evaluable,Application,Alta,Uses the grow-diag-final heuristic for alignment refinement.,COMPLETO,130,1
+48,W10-2918_P07-1055_0,Evaluable,Gap,Media,"Cites supervised work as domain dependent and requiring annotated corpora, a limitation motivating the study.",COMPLETO,130,1
+49,P11-4018_P08-2036_0,Evaluable,Application,Media,Implements smoothing algorithms from the cited work.,COMPLETO,130,1
+50,D11-1108_D08-1021_3,Evaluable,Improvement / Modification,Alta,Explicitly extends the cited pivot approach to the SCFG model.,COMPLETO,130,1
+51,W04-3241_P02-1026_1,Evaluable,Evidence,Alta,"Cited work showed the prediction holds, supporting the entropy rate principle.",COMPLETO,130,1
+52,W01-1403_P98-2139_1,Evaluable,Comparison,Alta,Contrasts level of abstraction of transfer rules with the cited work.,COMPLETO,130,1
+53,P13-1007_W10-1809_0,Evaluable,Evidence,Media,Supports the claim that plurals carry different types of quantification.,COMPLETO,130,1
+54,P02-1051_W02-0505_0,Evaluable,Further Reading,Media,Refers to the cited work for a detailed description of the spelling-based model.,COMPLETO,130,1
+55,D09-1045_P08-1028_4,Evaluable,Background,Baja,Mentions that earlier work by the authors introduced other models; could also be Further Reading.,COMPLETO,130,1
+56,P07-1064_W01-0514_2,Evaluable,Evidence,Alta,Supports the claim that the baseline compares favorably with other segmenters.,COMPLETO,130,1
+57,D13-1134_W12-1604_0,Evaluable,Gap,Media,"Notes prior models do not consider the RE itself, contrasting with the current work.",COMPLETO,130,1
+58,W12-2903_N07-2044_0,Evaluable,Background,Alta,Lists earlier approaches to reduce input effort.,COMPLETO,130,1
+59,P00-1051_P87-1022_0,Evaluable,Background,Alta,Lists variants in centering theory parameter specification.,COMPLETO,130,1
+60,W06-3119_N03-1017_2,Evaluable,Application,Alta,Uses the lexical weighting feature as described in the cited work.,COMPLETO,130,1
+61,P09-2055_D09-1090_0,Evaluable,Further Reading,Alta,Refers reader to the cited work for thorough description and evaluation.,COMPLETO,130,1
+62,P06-2093_W05-0821_0,Evaluable,Background,Alta,Summarizes prior studies on factored language models.,COMPLETO,130,1
+63,P11-1005_J04-3001_0,Evaluable,Background,Alta,Lists NLP tasks where active learning has been applied.,COMPLETO,130,1
+64,N13-1044_P06-1073_1,Evaluable,Application,Alta,Uses the training split defined by the cited work.,COMPLETO,130,1
+65,Q13-1034_E12-1007_0,Evaluable,Application,Alta,Uses the Szeged Dependency Treebank for training and testing.,COMPLETO,130,1
+66,P06-2019_P05-1036_3,Evaluable,Gap,Alta,"Notes previous evaluations used small subject pools, which the current work overcomes.",COMPLETO,130,1
+67,D11-1044_P07-2045_1,Evaluable,Comparison,Alta,Compares own system to Moses.,COMPLETO,130,1
+68,D13-1112_D11-1125_1,Evaluable,Comparison,Alta,Compares the proposed method with PRO and MERT.,COMPLETO,130,1
+69,N12-1052_P08-1068_2,Evaluable,Evidence,Alta,Supports the claim that word clusters are useful in NLP tasks.,COMPLETO,130,1
+70,D12-1029_P11-2033_1,Evaluable,Background,Alta,Cites works that use the arc-eager parser as examples of its use.,COMPLETO,130,1
+71,N13-1036_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit to build the SMT system.,COMPLETO,130,1
+72,D13-1198_N13-1133_2,Evaluable,Background,Alta,Describes the cited work's formalization of lexical substitution as supervised learning.,COMPLETO,130,1
+73,D13-1041_P11-1138_6,Evaluable,Comparison,Alta,States results are not directly comparable and contrasts dictionaries.,COMPLETO,130,1
+74,W02-1012_P00-1056_1,Evaluable,Evidence,Alta,Supports the claim that HMM alignment models capture localization.,COMPLETO,130,1
+75,W03-0306_P00-1056_0,Evaluable,Evidence,Alta,Supports the claim that adjacency knowledge is important.,COMPLETO,130,1
+76,N07-1022_W05-1510_1,Evaluable,Comparison,Alta,Compares BLEU scores with those reported in cited works.,COMPLETO,130,1
+77,D11-1110_E03-1008_0,Evaluable,Background,Alta,Lists semi-supervised methods in related literature.,COMPLETO,130,1
+78,P07-1052_W06-1604_1,Evaluable,Gap,Alta,States only one previous work addresses this problem.,COMPLETO,130,1
+79,D13-1155_W08-1105_0,Evaluable,Background,Alta,Lists categories of compression methods investigated.,COMPLETO,130,1
+80,P11-1052_W04-1017_2,Evaluable,Background,Media,"Notes that other approaches define concepts, as prior context before proposing an alternative.",COMPLETO,130,1
+81,D12-1031_D08-1109_0,Evaluable,Background,Alta,Lists applications of the idea including POS induction.,COMPLETO,130,1
+82,W03-1307_W02-0301_3,Evaluable,Comparison,Alta,Compares own system's performance with the best reported system.,COMPLETO,130,1
+83,W13-1501_D08-1020_0,Evaluable,Background,Alta,Lists research on discourse coherence and text quality.,COMPLETO,130,1
+84,W10-0206_W09-3001_1,Evaluable,Application,Alta,Uses the keyword list identified in the cited work to extract instances.,COMPLETO,130,1
+85,W10-2304_E09-1005_4,Evaluable,Basis,Media,The current work builds on the personalized PageRank approach described next.,COMPLETO,130,1
+86,D12-1113_D10-1048_2,Evaluable,Evidence,Media,Supports the design principle of ordering by precision.,COMPLETO,130,1
+87,J00-2014_P97-1040_0,Ambiguo,,Baja,"Context is truncated; the function of the citation (evidence, further reading, or background) cannot be determined.",REGISTRADO,130,1
+88,N04-1023_J90-2002_1,Evaluable,Identification of the Originator,Alta,The IBM models were the first to introduce generative models to MT.,COMPLETO,130,1
+89,D08-1094_S07-1009_0,Evaluable,Evidence,Media,Supports the claim about problems of dictionary senses.,COMPLETO,130,1
+90,W09-0410_N07-1029_0,Evaluable,Basis,Media,The weighting approach is similar to and builds on the cited work.,COMPLETO,130,1
+91,P12-1111_P11-1070_0,Evaluable,Basis,Media,Follows the idea of using web-scale features from the cited work.,COMPLETO,130,1
+92,W09-3949_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford Parser for syntactic analysis.,COMPLETO,130,1
+93,P08-1077_W04-3206_0,Evaluable,Gap,Media,Describes prior methods and notes their limitation (syntactic paraphrases only).,COMPLETO,130,1
+94,J09-3001_P01-1061_1,Evaluable,Background,Alta,Describes earlier development of environment-based disambiguation work.,COMPLETO,130,1
+95,N10-1003_P05-1010_1,Evaluable,Further Reading,Alta,Refers the reader to the cited works for a general introduction.,COMPLETO,130,1
+96,P11-1069_N07-1051_0,Evaluable,Background,Media,Describes the cited CFG parser applied to CCG by others as context for comparison.,COMPLETO,130,1
+97,D13-1161_S13-1045_4,Evaluable,Comparison,Alta,Compares own results against the cited system on FQ.,COMPLETO,130,1
+98,N13-1001_W99-0604_0,Evaluable,Application,Alta,Extracts phrase pairs consistent with word alignments following the cited definition.,COMPLETO,130,1
+99,N07-1051_P03-1054_2,Evaluable,Gap,Alta,"Notes that adapting the unlexicalized parser yielded only modest gains, motivating automatic grammars.",COMPLETO,130,1
+100,W11-2911_P11-1070_0,Evaluable,Background,Alta,Describes prior successful large-scale semi-supervised work.,COMPLETO,130,1

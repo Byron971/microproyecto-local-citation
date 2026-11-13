@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,S10-1060_S10-1009_0,Evaluable,Background,Media,Cita la descripción de la tarea compartida PETE que se introduce como contexto del trabajo.,COMPLETO,142,1
+2,P13-2015_P10-2029_0,Evaluable,Application,Alta,Se incorpora el sistema Reconcile tal como es como arquitectura de coreferencia.,COMPLETO,142,1
+3,D13-1047_E06-1038_1,Evaluable,Background,Alta,Enumeración de enfoques previos de compresión de oraciones.,COMPLETO,142,1
+4,P12-1028_W09-1106_0,Evaluable,Application,Alta,Se aplica la herramienta de ingeniería inversa propuesta en el trabajo citado para analizar características.,COMPLETO,142,1
+5,N06-2007_P04-1054_0,Evaluable,Background,Alta,Enumeración de métodos supervisados de extracción de relaciones.,COMPLETO,142,1
+6,D11-1089_W04-3230_1,Evaluable,Comparison,Media,Se contrasta el rendimiento de segmentadores en esta tarea con el ~99% reportado en la tarea estándar.,COMPLETO,142,1
+7,W12-0112_P07-1005_0,Evaluable,Evidence,Media,Respalda la afirmación de que integrar WSD mejora la traducción automática.,COMPLETO,142,1
+8,W05-1005_W04-0401_2,Evaluable,Evidence,Media,Se cita un hallazgo concreto sobre aceptabilidad por clases de Levin que apoya la motivación del análisis.,COMPLETO,142,1
+9,P03-1067_P94-1022_0,Evaluable,Basis,Media,La restricción empleada se basa en la restricción de forma regular de los TAG citados.,COMPLETO,142,1
+10,A00-3001_W97-1301_0,Evaluable,Basis,Media,Se usa la definición de descripciones puente del trabajo citado como fundamento de la condición.,COMPLETO,142,1
+11,D13-1160_P11-1060_3,Evaluable,Background,Alta,Trabajo relacionado: enumeración de análisis semántico para consultar bases de datos.,COMPLETO,142,1
+12,W13-2305_W07-0718_1,Evaluable,Evidence,Baja,Respalda que el coeficiente Kappa se usa comúnmente para consistencia entre jueces; podría ser Background o Further Reading.,COMPLETO,142,1
+13,W13-4006_N12-1072_0,Evaluable,Background,Media,Contexto sobre intercambios de opinión en foros en línea.,COMPLETO,142,1
+14,D12-1059_W08-2112_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre aprendizaje de categorías a partir de contexto distribucional.,COMPLETO,142,1
+15,D13-1155_P10-1058_0,Evaluable,Gap,Media,Se describe el trabajo previo señalando su limitación (combinación ad hoc de puntuaciones) frente al enfoque propio.,COMPLETO,142,1
+16,A00-2041_P99-1052_0,Evaluable,Comparison,Alta,"Contrasta AUTOSEM, sin reglas de reparación, con otros enfoques de recuperación ante fallos del analizador.",COMPLETO,142,1
+17,N13-1117_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para ajustar los pesos del sistema.,COMPLETO,142,1
+18,E09-1017_P98-1116_0,Evaluable,Background,Alta,Ejemplo de aplicaciones que requieren producir texto fluido.,COMPLETO,142,1
+19,D13-1089_P98-2127_2,Evaluable,Comparison,Alta,Contraste explícito con las mejores medidas propuestas por los trabajos citados.,COMPLETO,142,1
+20,D09-1085_P05-1012_0,Evaluable,Gap,Media,Se señala la omisión de analizadores de dependencias por su limitación para dependencias de largo alcance.,COMPLETO,142,1
+21,P97-1046_J90-2002_0,Evaluable,Comparison,Alta,Contrasta los modelos propios con los de Brown et al. por su estructura lingüística.,COMPLETO,142,1
+22,W97-0808_P93-1024_0,Evaluable,Gap,Alta,Se señala una desventaja de las técnicas de agrupamiento automático (clases incongruentes).,COMPLETO,142,1
+23,D10-1014_N10-1016_0,Evaluable,Background,Media,"Revisión de trabajos que imponen restricciones sintácticas en la traducción, considerados ortogonales.",COMPLETO,142,1
+24,D11-1045_P05-1012_2,Evaluable,Application,Alta,Se usa el algoritmo MIRA tal como está.,COMPLETO,142,1
+25,P06-1048_W00-1401_0,Evaluable,Background,Media,Se revisa la medida SSA propuesta como métrica base; también podría ser Application u Originator.,COMPLETO,142,1
+26,D12-1057_P97-1023_0,Evaluable,Evidence,Media,Respalda la afirmación de que la excitación es independiente de la orientación semántica.,COMPLETO,142,1
+27,J07-2002_P99-1004_0,Evaluable,Background,Alta,Enumeración de extensiones de modelos vectoriales con información morfosintáctica.,COMPLETO,142,1
+28,J13-4009_E03-1076_0,Evaluable,Evidence,Media,Respalda la afirmación de que la separación de compuestos mejora la traducción.,COMPLETO,142,1
+29,N12-1092_W10-0705_3,Evaluable,Comparison,Media,Se contrasta el esquema de calificación del trabajo citado con el propio (no distinguía Good de Okay).,COMPLETO,142,1
+30,D12-1047_D11-1033_2,Evaluable,Comparison,Baja,Fragmento de una comparación de resultados de enfoques de adaptación del modelo de lenguaje.,COMPLETO,142,1
+31,W09-0205_P07-1028_1,Evaluable,Background,Alta,Contexto general sobre modelado computacional de preferencias de selección.,COMPLETO,142,1
+32,D09-1021_P97-1003_0,Evaluable,Application,Alta,Se usan las reglas de búsqueda de núcleos de Collins sin modificación.,COMPLETO,142,1
+33,P12-1084_W06-1612_2,Evaluable,Application,Alta,Se usan las características del trabajo citado como parte de los rasgos locales.,COMPLETO,142,1
+34,P07-1062_N03-1030_0,Evaluable,Background,Alta,Describe el resultado de un trabajo previo sobre análisis discursivo.,COMPLETO,142,1
+35,S12-1027_D10-1012_1,Evaluable,Application,Media,Se adopta el método de poda basado en cuadrados que mostró buen desempeño en el trabajo citado.,COMPLETO,142,1
+36,W11-3808_P06-1043_0,Evaluable,Background,Alta,Revisión de literatura sobre auto-entrenamiento en análisis sintáctico.,COMPLETO,142,1
+37,P13-1147_P11-1053_5,Evaluable,Comparison,Alta,Contraste explícito de hallazgos con los del trabajo citado.,COMPLETO,142,1
+38,D09-1138_E03-1040_11,Evaluable,Comparison,Alta,Compara la exactitud del modelo propio con la del modelo citado.,COMPLETO,142,1
+39,P03-1056_W00-1201_0,Evaluable,Background,Media,Se describe el uso previo de la partición de datos en el análisis del CTB.,COMPLETO,142,1
+40,P12-2013_P12-1042_0,Evaluable,Basis,Media,Se adoptan los rasgos de sentimiento del trabajo citado como punto de partida.,COMPLETO,142,1
+41,W13-2902_W11-1601_2,Evaluable,Comparison,Alta,Se contrasta la suposición propia con la del trabajo citado.,COMPLETO,142,1
+42,P08-1049_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ para el alineamiento.,COMPLETO,142,1
+43,D11-1026_P06-1004_3,Evaluable,Comparison,Alta,El segmentador citado se usa como línea base de comparación.,COMPLETO,142,1
+44,P03-1024_W02-1507_0,Evaluable,Evidence,Media,Respalda la afirmación de que una metagramática aporta sistematicidad.,COMPLETO,142,1
+45,P98-2143_P89-1032_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre resolución de anáfora.,COMPLETO,142,1
+46,J11-2002_A97-1016_0,Evaluable,Background,Alta,Enumeración de enfoques previos que requieren entrada selectiva.,COMPLETO,142,1
+47,W12-3128_P08-1114_0,Evaluable,Comparison,Alta,Contrasta el enfoque propio con el modelado de restricciones blandas de los trabajos citados.,COMPLETO,142,1
+48,N06-1013_P03-1021_0,Evaluable,Application,Alta,Se emplea MERT para optimizar parámetros.,COMPLETO,142,1
+49,W11-1109_P10-2036_3,Evaluable,Application,Alta,Se reutiliza exactamente el mismo diseño experimental del trabajo citado.,COMPLETO,142,1
+50,W08-0407_P01-1067_0,Evaluable,Background,Media,"Se enumeran enfoques previos que usan analizadores externos, como contexto para situar el propio.",COMPLETO,142,1
+51,D13-1203_D08-1069_1,Evaluable,Comparison,Alta,Contrasta el enfoque propio con los clasificadores distintos del trabajo citado.,COMPLETO,142,1
+52,D12-1129_N07-1044_1,Evaluable,Background,Alta,Revisión de métodos distribucionales previos.,COMPLETO,142,1
+53,Q13-1026_N03-1030_0,Evaluable,Background,Alta,Enumeración de modelos de análisis del discurso.,COMPLETO,142,1
+54,D11-1026_D08-1035_3,Evaluable,Comparison,Alta,El segmentador bayesiano se usa como línea base de comparación.,COMPLETO,142,1
+55,W13-2009_W11-0214_3,Evaluable,Application,Media,Se usan corpus introducidos en trabajos citados como fuente de predicciones.,COMPLETO,142,1
+56,W08-0906_P01-1008_0,Evaluable,Background,Media,Definición general de paráfrasis con apoyo de la cita; también podría ser Evidence.,COMPLETO,142,1
+57,W05-1002_P04-1043_4,Evaluable,Application,Alta,Se usa la herramienta SVMlight-TK en las evaluaciones.,COMPLETO,142,1
+58,W06-0903_N03-2019_0,Evaluable,Background,Alta,Enumeración de aplicaciones y trabajos previos sobre tiempo en el lenguaje.,COMPLETO,142,1
+59,D11-1019_W06-3601_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la sintaxis fuente mejora la precisión de traducción.,COMPLETO,142,1
+60,P11-1006_P00-1037_3,Evaluable,Comparison,Alta,El modelo generativo citado se usa como línea base de comparación.,COMPLETO,142,1
+61,W05-1501_N04-1013_2,Evaluable,Comparison,Media,"Se presenta la propuesta como generalización del uso de una gramática FRAGMENT, vinculando con el trabajo citado.",COMPLETO,142,1
+62,E12-1033_W11-4004_0,Evaluable,Basis,Media,Se adopta la definición de titular de opinión de trabajos previos.,COMPLETO,142,1
+63,P09-1062_P08-1054_0,Evaluable,Background,Alta,Contexto general sobre el resumen de documentos hablados.,COMPLETO,142,1
+64,D10-1064_N03-1017_0,Evaluable,Background,Alta,Introducción al paradigma de traducción basada en frases.,COMPLETO,142,1
+65,W09-3825_W03-1706_0,Evaluable,Background,Baja,"Descripción de características usadas por otro trabajo, incluidas las rítmicas del trabajo citado; podría ser Basis.",COMPLETO,142,1
+66,W04-2208_P01-1067_0,Evaluable,Evidence,Alta,Respalda la afirmación de que las estructuras sintácticas mejoran el alineamiento.,COMPLETO,142,1
+67,W06-1623_P87-1001_0,Evaluable,Background,Alta,Contexto sobre la investigación lingüística del tiempo.,COMPLETO,142,1
+68,D10-1063_N06-1033_1,Evaluable,Background,Media,Describe el método de binarización síncrona del trabajo citado como antecedente.,COMPLETO,142,1
+69,W11-2920_P06-1055_2,Evaluable,Application,Media,Se usa la gramática de Berkeley en los experimentos y se describe.,COMPLETO,142,1
+70,P02-1011_P86-1021_0,Evaluable,Further Reading,Baja,Se remite al uso de prosodia para detectar cambios estructurales como trabajo futuro; la cita señala literatura relacionada.,COMPLETO,142,1
+71,W07-0709_W02-1018_0,Evaluable,Background,Alta,Describe modelos de traducción basados en frases previos.,COMPLETO,142,1
+72,E95-1013_J95-1007_0,Evaluable,Application,Alta,Se adopta el algoritmo de descenso recursivo con memoización citado.,COMPLETO,142,1
+73,D11-1001_W10-1905_1,Evaluable,Gap,Alta,Se usa el hallazgo de errores por comunicación ad hoc para señalar una limitación de los sistemas actuales.,COMPLETO,142,1
+74,W12-1634_D10-1084_2,Evaluable,Basis,Media,El uso de n-gramas de palabras se fundamenta en investigación previa de clasificación de actos de diálogo.,COMPLETO,142,1
+75,N12-1052_D10-1120_2,Evaluable,Comparison,Alta,Se comparan los resultados de la línea base con enfoques no supervisados recientes.,COMPLETO,142,1
+76,W12-3150_W08-0509_0,Evaluable,Application,Alta,Se usa MGIZA++ para el alineamiento.,COMPLETO,142,1
+77,N12-1044_P11-1041_2,Evaluable,Evidence,Alta,"El trabajo citado mostró que las transliteraciones mejoran G2P en nombres, lo que sustenta la hipótesis.",COMPLETO,142,1
+78,P06-2013_N03-1028_1,Evaluable,Evidence,Media,Justifica la elección de SVM y CRF por su buen desempeño en chunking.,COMPLETO,142,1
+79,W09-0437_J07-2003_0,Evaluable,Improvement / Modification,Alta,Se usa Hiero modificado para construir reglas a partir de una muestra.,COMPLETO,142,1
+80,N10-1005_N04-1011_4,Evaluable,Comparison,Alta,Se comparan resultados similares con los reportados en el trabajo citado.,COMPLETO,142,1
+81,P11-1056_P09-1114_0,Evaluable,Gap,Media,Se señala que los enfoques previos asumen argumentos dados y solo ofrecen una solución parcial.,COMPLETO,142,1
+82,W13-2234_E12-1068_0,Evaluable,Background,Alta,Trabajo relacionado sobre posedición en traducción a lenguas morfológicamente ricas.,COMPLETO,142,1
+83,W99-0614_W95-0103_2,Evaluable,Comparison,Media,Se contrastan los resultados de desambiguación en inglés con los del trabajo propio en alemán.,COMPLETO,142,1
+84,J98-1005_A92-1021_0,Evaluable,Evidence,Alta,La exactitud del etiquetador respalda la decisión de restringir la prueba a una categoría gramatical.,COMPLETO,142,1
+85,W12-6338_P03-1054_0,Evaluable,Background,Alta,Enumeración de trabajos que añaden características a las reglas gramaticales.,COMPLETO,142,1
+86,N13-1032_D11-1082_0,Evaluable,Application,Alta,Se usa el modelo de corrección citado para corregir los alineamientos.,COMPLETO,142,1
+87,P13-2016_P03-1069_3,Evaluable,Evidence,Alta,Respalda la afirmación de que las probabilidades de sustantivo y dependencia son importantes.,COMPLETO,142,1
+88,W12-1632_P09-1092_0,Evaluable,Evidence,Media,Se cita un hallazgo de asimetrías que justifica el modelo de predicción.,COMPLETO,142,1
+89,P13-1079_P06-1124_0,Evaluable,Application,Media,Se usa el proceso de Pitman-Yor para estimar la distribución.,COMPLETO,142,1
+90,W03-1006_P02-1031_1,Evaluable,Background,Alta,Resume resultados previos como contexto de la visión general.,COMPLETO,142,1
+91,W08-0403_E06-1015_2,Evaluable,Application,Alta,El trabajo propio sigue la implementación rápida de núcleos de árbol de Moschitti.,COMPLETO,142,1
+92,P07-1042_P02-1003_1,Evaluable,Further Reading,Alta,Remite explícitamente al lector a los trabajos citados para más detalles.,COMPLETO,142,1
+93,P12-1082_W10-1409_0,Evaluable,Background,Alta,Revisión de trabajos previos que reportan mejoras con agrupamientos de palabras.,COMPLETO,142,1
+94,J05-3002_P01-1008_0,Evaluable,Application,Alta,Se usa el método de co-entrenamiento citado para construir el diccionario de paráfrasis.,COMPLETO,142,1
+95,D13-1006_E09-1072_0,Evaluable,Background,Alta,Describe trabajos previos que extienden la idea con relaciones de dependencia.,COMPLETO,142,1
+96,D13-1185_P11-1114_2,Evaluable,Comparison,Media,Se contrastan los resultados inducidos con los del aprendizaje supervisado.,COMPLETO,142,1
+97,D09-1043_P08-1022_0,Evaluable,Background,Media,Se citan modelos de lenguaje factorizados empleados previamente en el ranking de realización.,COMPLETO,142,1
+98,D10-1014_P03-1021_0,Evaluable,Application,Alta,Se emplea MERT para optimizar los pesos.,COMPLETO,142,1
+99,W13-1717_P12-2038_0,Evaluable,Evidence,Media,El resultado prometedor del trabajo citado respalda la decisión de extraer reglas TSG.,COMPLETO,142,1
+100,D10-1103_P06-1062_0,Evaluable,Background,Alta,Enumeración de métodos previos para adquirir oraciones paralelas de la web.,COMPLETO,142,1

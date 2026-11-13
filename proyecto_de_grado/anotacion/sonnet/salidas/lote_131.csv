@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P08-1076_W00-0726_0,Evaluable,Background,Media,Cita la tarea compartida CoNLL'00 como contexto de resultados previos de SSL.,COMPLETO,131,1
+2,D13-1026_P10-1147_0,Evaluable,Background,Alta,,COMPLETO,131,1
+3,J09-2001_W06-1207_0,Evaluable,Background,Media,Describe trabajo previo sobre la semántica de up en VPCs.,COMPLETO,131,1
+4,W11-2027_W09-0506_0,Evaluable,Evidence,Media,Respalda la afirmación de que modelos de lenguaje específicos de concepto mejoran el reconocimiento.,COMPLETO,131,1
+5,P09-2032_P03-2041_0,Evaluable,Background,Alta,,COMPLETO,131,1
+6,W13-2106_N12-1093_0,Evaluable,Gap,Media,Se señala la limitación de estos métodos (solo oraciones individuales desde registros planos) frente al presente trabajo.,COMPLETO,131,1
+7,P06-1009_N03-1028_0,Evaluable,Evidence,Media,Respalda que L-BFGS funciona bien para entrenar modelos log-lineales.,COMPLETO,131,1
+8,P12-1053_W06-1517_0,Evaluable,Background,Alta,,COMPLETO,131,1
+9,D10-1048_N07-1011_3,Evaluable,Comparison,Alta,Aparece en una tabla de resultados comparados con el sistema propio.,COMPLETO,131,1
+10,P13-1037_D11-1116_0,Evaluable,Application,Alta,Usa un analizador de código abierto tal cual para extraer ejemplos.,COMPLETO,131,1
+11,D08-1049_W03-0428_0,Evaluable,Evidence,Alta,Respalda que los n-gramas de caracteres se han usado con éxito en NER.,COMPLETO,131,1
+12,P11-1116_P06-1101_1,Evaluable,Background,Alta,,COMPLETO,131,1
+13,W13-1202_P10-1143_0,Evaluable,Background,Media,Menciona el corpus EventCorefBank como trabajo previo de anotación.,COMPLETO,131,1
+14,E12-1021_N06-1041_2,Evaluable,Comparison,Media,"Vincula la idea de semillas con el aprendizaje guiado por prototipos, señalando similitud.",COMPLETO,131,1
+15,P10-1130_P07-1031_0,Evaluable,Evidence,Alta,"Los autores citados señalan que tales detalles se omiten en los treebanks, respaldando la afirmación.",COMPLETO,131,1
+16,W06-2917_P85-1009_1,Evaluable,Further Reading,Media,Remite a una discusión detallada del tema en otro trabajo.,COMPLETO,131,1
+17,W06-1422_W06-1421_0,Evaluable,Further Reading,Alta,Remite al lector a una discusión de la historia de las tareas compartidas.,COMPLETO,131,1
+18,D09-1140_D08-1081_0,Evaluable,Application,Alta,Usa directamente el conjunto de rasgos proporcionado por el trabajo citado.,COMPLETO,131,1
+19,P10-1033_N09-1026_0,Evaluable,Comparison,Alta,Se usa como línea base contra la que se evalúa DPDI.,COMPLETO,131,1
+20,W13-4305_P07-2045_0,Evaluable,Application,Alta,Usa el decodificador Moses.,COMPLETO,131,1
+21,W03-1019_W02-1002_0,Evaluable,Evidence,Alta,Respalda que los modelos discriminativos son empíricamente mejores.,COMPLETO,131,1
+22,N12-2010_P05-1018_1,Evaluable,Background,Alta,,COMPLETO,131,1
+23,P10-1145_P09-1020_1,Evaluable,Background,Media,Describe trabajo previo que aplica bosques a modelos árbol-secuencia-a-cadena.,COMPLETO,131,1
+24,N13-1063_N12-1052_0,Evaluable,Evidence,Media,Respalda que estos métodos han mejorado sistemas supervisados.,COMPLETO,131,1
+25,E09-1088_N07-1051_0,Evaluable,Background,Media,Cita trabajos sobre modelos con variables latentes como contexto general.,COMPLETO,131,1
+26,W11-2149_W06-3110_0,Evaluable,Application,Alta,Usa un modelo de reordenamiento discriminativo existente.,COMPLETO,131,1
+27,P12-2050_P05-1004_0,Evaluable,Background,Alta,,COMPLETO,131,1
+28,P13-1081_P11-1123_0,Evaluable,Gap,Media,Se señala una limitación del trabajo citado (pérdida parcial de información de posición).,COMPLETO,131,1
+29,W13-0907_W07-0103_0,Evaluable,Background,Media,Describe la intuición que subyace a enfoques previos.,COMPLETO,131,1
+30,N13-1055_W11-2838_0,Evaluable,Application,Alta,Usa el conjunto de prueba de HOO 2011.,COMPLETO,131,1
+31,W13-3210_N10-1013_0,Evaluable,Background,Alta,,COMPLETO,131,1
+32,D12-1080_P06-1095_0,Evaluable,Background,Alta,,COMPLETO,131,1
+33,W12-2801_W10-2903_0,Evaluable,Background,Alta,,COMPLETO,131,1
+34,P10-1147_N06-1014_0,Evaluable,Application,Alta,Usa las predicciones posteriores del modelo HMM citado.,COMPLETO,131,1
+35,S13-1010_P06-4020_0,Evaluable,Application,Alta,Se aplicaron los analizadores/herramientas RASP al BNC.,COMPLETO,131,1
+36,W07-1031_W03-0425_0,Evaluable,Evidence,Media,Respalda que combinar modelos logra buenos resultados.,COMPLETO,131,1
+37,W09-0420_W08-0509_0,Evaluable,Application,Alta,Usa GIZA++ multihilo para generar alineamientos.,COMPLETO,131,1
+38,W11-1410_W10-1502_0,Evaluable,Background,Media,Remite a trabajo previo sobre otros lenguajes más complejos morfológicamente.,COMPLETO,131,1
+39,P12-2022_P10-2042_0,Evaluable,Basis,Media,El muestreo conjunto de derivaciones sigue el espíritu del trabajo citado.,COMPLETO,131,1
+40,Q13-1029_S12-1047_2,Evaluable,Background,Media,Describe cómo se creó el conjunto de datos de SemEval 2012 Task 2.,COMPLETO,131,1
+41,W02-1604_W01-0808_0,Evaluable,Further Reading,Alta,Remite a detalles adicionales.,COMPLETO,131,1
+42,D12-1079_N07-1051_0,Evaluable,Application,Alta,Usa el Berkeley Parser como anotador inicial.,COMPLETO,131,1
+43,W07-2208_W06-1619_6,Evaluable,Comparison,Alta,Modelo citado comparado en la figura con el propio.,COMPLETO,131,1
+44,W06-1807_W03-0907_0,Evaluable,Gap,Media,Señala que las formas lógicas no se extraen automáticamente del texto.,COMPLETO,131,1
+45,W10-2906_P09-1042_1,Evaluable,Background,Alta,,COMPLETO,131,1
+46,W12-0404_P11-1032_0,Evaluable,Evidence,Alta,Respalda que el desempeño humano no supera el azar.,COMPLETO,131,1
+47,P07-1067_P04-1019_0,Evaluable,Background,Media,"Describe enfoques previos basados en patrones, a los que luego se critica.",COMPLETO,131,1
+48,W98-0901_P97-1040_0,Evaluable,Background,Media,Enumera trabajos previos sobre implementación de OT.,COMPLETO,131,1
+49,P11-2123_P08-1037_0,Evaluable,Basis,Alta,Extiende los experimentos del trabajo citado.,COMPLETO,131,1
+50,P11-1070_E06-1011_0,Evaluable,Comparison,Alta,Se compara la reducción de error frente al analizador citado.,COMPLETO,131,1
+51,N12-1023_W08-0336_0,Evaluable,Application,Alta,Usa el segmentador chino de Stanford.,COMPLETO,131,1
+52,D08-1034_P00-1065_0,Evaluable,Identification of the Originator,Alta,Atribuye la definición original de la tarea SRL.,COMPLETO,131,1
+53,P11-1158_P09-1108_1,Evaluable,Basis,Media,Las heurísticas consideradas se basan en las desarrolladas por el trabajo citado.,COMPLETO,131,1
+54,P07-2046_P03-1021_0,Evaluable,Application,Alta,Usa el entrenamiento de tasa mínima de error.,COMPLETO,131,1
+55,D13-1076_W11-2006_1,Evaluable,Evidence,Media,"Respalda que enriquecer con paráfrasis mejora la exactitud, motivando su enfoque.",COMPLETO,131,1
+56,P03-1006_P96-1031_0,Evaluable,Basis,Media,El enfoque propuesto se construye sobre reglas ponderadas dependientes del contexto de los trabajos citados.,COMPLETO,131,1
+57,W10-0722_W04-1013_0,Evaluable,Background,Alta,,COMPLETO,131,1
+58,J13-3003_N10-1013_2,Evaluable,Background,Alta,,COMPLETO,131,1
+59,S12-1015_P07-2045_0,Evaluable,Application,Alta,Se propone aplicar el toolkit Moses.,COMPLETO,131,1
+60,D08-1094_P98-2127_0,Evaluable,Comparison,Media,Vincula el efecto beneficioso observado con el hallazgo del trabajo citado.,COMPLETO,131,1
+61,J04-4002_J90-2002_0,Evaluable,Identification of the Originator,Alta,Reconoce a IBM como pionero de la traducción automática estadística.,COMPLETO,131,1
+62,P09-1114_D08-1072_1,Evaluable,Background,Alta,,COMPLETO,131,1
+63,W13-2809_P13-1155_0,Evaluable,Further Reading,Media,Remite a otra fuente para más detalles de las características del contenido de FB.,COMPLETO,131,1
+64,W13-0908_W06-3506_0,Evaluable,Background,Media,Enumera trabajos previos que luego se señalan como limitados.,COMPLETO,131,1
+65,E12-1009_W09-3811_0,Evaluable,Background,Alta,,COMPLETO,131,1
+66,P99-1007_P97-1051_0,Evaluable,Evidence,Media,Respalda la afirmación de que la identidad laxa no está ligada solo a la elipsis de VP.,COMPLETO,131,1
+67,D11-1117_P10-1130_4,Evaluable,Comparison,Alta,Contrasta sus hallazgos con los reportados por el trabajo citado.,COMPLETO,131,1
+68,P07-1064_W01-0514_0,Evaluable,Background,Alta,,COMPLETO,131,1
+69,W04-3237_W96-0213_1,Evaluable,Comparison,Alta,Contrasta enfoques basados en reglas con el probabilístico del trabajo citado.,COMPLETO,131,1
+70,E12-1034_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford Parser.,COMPLETO,131,1
+71,W06-3206_W04-3246_0,Evaluable,Background,Media,Ejemplo de investigación actual con restricciones lingüísticas.,COMPLETO,131,1
+72,W07-2305_W06-1403_2,Evaluable,Background,Media,Describe el algoritmo implementado en OpenCCG.,COMPLETO,131,1
+73,D10-1035_P09-1045_2,Evaluable,Application,Alta,Sigue el proceso de evaluación del trabajo citado.,COMPLETO,131,1
+74,W13-1101_D11-1113_0,Evaluable,Gap,Alta,Se indica que la revisión de análisis no se ha usado para datos web.,COMPLETO,131,1
+75,D11-1097_P10-1093_0,Evaluable,Background,Alta,,COMPLETO,131,1
+76,P12-1071_D11-1109_1,Evaluable,Application,Alta,Adopta los rasgos estándar del trabajo citado.,COMPLETO,131,1
+77,W12-3406_P91-1030_1,Evaluable,Background,Media,Describe una línea de trabajo y su formulación del problema.,COMPLETO,131,1
+78,W12-3810_P11-1100_0,Evaluable,Evidence,Media,Respalda que el analizador detecta relaciones de discurso de forma fiable.,COMPLETO,131,1
+79,W98-0612_J91-4003_0,Evaluable,Further Reading,Baja,Remite a una fuente para la selección de sentidos.,COMPLETO,131,1
+80,W06-2601_W03-0420_0,Evaluable,Basis,Media,Los rasgos binarios estándar se inspiran en la literatura citada.,COMPLETO,131,1
+81,E12-1009_P10-1001_4,Evaluable,Gap,Alta,"Contrasta limitaciones (no etiquetado, solo proyectivo) con el presente trabajo.",COMPLETO,131,1
+82,P99-1064_J91-4003_0,Evaluable,Further Reading,Alta,Remite a una introducción al marco GL.,COMPLETO,131,1
+83,P87-1003_J88-2005_2,Evaluable,Further Reading,Alta,Remite a otro trabajo para temas no tratados.,COMPLETO,131,1
+84,P01-1037_P96-1025_0,Evaluable,Application,Media,Implementa su propia versión del analizador de Collins.,COMPLETO,131,1
+85,W06-1617_W04-2705_1,Evaluable,Background,Alta,,COMPLETO,131,1
+86,W11-2112_W04-3205_0,Evaluable,Application,Alta,Usa VerbOcean para alinear verbos.,COMPLETO,131,1
+87,P13-1016_N10-1129_2,Evaluable,Comparison,Alta,Contrasta explícitamente su estrategia de aprendizaje con la de los trabajos citados.,COMPLETO,131,1
+88,P13-2015_D08-1031_0,Evaluable,Gap,Media,"Señala resultados mixtos de rasgos léxicos, justificando la hipótesis.",COMPLETO,131,1
+89,D11-1066_P04-1054_0,Evaluable,Background,Alta,,COMPLETO,131,1
+90,N13-1115_P12-1001_1,Evaluable,Basis,Media,"Se basa en el enfoque PMO, reemplazando la función objetivo.",COMPLETO,131,1
+91,S13-1009_S12-1051_0,Evaluable,Background,Alta,,COMPLETO,131,1
+92,N10-1128_P05-1066_0,Evaluable,Background,Alta,,COMPLETO,131,1
+93,N06-1006_N03-1022_0,Evaluable,Background,Alta,,COMPLETO,131,1
+94,P11-1103_N03-1017_0,Evaluable,Application,Alta,Extrae frases siguiendo el procedimiento citado.,COMPLETO,131,1
+95,N09-1009_D08-1092_0,Evaluable,Background,Alta,,COMPLETO,131,1
+96,N03-1018_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para entrenar el modelo.,COMPLETO,131,1
+97,W10-0717_D09-1092_0,Evaluable,Background,Alta,,COMPLETO,131,1
+98,J12-1003_D10-1107_1,Evaluable,Background,Alta,,COMPLETO,131,1
+99,P12-2076_P07-1033_0,Evaluable,Application,Alta,Usa el método de aumento de rasgos sin modificarlo.,COMPLETO,131,1
+100,N10-1145_P03-1011_1,Evaluable,Background,Alta,,COMPLETO,131,1

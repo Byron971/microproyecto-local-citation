@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W11-1109_D10-1120_2,Evaluable,Comparison,Alta,Contrasta explícitamente los resultados del trabajo citado con los propios por idioma.,COMPLETO,138,1
+2,D10-1120_P09-1009_0,Evaluable,Background,Alta,Resume trabajos previos sobre correspondencias interlingüísticas en análisis sintáctico.,COMPLETO,138,1
+3,J12-1002_P99-1004_0,Evaluable,Background,Alta,Enumera técnicas estadísticas previas para el análisis de palabras.,COMPLETO,138,1
+4,W09-3820_W08-1005_0,Evaluable,Comparison,Alta,Compara el desempeño del modelo con el Berkeley Parser.,COMPLETO,138,1
+5,J01-4003_P96-1036_0,Evaluable,Evidence,Media,Los resultados propios se presentan como apoyo a las teorías de centrado funcional citadas.,COMPLETO,138,1
+6,D12-1069_P11-1060_1,Evaluable,Background,Alta,Describe una línea de trabajo previa sobre supervisión reducida en análisis semántico.,COMPLETO,138,1
+7,A00-2002_P99-1047_1,Evaluable,Basis,Media,Extiende el paradigma shift-reduce de los trabajos citados; construye sobre ellos.,COMPLETO,138,1
+8,D12-1096_N06-1020_0,Evaluable,Background,Alta,Describe el estado del arte en rendimiento de análisis sintáctico.,COMPLETO,138,1
+9,P12-1081_W01-0521_0,Evaluable,Evidence,Media,Respalda la afirmación de que las estadísticas léxicas tienen un efecto pequeño en el parsing.,COMPLETO,138,1
+10,N09-1021_N04-1017_0,Evaluable,Background,Media,Indica que el enfoque general ya fue considerado en trabajos previos.,COMPLETO,138,1
+11,W13-4706_W09-3536_0,Evaluable,Background,Alta,Lista de trabajos previos sobre transliteración estadística.,COMPLETO,138,1
+12,N12-1077_N10-1013_0,Evaluable,Background,Alta,Describe modelos de espacio vectorial existentes.,COMPLETO,138,1
+13,P11-2120_P05-1012_0,Evaluable,Application,Alta,"Usa el parser MST con MIRA tal cual, con parámetros por defecto.",COMPLETO,138,1
+14,W05-0211_P97-1003_0,Evaluable,Background,Media,Describe el parser de Collins como uno de los sistemas existentes.,COMPLETO,138,1
+15,N04-4034_N03-2002_0,Evaluable,Identification of the Originator,Alta,Indica que la idea de FLM fue introducida en la obra citada.,COMPLETO,138,1
+16,P98-2210_A97-1011_0,Evaluable,Application,Alta,Usa el parser Conexor FDG para obtener relaciones sintácticas.,COMPLETO,138,1
+17,P10-1054_E09-1055_1,Evaluable,Background,Media,Describe un resultado conocido sobre reducción del rango en LCFRS.,COMPLETO,138,1
+18,D09-1101_P03-2012_0,Evaluable,Background,Alta,Enumera enfoques previos de detección de discurso nuevo.,COMPLETO,138,1
+19,D10-1038_P03-1071_5,Evaluable,Background,Media,Describe lo que hace el trabajo previo (solo relación de repetición) para justificar la nota.,COMPLETO,138,1
+20,W12-3307_A00-2004_0,Evaluable,Comparison,Media,Compara resultados propios con el estado del arte en el conjunto de Choi.,COMPLETO,138,1
+21,W06-3104_P01-1067_0,Evaluable,Comparison,Alta,Contrasta el enfoque propio con los basados en gramáticas síncronas estocásticas.,COMPLETO,138,1
+22,N13-1008_P12-1075_1,Evaluable,Basis,Alta,El trabajo actual extiende un artículo de taller previo.,COMPLETO,138,1
+23,N09-1024_D08-1068_0,Evaluable,Basis,Media,Combina ideas de trabajos previos (muestreo) como fundamento del método.,COMPLETO,138,1
+24,P12-1036_P11-1036_0,Evaluable,Background,Alta,Enumera trabajos relacionados sobre modelado de actitudes.,COMPLETO,138,1
+25,P99-1032_W98-1126_0,Evaluable,Application,Alta,Usa la representación de características por clase del trabajo citado.,COMPLETO,138,1
+26,P01-1046_E99-1005_1,Evaluable,Evidence,Alta,Respalda que los juicios de plausibilidad correlacionan con la frecuencia de co-ocurrencia.,COMPLETO,138,1
+27,P09-1022_W04-1013_0,Evaluable,Comparison,Alta,Compara las correlaciones del método propio con ROUGE.,COMPLETO,138,1
+28,P13-1045_P03-1054_3,Evaluable,Comparison,Alta,Compara los resultados con el parser PCFG no lexicalizado de Stanford.,COMPLETO,138,1
+29,W10-2906_D08-1092_5,Evaluable,Application,Media,Emplea un procedimiento tipo EM del trabajo citado para optimizar.,COMPLETO,138,1
+30,D09-1126_E03-1036_0,Evaluable,Background,Media,Describe un avance previo en CCG que permitió restringir reglas léxicamente.,COMPLETO,138,1
+31,P07-1108_P05-1033_0,Evaluable,Background,Alta,Lista de métodos sintácticos de traducción automática estadística.,COMPLETO,138,1
+32,W12-1640_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford Parser para analizar las oraciones.,COMPLETO,138,1
+33,W07-2208_W04-0307_1,Evaluable,Gap,Media,Señala limitación de trabajos previos: modelos entrenados independientemente del supertagger.,COMPLETO,138,1
+34,P13-2115_D10-1036_0,Evaluable,Background,Alta,Enumera trabajos previos que combinan co-ocurrencia con PageRank y otras fuentes.,COMPLETO,138,1
+35,P04-1084_P96-1016_1,Evaluable,Evidence,Media,Respalda que la propiedad es un requisito definitorio de los sistemas de reescritura síncrona.,COMPLETO,138,1
+36,N09-2065_P03-1002_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre el valor de PAS en extracción de información.,COMPLETO,138,1
+37,D11-1059_D10-1083_2,Evaluable,Comparison,Media,Señala que los resultados coinciden con los hallazgos de trabajos previos.,COMPLETO,138,1
+38,D11-1019_P10-1076_0,Evaluable,Background,Alta,Describe el rendimiento del modelo string-to-tree como antecedente.,COMPLETO,138,1
+39,D08-1010_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para obtener alineamientos de palabras.,COMPLETO,138,1
+40,N12-1010_W09-3940_0,Evaluable,Evidence,Alta,Respalda la correlación negativa de los estados afectivos con el éxito de la tarea.,COMPLETO,138,1
+41,J96-2002_E91-1023_0,Evaluable,Background,Alta,Enumera trabajos previos que usan DATR en fonología y morfología.,COMPLETO,138,1
+42,W05-1504_P03-1054_0,Evaluable,Evidence,Alta,Respalda la afirmación de que las características bilexicales contribuyen poco.,COMPLETO,138,1
+43,P08-3001_P98-2127_1,Evaluable,Evidence,Media,Justifica la decisión de usar estructura de dependencias como contexto.,COMPLETO,138,1
+44,W04-3204_W00-1326_0,Evaluable,Background,Alta,Resume trabajos previos sobre portabilidad de corpus etiquetados.,COMPLETO,138,1
+45,D09-1133_W06-1617_3,Evaluable,Application,Alta,Adopta el algoritmo de selección voraz de características descrito en el trabajo citado.,COMPLETO,138,1
+46,W09-3414_P07-1032_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la superioridad de las etiquetas CCG.,COMPLETO,138,1
+47,P09-1021_N07-1029_1,Evaluable,Background,Alta,Enumera métodos previos de combinación de sistemas de TA.,COMPLETO,138,1
+48,D13-1112_N12-1015_3,Evaluable,Basis,Alta,La explicación propuesta se apoya en la teoría de los autores citados.,COMPLETO,138,1
+49,W13-1711_D11-1148_0,Evaluable,Background,Alta,Resume hallazgos de estudios previos sobre identificación de lengua nativa.,COMPLETO,138,1
+50,N10-1013_W09-3204_0,Evaluable,Background,Alta,Describe enfoques previos basados en recursos léxicos.,COMPLETO,138,1
+51,W13-3733_S12-1035_0,Evaluable,Background,Alta,Presenta la tarea compartida *SEM 2012 como antecedente del área.,COMPLETO,138,1
+52,P07-1038_W05-0904_1,Evaluable,Improvement / Modification,Alta,Adapta la idea de Head Word Chains a su propio método.,COMPLETO,138,1
+53,W04-0404_N01-1006_0,Evaluable,Application,Alta,Usa fnTBL para etiquetar y segmentar el corpus.,COMPLETO,138,1
+54,P11-1038_N10-1020_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el texto ruidoso dificulta las herramientas de PLN.,COMPLETO,138,1
+55,D12-1001_P08-1068_0,Evaluable,Background,Media,Indica que la idea de estadísticas como características ya se consideró previamente.,COMPLETO,138,1
+56,P10-1122_W07-1401_0,Evaluable,Background,Alta,Describe la extensión histórica de la tarea RTE.,COMPLETO,138,1
+57,E12-1009_N06-2033_0,Evaluable,Background,Alta,Menciona la técnica de votación como trabajo previo.,COMPLETO,138,1
+58,P11-1118_P03-1069_0,Evaluable,Background,Alta,Menciona métodos previos de coherencia con características léxicas.,COMPLETO,138,1
+59,P13-1036_P11-1025_5,Evaluable,Comparison,Alta,Aparece en tabla comparativa de resultados de métodos.,COMPLETO,138,1
+60,P11-1087_D10-1083_1,Evaluable,Comparison,Alta,"Compara el modelo con el citado, señalando su error y menor precisión.",COMPLETO,138,1
+61,W12-3156_N12-1046_0,Evaluable,Background,Alta,Resume trabajo previo que da apoyo empírico a la consistencia de traducción.,COMPLETO,138,1
+62,P06-1027_J04-3004_0,Evaluable,Identification of the Originator,Media,Atribuye a Yarowsky la popularización del bootstrapping.,COMPLETO,138,1
+63,N13-1037_P11-1037_1,Evaluable,Background,Alta,Enumera trabajos previos de PLN para Twitter.,COMPLETO,138,1
+64,E03-1040_W98-1106_0,Evaluable,Background,Alta,Enumera trabajos previos sobre aprendizaje de propiedades de verbos.,COMPLETO,138,1
+65,W11-2042_W09-3933_1,Evaluable,Basis,Alta,El modelo de engagement se basa en las ideas del trabajo citado.,COMPLETO,138,1
+66,P11-1059_P98-1013_0,Evaluable,Gap,Alta,Señala que FrameNet no considera la negación.,COMPLETO,138,1
+67,D10-1078_P10-1132_0,Evaluable,Background,Alta,Enumera avances previos en inducción de POS.,COMPLETO,138,1
+68,E09-1055_P06-2066_0,Evaluable,Evidence,Alta,Respalda la observación de que las estructuras son casi proyectivas.,COMPLETO,138,1
+69,P13-2148_P11-2104_0,Evaluable,Background,Alta,Describe trabajos previos con modelos de caminata aleatoria.,COMPLETO,138,1
+70,D13-1110_N10-1140_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la utilidad de los saltos discontinuos en el origen.,COMPLETO,138,1
+71,W12-3203_D08-1038_0,Evaluable,Background,Alta,Describe trabajo reciente sobre tendencias en la comunidad ACL.,COMPLETO,138,1
+72,P13-4033_W09-2404_0,Evaluable,Background,Media,"Describe enfoques previos de consistencia, con sus limitaciones como contexto.",COMPLETO,138,1
+73,W08-1701_E99-1008_0,Evaluable,Evidence,Alta,Respalda la afirmación de que RCG incluye lenguajes MCS y es analizable en tiempo polinomial.,COMPLETO,138,1
+74,W07-1033_W04-1219_0,Evaluable,Background,Media,Describe el mejor sistema de la tarea compartida JNLPBA.,COMPLETO,138,1
+75,Q13-1007_W12-1909_1,Evaluable,Application,Alta,Usa los datos del desafío PASCAL para la evaluación.,COMPLETO,138,1
+76,D13-1003_D10-1099_0,Evaluable,Background,Alta,Describe el primer modelo con aprendiz at-least-one.,COMPLETO,138,1
+77,W12-1903_P10-1130_2,Evaluable,Evidence,Alta,Respalda que reservar los datos completos para etapas tardías ayuda al entrenamiento.,COMPLETO,138,1
+78,D09-1095_S07-1109_1,Evaluable,Evidence,Alta,Los autores citados sostienen una observación que respalda el argumento.,COMPLETO,138,1
+79,W12-3404_D11-1122_1,Evaluable,Basis,Media,Sigue la práctica común de asumir identificación oracular de argumentos.,COMPLETO,138,1
+80,P04-1043_P00-1065_2,Evaluable,Comparison,Alta,Permite comparar resultados con la literatura previa.,COMPLETO,138,1
+81,D11-1116_P07-1031_1,Evaluable,Application,Alta,Usa la versión de los datos con NP parcheados.,COMPLETO,138,1
+82,P11-1049_W04-3201_0,Evaluable,Application,Alta,Resuelve los problemas con el algoritmo SMO factorizado.,COMPLETO,138,1
+83,W06-3812_E95-1020_0,Evaluable,Comparison,Alta,Compara la pureza obtenida con la precisión reportada por el trabajo citado.,COMPLETO,138,1
+84,W13-1721_N12-1011_0,Evaluable,Gap,Alta,Señala la limitación del enfoque previo: requiere muchas respuestas puntuadas.,COMPLETO,138,1
+85,P13-1020_D12-1022_2,Evaluable,Background,Alta,Describe estrategias previas en resumen compresivo.,COMPLETO,138,1
+86,E03-1080_P01-1025_0,Evaluable,Gap,Alta,"Señala que no evalúan cuantitativamente el preprocesamiento, lo que motiva el estudio.",COMPLETO,138,1
+87,D12-1108_P10-4006_0,Evaluable,Application,Alta,Usa el paquete S-Space para entrenar el espacio LSA.,COMPLETO,138,1
+88,W08-2107_W06-1206_0,Evaluable,Background,Alta,Cita trabajos previos de identificación de MWEs.,COMPLETO,138,1
+89,E12-1003_P11-1112_5,Evaluable,Comparison,Alta,Compara el desempeño con el método Split-Merge.,COMPLETO,138,1
+90,P12-1008_W04-2703_2,Evaluable,Comparison,Alta,Presenta estadísticas comparables del PDTB.,COMPLETO,138,1
+91,J08-1002_W03-0403_3,Evaluable,Comparison,Media,Contrasta explícitamente estos estudios con el trabajo actual (feature forests).,COMPLETO,138,1
+92,D11-1110_P07-1049_1,Evaluable,Comparison,Alta,Aparece en tabla comparando resultados con trabajos previos.,COMPLETO,138,1
+93,W10-3807_W05-0904_0,Evaluable,Comparison,Alta,Compara la métrica propuesta con STM.,COMPLETO,138,1
+94,P10-1100_P08-1090_0,Evaluable,Background,Media,Cita trabajos recientes de aprendizaje automático de guiones.,COMPLETO,138,1
+95,W13-0801_P10-2041_0,Evaluable,Application,Alta,Usa el método de selección de datos de modelos de lenguaje del trabajo citado.,COMPLETO,138,1
+96,D13-1156_P11-1049_0,Evaluable,Gap,Media,"Señala que la relajación LP dio resultados deficientes, limitación del trabajo previo.",COMPLETO,138,1
+97,P13-1123_E09-1085_1,Evaluable,Comparison,Alta,Compara el tiempo del sistema con otros sistemas incrementales.,COMPLETO,138,1
+98,P08-1039_P07-1031_5,Evaluable,Comparison,Alta,Compara la caída de rendimiento observada con la del trabajo citado.,COMPLETO,138,1
+99,P11-1158_N03-1016_2,Evaluable,Application,Alta,Usa el estimado SX ideado en el trabajo citado.,COMPLETO,138,1
+100,P06-2019_W05-0618_0,Evaluable,Background,Alta,Enumera aplicaciones previas de programación entera.,COMPLETO,138,1
