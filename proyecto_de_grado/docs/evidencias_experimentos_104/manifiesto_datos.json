@@ -147,6 +147,66 @@
         "val~gold_v2:context_id": 0,
         "gold~excluidos:context_id": 0,
         "gold~gold_v2:context_id": 0
+      },
+      "sonnet": {
+        "train~val:context_id": 0,
+        "train~val:citing_id": 0,
+        "train~val:par_citante_citado": 0,
+        "train~val:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "val~gold:context_id": 0,
+        "val~gold:citing_id": 0,
+        "val~gold:par_citante_citado": 0,
+        "val~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "val~excluidos:context_id": 0,
+        "val~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      },
+      "sonnet_alta": {
+        "train~val:context_id": 0,
+        "train~val:citing_id": 0,
+        "train~val:par_citante_citado": 0,
+        "train~val:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "val~gold:context_id": 0,
+        "val~gold:citing_id": 0,
+        "val~gold:par_citante_citado": 0,
+        "val~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "val~excluidos:context_id": 0,
+        "val~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      },
+      "sonnet_cap": {
+        "train~val:context_id": 0,
+        "train~val:citing_id": 0,
+        "train~val:par_citante_citado": 0,
+        "train~val:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "val~gold:context_id": 0,
+        "val~gold:citing_id": 0,
+        "val~gold:par_citante_citado": 0,
+        "val~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "val~excluidos:context_id": 0,
+        "val~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
       }
     },
     "descartados_por_texto_repetido_con_v": {
@@ -155,7 +215,10 @@
       "jurado": 4,
       "hibrido": 8,
       "natural": 7,
-      "haiku_solo": 0
+      "haiku_solo": 0,
+      "sonnet": 0,
+      "sonnet_alta": 0,
+      "sonnet_cap": 0
     }
   },
   "conteos": {
@@ -225,6 +288,39 @@
       "Identification of the Originator": 60,
       "Further Reading": 47
     },
+    "sonnet": {
+      "Background": 4214,
+      "Gap": 686,
+      "Basis": 698,
+      "Comparison": 2286,
+      "Application": 2023,
+      "Improvement / Modification": 188,
+      "Evidence": 2164,
+      "Identification of the Originator": 322,
+      "Further Reading": 744
+    },
+    "sonnet_alta": {
+      "Background": 2906,
+      "Gap": 289,
+      "Basis": 276,
+      "Comparison": 1864,
+      "Application": 1766,
+      "Improvement / Modification": 165,
+      "Evidence": 1078,
+      "Identification of the Originator": 217,
+      "Further Reading": 505
+    },
+    "sonnet_cap": {
+      "Background": 2000,
+      "Gap": 686,
+      "Basis": 698,
+      "Comparison": 2000,
+      "Application": 2000,
+      "Improvement / Modification": 188,
+      "Evidence": 2000,
+      "Identification of the Originator": 322,
+      "Further Reading": 744
+    },
     "validacion": {
       "Background": 1307,
       "Gap": 136,
@@ -235,6 +331,17 @@
       "Evidence": 262,
       "Identification of the Originator": 59,
       "Further Reading": 48
+    },
+    "validacion_sonnet": {
+      "Background": 1530,
+      "Gap": 98,
+      "Basis": 173,
+      "Comparison": 490,
+      "Application": 693,
+      "Improvement / Modification": 36,
+      "Evidence": 264,
+      "Identification of the Originator": 23,
+      "Further Reading": 72
     }
   },
   "n": {
@@ -244,7 +351,11 @@
     "hibrido": 13719,
     "natural": 13331,
     "haiku_solo": 2180,
-    "validacion": 3379
+    "sonnet": 13325,
+    "sonnet_alta": 9066,
+    "sonnet_cap": 10638,
+    "validacion": 3379,
+    "validacion_sonnet": 3379
   },
   "sha256_listas": {
     "qlora_p50": "7adfa85f705d6a23442d2637205437988b3212d8e9a40eff416cc330b80e9000",
@@ -253,7 +364,11 @@
     "hibrido": "afadf96103e390ab165b69afcf8ee6188039682a3516690d3946a10fa9fae618",
     "natural": "0265f58a2be1fedd7fb61d722c6ad955e6cb53fc23a8632eace58c180925cb75",
     "haiku_solo": "abbe589b1f3393f69347ca65544dd2bf0c676c171af02494bdd85af8ff367020",
-    "validacion": "e4df200a796568cd53921a2d81834f20db6188d5363cb069fbc38cfe806dc02e"
+    "sonnet": "6bfc0dd9a7b039bc392975f537720b82d5d407a780fbb036f7d68c175d293eb9",
+    "sonnet_alta": "47cc00af04c74e567817cd743c14cabf2c6f49da62e16f4d6c93ebd4a5c76702",
+    "sonnet_cap": "03fcc31ebfe3c5088a6a6c6e011c07944677521cf2a4e8c581a6432f89e1566f",
+    "validacion": "e4df200a796568cd53921a2d81834f20db6188d5363cb069fbc38cfe806dc02e",
+    "validacion_sonnet": "743d18a4cf05817c3d7280bc981435078172c99aeddb1dca6ea3dcccd0476537"
   },
   "sha256_ids": {
     "qlora_p50": "1c1032c42ebaa0698f6699d164ce94a2bf3c934b86f85622cec0b29b487de0bd",
@@ -262,13 +377,18 @@
     "hibrido": "2529e17159e6bf7f09522ab9be734fb3f4374aa6022576a6657f82212e56d0a6",
     "natural": "f6b7bd2fbccf3cd6351dfd77e69b04061b9c42f290e0e4b3a3a0328f8ffd77d4",
     "haiku_solo": "9d904528498b5efbef140b2563c48b6bf1aaec45cc75553dee12f2666853d17b",
-    "validacion": "db20c0aa3cb1919ca6012a6573fedc7277607a6dcd08044a4d1ea57ab069ef84"
+    "sonnet": "eb5cd4a9d79e426377d3b3393594ca00b292f885bbad7a347b7356dc6cdb47de",
+    "sonnet_alta": "ed754195c51000b43b1c3f6ae2c8067d5c65f3f7ebaac4041a931bed5a0d77a5",
+    "sonnet_cap": "77aaab281ebc13de29bbadc637a9902ef47c5ae1900cbd28c3b118dadc36c2ec",
+    "validacion": "db20c0aa3cb1919ca6012a6573fedc7277607a6dcd08044a4d1ea57ab069ef84",
+    "validacion_sonnet": "db20c0aa3cb1919ca6012a6573fedc7277607a6dcd08044a4d1ea57ab069ef84"
   },
   "sha256_insumos": {
     "qlora_18000_v2": "d622716f2c8f518e9edbd0fb22530f16a64b56e41092cead7b65699acee4f553",
     "jurado": "1a9cb10cd25b412d713f2b0d5354233ee42132da42c45a00cfa9cc48a1b553b5",
     "referencia_gpt": "1528c7578271645dc554beae982634d7979e48c8ea75db136b53c7be476c5e3b",
     "haiku_2700": "523b48d59de716dc7dbf5abe6ad7586600cc6201a503e2af03d378c71e7041ee",
-    "split_v2": "1f1f8bc312152fc52fac69f627c0c65a8cd86f61d5799b2b094c2195299be72b"
+    "split_v2": "1f1f8bc312152fc52fac69f627c0c65a8cd86f61d5799b2b094c2195299be72b",
+    "sonnet": "d0e95e927c9f57860e6ec75caf5338c07834dca3c7588bf45eccc6e87dcbba1c"
   }
 }
