@@ -1,0 +1,233 @@
+{
+  "dry": false,
+  "git": {
+    "git_head": "b523001987ef8ba39a93b9f7ee370ff7f832f0dd",
+    "dirty": "True"
+  },
+  "top3_sha": "ab11e819ce0fe719c87446db315b7e2d3c1fcd4ddb29a042cf42a0c85fc27e04",
+  "sha256_ids_pistas": {
+    "M_train": "d3f7fc7e7c009a45bf77a1a410c59e9908a4f193741911c6d16f2153871cddda",
+    "M_val": "0667578f4d872044d14459ababf691cd748d06fd449e33e80b2a1fc5ff4ed98d",
+    "S_train": "05c89d05da0c576a90b87a13e42e28fb8a046c4793c15fba97ebdfafeb16f1ac",
+    "S_val": "0667578f4d872044d14459ababf691cd748d06fd449e33e80b2a1fc5ff4ed98d"
+  },
+  "n": {
+    "train_M_B": 6979,
+    "train_S_B": 6875,
+    "V_B": 1814,
+    "V_sonnet_B": 1814,
+    "gold_v2": 1533,
+    "gold_v2_B": 839
+  },
+  "sha256_ids": {
+    "train_M_B": "d3f7fc7e7c009a45bf77a1a410c59e9908a4f193741911c6d16f2153871cddda",
+    "train_S_B": "05c89d05da0c576a90b87a13e42e28fb8a046c4793c15fba97ebdfafeb16f1ac",
+    "V_B": "0667578f4d872044d14459ababf691cd748d06fd449e33e80b2a1fc5ff4ed98d",
+    "V_sonnet_B": "0667578f4d872044d14459ababf691cd748d06fd449e33e80b2a1fc5ff4ed98d",
+    "gold_v2_B": "86a27d17c269e5b62f8fd4c64628430ee69f57e7b67b4dec4afb205a417fdf1b"
+  },
+  "datos_104_sha256_ids": {
+    "natural": "f6b7bd2fbccf3cd6351dfd77e69b04061b9c42f290e0e4b3a3a0328f8ffd77d4",
+    "sonnet": "eb5cd4a9d79e426377d3b3393594ca00b292f885bbad7a347b7356dc6cdb47de",
+    "validacion": "db20c0aa3cb1919ca6012a6573fedc7277607a6dcd08044a4d1ea57ab069ef84",
+    "validacion_sonnet": "db20c0aa3cb1919ca6012a6573fedc7277607a6dcd08044a4d1ea57ab069ef84"
+  },
+  "cobertura": {
+    "train_M": {
+      "candidatos": 12793,
+      "interseccion": 6988,
+      "cobertura_pct": 54.62,
+      "excluidos_por_motivo": {
+        "ValueError": 22,
+        "autocita": 6,
+        "menos_de_3_chunks": 7,
+        "ocl_404": 33,
+        "parrafo_largo": 5726,
+        "sin_descargar": 11
+      },
+      "por_clase_candidatos": {
+        "Background": 5174,
+        "Gap": 435,
+        "Basis": 577,
+        "Comparison": 1323,
+        "Application": 3538,
+        "Improvement / Modification": 224,
+        "Evidence": 868,
+        "Identification of the Originator": 349,
+        "Further Reading": 305
+      },
+      "por_clase_interseccion": {
+        "Background": 2853,
+        "Gap": 254,
+        "Basis": 301,
+        "Comparison": 733,
+        "Application": 1919,
+        "Improvement / Modification": 128,
+        "Evidence": 463,
+        "Identification of the Originator": 171,
+        "Further Reading": 166
+      },
+      "por_clase_excluidos": {
+        "Background": 2321,
+        "Gap": 181,
+        "Basis": 276,
+        "Comparison": 590,
+        "Application": 1619,
+        "Improvement / Modification": 96,
+        "Evidence": 405,
+        "Identification of the Originator": 178,
+        "Further Reading": 139
+      }
+    },
+    "train_S": {
+      "candidatos": 12764,
+      "interseccion": 6906,
+      "cobertura_pct": 54.11,
+      "excluidos_por_motivo": {
+        "ValueError": 21,
+        "autocita": 12,
+        "menos_de_3_chunks": 7,
+        "ocl_404": 34,
+        "parrafo_largo": 5776,
+        "sin_descargar": 8
+      },
+      "por_clase_candidatos": {
+        "Background": 4097,
+        "Gap": 657,
+        "Basis": 671,
+        "Comparison": 2138,
+        "Application": 1944,
+        "Improvement / Modification": 175,
+        "Evidence": 2060,
+        "Identification of the Originator": 318,
+        "Further Reading": 704
+      },
+      "por_clase_interseccion": {
+        "Background": 2221,
+        "Gap": 365,
+        "Basis": 335,
+        "Comparison": 1191,
+        "Application": 1072,
+        "Improvement / Modification": 93,
+        "Evidence": 1095,
+        "Identification of the Originator": 143,
+        "Further Reading": 391
+      },
+      "por_clase_excluidos": {
+        "Background": 1876,
+        "Gap": 292,
+        "Basis": 336,
+        "Comparison": 947,
+        "Application": 872,
+        "Improvement / Modification": 82,
+        "Evidence": 965,
+        "Identification of the Originator": 175,
+        "Further Reading": 313
+      }
+    },
+    "V": {
+      "candidatos": 3379,
+      "interseccion": 1814,
+      "cobertura_pct": 53.68,
+      "excluidos_por_motivo": {
+        "ValueError": 6,
+        "autocita": 4,
+        "menos_de_3_chunks": 2,
+        "ocl_404": 3,
+        "parrafo_largo": 1548,
+        "sin_descargar": 2
+      },
+      "por_clase_candidatos": {
+        "Background": 1307,
+        "Gap": 136,
+        "Basis": 120,
+        "Comparison": 441,
+        "Application": 899,
+        "Improvement / Modification": 107,
+        "Evidence": 262,
+        "Identification of the Originator": 59,
+        "Further Reading": 48
+      },
+      "por_clase_interseccion": {
+        "Background": 721,
+        "Gap": 79,
+        "Basis": 68,
+        "Comparison": 220,
+        "Application": 475,
+        "Improvement / Modification": 51,
+        "Evidence": 143,
+        "Identification of the Originator": 30,
+        "Further Reading": 27
+      },
+      "por_clase_excluidos": {
+        "Background": 586,
+        "Gap": 57,
+        "Basis": 52,
+        "Comparison": 221,
+        "Application": 424,
+        "Improvement / Modification": 56,
+        "Evidence": 119,
+        "Identification of the Originator": 29,
+        "Further Reading": 21
+      }
+    },
+    "gold_v2": {
+      "candidatos": 1533,
+      "interseccion": 839,
+      "cobertura_pct": 54.73,
+      "excluidos_por_motivo": {
+        "menos_de_3_chunks": 1,
+        "parrafo_largo": 693
+      },
+      "por_clase_candidatos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_interseccion": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_excluidos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      }
+    }
+  },
+  "sha256_top3_csv": {
+    "train_M": "f0303842b0ffaa6181da41330932f78f439e6369cf6e53637f72bc0a0ad8cfa8",
+    "train_S": "7c60ebb18a1e6dbfcdc1c67c66d71241e456d4f1e1c9166a97231d9ed291c8a6",
+    "V": "405a6179dcf7e61a375177b1f9f669d4c13270a65838dda1baad9ae5507c8956",
+    "gold_v2": "bddcc09e7feed196811f23fbeaed114dd3db96406fe6c4984e5dd9ba39a443c7"
+  },
+  "hiperparametros": {
+    "lr": 3e-05,
+    "epocas": 4,
+    "paciencia": 3
+  },
+  "semillas": [
+    42,
+    1234,
+    2026
+  ]
+}

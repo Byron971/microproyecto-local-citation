@@ -19,6 +19,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 EXPERIMENTO = "clasificacion-funcion-104"
+# Re-corrida de la Entrada B con los datos de #104 (notebook 06): experimento aparte para no tocar
+# las tablas ni la reanudacion de los notebooks 04/05.
+EXPERIMENTO_B = "clasificacion-funcion-104-b"
 ESTADO = "provisional_sin_gold_humano"
 REGLA_ANTIFUGA = "excluye_2014_2015+v2+tg2700+citantes"
 REPO = Path(__file__).resolve().parents[4]

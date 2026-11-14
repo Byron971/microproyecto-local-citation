@@ -1,0 +1,284 @@
+{
+  "dry": true,
+  "bloqueantes": {
+    "L1_fugas_contexto": 0,
+    "L3_citas_v_a_citantes_gold": 0,
+    "L4_violaciones_texto": 0,
+    "L5_ids_ab_distintos": 0,
+    "L6_discrepancias_top3": 0
+  },
+  "L1": {
+    "anios_excluidos": [
+      2014,
+      2015
+    ],
+    "citas_de_anios_excluidos": 0,
+    "total_fugas": 0,
+    "por_variante": {
+      "natural": {
+        "train~val:context_id": 0,
+        "train~val:citing_id": 0,
+        "train~val:par_citante_citado": 0,
+        "train~val:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "val~gold:context_id": 0,
+        "val~gold:citing_id": 0,
+        "val~gold:par_citante_citado": 0,
+        "val~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "val~excluidos:context_id": 0,
+        "val~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      },
+      "sonnet": {
+        "train~val:context_id": 0,
+        "train~val:citing_id": 0,
+        "train~val:par_citante_citado": 0,
+        "train~val:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "val~gold:context_id": 0,
+        "val~gold:citing_id": 0,
+        "val~gold:par_citante_citado": 0,
+        "val~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "val~excluidos:context_id": 0,
+        "val~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      }
+    }
+  },
+  "L2_citas_quitadas_por_clase": {
+    "natural": {
+      "Application": 160,
+      "Background": 180,
+      "Basis": 23,
+      "Comparison": 87,
+      "Evidence": 37,
+      "Further Reading": 18,
+      "Gap": 13,
+      "Identification of the Originator": 9,
+      "Improvement / Modification": 11
+    },
+    "sonnet": {
+      "Application": 79,
+      "Background": 117,
+      "Basis": 27,
+      "Comparison": 148,
+      "Evidence": 104,
+      "Further Reading": 40,
+      "Gap": 29,
+      "Identification of the Originator": 4,
+      "Improvement / Modification": 13
+    }
+  },
+  "L3": {
+    "citas_v_a_citantes_gold": 0,
+    "citas_v": 3379
+  },
+  "L4": {
+    "umbral": 0.5,
+    "k_shingle": 8,
+    "pares": {
+      "train_M~V": {
+        "conjunto": "train_M",
+        "objetivo": "V",
+        "chunks_unicos": 399,
+        "contextos": 3379,
+        "max_solape": 0.0566,
+        "histograma": {
+          "(0,0.1]": 6,
+          "0": 393
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_M~gold": {
+        "conjunto": "train_M",
+        "objetivo": "gold",
+        "chunks_unicos": 399,
+        "contextos": 3401,
+        "max_solape": 0.069,
+        "histograma": {
+          "(0,0.1]": 2,
+          "0": 397
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_S~V": {
+        "conjunto": "train_S",
+        "objetivo": "V",
+        "chunks_unicos": 399,
+        "contextos": 3379,
+        "max_solape": 0.0566,
+        "histograma": {
+          "(0,0.1]": 6,
+          "0": 393
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_S~gold": {
+        "conjunto": "train_S",
+        "objetivo": "gold",
+        "chunks_unicos": 399,
+        "contextos": 3401,
+        "max_solape": 0.069,
+        "histograma": {
+          "(0,0.1]": 2,
+          "0": 397
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "V~gold": {
+        "conjunto": "V",
+        "objetivo": "gold",
+        "chunks_unicos": 313,
+        "contextos": 3401,
+        "max_solape": 0.0741,
+        "histograma": {
+          "(0,0.1]": 1,
+          "0": 312
+        },
+        "violaciones": 0,
+        "detalle": []
+      }
+    },
+    "total_violaciones": 0
+  },
+  "L4_inicial": {
+    "umbral": 0.5,
+    "k_shingle": 8,
+    "pares": {
+      "train_M~V": {
+        "conjunto": "train_M",
+        "objetivo": "V",
+        "chunks_unicos": 399,
+        "contextos": 3379,
+        "max_solape": 0.0566,
+        "histograma": {
+          "(0,0.1]": 6,
+          "0": 393
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_M~gold": {
+        "conjunto": "train_M",
+        "objetivo": "gold",
+        "chunks_unicos": 399,
+        "contextos": 3401,
+        "max_solape": 0.069,
+        "histograma": {
+          "(0,0.1]": 2,
+          "0": 397
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_S~V": {
+        "conjunto": "train_S",
+        "objetivo": "V",
+        "chunks_unicos": 399,
+        "contextos": 3379,
+        "max_solape": 0.0566,
+        "histograma": {
+          "(0,0.1]": 6,
+          "0": 393
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_S~gold": {
+        "conjunto": "train_S",
+        "objetivo": "gold",
+        "chunks_unicos": 399,
+        "contextos": 3401,
+        "max_solape": 0.069,
+        "histograma": {
+          "(0,0.1]": 2,
+          "0": 397
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "V~gold": {
+        "conjunto": "V",
+        "objetivo": "gold",
+        "chunks_unicos": 313,
+        "contextos": 3401,
+        "max_solape": 0.0741,
+        "histograma": {
+          "(0,0.1]": 1,
+          "0": 312
+        },
+        "violaciones": 0,
+        "detalle": []
+      }
+    },
+    "total_violaciones": 0
+  },
+  "L4_descartes": {
+    "citados": {},
+    "citas_por_clase": {}
+  },
+  "L5_sha_ids": {
+    "M_train": "25b2a7f3b31cd26856e352700184c097f9dbc4060aa601fb6b10196228cb8870",
+    "M_val": "172658e1b989b3ab48892a871d7544a6b80a2a0f8f26ddc7f9d1a45c17530cdb",
+    "S_train": "25b2a7f3b31cd26856e352700184c097f9dbc4060aa601fb6b10196228cb8870",
+    "S_val": "172658e1b989b3ab48892a871d7544a6b80a2a0f8f26ddc7f9d1a45c17530cdb"
+  },
+  "L6": {
+    "train_M": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 151,
+      "coinciden": 151,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "train_S": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 151,
+      "coinciden": 151,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "V": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 31,
+      "coinciden": 31,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "gold_v2": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 165,
+      "coinciden": 165,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    }
+  },
+  "L7": "El Test Gold anotado no se carga; del Gold v2 solo ids; las predicciones se escriben sin etiquetas",
+  "L8_solo_reporte": {
+    "v_con_citado_visto_en_train": {
+      "M": 38,
+      "S": 38
+    },
+    "v_n": {
+      "M": 146,
+      "S": 146
+    },
+    "gold_v2_cita_citante_de_v_o_train": 23
+  }
+}

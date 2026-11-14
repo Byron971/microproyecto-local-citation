@@ -1,0 +1,50 @@
+[
+  {
+    "pista": "M",
+    "entrada": "B",
+    "run": "scibert-B-M-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 9.389652874999044,
+    "checkpoint_sha256": "649459bf8b6d3fbcba39557e6c5ef81c2e54fc00cb2024d2107acf5ad6ff3651"
+  },
+  {
+    "pista": "M",
+    "entrada": "B_barajada",
+    "run": "scibert-B_barajada-M-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 6.58186618749923,
+    "checkpoint_sha256": "09dca275e9cac466594f30543352ce4104c29b6b2c78d4536ad4e8a6e9003636"
+  },
+  {
+    "pista": "S",
+    "entrada": "B",
+    "run": "scibert-B-S-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 6.715316406250338,
+    "checkpoint_sha256": "b7a4749f32bcc9da26fe29684c3ec6c821f4263169aae87c9e52097ff29998ac"
+  },
+  {
+    "pista": "S",
+    "entrada": "B_barajada",
+    "run": "scibert-B_barajada-S-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 6.423819156250232,
+    "checkpoint_sha256": "43f8bffcc076cc1e2ddc95ed5374198853650a97f10c97a7e2e58d758a45b9b2"
+  }
+]

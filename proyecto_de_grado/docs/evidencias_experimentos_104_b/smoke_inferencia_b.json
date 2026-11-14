@@ -1,0 +1,50 @@
+[
+  {
+    "pista": "M",
+    "entrada": "B",
+    "run": "scibert-B-M-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 5.707070750020193,
+    "checkpoint_sha256": "e1f0e89f1de96e13647100fa6f820745e48c363d27693dea1b7f71b25cd85cfe"
+  },
+  {
+    "pista": "M",
+    "entrada": "B_barajada",
+    "run": "scibert-B_barajada-M-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 5.724779656247847,
+    "checkpoint_sha256": "f57f9c4f9ec4ecc62ec083953fdc679ad4d60e2a02a0149d6d3cdceab348c2c0"
+  },
+  {
+    "pista": "S",
+    "entrada": "B",
+    "run": "scibert-B-S-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 5.736339718737327,
+    "checkpoint_sha256": "8cc995d2fabb67bea0dbc60eb89e44559ccdc72ef7f7db8042a405f723633360"
+  },
+  {
+    "pista": "S",
+    "entrada": "B_barajada",
+    "run": "scibert-B_barajada-S-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 5.726745343736184,
+    "checkpoint_sha256": "59f3ce0588b078ecf4e1abd2bb7fa251b8f6d82284479f21dc025fca3f6a8901"
+  }
+]

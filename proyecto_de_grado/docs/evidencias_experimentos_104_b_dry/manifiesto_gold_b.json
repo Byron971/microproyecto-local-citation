@@ -1,0 +1,206 @@
+{
+  "dry": true,
+  "gold_v2": 300,
+  "gold_v2_cobertura": 164,
+  "ids_gold_v2_cobertura_sha256": "d88b27c8170a7ff8c81abdeaa696e196057fe1bed855be6be22a997cc77c85ea",
+  "runs": {
+    "scibert-A-M-s42": {
+      "encoder": "scibert",
+      "entrada": "A",
+      "pista": "M",
+      "semilla": 42,
+      "checkpoint_sha256": "f622d910d37c0cd3f0d76bb8c4189992608b0d2fc217a80535c8d45a72a5fe8a",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "b8a59cf3000bb8509b5d42071eecf7c6b26afc961c47d10b23060162b36d8fff",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-M-s42/pred_gold_v2_cob.jsonl"
+        },
+        "todo": {
+          "n": 300,
+          "sha256": "ba259497f82d48ee967229616c97e0b253c403f4dd96a171c95eacd023faa361",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-M-s42/pred_gold_v2_todo.jsonl"
+        }
+      }
+    },
+    "scibert-B-M-s42": {
+      "encoder": "scibert",
+      "entrada": "B",
+      "pista": "M",
+      "semilla": 42,
+      "checkpoint_sha256": "649459bf8b6d3fbcba39557e6c5ef81c2e54fc00cb2024d2107acf5ad6ff3651",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "431e486e3fcad7f066e89971e30e66376e10fa9bfd8127ce5010e05e9d4e9bb9",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-B-M-s42/pred_gold_v2_cob.jsonl"
+        }
+      }
+    },
+    "scibert-A-S-s42": {
+      "encoder": "scibert",
+      "entrada": "A",
+      "pista": "S",
+      "semilla": 42,
+      "checkpoint_sha256": "141557033cb2c94c26da3e7a52e169d9de6adf31bf6e13f5dccc90f858c317bf",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "2704bc24e673320727ae67e07c83846f50a56c3c3b5d7af4538a7f80c587f727",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-S-s42/pred_gold_v2_cob.jsonl"
+        },
+        "todo": {
+          "n": 300,
+          "sha256": "903af0a6988e1d07e1f1f1c7254cb5d19fa8305406c6ee408b73c09bf4740a2a",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-S-s42/pred_gold_v2_todo.jsonl"
+        }
+      }
+    },
+    "scibert-B-S-s42": {
+      "encoder": "scibert",
+      "entrada": "B",
+      "pista": "S",
+      "semilla": 42,
+      "checkpoint_sha256": "b7a4749f32bcc9da26fe29684c3ec6c821f4263169aae87c9e52097ff29998ac",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "244cc999d86e1b843f47f2cbf1860832d740e848786d35586427ab9ee7b882a1",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-B-S-s42/pred_gold_v2_cob.jsonl"
+        }
+      }
+    },
+    "scibert-A-M-s1234": {
+      "encoder": "scibert",
+      "entrada": "A",
+      "pista": "M",
+      "semilla": 1234,
+      "checkpoint_sha256": "e78719138c7b984880d7eb53f0a8cc6d6c670990cc8eee537bf73f557573fd93",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "554f622b54909a32d73b57a05d7d1f709e8a42844f1c9c7c0aa8d89228e5ca90",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-M-s1234/pred_gold_v2_cob.jsonl"
+        },
+        "todo": {
+          "n": 300,
+          "sha256": "f98d43a5bf0372b2a1e2e8cf8f0e751f39d58ab3626d3dc11b5636d485aadaf8",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-M-s1234/pred_gold_v2_todo.jsonl"
+        }
+      }
+    },
+    "scibert-B-M-s1234": {
+      "encoder": "scibert",
+      "entrada": "B",
+      "pista": "M",
+      "semilla": 1234,
+      "checkpoint_sha256": "7bef1cf06fca1b682f83f28aff03c49b3d42b2b110ce3bb25627f7304a1c45ff",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "e99167556c4e1cef5324c5a19a9db6cb9e09aa82e7ee6781bb22f9b2edb3a372",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-B-M-s1234/pred_gold_v2_cob.jsonl"
+        }
+      }
+    },
+    "scibert-A-S-s1234": {
+      "encoder": "scibert",
+      "entrada": "A",
+      "pista": "S",
+      "semilla": 1234,
+      "checkpoint_sha256": "1dce6bebe0ce4109fcd649eb5071a48b360a3e141e08a1e6f884dc18b895cf6a",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "1ac9438ea350a8bc8ef461f75518768e1b03edeeee0c96d6034461533adabfaf",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-S-s1234/pred_gold_v2_cob.jsonl"
+        },
+        "todo": {
+          "n": 300,
+          "sha256": "e4c2077bd26d72c8a48ec8cdfc105e0cdcd0ebc767fb4d01613d17616ce19960",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-A-S-s1234/pred_gold_v2_todo.jsonl"
+        }
+      }
+    },
+    "scibert-B-S-s1234": {
+      "encoder": "scibert",
+      "entrada": "B",
+      "pista": "S",
+      "semilla": 1234,
+      "checkpoint_sha256": "b02f6a7b781a93741f1cc79db7a3486c6a4eea11385a44c788d89595cb13f9be",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "67b6b265fb2444b60c7f554691988cd3e65cf9b14123fe996d3ff34b183b36a4",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/scibert-B-S-s1234/pred_gold_v2_cob.jsonl"
+        }
+      }
+    },
+    "specter-A-M-s42": {
+      "encoder": "specter",
+      "entrada": "A",
+      "pista": "M",
+      "semilla": 42,
+      "checkpoint_sha256": "4242f998414ebf49975815cdbfe1144d06f7d1eb4695f9868591a837007ae48a",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "74b3ff0cb99c4a34cd29b938d8766c70ceaf1e15b58fb62728573c6434d1b691",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/specter-A-M-s42/pred_gold_v2_cob.jsonl"
+        },
+        "todo": {
+          "n": 300,
+          "sha256": "c0a61bea642f8fac8c2e7ee12162939e1c27cda89c2dfa837e39bdf03b55a246",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/specter-A-M-s42/pred_gold_v2_todo.jsonl"
+        }
+      }
+    },
+    "specter-B-M-s42": {
+      "encoder": "specter",
+      "entrada": "B",
+      "pista": "M",
+      "semilla": 42,
+      "checkpoint_sha256": "eccf4ba9494c16ea1d7dfc345fb4bd2f0895e5c9dca4fc9e8a6a6bf111335c5f",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "50ab31bf878e18eb3d4696d1e93872612834c90529ec1ca978a6cfae217697dc",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/specter-B-M-s42/pred_gold_v2_cob.jsonl"
+        }
+      }
+    },
+    "specter-A-S-s42": {
+      "encoder": "specter",
+      "entrada": "A",
+      "pista": "S",
+      "semilla": 42,
+      "checkpoint_sha256": "a2d92239c2788b82cfbaab682975aa79bfb4d43adad991b87f56ee956bd0175e",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "010201eaa626698904185415cf2a830f68a97fc8beaa3963bb2e3ed92e1c1373",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/specter-A-S-s42/pred_gold_v2_cob.jsonl"
+        },
+        "todo": {
+          "n": 300,
+          "sha256": "dd43f78c8f1cf99e9e6023be7266908bd36816e0f55c021b38b308ba10c64f11",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/specter-A-S-s42/pred_gold_v2_todo.jsonl"
+        }
+      }
+    },
+    "specter-B-S-s42": {
+      "encoder": "specter",
+      "entrada": "B",
+      "pista": "S",
+      "semilla": 42,
+      "checkpoint_sha256": "f48d0d0b895d5878dd06afc8f5f3f894f6de5f19d950ed211be5711f5dd52f6d",
+      "archivos": {
+        "cob": {
+          "n": 164,
+          "sha256": "cd2b157bc54fec50a7071c1ebae59c17b188ab88db91fa4c649de446a7dfb45d",
+          "ruta": "proyecto_de_grado/artifacts/experimentos_104_b_dry/gold_v2/specter-B-S-s42/pred_gold_v2_cob.jsonl"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "escrito_utc": "2026-11-14T16:17:35+00:00",
+  "git": {
+    "git_head": "b523001987ef8ba39a93b9f7ee370ff7f832f0dd",
+    "dirty": "True"
+  },
+  "notebook_sha256": "1635814798d15f03c75091063983fa5c37c8d15382ebe5cbbe0441a449f966a2",
+  "pistas": {
+    "M": {
+      "variante": "natural",
+      "modo": "kd",
+      "pista": "mixta"
+    },
+    "S": {
+      "variante": "sonnet",
+      "modo": "duro",
+      "pista": "sonnet"
+    }
+  },
+  "hiperparametros": {
+    "lr": 3e-05,
+    "epocas": 4,
+    "paciencia": 3
+  },
+  "semillas": [
+    42,
+    1234,
+    2026
+  ],
+  "dry": true,
+  "L4": {
+    "umbral": 0.5,
+    "shingle_palabras": 8,
+    "descartar": true,
+    "accion": "citados con algun chunk con solape >= umbral se descartan del train/V (en A y B) y L4 se re-verifica en 0"
+  },
+  "primaria": "B - A, F1-macro sobre V_B con etiqueta propia; bootstrap por citante",
+  "regla": "B ayuda en la pista X solo si las 3 parejas de semillas tienen el mismo signo y el IC95 excluye 0",
+  "test_gold": "solo A vs B por pista y semilla sobre Gold v2 interseccion cobertura; sin elegir entre corridas"
+}

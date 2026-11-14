@@ -16,6 +16,8 @@ from .cli import EVIDENCIAS
 from .cli_modelo import dispositivo
 
 MODOS_PERDIDA = ("duro", "kd", "ponderado")
+ENTRADAS_104 = ("A", "B", "B_barajada")
+CAMPOS_PREDICCION_CIEGA = ("context_id", "pred", "probs")
 
 
 def _ruta_encoder(encoder: str, manifiesto: Path | None) -> Path:
@@ -24,8 +26,9 @@ def _ruta_encoder(encoder: str, manifiesto: Path | None) -> Path:
 
 # ---------------------------------------------------------------- casos de la entrada A
 def casos_a(filas: list[dict], f: seleccion_datos.Fuentes, papers: dict,
-            etiqueta: str = "etiqueta_entrenamiento") -> tuple[list[dict], dict]:
-    """Entrada A (contexto + titulo + abstract del citado). Omite citas sin titulo/abstract."""
+            etiqueta: str | None = "etiqueta_entrenamiento") -> tuple[list[dict], dict]:
+    """Entrada A (contexto + titulo + abstract del citado). Omite citas sin titulo/abstract.
+    Con `etiqueta=None` (Gold ciego) los casos no llevan `indice`."""
     casos, omitidas = [], 0
     for x in filas:
         ctx = f.contextos[x["context_id"]]
@@ -37,8 +40,54 @@ def casos_a(filas: list[dict], f: seleccion_datos.Fuentes, papers: dict,
         casos.append({"context_id": x["context_id"], "citing_id": x["citing_id"],
                       "cited_id": ctx["refid"], "citation_context": ctx["masked_text"],
                       "titulo": titulo, "abstract": abstract,
-                      "indice": dominio.normalizar_etiqueta(x[etiqueta]), "_fila": x})
+                      "indice": dominio.normalizar_etiqueta(x[etiqueta]) if etiqueta else None,
+                      "_fila": x})
     return casos, {"entrada": len(filas), "casos": len(casos), "sin_titulo_abstract": omitidas}
+
+
+# ---------------------------------------------------------------- casos de la entrada B
+def casos_b(filas: list[dict], f: seleccion_datos.Fuentes, papers: dict, entradas_b: dict[str, dict],
+            etiqueta: str | None = "etiqueta_entrenamiento") -> tuple[list[dict], dict]:
+    """Entrada B: los mismos casos que la A (campos de `casos_a`) mas el `top3` del citado.
+
+    `entradas_b` = {context_id: entrada de `servicio.interseccion`}. Falla cerrado si alguna fila no
+    esta en `entradas_b`: A y B deben entrenar exactamente con las mismas citas (el llamador filtra
+    antes a la cobertura de B). Conserva `_fila`, asi que `con_modo_perdida` (kd) funciona igual."""
+    base, info = casos_a(filas, f, papers, etiqueta)
+    faltan = [c["context_id"] for c in base if c["context_id"] not in entradas_b]
+    if faltan:
+        raise ValueError(f"{len(faltan)} citas sin entrada B (filtre a la cobertura antes): {faltan[:3]}")
+    casos = [{**c, "top3": entradas_b[c["context_id"]]["top3"]} for c in base]
+    return casos, info
+
+
+def casos_entrada(entrada: str, filas: list[dict], f: seleccion_datos.Fuentes, papers: dict,
+                  entradas_b: dict[str, dict] | None = None,
+                  etiqueta: str | None = "etiqueta_entrenamiento") -> tuple[list[dict], dict]:
+    """Casos de la entrada `A`, `B` o `B_barajada` (esta ultima aun sin barajar: ver `_barajar`)."""
+    if entrada not in ENTRADAS_104:
+        raise ValueError(f"Entrada no soportada en #104: {entrada!r}")
+    if entrada == "A":
+        return casos_a(filas, f, papers, etiqueta)
+    if entradas_b is None:
+        raise ValueError(f"La entrada {entrada} requiere `entradas_b`.")
+    return casos_b(filas, f, papers, entradas_b, etiqueta)
+
+
+def _barajar(entrada: str, casos: list[dict], semilla: int) -> list[dict]:
+    """`B_barajada`: permutacion sembrada de los perfiles de seccion dentro del conjunto."""
+    return dominio.barajar_secciones(casos, semilla)[0] if entrada == "B_barajada" else casos
+
+
+def config_corrida(config: dict, encoder: str, semilla: int, modo: str, hp: ct.Hiperparametros,
+                   dry: bool, entrada: str = "A", top3_sha: str = "") -> dict:
+    """Config de un run (base de `config_sha` y de la reanudacion). Con entrada A es identica a la
+    de las Partes 1 y 2 de #104; `top3_sha` solo se agrega con B/B_barajada."""
+    if entrada != "A" and not top3_sha:
+        raise ValueError("Las entradas B requieren `top3_sha` (huella del Top-3 usado).")
+    cfg = {**config, "encoder": encoder, "semilla": semilla, "modo_perdida": modo, "entrada": entrada,
+           "dry": dry, **{f"hp_{k}": v for k, v in hp.__dict__.items()}}
+    return {**cfg, "top3_sha": top3_sha} if entrada != "A" else cfg
 
 
 def con_modo_perdida(casos: list[dict], modo: str) -> list[dict]:
@@ -86,7 +135,8 @@ def _predicciones(modelo, ejemplos, pad_id, dev) -> tuple[list[int], list[list[f
 
 # ---------------------------------------------------------------- corrida de un encoder
 def _evaluar_conjuntos(sets: dict[str, list[dict]], modelo, tok, dev, hp: ct.Hiperparametros,
-                       f: seleccion_datos.Fuentes, papers: dict, omitir: set[str] = frozenset()
+                       f: seleccion_datos.Fuentes, papers: dict, omitir: set[str] = frozenset(),
+                       entrada: str = "A", entradas_b: dict[str, dict] | None = None, semilla: int = 42
                        ) -> dict[str, list[dict]]:
     """Predice y registra (en el run activo) cada conjunto salvo los de `omitir`. Devuelve las
     predicciones de `val` (para `predicciones_val.jsonl`) si se evaluo."""
@@ -94,10 +144,10 @@ def _evaluar_conjuntos(sets: dict[str, list[dict]], modelo, tok, dev, hp: ct.Hip
     for prefijo, filas in sets.items():
         if prefijo in omitir or not filas:
             continue
-        casos, _ = casos_a(filas, f, papers)
+        casos, _ = casos_entrada(entrada, filas, f, papers, entradas_b)
         if not casos:
             continue
-        ej = ct.preparar_ejemplos(_limpio(casos), "A", tok, hp.max_len)
+        ej = ct.preparar_ejemplos(_limpio(_barajar(entrada, casos, semilla)), entrada, tok, hp.max_len)
         pred, probs, lat = _predicciones(modelo, ej, tok.pad_id, dev)
         m = dominio.metricas([e["indice"] for e in ej], pred)
         registro_mlflow.log_metricas(prefijo, m)
@@ -127,29 +177,33 @@ def entrenar_y_registrar(nombre: str, config: dict, train_filas: list[dict], v_f
                          f: seleccion_datos.Fuentes, papers: dict, carpeta: Path, *,
                          encoder: str = "scibert", semilla: int = 42, modo: str = "duro",
                          hp: ct.Hiperparametros | None = None, dry: bool = False,
-                         manifiesto_datos_sha: str = "", manifiesto_modelo: Path | None = None) -> str:
+                         manifiesto_datos_sha: str = "", manifiesto_modelo: Path | None = None,
+                         entrada: str = "A", entradas_b: dict[str, dict] | None = None,
+                         top3_sha: str = "") -> str:
     """Entrena, evalua en V/dev_haiku/ref_gpt y registra todo. Devuelve el run_id (el del run
     FINISHED previo si ya existia: reanudacion). Los checkpoints quedan en `carpeta/<nombre>`, en MLflow solo
-    su ruta y sha."""
+    su ruta y sha. `entrada` A (def.), B o B_barajada; las B requieren `entradas_b` y `top3_sha`."""
     hp = hp or ct.Hiperparametros()
     if dry:
         hp = ct.Hiperparametros(**{**hp.__dict__, "epocas": 1})
         train_filas, v_filas = train_filas[:64], v_filas[:64]
-    config = {**config, "encoder": encoder, "semilla": semilla, "modo_perdida": modo, "entrada": "A",
-              "dry": dry, **{f"hp_{k}": v for k, v in hp.__dict__.items()}}
-    tr_casos, info_tr = casos_a(train_filas, f, papers)
-    v_casos, info_v = casos_a(v_filas, f, papers)
+    config = config_corrida(config, encoder, semilla, modo, hp, dry, entrada, top3_sha)
+    tr_casos, info_tr = casos_entrada(entrada, train_filas, f, papers, entradas_b)
+    v_casos, info_v = casos_entrada(entrada, v_filas, f, papers, entradas_b)
     sets = conjuntos_eval(v_filas, f)
     with registro_mlflow.abrir_corrida(nombre, config, {
             "manifiesto_datos_sha": manifiesto_datos_sha, "casos_train": str(info_tr),
-            "casos_val": str(info_v)}, ct.hardware()) as run:
+            "casos_val": str(info_v), "entrada": entrada,
+            **({"top3_sha": top3_sha, "regla_antifuga_b": "L2_citados_citantes+L4_texto+L5_mismos_ids"}
+               if entrada != "A" else {})}, ct.hardware()) as run:
         if run is None:  # reanudacion: devuelve el run FINISHED existente
             return registro_mlflow.corrida_terminada(registro_mlflow.sha_config(config))
         ruta = _ruta_encoder(encoder, manifiesto_modelo)
         tok = ct.TokenizadorHF(ruta)
         dev = dispositivo("auto")
-        ej_train = ct.preparar_ejemplos(_limpio(con_modo_perdida(tr_casos, modo)), "A", tok, hp.max_len)
-        ej_val = ct.preparar_ejemplos(_limpio(v_casos), "A", tok, hp.max_len)
+        ej_train = ct.preparar_ejemplos(
+            _limpio(con_modo_perdida(_barajar(entrada, tr_casos, semilla), modo)), entrada, tok, hp.max_len)
+        ej_val = ct.preparar_ejemplos(_limpio(_barajar(entrada, v_casos, semilla)), entrada, tok, hp.max_len)
         ct.fijar_determinismo(semilla)
         modelo = ct.ClasificadorCLS(ruta, semilla, hp.dropout)
         salida = Path(carpeta) / nombre
@@ -166,7 +220,8 @@ def entrenar_y_registrar(nombre: str, config: dict, train_filas: list[dict], v_f
         mlflow.log_metric("segundos_entrenamiento", resultado["segundos_entrenamiento"])
         if resultado.get("gpu_mem_pico_gb") is not None:
             mlflow.log_metric("gpu_mem_pico_gb", resultado["gpu_mem_pico_gb"])
-        pred_val = _evaluar_conjuntos(sets, modelo, tok, dev, hp, f, papers).get("val")
+        pred_val = _evaluar_conjuntos(sets, modelo, tok, dev, hp, f, papers, entrada=entrada,
+                                      entradas_b=entradas_b, semilla=semilla).get("val")
         (salida / "predicciones_val.jsonl").write_text(
             "\n".join(json.dumps(r) for r in pred_val or []) + "\n", encoding="utf-8")
         mlflow.log_artifact(str(salida / "predicciones_val.jsonl"))
@@ -206,14 +261,18 @@ def linea_base_tfidf(nombre: str, config: dict, train_filas: list[dict], v_filas
 
 # ---------------------------------------------------------------- smoke test de inferencia
 def smoke_inferencia(run_dir: Path, encoder: str, v_filas: list[dict], f: seleccion_datos.Fuentes,
-                     papers: dict, n: int = 32, manifiesto_modelo: Path | None = None) -> dict:
+                     papers: dict, n: int = 32, manifiesto_modelo: Path | None = None,
+                     entrada: str = "A", entradas_b: dict[str, dict] | None = None) -> dict:
     """Carga el checkpoint verificando su sha, predice `n` casos de V y exige reproducir las
-    predicciones registradas al entrenar."""
+    predicciones registradas al entrenar. `entrada` debe ser la del run."""
     man, hp, tok, dev, modelo = _cargar_modelo(run_dir, encoder, manifiesto_modelo)
     lineas = (run_dir / "predicciones_val.jsonl").read_text(encoding="utf-8").splitlines()
     registradas = {r["context_id"]: r for r in map(json.loads, (l for l in lineas if l.strip()))}
-    casos, _ = casos_a([x for x in v_filas if x["context_id"] in registradas][:n], f, papers)
-    ej = ct.preparar_ejemplos(_limpio(casos), "A", tok, hp.max_len)
+    casos, _ = casos_entrada(entrada, [x for x in v_filas if x["context_id"] in registradas], f, papers,
+                             entradas_b)
+    # B_barajada: el barajado depende del conjunto completo (como al entrenar), luego se recorta a `n`
+    casos = _barajar(entrada, casos, man["semilla"])[:n]
+    ej = ct.preparar_ejemplos(_limpio(casos), entrada, tok, hp.max_len)
     pred, probs, lat = _predicciones(modelo, ej, tok.pad_id, dev)
     distintas = [e["context_id"] for e, p in zip(ej, pred) if p != registradas[e["context_id"]]["pred"]]
     dif = max((abs(a - b) for e, pr in zip(ej, probs) for a, b in zip(pr, registradas[e["context_id"]]["probs"])),
@@ -222,6 +281,43 @@ def smoke_inferencia(run_dir: Path, encoder: str, v_filas: list[dict], f: selecc
     return {"run": run_dir.name, "encoder": encoder, "casos": len(ej), "ok": ok,
             "predicciones_distintas": len(distintas), "max_dif_probabilidad": dif,
             "latencia_ms": lat, "checkpoint_sha256": man["checkpoint_sha256"]}
+
+
+# ---------------------------------------------------------------- predicciones ciegas (Gold)
+def casos_gold(ids: list[str], f: seleccion_datos.Fuentes, papers: dict, entrada: str = "A",
+               entradas_b: dict[str, dict] | None = None) -> list[dict]:
+    """Casos SIN etiqueta (`indice` None) de los `ids` del Gold, para `predecir_gold`. Con B, solo
+    los que tienen entrada B (la interseccion de cobertura la decide el llamador)."""
+    if entrada == "B_barajada":
+        raise ValueError("Las predicciones sobre el Gold son solo para A y B.")
+    filas = [{"context_id": c, "citing_id": f.contextos[c]["citing_id"]} for c in sorted(ids)]
+    return casos_entrada(entrada, filas, f, papers, entradas_b, etiqueta=None)[0]
+
+
+def predecir_gold(run_dir: Path, encoder: str, casos: list[dict], entrada: str,
+                  manifiesto_modelo: Path | None = None) -> list[dict]:
+    """Predicciones ciegas de un checkpoint sobre `casos` (de `casos_gold`): una fila
+    `{context_id, pred, probs}` por caso. No recibe ni devuelve etiquetas."""
+    if entrada not in ("A", "B"):
+        raise ValueError("Las predicciones sobre el Gold son solo para A y B.")
+    if any(c.get("indice") is not None for c in casos):
+        raise ValueError("Los casos del Gold deben ir sin etiqueta.")
+    _, hp, tok, dev, modelo = _cargar_modelo(Path(run_dir), encoder, manifiesto_modelo)
+    ej = ct.preparar_ejemplos(_limpio(casos), entrada, tok, hp.max_len)
+    pred, probs, _ = _predicciones(modelo, ej, tok.pad_id, dev)
+    return [{"context_id": e["context_id"], "pred": p, "probs": pr} for e, p, pr in zip(ej, pred, probs)]
+
+
+def escribir_predicciones_ciegas(ruta: Path, filas: list[dict]) -> str:
+    """JSONL de predicciones del Gold y su sha256. Falla si una fila lleva algo mas que
+    `context_id`, `pred` y `probs` (nunca etiquetas)."""
+    for r in filas:
+        if tuple(sorted(r)) != tuple(sorted(CAMPOS_PREDICCION_CIEGA)):
+            raise ValueError(f"Campos no permitidos en una prediccion ciega: {sorted(r)}")
+    ruta = Path(ruta)
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    ruta.write_text("".join(json.dumps(r) + "\n" for r in filas), encoding="utf-8")
+    return seleccion_datos.sha_archivo(ruta)
 
 
 # ---------------------------------------------------------------- reevaluacion y bootstrap
@@ -269,3 +365,47 @@ def bootstrap_diferencia(pred_a: list[int], pred_b: list[int], etiquetas: list[i
     return {"diferencia": macro(pred_a, todos) - macro(pred_b, todos),
             "ic95": (diffs[int(0.025 * n)], diffs[min(n - 1, int(0.975 * n))]),
             "prob_a_mayor": sum(d > 0 for d in diffs) / n, "n_remuestras": n, "casos": total}
+
+
+def bootstrap_diferencia_cluster(preds_a_semillas: list[list[int]], preds_b_semillas: list[list[int]],
+                                 etiquetas: list[int], grupos: list[str], n: int = 1000,
+                                 semilla: int = 2026) -> dict:
+    """Bootstrap por grupos de B - A en F1-macro promediado entre semillas.
+
+    `preds_*_semillas`: una lista de predicciones por semilla, alineadas con `etiquetas` y `grupos`
+    (articulo citante de cada caso). Se remuestrean los GRUPOS con reemplazo (las citas de un mismo
+    articulo no son independientes) y en cada remuestra se promedia la F1-macro de las semillas de
+    cada brazo. Devuelve la diferencia observada, el IC95% percentil, `prob_b_mayor`, la diferencia
+    por semilla y `mismo_signo_semillas` (todas las semillas con el mismo signo estricto)."""
+    total = len(etiquetas)
+    if not total or len(grupos) != total:
+        raise ValueError("Se necesitan etiquetas y un grupo por caso.")
+    if not preds_a_semillas or len(preds_a_semillas) != len(preds_b_semillas):
+        raise ValueError("A y B deben tener el mismo numero (>0) de semillas.")
+    if any(len(p) != total for p in (*preds_a_semillas, *preds_b_semillas)):
+        raise ValueError("Cada prediccion debe estar alineada con las etiquetas.")
+    por_grupo: dict[str, list[int]] = {}
+    for i, g in enumerate(grupos):
+        por_grupo.setdefault(g, []).append(i)
+    claves = sorted(por_grupo)
+
+    def macro(pred: list[int], idx: list[int]) -> float:
+        return dominio.metricas([etiquetas[i] for i in idx], [pred[i] for i in idx])["f1_macro"]
+
+    def media(preds: list[list[int]], idx: list[int]) -> float:
+        return sum(macro(p, idx) for p in preds) / len(preds)
+
+    todos = list(range(total))
+    por_semilla = [macro(b, todos) - macro(a, todos) for a, b in zip(preds_a_semillas, preds_b_semillas)]
+    rng = random.Random(semilla)
+    diffs = []
+    for _ in range(n):
+        idx = [i for g in (rng.choice(claves) for _ in claves) for i in por_grupo[g]]
+        diffs.append(media(preds_b_semillas, idx) - media(preds_a_semillas, idx))
+    diffs.sort()
+    return {"diferencia": media(preds_b_semillas, todos) - media(preds_a_semillas, todos),
+            "ic95": (diffs[int(0.025 * n)], diffs[min(n - 1, int(0.975 * n))]),
+            "prob_b_mayor": sum(d > 0 for d in diffs) / n, "n_remuestras": n, "casos": total,
+            "grupos": len(claves), "semillas": len(preds_a_semillas),
+            "diferencia_por_semilla": por_semilla,
+            "mismo_signo_semillas": all(d > 0 for d in por_semilla) or all(d < 0 for d in por_semilla)}
