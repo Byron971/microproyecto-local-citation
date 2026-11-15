@@ -63,6 +63,7 @@ class AppSettings:
     max_science_chunks: int = 500
     max_science_characters: int = 600_000
     max_cached_papers: int = 8
+    max_scibert_cache_mb: int = 64
 
     def public_info(self) -> dict[str, str]:
         """Solo nombres de backends y entorno, sin rutas ni credenciales."""
@@ -157,6 +158,7 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
     max_chunks = _positive("APP_SCIENCE_MAX_CHUNKS", 500, 3, 2000)
     max_chars = _positive("APP_SCIENCE_MAX_CHARACTERS", 600000, 1000, 2000000)
     cache_papers = _positive("APP_SCIBERT_CACHE_PAPERS", 8, 1, 64)
+    cache_mb = _positive("APP_SCIBERT_CACHE_MAX_MB", 64, 1, 512)
 
     return AppSettings(
         environment=stage,
@@ -185,4 +187,5 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
         max_science_chunks=max_chunks,
         max_science_characters=max_chars,
         max_cached_papers=cache_papers,
+        max_scibert_cache_mb=cache_mb,
     )
