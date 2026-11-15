@@ -12,6 +12,7 @@ from openai import (
 )
 
 from .providers import ProviderCallError
+from .provider_settings import request_timeout_seconds, validate_openweight_url
 from .schema import ProviderResponse
 
 _TRANSIENT_ERRORS = (
@@ -36,9 +37,9 @@ class OpenWeightClient:
         model: str | None = None,
         api_key: str | None = None,
     ) -> None:
-        self.base_url = base_url or os.environ.get(
+        self.base_url = validate_openweight_url(base_url or os.environ.get(
             "OPENWEIGHT_BASE_URL", "http://localhost:11434/v1"
-        )
+        ))
         self.model = model or os.environ.get("OPENWEIGHT_MODEL", "")
         self.api_key = api_key or os.environ.get("OPENWEIGHT_API_KEY", "local")
         self._client: OpenAI | None = None
@@ -54,6 +55,7 @@ class OpenWeightClient:
                 base_url=self.base_url,
                 api_key=self.api_key,
                 max_retries=0,
+                timeout=request_timeout_seconds(),
             )
         return self._client
 

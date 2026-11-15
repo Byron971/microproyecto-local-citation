@@ -1,0 +1,86 @@
+{
+  "alcance": "SOBRE LA CACHE LOCAL: solo citados presentes (o marcados 404) en cache_ocl; no es cobertura de ACL-200 completo.",
+  "chunks": {
+    "articulos_con_huecos": 0,
+    "chunks_sin_seccion": 157,
+    "huecos_indice_total": 0,
+    "palabras_max": 300,
+    "palabras_mediana": 100,
+    "palabras_min": 1,
+    "pct_2_parrafos": 70.15,
+    "pct_sin_seccion": 4.24,
+    "perfil_seccion_heuristico": {
+      "conclusion": 231,
+      "introduction": 350,
+      "method": 584,
+      "otra": 1884,
+      "related_work": 117,
+      "results": 382,
+      "vacia": 157
+    },
+    "total": 3705
+  },
+  "citados_estado": {
+    "error": 4443,
+    "ok": 125
+  },
+  "citados_ok": 125,
+  "citados_resueltos_en_cache": 200,
+  "citados_unicos_total": 4568,
+  "cobertura_citados_sobre_acl200_pct": 2.74,
+  "cobertura_citados_sobre_cache_pct": 62.5,
+  "cobertura_por_split": {
+    "test": {
+      "citados_ok": 50,
+      "citados_unicos": 2236,
+      "cobertura_citados_pct": 2.24,
+      "cobertura_contextos_pct": 1.62,
+      "contextos": 9585,
+      "contextos_ok": 155
+    },
+    "train": {
+      "citados_ok": 91,
+      "citados_unicos": 3323,
+      "cobertura_citados_pct": 2.74,
+      "cobertura_contextos_pct": 1.99,
+      "contextos": 30390,
+      "contextos_ok": 605
+    },
+    "val": {
+      "citados_ok": 48,
+      "citados_unicos": 2208,
+      "cobertura_citados_pct": 2.17,
+      "cobertura_contextos_pct": 1.73,
+      "contextos": 9381,
+      "contextos_ok": 162
+    }
+  },
+  "errores_por_causa_citados": {
+    "citado_404": 1,
+    "citado_no_descargado": 4368,
+    "parrafo_supera_palabras": 74
+  },
+  "errores_por_causa_contextos": {
+    "citado_404": 1,
+    "citado_no_descargado": 47647,
+    "parrafo_supera_palabras": 786
+  },
+  "ids": {
+    "chunk_id_distintos": 242,
+    "chunk_id_en_varios_articulos": 190,
+    "pares_citado_chunk": 3705,
+    "pares_citado_chunk_unicos": 3705
+  },
+  "muestras": {
+    "ids_excluidos_suministrados": 94,
+    "n": 20,
+    "semilla": 101,
+    "solo_split": "train"
+  },
+  "reproducibilidad": {
+    "articulos_verificados": 125,
+    "huellas_distintas": 0
+  },
+  "violaciones_ejemplos": [],
+  "violaciones_total": 0
+}

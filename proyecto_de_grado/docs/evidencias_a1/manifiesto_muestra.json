@@ -1,0 +1,1215 @@
+{
+  "descargas": [
+    {
+      "estado": "descargado",
+      "id": "A94-1006",
+      "sha256": "11725b8e1f24d1b92a6e95c23776712e1cdea0c2c3b1958894e9146c483ee576"
+    },
+    {
+      "estado": "descargado",
+      "id": "A94-1037",
+      "sha256": "ca8b82af0af80a408b93095c4f78e196d1e4e2e01b14364614fd4b4b6a6bdb19"
+    },
+    {
+      "estado": "descargado",
+      "id": "D08-1009",
+      "sha256": "47c9a778b9afd4b7b0a983809875926f55afadcddf16139f27f0d82cf65d5667"
+    },
+    {
+      "estado": "descargado",
+      "id": "D09-1015",
+      "sha256": "ce718be99160c897840f10a2318f4e3f99923d52bd653367067b4a5ec0861720"
+    },
+    {
+      "estado": "descargado",
+      "id": "D09-1115",
+      "sha256": "701956ea2ae246be29e1dcd480ae1bede518205b0861f3968f0a39b38170e361"
+    },
+    {
+      "estado": "descargado",
+      "id": "D09-1130",
+      "sha256": "516f0267e7485c0a4d21e759cda847e70b21fbb0cc707336cf2c9a3e19e236e9"
+    },
+    {
+      "estado": "descargado",
+      "id": "D10-1080",
+      "sha256": "65dd81c82b0f8546c37a46b4121d44111e4ade828fa17f38a7d4a7a44796aa96"
+    },
+    {
+      "estado": "descargado",
+      "id": "D10-1084",
+      "sha256": "916188d91c2e3f9d362d907f7901a25b25c63c068f1f66938614a6040f8ed26a"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1035",
+      "sha256": "3867a1043cb03520538574b0fba043c99f202b8b56b79ec00ad2a1b7fcd63f28"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1061",
+      "sha256": "d72586c22954a2083b2466eb58c869e539541c3eb05c7189034bf4274e4616c0"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1075",
+      "sha256": "0942289034d99aeab7a6f03cf5588b49387752ec8d04bcffa698c8c78628646b"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1083",
+      "sha256": "aca4f92ae188c143843a48b8d0656917f8d7b3904a49e310c2050fc3ccdde7bc"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1109",
+      "sha256": "d6e81e468de069bf6009bab8fbb00082cc2766de44f974962d7fc9a4ff3cd9f2"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1134",
+      "sha256": "301131a86336234cf0f945391a8e21990e962c372a2d45c8a7cd15e496f6966c"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1135",
+      "sha256": "d2bca89412c2173e5955096726d8b0a998c9f635963b884e59a2ce43f855963e"
+    },
+    {
+      "estado": "descargado",
+      "id": "D11-1144",
+      "sha256": "4e9150029c7f25f88befcbe7a515b395328f3465142e5195292443e68488f64a"
+    },
+    {
+      "estado": "descargado",
+      "id": "D12-1031",
+      "sha256": "a6bc3d66b5909e081269f4f3f64f44d64b8fa4285642474d9b4a9e39e2aa5bb6"
+    },
+    {
+      "estado": "descargado",
+      "id": "D12-1102",
+      "sha256": "4a4ae23d2030422d155258a77cdf31345fd9cc4a1b285a1c7bf6914603a70781"
+    },
+    {
+      "estado": "descargado",
+      "id": "D13-1044",
+      "sha256": "18287f430fa948d1a869ce93f22820343794b3c2aa7b8a53859354990095555c"
+    },
+    {
+      "estado": "descargado",
+      "id": "D13-1156",
+      "sha256": "f07aa8c9f4b89fd53ed9b1dcb8c3e6eae28271eafebded3c5d1ab0a09d3deef5"
+    },
+    {
+      "estado": "descargado",
+      "id": "D13-1199",
+      "sha256": "5fbfbbde020023d5c1e287675b6301dd7f4b4eef11e88b268b934e107b6a0084"
+    },
+    {
+      "estado": "descargado",
+      "id": "D14-1034",
+      "sha256": "45b9aa9bf1142e3f1fe75d6fda50f6001cfc5b50d07afe7dfb5b7a66b892a9b0"
+    },
+    {
+      "estado": "descargado",
+      "id": "D14-1168",
+      "sha256": "beab85d6cc6ecd8d95cbf8825bb776510e32b4a353e20aaf56dd49259467a914"
+    },
+    {
+      "estado": "descargado",
+      "id": "D14-1220",
+      "sha256": "871df5f0b2db525c1f59c10c972456b7908c56b41f18f83ff10f431f4a8f949c"
+    },
+    {
+      "estado": "descargado",
+      "id": "E03-1037",
+      "sha256": "8f6b80d6154b8ece03bfa3703101a779084808ea5a82eec1fc2b6b3a6d0324b5"
+    },
+    {
+      "estado": "descargado",
+      "id": "E06-1015",
+      "sha256": "4732d22f35df172126333fddde0b374e35a8fbbefef4f0d5267fcc6860f62d4d"
+    },
+    {
+      "estado": "descargado",
+      "id": "E06-1035",
+      "sha256": "9b032c65b8fddabc4e9dc70e8321ce75b2ff381236714f7e0835339e78004b68"
+    },
+    {
+      "estado": "descargado",
+      "id": "E09-1013",
+      "sha256": "f0aaf3c12e6c405fb2e4d99816aece7b9fc30d42c0cafa8402e2582dc28b76ef"
+    },
+    {
+      "estado": "descargado",
+      "id": "E12-2019",
+      "sha256": "c913447e74fb4a9b601471dd0ad40619712daab316c1f3c206fa93aa5b4b25cc"
+    },
+    {
+      "estado": "descargado",
+      "id": "E12-3006",
+      "sha256": "61d750feed55bac1727e69e5dff7b7406f05bf6dd9aa37ce9c1f844355a1cf91"
+    },
+    {
+      "estado": "descargado",
+      "id": "J04-4004",
+      "sha256": "b59ef83a09a19a087219dd609ab39fd1729fac8f3d4daa3632085f505761fbd6"
+    },
+    {
+      "estado": "descargado",
+      "id": "N04-1012",
+      "sha256": "5bd1401375a771336d96f3e7c8614f9cabe3b48b11eb209f9c33fa14a91cffc2"
+    },
+    {
+      "estado": "descargado",
+      "id": "N04-1017",
+      "sha256": "80c4ef8c59c79b86d49d6fa26e14359c89c26c6af6f967f8e569a2d5ec36fe56"
+    },
+    {
+      "estado": "descargado",
+      "id": "N06-1022",
+      "sha256": "63ed99263acd027fce1fffc9da1a851ed998c68916bfc6a5cc76abe58ed1c2ac"
+    },
+    {
+      "estado": "descargado",
+      "id": "N06-1027",
+      "sha256": "f0fe23f0b30855f4c18f081b8c0a78f9e5fef6b976722d910f3845a906c33d2c"
+    },
+    {
+      "estado": "descargado",
+      "id": "N06-1058",
+      "sha256": "05848094f2c8ca0ba6565463dfbdcf0f3fbb0f0e9ddccc718f93c2c0f0edb2b6"
+    },
+    {
+      "estado": "descargado",
+      "id": "N06-2002",
+      "sha256": "41935ee2deb2029c62a3c79fbcbc246bb08ad67b0b52d70b80675d3fbe17aaad"
+    },
+    {
+      "estado": "descargado",
+      "id": "N07-1025",
+      "sha256": "ce7e5e7b329e3cd264524857a63aa1b26c0890e846023188f45bccc98c43d90e"
+    },
+    {
+      "estado": "descargado",
+      "id": "N07-2014",
+      "sha256": "1fd45c54329ddb1483073de49d82bca460600bfa662c228ff32d559c158101b2"
+    },
+    {
+      "estado": "descargado",
+      "id": "N09-2027",
+      "sha256": "119a0e80abaf228ba2cc1bd999e8f76477a8fceeb58c9ffc8d7d6cdff8b47967"
+    },
+    {
+      "estado": "descargado",
+      "id": "N09-2058",
+      "sha256": "d98d3796c9b2aedfab4babf3905561b858776af055ab96b6da693c63f33fbb83"
+    },
+    {
+      "estado": "descargado",
+      "id": "N09-3003",
+      "sha256": "1c4d507d2b43c37a2cd127f94a6d442ce189b3baa2f729602a07695a36fdd8ed"
+    },
+    {
+      "estado": "descargado",
+      "id": "N10-1082",
+      "sha256": "77e199cf17ee49fe343a836cbc6ace57ad46a4b79b9f532312bf7e13b3f510a8"
+    },
+    {
+      "estado": "descargado",
+      "id": "N10-1087",
+      "sha256": "13443915a1ad102648d24257110d923e10624f6c02ea9913dba7ef72b8895927"
+    },
+    {
+      "estado": "descargado",
+      "id": "N10-1096",
+      "sha256": "1af900d2eeb1cda2aad2e89b0ade1e942602792432189fa7a468318aa6198a96"
+    },
+    {
+      "estado": "descargado",
+      "id": "N10-1112",
+      "sha256": "096f830cde4744a3e127af37955fd9d52dd1dbb5971b21816b08628f5ff8aa6f"
+    },
+    {
+      "estado": "descargado",
+      "id": "N10-2009",
+      "sha256": "2e8ae9fb0aee3f028e0061aad1ca9e04e302e4af8c1cca276d1bdefe655c89aa"
+    },
+    {
+      "estado": "descargado",
+      "id": "N12-1017",
+      "sha256": "2e61b84ae3b42a0a2270dcf3de497f9699558872c3340cf88896d6e42fc0b698"
+    },
+    {
+      "estado": "descargado",
+      "id": "N12-1052",
+      "sha256": "953b54c7dc932fbbe1ffc0ebf50b38999d2892693e617c6e86435c2711260a6b"
+    },
+    {
+      "estado": "descargado",
+      "id": "N12-1073",
+      "sha256": "9e1f4853258ec0ac8671f97dd6e25a503fcef5a98ee8fc200be718b3e9689274"
+    },
+    {
+      "estado": "descargado",
+      "id": "N12-1077",
+      "sha256": "f119bea0f64cbf3d6949c858d921fb360e45f3518def0d2624d6a34a9ac9e3c6"
+    },
+    {
+      "estado": "descargado",
+      "id": "N12-3008",
+      "sha256": "b296d513b8fde8aecee18c320750b83626b02b96c98c1ee294209ed4068250e6"
+    },
+    {
+      "estado": "descargado",
+      "id": "N13-1031",
+      "sha256": "86d0dc3e05bd8e1351addf31d7e3fdfc54eabc5bf2a330c6e898012f8479dd54"
+    },
+    {
+      "estado": "descargado",
+      "id": "N13-1064",
+      "sha256": "810179b23729756f7c3e618609242a1b3e8a7f1dd02ad530054a9fbf19063f7a"
+    },
+    {
+      "estado": "descargado",
+      "id": "N13-1074",
+      "sha256": "27d1ce96da1123c78fde19b98bb2985031183f253e214f20ab798a0bba08b247"
+    },
+    {
+      "estado": "descargado",
+      "id": "N13-1091",
+      "sha256": "8880e7a8578da42b6c39cd53efecba8cb004d4f2871592e79fa2e7c9bf162d58"
+    },
+    {
+      "estado": "descargado",
+      "id": "N13-1132",
+      "sha256": "86691fb352fc6e3b004c0b5420e465e0775f12df3fd60d96e76fa095a7134551"
+    },
+    {
+      "estado": "descargado",
+      "id": "P01-1058",
+      "sha256": "42d8b15feb92270c069f0f7141f0516cec516d47646107d736b892a84f7b4f0c"
+    },
+    {
+      "estado": "descargado",
+      "id": "P03-1016",
+      "sha256": "dc4033060701139b98330e02c230f9c74cf7f27208afa2a2b7fac98d1f1bf4fa"
+    },
+    {
+      "estado": "descargado",
+      "id": "P03-2006",
+      "sha256": "cc851a2cd33fef81ce3538eb94de4fd6ff3ca5bd01a928ff9cd05448849bdf35"
+    },
+    {
+      "estado": "descargado",
+      "id": "P04-1053",
+      "sha256": "3f85be3ffc2619089cce50dc23c7875966d263258fc89134d55637e382a369fc"
+    },
+    {
+      "estado": "descargado",
+      "id": "P04-3026",
+      "sha256": "1af918ba4529fab9ec9cce12e687b9a224d5771e5365dd0086ab93480a33f70a"
+    },
+    {
+      "estado": "descargado",
+      "id": "P05-1057",
+      "sha256": "047edc2be615473482474bd2eaae50b37340d55e434c4ce06ec9b83363d8cfb3"
+    },
+    {
+      "estado": "descargado",
+      "id": "P06-1003",
+      "sha256": "843c73c296d1a0da490006e3386dcd4f892db7b4212741502310b2693feb8570"
+    },
+    {
+      "estado": "descargado",
+      "id": "P06-1097",
+      "sha256": "e635587625d5d8cf3f2ad91d4fdf2ea15344e7dae0958a8ba5a0c5ccbe6f23e4"
+    },
+    {
+      "estado": "descargado",
+      "id": "P06-1109",
+      "sha256": "0f877e97497abd3d688ac1985859620ae336126c996aea56c2bdbad33b690808"
+    },
+    {
+      "estado": "descargado",
+      "id": "P06-1124",
+      "sha256": "f0b5f65d22f6e464bddfe19774b553696290013d9786771c27047a90a97478f4"
+    },
+    {
+      "estado": "descargado",
+      "id": "P06-2058",
+      "sha256": "f42b2d6ece7d443965e7eb2153b9edd560e0c733ba220682caf7151b59c6dc57"
+    },
+    {
+      "estado": "descargado",
+      "id": "P06-2094",
+      "sha256": "eb57ca443ce85ded56aa5a054e79f991b4d12f7c8cd3164b43de87178fc4289e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P07-1120",
+      "sha256": "accd8c2c664b6190f5b7edb99a166e8ad0541004b49b6e4e39f341b554b0f31f"
+    },
+    {
+      "estado": "descargado",
+      "id": "P07-3012",
+      "sha256": "5413f173c19972c8123a55023f88556a483d97ab72c6ca0817442cabd5c9dcda"
+    },
+    {
+      "estado": "descargado",
+      "id": "P08-1022",
+      "sha256": "71632543de6247db21761e07b53bd56733d6e87e8fef418dd4e9c699b1c65b47"
+    },
+    {
+      "estado": "descargado",
+      "id": "P08-1025",
+      "sha256": "dcddb452c8b5917aef8f914600915c52b3ad35546d13de4a0a4556392e486a3e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P08-2016",
+      "sha256": "79da0d0df7acf6e300d6981a7e5287acb932401703d601df2b7b212c86b03fd1"
+    },
+    {
+      "estado": "descargado",
+      "id": "P08-2035",
+      "sha256": "d5bd19045c08e16ba179509b5189d0d0b8891f6c421a14e5d0d12e43cdac4f63"
+    },
+    {
+      "estado": "descargado",
+      "id": "P08-2042",
+      "sha256": "facf2496aad28e9214928080ef90391d7eeaf6a5fa4be1ad03ee2c604c374147"
+    },
+    {
+      "estado": "descargado",
+      "id": "P08-2055",
+      "sha256": "53ec9b97872ae9dd8931a6700c55c475e91c61f1a5785a96375783004fbb7d34"
+    },
+    {
+      "estado": "descargado",
+      "id": "P09-1050",
+      "sha256": "14e3ec20c306a8a647aed3839b76f71178df67d7008adc054a6b66190106ae88"
+    },
+    {
+      "estado": "descargado",
+      "id": "P09-1116",
+      "sha256": "559535fb69ac159c07708de153d40f67ba7e87408753ecef14112e4dd5655337"
+    },
+    {
+      "estado": "descargado",
+      "id": "P09-1117",
+      "sha256": "8dc29b52783876e285c311ebbc33188e2f616648b682824e79d3bcd20d74d154"
+    },
+    {
+      "estado": "descargado",
+      "id": "P09-2061",
+      "sha256": "1688f2ad7fadb5b6a89d1657d809b9916f39d0d5de487f2873629cfe5bf8f09b"
+    },
+    {
+      "estado": "descargado",
+      "id": "P10-1029",
+      "sha256": "df841a29aae7f4dcacdf854db35a9324fcc66b5518927451ae4dab8b5780b21e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P10-1033",
+      "sha256": "901712f95e3db14a629aaf80ce0695cd001eff60f52040135366413d58959a6e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P10-1067",
+      "sha256": "c5314cec977ebe309723a6653e35b82458f08660a69bc745fa20c53e7e8c1448"
+    },
+    {
+      "estado": "descargado",
+      "id": "P10-1107",
+      "sha256": "932a4aa89f31b24f32c1134a329b1b635de48987320d855d444414a8cfac6a1e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P10-1139",
+      "sha256": "d64a63544e1f902d8ad8e79f895ccae99401e49dc42ea0657b93be75719b66b4"
+    },
+    {
+      "estado": "descargado",
+      "id": "P10-2019",
+      "sha256": "71a0aee4d07cb625ad658789b381ff8d8ce5d9bb2be43153b67ffca2bf0d5010"
+    },
+    {
+      "estado": "descargado",
+      "id": "P10-2066",
+      "sha256": "085df0fa136f50acdbdf40029269ae93b54d600eadfb9e49b895463e1fa10818"
+    },
+    {
+      "estado": "descargado",
+      "id": "P11-1105",
+      "sha256": "615fbdd11cb26d9680448993cfa23fa9ceb041c265fd71a31ab177d2e80a1754"
+    },
+    {
+      "estado": "descargado",
+      "id": "P11-2037",
+      "sha256": "d408dda6b68f98cf30d21fd96a6a55a619ccd2e46f6b8233a2e59b04981d52a0"
+    },
+    {
+      "estado": "descargado",
+      "id": "P11-2041",
+      "sha256": "ba47c12dc72f66fe17c725b9203542c48898a69c9954b54e98dc6967ed438b58"
+    },
+    {
+      "estado": "descargado",
+      "id": "P12-1032",
+      "sha256": "e959c99d4d050789785bb612cd8ee88736ddd9e07be648d15dc9e42a8b6cdc7f"
+    },
+    {
+      "estado": "descargado",
+      "id": "P12-1060",
+      "sha256": "6fc3a45e3eef09d6876668dfd432c637be67d3193824bf3c2f03cd6ef98a4b97"
+    },
+    {
+      "estado": "descargado",
+      "id": "P12-1064",
+      "sha256": "cea52e5034fa1fef6d9566a0764e1b5bb9515d0230f20676e2e2630b1a631d6e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P12-2031",
+      "sha256": "14eb8c6515dc885899105ecfdc140093e775012a65552d19976bf4c50c954678"
+    },
+    {
+      "estado": "descargado",
+      "id": "P12-2044",
+      "sha256": "b26f3250a8a8021093c176d544dd544ee2cc04e1ca0c6e00dcd5c30d7fe04c94"
+    },
+    {
+      "estado": "descargado",
+      "id": "P12-2052",
+      "sha256": "10237026b92117326b74fc419161c15c297c0ac4b12aab6b86b4abc9db73cad7"
+    },
+    {
+      "estado": "descargado",
+      "id": "P12-2053",
+      "sha256": "a853d415ad93c2b51f5877cd197fdce9fd69db8832c1ec4f0a377b9e0850092b"
+    },
+    {
+      "estado": "descargado",
+      "id": "P13-1010",
+      "sha256": "0cfe557f78ba1f5d2190896b9de82bb0c7552a3e954d31fd485862068217966b"
+    },
+    {
+      "estado": "descargado",
+      "id": "P13-1032",
+      "sha256": "cf8e5b625dc67f9f9386490dccf0fdc2669deafdc6551c941f1588d6343f49d2"
+    },
+    {
+      "estado": "descargado",
+      "id": "P13-1092",
+      "sha256": "d20fa4f9717417df9cb6a589728ca88cfb0cffefabf37c056f1c2960d304369e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P13-2020",
+      "sha256": "c044ceddeacaba9f197ada72ee59c56db75c49c2747b13085a799fe0e00643ac"
+    },
+    {
+      "estado": "descargado",
+      "id": "P13-2039",
+      "sha256": "587bcf2f9902f586240365c2ca6015128eec7a3f6df437e5afe9d1b1ec533552"
+    },
+    {
+      "estado": "descargado",
+      "id": "P13-2087",
+      "sha256": "291ac35ec2203e05146e3c82fa6737654f27d36f93d80cc2041d187707df2f3e"
+    },
+    {
+      "estado": "descargado",
+      "id": "P13-4032",
+      "sha256": "e271c25ba0b408482ddf93ad9a6d327d062d3c6303ca33db629c019b577a0384"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-1029",
+      "sha256": "05003db0390cb50e9ba1a5d9918072f7156414d2f59cde098a1ef8b3ac3aa284"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-1041",
+      "sha256": "532c4271047bd183f18bae6b4ded419ea9aaa6dc920e680b42be274be2edcc50"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-1139",
+      "sha256": "577ba4be9b5e8a9c543198fb32674d83c5f2ffe9696fe652a0dbd9f00ba9a9b3"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-2018",
+      "sha256": "25138b4e33f9ff040677b612717842a866c7f7801f51119e5b2a9642350f49f0"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-2042",
+      "sha256": "26b7ab6ecf9b2abe5e363f55b41af7cc38d63c50aef7528fe75c9b3b1352c678"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-2076",
+      "sha256": "af8b220f3236cd746be7b1e445ba45cf493235b018cf2e2b6027b5abbd89e177"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-2123",
+      "sha256": "8a26539f5504345053504949e22c1756eef2f215caa19d33febb68eabe378f8b"
+    },
+    {
+      "estado": "descargado",
+      "id": "P14-3008",
+      "sha256": "deafa501d6f6a57ae29ac45d3a0ad2e15540be644b2107a3a551ff5ccc049da3"
+    },
+    {
+      "estado": "descargado",
+      "id": "P84-1008",
+      "sha256": "7ee8bb014e8bc5fbfce1d6af477eee7883de1ac1a7368d1d9ea450b9b6af7c5b"
+    },
+    {
+      "estado": "descargado",
+      "id": "P97-1023",
+      "sha256": "505faca3a8845ab484d880290914adb1ee8be55da934d18d44edf12c4563d3ad"
+    },
+    {
+      "estado": "descargado",
+      "id": "P98-1013",
+      "sha256": "b2f4e4b6713a4797392d5d8c522163b15558eebbeda82cec086410be9d562b4f"
+    },
+    {
+      "estado": "descargado",
+      "id": "P98-1030",
+      "sha256": "e6d366f6679befa71f46183c0f1db5d3a30ee2caa5803a5fc7cf69f0e983129c"
+    },
+    {
+      "estado": "descargado",
+      "id": "P98-1116",
+      "sha256": "82ee5e515ebf4f64919a7713919da62f999de963b68d567229c7c64065cd5077"
+    },
+    {
+      "estado": "descargado",
+      "id": "P98-2143",
+      "sha256": "2b055e1e6c6633525b9ea4dae04642924f6d9c24e73deb77a57b49d341fb964c"
+    },
+    {
+      "estado": "descargado",
+      "id": "P98-2184",
+      "sha256": "08bf81b1781894e6a8235ff5ac127d5e8e022291a4ea543e437313af770a2629"
+    },
+    {
+      "estado": "descargado",
+      "id": "P99-1041",
+      "sha256": "cddf12e120c2f2fe6b962ecab31c2d8306b769ac9be547e05941feeb57eab3af"
+    },
+    {
+      "estado": "descargado",
+      "id": "S01-1001",
+      "sha256": "92a232e01de0a0a3607d67df49ee68a21e216955c9529a125294ade938547aef"
+    },
+    {
+      "estado": "descargado",
+      "id": "S10-1087",
+      "sha256": "1f5b2863027160640e5d42f13632eb405b7aed41117a66400c215263f8d585b2"
+    },
+    {
+      "estado": "descargado",
+      "id": "S13-1006",
+      "sha256": "fc51419493eb06b7f93357cfc8c0004823bd6cfb45714e27711344704a1dcd0b"
+    },
+    {
+      "estado": "descargado",
+      "id": "S13-2044",
+      "sha256": "9795c8199b0432efa4036fde50a243cb15aaee8a69875ae75f56547c43f2670c"
+    },
+    {
+      "estado": "descargado",
+      "id": "W00-0708",
+      "sha256": "ab1243ee31f86522f6fff3731b5e17413d568bfae54a261325c019556fe0c337"
+    },
+    {
+      "estado": "descargado",
+      "id": "W00-1704",
+      "sha256": "771613ab0002478364223be172e8f5570bac264844af23da5a6f4468158a068e"
+    },
+    {
+      "estado": "descargado",
+      "id": "W01-0502",
+      "sha256": "b0bf4f87672e4317546d375ec642e76b91ff199d29e0443ec7dc91cc9b882a2e"
+    },
+    {
+      "estado": "descargado",
+      "id": "W02-0302",
+      "sha256": "f58fcd3bf11c20bc5aa69035de447c1d36b28e1d7e8ecabff7d70bc39e8eb3db"
+    },
+    {
+      "estado": "descargado",
+      "id": "W03-1023",
+      "sha256": "f9e2399a777f9f52bcc2b760000994727191bd9a3615e0d020d168dfa43db6f0"
+    },
+    {
+      "estado": "descargado",
+      "id": "W03-1707",
+      "sha256": "dafbf4e097f97ab80fff19f2ae51633f9568cd61ea60a9b75e8d62bf47974a71"
+    },
+    {
+      "estado": "descargado",
+      "id": "W03-1728",
+      "sha256": "dd75fbe8f82460bab16626362d5988118a93aaeb67c3e36bf4c3bb832e80cde7"
+    },
+    {
+      "estado": "descargado",
+      "id": "W03-2108",
+      "sha256": "b9e6ac5fa10bd8638c10169a2595c84c691ff0cbb728f34b626c51053d7ce293"
+    },
+    {
+      "estado": "404",
+      "id": "W03-2501"
+    },
+    {
+      "estado": "descargado",
+      "id": "W04-1017",
+      "sha256": "eed48aee7ce47d08255546ce65ce510531d84369659b98acf88c729a863303c6"
+    },
+    {
+      "estado": "descargado",
+      "id": "W04-1205",
+      "sha256": "18e285dfff0877d194506c1925072b8f2d7c3f709161352b043f79293c0c56f6"
+    },
+    {
+      "estado": "descargado",
+      "id": "W04-1606",
+      "sha256": "91f6c3d9960482c08837d630d0e693237689d21523853c48b03aec535b20f52f"
+    },
+    {
+      "estado": "descargado",
+      "id": "W05-0202",
+      "sha256": "5725d5a2000151964ab67986dec6dcd23aa668554f6c65ad6c9335a5c8cbe5a0"
+    },
+    {
+      "estado": "descargado",
+      "id": "W05-0619",
+      "sha256": "f8e6e71da1abf49bf75542bf5fdc91c871e3c4593379771da1a9fbeacb22eead"
+    },
+    {
+      "estado": "descargado",
+      "id": "W05-1009",
+      "sha256": "5a1bcb46975ae61e1836bfcf5a3a72346d336680b2a156a30978723447bd432d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W05-1605",
+      "sha256": "d2a8c34c71dfe68642e7f4983771946ea663962b798335553414a02ce22025c6"
+    },
+    {
+      "estado": "descargado",
+      "id": "W06-2503",
+      "sha256": "f0f70eb11228ed4184b63f9a9ae278906c7fae6c0c010585e2700f140c1c1d1d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W06-2927",
+      "sha256": "9c858e874ea6f6b036384275a713be7d033a11c0486b382cf781142aaac004c8"
+    },
+    {
+      "estado": "descargado",
+      "id": "W06-3807",
+      "sha256": "e6e4ac58f8501c6e55b8070719e56ceb269f90d3ee9486d520b463135dbbbed2"
+    },
+    {
+      "estado": "descargado",
+      "id": "W07-1529",
+      "sha256": "c8615d994416061beb69d187c18858383f2d794aa82300370622710229202da6"
+    },
+    {
+      "estado": "descargado",
+      "id": "W08-0902",
+      "sha256": "8ecf3821a4dd7241e12b8129022d6a9fc1810dcdbac35a53489ff5f667e71444"
+    },
+    {
+      "estado": "descargado",
+      "id": "W08-0907",
+      "sha256": "7d0213c9b03ee91be80a7bec2daadabf5498ff1010518e1b19123c75cf2b6195"
+    },
+    {
+      "estado": "descargado",
+      "id": "W08-1914",
+      "sha256": "a940067cfd0d70dfee8f60dc1daba35553bfd71f891267e7344c31a1a51bf78d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-0609",
+      "sha256": "b8baa897b0dfdef1c012d2d33ad1ddbb722d08e129203494ae7f2ee6a5ac3012"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-0612",
+      "sha256": "21b547c4c557f04c5bd0f9704ed0c420e3c6dc5ef995d7bee434eea5d72110e6"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-1006",
+      "sha256": "d86232887fab35a931b3759489e1b828a4adf1909b27f26195d7d7679f7f3c1b"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-2010",
+      "sha256": "6907d3ce707e366bb0819f9a4684e36154c56fc6abaafed09807f2b16d04e630"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-2207",
+      "sha256": "475524aaf8c0acbca83764740e3c66c2473b9afcfc9eab19c791fc7bfebf82f8"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-2903",
+      "sha256": "8b694b4a62fa0261b6ca7d701df6fbd374f4ad4c6aeb988431b8c23e78bc3406"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-3522",
+      "sha256": "ed6df704e3f35e8fa7b3f418b3423894539f9a58c1d5cebdd5882704b472c7ef"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-3808",
+      "sha256": "dd5697987dd6b2f8de4e128ef3b7cd579b6e28bc8aac1e4314322145e347fa2e"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-3820",
+      "sha256": "de69b008db8f805b8421b8d562d53cd6424d2b923a57c72325af533272421477"
+    },
+    {
+      "estado": "descargado",
+      "id": "W09-4302",
+      "sha256": "b4f005e578bbb9d6d5d7e7a14400e39fe99c14adb1b5d8475d476c9d747b720a"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-0216",
+      "sha256": "3beaa184687b9347be5ff7aff01f5db7f7ead64078e83c6c2886cdf5c19c8876"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-0404",
+      "sha256": "8f499c34ced25eb852e2fff08835fa27e71fc5896d118d25f6266fb27951f576"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-0725",
+      "sha256": "f169cf054d24fb2426e9e7b6c94611d7c6fce94faf4997530b9508add1ebe95d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-0903",
+      "sha256": "f1db53f83b33530a38c32b99172ae7dc114ad85eaff77dc49a01c4ea83f30581"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-0911",
+      "sha256": "841beb8bb84a4fdbaf1dc65b0d4b943be22f4160b10d1865ecd64d9577ab7f7b"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-1004",
+      "sha256": "7c37d729ff1d5c93b6e1286e32f66b9b253008622bf3ebeb61f109a6cd685c6d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-1834",
+      "sha256": "cec02084d4d92c1533aa64677832e3857f7435216ada0ede8a29e47993807349"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-2010",
+      "sha256": "99866cc3c8acf114cfa3563b5826ebcb4894bd29e3c99f53a9c3743351e2083e"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-2205",
+      "sha256": "68818a981cabc7dcdfd9d1d68782826bc8229c655ad46579c49773dc693db84f"
+    },
+    {
+      "estado": "descargado",
+      "id": "W11-0408",
+      "sha256": "0660bc1b0826d19677767a90048434e06a0469b39f00baed5de1d30e462878f6"
+    },
+    {
+      "estado": "descargado",
+      "id": "W11-0905",
+      "sha256": "af3d701572b60e0bf0c823282943de41f0bca7b2e7fa7131a8b3ffc88003592d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W11-1801",
+      "sha256": "a2d874badab4ebf515ec1c58eb1c5eff1cab02433ed6348fbfb538de281fc8bf"
+    },
+    {
+      "estado": "descargado",
+      "id": "W11-2112",
+      "sha256": "f6f2b09aca9304c8e1e6702d4744495236db4eb7c1b845ec407bc1e382a92cae"
+    },
+    {
+      "estado": "descargado",
+      "id": "W12-1708",
+      "sha256": "3bc81ff2531072cfee49e6bcb72d7e23e5d625575753f17cd19ec063941968cf"
+    },
+    {
+      "estado": "descargado",
+      "id": "W12-1901",
+      "sha256": "590392fb686b0c4c274d8c3a0a1dc62ac4651de28f6bd5c7bbd80d10b39aae03"
+    },
+    {
+      "estado": "descargado",
+      "id": "W12-2514",
+      "sha256": "7986e0b395ffe6d65c7d34de56d448812d8d5a87514623bb6b7fe1e6a7d97082"
+    },
+    {
+      "estado": "descargado",
+      "id": "W12-3008",
+      "sha256": "6ac65881215bf1b66b2d82db2b042c5377a97e5e679bed890c1b0488ea2a1af0"
+    },
+    {
+      "estado": "descargado",
+      "id": "W12-3112",
+      "sha256": "dc0bb984564b636e207c2904ffa3e25be807e18a7349cd3abfc5c2e96cee8660"
+    },
+    {
+      "estado": "descargado",
+      "id": "W12-4304",
+      "sha256": "00b7be62a9723daa700b037fb62e2978b507b0623f70272124506fb705a25e1d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W12-4411",
+      "sha256": "d6dcf9fb0d15b8ed49b7013a49f7c980b731534aa6912048419e9b54bc931f12"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-0111",
+      "sha256": "0e8d02b507f25829e8ff66851d5fa82aae28881241ca2cd82f8f0751f43a26a6"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-1504",
+      "sha256": "bb0174fe65ed4599e6b6972d81fa55dcb947f4b76e4678e0ddf40a8b9f730b4d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-1718",
+      "sha256": "b91eb7e62c50e8ffa94ce4d44ba8f879aacbdc127c3aa751dc420e03c6fdde37"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-2217",
+      "sha256": "111ec566efb2d7e1bce2d526fa60c1e8a99e6c6f09902fd50d5d2edee9f04dcc"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-2301",
+      "sha256": "b18519d7b8334df50149aacc45efca0c10fb3a488021a46008988b5cca49732d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-2804",
+      "sha256": "738c5c875585f3f93482d7de8d65a4463ff1749fe7a07df3ae7c87abe795075c"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-2815",
+      "sha256": "d62bf20b27dfaebd534dcdef3ad8cd9f478b7eafa39d31cd90370ae054ba2c5e"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-3004",
+      "sha256": "bc151373e87706afe91a3d02510dc70b39749d94aebe1deab63d30bc30f30e56"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-3212",
+      "sha256": "8663bd10a33e26b23903eabef816af2fbdc6523b93192663bf55ae41fe454e42"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-3501",
+      "sha256": "c7f0f6b0b90aebe9dcca673e3dc52657f9a3f8b1a3e7c0659a0d520ba3a2af7d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-4016",
+      "sha256": "13bc40497331cfaed58cd0700aecbb7284d761c42dc011c16a1253e385017045"
+    },
+    {
+      "estado": "descargado",
+      "id": "W13-5003",
+      "sha256": "e794652884540fd1ecf25942cedafe03e876cded4063b27d075ddad96bfd635a"
+    },
+    {
+      "estado": "descargado",
+      "id": "W14-0313",
+      "sha256": "8720dc73e9e801c33b9cb01cd3e366a07a77a51dc8143309c92934c37d9d089d"
+    },
+    {
+      "estado": "descargado",
+      "id": "W14-3106",
+      "sha256": "a520c99481078db92f267da02fd697838b3ceded66e0c9ee73e00963f4ea3865"
+    },
+    {
+      "estado": "descargado",
+      "id": "W14-3334",
+      "sha256": "40f8211f2797d98c097f683cac060184149ea595774f692f6c455b0d52c3970e"
+    },
+    {
+      "estado": "descargado",
+      "id": "W14-3605",
+      "sha256": "b62e503a83e20bd36d49028c443ad3cdad1a3752d16b5f7a67e5dadb79f2a0ea"
+    },
+    {
+      "estado": "descargado",
+      "id": "W14-3617",
+      "sha256": "a92629c5f1e08cc9c69625332b5772df74076a58a4a798fe1535d5ce2831a076"
+    },
+    {
+      "estado": "descargado",
+      "id": "W14-4110",
+      "sha256": "176ca70a52ff7e02c13096d9ca90929b79be1ada8288625778c658819e83c66e"
+    },
+    {
+      "estado": "descargado",
+      "id": "W14-4308",
+      "sha256": "48a114c6e531fc1a031a32cdced4ed6543f5888c8c70c1687d140153f687c67f"
+    },
+    {
+      "estado": "descargado",
+      "id": "W15-3001",
+      "sha256": "a7a68380a8f64d5539bf8e448c4c8e75affc154e4dadb9c057af1adfb9da0acc"
+    },
+    {
+      "estado": "descargado",
+      "id": "W15-3038",
+      "sha256": "1e3600864870ed2fb9fdeaa75d7c23798c43694ddd967b5509eed555dda9d328"
+    },
+    {
+      "estado": "descargado",
+      "id": "W99-0501",
+      "sha256": "b17cc12abfc2829f1b4f7adaea488b5aed753160b9c6bd26fcd36256bef00521"
+    }
+  ],
+  "ids_por_split": {
+    "test": [
+      "D14-1034",
+      "D14-1168",
+      "D14-1220",
+      "N13-1074",
+      "N13-1091",
+      "P03-2006",
+      "P07-3012",
+      "P12-2044",
+      "P12-2053",
+      "P14-2042",
+      "P14-2076",
+      "P14-2123",
+      "P14-3008",
+      "S13-2044",
+      "W08-1914",
+      "W09-1006",
+      "W12-1708",
+      "W12-3008",
+      "W13-3212",
+      "W13-3501",
+      "W14-3334",
+      "W14-4308",
+      "W15-3001",
+      "W15-3038"
+    ],
+    "train": [
+      "A94-1006",
+      "A94-1037",
+      "D08-1009",
+      "D09-1015",
+      "D09-1115",
+      "D09-1130",
+      "D10-1084",
+      "D11-1035",
+      "D11-1075",
+      "D11-1109",
+      "D11-1134",
+      "D11-1135",
+      "D11-1144",
+      "D12-1031",
+      "D12-1102",
+      "D13-1156",
+      "E03-1037",
+      "E06-1015",
+      "E06-1035",
+      "E09-1013",
+      "E12-2019",
+      "J04-4004",
+      "N04-1012",
+      "N04-1017",
+      "N06-1022",
+      "N06-1027",
+      "N06-1058",
+      "N06-2002",
+      "N07-1025",
+      "N07-2014",
+      "N09-2027",
+      "N09-2058",
+      "N09-3003",
+      "N10-1082",
+      "N10-1087",
+      "N10-1096",
+      "N10-1112",
+      "N10-2009",
+      "N12-1017",
+      "N12-1052",
+      "N12-1073",
+      "N12-1077",
+      "N12-3008",
+      "N13-1031",
+      "N13-1132",
+      "P01-1058",
+      "P03-1016",
+      "P04-1053",
+      "P04-3026",
+      "P05-1057",
+      "P06-1003",
+      "P06-1097",
+      "P06-1109",
+      "P06-1124",
+      "P06-2094",
+      "P07-1120",
+      "P08-1022",
+      "P08-1025",
+      "P08-2016",
+      "P08-2035",
+      "P08-2042",
+      "P08-2055",
+      "P09-1050",
+      "P09-1116",
+      "P09-1117",
+      "P09-2061",
+      "P10-1029",
+      "P10-1033",
+      "P10-1067",
+      "P10-1107",
+      "P10-1139",
+      "P10-2019",
+      "P10-2066",
+      "P11-1105",
+      "P11-2037",
+      "P11-2041",
+      "P12-1032",
+      "P12-1060",
+      "P12-1064",
+      "P12-2031",
+      "P12-2052",
+      "P13-1092",
+      "P13-2020",
+      "P13-4032",
+      "P84-1008",
+      "P97-1023",
+      "P98-1013",
+      "P98-1030",
+      "P98-1116",
+      "P98-2143",
+      "P98-2184",
+      "P99-1041",
+      "S01-1001",
+      "S10-1087",
+      "W00-0708",
+      "W01-0502",
+      "W02-0302",
+      "W03-1023",
+      "W03-1707",
+      "W03-1728",
+      "W03-2108",
+      "W03-2501",
+      "W04-1017",
+      "W04-1205",
+      "W04-1606",
+      "W05-0202",
+      "W05-0619",
+      "W05-1009",
+      "W05-1605",
+      "W06-2503",
+      "W06-2927",
+      "W06-3807",
+      "W07-1529",
+      "W08-0902",
+      "W08-0907",
+      "W09-0609",
+      "W09-0612",
+      "W09-2010",
+      "W09-2207",
+      "W09-2903",
+      "W09-3522",
+      "W09-3808",
+      "W09-3820",
+      "W09-4302",
+      "W10-0216",
+      "W10-0404",
+      "W10-0725",
+      "W10-0903",
+      "W10-1004",
+      "W10-1834",
+      "W10-2010",
+      "W10-2205",
+      "W11-0408",
+      "W11-1801",
+      "W11-2112",
+      "W12-1901",
+      "W12-2514",
+      "W12-3112",
+      "W12-4304",
+      "W12-4411",
+      "W13-0111",
+      "W13-2301",
+      "W13-2804",
+      "W13-2815",
+      "W13-5003",
+      "W99-0501"
+    ],
+    "val": [
+      "D10-1080",
+      "D11-1061",
+      "D11-1083",
+      "D13-1044",
+      "D13-1199",
+      "E12-3006",
+      "N13-1064",
+      "P06-2058",
+      "P13-1010",
+      "P13-1032",
+      "P13-2039",
+      "P13-2087",
+      "P14-1029",
+      "P14-1041",
+      "P14-1139",
+      "P14-2018",
+      "S13-1006",
+      "W00-1704",
+      "W10-0911",
+      "W11-0905",
+      "W13-1504",
+      "W13-1718",
+      "W13-2217",
+      "W13-3004",
+      "W13-4016",
+      "W14-0313",
+      "W14-3106",
+      "W14-3605",
+      "W14-3617",
+      "W14-4110"
+    ]
+  },
+  "n_efectivo": 200,
+  "n_solicitado": 200,
+  "semilla": 101,
+  "sha256_manifiesto": "c0a0322f7d5a1d01c50fe82cf1908c1ab32f393c91850b1d32bc0e938df05ba1"
+}

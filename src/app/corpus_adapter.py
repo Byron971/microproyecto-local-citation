@@ -6,13 +6,13 @@ DVC y la cache OCL nunca se leen ni descargan desde peticiones HTTP.
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 
 from src.app.fragment_retrieval import recuperar_top3
+from src.app.settings import DEFAULT_TOP3_CORPUS, get_app_settings
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_CORPUS = ROOT / "proyecto_de_grado/artifacts/top3_s2/casos_train.json"
+DEFAULT_CORPUS = DEFAULT_TOP3_CORPUS
 
 
 class CorpusError(ValueError):
@@ -20,7 +20,7 @@ class CorpusError(ValueError):
 
 
 def ruta_corpus() -> Path:
-    return Path(os.environ.get("TOP3_CORPUS_PATH") or DEFAULT_CORPUS)
+    return get_app_settings().top3_corpus_path
 
 
 def leer_corpus(ruta: Path | None = None) -> dict:
