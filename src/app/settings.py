@@ -52,6 +52,11 @@ class AppSettings:
     scibert_enabled: bool = False
     scibert_manifest: Path | None = None
     scibert_device: str = "cpu"
+    a4_enabled: bool = False
+    a4_run: Path | None = None
+    a4_evidence: Path | None = None
+    a4_encoder_manifest: Path | None = None
+    a4_device: str = "cpu"
 
     def public_info(self) -> dict[str, str]:
         """Solo nombres de backends y entorno, sin rutas ni credenciales."""
@@ -118,6 +123,25 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
     manifest = (_path(env, "APP_SCIBERT_MANIFEST", ROOT / "missing-manifest.json")
                 if dense_enabled else None)
 
+    # Clasificación provisional de nueve funciones: no se enciende sin pesos A4.
+    raw_a4 = _value(env, "APP_A4_ENABLED", "false").lower()
+    if raw_a4 not in {"true", "false"}:
+        raise ValueError("APP_A4_ENABLED debe ser true o false")
+    a4_enabled = raw_a4 == "true"
+    a4_device = _value(env, "APP_A4_DEVICE", "cpu").lower()
+    if a4_device not in {"cpu", "cuda", "auto"}:
+        raise ValueError("APP_A4_DEVICE debe ser cpu, cuda o auto")
+    if a4_enabled and (not isinstance(env.get("APP_A4_RUN"), str)
+                       or not env.get("APP_A4_RUN", "").strip()):
+        raise ValueError("APP_A4_RUN es obligatorio para servir un checkpoint real")
+    a4_run = (_path(env, "APP_A4_RUN", ROOT / "missing-a4-run") if a4_enabled else None)
+    a4_evidence = (_path(env, "APP_A4_EVIDENCE",
+                 ROOT / "proyecto_de_grado/docs/evidencias_clasificacion_a4/scibert_A_42/manifiesto.json")
+                 if a4_enabled else None)
+    a4_encoder_manifest = (_path(env, "APP_A4_ENCODER_MANIFEST",
+                 ROOT / "proyecto_de_grado/docs/evidencias_clasificacion_a4/manifiesto_modelo_scibert.json")
+                 if a4_enabled else None)
+
     return AppSettings(
         environment=stage,
         host=host,
@@ -131,4 +155,9 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
         scibert_enabled=dense_enabled,
         scibert_manifest=manifest,
         scibert_device=dense_device,
+        a4_enabled=a4_enabled,
+        a4_run=a4_run,
+        a4_evidence=a4_evidence,
+        a4_encoder_manifest=a4_encoder_manifest,
+        a4_device=a4_device,
     )
