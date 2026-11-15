@@ -1,0 +1,52 @@
+{
+  "citados_requeridos_sha256": "c07c0a472a37227c7bbc5ee82a5b33a87a0193cae05a903521d5698830e2f88b",
+  "descargas": [
+    {
+      "estado": "descargado",
+      "id": "W10-1903",
+      "sha256": "e3036178152a1b75f5192b4cc273566f04d8ff5a5cdc1a18fcc0bd46a19a30ae"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-1908",
+      "sha256": "c45334dfcf7e62e9643f3021849571a254786e621f31807a137e5aba3ac9e72c"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-1911",
+      "sha256": "e0c40de5a100f35d15d828c6589c73c04620452097f49ee46a858608c4fe22ca"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-1919",
+      "sha256": "bbfaa5dcdf086672be4a412b5dd01ac451e0c8bd28b1f7c44942c864f41f69ce"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-2209",
+      "sha256": "0de203af8251789c352b4b1ea7d1ab7f8fd4ba9456b79dc2fe9a2f94b9eb8607"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-2210",
+      "sha256": "2cad9f5acbf867fb75f88a17342668301ee0bd6fe1ff235b266844bf8c1c5b83"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-2301",
+      "sha256": "6578c622c6dbcdd2aa8d39809eee6a60b55f740ca4b7e47a360c85168692f2c7"
+    },
+    {
+      "estado": "descargado",
+      "id": "W10-2401",
+      "sha256": "44f71b7c2a8de132ed913f840053c8a47da184fa0db59ebc210ec292fcf91b75"
+    }
+  ],
+  "estados": {
+    "404": 0,
+    "descargado": 8,
+    "error": 0
+  },
+  "n_citados": 8,
+  "sha256_manifiesto": "f8c20863a22e74f48202893ee670afd41122eea16d3f3a04e23f18f802effa8c"
+}
