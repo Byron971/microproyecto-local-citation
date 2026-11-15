@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "root": "proyecto_de_grado/artifacts/clasificacion_a4/corridas",
+  "note": "Manifest of evidence; no model weights or human Gold included. Restore weights from original training machine.",
+  "models": [
+    {
+      "id": "scibert_A_42",
+      "encoder": "scibert",
+      "entrada": "A",
+      "semilla": 42,
+      "checkpoint": "scibert_A_42/model.safetensors",
+      "source_manifest": "proyecto_de_grado/docs/evidencias_clasificacion_a4/scibert_A_42/manifiesto.json",
+      "expected_sha256": "0656fceb422632195a9ec35a8dab7e2482041c033451ea3442a5bdcd4a7a6fbd",
+      "training_labels": "Haiku",
+      "validation": "provisional_not_gold"
+    },
+    {
+      "id": "scibert_B_42",
+      "encoder": "scibert",
+      "entrada": "B",
+      "semilla": 42,
+      "checkpoint": "scibert_B_42/model.safetensors",
+      "source_manifest": "proyecto_de_grado/docs/evidencias_clasificacion_a4/scibert_B_42/manifiesto.json",
+      "expected_sha256": "238b4035d7680d810488290eccc50c8cd977639e392df96b1bc10d91f3955902",
+      "training_labels": "Haiku",
+      "validation": "provisional_not_gold"
+    },
+    {
+      "id": "specter_A_42",
+      "encoder": "specter",
+      "entrada": "A",
+      "semilla": 42,
+      "checkpoint": "specter_A_42/model.safetensors",
+      "source_manifest": "proyecto_de_grado/docs/evidencias_clasificacion_a4/specter_A_42/manifiesto.json",
+      "expected_sha256": "43243a929880203fa3eb75882163874452fbceaf6662cfb25a709a9c4e016606",
+      "training_labels": "Haiku",
+      "validation": "provisional_not_gold"
+    },
+    {
+      "id": "specter_B_42",
+      "encoder": "specter",
+      "entrada": "B",
+      "semilla": 42,
+      "checkpoint": "specter_B_42/model.safetensors",
+      "source_manifest": "proyecto_de_grado/docs/evidencias_clasificacion_a4/specter_B_42/manifiesto.json",
+      "expected_sha256": "aa2b293f11ca6b0028896d374f9553d97a274a85d18dd986a8b5b69948622597",
+      "training_labels": "Haiku",
+      "validation": "provisional_not_gold"
+    }
+  ]
+}

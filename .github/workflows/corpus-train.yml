@@ -1,0 +1,49 @@
+name: Corpus TRAIN de demostracion (sin Gold)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "docker-compose.top3.yml"
+      - "src/app/corpus_preflight.py"
+      - "tests/test_corpus_preflight.py"
+      - "docs/corpus_train_docker.md"
+      - ".github/workflows/corpus-train.yml"
+  pull_request:
+    paths:
+      - "docker-compose.top3.yml"
+      - "src/app/corpus_preflight.py"
+      - "tests/test_corpus_preflight.py"
+      - "docs/corpus_train_docker.md"
+      - ".github/workflows/corpus-train.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - run: uv sync --locked --group dev
+      - name: Gate TRAIN sin etiquetas humanas
+        run: uv run pytest -q tests/test_corpus_preflight.py
+      - name: Comprobar sintaxis Compose opt-in y mount read-only
+        env:
+          TOP3_CORPUS_HOST_PATH: /tmp/top3_train.json
+        run: |
+          docker compose -f docker-compose.yml -f docker-compose.top3.yml config --format json >/tmp/compose.json
+          python - <<'PY'
+          import json
+          with open("/tmp/compose.json") as f:
+              doc = json.load(f)
+          mounts = doc["services"]["api"]["volumes"]
+          assert any(v.get("target") == "/app/proyecto_de_grado/artifacts/top3_s2/casos_train.json"
+                     and v.get("read_only") is True for v in mounts), mounts
+          print("Mount de corpus TRAIN configurado read-only; no se inició AWS ni Docker.")
+          PY

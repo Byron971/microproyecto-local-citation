@@ -1,0 +1,9 @@
+# Solo para demostraciones con archivo TRAIN local; no incluye ni genera datos Gold.
+# Docker Compose exige TOP3_CORPUS_HOST_PATH (ruta absoluta a un JSON auditado).
+services:
+  api:
+    volumes:
+      - type: bind
+        source: ${TOP3_CORPUS_HOST_PATH:?Define una ruta absoluta a casos_train.json (solo TRAIN)}
+        target: /app/proyecto_de_grado/artifacts/top3_s2/casos_train.json
+        read_only: true
