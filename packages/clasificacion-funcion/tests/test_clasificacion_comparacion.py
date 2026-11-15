@@ -1,3 +1,4 @@
+import hashlib
 import json
 
 import pytest
@@ -117,7 +118,9 @@ def test_csv_tiene_una_fila_por_celda_y_delta():
 # ---- config a4_factorial_v1
 def manifiesto(encoder, entrada, semilla, **kw):
     base = {"encoder": encoder, "entrada": entrada, "semilla": semilla, "training_labels": "Haiku",
-            "data_use": "provisional_only", "checkpoint_sha256": ("c" + encoder[0] + entrada) * 21 + "c",
+            "data_use": "provisional_only", "checkpoint_sha256": hashlib.sha256(
+                f"{encoder}:{entrada}:{semilla}".encode("utf-8")
+            ).hexdigest(),
             "input_spec_sha256": ("5" + entrada) * 32,
             "entradas": {"train_ids_sha256": "a" * 64, "train_labels_sha256": "b" * 64}}
     return {**base, **kw}
