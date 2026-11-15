@@ -51,6 +51,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         result = run(a.manifiesto)
     except (RuntimeError, ValueError, OSError, ImportError) as exc:
+        import traceback
+        traceback.print_exc()  # CI diagnostics; no passwords or private datasets here.
         p.exit(2, f"SciBERT auténtico no disponible: {exc}\n")
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
