@@ -61,7 +61,7 @@ else:
                 self.assertIn(f"{input_name}:", workflow)
                 # La condición del job de mutación debe exigir los tres controles.
                 section = workflow.split(f"  {job}:\n", 1)[1]
-                condition = section.split("\n", 1)[0]
+                condition = next(line for line in section.splitlines() if line.strip().startswith("if:"))
                 self.assertIn("github.event_name == 'workflow_dispatch'", condition)
                 self.assertIn("github.ref == 'refs/heads/main'", condition)
                 self.assertIn(f"inputs.{input_name} == 'DEPLOY'", condition)
