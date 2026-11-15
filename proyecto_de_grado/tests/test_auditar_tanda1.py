@@ -69,10 +69,11 @@ def test_lector_xlsx_lee_texto_compartido_y_en_linea(tmp_path):
     assert leer_xlsx(ruta) == {"Uno": [["a", "", "en línea"], ["", "b & c", ""]], "Dos": [["z"]]}
 
 
-def test_estado_replica_la_columna_de_las_hojas():
+def test_estado_aplica_protocolo_estricto_y_no_fiabilidad_de_formulas_excel():
     r = lambda *a: dict(zip(("evaluable", "funcion", "confianza", "justificacion"), a))
     assert estado(r("", "", "", "")) == "PENDIENTE"
-    assert estado(r("Evaluable", "Gap", "Alta", "")) == "COMPLETO"
+    assert estado(r("Evaluable", "Gap", "Alta", "")) == "INCOMPLETO"
+    assert estado(r("Evaluable", "Gap", "Alta", "fundamenta brecha")) == "COMPLETO"
     assert estado(r("Evaluable", "Gap", "", "")) == "INCOMPLETO"
     assert estado(r("Evaluable", "", "Alta", "")) == "INCOMPLETO"
     assert estado(r("Ambiguo", "Gap", "", "porque")) == "COMPLETO"
@@ -97,8 +98,8 @@ def test_auditoria_reparto_doble_y_avance():
     assert a["por_persona"]["Ceci"]["terminadas"] == 1 and a["por_persona"]["Ceci"]["pendientes"] == 1
     assert a["tanda1"] == 3 and a["cobertura"] == {2: 3} and a["sin_hoja"] == 0
     assert a["parejas"] == {("Ana", "Beto"): 1, ("Ana", "Ceci"): 1, ("Beto", "Ceci"): 1}
-    assert a["por_persona"]["Ana"] == {"citas": 2, "repetidas": 0, "fuera_de_tanda1": 0, "terminadas": 1,
-                                            "pendientes": 0, "por_corregir": 1, "evaluables_sin_justificacion": 1}
+    assert a["por_persona"]["Ana"] == {"citas": 2, "repetidas": 0, "fuera_de_tanda1": 0, "terminadas": 0,
+                                            "pendientes": 0, "por_corregir": 2, "evaluables_sin_justificacion": 1}
     assert a["por_persona"]["Beto"]["terminadas"] == 1 and a["por_persona"]["Beto"]["evaluables_sin_justificacion"] == 0
     assert reparto(a) == [{"context_id": A, "anotador_1": "Ana", "anotador_2": "Beto"},
                           {"context_id": B, "anotador_1": "Ana", "anotador_2": "Ceci"},

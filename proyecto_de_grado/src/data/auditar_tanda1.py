@@ -91,14 +91,14 @@ def tabla_anotacion(filas: list[list[str]]) -> tuple[list[str], list[dict]]:
 
 
 def estado(r: dict) -> str:
-    """La misma regla de la columna Estado de las hojas repartidas."""
+    """Regla estricta de auditoría; no confía en fórmulas Excel incompletas."""
     if not r["evaluable"]:
         return "PENDIENTE"
     if r["evaluable"] == "No evaluable":
         return "REGISTRADO" if r["justificacion"] else "REVISAR"
     if r["evaluable"] == "Ambiguo":
         return "COMPLETO" if r["funcion"] and r["justificacion"] else "INCOMPLETO"
-    return "COMPLETO" if r["funcion"] and r["confianza"] else "INCOMPLETO"
+    return "COMPLETO" if r["funcion"] and r["confianza"] and r["justificacion"] else "INCOMPLETO"
 
 
 def auditar(manifiesto: list[dict], libros: dict[str, dict], ejemplos: set[str], excluir: set[str]) -> dict:
@@ -185,8 +185,8 @@ def reporte(a: dict, huellas: dict[str, tuple[str, str]]) -> str:
           f"Test Gold: {fmt(a['excluidas_en_gold'])}.", "",
           "## Avance de la anotación", "",
           f"Estado de las hojas al {max((f for f, _ in huellas.values()), default='—')} (última modificación). "
-          "Una fila está terminada si la columna Estado de la hoja dice COMPLETO o REGISTRADO. Se cuenta si la fila "
-          "está llena, no qué respondió cada persona.", "",
+          "Se aplican condiciones estrictas sobre las celdas (incluida justificación), "
+          "sin confiar en la fórmula Estado de Excel. Se informa solo llenado, no etiquetas.", "",
           "| Anotador | Terminadas | Pendientes | Por corregir | Evaluables sin justificación | Avance |",
           "|---|---|---|---|---|---|"]
     for p, d in sorted(a["por_persona"].items()):

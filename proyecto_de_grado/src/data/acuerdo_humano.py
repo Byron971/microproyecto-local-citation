@@ -2,7 +2,7 @@
 
 Lee las hojas de Excel de los anotadores y mide cuánto coinciden entre personas: κ de Cohen por
 pareja y α de Krippendorff para todo el grupo. No lee el voto del jurado: es acuerdo entre humanos.
-Solo cuenta filas terminadas (columna Estado en COMPLETO o REGISTRADO).
+Solo cuenta filas realmente completas según el auditor, incluida justificación; no confía en la fórmula Excel.
 
 Etiqueta de cada fila: la función elegida si la cita es Evaluable o Ambiguo (la guía pide elegir la
 más probable aunque haya duda) y «No evaluable» si no lo es. Son 10 categorías.

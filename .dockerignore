@@ -20,6 +20,9 @@ model-package
 *.pdf
 *.log
 
+# Infraestructura y configuración local fuera de la imagen
+terraform/
+.superpowers/
 # No incluir archivos de secretos aunque .gitignore los excluya.
 .env
 .env.*
