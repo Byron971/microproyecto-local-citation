@@ -29,6 +29,7 @@ from src.app.settings import get_app_settings
 from src.app.fragment_retrieval import recuperar_top3
 from src.app.corpus_adapter import CorpusError, ejemplos_disponibles, leer_corpus, top3_de_corpus
 from src.app.recommender import Recommender
+from src.app.scibert_runtime import SciBERTRuntime
 from src.app.references import ReferenceUnavailable, fetch_bibtex
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -36,7 +37,7 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 # El estado del proceso se guarda en un diccionario poblado durante el arranque.
 # El modelo y los insights se cargan una sola vez y se comparten entre
 # peticiones porque ambos son de solo lectura y su preparación es lo caro.
-state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None}
+state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None, "scibert": None}
 
 
 class ContextoConsulta(BaseModel):
@@ -102,6 +103,11 @@ async def lifespan(app: FastAPI):
 
     print("Cargando información del tablero...")
     state["insights"] = load_insights(config.insights_path)
+
+    state["scibert"] = None
+    if config.scibert_enabled:
+        # No fallback a BM25 si falta Torch, snapshot o manifiesto válido.
+        state["scibert"] = SciBERTRuntime.load(config.scibert_manifest, config.scibert_device)
 
     print("Backend listo en http://127.0.0.1:8000")
 
@@ -252,6 +258,84 @@ def top3_fragmentos(consulta: ConsultaTop3) -> dict[str, Any]:
         ),
     }
 
+
+
+def _scibert() -> SciBERTRuntime:
+    instance = state.get("scibert")
+    if instance is None:
+        raise HTTPException(
+            status_code=503,
+            detail="SciBERT está desactivado o falta un snapshot verificado. El baseline BM25 sigue disponible.",
+        )
+    return instance
+
+
+@app.post("/api/top3-scibert")
+def top3_scibert_manual(consulta: ConsultaTop3) -> dict[str, Any]:
+    """SciBERT REAL sobre los párrafos aportados, si se habilitó explícitamente."""
+    model = _scibert()
+    ids = [p.chunk_id.strip() for p in consulta.parrafos]
+    if any(not i for i in ids) or len(ids) != len(set(ids)):
+        raise HTTPException(status_code=422, detail="chunk_id no puede repetirse.")
+    chunks = [
+        {"chunk_id": p.chunk_id.strip(), "texto": p.texto.strip(), "seccion": p.seccion}
+        for p in consulta.parrafos
+    ]
+    try:
+        ranking = model.top3(consulta.contexto, chunks)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return {
+        "contexto": consulta.contexto,
+        "cited_id": consulta.cited_id,
+        "metodo": model.method,
+        "modelo": model.model,
+        "revision": model.revision,
+        "alcance": "solo_fragmentos_aportados_del_articulo_citado",
+        "total_fragmentos_analizados": len(chunks),
+        "total_resultados": len(ranking),
+        "fragmentos": ranking,
+        "clasificacion": {"estado": "no_ejecutada"},
+        "aviso": "Similitud coseno no es probabilidad ni relevancia Gold.",
+    }
+
+
+@app.get("/api/top3-scibert/corpus/{context_id}")
+def top3_scibert_corpus(context_id: str) -> dict[str, Any]:
+    """SciBERT sobre el documento citado real, solo en la muestra TRAIN."""
+    model = _scibert()
+    try:
+        data = leer_corpus()
+    except CorpusError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    if (data.get("resumen") or {}).get("tipo") != "muestra_desarrollo_train_no_gold":
+        raise HTTPException(status_code=503, detail="No es un corpus TRAIN aprobado para demostración.")
+    caso = next((c for c in data["casos"] if c["context_id"] == context_id), None)
+    if caso is None:
+        raise HTTPException(status_code=404, detail="Caso no disponible en TRAIN.")
+    if any(k in caso for k in ("gold", "label", "labels", "relevantes", "evidencia_top3")):
+        raise HTTPException(status_code=503, detail="Caso con datos de anotación no publicables.")
+    try:
+        ranking = model.top3(caso["citation_context"], caso["chunks"])
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return {
+        "context_id": caso["context_id"],
+        "contexto": caso["citation_context"],
+        "cited_id": caso["cited_id"],
+        "cited_title": caso["cited_title"],
+        "split": "train",
+        "fuente": "ACL-200 + ACL OCL local",
+        "sha256_ocl_citado": caso["sha256_ocl_citado"],
+        "metodo": model.method,
+        "modelo": model.model,
+        "revision": model.revision,
+        "total_fragmentos_analizados": len(caso["chunks"]),
+        "total_resultados": len(ranking),
+        "fragmentos": ranking,
+        "clasificacion": {"estado": "no_ejecutada"},
+        "aviso": "SciBERT base con mean pooling; desarrollo TRAIN, sin Gold ni F1.",
+    }
 
 
 @app.get("/api/top3-corpus/ejemplos")
