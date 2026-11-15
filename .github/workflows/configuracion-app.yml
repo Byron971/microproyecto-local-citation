@@ -30,6 +30,9 @@ on:
       - "config/citation_eval.env.example"
       - ".github/workflows/configuracion-app.yml"
 
+permissions:
+  contents: read
+
 jobs:
   test-and-config:
     runs-on: ubuntu-latest
