@@ -11,6 +11,14 @@ test('React + FastAPI + modelo empaquetado + BM25 responden sin mocks', async ({
   expect(ready.listo).toBe(true);
   expect(ready.configuracion.top3).toBe('bm25_lexical');
 
+  const features = await request.get('http://127.0.0.1:8000/api/capacidades');
+  expect(features.ok()).toBeTruthy();
+  const capabilities = await features.json();
+  expect(capabilities.tareas.recomendacion_articulos_tfidf.disponible).toBe(true);
+  expect(capabilities.tareas.top3_manual_bm25.disponible).toBe(true);
+  expect(capabilities.tareas.top3_scibert.disponible).toBe(false);
+  expect(capabilities.tareas.clasificacion_nueve_funciones.disponible).toBe(false);
+
   const suggestion = await request.post('http://127.0.0.1:8000/api/recomendar', {
     data: { contexto: 'Graph representation learning improves language model performance.', top_k: 3 },
   });
