@@ -9,6 +9,7 @@ on:
       - "src/evaluation/commercial/providers_*.py"
       - "tests/test_app_settings.py"
       - "tests/test_scibert_optional_api.py"
+      - "tests/test_provisional_a4_api.py"
       - "tests/test_provider_settings.py"
       - "Dockerfile"
       - ".dockerignore"
@@ -24,6 +25,7 @@ on:
       - "src/evaluation/commercial/providers_*.py"
       - "tests/test_app_settings.py"
       - "tests/test_scibert_optional_api.py"
+      - "tests/test_provisional_a4_api.py"
       - "tests/test_provider_settings.py"
       - "Dockerfile"
       - ".dockerignore"
@@ -53,6 +55,7 @@ jobs:
           uv run pytest -q \
             tests/test_app_settings.py \
             tests/test_scibert_optional_api.py \
+            tests/test_provisional_a4_api.py \
             tests/test_provider_settings.py \
             tests/test_top3_fragmentos.py \
             tests/test_top3_corpus_real.py \
