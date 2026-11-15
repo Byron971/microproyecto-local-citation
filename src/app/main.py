@@ -30,6 +30,7 @@ from src.app.fragment_retrieval import recuperar_top3
 from src.app.corpus_adapter import CorpusError, ejemplos_disponibles, leer_corpus, top3_de_corpus
 from src.app.recommender import Recommender
 from src.app.scibert_runtime import SciBERTRuntime
+from src.app.classifier_runtime import A4Classifier
 from src.app.references import ReferenceUnavailable, fetch_bibtex
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -37,7 +38,7 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 # El estado del proceso se guarda en un diccionario poblado durante el arranque.
 # El modelo y los insights se cargan una sola vez y se comparten entre
 # peticiones porque ambos son de solo lectura y su preparación es lo caro.
-state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None, "scibert": None}
+state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None, "scibert": None, "a4": None}
 
 
 class ContextoConsulta(BaseModel):
@@ -87,6 +88,22 @@ class ConsultaTop3(BaseModel):
         return self
 
 
+
+class ConsultaFuncionA(BaseModel):
+    """Entrada A exacta: contexto con TARGETCIT + título + abstract del citado."""
+
+    contexto: str = Field(..., min_length=1, max_length=4000)
+    cited_title: str = Field(..., min_length=1, max_length=600)
+    cited_abstract: str = Field(..., min_length=1, max_length=12000)
+
+    @model_validator(mode="after")
+    def comprobar_entrada(self) -> "ConsultaFuncionA":
+        if (self.contexto.count("TARGETCIT") != 1 or not self.cited_title.strip()
+                or not self.cited_abstract.strip()):
+            raise ValueError("Se requiere TARGETCIT único, título y abstract reales.")
+        return self
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Prepara el modelo y los insights antes de atender la primera petición.
@@ -108,6 +125,13 @@ async def lifespan(app: FastAPI):
     if config.scibert_enabled:
         # No fallback a BM25 si falta Torch, snapshot o manifiesto válido.
         state["scibert"] = SciBERTRuntime.load(config.scibert_manifest, config.scibert_device)
+
+    state["a4"] = None
+    if config.a4_enabled:
+        # Haiku provisional; no cargar pesos falsos ni degradar a un baseline.
+        state["a4"] = A4Classifier.load(
+            config.a4_run, config.a4_evidence, config.a4_encoder_manifest, config.a4_device
+        )
 
     print("Backend listo en http://127.0.0.1:8000")
 
@@ -336,6 +360,23 @@ def top3_scibert_corpus(context_id: str) -> dict[str, Any]:
         "clasificacion": {"estado": "no_ejecutada"},
         "aviso": "SciBERT base con mean pooling; desarrollo TRAIN, sin Gold ni F1.",
     }
+
+
+@app.post("/api/clasificar-cita")
+def clasificar_cita_provisional(consulta: ConsultaFuncionA) -> dict[str, Any]:
+    """Clasificador provisional real A4 SciBERT-A, nunca certificado en Gold."""
+    model = state.get("a4")
+    if model is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Clasificación A4 desactivada: falta un checkpoint SciBERT-A íntegro y verificado.",
+        )
+    try:
+        return model.classify(
+            consulta.contexto, consulta.cited_title, consulta.cited_abstract
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 
 @app.get("/api/top3-corpus/ejemplos")
