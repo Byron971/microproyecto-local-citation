@@ -20,6 +20,9 @@ on:
       - "proyecto_de_grado/src/evaluation/top3_humano.py"
       - ".github/workflows/recuperacion-densa.yml"
 
+permissions:
+  contents: read
+
 jobs:
   tests:
     runs-on: ubuntu-latest
