@@ -30,6 +30,9 @@ from src.app.fragment_retrieval import recuperar_top3
 from src.app.corpus_adapter import CorpusError, ejemplos_disponibles, leer_corpus, top3_de_corpus
 from src.app.recommender import Recommender
 from src.app.scibert_runtime import SciBERTRuntime
+from src.app.classifier_runtime import A4Classifier
+from src.app.corpus_preflight import auditar_train
+from src.app.corpus_adapter import ruta_corpus
 from src.app.references import ReferenceUnavailable, fetch_bibtex
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -37,7 +40,7 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 # El estado del proceso se guarda en un diccionario poblado durante el arranque.
 # El modelo y los insights se cargan una sola vez y se comparten entre
 # peticiones porque ambos son de solo lectura y su preparación es lo caro.
-state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None, "scibert": None}
+state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None, "scibert": None, "a4": None, "a4_b": None}
 
 
 class ContextoConsulta(BaseModel):
@@ -87,6 +90,19 @@ class ConsultaTop3(BaseModel):
         return self
 
 
+class ConsultaFuncionA(BaseModel):
+    """Entrada A del cited paper, no admite inventar título ni abstract."""
+    contexto: str = Field(..., min_length=1, max_length=4000)
+    cited_title: str = Field(..., min_length=1, max_length=600)
+    cited_abstract: str = Field(..., min_length=1, max_length=12000)
+
+    @model_validator(mode="after")
+    def verificar(self) -> "ConsultaFuncionA":
+        if self.contexto.count("TARGETCIT") != 1 or not self.cited_title.strip() or not self.cited_abstract.strip():
+            raise ValueError("Entrada A requiere TARGETCIT único, título y abstract auténticos.")
+        return self
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Prepara el modelo y los insights antes de atender la primera petición.
@@ -107,7 +123,24 @@ async def lifespan(app: FastAPI):
     state["scibert"] = None
     if config.scibert_enabled:
         # No fallback a BM25 si falta Torch, snapshot o manifiesto válido.
-        state["scibert"] = SciBERTRuntime.load(config.scibert_manifest, config.scibert_device)
+        state["scibert"] = SciBERTRuntime.load(
+            config.scibert_manifest, config.scibert_device,
+            max_chunks=config.max_science_chunks,
+            max_characters=config.max_science_characters,
+            max_cached_papers=config.max_cached_papers,
+        )
+    state["a4"] = None
+    state["a4_b"] = None
+    if config.a4_enabled:
+        state["a4"] = A4Classifier.load(
+            config.a4_run, config.a4_evidence, config.a4_encoder_manifest,
+            config.a4_device, entrada="A",
+        )
+    if config.a4_b_enabled:
+        state["a4_b"] = A4Classifier.load(
+            config.a4_b_run, config.a4_b_evidence, config.a4_encoder_manifest,
+            config.a4_device, entrada="B",
+        )
 
     print("Backend listo en http://127.0.0.1:8000")
 
@@ -190,6 +223,13 @@ def capacidades() -> dict[str, Any]:
                           "No hay checkpoint A4 cargado en este proceso.",
                 "modelo": getattr(state.get("a4"), "model_id", None),
                 "validacion": "provisional_no_gold_humano" if state.get("a4") is not None
+                              else "no_ejecutada",
+            },
+            "clasificacion_nueve_funciones_b": {
+                "disponible": state.get("a4_b") is not None and state.get("scibert") is not None,
+                "modelo": getattr(state.get("a4_b"), "model_id", None),
+                "entrada": "B",
+                "validacion": "provisional_no_gold_humano" if state.get("a4_b") is not None
                               else "no_ejecutada",
             },
         },
@@ -372,7 +412,8 @@ def top3_scibert_corpus(context_id: str) -> dict[str, Any]:
     if any(k in caso for k in ("gold", "label", "labels", "relevantes", "evidencia_top3")):
         raise HTTPException(status_code=503, detail="Caso con datos de anotación no publicables.")
     try:
-        ranking = model.top3(caso["citation_context"], caso["chunks"])
+        ranking = model.top3(caso["citation_context"], caso["chunks"],
+                             document_key=caso["cited_id"] + ":" + caso["sha256_ocl_citado"])
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return {
@@ -392,6 +433,75 @@ def top3_scibert_corpus(context_id: str) -> dict[str, Any]:
         "clasificacion": {"estado": "no_ejecutada"},
         "aviso": "SciBERT base con mean pooling; desarrollo TRAIN, sin Gold ni F1.",
     }
+
+
+def _a4(kind: str) -> A4Classifier:
+    result = state.get("a4" if kind == "A" else "a4_b")
+    if result is None:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Checkpoint A4 {kind} ausente o no instalado. No se genera una predicción simulada.",
+        )
+    return result
+
+
+@app.post("/api/clasificar-cita")
+def clasificar_cita_provisional(consulta: ConsultaFuncionA) -> dict[str, Any]:
+    """Únicamente SciBERT-A validado por SHA; etiquetas Haiku provisionales."""
+    model = _a4("A")
+    try:
+        return model.classify(consulta.contexto, consulta.cited_title, consulta.cited_abstract)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+def _clasificar_b(contexto: str, chunks: list[dict], *, document_key: str | None = None,
+                  cited_id: str, context_id: str | None = None) -> dict[str, Any]:
+    """Top-3 del cited paper y la receta A4-B original; sin uso de Gold."""
+    model, dense = _a4("B"), _scibert()
+    if len(chunks) < 3:
+        raise HTTPException(status_code=422, detail="La entrada B necesita al menos tres chunks únicos.")
+    try:
+        ranking = dense.top3(contexto, chunks, document_key=document_key)
+        classification = model.classify(contexto, top3=ranking)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return {
+        "context_id": context_id, "cited_id": cited_id,
+        "recuperacion": {"metodo": dense.method, "modelo": dense.model,
+                         "revision": dense.revision, "fragmentos": ranking},
+        "clasificacion": classification, "split": "train" if document_key else None,
+        "gold_certificado": False,
+        "aviso": "El clasificador B usa perfiles heurísticos; etiquetas Haiku, sin Test Gold.",
+    }
+
+
+@app.post("/api/clasificar-cita-b")
+def clasificar_cita_b_manual(consulta: ConsultaTop3) -> dict[str, Any]:
+    """Entrada manual: el usuario aporta chunks; identidad del citado no verificable."""
+    chunks = [{"chunk_id": p.chunk_id.strip(), "texto": p.texto.strip(), "seccion": p.seccion}
+              for p in consulta.parrafos]
+    return _clasificar_b(consulta.contexto, chunks, cited_id=consulta.cited_id)
+
+
+@app.get("/api/clasificar-cita-b/corpus/{context_id}")
+def clasificar_cita_b_corpus(context_id: str) -> dict[str, Any]:
+    """Únicamente corpus TRAIN aprobado, nunca Gold ni etiquetas humanas."""
+    _a4("B")
+    _scibert()
+    try:
+        auditar_train(ruta_corpus())
+        doc = leer_corpus()
+    except CorpusError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    caso = next((c for c in doc["casos"] if c["context_id"] == context_id), None)
+    if caso is None:
+        raise HTTPException(status_code=404, detail="Contexto no disponible en TRAIN.")
+    return _clasificar_b(
+        caso["citation_context"], caso["chunks"],
+        document_key=caso["cited_id"] + ":" + caso["sha256_ocl_citado"],
+        cited_id=caso["cited_id"], context_id=context_id,
+    )
 
 
 @app.get("/api/top3-corpus/ejemplos")
