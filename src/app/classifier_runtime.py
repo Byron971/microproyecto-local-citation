@@ -14,7 +14,7 @@ from typing import Any
 
 import re
 
-HEX64 = re.compile(r"[0-9a-f]{64}\\Z")
+HEX64 = re.compile(r"[0-9a-f]{64}\Z")
 
 _9_FUNCTIONS = (
     "Background", "Gap", "Basis", "Comparison", "Application",
