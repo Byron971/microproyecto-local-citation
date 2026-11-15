@@ -8,6 +8,7 @@ on:
       - "docker-compose.science.yml"
       - "src/app/classifier_runtime.py"
       - "src/app/scibert_runtime.py"
+      - "scripts/ci/smoke_real_scibert.py"
       - ".github/workflows/science-image-build.yml"
   push:
     branches: [main]
@@ -16,6 +17,7 @@ on:
       - "docker-compose.science.yml"
       - "src/app/classifier_runtime.py"
       - "src/app/scibert_runtime.py"
+      - "scripts/ci/smoke_real_scibert.py"
       - ".github/workflows/science-image-build.yml"
 
 permissions:
@@ -32,6 +34,35 @@ jobs:
       - name: Real installed scientific library imports (no mock)
         run: |
           docker run --rm --entrypoint /app/.venv/bin/python citas-science-cpu:ci -c             "import torch, transformers, safetensors, recuperacion_densa.codificador_torch, clasificacion_funcion.clasificador_torch; print('Torch:', torch.__version__); print('Transformers:', transformers.__version__); print('CPU available:', bool(torch.backends.cpu))"
+      - name: Download the pinned SciBERT snapshot (explicit CI test only)
+        run: |
+          mkdir -p /tmp/hf-scibert-ci
+          docker run --rm --user "$(id -u):$(id -g)" \
+            -e HF_HUB_OFFLINE=0 -e TRANSFORMERS_OFFLINE=0 \
+            -v /tmp/hf-scibert-ci:/models/huggingface \
+            --entrypoint /app/.venv/bin/python citas-science-cpu:ci \
+            -m src.app.science_preflight --download >/tmp/preflight-scibert.json
+          python - <<'PY'
+          import json
+          doc=json.load(open('/tmp/preflight-scibert.json'))
+          assert doc["snapshot_scibert"]["status"]=="verified", doc["snapshot_scibert"]
+          assert doc["ready_a_b"] is False, "No se puede alegar disponibilidad de A4"
+          print("Pinned SciBERT snapshot A1 + A4 SHA verified. A4 remains unavailable.")
+          PY
+      - name: Real CPU SciBERT Top-3 with model snapshot, not a mock
+        run: |
+          docker run --rm --user "$(id -u):$(id -g)" \
+            -e HF_HUB_OFFLINE=1 -e TRANSFORMERS_OFFLINE=1 \
+            -v /tmp/hf-scibert-ci:/models/huggingface:ro \
+            --entrypoint /app/.venv/bin/python citas-science-cpu:ci \
+            /app/scripts/ci/smoke_real_scibert.py >/tmp/scibert-real.json
+          python - <<'PY'
+          import json
+          doc=json.load(open('/tmp/scibert-real.json'))
+          assert doc["estado"]=="inferencia_scibert_cpu_real"
+          assert doc["total_fragmentos"]==3
+          print("Real SciBERT CPU Top-3 executed:", doc["ids_top3"])
+          PY
       - name: Run baseline from scientific image with models explicitly OFF
         run: |
           docker run -d --name citas-science-smoke             -p 127.0.0.1:18002:8000             -e APP_SCIBERT_ENABLED=false             -e APP_A4_ENABLED=false             -e APP_A4_B_ENABLED=false             citas-science-cpu:ci
