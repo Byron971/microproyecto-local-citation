@@ -1,7 +1,8 @@
 # Despliegue del API en ECS Fargate
 
 Terraform administra VPC, dos subredes públicas, security groups, ECS, ALB interno,
-API Gateway HTTP API y logs con retención de 14 días. No crea IAM, bucket ni ECR.
+API Gateway HTTP API, logs con retención de 14 días, y ahora el hosting web privado
+(S3 + CloudFront). No crea IAM, bucket del estado ni ECR.
 El contenedor usa CPU x86, incluye el modelo y sirve también el tablero.
 
 ## Requisitos
@@ -107,18 +108,22 @@ Renueva los tres al cambiar de sesión del lab. No los escribas en el código.
 Los workflows usan `us-east-1`, `maia2026-grupo19` y `citas-api`, igual que la
 configuración inicial local. Si cambias esos valores, actualiza ambos workflows.
 
-- **deploy-api.yml:** en PR comprueba el build sin credenciales. Al integrar
-  cambios del API en `main`, publica la imagen con el SHA corto, actualiza SSM y
-  aplica Terraform. Después comprueba la revisión de ECS, el tablero, el estado
-  del modelo y una recomendación. Si falla, intenta restaurar el tag anterior en
-  SSM; revisar ECS y ejecutar un plan antes de reintentar.
-- **terraform.yml:** comprueba formato y validez sin credenciales. En PRs del
-  mismo repositorio publica el plan como comentario si la sesión está vigente;
-  sin credenciales o desde forks se omite el plan. Los errores reales del plan
-  fallan el job. En `main`, aplica y comprueba el despliegue.
+- **deploy-api.yml:** en PR/push valida el build sin credenciales y **no
+  publica**. Para publicar desde `main`, usa **Actions → Run workflow** y
+  escribe `DEPLOY` en `confirm_deploy`. Valida API y rollback.
+- **terraform.yml:** valida formato y configuración sin credenciales. En PR
+  puede generar un plan con sesión AWS vigente. **Nunca aplica en push**:
+  selecciona `main` y escribe `DEPLOY` en `confirm_apply`.
+- **publicar-frontend.yml:** no se ejecuta en push. Solo después de crear los
+  recursos web autorizados con un plan/revisión previa, selecciona `main` y
+  escribe `PUBLISH`. Usa `make publish-frontend`, que copia primero assets con
+  hash, luego HTML, e invalida `/index.html` en CloudFront.
 
-Ambos permiten ejecución manual desde **Actions → Run workflow**, seleccionando
-`main`. Comparten `deploy-aws` y no cancelan el despliegue en curso. La comprobación
+Los trabajos que modifican AWS comparten `deploy-aws` y no cancelan un
+despliegue en curso. **No ejecutar** Terraform apply ni publicación sin revisar
+costos y permisos de la cuenta. CloudFront y S3 generan cargos; Learner Lab
+puede no permitir su creación. La validación `terraform validate` por sí sola
+no demuestra disponibilidad pública ni permisos efectivos. La comprobación
 HTTP se omite si `desired_count=0`. Los runners usan los valores versionados;
 no leen tu archivo local `terraform.tfvars`.
 
@@ -127,6 +132,29 @@ secrets temporales de Learner Lab y omite OIDC y environments; esta diferencia
 respecto al requisito original de #137 debe quedar aceptada por el equipo.
 La ejecución real en GitHub/AWS y la prueba de rollback siguen pendientes; la
 validación local no demuestra que el laboratorio permita todos los servicios.
+
+## Publicar el frontend React (requiere autorización explícita)
+
+La infraestructura React añade un bucket S3 **privado** protegido por OAC de
+CloudFront, una distribución HTTPS y rutas SPA. La API habilita CORS solo para
+el origen CloudFront generado y los orígenes HTTPS locales/externos
+declarados explícitamente en `cors_allowed_origins` (por defecto ninguno
+adicional). Los outputs nuevos son `frontend_url`, `frontend_bucket`,
+`distribution_id` y `api_base_url`.
+
+Antes de aplicar, ejecutar `terraform -chdir=terraform plan` con credenciales
+válidas y **revisar los cambios en API Gateway**: hay migración de rutas ANY
+a GET/POST mediante bloques `moved`. No perder ni reemplazar el estado S3.
+Si el plan propone destruir recursos ajenos o reemplazos inesperados, detenerse
+y revisar. Se requiere permiso AWS para CloudFront/S3 y un presupuesto
+aprobado.
+
+Una vez exista el stack aprobado, construir y publicar desde el comando
+`make publish-frontend` o mediante el workflow manual con `PUBLISH`.
+El build inyecta únicamente la URL pública de la API en
+`VITE_API_BASE_URL`; **nunca secretos**. Comprobar externamente HTTPS,
+recarga en `/fragmentos` y `/datos`, API, CORS y casos de error. La
+publicación aún está **pendiente** hasta ejecutar este smoke real.
 
 ## Apagar y eliminar
 
