@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { api, ApiError, errorMessage, type Top3CorpusExample, type Top3Response } from '../api';
+import { api, ApiError, errorMessage, type Top3CorpusExample, type Top3Response, type DenseTop3Response, type DenseCorpusResponse } from '../api';
+import { Link } from 'react-router';
 import { Icon } from '../components/Icon';
 export function Top3() {
   const [context, setContext] = useState('');
   const [id, setId] = useState('');
   const [text, setText] = useState('');
-  const [result, setResult] = useState<Top3Response>();
+  const [result, setResult] = useState<Top3Response | DenseTop3Response | DenseCorpusResponse>();
+  const [retrieval, setRetrieval] = useState<'bm25' | 'scibert'>('bm25');
   const [submitted, setSubmitted] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -44,16 +46,20 @@ export function Top3() {
     setLoading(true);
     setResult(undefined);
     try {
-      const data = await api.top3(context.trim(), id.trim(), paragraphs, current.signal);
+      const data = retrieval === 'scibert'
+        ? await api.top3SciBERT(context.trim(), id.trim(), paragraphs, current.signal)
+        : await api.top3(context.trim(), id.trim(), paragraphs, current.signal);
       if (!current.signal.aborted) {
         setResult(data);
         setResultMode('manual');
         setCitedTitle('');
-        setSubmitted(JSON.stringify([context, id, text]));
+        setSubmitted(JSON.stringify([context, id, text, retrieval]));
         requestAnimationFrame(() => title.current?.focus());
       }
     } catch (err) {
-      if (!current.signal.aborted) setError(errorMessage(err));
+      if (!current.signal.aborted) setError(err instanceof ApiError && err.status === 503 && retrieval === 'scibert'
+        ? 'SciBERT no está disponible: falta su snapshot verificado o el servicio de inferencia no está activado.'
+        : errorMessage(err));
     } finally {
       if (!current.signal.aborted) setLoading(false);
     }
@@ -92,9 +98,12 @@ export function Top3() {
     setError('');
     setResult(undefined);
     try {
-      const data = await api.top3Corpus(selectedCorpusId, current.signal);
+      const data = retrieval === 'scibert'
+        ? await api.top3SciBERTCorpus(selectedCorpusId, current.signal)
+        : await api.top3Corpus(selectedCorpusId, current.signal);
       if (current.signal.aborted) return;
-      if (data.split !== 'train' || data.metodo !== 'BM25_lexico_baseline') {
+      if (data.split !== 'train' || data.metodo !== (retrieval === 'scibert'
+        ? 'scibert_base_mean_pooling_cosine' : 'BM25_lexico_baseline')) {
         throw new Error('La respuesta no corresponde al corpus TRAIN y baseline esperados.');
       }
       setContext(data.contexto);
@@ -103,10 +112,12 @@ export function Top3() {
       setCitedTitle(data.cited_title);
       setResultMode('corpus');
       setResult(data);
-      setSubmitted(JSON.stringify([data.contexto, data.cited_id, '']));
+      setSubmitted(JSON.stringify([data.contexto, data.cited_id, '', retrieval]));
       requestAnimationFrame(() => title.current?.focus());
     } catch (err) {
-      if (!current.signal.aborted) setError(errorMessage(err));
+      if (!current.signal.aborted) setError(err instanceof ApiError && err.status === 503 && retrieval === 'scibert'
+        ? 'SciBERT no está disponible: falta su snapshot verificado o el servicio de inferencia no está activado.'
+        : errorMessage(err));
     } finally {
       if (!current.signal.aborted) setLoading(false);
     }
@@ -128,19 +139,19 @@ export function Top3() {
         <div>
           <span className="eyebrow">Experimental · Fragmentos de un artículo</span>
           <h1>Encuentra el fragmento que respalda tu cita.</h1>
-          <p>Compara tu contexto con párrafos del mismo artículo. Recuperación léxica BM25.</p>
+          <p>Recupera fragmentos por BM25 léxico o por SciBERT base cuando esté instalado.</p>
         </div>
       </div>
       <p className="notice">
         Esta búsqueda usa únicamente los párrafos que aportes. No descarga artículos ni consulta
-        automáticamente el corpus completo. Los puntajes BM25 no son probabilidades.
+        automáticamente el corpus completo. Los puntajes BM25 y la similitud coseno no son probabilidades.
       </p>
       <section className="workspace">
         <div className="corpus-demo" aria-label="Casos reales de desarrollo">
           <h2>Probar con un caso real del corpus de desarrollo</h2>
           <p className="field-help">
             Solo ejemplos de TRAIN, provenientes de ACL-200 y ACL OCL. No incluyen
-            etiquetas Gold ni validación humana de relevancia; se usa BM25.
+            etiquetas Gold ni validación humana de relevancia. Elige BM25 o SciBERT experimental.
           </p>
           <div className="form-actions">
             <button type="button" className="text-button" disabled={loading}
@@ -168,6 +179,16 @@ export function Top3() {
           {corpusMessage && <p className="field-help" role="status">{corpusMessage}</p>}
         </div>
         <form onSubmit={submit}>
+          <label htmlFor="top3-method">Método de recuperación Top-3</label>
+          <select id="top3-method" value={retrieval} disabled={loading}
+            onChange={(e) => setRetrieval(e.target.value as 'bm25' | 'scibert')}>
+            <option value="bm25">BM25 léxico (línea base)</option>
+            <option value="scibert">SciBERT base semántico (requiere modelo)</option>
+          </select>
+          <p className="field-help">
+            SciBERT necesita snapshot verificado en el backend. Su similitud coseno
+            no demuestra relevancia ni calidad Gold.
+          </p>
           <label htmlFor="fragment-context">Contexto de cita (en inglés)</label>
           <textarea
             id="fragment-context"
@@ -222,15 +243,14 @@ export function Top3() {
             </h2>
             <span>{result.cited_id}{resultMode === 'corpus' && citedTitle ? ` · ${citedTitle}` : ''}</span>
           </div>
-          {submitted !== JSON.stringify([context, id, text]) && (
+          {submitted !== JSON.stringify([context, id, text, retrieval]) && (
             <p className="notice">
               Resultados de la consulta anterior. Vuelve a buscar para actualizar.
             </p>
           )}
           {resultMode === 'corpus' && (
             <p className="notice">
-              Datos del artículo citado en ACL OCL · subconjunto TRAIN · BM25. Esta
-              demostración no representa una evaluación Gold ni inferencia SciBERT.
+              Datos del artículo citado en ACL OCL · subconjunto TRAIN · {'metodo' in result && result.metodo === 'scibert_base_mean_pooling_cosine' ? 'SciBERT base' : 'BM25'}. Esta demostración no representa una evaluación Gold.
             </p>
           )}
           {!result.fragmentos.length ? (
@@ -244,7 +264,13 @@ export function Top3() {
                       {f.chunk_id}
                       {f.seccion ? ` · ${f.seccion}` : ''}
                     </span>
-                    <span className="score">BM25 {f.puntaje_bm25.toFixed(3)}</span>
+                    <span className="score">
+                      {'puntaje_bm25' in f && typeof f.puntaje_bm25 === 'number'
+                        ? `BM25 ${f.puntaje_bm25.toFixed(3)}`
+                        : 'similitud_coseno' in f && typeof f.similitud_coseno === 'number'
+                          ? `Coseno ${f.similitud_coseno.toFixed(3)}`
+                          : 'Sin puntuación'}
+                    </span>
                   </div>
                   <p lang="en">{f.texto}</p>
                 </li>
@@ -260,8 +286,9 @@ export function Top3() {
         <span className="eyebrow">Función de cita</span>
         <h2>Clasificación aún no disponible</h2>
         <p>
-          No hay un clasificador de nueve funciones integrado y validado. La recuperación Top-3
-          funciona de forma independiente; no genera etiquetas de función de cita.
+          Este flujo Top-3 no genera etiquetas de función. La <Link to="/funcion">vista de función de cita</Link>
+          ofrece un clasificador A4 provisional por entrada A cuando se instalen sus pesos verificados;
+          no equivale a validación humana.
         </p>
       </section>
     </>
