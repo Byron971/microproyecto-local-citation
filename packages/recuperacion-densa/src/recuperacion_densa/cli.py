@@ -114,6 +114,8 @@ def _parser() -> argparse.ArgumentParser:
     ap.add_argument("--raw", type=Path, default=ad.RAW)
     ap.add_argument("--cache-ocl", type=Path, default=ad.CACHE)
     ap.add_argument("--entrada", type=Path, help="JSON S2.2 ya exportado (reemplaza el constructor)")
+    ap.add_argument("--fragmentador", choices=("v1", "v2"), default="v1",
+                    help="v1 histórico (predeterminado) o v2 experimental; requiere nuevo corpus")
     ap.add_argument("--limite", type=int)
     ap.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
     ap.add_argument("--batch-size", type=int, default=16)
@@ -136,6 +138,8 @@ def main(argv: list[str] | None = None, *,
          reloj: Callable[[], float] = time.perf_counter) -> int:
     ap = _parser()
     args = ap.parse_args(argv)
+    if args.entrada and args.fragmentador == "v2":
+        ap.error("--fragmentador v2 construye desde OCL; no usar con --entrada ya fragmentada")
     if bool(args.calibracion_origen) != bool(args.calibracion_carpeta):
         ap.error("--calibracion-origen y --calibracion-carpeta van juntos")
     salida = args.salida or SALIDA / time.strftime("corrida_%Y%m%d_%H%M%S")
@@ -151,8 +155,13 @@ def main(argv: list[str] | None = None, *,
         else:
             indice = ad.cargar_indice(args.raw)
             papers = json.loads((args.raw / "papers.json").read_text(encoding="utf-8-sig"))
+            algoritmo = ad.fragmentar_v2 if args.fragmentador == "v2" else ad.fragmentar
             casos, meta = servicio.construir_casos(indice, papers, args.cache_ocl, ad.integrar,
-                                                   ad.fragmentar, excluidos, args.limite)
+                                                   algoritmo, excluidos, args.limite)
+            if args.fragmentador == "v2":
+                meta["estrategia_fragmentacion"] = "v2_division_conservadora_sin_truncamiento"
+                meta["advertencia_v2"] = ("Experimental: IDs de chunk distintos de V1; "
+                                          "no reutilizar Gold, embeddings ni resultados históricos")
         validacion = dominio.validar_casos(casos, excluidos)
         print(f"Corpus valido: {validacion['contextos']} contextos / "
               f"{validacion['articulos']} articulos")
@@ -198,6 +207,7 @@ def main(argv: list[str] | None = None, *,
     _json(salida / "manifiesto.json", {
         "estado": ev.resumen["estado"], "argv": sys.argv[1:] if argv is None else argv,
         "git": _git(), "encoder": codificador.info(), "sha256_manifiesto_modelo": mm,
+        "fragmentador": ("v2" if meta.get("estrategia_fragmentacion") else "v1"),
         "entradas": {"train.json": _sha_archivo(args.raw / "train.json"),
                      "contexts.json": _sha_archivo(args.raw / "contexts.json"),
                      "entrada_s22": _sha_archivo(args.entrada) if args.entrada else None},
