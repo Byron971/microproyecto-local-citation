@@ -39,7 +39,8 @@ def test_alfa_calculado_a_mano():
 
 def test_etiqueta_solo_de_filas_terminadas():
     r = lambda *a: dict(zip(("evaluable", "funcion", "confianza", "justificacion"), a))
-    assert etiqueta(r("Evaluable", "Gap", "Alta", "")) == "Gap"
+    assert etiqueta(r("Evaluable", "Gap", "Alta", "")) is None
+    assert etiqueta(r("Evaluable", "Gap", "Alta", "la cita plantea una brecha")) == "Gap"
     assert etiqueta(r("Ambiguo", "Basis", "", "dos lecturas")) == "Basis"     # la guía pide la más probable
     assert etiqueta(r("No evaluable", "Gap", "", "texto roto")) == NO_EVALUABLE
     assert etiqueta(r("Evaluable", "Gap", "", "")) is None                   # incompleta
@@ -83,7 +84,7 @@ def test_veredicto():
 
 
 def test_cargar_desde_hojas_y_reporte(tmp_path):
-    xlsx(tmp_path / "TestGold_T1_v2_Ana.xlsx", libro([fila("c1", "Evaluable", "Gap", "Alta"), fila("c2", "Evaluable", "Gap")]))
+    xlsx(tmp_path / "TestGold_T1_v2_Ana.xlsx", libro([fila("c1", "Evaluable", "Gap", "Alta", "justificado"), fila("c2", "Evaluable", "Gap")]))
     xlsx(tmp_path / "TestGold_T1_v2_Beto.xlsx", libro([fila("c1", "Ambiguo", "Basis", "", "duda"), fila("c2")]))
     xlsx(tmp_path / "Calibracion3_Ana.xlsx", libro([fila("k1", "No evaluable", "", "", "roto")]))
     etiquetas, perfil, asignadas = cargar(tmp_path, CONJUNTOS["tanda1"])
