@@ -16,6 +16,27 @@ Datos de origen:
 
 ---
 
+## Estado del frontend React (integración del 15 de noviembre de 2026)
+
+La carpeta [`frontend/`](frontend/) contiene una interfaz React + Vite con
+vistas de recomendación de artículos, análisis descriptivo y fragmentos Top-3.
+Este frontend se puede ejecutar **localmente**, en una terminal con
+`uv run tablero` (API), y en otra con `npm --prefix frontend ci` seguido de
+`npm --prefix frontend run dev`; abrir `http://localhost:5173`.
+
+La interfaz distingue tareas y capacidades realmente disponibles:
+- **Recomendación de artículos:** TF-IDF + reordenador lineal supervisado.
+- **Top-3 dentro del citado:** baseline BM25 léxico, NO el SciBERT experimental.
+- **Clasificación de nueve funciones:** NO disponible todavía en la API pública.
+
+La prueba E2E de navegador del frontend emplea respuestas controladas; la
+inferencia científica con checkpoints reales y publicación AWS/CloudFront siguen
+pendientes de integración y validación independientes. Ver
+[`frontend/README.md`](frontend/README.md). Las evidencias históricas del
+microproyecto no deben confundirse con el demostrador final de la tesis.
+
+---
+
 ## Video de síntesis
 
 Presentación del proyecto en 9 minutos: problema y contexto, modelos construidos,
