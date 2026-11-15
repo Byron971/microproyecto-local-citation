@@ -1,16 +1,7 @@
-/* Gráficas en SVG generadas a mano.
- *
- * Se dibujan sin librerías externas para que el tablero funcione sin conexión
- * y sin paso de compilación. Cada función recibe un contenedor y devuelve el
- * SVG ya insertado, con el mismo contrato: el ancho se adapta al contenedor
- * mediante viewBox y la altura se fija en el sistema de coordenadas interno.
- */
+/* SVG sin librerías externas: el viewBox adapta el ancho al contenedor. */
 
-// Todo el módulo vive dentro de una IIFE porque este archivo se carga como
-// script clásico y comparte el ámbito global con dashboard.js. Sin este
-// cierre, cada constante de aquí (PALETA, formatearNumero, ...) se declararía
-// en el ámbito global y chocaría con las que dashboard.js obtiene de
-// window.Graficas, lo que aborta el segundo script con un SyntaxError.
+// Como se carga como script clásico, aislamos las constantes para que no
+// choquen con las de dashboard.js.
 (function () {
 
   const SVG_NS = "http://www.w3.org/2000/svg";

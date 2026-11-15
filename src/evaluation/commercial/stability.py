@@ -122,15 +122,8 @@ def compute_group_metrics(group: list[dict]) -> dict[str, float | int | None]:
         n_valid += 1
         labels.append(max(range(len(scores)), key=lambda i: scores[i]))
 
-    # Los errores de proveedor (p.ej. timeout tras agotar reintentos) son
-    # fallas de infraestructura, no de formato del prompt: se excluyen del
-    # numerador y del denominador de format_error_rate para no corromper
-    # la comparacion de prompts. Si un grupo es enteramente errores de
-    # proveedor no hay nada que evaluar en formato: format_error_rate queda
-    # en None (no 0.0) para que aggregate_by_prompt lo excluya del promedio,
-    # igual que ya hace con label_stability. Promediar un 0.0 falso ahi
-    # sesgaria avg_format_error_rate a favor de un prompt que simplemente
-    # tuvo mala suerte de infraestructura, no buen formato.
+    # Un error del proveedor no indica un fallo de formato. Si todos fallaron
+    # por esa causa, dejamos None para no contar el caso como formato perfecto.
     format_error_rate: float | None
     format_error_rate = (n_considered - n_valid) / n_considered if n_considered else None
 
@@ -166,12 +159,7 @@ def aggregate_by_prompt(
     aggregated: dict[tuple[str, str, str], dict[str, float | int | None]] = {}
     for key, metric_list in per_prompt.items():
         n_cases = len(metric_list)
-        # avg_format_error_rate y avg_label_stability excluyen los casos sin
-        # datos relevantes en vez de rellenarlos con 0.0: un caso enteramente
-        # de errores de proveedor no dice nada sobre el formato del prompt, y
-        # un caso sin ninguna respuesta parseable no dice nada sobre
-        # estabilidad de etiqueta. Promediarlos como 0.0/None inflaria el
-        # resultado a favor de un prompt con mala suerte de infraestructura.
+        # No promediamos casos sin datos de formato o sin respuestas parseables.
         format_error_rates = [m["format_error_rate"] for m in metric_list if m["format_error_rate"] is not None]
         stabilities = [m["label_stability"] for m in metric_list if m["label_stability"] is not None]
         n_cases_with_valid_responses = len(stabilities)
@@ -196,9 +184,7 @@ def write_stability_summary_csv(
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as fh:
-        # extrasaction="ignore": endurecimiento defensivo barato, por si
-        # algun dia se pasa directo el dict crudo de compute_group_metrics
-        # (que trae la clave interna "n", ausente de FIELDNAMES).
+        # El resultado de compute_group_metrics puede traer "n", fuera de FIELDNAMES.
         writer = csv.DictWriter(fh, fieldnames=FIELDNAMES, extrasaction="ignore")
         writer.writeheader()
         for (prompt_name, provider, model), metrics in aggregated.items():

@@ -89,13 +89,8 @@ def test_rank_processes_all_queries_across_batches():
 
 
 # --------------------------------------------------------------------------
-# Pruebas sobre un corpus grande, contra una implementacion de referencia.
-#
-# Las pruebas de arriba usan 3 articulos y miran solo la primera posicion: un
-# error de indices entre lotes podria pasar desapercibido. Las de aqui abajo
-# comparan el resultado de rank() contra el calculo ingenuo (todas las
-# similitudes, ordenadas), sobre un corpus lo bastante grande como para que un
-# desplazamiento de indices cambie el resultado.
+# Comparamos rank() con todas las similitudes ordenadas para detectar errores
+# de indices que podrian pasar desapercibidos con tres articulos.
 # --------------------------------------------------------------------------
 
 # Cada articulo tiene un termino propio ("tema-N") repetido, de modo que las
@@ -135,12 +130,8 @@ def test_rank_devuelve_exactamente_las_mejores_k_similitudes():
 
 
 def test_rank_devuelve_el_ranking_en_orden_descendente():
-    # Este caso necesita un corpus grande a proposito. ``np.argpartition`` no
-    # garantiza orden dentro del top-K, pero en arreglos pequenos suele
-    # devolverlo ordenado de todos modos: con 40 articulos la prueba pasaria
-    # aunque se eliminara el ordenamiento final, dando confianza falsa.
-    # Verificado empiricamente: con 2.000 articulos y K=100 si queda
-    # desordenado, y la prueba detecta la ausencia del ordenamiento.
+    # Con 40 articulos argpartition devolvia el top-K ordenado por casualidad;
+    # con 2.000 y K=100 la prueba detecta si falta el ordenamiento final.
     corpus = {
         f"p{i:04d}": {
             "title": f"Documento {i}",
@@ -165,9 +156,7 @@ def test_rank_por_lotes_da_el_mismo_resultado_que_sin_lotes():
 
     consultas = [f"tema{i} analisis" for i in range(13)]
 
-    # Un solo lote que abarca todo, contra lotes pequenos que no dividen
-    # exactamente el numero de consultas (13 = 5 + 5 + 3): asi el ultimo lote
-    # queda incompleto, que es donde suelen romperse los indices.
+    # 13 consultas en lotes de 5 dejan un ultimo lote incompleto.
     sin_lotes = baseline.rank(consultas, top_k=6, batch_size=len(consultas))
     con_lotes = baseline.rank(consultas, top_k=6, batch_size=5)
 
