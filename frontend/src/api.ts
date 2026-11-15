@@ -105,6 +105,20 @@ export interface ClassificationResponse {
   validacion: 'provisional_no_gold_humano';
   advertencia: string;
 }
+export interface FunctionBResponse {
+  context_id: string | null;
+  cited_id: string;
+  recuperacion: {
+    metodo: 'scibert_base_mean_pooling_cosine';
+    modelo: string;
+    revision: string;
+    fragmentos: DenseFragment[];
+  };
+  clasificacion: Omit<ClassificationResponse, 'entrada'> & { entrada: 'B' };
+  split: 'train' | null;
+  gold_certificado: false;
+  aviso: string;
+}
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -165,6 +179,20 @@ export const api = {
       body: JSON.stringify({ contexto, top_k, ...(modelo ? { modelo } : {}) }),
       signal,
     }),
+  classifyCitationB: (
+    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
+  ) => request<FunctionBResponse>('/api/clasificar-cita-b', {
+    method: 'POST',
+    body: JSON.stringify({
+      contexto, cited_id,
+      parrafos: paragraphs.map((texto, i) => ({chunk_id: `p${i + 1}`, texto})),
+    }),
+    signal,
+  }),
+  classifyCitationBCorpus: (contextId: string, signal?: AbortSignal) =>
+    request<FunctionBResponse>(
+      `/api/clasificar-cita-b/corpus/${encodeURIComponent(contextId)}`, { signal },
+    ),
   classifyCitation: (
     contexto: string, cited_title: string, cited_abstract: string,
     signal?: AbortSignal,
