@@ -3,7 +3,7 @@ name: Corte vertical Top3 de fragmentos
 on:
   workflow_dispatch:
   push:
-    branches: [feature/corte-vertical-top3-s2, feature/protocolo-evaluacion-top3-s2-3]
+    branches: [main, feature/corte-vertical-top3-s2, feature/protocolo-evaluacion-top3-s2-3]
     paths:
       - "src/app/**"
       - "tests/test_api_modelos.py"
