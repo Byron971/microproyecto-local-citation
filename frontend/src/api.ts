@@ -48,6 +48,26 @@ export interface Top3Response {
   fragmentos: Fragment[];
   clasificacion: { estado: string; motivo?: string };
 }
+export interface Top3CorpusExample {
+  context_id: string;
+  cited_id: string;
+  cited_title: string;
+  total_chunks: number;
+}
+export interface Top3CorpusCatalog {
+  total: number;
+  ejemplos: Top3CorpusExample[];
+}
+export interface Top3CorpusResponse extends Top3Response {
+  context_id: string;
+  contexto: string;
+  cited_title: string;
+  split: 'train';
+  fuente: string;
+  metodo: string;
+  aviso: string;
+  sha256_ocl_citado: string;
+}
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -108,6 +128,10 @@ export const api = {
       body: JSON.stringify({ contexto, top_k, ...(modelo ? { modelo } : {}) }),
       signal,
     }),
+  top3CorpusExamples: (signal?: AbortSignal) =>
+    request<Top3CorpusCatalog>('/api/top3-corpus/ejemplos', { signal }),
+  top3Corpus: (contextId: string, signal?: AbortSignal) =>
+    request<Top3CorpusResponse>(`/api/top3-corpus/${encodeURIComponent(contextId)}`, { signal }),
   top3: (contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal) =>
     request<Top3Response>('/api/top3-fragmentos', {
       method: 'POST',
