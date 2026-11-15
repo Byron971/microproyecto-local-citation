@@ -53,6 +53,7 @@ def test_scientific_mode_requiere_version_coherente_y_a4_provisional():
             return {"tareas": {
                 "top3_scibert": {"disponible": True, "revision": "a" * 40},
                 "clasificacion_nueve_funciones": {"disponible": True, "modelo": "scibert_A_42"},
+                "clasificacion_nueve_funciones_b": {"disponible": True, "modelo": "scibert_B_42"},
             }}
         if path == "/api/top3-scibert":
             return {"metodo": "scibert_base_mean_pooling_cosine",
@@ -62,10 +63,19 @@ def test_scientific_mode_requiere_version_coherente_y_a4_provisional():
             return {"modelo": "scibert_A_42", "entrada": "A",
                     "validacion": "provisional_no_gold_humano", "training_labels": "Haiku",
                     "puntuaciones_softmax": [{"categoria": f"clase{i}", "score": 1 / 9} for i in range(9)]}
+        if path == "/api/clasificar-cita-b":
+            return {"recuperacion": {"metodo": "scibert_base_mean_pooling_cosine",
+                                     "fragmentos": [{"chunk_id": f"p{i}"} for i in range(1,4)]},
+                    "clasificacion": {"modelo": "scibert_B_42", "entrada": "B",
+                      "validacion": "provisional_no_gold_humano",
+                      "puntuaciones_softmax": [{"categoria": f"c{i}"} for i in range(9)]},
+                    "gold_certificado": False}
         return baseline(path, body, timeout)
     result = validar_demo("http://127.0.0.1:8000", scientific=True, request=request)
     assert result["nivel"] == "cientifico"
     assert result["cientifico"]["num_funciones"] == 9
+    assert result["cientifico"]["entrada_b"] == "B"
+    assert result["cientifico"]["fragmentos_b"] == 3
     assert result["gold_certificado"] is False
 
 
@@ -74,7 +84,8 @@ def test_scientific_mode_no_pasa_con_respuesta_bm25_que_finge_ser_scibert():
         if path == "/api/capacidades":
             return {"tareas": {
                 "top3_scibert": {"disponible": True, "revision": "a" * 40},
-                "clasificacion_nueve_funciones": {"disponible": True, "modelo": "scibert_A_42"}}}
+                "clasificacion_nueve_funciones": {"disponible": True, "modelo": "scibert_A_42"},
+                "clasificacion_nueve_funciones_b": {"disponible": True, "modelo": "scibert_B_42"}}}
         if path == "/api/top3-scibert":
             return {"metodo": "BM25_lexico_baseline", "revision": "a" * 40,
                     "fragmentos": [{"chunk_id": "p1"}]}
