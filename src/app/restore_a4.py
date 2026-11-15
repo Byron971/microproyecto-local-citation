@@ -17,21 +17,30 @@ from src.app.classifier_runtime import sha256_file
 
 
 def recuperar(source: Path, destination: Path, *, registry: Path = REGISTRY,
-              repo: Path = REPO, apply: bool = False) -> dict:
+              repo: Path = REPO, apply: bool = False,
+              model_ids: tuple[str, ...] | None = None) -> dict:
     if not source.is_dir() or source.is_symlink():
         raise ValueError("La fuente debe ser una carpeta local auténtica, no un symlink.")
     entries = json.loads(registry.read_text(encoding="utf-8"))
     # Gate central: coteja SHA histórico vs archivo y vs manifiesto original.
     report = verificar_registro(registry, base=source, repo=repo)
-    if not report["ready"]:
+    ids = model_ids or ("scibert_A_42", "scibert_B_42")
+    known = {item["id"] for item in entries["models"]}
+    if not ids or len(set(ids)) != len(ids) or not set(ids).issubset(known):
+        raise ValueError("La selección debe contener identificadores A4 únicos del registro.")
+    missing = [x for x in report["models"]
+               if x["id"] in ids and x["status"] != "verified"]
+    if missing:
         raise ValueError(
-            "No se localizaron los cuatro checkpoints históricos íntegros: "
-            + ", ".join(f"{x['id']}={x['status']}" for x in report["models"])
+            "No se localizaron checkpoints históricos íntegros: "
+            + ", ".join(f"{x['id']}={x['status']}" for x in missing)
         )
     if destination.is_symlink():
         raise ValueError("Directorio de destino no puede ser enlace simbólico.")
     out = []
     for item in entries["models"]:
+        if item["id"] not in ids:
+            continue
         rel = _relative(item["checkpoint"])
         origin = source / rel
         target = destination / rel
@@ -73,10 +82,16 @@ def main(argv: list[str] | None = None) -> int:
                    help="Directorio corridas original del equipo de entrenamiento")
     p.add_argument("--destination", type=Path,
                    default=REPO / "proyecto_de_grado/artifacts/clasificacion_a4/corridas")
+    p.add_argument("--all", action="store_true",
+                   help="Recupera también SPECTER A/B (sin --all solo SciBERT A/B).")
     p.add_argument("--apply", action="store_true", help="Copia los archivos SHA-verificados")
     args = p.parse_args(argv)
     try:
-        result = recuperar(args.source, args.destination, apply=args.apply)
+        result = recuperar(
+            args.source, args.destination, apply=args.apply,
+            model_ids=("scibert_A_42", "scibert_B_42", "specter_A_42", "specter_B_42")
+                      if args.all else None,
+        )
     except (ValueError, OSError, KeyError, TypeError, json.JSONDecodeError) as exc:
         p.exit(2, f"Recuperación bloqueada: {exc}\n")
     print(json.dumps(result, ensure_ascii=False, indent=2))
