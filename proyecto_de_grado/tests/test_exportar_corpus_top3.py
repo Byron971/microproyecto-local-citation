@@ -4,7 +4,7 @@ import json
 import pytest
 
 from proyecto_de_grado.src.data.exportar_corpus_top3 import (
-    exportar, fragmentar, preparar
+    exportar, fragmentar, fragmentar_v2, preparar
 )
 
 
@@ -123,3 +123,69 @@ def test_secciones_multiples_no_se_cruzan_con_chunk():
         _parrafo(2,"third", "Method"),
     ])
     assert [c["paragraph_indices"] for c in chunks] == [[0], [1,2]]
+
+
+def test_v2_conserva_exactamente_v1_cuando_todos_los_parrafos_son_cortos():
+    origen = [
+        _parrafo(0, "This is the introduction."),
+        _parrafo(1, "Methods use embeddings."),
+        _parrafo(3, "Evaluation results.", "Results"),
+    ]
+    assert fragmentar_v2(origen) == fragmentar(origen)
+
+
+def test_v2_divide_parrafo_largo_sin_perder_palabras_ni_procedencia():
+    original = " ".join("token" for _ in range(651))
+    chunks = fragmentar_v2([
+        _parrafo(5, "Initial paragraph."),
+        _parrafo(6, original),
+        _parrafo(7, "Final paragraph.", "Results"),
+    ])
+    partes = [c for c in chunks if c["paragraph_indices"] == [6]]
+    assert len(partes) == 3
+    assert [x["chunk_id"] for x in partes] == [
+        "p00006-s000", "p00006-s001", "p00006-s002"
+    ]
+    assert " ".join(" ".join(x["texto"].split()) for x in partes) == original
+    assert all(len(x["texto"].split()) <= 300 for x in partes)
+    assert all(len(x["texto"]) <= 5000 for x in partes)
+    assert [x["seccion"] for x in partes] == ["Methods"] * 3
+    assert len({x["chunk_id"] for x in chunks}) == len(chunks)
+
+
+def test_v2_prefiere_cortes_de_oracion_cuando_son_validos():
+    original = " ".join(["Words about neural networks."] * 150)
+    parts = fragmentar_v2([_parrafo(9, original)])
+    assert len(parts) >= 2
+    assert all(p["texto"].endswith(".") for p in parts)
+    assert " ".join(p["texto"] for p in parts) == original
+
+
+def test_v2_rechaza_token_imposible_y_indices_incorrectos():
+    with pytest.raises(ValueError, match="Token demasiado largo"):
+        fragmentar_v2([_parrafo(0, "x" * 5001)])
+    with pytest.raises(ValueError, match="duplicado"):
+        fragmentar_v2([_parrafo(2, "first"), _parrafo(2, "second")])
+
+
+def test_v2_exporta_solo_train_y_no_sobrescribe_artefactos(tmp_path):
+    raw, cache, *_ = _datos(tmp_path)
+    ruta = cache / "P14-1001.json"
+    doc = json.loads(ruta.read_text(encoding="utf-8"))
+    doc["pdf_parse"]["body_text"][1]["text"] = " ".join("evidence" for _ in range(320))
+    ruta.write_text(json.dumps(doc), encoding="utf-8")
+    salida = tmp_path / "casos_v2.json"
+
+    # El algoritmo histórico V1 declara el artículo no apto.
+    with pytest.raises(ValueError, match="No hay casos"):
+        exportar(raw, cache, tmp_path / "casos_v1.json", set(), 5)
+
+    payload = exportar(raw, cache, salida, set(), 5, fragmentador="v2")
+    assert payload["resumen"]["total"] == 1
+    assert payload["resumen"]["estrategia_fragmentacion"].startswith("v2_")
+    assert all(x["split"] == "train" for x in payload["casos"])
+    chunks = payload["casos"][0]["chunks"]
+    assert any(x["chunk_id"].endswith("-s001") for x in chunks)
+    assert all(len(x["texto"].split()) <= 300 for x in chunks)
+    with pytest.raises(ValueError, match="no sobrescribir"):
+        exportar(raw, cache, salida, set(), 5, fragmentador="v2")
