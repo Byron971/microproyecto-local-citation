@@ -48,6 +48,31 @@ else:
             )
             return result, [json.loads(line) for line in log.read_text().splitlines()]
 
+    def test_aws_mutations_require_manual_confirmation_on_main(self):
+        """Un push o PR nunca debe hacer terraform apply ni publicar ECR."""
+        expected = {
+            ".github/workflows/terraform.yml": ("apply", "confirm_apply"),
+            ".github/workflows/deploy-api.yml": ("deploy", "confirm_deploy"),
+        }
+        for path, (job, input_name) in expected.items():
+            with self.subTest(workflow=path):
+                workflow = (ROOT / path).read_text(encoding="utf-8")
+                self.assertIn("workflow_dispatch:\n    inputs:", workflow)
+                self.assertIn(f"{input_name}:", workflow)
+                # La condición del job de mutación debe exigir los tres controles.
+                section = workflow.split(f"  {job}:\n", 1)[1]
+                condition = section.split("\n", 1)[0]
+                self.assertIn("github.event_name == 'workflow_dispatch'", condition)
+                self.assertIn("github.ref == 'refs/heads/main'", condition)
+                self.assertIn(f"inputs.{input_name} == 'DEPLOY'", condition)
+
+    def test_push_and_pr_validate_without_aws_secrets(self):
+        terraform = (ROOT / ".github/workflows/terraform.yml").read_text(encoding="utf-8")
+        api = (ROOT / ".github/workflows/deploy-api.yml").read_text(encoding="utf-8")
+        self.assertIn("  validate:\n", terraform)
+        self.assertIn("  build-validation:\n    if: github.event_name == 'pull_request' || github.event_name == 'push'", api)
+        self.assertIn("push: false", api)
+
     def test_failed_plan_or_apply_restores_previous_tag(self):
         for failure in ("plan", "apply", "rollback"):
             with self.subTest(failure=failure):
