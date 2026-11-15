@@ -181,6 +181,23 @@ def test_cache_lru_fingerprint_no_manual_persistence(models):
     assert dense.cache_stats()["bytes_estimated"] > 0
 
 
+def test_absolute_cache_byte_budget_evicts_and_skips_oversized_papers(models):
+    dense = models[0]
+    payload = case_payload()
+    # Dos elementos de 16 bytes por vector, tres vectores: 48 bytes/paragraph set.
+    dense._max_cache_bytes = 60
+    chunks = payload["parrafos"]
+    dense.top3(payload["contexto"], chunks, document_key="P14:v1")
+    assert dense.cache_stats()["papers"] == 1
+    dense.top3(payload["contexto"], chunks, document_key="P15:v1")
+    assert dense.cache_stats()["papers"] == 1
+    assert dense.cache_stats()["bytes_estimated"] <= 60
+    dense._max_cache_bytes = 10
+    dense.top3(payload["contexto"], chunks, document_key="P16:v1")
+    assert dense.cache_stats()["bytes_estimated"] <= 10
+    assert dense.cache_stats()["papers"] == 0
+
+
 def test_resource_limits_before_model_call(models):
     dense = models[0]
     with pytest.raises(ValueError, match="Demasiados chunks"):
@@ -214,5 +231,8 @@ def test_opt_in_config_denies_b_without_scibert():
     cfg = get_app_settings({})
     assert not cfg.a4_enabled and not cfg.a4_b_enabled
     assert cfg.max_cached_papers == 8
+    assert cfg.max_scibert_cache_mb == 64
+    with pytest.raises(ValueError, match="APP_SCIBERT_CACHE_MAX_MB"):
+        get_app_settings({"APP_SCIBERT_CACHE_MAX_MB": "513"})
     with pytest.raises(ValueError, match="APP_SCIENCE_MAX_CHUNKS"):
         get_app_settings({"APP_SCIENCE_MAX_CHUNKS": "0"})
