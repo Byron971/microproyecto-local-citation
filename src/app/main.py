@@ -139,6 +139,55 @@ def estado() -> dict[str, Any]:
     return respuesta
 
 
+@app.get("/api/capacidades")
+def capacidades() -> dict[str, Any]:
+    """Estado verificable de cada tarea, sin equiparar salud a cumplimiento de tesis.
+
+    El artefacto de corpus puede faltar en Docker: se valida su contenido,
+    no simplemente la existencia del archivo. No lee etiquetas Gold.
+    """
+    recomendador = state.get("recomendador")
+    recomendacion_lista = bool(recomendador is not None and recomendador.is_ready)
+    try:
+        corpus = leer_corpus()
+        corpus_listo, n_train, motivo = True, len(corpus["casos"]), None
+    except CorpusError as exc:
+        corpus_listo, n_train, motivo = False, 0, str(exc)
+
+    return {
+        "servicio": {"listo": recomendacion_lista},
+        "tareas": {
+            "recomendacion_articulos_tfidf": {
+                "disponible": recomendacion_lista,
+                "estado": "baseline_legacy",
+            },
+            "top3_manual_bm25": {
+                "disponible": True,
+                "estado": "baseline_lexico",
+            },
+            "top3_corpus_train_bm25": {
+                "disponible": corpus_listo,
+                "n_casos_train": n_train,
+                "motivo": motivo,
+                "estado": "desarrollo_no_gold",
+            },
+            "top3_scibert": {
+                "disponible": False,
+                "motivo": "SciBERT existe offline, pero no está integrado a esta API.",
+            },
+            "clasificacion_nueve_funciones": {
+                "disponible": False,
+                "motivo": "No existe un checkpoint validado conectado a esta API.",
+            },
+        },
+        "gold_humano_certificado": False,
+        "nota": (
+            "La disponibilidad de TF-IDF/BM25 no demuestra recuperación "
+            "SciBERT, clasificación de nueve funciones ni validación Gold."
+        ),
+    }
+
+
 # Publicar únicamente el modelo que de verdad está integrado al servicio.
 MODELO_PREDETERMINADO = "tfidf_reranker_v1"
 
