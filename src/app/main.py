@@ -172,18 +172,25 @@ def capacidades() -> dict[str, Any]:
                 "estado": "desarrollo_no_gold",
             },
             "top3_scibert": {
-                "disponible": False,
-                "motivo": "SciBERT existe offline, pero no está integrado a esta API.",
+                "disponible": state.get("scibert") is not None,
+                "motivo": None if state.get("scibert") is not None else
+                          "SciBERT no está cargado en este proceso.",
+                "modelo": getattr(state.get("scibert"), "model", None),
+                "revision": getattr(state.get("scibert"), "revision", None),
             },
             "clasificacion_nueve_funciones": {
-                "disponible": False,
-                "motivo": "No existe un checkpoint validado conectado a esta API.",
+                "disponible": state.get("a4") is not None,
+                "motivo": None if state.get("a4") is not None else
+                          "No hay checkpoint A4 cargado en este proceso.",
+                "modelo": getattr(state.get("a4"), "model_id", None),
+                "validacion": "provisional_no_gold_humano" if state.get("a4") is not None
+                              else "no_ejecutada",
             },
         },
         "gold_humano_certificado": False,
         "nota": (
-            "La disponibilidad de TF-IDF/BM25 no demuestra recuperación "
-            "SciBERT, clasificación de nueve funciones ni validación Gold."
+            "Salud de TF-IDF y modelos científicos son aspectos distintos; "
+            "ningún modelo queda certificado como Gold por estar disponible."
         ),
     }
 
