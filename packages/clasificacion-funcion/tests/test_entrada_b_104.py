@@ -182,3 +182,94 @@ def test_l7_el_notebook_06_nunca_carga_el_test_gold_anotado():
         assert prohibido not in codigo, f"el notebook 06 no debe usar {prohibido}"
     assert not re.search(r"ad\.TEST_GOLD\b(?!_MANIFIESTO)", codigo)
     assert "ids_gold_v2()" in codigo  # lo unico que lee del Gold v2
+
+
+# ---------------------------------------------------------------- dev, chunks al azar, L10
+def _contextos_dev(n=400):
+    return {f"c{i}": _ctx(f"P{i // 4}", "A") for i in range(n)}
+
+
+def test_separar_dev_agrupa_por_citante_es_determinista_y_no_depende_del_orden():
+    ctx = _contextos_dev()
+    filas = [_fila(c) for c in ctx]
+    train, dev = eb.separar_dev(filas, ctx)
+    assert len(train) + len(dev) == len(filas)
+    citantes_dev = {ctx[x["context_id"]]["citing_id"] for x in dev}
+    assert not citantes_dev & {ctx[x["context_id"]]["citing_id"] for x in train}
+    assert (train, dev) == eb.separar_dev(filas, ctx)
+    t2, d2 = eb.separar_dev(list(reversed(filas)), ctx)
+    assert {x["context_id"] for x in d2} == {x["context_id"] for x in dev}
+    assert 0.05 < len(citantes_dev) / 100 < 0.30  # 100 citantes, fraccion 0.15
+    assert {x["context_id"] for x in eb.separar_dev(filas, ctx, sal="otra")[1]} != {x["context_id"] for x in dev}
+    with pytest.raises(ValueError):
+        eb.separar_dev(filas, ctx, fraccion=1.5)
+
+
+def _caso_chunks(cid, cited, n=5):
+    return {"context_id": cid, "cited_id": cited,
+            "chunks": [{"chunk_id": f"{cited}-p{i}", "texto": f"texto {i} de {cited}",
+                        "seccion": "Results" if i % 2 else "Method"} for i in range(n)]}
+
+
+def _perfil(seccion):
+    return (seccion or "vacia").lower()
+
+
+def _b(cid, cited, chunks=(0, 1, 2)):
+    return {"context_id": cid, "cited_id": cited, "titulo": "t", "abstract": "a",
+            "top3": [{"chunk_id": f"{cited}-p{i}", "texto": f"texto {i} de {cited}",
+                      "perfil": _perfil("Results" if i % 2 else "Method"),
+                      "seccion": "Results" if i % 2 else "Method"} for i in chunks]}
+
+
+def test_entradas_aleatorias_deterministas_del_mismo_citado_y_con_los_mismos_campos():
+    casos = {"train_M": [_caso_chunks("t1", "R1"), _caso_chunks("t2", "R2", 8)], "V": [_caso_chunks("v1", "R1")]}
+    entradas = {"t1": _b("t1", "R1"), "t2": _b("t2", "R2"), "v1": _b("v1", "R1")}
+    al = eb.entradas_aleatorias(casos, entradas, _perfil)
+    assert al == eb.entradas_aleatorias(casos, entradas, _perfil)
+    assert al != eb.entradas_aleatorias(casos, entradas, _perfil, sal="otra")
+    for cid, e in al.items():
+        ids = [c["chunk_id"] for c in e["top3"]]
+        assert len(set(ids)) == 3 and all(i.startswith(entradas[cid]["cited_id"] + "-") for i in ids)
+        assert all(set(c) == {"chunk_id", "texto", "perfil"} for c in e["top3"])
+        assert {k: v for k, v in e.items() if k != "top3"} == {k: v for k, v in entradas[cid].items() if k != "top3"}
+        top3 = {c["chunk_id"]: c["perfil"] for c in entradas[cid]["top3"]}
+        assert all(c["perfil"] == top3[c["chunk_id"]] for c in e["top3"] if c["chunk_id"] in top3)
+
+
+def test_entradas_aleatorias_fallan_con_menos_de_tres_chunks():
+    with pytest.raises(ValueError, match="menos de 3"):
+        eb.entradas_aleatorias({"t": [_caso_chunks("t1", "R1", 2)]}, {"t1": _b("t1", "R1", (0, 1, 1))}, _perfil)
+    with pytest.raises(ValueError, match="sin chunks"):
+        eb.entradas_aleatorias({"t": []}, {"t1": _b("t1", "R1")}, _perfil)
+
+
+def test_resumen_aleatorias():
+    entradas = {"t1": _b("t1", "R1"), "t2": _b("t2", "R2")}
+    al = {"t1": _b("t1", "R1"), "t2": _b("t2", "R2", (2, 3, 4))}
+    assert eb.resumen_aleatorias(al, entradas) == {"contextos": 2, "solape_medio": (1 + 1 / 3) / 2,
+                                                   "frac_identicos": 0.5}
+    assert eb.resumen_aleatorias({}, entradas)["solape_medio"] is None
+
+
+def test_l10_detecta_un_contexto_gemelo_y_respeta_el_umbral():
+    gemelo = CONTEXTO.replace("noisy text", "noisy web text")
+    ajeno = "the corpus contains news articles that were collected during two thousand and nine"
+    r = eb.contextos_casi_duplicados({"train": {"t1": gemelo, "t2": ajeno}, "dev": {"d1": ajeno + " again"},
+                                      "V": {"v1": CONTEXTO}}, citantes={"t1": "P1", "v1": "Q1"})
+    assert list(r["pares"]) == ["train~dev", "train~V", "dev~V"]
+    assert [(p["a"], p["b"]) for p in r["pares"]["train~V"]["detalle"]] == [("t1", "v1")]
+    assert r["pares"]["train~V"]["detalle"][0]["citante_b"] == "Q1"
+    assert [(p["a"], p["b"]) for p in r["pares"]["train~dev"]["detalle"]] == [("t2", "d1")]
+    assert r["total_pares"] == 2
+    assert eb.contextos_casi_duplicados({"train": {"t1": gemelo}, "V": {"v1": CONTEXTO}}, umbral=1.01)["total_pares"] == 0
+
+
+def test_chunks_de_citados_trae_todos_los_chunks_de_cada_citado_una_vez():
+    f = fuentes()
+    casos = {"train": [_caso_chunks("t1", "A", 4)], "V": [_caso_chunks("v1", "VCIT", 2)]}
+    salida = eb.chunks_de_citados(casos, [_fila("t5"), _fila("t1")], f.contextos)
+    assert [c["chunk_id"] for c in salida] == [f"A-p{i}" for i in range(4)]
+    assert {c["context_id"] for c in salida} == {"t1"} and set(salida[0]) == {"context_id", "cited_id", "chunk_id", "texto"}
+    with pytest.raises(ValueError, match="sin chunks"):
+        eb.chunks_de_citados(casos, [_fila("t3")], f.contextos)

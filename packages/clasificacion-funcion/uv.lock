@@ -436,6 +436,7 @@ experimentos = [
     { name = "nbconvert" },
     { name = "pandas" },
     { name = "scikit-learn" },
+    { name = "scipy" },
 ]
 modelo = [
     { name = "huggingface-hub" },
@@ -462,6 +463,7 @@ experimentos = [
     { name = "nbconvert" },
     { name = "pandas" },
     { name = "scikit-learn" },
+    { name = "scipy" },
 ]
 modelo = [
     { name = "huggingface-hub" },

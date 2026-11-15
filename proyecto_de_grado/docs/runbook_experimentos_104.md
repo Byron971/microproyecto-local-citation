@@ -200,3 +200,102 @@ Disco: 12 corridas del núcleo + 10 opcionales (6 `B_barajada` + 4 SPECTER) × 4
 - V_B sigue siendo fidelidad al maestro (QLoRA/Haiku/Sonnet), no verdad humana: decide el Test Gold.
 - **Entorno**: igual que en la Parte 2, el `mlflow.db` real tiene el esquema de mlflow 3.18 y el entorno del paquete (3.15.1) no lo abre. Alinear versiones antes
   de la corrida real; para la prueba en seco basta `MLFLOW_TRACKING_URI=sqlite:////ruta/temporal.db`.
+
+---
+
+# Parte 3 v2: Entrada B corregida (dev propio, brazo AB, grilla de lr, 5 semillas y controles)
+
+El mismo notebook `notebooks/06_experimentos_104_entrada_b.ipynb`, corregido en su lugar. La v1 (commit `63a3604`) queda en
+`evidencias_experimentos_104_b/` y en git. La v2 escribe en `artifacts/experimentos_104_b_v2/`, `docs/evidencias_experimentos_104_b_v2/`
+y en el experimento MLflow `clasificacion-funcion-104-b-v2`. El diseño completo está en la celda 0 del notebook y queda fijado en
+`preregistro_b_v2.json`.
+
+## Diseño
+- **Primario: AB − A** (A intacta + `perfil : chunk` × 3 en los tokens sobrantes), por pista (M: `natural` + `kd`; S: `sonnet` + `duro`).
+  Secundario: B − A, con la salvedad de constructo (las etiquetas se formaron con la información de A).
+- **Dev** para la parada temprana: `sha256("dev-104-b-v2:" + citing_id) % 100 < 15` sobre el train de cobertura B. V_B solo se evalúa.
+- **Grilla de lr** {2e-5, 3e-5, 5e-5} × {A, B, AB} × 2 pistas × semillas {42, 1234}; 6 épocas, paciencia 2. Se elige la mayor media de
+  F1-macro de dev (empate: lr menor) y queda en `seleccion_lr.json`.
+- **Núcleo**: 5 semillas (42, 1234, 2026, 7, 31337) × {A, B, AB} × 2 pistas. **Controles** (42, 1234, 2026): AB_aleatorio, B_aleatorio,
+  B_sin_seccion, B_barajada, C0; A-rep (A-M-s42 repetido); SPECTER A, B, AB s42.
+- **Inferencia**: prueba t con varianza de semillas + artículos (bootstrap por citante, 5000 réplicas, semilla 2026), Holm sobre las 2
+  primarias, TOST con δ = 0,02 en familia aparte. Veredicto: `incompleto` → `mejora`/`empeora` (p_Holm < 0,05 y ≥ 4 de 5 d_j con el signo
+  de d̄) → `equivalente` (p_TOST,Holm < 0,05) → `no_concluyente`. Poder declarado: MDE ≈ 0,023–0,027 (M) y ≈ 0,029–0,034 (S).
+- **Controles de fuga nuevos**: L2-dev, L1 sobre {train, dev, V, Gold}, L10 (contextos casi duplicados entre train, dev y V), L4 sobre
+  todos los chunks de cada citado, L5 entre A y cada una de las 7 entradas restantes, L9 (A es prefijo de AB salvo ≤ 3 tokens del abstract).
+
+## Flujo
+La corrida real se hace en 2 tandas de ejecución con un commit en medio:
+
+1. **Prueba en seco** (`DRY = True`, ≤ 300 citas por conjunto, 64 casos y 1 época por run, grilla de 2 lr, núcleo = semillas de la grilla,
+   controles con s42; carpetas `*_b_v2_dry` y experimento `-dry`, borrables). El gate se omite y el preregistro DRY se reescribe.
+   El notebook versionado lleva `DRY = False`: para la prueba en seco se ejecuta una copia con `DRY = True` (y `DESCARGAR = False` si la
+   caché de ACL-OCL ya está completa):
+   ```bash
+   cd notebooks
+   python3 -c "import json; nb = json.load(open('06_experimentos_104_entrada_b.ipynb')); c = nb['cells'][2]; s = ''.join(c['source']).replace('DRY = False', 'DRY = True', 1); c['source'] = s.splitlines(keepends=True); json.dump(nb, open('_dry_06_v2.ipynb', 'w'), ensure_ascii=False, indent=1)"
+   uv run --project ../packages/clasificacion-funcion --group experimentos jupyter nbconvert --to notebook --execute \
+     --ExecutePreprocessor.kernel_name=qlora --ExecutePreprocessor.timeout=-1 --output-dir /tmp --output dry_b_v2.ipynb _dry_06_v2.ipynb
+   rm _dry_06_v2.ipynb
+   ```
+   El kernel `qlora` es `local_workflows/.venv-qlora` (mlflow 3.18, el esquema de `mlflow.db`).
+2. **Preparación** (`DRY = False`): revisar δ = 0,02 y los flags `CORRER_*` en la celda 2 y ejecutar el notebook. Descarga los citados
+   que faltan, recalcula los `top3_*.csv` en la carpeta v2, escribe `fugas_b.json`, `manifiesto_datos_b.json` y `preregistro_b_v2.json`
+   y **se detiene en el gate** (≈ 15 min) con «el preregistro, el manifiesto o el código difieren de HEAD».
+3. **Commit** de `preregistro_b_v2.json`, `manifiesto_datos_b.json`, el código de `packages/clasificacion-funcion/src` y el notebook.
+   El gate exige que esos archivos estén en HEAD sin cambios y que `huella_codigo()` coincida con la del preregistro y con la del
+   notebook de HEAD (los outputs no cuentan).
+4. **Primera tanda** de la corrida real (`HORAS_MAX = 14`; al superarlo, `correr()` omite los runs restantes):
+   ```bash
+   cd notebooks
+   nohup uv run --project ../packages/clasificacion-funcion --group experimentos jupyter nbconvert --to notebook --execute \
+     --ExecutePreprocessor.kernel_name=qlora --inplace --ExecutePreprocessor.timeout=-1 06_experimentos_104_entrada_b.ipynb > ../b_104_v2.log 2>&1 &
+   ```
+5. **Segunda tanda**: el mismo comando. Todo run FINISHED con el mismo `config_sha` se reanuda, los `top3_*.csv` no se recalculan y el
+   preregistro se recalcula y compara (si el diseño cambió, el notebook se detiene). Repetir hasta que no queden runs omitidos.
+6. Revisar `seleccion_lr.json`, `bootstrap_b.json` y `analisis_b.json`, y agregar al final del notebook la celda «Conclusiones»
+   (distinguir `no_concluyente` de `equivalente` y citar el poder declarado).
+
+Si la grilla queda incompleta (falta algún run), `seleccionar_lr` lanza «grilla de lr incompleta: faltan …» y el notebook se detiene;
+la siguiente ejecución reanuda los runs hechos y corre los que faltan.
+
+## Tiempos y disco
+RTX 4070 SUPER, runs de 6 épocas: A ≈ 7,5 min; B, AB y variantes ≈ 12 min; C0 ≈ 5 min.
+
+| Bloque | Runs | Horas |
+|---|---|---|
+| Grilla | 36 | ≈ 6,3 |
+| Núcleo (2026, 7, 31337) | 18 | ≈ 3,2 |
+| AB_aleatorio, B_aleatorio, B_sin_seccion, B_barajada | 24 | ≈ 4,8 |
+| C0 y A-rep | 7 | ≈ 0,6 |
+| SPECTER | 6 | ≈ 1,1 |
+| Top-3, datos, V completo, Gold y análisis | — | ≈ 0,8 |
+| **Total** | **91** | **≈ 17 h (2 tandas)** |
+
+Disco: ≈ 40 GB en `artifacts/experimentos_104_b_v2/` (91 × 440 MB), más la prueba en seco (10–25 GB, borrable).
+
+**Borrado opcional** de los checkpoints de los lr no elegidos (después de revisar `seleccion_lr.json`; ≈ 10,5 GB). Las predicciones y
+los manifiestos se conservan:
+```bash
+cd proyecto_de_grado/artifacts/experimentos_104_b_v2/corridas
+python3 - <<'PY'
+import json
+import re
+from pathlib import Path
+elegido = {k: v["lr"] for k, v in json.loads(Path("../../../docs/evidencias_experimentos_104_b_v2/seleccion_lr.json").read_text()).items()}
+for d in sorted(Path(".").iterdir()):
+    m = re.fullmatch(r"scibert-(A|B|AB)-(M|S)-lr(.+)-s(\d+)", d.name)
+    if m and float(m[3]) != elegido[f"{m[2]}:{m[1]}"] and (d / "model.safetensors").is_file():
+        print("borra", d / "model.safetensors")
+        (d / "model.safetensors").unlink()
+PY
+```
+
+## Dónde queda todo
+- Artefactos (ignorados por git): `proyecto_de_grado/artifacts/experimentos_104_b_v2/` — `corridas/<run>/` (checkpoint,
+  `predicciones_val.jsonl`, `predicciones_vcompleto.jsonl` en A del núcleo, `manifiesto_entrenamiento.json` con `metricas_parada`) y
+  `gold_v2/<run>/pred_gold_v2_{cob,todo}.jsonl`.
+- Evidencias: `proyecto_de_grado/docs/evidencias_experimentos_104_b_v2/` — `preregistro_b_v2.json`, `gate_preregistro.json`,
+  `fugas_b.json`, `manifiesto_datos_b.json`, `manifiesto_recuperacion_b.json`, `top3_*.csv`, `excluidos_b.csv`, `seleccion_lr.json`,
+  `smoke_inferencia_b.json`, `manifiesto_gold_b.json`, `bootstrap_b.json`, `analisis_b.json`, `resumen_b.csv`, `manifiesto_experimentos.csv/json`.
+- Nombres de run: `{encoder}-{entrada}-{pista}-lr{lr}-s{semilla}` (`-rep1` en A-rep).

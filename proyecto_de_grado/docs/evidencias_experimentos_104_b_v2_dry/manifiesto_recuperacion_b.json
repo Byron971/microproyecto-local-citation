@@ -1,0 +1,74 @@
+{
+  "encoder": {
+    "model_id": "allenai/scibert_scivocab_uncased",
+    "revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "commit_resuelto": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "transformers": "5.21.0",
+    "python": "3.12.11",
+    "batch_size": 16,
+    "max_length": 512,
+    "pooling": "mean",
+    "ventanas_procesadas": 639,
+    "textos_procesados": 639
+  },
+  "sha256_manifiesto_modelo": "d64d1ac222fa40fb65d148ab4b87ca24b5063d4d54dc2317f280e8c50d671e7a",
+  "huellas": {
+    "train_M": "60f3768ef01f92ed12d766dad58b5658252c03e75055a2d3e41ecf89d131756e",
+    "train_S": "60f3768ef01f92ed12d766dad58b5658252c03e75055a2d3e41ecf89d131756e",
+    "V": "92ab4f75e86b1288b2932f8bf502a89dfec3f5206787c049b3799f0cb305b19b",
+    "gold_v2": "015311c16e21d89eee63618e37dabbcc10a414e1274e07fc7a5e73e3293d38b3"
+  },
+  "segundos": 17.2,
+  "cobertura_chunks": {
+    "train_M": [
+      151,
+      300
+    ],
+    "train_S": [
+      151,
+      300
+    ],
+    "V": [
+      172,
+      300
+    ],
+    "gold_v2": [
+      165,
+      300
+    ]
+  },
+  "regresion_a4": {
+    "train_M": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 151,
+      "coinciden": 151,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "train_S": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 151,
+      "coinciden": 151,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "V": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 31,
+      "coinciden": 31,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "gold_v2": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 165,
+      "coinciden": 165,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    }
+  }
+}

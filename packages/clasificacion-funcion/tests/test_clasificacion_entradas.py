@@ -182,3 +182,91 @@ def test_especificacion_barajada_exige_semilla():
         d.especificacion_entrada("B", 512, 42)
     with pytest.raises(ValueError):
         d.especificacion_entrada("X", 512)
+
+
+SHA_ESPECIFICACION = {
+    "A": "855e6dc426a8b99aebcf686a04ea997bfa49ad82c8e54b186ab9f6c55fd6e09d",
+    "B": "dbb8cb085d7f66d3b1ea6db69b6f03b9a01296d83d94f8ce3571b73ab100ed59",
+    "B_sin_seccion": "23baf7dd3f41fbec7b0758e6a701c51d1e139a3feee62c550d46a18b66ffb9ca",
+    "B_barajada": "1c8535306d401739da3b0e186b87248f837a56eed61e950ba36432480e4b1375",
+}
+
+
+def test_especificacion_conserva_los_sha_de_las_entradas_existentes():
+    """Si cambian, los config_sha de los runs ya registrados dejarian de reanudarse."""
+    for entrada, sha in SHA_ESPECIFICACION.items():
+        semilla = 42 if entrada == "B_barajada" else None
+        assert d.sha_especificacion(d.especificacion_entrada(entrada, 512, semilla)) == sha, entrada
+
+
+# ---- AB y C0
+def test_segmentos_ab_aleatorias_y_c0():
+    c = caso()
+    nombres_ab = ["contexto", "titulo", "abstract", "chunk_1", "chunk_2", "chunk_3"]
+    for entrada in ("AB", "AB_aleatorio"):
+        seg = d.construir_segmentos(c, entrada)
+        assert [s["nombre"] for s in seg] == nombres_ab
+        assert seg[3]["texto"].startswith("method : ") and seg[:3] == d.construir_segmentos(c, "A")
+    assert d.construir_segmentos(c, "B_aleatorio") == d.construir_segmentos(c, "B")
+    assert [s["nombre"] for s in d.construir_segmentos(c, "C0")] == ["contexto"]
+    assert d.construir_segmentos({k: v for k, v in c.items() if k not in ("titulo", "abstract", "top3")},
+                                 "C0")[0]["tipo"] == "contexto"
+
+
+def test_ab_conserva_el_prefijo_de_a_y_pone_los_chunks_en_el_sobrante():
+    c = caso(n_abs=100)
+    tok = TokFalso()
+    a, _ = armar(c, "A", tok=tok)
+    ab, _ = armar(c, "AB", tok=tok)
+    assert ab["input_ids"][:a["longitud"]] == a["input_ids"]
+    assert ab["longitud"] <= 512
+    sobrante = 512 - 2 - 5 - 11 - d.TOPE_TITULO - 100
+    usados = sum(202 - ab["truncados"][f"chunk_{i}"] for i in (1, 2, 3))  # "perfil :" suma 2 tokens
+    assert usados == sobrante and ab["longitud"] == 512
+
+
+def test_ab_sin_lugar_para_chunks_deja_tres_sep_vacios():
+    ab, _ = armar(caso(n_abs=900), "AB")
+    assert ab["input_ids"][-3:] == [SEP, SEP, SEP] and ab["longitud"] == 512
+    assert all(ab["truncados"][f"chunk_{i}"] == 202 for i in (1, 2, 3))
+
+
+def test_ab_con_abstract_truncado_pierde_a_lo_sumo_tres_tokens():
+    tok = TokFalso()
+    c = caso(n_abs=900)
+    a, _ = armar(c, "A", tok=tok)
+    ab, _ = armar(c, "AB", tok=tok)
+    perdida = ab["truncados"]["abstract"] - a["truncados"]["abstract"]
+    assert 0 < perdida <= 3
+    corte = a["longitud"] - 1 - perdida
+    assert ab["input_ids"][:corte] == a["input_ids"][:corte]
+
+
+def test_c0_solo_la_ventana_de_contexto():
+    r, tok = armar(caso(n_ctx=10), "C0")
+    assert r["longitud"] == 11 + 2 and r["input_ids"][0] == CLS and r["input_ids"][-1] == SEP
+    assert r["truncados"] == {"contexto": 0}
+    c = caso()
+    c["citation_context"] = " ".join(f"p{i}" for i in range(450)) + " TARGETCIT " + " ".join(f"q{i}" for i in range(450))
+    r, tok = armar(c, "C0")
+    assert r["longitud"] == d.TOPE_CONTEXTO + 2 and tok.vocab["TARGETCIT"] in r["input_ids"]
+
+
+def test_especificacion_aleatoria_exige_sal():
+    for entrada in ("B_aleatorio", "AB_aleatorio"):
+        e = d.especificacion_entrada(entrada, 512, sal_aleatorio="s1")
+        assert e["sal_aleatorio"] == "s1"
+        assert d.sha_especificacion(e) != d.sha_especificacion(d.especificacion_entrada(entrada, 512, sal_aleatorio="s2"))
+        with pytest.raises(ValueError, match="sal"):
+            d.especificacion_entrada(entrada, 512)
+        with pytest.raises(ValueError, match="sal"):
+            d.especificacion_entrada(entrada, 512, sal_aleatorio="")
+    with pytest.raises(ValueError, match="sal"):
+        d.especificacion_entrada("AB", 512, sal_aleatorio="s1")
+    shas = {d.sha_especificacion(d.especificacion_entrada(e, 512, 42 if e == "B_barajada" else None,
+                                                          "s" if e in d.ENTRADAS_ALEATORIAS else None))
+            for e in d.ENTRADAS}
+    assert len(shas) == len(d.ENTRADAS)
+    assert d.especificacion_entrada("AB", 512)["segmentos"] == ["contexto", "titulo", "abstract",
+                                                               "chunk_1", "chunk_2", "chunk_3"]
+    assert d.especificacion_entrada("C0", 512)["top_k"] is None

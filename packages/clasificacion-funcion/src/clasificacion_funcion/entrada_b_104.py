@@ -5,6 +5,7 @@ su vez un citante de V o del Gold, sus chunks contienen frases de citas de V/Gol
 seleccion (early stopping) o la evaluacion. Estas funciones detectan y cierran esas fugas; el
 notebook 06 solo las orquesta. Todas fallan cerrado (`ValueError`) cuando una regla se rompe."""
 import hashlib
+import random
 import re
 from collections import Counter, defaultdict
 
@@ -205,3 +206,128 @@ def verificar_mismos_ids(nombre: str, casos_a: list[dict], casos_b: list[dict]) 
         raise ValueError(f"Los ids de A y B difieren en {nombre}: {len(diferencia)} casos, "
                          f"p. ej. {sorted(diferencia)[:3]}")
     return sha_a
+
+
+# ---------------------------------------------------------------- dev para la parada temprana
+def separar_dev(filas: list[dict], contextos: dict, fraccion: float = 0.15,
+                sal: str = "dev-104-b-v2") -> tuple[list[dict], list[dict]]:
+    """Separa (train, dev) por articulo citante: una fila va a dev si
+    `sha256(f"{sal}:{citing_id}") % 100 < round(100 * fraccion)`. Todas las citas de un citante
+    caen del mismo lado y el resultado no depende del orden de `filas`."""
+    if not 0 < fraccion < 1:
+        raise ValueError("La fraccion de dev debe estar en (0, 1).")
+    corte = round(100 * fraccion)
+    train, dev = [], []
+    for x in filas:
+        ctx = contextos.get(x["context_id"])
+        if not isinstance(ctx, dict):
+            raise ValueError(f"Contexto ausente del indice: {x['context_id']}")
+        h = int(hashlib.sha256(f"{sal}:{ctx['citing_id']}".encode("utf-8")).hexdigest(), 16)
+        (dev if h % 100 < corte else train).append(x)
+    return train, dev
+
+
+# ---------------------------------------------------------------- control: chunks al azar
+def _chunks_por_citado(casos_chunks: dict[str, list[dict]]) -> dict[str, list[dict]]:
+    """{cited_id: chunks} uniendo los conjuntos de `servicio.construir_casos_split`."""
+    por_citado: dict[str, list[dict]] = {}
+    for casos in casos_chunks.values():
+        for caso in casos:
+            por_citado.setdefault(caso["cited_id"], caso["chunks"])
+    return por_citado
+
+
+def entradas_aleatorias(casos_chunks: dict[str, list[dict]], entradas_b: dict[str, dict], perfil,
+                        sal: str = "aleatorio-104-b-v2") -> dict[str, dict]:
+    """{context_id: entrada} con 3 chunks al azar (sin reemplazo) del MISMO citado en lugar del Top-3.
+
+    El sorteo usa `random.Random(sha256(f"{sal}:{context_id}"))` sobre los `chunk_id` ordenados, asi
+    que es determinista e independiente del orden. `perfil(seccion)` se calcula con la seccion cruda
+    del chunk (la misma heuristica que el Top-3). Conserva los demas campos de la entrada B. Lanza
+    ValueError si el citado no tiene chunks o tiene menos de 3."""
+    por_citado = _chunks_por_citado(casos_chunks)
+    salida = {}
+    for cid in sorted(entradas_b):
+        entrada = entradas_b[cid]
+        chunks = por_citado.get(entrada["cited_id"])
+        if not chunks:
+            raise ValueError(f"Citado sin chunks para {cid}: {entrada['cited_id']}")
+        if len(chunks) < dominio.TOP_K:
+            raise ValueError(f"El citado de {cid} tiene menos de {dominio.TOP_K} chunks.")
+        por_id = {c["chunk_id"]: c for c in chunks}
+        semilla = int(hashlib.sha256(f"{sal}:{cid}".encode("utf-8")).hexdigest(), 16)
+        elegidos = random.Random(semilla).sample(sorted(por_id), dominio.TOP_K)
+        salida[cid] = {**entrada, "top3": [{"chunk_id": ch, "texto": por_id[ch]["texto"],
+                                            "perfil": perfil(por_id[ch].get("seccion"))}
+                                           for ch in elegidos]}
+    return salida
+
+
+def resumen_aleatorias(aleatorias: dict[str, dict], entradas_b: dict[str, dict]) -> dict:
+    """Solape medio (fraccion de los 3 chunks) entre los chunks al azar y el Top-3, y fraccion de
+    contextos con el mismo conjunto de chunks."""
+    if not aleatorias:
+        return {"contextos": 0, "solape_medio": None, "frac_identicos": None}
+    solapes, identicos = [], 0
+    for cid, e in aleatorias.items():
+        azar = {c["chunk_id"] for c in e["top3"]}
+        top3 = {c["chunk_id"] for c in entradas_b[cid]["top3"]}
+        solapes.append(len(azar & top3) / dominio.TOP_K)
+        identicos += azar == top3
+    return {"contextos": len(aleatorias), "solape_medio": sum(solapes) / len(solapes),
+            "frac_identicos": identicos / len(aleatorias)}
+
+
+# ---------------------------------------------------------------- L10: contextos casi duplicados
+def contextos_casi_duplicados(contextos_por_conjunto: dict[str, dict[str, str]],
+                              umbral: float = UMBRAL_SOLAPE, k: int = K_SHINGLE,
+                              citantes: dict[str, str] | None = None) -> dict:
+    """L10: pares de contextos de conjuntos distintos que comparten >= `umbral` de shingles.
+
+    `contextos_por_conjunto` = {nombre: {context_id: texto}} en orden (p. ej. train, dev, V): cada
+    conjunto se compara con los que le siguen. El solape es |comunes| / min(|a|, |b|), como en L4.
+    Detecta la misma cita en articulos gemelos con distinto id (taller y revista). En cada par el
+    primer contexto (`a`) es del conjunto anterior; `citantes` = {context_id: citing_id} opcional."""
+    nombres = list(contextos_por_conjunto)
+    huellas = {n: {cid: shingles(t, k) for cid, t in c.items()} for n, c in contextos_por_conjunto.items()}
+    pares, total = {}, 0
+    for i, a in enumerate(nombres):
+        for b in nombres[i + 1:]:
+            indice: dict[int, list[str]] = defaultdict(list)
+            for cid, s in huellas[b].items():
+                for h in s:
+                    indice[h].append(cid)
+            detalle = []
+            for cid_a, s in huellas[a].items():
+                if not s:
+                    continue
+                comunes: Counter = Counter()
+                for h in s:
+                    comunes.update(indice.get(h, ()))
+                for cid_b, n in comunes.items():
+                    solape = n / min(len(s), len(huellas[b][cid_b]))
+                    if solape >= umbral:
+                        fila = {"a": cid_a, "b": cid_b, "solape": round(solape, 4)}
+                        if citantes is not None:
+                            fila.update({"citante_a": citantes.get(cid_a), "citante_b": citantes.get(cid_b)})
+                        detalle.append(fila)
+            detalle.sort(key=lambda d: (-d["solape"], d["a"], d["b"]))
+            total += len(detalle)
+            pares[f"{a}~{b}"] = {"conjunto_a": a, "conjunto_b": b, "pares": len(detalle), "detalle": detalle}
+    return {"umbral": umbral, "k_shingle": k, "pares": pares, "total_pares": total}
+
+
+def chunks_de_citados(casos_chunks: dict[str, list[dict]], filas: list[dict], contextos: dict) -> list[dict]:
+    """TODOS los chunks de los citados de `filas` (no solo el Top-3), en el formato de `solapes_texto`:
+    `{context_id, cited_id, chunk_id, texto}`, con el primer `context_id` (orden) que cita a ese citado."""
+    por_citado = _chunks_por_citado(casos_chunks)
+    primero: dict[str, str] = {}
+    for x in sorted(filas, key=lambda x: x["context_id"]):
+        primero.setdefault(_citado(x, contextos), x["context_id"])
+    salida = []
+    for cited, cid in sorted(primero.items()):
+        if cited not in por_citado:
+            raise ValueError(f"Citado sin chunks: {cited} (de {cid})")
+        salida += [{"context_id": cid, "cited_id": cited, "chunk_id": c["chunk_id"], "texto": c["texto"]}
+                   for c in por_citado[cited]]
+    return salida

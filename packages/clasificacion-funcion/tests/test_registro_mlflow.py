@@ -1,5 +1,6 @@
 """Registro en MLflow con una base SQLite temporal (nunca toca `mlflow.db` de la raiz)."""
 import json
+import subprocess
 
 import pytest
 
@@ -86,3 +87,48 @@ def test_corrida_invalidada_no_se_reanuda():
     assert rm.corrida_terminada(csha) is None
     with rm.abrir_corrida("scibert-kd", config) as nuevo:
         assert nuevo is not None and nuevo.info.run_id != run.info.run_id
+
+
+def _git(repo, *args):
+    subprocess.run(["git", "-C", str(repo), "-c", "user.email=t@t", "-c", "user.name=t", *args],
+                   check=True, capture_output=True)
+
+
+def _notebook(*codigo, salida="x"):
+    celdas = [{"cell_type": "markdown", "source": ["# t"], "metadata": {}}]
+    celdas += [{"cell_type": "code", "source": [c], "metadata": {}, "execution_count": 1,
+                "outputs": [{"output_type": "stream", "name": "stdout", "text": [salida]}]} for c in codigo]
+    return json.dumps({"cells": celdas, "metadata": {}, "nbformat": 4, "nbformat_minor": 5})
+
+
+@pytest.fixture
+def repo(tmp_path):
+    (tmp_path / rm.SRC_PAQUETE / "pkg").mkdir(parents=True)
+    (tmp_path / rm.SRC_PAQUETE / "pkg/m.py").write_text("x = 1\n")
+    (tmp_path / rm.NOTEBOOK_06).parent.mkdir(parents=True)
+    (tmp_path / rm.NOTEBOOK_06).write_text(_notebook("a = 1"))
+    _git(tmp_path, "init", "-q")
+    _git(tmp_path, "add", ".")
+    _git(tmp_path, "commit", "-q", "-m", "base")
+    return tmp_path
+
+
+def test_estado_git_ignora_los_archivos_sin_seguimiento(repo):
+    (repo / "nuevo.txt").write_text("y")
+    assert rm.estado_git(repo)["dirty"] == "False"
+    (repo / rm.SRC_PAQUETE / "pkg/m.py").write_text("x = 2\n")
+    assert rm.estado_git(repo)["dirty"] == "True"
+
+
+def test_huella_codigo_ignora_outputs_y_detecta_cambios_de_codigo(repo):
+    base = rm.huella_codigo(repo)
+    (repo / rm.NOTEBOOK_06).write_text(_notebook("a = 1", salida="otra salida"))
+    (repo / rm.SRC_PAQUETE / "pkg/__pycache__").mkdir()
+    (repo / rm.SRC_PAQUETE / "pkg/__pycache__/m.cpython.pyc").write_bytes(b"\0")
+    assert rm.huella_codigo(repo) == base
+    (repo / rm.NOTEBOOK_06).write_text(_notebook("a = 2"))
+    cambiada = rm.huella_codigo(repo)
+    assert cambiada["celdas_sha"] != base["celdas_sha"] and cambiada["src_sha"] == base["src_sha"]
+    (repo / rm.SRC_PAQUETE / "pkg/m.py").write_text("x = 3\n")
+    assert rm.huella_codigo(repo)["src_sha"] != base["src_sha"]
+    assert rm.sha_celdas(_notebook("a = 1")) == base["celdas_sha"]

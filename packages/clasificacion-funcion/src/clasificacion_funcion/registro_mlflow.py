@@ -22,9 +22,13 @@ EXPERIMENTO = "clasificacion-funcion-104"
 # Re-corrida de la Entrada B con los datos de #104 (notebook 06): experimento aparte para no tocar
 # las tablas ni la reanudacion de los notebooks 04/05.
 EXPERIMENTO_B = "clasificacion-funcion-104-b"
+# Entrada B con dev propio para la parada, brazo AB, grilla de lr y controles (notebook 06, v2).
+EXPERIMENTO_B_V2 = "clasificacion-funcion-104-b-v2"
 ESTADO = "provisional_sin_gold_humano"
 REGLA_ANTIFUGA = "excluye_2014_2015+v2+tg2700+citantes"
 REPO = Path(__file__).resolve().parents[4]
+SRC_PAQUETE = Path("packages/clasificacion-funcion/src")
+NOTEBOOK_06 = Path("notebooks/06_experimentos_104_entrada_b.ipynb")
 _activo = {"experimento": EXPERIMENTO}  # el ultimo configurado: donde busca la reanudacion
 
 
@@ -45,9 +49,31 @@ def estado_git(repo: Path = REPO) -> dict:
         return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True,
                               check=True).stdout.strip()
     try:
-        return {"git_head": git("rev-parse", "HEAD"), "dirty": str(bool(git("status", "--porcelain")))}
+        return {"git_head": git("rev-parse", "HEAD"),
+                "dirty": str(bool(git("status", "--porcelain", "--untracked-files=no")))}
     except (OSError, subprocess.CalledProcessError):
         return {"git_head": "desconocido", "dirty": "desconocido"}
+
+
+def sha_celdas(texto_notebook: str) -> str:
+    """SHA-256 de las fuentes de las celdas de codigo de un notebook (sin outputs ni metadatos)."""
+    nb = json.loads(texto_notebook)
+    fuentes = ["".join(c["source"]) if isinstance(c["source"], list) else c["source"]
+               for c in nb["cells"] if c["cell_type"] == "code"]
+    return hashlib.sha256(json.dumps(fuentes, ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
+def huella_codigo(repo: Path = REPO, notebook: Path = NOTEBOOK_06) -> dict:
+    """Huella del codigo de los experimentos: `src_sha` = sha256 de los pares (ruta, sha256) ordenados
+    de `packages/clasificacion-funcion/src` (sin `__pycache__`) y `celdas_sha` = `sha_celdas` del
+    notebook. Los outputs del notebook no la cambian."""
+    repo = Path(repo)
+    raiz = repo / SRC_PAQUETE
+    pares = sorted((str(r.relative_to(repo)), hashlib.sha256(r.read_bytes()).hexdigest())
+                   for r in raiz.rglob("*")
+                   if r.is_file() and "__pycache__" not in r.parts and r.suffix != ".pyc")
+    src_sha = hashlib.sha256(json.dumps(pares).encode("utf-8")).hexdigest()
+    return {"src_sha": src_sha, "celdas_sha": sha_celdas((repo / notebook).read_text(encoding="utf-8"))}
 
 
 def corrida_terminada(config_sha: str, experimento: str | None = None) -> str | None:
