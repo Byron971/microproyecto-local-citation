@@ -88,6 +88,17 @@ else:
         self.assertIn("publish-frontend: check-aws", makefile)
         self.assertIn("npm --prefix frontend run build", makefile)
 
+    def test_top3_vertical_regression_runs_after_merge_on_main(self):
+        """La rama protegida debe ejecutar Top-3, no solo los PR individuales."""
+        workflow = (ROOT / ".github/workflows/corte-vertical-top3.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "    branches: [main, feature/corte-vertical-top3-s2,",
+            workflow,
+        )
+        self.assertIn("  pull_request:", workflow)
+
     def test_failed_plan_or_apply_restores_previous_tag(self):
         for failure in ("plan", "apply", "rollback"):
             with self.subTest(failure=failure):

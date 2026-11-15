@@ -6,6 +6,7 @@ DVC y la cache OCL nunca se leen ni descargan desde peticiones HTTP.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from src.app.fragment_retrieval import recuperar_top3
@@ -51,10 +52,12 @@ def leer_corpus(ruta: Path | None = None) -> dict:
             not isinstance(cid, str) or not cid
             or cid in ids or caso.get("split") != "train"
             or not isinstance(cited_id, str) or not cited_id
+            or not isinstance(caso.get("citing_id"), str) or not caso["citing_id"]
+            or not isinstance(caso.get("cited_title"), str) or not caso["cited_title"].strip()
             or not isinstance(context, str) or context.count("TARGETCIT") != 1
             or not isinstance(chunks, list) or not chunks
             or not isinstance(caso.get("sha256_ocl_citado"), str)
-            or len(caso["sha256_ocl_citado"]) != 64
+            or re.fullmatch(r"[0-9a-fA-F]{64}", caso["sha256_ocl_citado"]) is None
         ):
             raise CorpusError("Caso inconsistente con el contrato de desarrollo.")
         ids.add(cid)
@@ -70,6 +73,10 @@ def leer_corpus(ruta: Path | None = None) -> dict:
                 or len(c["texto"].split()) > 300
                 or not isinstance(c.get("paragraph_indices"), list)
                 or len(c["paragraph_indices"]) not in (1, 2)
+                or any(isinstance(i, bool) or not isinstance(i, int) or i < 0
+                       for i in c["paragraph_indices"])
+                or not isinstance(c.get("palabras"), int) or isinstance(c["palabras"], bool)
+                or not 1 <= c["palabras"] <= 300
                 or not isinstance(c.get("seccion"), str)
             ):
                 raise CorpusError("Chunk incompatible con las reglas S2.2.")
