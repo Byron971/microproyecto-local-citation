@@ -192,6 +192,9 @@ def test_absolute_cache_byte_budget_evicts_and_skips_oversized_papers(models):
     dense.top3(payload["contexto"], chunks, document_key="P15:v1")
     assert dense.cache_stats()["papers"] == 1
     assert dense.cache_stats()["bytes_estimated"] <= 60
+    # Simular un nuevo proceso con un presupuesto muy pequeño:
+    # el límite de configuración es inmutable durante vida del servicio.
+    dense._embeddings.clear()
     dense._max_cache_bytes = 10
     dense.top3(payload["contexto"], chunks, document_key="P16:v1")
     assert dense.cache_stats()["bytes_estimated"] <= 10
