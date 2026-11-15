@@ -11,8 +11,19 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+from urllib.parse import urlparse
 
-from scripts.ci.benchmark_api import validar_url
+def validar_url(base: str, permitir_remoto: bool = False) -> str:
+    parsed = urlparse(base)
+    if (parsed.scheme not in ("http", "https") or not parsed.hostname
+            or parsed.username or parsed.password or parsed.query or parsed.fragment
+            or parsed.path not in ("", "/")):
+        raise ValueError("URL base HTTP(S) inválida.")
+    local = parsed.hostname in ("localhost", "127.0.0.1", "::1")
+    if not local and (not permitir_remoto or parsed.scheme != "https"):
+        raise ValueError("Se requiere HTTPS y --permitir-remoto para servicios externos.")
+    return base.rstrip("/")
+
 
 CONTEXT = "Graph neural networks learn representations TARGETCIT."
 CITED_TITLE = "Neural Graph Methods"
