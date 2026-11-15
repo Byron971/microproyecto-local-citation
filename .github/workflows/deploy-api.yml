@@ -2,6 +2,11 @@ name: Desplegar API en AWS
 
 on:
   workflow_dispatch:
+    inputs:
+      confirm_deploy:
+        description: 'Escribe DEPLOY para autorizar publicar la API (puede generar costos AWS)'
+        required: true
+        type: string
   push:
     branches: [main]
     paths:
@@ -39,8 +44,8 @@ env:
   TF_INPUT: 'false'
 
 jobs:
-  build-pr:
-    if: github.event_name == 'pull_request'
+  build-validation:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -56,7 +61,7 @@ jobs:
           cache-to: type=gha,mode=max,scope=citas-api
 
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.confirm_deploy == 'DEPLOY'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     concurrency:
