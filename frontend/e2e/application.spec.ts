@@ -24,6 +24,33 @@ test.beforeEach(async ({ page }) => {
         bibtex: referenceBibtex,
         source_url: 'https://aclanthology.org/P14-1062/',
       },
+      '/api/top3-corpus/ejemplos': {
+        total: 1,
+        ejemplos: [{
+          context_id: 'P15-1001_P14-1001_0',
+          cited_id: 'P14-1001',
+          cited_title: 'Neural Graph Model',
+          total_chunks: 3,
+        }],
+      },
+      '/api/top3-corpus/P15-1001_P14-1001_0': {
+        context_id: 'P15-1001_P14-1001_0',
+        contexto: 'We used graph methods TARGETCIT.',
+        cited_id: 'P14-1001',
+        cited_title: 'Neural Graph Model',
+        split: 'train',
+        fuente: 'ACL-200 + ACL OCL local',
+        metodo: 'BM25_lexico_baseline',
+        sha256_ocl_citado: 'a'.repeat(64),
+        aviso: 'Demo TRAIN de recuperación, no Gold.',
+        total_fragmentos_analizados: 3,
+        fragmentos: [{
+          posicion: 1, chunk_id: 'p00000-p00000', seccion: 'Methods',
+          texto: 'Graph neural networks aggregate neighbor information.',
+          puntaje_bm25: 2.456,
+        }],
+        clasificacion: { estado: 'no_ejecutada' },
+      },
       '/api/estado': { listo: true, modelo: {} },
       '/api/modelos': { predeterminado: model.id, modelos: [model] },
       '/api/insights': insights,
@@ -137,4 +164,14 @@ test('ejemplo, resultados accesibles, navegación directa y ancho móvil', async
   await expect(
     page.getByRole('heading', { name: 'Clasificación aún no disponible' }),
   ).toBeVisible();
+});
+
+test('Top-3 con un caso de desarrollo desde API del corpus (transporte simulado)', async ({ page }) => {
+  await page.goto('/fragmentos');
+  await page.getByRole('button', { name: 'Cargar casos reales de desarrollo' }).click();
+  await expect(page.getByRole('combobox', { name: 'Caso del corpus' })).toBeVisible();
+  await page.getByRole('button', { name: 'Ejecutar Top-3 de desarrollo' }).click();
+  await expect(page.getByText('Graph neural networks aggregate neighbor information.')).toBeVisible();
+  await expect(page.getByText(/subconjunto TRAIN · BM25/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Clasificación aún no disponible' })).toBeVisible();
 });
