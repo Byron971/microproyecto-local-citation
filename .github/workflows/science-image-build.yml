@@ -52,6 +52,7 @@ jobs:
       - name: Real CPU SciBERT Top-3 with model snapshot, not a mock
         run: |
           docker run --rm --user "$(id -u):$(id -g)" \
+            -e USER=github-ci -e LOGNAME=github-ci -e HOME=/tmp \
             -e HF_HUB_OFFLINE=1 -e TRANSFORMERS_OFFLINE=1 \
             -v /tmp/hf-scibert-ci:/models/huggingface:ro \
             --entrypoint /app/.venv/bin/python citas-science-cpu:ci \
