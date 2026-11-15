@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { api, errorMessage, type Top3Response } from '../api';
+import { api, ApiError, errorMessage, type Top3CorpusExample, type Top3Response } from '../api';
 import { Icon } from '../components/Icon';
 export function Top3() {
   const [context, setContext] = useState('');
@@ -9,6 +9,11 @@ export function Top3() {
   const [submitted, setSubmitted] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [corpusExamples, setCorpusExamples] = useState<Top3CorpusExample[]>([]);
+  const [selectedCorpusId, setSelectedCorpusId] = useState('');
+  const [corpusMessage, setCorpusMessage] = useState('');
+  const [resultMode, setResultMode] = useState<'manual' | 'corpus'>('manual');
+  const [citedTitle, setCitedTitle] = useState('');
   const controller = useRef<AbortController | null>(null);
   const title = useRef<HTMLHeadingElement>(null);
   useEffect(() => () => controller.current?.abort(), []);
@@ -42,6 +47,8 @@ export function Top3() {
       const data = await api.top3(context.trim(), id.trim(), paragraphs, current.signal);
       if (!current.signal.aborted) {
         setResult(data);
+        setResultMode('manual');
+        setCitedTitle('');
         setSubmitted(JSON.stringify([context, id, text]));
         requestAnimationFrame(() => title.current?.focus());
       }
@@ -51,6 +58,60 @@ export function Top3() {
       if (!current.signal.aborted) setLoading(false);
     }
   }
+  async function loadCorpusExamples() {
+    controller.current?.abort();
+    const current = new AbortController();
+    controller.current = current;
+    setLoading(true);
+    setError('');
+    setCorpusMessage('');
+    try {
+      const catalog = await api.top3CorpusExamples(current.signal);
+      if (current.signal.aborted) return;
+      setCorpusExamples(catalog.ejemplos);
+      setSelectedCorpusId(catalog.ejemplos[0]?.context_id ?? '');
+      if (!catalog.ejemplos.length) setCorpusMessage('El corpus de desarrollo no tiene casos disponibles.');
+    } catch (err) {
+      if (current.signal.aborted) return;
+      setCorpusExamples([]);
+      setSelectedCorpusId('');
+      setCorpusMessage(err instanceof ApiError && err.status === 503
+        ? 'El servidor no tiene instalado el artefacto de desarrollo ACL-200/ACL OCL. Usa el modo manual o genera el artefacto TRAIN.'
+        : errorMessage(err));
+    } finally {
+      if (!current.signal.aborted) setLoading(false);
+    }
+  }
+
+  async function runCorpusExample() {
+    if (!selectedCorpusId) return;
+    controller.current?.abort();
+    const current = new AbortController();
+    controller.current = current;
+    setLoading(true);
+    setError('');
+    setResult(undefined);
+    try {
+      const data = await api.top3Corpus(selectedCorpusId, current.signal);
+      if (current.signal.aborted) return;
+      if (data.split !== 'train' || data.metodo !== 'BM25_lexico_baseline') {
+        throw new Error('La respuesta no corresponde al corpus TRAIN y baseline esperados.');
+      }
+      setContext(data.contexto);
+      setId(data.cited_id);
+      setText('');
+      setCitedTitle(data.cited_title);
+      setResultMode('corpus');
+      setResult(data);
+      setSubmitted(JSON.stringify([data.contexto, data.cited_id, '']));
+      requestAnimationFrame(() => title.current?.focus());
+    } catch (err) {
+      if (!current.signal.aborted) setError(errorMessage(err));
+    } finally {
+      if (!current.signal.aborted) setLoading(false);
+    }
+  }
+
   function example() {
     setContext('Graph neural networks learn distributed representations TARGETCIT.');
     setId('ejemplo-sintetico');
@@ -58,6 +119,8 @@ export function Top3() {
       'Graph neural networks learn representations of nodes and edges.\n\nMachine translation evaluation compares translated sentences.\n\nDistributed graph representations improve node classification.',
     );
     setResult(undefined);
+    setResultMode('manual');
+    setCitedTitle('');
   }
   return (
     <>
@@ -73,6 +136,37 @@ export function Top3() {
         automáticamente el corpus completo. Los puntajes BM25 no son probabilidades.
       </p>
       <section className="workspace">
+        <div className="corpus-demo" aria-label="Casos reales de desarrollo">
+          <h2>Probar con un caso real del corpus de desarrollo</h2>
+          <p className="field-help">
+            Solo ejemplos de TRAIN, provenientes de ACL-200 y ACL OCL. No incluyen
+            etiquetas Gold ni validación humana de relevancia; se usa BM25.
+          </p>
+          <div className="form-actions">
+            <button type="button" className="text-button" disabled={loading}
+              onClick={loadCorpusExamples}>
+              Cargar casos reales de desarrollo
+            </button>
+            {corpusExamples.length > 0 && (
+              <>
+                <label htmlFor="corpus-dev-case">Caso del corpus</label>
+                <select id="corpus-dev-case" value={selectedCorpusId}
+                  disabled={loading} onChange={(e) => setSelectedCorpusId(e.target.value)}>
+                  {corpusExamples.map((c) => (
+                    <option key={c.context_id} value={c.context_id}>
+                      {c.cited_id} · {c.cited_title} ({c.total_chunks} chunks)
+                    </option>
+                  ))}
+                </select>
+                <button type="button" className="text-button" disabled={loading || !selectedCorpusId}
+                  onClick={runCorpusExample}>
+                  Ejecutar Top-3 de desarrollo
+                </button>
+              </>
+            )}
+          </div>
+          {corpusMessage && <p className="field-help" role="status">{corpusMessage}</p>}
+        </div>
         <form onSubmit={submit}>
           <label htmlFor="fragment-context">Contexto de cita (en inglés)</label>
           <textarea
@@ -126,11 +220,17 @@ export function Top3() {
               Fragmentos recuperados{' '}
               <span className="result-count">{result.fragmentos.length}</span>
             </h2>
-            <span>{result.cited_id}</span>
+            <span>{result.cited_id}{resultMode === 'corpus' && citedTitle ? ` · ${citedTitle}` : ''}</span>
           </div>
           {submitted !== JSON.stringify([context, id, text]) && (
             <p className="notice">
               Resultados de la consulta anterior. Vuelve a buscar para actualizar.
+            </p>
+          )}
+          {resultMode === 'corpus' && (
+            <p className="notice">
+              Datos del artículo citado en ACL OCL · subconjunto TRAIN · BM25. Esta
+              demostración no representa una evaluación Gold ni inferencia SciBERT.
             </p>
           )}
           {!result.fragmentos.length ? (
