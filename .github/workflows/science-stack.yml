@@ -1,0 +1,65 @@
+name: Ciencia A-B y Docker CPU (sin Gold ni pesos)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/app/**"
+      - "tests/test_science_pipeline_b.py"
+      - "tests/test_restore_science.py"
+      - "tests/test_smoke_tesis.py"
+      - "Dockerfile.science"
+      - "docker-compose.science.yml"
+      - ".github/workflows/science-stack.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/app/**"
+      - "tests/test_science_pipeline_b.py"
+      - "tests/test_restore_science.py"
+      - "tests/test_smoke_tesis.py"
+      - "Dockerfile.science"
+      - "docker-compose.science.yml"
+      - ".github/workflows/science-stack.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  contracts-no-gold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Dependencias baselines y test sin torch
+        run: uv sync --locked --group dev
+      - name: Contratos A4 A/B, recuperación de originales y smoke
+        run: |
+          uv run python -m compileall -q src/app
+          uv run pytest -q tests/test_science_pipeline_b.py tests/test_restore_science.py tests/test_smoke_tesis.py
+      - name: Inventario científico offline (faltantes no se consideran disponibles)
+        run: uv run python -m src.app.science_preflight > /tmp/preflight.json
+      - name: Verificar override Docker read-only (sin AWS ni build pesado)
+        env:
+          SCIENCE_HF_CACHE_HOST_PATH: /tmp/hf-cache
+          SCIENCE_A4_RUNS_HOST_PATH: /tmp/a4-runs
+          TOP3_CORPUS_HOST_PATH: /tmp/casos_train.json
+        run: |
+          docker compose -f docker-compose.yml -f docker-compose.science.yml config --format json > /tmp/science-compose.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/science-compose.json'))
+          api=d['services']['api']
+          targets={v['target']:v.get('read_only',False) for v in api['volumes']}
+          assert all(targets[p] for p in (
+              '/models/huggingface',
+              '/models/a4',
+              '/app/proyecto_de_grado/artifacts/top3_s2/casos_train.json',
+          )), targets
+          assert api['environment']['APP_A4_B_ENABLED']=='true'
+          assert api['environment']['APP_SCIBERT_ENABLED']=='true'
+          print("Scientific Compose validated, no Gold, no model weights in CI.")
+          PY
