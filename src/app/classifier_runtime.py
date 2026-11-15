@@ -12,7 +12,9 @@ from importlib import import_module
 from pathlib import Path
 from typing import Any
 
-from src.app.checkpoint_gate import HEX64
+import re
+
+HEX64 = re.compile(r"[0-9a-f]{64}\\Z")
 
 _9_FUNCTIONS = (
     "Background", "Gap", "Basis", "Comparison", "Application",
