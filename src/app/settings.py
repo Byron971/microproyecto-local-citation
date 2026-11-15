@@ -49,6 +49,9 @@ class AppSettings:
     model_device: str
     insights_path: Path
     top3_corpus_path: Path
+    scibert_enabled: bool = False
+    scibert_manifest: Path | None = None
+    scibert_device: str = "cpu"
 
     def public_info(self) -> dict[str, str]:
         """Solo nombres de backends y entorno, sin rutas ni credenciales."""
@@ -100,6 +103,21 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
             "APP_MODEL_DEVICE no disponible: el modelo empaquetado actual sirve en CPU"
         )
 
+    # Back-end denso INDEPENDIENTE de BM25: opt-in explícito. SciBERT está
+    # offline por defecto; jamás insinuar que cambiar APP_TOP3_BACKEND lo activa.
+    raw_dense = _value(env, "APP_SCIBERT_ENABLED", "false").lower()
+    if raw_dense not in {"true", "false"}:
+        raise ValueError("APP_SCIBERT_ENABLED debe ser true o false")
+    dense_enabled = raw_dense == "true"
+    dense_device = _value(env, "APP_SCIBERT_DEVICE", "cpu").lower()
+    if dense_device not in {"cpu", "cuda", "auto"}:
+        raise ValueError("APP_SCIBERT_DEVICE debe ser cpu, cuda o auto")
+    raw_manifest = env.get("APP_SCIBERT_MANIFEST")
+    if dense_enabled and (not isinstance(raw_manifest, str) or not raw_manifest.strip()):
+        raise ValueError("APP_SCIBERT_MANIFEST es obligatorio al activar SciBERT")
+    manifest = (_path(env, "APP_SCIBERT_MANIFEST", ROOT / "missing-manifest.json")
+                if dense_enabled else None)
+
     return AppSettings(
         environment=stage,
         host=host,
@@ -110,4 +128,7 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
         model_device=device,
         insights_path=_path(env, "APP_INSIGHTS_PATH", DEFAULT_INSIGHTS),
         top3_corpus_path=_path(env, "TOP3_CORPUS_PATH", DEFAULT_TOP3_CORPUS),
+        scibert_enabled=dense_enabled,
+        scibert_manifest=manifest,
+        scibert_device=dense_device,
     )
