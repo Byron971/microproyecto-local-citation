@@ -1,0 +1,59 @@
+name: Recuperacion densa (sin torch)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "packages/recuperacion-densa/**"
+      - "packages/auditoria-corpus/**"
+      - "src/app/fragment_retrieval.py"
+      - "proyecto_de_grado/src/data/**"
+      - "proyecto_de_grado/src/evaluation/top3_humano.py"
+      - ".github/workflows/recuperacion-densa.yml"
+  push:
+    branches: [main]
+    paths:
+      - "packages/recuperacion-densa/**"
+      - "packages/auditoria-corpus/**"
+      - "src/app/fragment_retrieval.py"
+      - "proyecto_de_grado/src/data/**"
+      - "proyecto_de_grado/src/evaluation/top3_humano.py"
+      - ".github/workflows/recuperacion-densa.yml"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/recuperacion-densa
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      # default-groups = ["dev"]: el grupo `modelo` (torch) nunca se instala en CI.
+      - name: Instalar dependencias (sin torch)
+        run: uv sync --locked
+      - name: Probar el paquete
+        run: uv run pytest -q
+      - name: Verificar que torch no esta instalado
+        run: uv run python -c "import importlib.util as u; assert u.find_spec('torch') is None"
+
+  auditoria-corpus:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/auditoria-corpus
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Instalar dependencias
+        run: uv sync --locked
+      - name: Probar el paquete
+        run: uv run pytest -q

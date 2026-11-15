@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 pytest.importorskip("auditoria_corpus")
@@ -70,7 +72,6 @@ def test_clasificar_error(exc, causa):
 
 
 def test_clasificar_json_invalido_y_parrafo_largo():
-    import json
     assert dominio.clasificar_error(json.JSONDecodeError("m", "d", 0)) == "archivo_invalido"
     exc = ValueError("Parrafo demasiado largo: requiere division por oraciones.")
     assert dominio.clasificar_error(exc, [par(0, "w " * 301)], R) == "parrafo_supera_palabras"
