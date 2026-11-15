@@ -118,6 +118,8 @@ def preparar_ejemplos(entradas: list[dict], tipo: str, tokenizador, max_len: int
             if e.get(campo) is not None:
                 ejemplo[campo] = e[campo]
         ejemplos.append(ejemplo)
+        ejemplos.append({"context_id": e["context_id"], "input_ids": r["input_ids"],
+                         "truncados": r["truncados"], "indice": e.get("indice")})
     return ejemplos
 
 
@@ -243,6 +245,11 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
     Campos opcionales de los ejemplos de `train`: `objetivo` (distribucion de 9 clases, perdida
     de etiquetas suaves) y `peso` (ponderacion por muestra). `al_terminar_epoca(registro)` se
     llama tras cada epoca con el registro del historial."""
+             semilla: int, hp: Hiperparametros, salida: Path, dispositivo) -> dict:
+    """Entrena con early stopping sobre macro-F1 de val y guarda el MEJOR checkpoint.
+
+    `train`/`val`: ejemplos de `preparar_ejemplos` con `indice`. Devuelve el manifiesto de
+    entrenamiento (historial, mejor epoca, metricas de val, SHA del checkpoint)."""
     if not train or not val:
         raise ValueError("Se necesitan ejemplos de train y val.")
     if any(e["indice"] is None for e in (*train, *val)):
@@ -267,6 +274,7 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
     pesos = (torch.tensor(dominio.pesos_clase([e["indice"] for e in train]), dtype=torch.float32)
              if hp.pesos_clase else None)
     pesos = pesos.to(dispositivo) if pesos is not None else None
+    perdida = nn.CrossEntropyLoss(weight=pesos.to(dispositivo) if pesos is not None else None)
     generador = torch.Generator().manual_seed(semilla)
     cargador = DataLoader(train, batch_size=hp.batch_size, shuffle=True, generator=generador,
                           collate_fn=lambda b: b)
@@ -284,6 +292,7 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
                 logits = modelo(ids, mask)
             objetivo, peso = _extras(lote, dispositivo)
             valor = calcular_perdida(logits, y, pesos, objetivo, peso)
+            valor = perdida(logits.float(), y)
             (valor / hp.acumulacion).backward()
             acumulado += float(valor.detach())
             n_lotes += 1

@@ -1,0 +1,58 @@
+name: Configuracion segura del backend
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/app/**"
+      - "src/evaluation/commercial/provider_settings.py"
+      - "src/evaluation/commercial/providers_*.py"
+      - "tests/test_app_settings.py"
+      - "tests/test_provider_settings.py"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "docker-compose.yml"
+      - "config/runtime.env.example"
+      - "config/citation_eval.env.example"
+      - ".github/workflows/configuracion-app.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/app/**"
+      - "src/evaluation/commercial/provider_settings.py"
+      - "src/evaluation/commercial/providers_*.py"
+      - "tests/test_app_settings.py"
+      - "tests/test_provider_settings.py"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "docker-compose.yml"
+      - "config/runtime.env.example"
+      - "config/citation_eval.env.example"
+      - ".github/workflows/configuracion-app.yml"
+
+jobs:
+  test-and-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup uv / Python
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Dependencias
+        run: uv sync --group dev
+      - name: Syntax y regresiones sin API keys
+        run: |
+          uv run python -m compileall -q src/app src/evaluation/commercial
+          uv run pytest -q \
+            tests/test_app_settings.py \
+            tests/test_provider_settings.py \
+            tests/test_top3_fragmentos.py \
+            tests/test_top3_corpus_real.py \
+            tests/test_providers_openai.py \
+            tests/test_providers_gemini.py \
+            tests/test_providers_cohere.py \
+            tests/test_providers_openweight.py
+      - name: Validar compose sin construir ni lanzar infraestructura
+        run: docker compose --env-file config/runtime.env.example config --quiet
