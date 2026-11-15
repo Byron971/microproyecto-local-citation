@@ -99,3 +99,21 @@ def test_artefacto_no_se_sustituye_por_datos_sinteticos(tmp_path):
     ruta.write_text(json.dumps(j), encoding="utf-8")
     with pytest.raises(CorpusError, match="Version"):
         leer_corpus(ruta)
+
+
+@pytest.mark.parametrize("invalido", ("titulo", "sha256", "indice", "palabras"))
+def test_corpus_malformado_se_rechaza_antes_de_mostrarlo(tmp_path, invalido):
+    ruta = _corpus(tmp_path)
+    doc = json.loads(ruta.read_text(encoding="utf-8"))
+    caso = doc["casos"][0]
+    if invalido == "titulo":
+        caso.pop("cited_title")
+    elif invalido == "sha256":
+        caso["sha256_ocl_citado"] = "z" * 64
+    elif invalido == "indice":
+        caso["chunks"][0]["paragraph_indices"] = ["no_entero"]
+    else:
+        caso["chunks"][0]["palabras"] = -3
+    ruta.write_text(json.dumps(doc), encoding="utf-8")
+    with pytest.raises(CorpusError, match="inconsistente|incompatible"):
+        leer_corpus(ruta)
