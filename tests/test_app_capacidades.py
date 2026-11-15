@@ -73,3 +73,19 @@ def test_corpus_ilegal_no_se_declara_disponible(tmp_path, monkeypatch):
     cap = response.json()
     assert cap["tareas"]["top3_corpus_train_bm25"]["disponible"] is False
     assert cap["tareas"]["top3_corpus_train_bm25"]["motivo"]
+
+
+def test_capacidades_reflejan_modelos_realmente_cargados_sin_certificar_gold(tmp_path, monkeypatch):
+    monkeypatch.setenv("TOP3_CORPUS_PATH", str(tmp_path / "ausente.json"))
+    monkeypatch.setitem(state, "scibert", SimpleNamespace(
+        model="SciBERT_base_mean_pooling", revision="a" * 40
+    ))
+    monkeypatch.setitem(state, "a4", SimpleNamespace(model_id="scibert_A_42"))
+    result = TestClient(app).get("/api/capacidades").json()
+    assert result["tareas"]["top3_scibert"]["disponible"] is True
+    assert result["tareas"]["top3_scibert"]["revision"] == "a" * 40
+    a4 = result["tareas"]["clasificacion_nueve_funciones"]
+    assert a4["disponible"] is True
+    assert a4["modelo"] == "scibert_A_42"
+    assert a4["validacion"] == "provisional_no_gold_humano"
+    assert result["gold_humano_certificado"] is False
