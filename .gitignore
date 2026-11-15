@@ -53,3 +53,12 @@ reportes/**/*.synctex.gz
 reportes/**/*.toc
 reportes/**/*.bbl
 reportes/**/*.blg
+
+# Estado y configuración local de Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+terraform/*.tfvars
+terraform/*.tfvars.json
+terraform/crash.log

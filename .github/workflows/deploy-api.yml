@@ -1,0 +1,100 @@
+name: Desplegar API en AWS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/app/**'
+      - 'src/config.py'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'data/processed/dashboard_insights.json'
+      - 'Makefile'
+      - 'scripts/ci/**'
+      - '.github/actions/aws-session/**'
+      - '.github/workflows/deploy-api.yml'
+  pull_request:
+    paths:
+      - 'src/app/**'
+      - 'src/config.py'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'data/processed/dashboard_insights.json'
+      - 'Makefile'
+      - 'scripts/ci/**'
+      - '.github/actions/aws-session/**'
+      - '.github/workflows/deploy-api.yml'
+
+permissions:
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  TF_IN_AUTOMATION: 'true'
+  TF_INPUT: 'false'
+
+jobs:
+  build-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Comprobar imagen sin credenciales AWS
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: false
+          cache-from: type=gha,scope=citas-api
+          cache-to: type=gha,mode=max,scope=citas-api
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: deploy-aws
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.8
+          terraform_wrapper: false
+      - name: Verificar sesión AWS
+        uses: ./.github/actions/aws-session
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      - name: Inicializar backend existente
+        run: terraform -chdir=terraform init -input=false -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
+      - name: Consultar repositorio y tag
+        id: image
+        shell: bash
+        run: |
+          repository=$(aws ecr describe-repositories --repository-names citas-api --query 'repositories[0].repositoryUri' --output text)
+          echo "repository=$repository" >> "$GITHUB_OUTPUT"
+          echo "tag=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: aws-actions/amazon-ecr-login@v2
+      - uses: docker/setup-buildx-action@v3
+      - name: Construir y publicar imagen
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.image.outputs.repository }}:${{ steps.image.outputs.tag }}
+          cache-from: type=gha,scope=citas-api
+          cache-to: type=gha,mode=max,scope=citas-api
+      - name: Actualizar tag y desplegar
+        env:
+          IMAGE_TAG: ${{ steps.image.outputs.tag }}
+        run: bash scripts/ci/deploy-api.sh
