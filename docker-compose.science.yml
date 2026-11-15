@@ -20,6 +20,7 @@ services:
       APP_SCIENCE_MAX_CHUNKS: "300"
       APP_SCIENCE_MAX_CHARACTERS: "350000"
       APP_SCIBERT_CACHE_PAPERS: "6"
+      APP_SCIBERT_CACHE_MAX_MB: "64"
     volumes:
       - type: bind
         source: ${SCIENCE_HF_CACHE_HOST_PATH:?Provide HuggingFace cache absolute path}
