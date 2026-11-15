@@ -24,6 +24,35 @@ Abre `http://localhost:5173`. Vite envía `/api` al backend local en el puerto 8
 reinicia Vite. Ese API debe permitir el origen local en CORS. No uses
 credenciales AWS en archivos `VITE_*`: son públicos.
 
+## Probar Top-3 con casos reales de desarrollo (sin Gold)
+
+La pantalla `/fragmentos` tiene dos modos diferenciados:
+
+- **Manual:** contexto, ID del artículo citado y párrafos proporcionados por la persona.
+- **Corpus local TRAIN:** botón **Cargar casos reales de desarrollo** para listar únicamente
+  los casos de entrenamiento ACL-200/ACL OCL exportados al artefacto S2.2.
+  Selecciona un caso y ejecuta **Ejecutar Top-3 de desarrollo**. La API devuelve
+  contexto original, procedencia del citado y fragmentos BM25; no expone
+  etiquetas humanas ni calcula métricas científicas.
+
+Para crear el artefacto local (requiere datos DVC y caché ACL OCL reales, ya
+preparados siguiendo la documentación del proyecto):
+
+```sh
+uv run python -m proyecto_de_grado.src.data.exportar_corpus_top3 --limite 5
+uv run tablero
+npm --prefix frontend run dev
+```
+
+El backend lee `proyecto_de_grado/artifacts/top3_s2/casos_train.json` por
+defecto. Si no existe el artefacto, el listado responde HTTP 503 y la interfaz
+muestra una explicación; el modo manual no se bloquea. La interfaz **no**
+descarga los documentos desde la web ni sirve datos de test.
+
+La vista todavía utiliza BM25, **no** SciBERT, y no ejecuta la clasificación
+de nueve funciones. Los tests de navegador interceptan la API con fixtures;
+por sí solos no prueban inferencia contra la caché auténtica.
+
 ## Estado del despliegue de esta integración
 
 Este PR recupera el **frontend local** y sus pruebas desde el PR #156 y lo
