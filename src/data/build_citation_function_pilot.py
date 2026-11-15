@@ -52,7 +52,7 @@ def build_pilot_cases(
         context = contexts[context_id]
         paper = papers.get(positive_id, {"title": "", "abstract": ""})
         cleaned = clean_context_text(context.get("masked_text", ""))
-        # Apply supplementary cleanup to catch markers without word boundaries (e.g., "McOTHERCIT")
+        # También quitamos marcadores pegados a palabras, como "McOTHERCIT".
         cleaned = _remove_citation_markers_no_word_boundary(cleaned)
         input_text = (
             f"Citation context: {cleaned}\n\n"
