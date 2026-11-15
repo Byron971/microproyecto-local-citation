@@ -34,7 +34,7 @@ def sample(tmp):
 
 def test_restoration_dry_run_does_not_create_fake_weight(tmp_path):
     source, dest, registry, sha = sample(tmp_path)
-    result = recuperar(source, dest, registry=registry, repo=tmp_path, apply=False)
+    result = recuperar(source, dest, registry=registry, repo=tmp_path, model_ids=("scibert_A_42",), apply=False)
     assert result["modo"] == "simulacion_sin_escritura"
     assert result["checkpoints"][0]["estado"] == "listo_para_copiar"
     assert not dest.exists()
@@ -42,15 +42,15 @@ def test_restoration_dry_run_does_not_create_fake_weight(tmp_path):
 
 def test_restoration_copies_original_and_does_not_overwrite(tmp_path):
     source, dest, registry, sha = sample(tmp_path)
-    result = recuperar(source, dest, registry=registry, repo=tmp_path, apply=True)
+    result = recuperar(source, dest, registry=registry, repo=tmp_path, model_ids=("scibert_A_42",), apply=True)
     checkpoint = dest / "scibert_A_42/model.safetensors"
     assert checkpoint.is_file()
     assert hashlib.sha256(checkpoint.read_bytes()).hexdigest() == sha
     assert result["checkpoints"][0]["estado"] == "copiado"
-    assert recuperar(source, dest, registry=registry, repo=tmp_path, apply=True)["checkpoints"][0]["estado"] == "ya_verificado"
+    assert recuperar(source, dest, registry=registry, repo=tmp_path, model_ids=("scibert_A_42",), apply=True)["checkpoints"][0]["estado"] == "ya_verificado"
     checkpoint.write_bytes(b"tampered")
     with pytest.raises(ValueError, match="sobrescribir"):
-        recuperar(source, dest, registry=registry, repo=tmp_path, apply=True)
+        recuperar(source, dest, registry=registry, repo=tmp_path, model_ids=("scibert_A_42",), apply=True)
     assert checkpoint.read_bytes() == b"tampered"
 
 
@@ -58,7 +58,7 @@ def test_restoration_rejects_tampered_source(tmp_path):
     source, dest, registry, sha = sample(tmp_path)
     (source / "scibert_A_42/model.safetensors").write_bytes(b"fake")
     with pytest.raises(ValueError, match="no se localizaron|No se localizaron"):
-        recuperar(source, dest, registry=registry, repo=tmp_path, apply=True)
+        recuperar(source, dest, registry=registry, repo=tmp_path, model_ids=("scibert_A_42",), apply=True)
     assert not dest.exists()
 
 
@@ -72,7 +72,7 @@ def test_restoration_rejects_symlink_source_and_destination(tmp_path):
         recuperar(source_link, dest, registry=registry, repo=tmp_path, apply=True)
     dest.symlink_to(other, target_is_directory=True)
     with pytest.raises(ValueError, match="enlace simbólico"):
-        recuperar(source, dest, registry=registry, repo=tmp_path, apply=True)
+        recuperar(source, dest, registry=registry, repo=tmp_path, model_ids=("scibert_A_42",), apply=True)
 
 
 def test_science_preflight_is_honest_if_weights_missing(monkeypatch, tmp_path):
