@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { Recommend } from './pages/Recommend';
 import { Analytics } from './pages/Analytics';
 import { Top3 } from './pages/Top3';
+import { CitationFunction } from './pages/CitationFunction';
 export function App() {
   const { pathname } = useLocation();
   const explore = useRef<HTMLDetailsElement>(null);
@@ -14,6 +15,7 @@ export function App() {
       '/modelo': 'Desempeño',
       '/negativos': 'Negativos',
       '/fragmentos': 'Top-3',
+      '/funcion': 'Función de cita',
     };
     document.title = `${names[pathname] || 'Página no encontrada'} · Recomendación local de citas académicas`;
   }, [pathname]);
@@ -61,6 +63,7 @@ export function App() {
               <summary>Explorar</summary>
               <div className="explore-links">
                 <NavLink to="/fragmentos">Fragmentos Top-3 · experimental</NavLink>
+                <NavLink to="/funcion">Función de cita · provisional</NavLink>
                 <NavLink to="/datos">Datos</NavLink>
                 <NavLink to="/modelo">Desempeño</NavLink>
                 <NavLink to="/negativos">Negativos</NavLink>
@@ -73,6 +76,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<Recommend />} />
           <Route path="/fragmentos" element={<Top3 />} />
+          <Route path="/funcion" element={<CitationFunction />} />
           <Route path="/datos" element={<Analytics view="datos" />} />
           <Route path="/modelo" element={<Analytics view="modelo" />} />
           <Route path="/negativos" element={<Analytics view="negativos" />} />

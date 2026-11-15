@@ -132,3 +132,32 @@ solo al copiar. No se modifica el modelo ni se ralentiza su arranque.
 Fuentes: [exportación bibliográfica de ACL Anthology](https://aclanthology.org/faq/bib/),
 [Citation.js](https://github.com/citation-js/citation-js) y
 [APA: información ausente](https://apastyle.apa.org/style-grammar-guidelines/references/missing-information).
+
+## Interfaz científica experimental: SciBERT y nueve funciones
+
+Con los PR #173 (SciBERT) y #175 (A4) instalados en la API, se habilitan dos
+vistas sin afectar a la demostración BM25 que funciona por defecto:
+
+- `/fragmentos`: selector **BM25** / **SciBERT base**. La vista manual admite
+  el contexto y los párrafos del citado; la vista de corpus TRAIN selecciona
+  un caso auténtico desde OCL y consulta el endpoint seleccionado.
+  SciBERT devuelve `similitud_coseno`, BM25 `puntaje_bm25`; no se convierten
+  entre sí ni se muestran como probabilidades.
+- `/funcion`: formulario para **Entrada A** de SciBERT-A (contexto con
+  `TARGETCIT` único, título y abstract auténtico del citado). Presenta las
+  nueve categorías y scores softmax **sin calibración**, con la procedencia
+  Haiku y estado `provisional_no_gold_humano`.
+
+El backend ligero del microproyecto **no** incluye PyTorch, checkpoints A4
+ni snapshots SciBERT: una instalación normal devuelve HTTP 503 para esos
+dos endpoints y la UI explica por qué; no sustituye silenciosamente los
+modelos por BM25. Los tests Vitest y Playwright utilizan **respuestas
+controladas** para esos modelos pesados; no equivalen a inferencia científica
+real.
+
+Para un ensayo completo se deben seguir
+`docs/inferencia_scibert_api.md` y
+`docs/clasificador_a4_api_provisional.md`, recuperar los pesos originales
+verificados, ejecutar FastAPI en un entorno con las dependencias científicas
+y medir la memoria y latencia. No utilizar Gold en la demo ni afirmar que los
+scores son validados por personas.

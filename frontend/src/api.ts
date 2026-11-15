@@ -68,6 +68,43 @@ export interface Top3CorpusResponse extends Top3Response {
   aviso: string;
   sha256_ocl_citado: string;
 }
+export interface DenseFragment {
+  posicion: number;
+  chunk_id: string;
+  texto: string;
+  seccion?: string | null;
+  paragraph_indices?: number[];
+  similitud_coseno: number;
+}
+export interface DenseTop3Response {
+  cited_id: string;
+  metodo: 'scibert_base_mean_pooling_cosine';
+  modelo: string;
+  revision: string;
+  total_fragmentos_analizados: number;
+  fragmentos: DenseFragment[];
+  clasificacion: { estado: string; motivo?: string };
+}
+export interface DenseCorpusResponse extends DenseTop3Response {
+  context_id: string;
+  contexto: string;
+  cited_title: string;
+  split: 'train';
+  fuente: string;
+  aviso: string;
+}
+export interface ClassificationResponse {
+  modelo: string;
+  encoder: string;
+  entrada: 'A';
+  clase: string;
+  indice_clase: number;
+  puntuaciones_softmax: { categoria: string; score: number }[];
+  latencia_modelo_ms: number;
+  training_labels: 'Haiku';
+  validacion: 'provisional_no_gold_humano';
+  advertencia: string;
+}
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -128,6 +165,28 @@ export const api = {
       body: JSON.stringify({ contexto, top_k, ...(modelo ? { modelo } : {}) }),
       signal,
     }),
+  classifyCitation: (
+    contexto: string, cited_title: string, cited_abstract: string,
+    signal?: AbortSignal,
+  ) => request<ClassificationResponse>('/api/clasificar-cita', {
+    method: 'POST',
+    body: JSON.stringify({ contexto, cited_title, cited_abstract }),
+    signal,
+  }),
+  top3SciBERT: (
+    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
+  ) => request<DenseTop3Response>('/api/top3-scibert', {
+    method: 'POST',
+    body: JSON.stringify({
+      contexto, cited_id,
+      parrafos: paragraphs.map((texto, i) => ({ chunk_id: `p${i + 1}`, texto })),
+    }),
+    signal,
+  }),
+  top3SciBERTCorpus: (contextId: string, signal?: AbortSignal) =>
+    request<DenseCorpusResponse>(
+      `/api/top3-scibert/corpus/${encodeURIComponent(contextId)}`, { signal },
+    ),
   top3CorpusExamples: (signal?: AbortSignal) =>
     request<Top3CorpusCatalog>('/api/top3-corpus/ejemplos', { signal }),
   top3Corpus: (contextId: string, signal?: AbortSignal) =>
