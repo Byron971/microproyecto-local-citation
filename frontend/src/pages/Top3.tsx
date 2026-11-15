@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { api, ApiError, errorMessage, type Top3CorpusExample, type Top3Response, type DenseTop3Response, type DenseCorpusResponse } from '../api';
-import { Link } from 'react-router';
 import { Icon } from '../components/Icon';
 export function Top3() {
   const [context, setContext] = useState('');
@@ -286,7 +285,7 @@ export function Top3() {
         <span className="eyebrow">Función de cita</span>
         <h2>Clasificación aún no disponible</h2>
         <p>
-          Este flujo Top-3 no genera etiquetas de función. La <Link to="/funcion">vista de función de cita</Link>
+          Este flujo Top-3 no genera etiquetas de función. La <a href="/funcion">vista de función de cita</a>
           ofrece un clasificador A4 provisional por entrada A cuando se instalen sus pesos verificados;
           no equivale a validación humana.
         </p>
