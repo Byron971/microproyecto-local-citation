@@ -128,6 +128,7 @@ async def lifespan(app: FastAPI):
             max_chunks=config.max_science_chunks,
             max_characters=config.max_science_characters,
             max_cached_papers=config.max_cached_papers,
+            max_cache_mb=config.max_scibert_cache_mb,
         )
     state["a4"] = None
     state["a4_b"] = None
