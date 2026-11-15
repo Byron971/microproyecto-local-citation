@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -80,13 +81,99 @@ def fragmentar(parrafos: list[dict]) -> list[dict]:
     return chunks
 
 
+def _dividir_parrafo_largo_v2(texto: str) -> list[str]:
+    """Divide solo por límites de tokens; nunca trunca contenido del párrafo."""
+    tokens = list(re.finditer(r"\S+", texto))
+    if not tokens:
+        raise ValueError("Parrafo sin texto.")
+    partes = []
+    inicio = 0
+    while inicio < len(tokens):
+        j = inicio
+        origen = tokens[inicio].start()
+        while (
+            j < len(tokens)
+            and j - inicio < MAX_PALABRAS
+            and tokens[j].end() - origen <= MAX_CARACTERES
+        ):
+            j += 1
+        if j == inicio:
+            raise ValueError("Token demasiado largo: no se puede dividir sin truncar.")
+        if j < len(tokens):
+            # Preferir oración completa solo si no desperdicia más de media ventana.
+            cierres = [
+                k for k in range(inicio + 1, j)
+                if tokens[k - 1].group()[-1:] in (".", "!", "?")
+            ]
+            if cierres and cierres[-1] - inicio >= (j - inicio) // 2:
+                j = cierres[-1]
+        partes.append(texto[origen:tokens[j - 1].end()].strip())
+        inicio = j
+    if " ".join(" ".join(p.split()) for p in partes) != " ".join(texto.split()):
+        raise ValueError("La fragmentacion V2 perdio contenido textual.")
+    return partes
+
+
+def fragmentar_v2(parrafos: list[dict]) -> list[dict]:
+    """Versión opt-in: conserva V1 para tramos cortos y divide párrafos largos.
+
+    Los índices corresponden siempre al párrafo OCL de origen. Cada segmento
+    tiene un ID único y estable. No altera los artefactos históricos de V1.
+    """
+    if not parrafos:
+        raise ValueError("Articulo sin parrafos.")
+    numeros = set()
+    for p in parrafos:
+        numero, texto, seccion = p["numero"], p["texto"], p["seccion"]
+        if isinstance(numero, bool) or not isinstance(numero, int) or numero < 0 or numero in numeros:
+            raise ValueError("Indice de parrafo invalido o duplicado.")
+        numeros.add(numero)
+        if not isinstance(texto, str) or not texto.strip():
+            raise ValueError("Parrafo sin texto.")
+        if not isinstance(seccion, str):
+            raise ValueError("Seccion invalida.")
+
+    chunks = []
+    pendientes = []
+
+    def cerrar_cortos() -> None:
+        if pendientes:
+            chunks.extend(fragmentar(pendientes))
+            pendientes.clear()
+
+    for p in parrafos:
+        texto = p["texto"]
+        if len(texto.split()) <= MAX_PALABRAS and len(texto) <= MAX_CARACTERES:
+            pendientes.append(p)
+            continue
+        cerrar_cortos()
+        partes = _dividir_parrafo_largo_v2(texto)
+        for indice, parte in enumerate(partes):
+            chunks.append({
+                "chunk_id": f"p{p['numero']:05d}-s{indice:03d}",
+                "texto": parte,
+                "seccion": p["seccion"],
+                "paragraph_indices": [p["numero"]],
+                "palabras": len(parte.split()),
+                "segmento_indice": indice,
+                "segmentos_parrafo": len(partes),
+            })
+    cerrar_cortos()
+    if not chunks:
+        raise ValueError("Articulo sin fragmentos.")
+    return chunks
+
+
 def preparar(
     contextos: dict, papers: dict, by_context: dict[str, str],
     cache: Path, excluidos: set[str], limite: int = 5,
+    fragmentador: str = "v1",
 ) -> tuple[list[dict], dict]:
     """Solo train; unico articulo citado por caso; sin fuga de IDs reservados."""
     if limite < 1:
         raise ValueError("limite debe ser positivo")
+    if fragmentador not in ("v1", "v2"):
+        raise ValueError("fragmentador debe ser v1 o v2")
     registros, motivos = [], Counter()
     citados_vistos = set()
     for cid, split in sorted(by_context.items()):
@@ -104,7 +191,7 @@ def preparar(
             continue
         try:
             registro = integrar_contexto(cid, contextos, papers, cache)
-            chunks = fragmentar(registro["paragraphs"])
+            chunks = (fragmentar_v2 if fragmentador == "v2" else fragmentar)(registro["paragraphs"])
         except (KeyError, TypeError, ValueError, OSError, json.JSONDecodeError) as exc:
             motivos[type(exc).__name__] += 1
             continue
@@ -123,7 +210,7 @@ def preparar(
             "reconstruccion": "contexto_acl200_original_sin_adjudicacion",
         })
 
-    return registros, {
+    resumen = {
         "tipo": "muestra_desarrollo_train_no_gold",
         "total": len(registros),
         "limite": limite,
@@ -132,14 +219,21 @@ def preparar(
         "regla_chunks": "hasta 2 parrafos contiguos por seccion y maximo 300 palabras",
         "nota": "No contiene etiquetas humanas ni relevancia Top3; no reportar metricas cientificas.",
     }
+    if fragmentador == "v2":
+        resumen["estrategia_fragmentacion"] = "v2_division_conservadora_sin_truncamiento"
+        resumen["regla_chunks"] = "V1 para parrafos cortos; segmentos <=300 palabras y <=5000 caracteres para parrafos largos"
+    return registros, resumen
 
 
 def exportar(
-    raw: Path, cache: Path, salida: Path, excluidos: set[str], limite: int
+    raw: Path, cache: Path, salida: Path, excluidos: set[str], limite: int,
+    fragmentador: str = "v1",
 ) -> dict:
+    if fragmentador == "v2" and (salida.resolve() == SALIDA.resolve() or salida.exists()):
+        raise ValueError("V2 requiere una --salida nueva y distinta del artefacto V1; no sobrescribir.")
     indice = load_split_index(raw)
     papers = json.loads((raw / "papers.json").read_text(encoding="utf-8-sig"))
-    registros, resumen = preparar(indice.contexts, papers, indice.by_context, cache, excluidos, limite)
+    registros, resumen = preparar(indice.contexts, papers, indice.by_context, cache, excluidos, limite, fragmentador)
     if not registros:
         raise ValueError("No hay casos train con ACL OCL en cache; no se creo archivo.")
     payload = {"version": 1, "resumen": resumen, "casos": registros}
@@ -157,12 +251,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--cache", type=Path, default=CACHE)
     parser.add_argument("--salida", type=Path, default=SALIDA)
     parser.add_argument("--limite", type=int, default=5)
+    parser.add_argument("--fragmentador", choices=("v1", "v2"), default="v1",
+                        help="v1 conserva el experimento; v2 divide parrafos largos (usar --salida diferente)")
     parser.add_argument("--exclude", type=Path, default=REPO / "proyecto_de_grado/anotacion/ids_excluir_test_gold.txt")
     parser.add_argument("--exclude-history", type=Path, default=REPO / "proyecto_de_grado/anotacion/ids_piloto_historico_no_test_final.txt")
     args = parser.parse_args(argv)
     excluidos = leer_exclusiones(args.exclude) | leer_exclusiones(args.exclude_history)
     try:
-        exportar(args.raw, args.cache, args.salida, excluidos, args.limite)
+        exportar(args.raw, args.cache, args.salida, excluidos, args.limite, args.fragmentador)
     except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
         parser.exit(2, f"Error S2.2: {exc}\n")
     return 0
