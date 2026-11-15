@@ -3,6 +3,8 @@ import json
 
 import pytest
 
+from proyecto_de_grado.src.data.comparar_fragmentacion import comparar_cache
+
 from proyecto_de_grado.src.data.exportar_corpus_top3 import (
     exportar, fragmentar, fragmentar_v2, preparar
 )
@@ -189,3 +191,20 @@ def test_v2_exporta_solo_train_y_no_sobrescribe_artefactos(tmp_path):
     assert all(len(x["texto"].split()) <= 300 for x in chunks)
     with pytest.raises(ValueError, match="no sobrescribir"):
         exportar(raw, cache, salida, set(), 5, fragmentador="v2")
+
+
+def test_auditoria_compara_la_misma_cache_y_no_inventa_metricas(tmp_path):
+    _, cache, *_ = _datos(tmp_path)
+    origen = cache / "P14-1001.json"
+    doc = json.loads(origen.read_text(encoding="utf-8"))
+    doc["pdf_parse"]["body_text"][0]["text"] = " ".join("model" for _ in range(310))
+    origen.write_text(json.dumps(doc), encoding="utf-8")
+
+    reporte = comparar_cache(cache)
+    assert reporte["total_archivos_misma_muestra"] == 3
+    assert reporte["aceptados_v1"] == 2
+    assert reporte["aceptados_v2"] == 3
+    assert reporte["recuperados_por_v2"] == 1
+    assert reporte["estado"] == "auditoria_descriptiva_cache_no_gold"
+    assert "recall_3" not in reporte and "f1_macro" not in reporte
+    assert len(reporte["archivos"]) == 3
