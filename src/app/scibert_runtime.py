@@ -28,15 +28,16 @@ class SciBERTRuntime:
 
     def __init__(self, encoder: DenseEncoder, *, revision: str, domain: Any,
                  max_chunks: int = 500, max_characters: int = 600000,
-                 max_cached_papers: int = 8):
+                 max_cached_papers: int = 8, max_cache_mb: int = 64):
         if not revision or len(revision) != 40:
             raise ValueError("La revisión SciBERT debe ser un commit fijado.")
         if not (3 <= max_chunks <= 2000 and 1000 <= max_characters <= 2000000
-                and 1 <= max_cached_papers <= 64):
+                and 1 <= max_cached_papers <= 64 and 1 <= max_cache_mb <= 512):
             raise ValueError("Límites de recursos científicos inválidos.")
         self.encoder, self.revision, self.domain = encoder, revision, domain
         self.max_chunks, self.max_characters = max_chunks, max_characters
         self.max_cached_papers = max_cached_papers
+        self._max_cache_bytes = max_cache_mb * 1024 * 1024
         self._lock = threading.RLock()  # serializa inferencia GPU/CPU por worker
         self._embeddings: OrderedDict[str, tuple[tuple[float, ...], ...]] = OrderedDict()
         self._hits = self._misses = 0
@@ -44,7 +45,7 @@ class SciBERTRuntime:
     @classmethod
     def load(cls, manifest: Path, device: str = "cpu", *,
              max_chunks: int = 500, max_characters: int = 600000,
-             max_cached_papers: int = 8) -> "SciBERTRuntime":
+             max_cached_papers: int = 8, max_cache_mb: int = 64) -> "SciBERTRuntime":
         """Solo cargar pesos verificados; nunca usar un modelo desconocido de red."""
         if device not in ("cpu", "cuda", "auto"):
             raise ValueError("APP_SCIBERT_DEVICE debe ser cpu, cuda o auto.")
@@ -68,7 +69,7 @@ class SciBERTRuntime:
         )
         return cls(encoder, revision=revision.REVISION_SCIBERT, domain=domain,
                    max_chunks=max_chunks, max_characters=max_characters,
-                   max_cached_papers=max_cached_papers)
+                   max_cached_papers=max_cached_papers, max_cache_mb=max_cache_mb)
 
     def cache_stats(self) -> dict:
         """Métricas operativas sin contenidos ni IDs de artículos."""
@@ -79,6 +80,7 @@ class SciBERTRuntime:
             return {"papers": len(self._embeddings), "vectors": n,
                     "bytes_estimated": size, "hits": self._hits, "misses": self._misses,
                     "max_papers": self.max_cached_papers,
+                    "max_bytes": self._max_cache_bytes,
                     "max_chunks_per_request": self.max_chunks}
 
     def _cache_key(self, document_key: str, chunks: list[dict]) -> str:
@@ -132,11 +134,18 @@ class SciBERTRuntime:
                 vectors = tuple(tuple(float(x) for x in row) for row in encoded)
                 if any(not row or any(not math.isfinite(v) for v in row) for row in vectors):
                     raise RuntimeError("SciBERT produjo vectores vacíos o no finitos.")
-                if key is not None:
+                byte_size = sum(len(row) * 8 for row in vectors)
+                # Un solo artículo puede exceder el presupuesto: úselo sin
+                # retenerlo en memoria. No guardamos entradas manuales.
+                if key is not None and byte_size <= self._max_cache_bytes:
                     self._embeddings[key] = vectors
                     self._embeddings.move_to_end(key)
-                    while len(self._embeddings) > self.max_cached_papers:
-                        self._embeddings.popitem(last=False)
+                    used = sum(sum(len(row) * 8 for row in paper)
+                               for paper in self._embeddings.values())
+                    while (len(self._embeddings) > self.max_cached_papers
+                           or used > self._max_cache_bytes):
+                        _, removed = self._embeddings.popitem(last=False)
+                        used -= sum(len(row) * 8 for row in removed)
             query = self.encoder.encode([consulta])[0]
             scored = self.domain.ordenar_top3(query, chunks, vectors)
         by_id = {c["chunk_id"]: c for c in chunks}
