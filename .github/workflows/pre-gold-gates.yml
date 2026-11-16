@@ -7,6 +7,7 @@ on:
       - "proyecto_de_grado/src/evaluation/top3_gold_gate.py"
       - "scripts/ci/release_readiness.py"
       - "tests/test_top3_gold_gate.py"
+      - "tests/test_top3_acl_official.py"
       - "tests/test_release_readiness.py"
       - "docs/mega_pr_pre_gold_2026_11.md"
       - ".github/workflows/pre-gold-gates.yml"
@@ -36,7 +37,7 @@ jobs:
       - name: Compilar y ejecutar controles sintéticos
         run: |
           uv run python -m compileall -q proyecto_de_grado/src/evaluation/top3_gold_gate.py scripts/ci/release_readiness.py
-          uv run pytest -q tests/test_top3_gold_gate.py tests/test_release_readiness.py \
+          uv run pytest -q tests/test_top3_gold_gate.py tests/test_top3_acl_official.py tests/test_release_readiness.py \
             tests/test_gold_freeze_audit.py tests/test_gold_manifest_reconcile.py \
             tests/test_acl200_gold_split_gate.py tests/test_corpus_preflight.py \
             tests/test_smoke_tesis.py
