@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 from importlib import import_module
 from pathlib import Path
@@ -185,9 +186,18 @@ class A4Classifier:
         probabilities, latencies = self.ct.predecir_probabilidades(
             self.model, rows, self.tokenizer.pad_id, self.device, batch_size=1
         )
+        if not probabilities or not latencies:
+            raise RuntimeError("El modelo A4 no devolvió salidas de inferencia.")
         scores = probabilities[0]
         if len(scores) != len(self.categories):
             raise RuntimeError("El modelo A4 devolvió un número incorrecto de categorías.")
+        if (any(not isinstance(s, (int, float)) or isinstance(s, bool)
+                or not math.isfinite(s) or s < 0 or s > 1 for s in scores)
+                or not math.isclose(sum(scores), 1.0, rel_tol=1e-3, abs_tol=1e-3)):
+            raise RuntimeError("Softmax A4 inválido: probabilidades no finitas o no normalizadas.")
+        if (not isinstance(latencies[0], (int, float)) or
+                not math.isfinite(latencies[0]) or latencies[0] < 0):
+            raise RuntimeError("Latencia A4 inválida.")
         pos = max(range(9), key=lambda i: (scores[i], -i))
         return {
             "modelo": self.model_id, "encoder": self.evidence.get("encoder", "scibert"),
