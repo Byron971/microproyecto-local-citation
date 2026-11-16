@@ -169,6 +169,23 @@ def test_adjudicador_debe_ser_tercero(data):
         adjudicate(data[3], primary)
 
 
+
+def test_acuerdo_unanime_no_requiere_tercer_adjudicador(data):
+    cases, universe = load_universe(data[0])
+    with data[2].open(newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    for row in rows:
+        if row["context_id"] == "q1" and row["chunk_id"] == "p3":
+            row["relevance"] = "1"
+    write_csv(data[2], ("context_id", "chunk_id", "annotator_id", "relevance"), rows)
+    write_csv(data[3],
+              ("context_id", "chunk_id", "adjudicator_id", "relevance", "reason"), [])
+    primary = load_judgments(data[2], universe)
+    final = adjudicate(data[3], primary)
+    assert final[("q1", "p3")] == 1
+    assert len(final) == len(universe)
+
+
 def test_rechaza_rankings_repetidos_y_citados_ajenos(data):
     cases, universe = load_universe(data[0])
     primary = load_judgments(data[2], universe)
