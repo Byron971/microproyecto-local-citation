@@ -14,19 +14,19 @@ Uso:
   python medir_enlace.py --acl200 <carpeta con contexts.json y papers.json> --cache <carpeta> --out <carpeta>
 """
 
-# --- Librerías: solo estándar, para que corra en cualquier venv sin instalar nada ---
-import argparse  # lee los argumentos de la línea de comandos
-import json  # lee los JSON de ACL-200 y de ACL OCL
-import random  # toma la muestra aleatoria reproducible
-import re  # expresiones regulares para normalizar texto y leer el año del ID
-import time  # pausas entre reintentos cuando una API responde 429
-import unicodedata  # convierte ligaduras de PDF ("ﬁ") a letras normales ("fi")
-import urllib.error  # captura los errores HTTP (404 = no existe, 429 = límite de peticiones)
-import urllib.request  # hace las peticiones HTTP sin depender de requests
-from collections import Counter  # cuenta frecuencias para los resúmenes
-from concurrent.futures import ThreadPoolExecutor  # descarga varios JSON en paralelo
-from pathlib import Path  # manejo de rutas que funciona igual en Windows y Linux
-from statistics import median  # mediana de palabras y de chunks por artículo
+# Solo usamos la biblioteca estándar para que el script no necesite instalación.
+import argparse
+import json
+import random
+import re
+import time
+import unicodedata
+import urllib.error
+import urllib.request
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+from statistics import median
 
 # URL de cada artículo en ACL OCL; el patrón sale del árbol del repo en HuggingFace:
 # Base_JSON/prefixP/json/P15/P15-2138.json  (letra del volumen, luego letra+año, luego el ID)
