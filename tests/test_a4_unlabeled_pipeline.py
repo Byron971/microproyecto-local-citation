@@ -32,6 +32,25 @@ def cases(tmp_path):
         (raw / f"{part}.json").write_text(json.dumps([
             {"context_id": i, "positive_ids": [sources[i]["refid"]]} for i in ids
         ]))
+    from proyecto_de_grado.src.data.exportar_corpus_top3 import fragmentar
+    ocl_cache = tmp_path / "ocl-cache"
+    ocl_cache.mkdir()
+    papers = {"paper-q1": {"title": "Graph Citation Science",
+                           "abstract": "Article discussing scientific graphs."}}
+    (raw / "papers.json").write_text(json.dumps(papers))
+    sections = ("Methods", "Results", "Discussion")
+    paragraphs = [
+        {"numero": i, "texto": f"Graph methods in chunk {i + 1}.",
+         "seccion": sections[i]} for i in range(3)
+    ]
+    ocl_file = ocl_cache / "paper-q1.json"
+    ocl_file.write_text(json.dumps({
+        "paper_id": "paper-q1",
+        "pdf_parse": {"body_text": [
+            {"text": p["texto"], "section": p["seccion"]} for p in paragraphs
+        ]},
+    }), encoding="utf-8")
+    chunks = fragmentar(paragraphs)
     source = tmp_path / "heldout.jsonl"
     source.write_text(json.dumps({
         "context_id": "q1", "citing_id": "cit-q1", "cited_id": "paper-q1",
@@ -39,29 +58,29 @@ def cases(tmp_path):
         "context_sha256": sha("Graph TARGETCIT evidence."),
         "cited_title": "Graph Citation Science",
         "cited_abstract": "Article discussing scientific graphs.",
-        "chunks": [
-            {"chunk_id": f"p{i}", "texto": f"Graph methods in chunk {i}.",
-             "seccion": "Methods"} for i in range(1, 4)
-        ],
+        "sha256_ocl_citado": hashlib.sha256(ocl_file.read_bytes()).hexdigest(),
+        "chunks": chunks,
     }) + "\n")
-    return source, raw
+    return source, raw, ocl_cache
 
 
 def test_offline_dry_run_reads_no_gold_and_checks_acl(cases):
-    source, raw = cases
-    report = metadata_plan(source, raw_dir=raw)
+    source, raw, ocl_cache = cases
+    report = metadata_plan(source, raw_dir=raw, ocl_cache=ocl_cache)
     assert report["status"] == "INPUTS_ACL_OFICIAL_VERIFICADOS_SIN_INFERENCIA"
     assert report["n_inputs_unlabeled"] == 1
     assert report["n_four_arms_expected"] == 4
     assert report["predictions_executed"] is False
     assert report["test_gold_certified"] is False
+    assert report["ocl_validation"]["n_cited_ocl"] == 1
+    assert len(report["papers_sha256"]) == 64
     assert set(report["acl_official_sha256"]) == {
         "contexts.json", "train.json", "val.json", "test.json",
     }
 
 
 def test_offline_refuses_gold_keys_before_any_model_load(cases):
-    source, raw = cases
+    source, raw, ocl_cache = cases
     doc = json.loads(source.read_text())
     doc["gold"] = "Background"
     source.write_text(json.dumps(doc) + "\n")
@@ -70,7 +89,7 @@ def test_offline_refuses_gold_keys_before_any_model_load(cases):
 
 
 def test_offline_rejects_source_document_sha_mismatch(cases):
-    source, raw = cases
+    source, raw, ocl_cache = cases
     doc = json.loads(source.read_text())
     doc["context_sha256"] = sha("unrelated TARGETCIT")
     source.write_text(json.dumps(doc) + "\n")
@@ -79,7 +98,7 @@ def test_offline_rejects_source_document_sha_mismatch(cases):
 
 
 def test_offline_no_implicit_model_download_or_checkpoint_fallback(cases, tmp_path, monkeypatch):
-    source, raw = cases
+    source, raw, ocl_cache = cases
     import src.evaluation.a4_infer_unlabeled as pipeline
     monkeypatch.setattr(pipeline, "preflight", lambda *a, **k: {
         "ready_four_a4": False,
@@ -87,7 +106,7 @@ def test_offline_no_implicit_model_download_or_checkpoint_fallback(cases, tmp_pa
     output = tmp_path / "inferencia"
     with pytest.raises(RuntimeError, match="pesos originales"):
         run_four_arm(source, raw_dir=raw, checkpoint_root=tmp_path,
-                     output_dir=output)
+                     output_dir=output, ocl_cache=ocl_cache)
     assert not output.exists()
 
 
@@ -111,7 +130,7 @@ def test_offline_pipeline_synthetic_four_arm_atomic_outputs(cases, tmp_path, mon
     from src.app.classifier_runtime import A4Classifier
     from src.app.scibert_runtime import SciBERTRuntime
 
-    source, raw = cases
+    source, raw, ocl_cache = cases
     monkeypatch.setattr(pipeline, "preflight", lambda *a, **k: {
         "ready_four_a4": True,
     })
@@ -151,7 +170,7 @@ def test_offline_pipeline_synthetic_four_arm_atomic_outputs(cases, tmp_path, mon
 
     output = tmp_path / "private_predictions"
     report = run_four_arm(source, raw_dir=raw, checkpoint_root=tmp_path,
-                          output_dir=output)
+                          output_dir=output, ocl_cache=ocl_cache)
     assert report["status"] == "PREDICCIONES_A4_CIEGAS_NO_EVALUADAS"
     assert report["n_models"] == 4
     assert report["n_cases"] == 1
@@ -167,4 +186,50 @@ def test_offline_pipeline_synthetic_four_arm_atomic_outputs(cases, tmp_path, mon
                          "model_id": fname, "latency_model_ms": 1.0}]
     with pytest.raises(InputError, match="ya existe"):
         run_four_arm(source, raw_dir=raw, checkpoint_root=tmp_path,
-                     output_dir=output)
+                     output_dir=output, ocl_cache=ocl_cache)
+
+
+def test_ocl_tampering_fails_even_if_unlabeled_schema_valid(cases):
+    from src.evaluation.a4_infer_unlabeled import verify_ocl_sources
+    source, raw, ocl_cache = cases
+    rows, _ = read_unlabeled_inputs(source)
+    paper = ocl_cache / "paper-q1.json"
+    document = json.loads(paper.read_text())
+    document["pdf_parse"]["body_text"][1]["text"] = "A different paragraph."
+    paper.write_text(json.dumps(document), encoding="utf-8")
+    with pytest.raises(InputError, match="SHA del artículo OCL"):
+        verify_ocl_sources(rows, ocl_cache)
+
+
+def test_ocl_chunks_must_be_full_v1_coverage_even_if_sha_valid(cases):
+    from src.evaluation.a4_infer_unlabeled import verify_ocl_sources
+    source, raw, ocl_cache = cases
+    item = json.loads(source.read_text())
+    item["chunks"][1]["texto"] = "Invented text."
+    source.write_text(json.dumps(item) + "\n")
+    rows, _ = read_unlabeled_inputs(source)
+    with pytest.raises(InputError, match="Chunk no reproducible"):
+        verify_ocl_sources(rows, ocl_cache)
+
+
+def test_title_abstract_must_match_official_papers_json(cases):
+    from src.evaluation.a4_infer_unlabeled import verify_source_papers
+    source, raw, ocl_cache = cases
+    item = json.loads(source.read_text())
+    item["cited_abstract"] = "Fabricated abstract."
+    source.write_text(json.dumps(item) + "\n")
+    rows, _ = read_unlabeled_inputs(source)
+    with pytest.raises(InputError, match="Título/abstract"):
+        verify_source_papers(rows, raw)
+
+
+def test_ocl_missing_source_blocks_even_before_checkpoints(cases, tmp_path, monkeypatch):
+    source, raw, ocl_cache = cases
+    import src.evaluation.a4_infer_unlabeled as pipeline
+    called = []
+    monkeypatch.setattr(pipeline, "preflight", lambda *a, **k: called.append(True))
+    (ocl_cache / "paper-q1.json").unlink()
+    with pytest.raises(InputError, match="Falta artículo citado"):
+        run_four_arm(source, raw_dir=raw, checkpoint_root=tmp_path,
+                     output_dir=tmp_path / "out", ocl_cache=ocl_cache)
+    assert called == []
