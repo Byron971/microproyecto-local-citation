@@ -1378,3 +1378,49 @@ Pendiente en el frente de función de cita:
 - consolidación de las métricas finales en el reporte.
 
 El sistema debe considerarse un prototipo académico. Las recomendaciones dependen del corpus utilizado, de la etapa de recuperación y del modelo entrenado, y no sustituyen la revisión académica de las referencias por parte del usuario.
+
+---
+
+## Estado de ingeniería científica pre-Gold — noviembre de 2026
+
+El microproyecto de recomendación de artículos TF-IDF y la tesis de recomendación
+**Top-3 de fragmentos del artículo citado** + **clasificación de nueve funciones**
+son tareas distintas. La API de baseline y el frontend están integrados, pero
+el backend científico es opt-in y **no equivale a calidad validada**.
+
+Los clasificadores A4 disponibles en código son SciBERT-A/B y SPECTER-A/B.
+Las cuatro corridas históricas de semilla 42 están descritas en
+`config/checkpoint_registry.json`, pero sus cuatro archivos
+`model.safetensors` **no están versionados**. El nuevo preflight
+`python -m src.app.science_preflight --strict-all` exige pesos auténticos,
+identidad/SHA original y snapshots pinned de los dos encoders (sin red por
+defecto). El smoke `python scripts/ci/smoke_tesis.py --cientifico
+--cuatro-modelos` requiere inferencias HTTP auténticas, no fixtures.
+
+La preparación de casos para futuras métricas NO requiere transcribir datos:
+
+1. Congelar fuera del repositorio una selección elegible de IDs de ACL-200 test.
+2. Generar las entradas sin etiquetas con
+   `python -m src.evaluation.a4_export_unlabeled --ids-file ... --raw-dir ...
+   --ocl-cache ... --output ... --manifest ...`.
+3. Inspeccionar y ejecutar cuatro inferencias offline con
+   `python -m src.evaluation.a4_infer_unlabeled --inputs ... --raw-dir ...
+   --ocl-cache ... --checkpoint-root ... --output-dir ... --apply`.
+4. Solo con Gold legítimo, utilizar el benchmark factorial ya existente para
+   Precision/Recall/F1, matrices y comparaciones pareadas. El Gold de
+   relevancia de *chunks* es independiente del Gold de nueve funciones y
+   exige comprobar todo su universo contra ACL/OCL, no solo el Top-3.
+
+**Límites científicos aún abiertos**: cuatro checkpoints originales,
+ejecución científica auténtica, elegibilidad/independencia de la muestra,
+cobertura de entrada B inferior al umbral interno del 60%, Gold humano
+de las nueve funciones (meta 15% y doble anotación), Gold humano de relevancia
+por fragmentos, métricas reales, costos/HTTPS autorizados y artículo final.
+Un humano y un asistente IA **no** constituyen dos anotadores humanos
+independientes. No afirmar ni presentar métricas Gold, URLs AWS o niveles de
+acuerdo inexistentes.
+
+Operación completa, comandos y tablas sin valores inventados:
+`docs/mega_pr_183_operacion_final_pre_gold.md`. Para CI sin Gold,
+`tests/test_a4_unlabeled_pipeline.py`, `tests/test_science_hardening.py`,
+`tests/test_four_arm_smoke.py` y `tests/test_top3_acl_official.py`.
