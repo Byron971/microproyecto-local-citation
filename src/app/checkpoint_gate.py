@@ -20,7 +20,7 @@ ID = re.compile(r"[a-z0-9]+_[AB]_[0-9]+\Z")
 
 
 def _relative(raw: object) -> Path:
-    if not isinstance(raw, str) or not raw or "\\" in raw or ":" in raw:
+    if not isinstance(raw, str) or not raw or "\\" in raw or ":" in raw or raw.startswith("/"):
         raise ValueError("Ruta de artefacto inválida.")
     path = Path(raw)
     if path.is_absolute() or any(part in (".", "..") for part in raw.split("/")):
