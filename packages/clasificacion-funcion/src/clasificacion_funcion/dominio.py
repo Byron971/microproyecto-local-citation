@@ -294,7 +294,11 @@ def verificar_fugas(
 
 
 # ---------------------------------------------------------------- construccion de entradas
-ENTRADAS = ("A", "B", "B_sin_seccion", "B_barajada")
+ENTRADAS = ("A", "B", "B_sin_seccion", "B_barajada", "AB", "B_aleatorio", "AB_aleatorio", "C0")
+# Entradas con titulo + abstract del citado y con chunks (Top-3 o al azar).
+ENTRADAS_CON_TITULO = ("A", "AB", "AB_aleatorio")
+ENTRADAS_CON_CHUNKS = ("B", "B_sin_seccion", "B_barajada", "AB", "B_aleatorio", "AB_aleatorio")
+ENTRADAS_ALEATORIAS = ("B_aleatorio", "AB_aleatorio")
 TOP_K = 3
 TOPE_CONTEXTO = 192
 TOPE_TITULO = 48
@@ -312,10 +316,12 @@ def _texto(valor, nombre: str, cid) -> str:
 def construir_segmentos(caso: dict, entrada: str) -> list[dict]:
     """Segmentos de texto de una entrada, en orden: [{nombre, tipo, texto}].
 
-    A = contexto, titulo, abstract. B = contexto + (perfil_i : chunk_i) x 3.
-    B_sin_seccion omite el perfil. B_barajada usa `perfiles_barajados` (ver
-    `barajar_secciones`). `caso` lleva `citation_context`, `titulo`, `abstract` y
-    `top3` = [{chunk_id, texto, perfil}] ya ordenado por relevancia."""
+    A = contexto, titulo, abstract. B = contexto + (perfil_i : chunk_i) x 3. AB = los
+    segmentos de A seguidos de los chunks de B. C0 = solo el contexto. B_sin_seccion omite
+    el perfil. B_barajada usa `perfiles_barajados` (ver `barajar_secciones`). B_aleatorio y
+    AB_aleatorio se construyen como B y AB: el llamador pone en `top3` los chunks al azar.
+    `caso` lleva `citation_context`, `titulo`, `abstract` y `top3` = [{chunk_id, texto,
+    perfil}] ya ordenado por relevancia."""
     if entrada not in ENTRADAS:
         raise ValueError(f"Entrada desconocida: {entrada!r}")
     cid = caso.get("context_id")
@@ -323,11 +329,12 @@ def construir_segmentos(caso: dict, entrada: str) -> list[dict]:
     if contexto.count(MARCA) != 1:
         raise ValueError(f"Contexto sin {MARCA} unico en {cid}")
     segmentos = [{"nombre": "contexto", "tipo": "contexto", "texto": contexto}]
-    if entrada == "A":
+    if entrada in ENTRADAS_CON_TITULO:
         segmentos.append({"nombre": "titulo", "tipo": "titulo",
                           "texto": _texto(caso.get("titulo"), "titulo", cid)})
         segmentos.append({"nombre": "abstract", "tipo": "abstract",
                           "texto": _texto(caso.get("abstract"), "abstract", cid)})
+    if entrada not in ENTRADAS_CON_CHUNKS:
         return segmentos
     top3 = caso.get("top3")
     if not isinstance(top3, list) or len(top3) != TOP_K:
@@ -424,8 +431,9 @@ def ensamblar(ids_segmentos: list[dict], max_len: int, cls: int, sep: int) -> di
 
     El contexto se reserva primero (tope 192; ventana centrada en TARGETCIT si se
     recorta). A: titulo con tope 48 y abstract recortado por la cola. B: el resto se
-    reparte entre los chunks por water-filling. Devuelve input_ids, longitud y los
-    tokens truncados por segmento."""
+    reparte entre los chunks por water-filling. AB: titulo y abstract como en A y el
+    sobrante (puede ser 0) va a los chunks por water-filling. C0: solo el contexto.
+    Devuelve input_ids, longitud y los tokens truncados por segmento."""
     if not ids_segmentos or ids_segmentos[0]["tipo"] != "contexto":
         raise ValueError("El primer segmento debe ser el contexto.")
     resto = ids_segmentos[1:]
@@ -434,6 +442,10 @@ def ensamblar(ids_segmentos: list[dict], max_len: int, cls: int, sep: int) -> di
         modo = "A"
     elif tipos and set(tipos) == {"chunk"}:
         modo = "B"
+    elif tipos[:2] == ["titulo", "abstract"] and len(tipos) > 2 and set(tipos[2:]) == {"chunk"}:
+        modo = "AB"
+    elif not tipos:
+        modo = "C0"
     else:
         raise ValueError(f"Combinacion de segmentos no soportada: {tipos}")
     presupuesto = max_len - 2 - len(resto)  # CLS + SEP del contexto + un SEP por segmento
@@ -443,14 +455,16 @@ def ensamblar(ids_segmentos: list[dict], max_len: int, cls: int, sep: int) -> di
     ventana = _ventana_contexto(ctx["ids"], ctx["centro"], min(TOPE_CONTEXTO, presupuesto))
     asignado = {"contexto": len(ventana)}
     libre = presupuesto - len(ventana)
-    if modo == "A":
-        titulo, abstract = resto
+    if modo in ("A", "AB"):
+        titulo, abstract = resto[:2]
         t = min(len(titulo["ids"]), TOPE_TITULO, libre)
         a = min(len(abstract["ids"]), libre - t)
         asignado.update({"titulo": t, "abstract": a})
-    else:
-        reparto = reparto_water_filling([len(s["ids"]) for s in resto], libre)
-        asignado.update({s["nombre"]: n for s, n in zip(resto, reparto)})
+        libre -= t + a
+    if modo in ("B", "AB"):
+        chunks = resto[2:] if modo == "AB" else resto
+        reparto = reparto_water_filling([len(s["ids"]) for s in chunks], libre)
+        asignado.update({s["nombre"]: n for s, n in zip(chunks, reparto)})
     ids = [cls, *ventana, sep]
     truncados = {"contexto": len(ctx["ids"]) - len(ventana)}
     for s in resto:
@@ -462,31 +476,52 @@ def ensamblar(ids_segmentos: list[dict], max_len: int, cls: int, sep: int) -> di
     return {"input_ids": ids, "longitud": len(ids), "truncados": truncados}
 
 
-def especificacion_entrada(entrada: str, max_len: int, semilla_barajado: int | None = None) -> dict:
+_SEGMENTOS_CHUNKS = ["chunk_1", "chunk_2", "chunk_3"]
+_FORMATO_CHUNK = {"B": "perfil : texto", "B_barajada": "perfil_barajado : texto",
+                  "B_sin_seccion": "texto", "AB": "perfil : texto",
+                  "B_aleatorio": "perfil : texto (chunks al azar del citado)",
+                  "AB_aleatorio": "perfil : texto (chunks al azar del citado)"}
+_TRUNCAMIENTO = {"A": "abstract por la cola", "C0": "solo ventana de contexto",
+                 "AB": "titulo y abstract como A; chunks por water-filling en el sobrante",
+                 "AB_aleatorio": "titulo y abstract como A; chunks por water-filling en el sobrante"}
+
+
+def especificacion_entrada(entrada: str, max_len: int, semilla_barajado: int | None = None,
+                           sal_aleatorio: str | None = None) -> dict:
     """Especificacion de la entrada, independiente del tokenizer (mismo hash en SciBERT
-    y SPECTER, como exige `a4_factorial_v1`)."""
+    y SPECTER, como exige `a4_factorial_v1`). B_barajada exige `semilla_barajado`;
+    B_aleatorio y AB_aleatorio exigen `sal_aleatorio` (la sal del sorteo de chunks)."""
     if entrada not in ENTRADAS:
         raise ValueError(f"Entrada desconocida: {entrada!r}")
     if (entrada == "B_barajada") != (semilla_barajado is not None):
         raise ValueError("La semilla de barajado aplica solo a B_barajada (y es obligatoria).")
+    if (entrada in ENTRADAS_ALEATORIAS) != (sal_aleatorio is not None):
+        raise ValueError("La sal aleatoria aplica solo a B_aleatorio y AB_aleatorio (y es obligatoria).")
+    if sal_aleatorio is not None and (not isinstance(sal_aleatorio, str) or not sal_aleatorio):
+        raise ValueError("La sal aleatoria debe ser un texto no vacio.")
+    segmentos = ["contexto"]
+    if entrada in ENTRADAS_CON_TITULO:
+        segmentos += ["titulo", "abstract"]
+    if entrada in ENTRADAS_CON_CHUNKS:
+        segmentos += _SEGMENTOS_CHUNKS
     espec = {
         "version": VERSION_ENTRADA,
         "entrada": entrada,
         "max_len": max_len,
         "plantilla": PLANTILLA,
-        "segmentos": {"A": ["contexto", "titulo", "abstract"]}.get(
-            entrada, ["contexto", "chunk_1", "chunk_2", "chunk_3"]),
-        "formato_chunk": {"B": "perfil : texto", "B_barajada": "perfil_barajado : texto",
-                          "B_sin_seccion": "texto"}.get(entrada),
-        "top_k": TOP_K if entrada != "A" else None,
+        "segmentos": segmentos,
+        "formato_chunk": _FORMATO_CHUNK.get(entrada),
+        "top_k": TOP_K if entrada in ENTRADAS_CON_CHUNKS else None,
         "tope_contexto": TOPE_CONTEXTO,
-        "tope_titulo": TOPE_TITULO if entrada == "A" else None,
-        "truncamiento": "abstract por la cola" if entrada == "A" else "water-filling",
+        "tope_titulo": TOPE_TITULO if entrada in ENTRADAS_CON_TITULO else None,
+        "truncamiento": _TRUNCAMIENTO.get(entrada, "water-filling"),
         "ventana_contexto": "centrada en TARGETCIT",
         "perfil_seccion": "heuristica auditoria_corpus.perfil_seccion",
     }
     if semilla_barajado is not None:
         espec["semilla_barajado"] = semilla_barajado
+    if sal_aleatorio is not None:
+        espec["sal_aleatorio"] = sal_aleatorio
     return espec
 
 

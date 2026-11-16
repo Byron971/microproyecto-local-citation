@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P91-1043_P88-1009_0,Evaluable,Gap,Alta,"Señala que esos trabajos no describen las formas lógicas, un vacío que el estudio busca cubrir.",COMPLETO,29,1
+2,P97-1028_P96-1027_0,Evaluable,Background,Media,,COMPLETO,29,1
+3,W12-3622_W10-0735_0,Evaluable,Background,Alta,,COMPLETO,29,1
+4,N10-1085_P99-1018_0,Evaluable,Comparison,Alta,Compara resultados propios con trabajos previos.,COMPLETO,29,1
+5,E03-3006_W98-0705_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los sinónimos mejoran la similitud y justifica el uso de synsets.,COMPLETO,29,1
+6,W09-3939_D08-1069_0,Evaluable,Background,Media,,COMPLETO,29,1
+7,P11-1152_N09-1053_0,Evaluable,Evidence,Alta,Respalda que las clases mejoran los modelos exponenciales.,COMPLETO,29,1
+8,E12-1073_D08-1021_0,Evaluable,Background,Alta,,COMPLETO,29,1
+9,N12-1031_W04-1602_0,Evaluable,Evidence,Alta,Sustenta la expectativa de éxito por similitudes entre ATB y PTB.,COMPLETO,29,1
+10,N09-1051_N09-1051_1,Evaluable,Further Reading,Alta,Remite a una discusión más extensa.,COMPLETO,29,1
+11,P12-1109_P00-1037_0,Evaluable,Background,Media,,COMPLETO,29,1
+12,W08-0404_J07-2003_1,Evaluable,Basis,Alta,El trabajo parte del sistema Hiero como punto de partida.,COMPLETO,29,1
+13,P13-1167_D11-1026_1,Evaluable,Comparison,Media,,COMPLETO,29,1
+14,S13-2074_W11-0705_0,Evaluable,Background,Alta,,COMPLETO,29,1
+15,S12-1092_P05-1022_0,Evaluable,Application,Alta,,COMPLETO,29,1
+16,E12-1073_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,29,1
+17,W09-1117_P08-1088_4,Evaluable,Basis,Media,,COMPLETO,29,1
+18,W10-1411_P09-3002_1,Evaluable,Evidence,Alta,Respalda el dato del 14% de arcos no proyectivos.,COMPLETO,29,1
+19,N13-1015_E12-1042_0,Evaluable,Background,Media,,COMPLETO,29,1
+20,W09-4410_W06-0203_1,Evaluable,Evidence,Media,,COMPLETO,29,1
+21,W13-3411_W02-2018_0,Evaluable,Further Reading,Media,,COMPLETO,29,1
+22,D11-1002_W04-0308_0,Evaluable,Application,Alta,,COMPLETO,29,1
+23,N04-1042_W02-2018_0,Evaluable,Evidence,Alta,Respalda que BFGS converge más rápido y justifica su uso.,COMPLETO,29,1
+24,P08-1067_P04-1013_0,Evaluable,Comparison,Alta,,COMPLETO,29,1
+25,N06-1055_W04-3212_3,Evaluable,Evidence,Media,,COMPLETO,29,1
+26,W06-1514_E99-1020_2,Evaluable,Comparison,Alta,,COMPLETO,29,1
+27,W96-0112_P91-1030_2,Evaluable,Gap,Alta,Señala la limitación de las probabilidades de dos palabras.,COMPLETO,29,1
+28,J00-2014_P97-1032_0,Evaluable,Evidence,Media,,COMPLETO,29,1
+29,P98-2169_J93-3006_2,Evaluable,Basis,Media,,COMPLETO,29,1
+30,W03-2202_P98-2127_0,Evaluable,Application,Alta,,COMPLETO,29,1
+31,W12-0111_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,29,1
+32,D09-1036_P02-1047_1,Evaluable,Evidence,Alta,Sustenta la decisión de usar pares de palabras como rasgo.,COMPLETO,29,1
+33,D11-1070_W07-1013_0,Evaluable,Background,Alta,,COMPLETO,29,1
+34,N10-1058_N07-1070_1,Evaluable,Background,Alta,,COMPLETO,29,1
+35,D13-1064_E12-1014_0,Evaluable,Background,Alta,,COMPLETO,29,1
+36,D10-1048_P08-2012_2,Evaluable,Comparison,Alta,,COMPLETO,29,1
+37,P07-1027_P05-1073_0,Evaluable,Comparison,Alta,Contrasta su enfoque con el de la obra citada.,COMPLETO,29,1
+38,P06-1017_P04-1054_2,Evaluable,Comparison,Media,,COMPLETO,29,1
+39,P12-1041_D09-1101_2,Evaluable,Comparison,Alta,,COMPLETO,29,1
+40,Q13-1024_W02-1039_0,Evaluable,Basis,Media,Adopta la cohesión de dependencias como base de su enfoque.,COMPLETO,29,1
+41,P13-2104_P05-1012_0,Evaluable,Background,Alta,,COMPLETO,29,1
+42,W11-0328_W07-1033_0,Evaluable,Evidence,Alta,Justifica la decisión de etiquetar de derecha a izquierda.,COMPLETO,29,1
+43,D10-1120_D08-1092_0,Evaluable,Evidence,Media,,COMPLETO,29,1
+44,W12-2029_P11-1092_0,Evaluable,Background,Alta,,COMPLETO,29,1
+45,P05-1038_P97-1003_2,Evaluable,Evidence,Alta,Sustenta la explicación del resultado con lo señalado por el autor citado.,COMPLETO,29,1
+46,P13-1088_D12-1110_3,Evaluable,Comparison,Alta,,COMPLETO,29,1
+47,W09-1701_P04-1039_0,Evaluable,Evidence,Media,,COMPLETO,29,1
+48,W11-3204_W10-2413_0,Evaluable,Background,Alta,,COMPLETO,29,1
+49,S13-2099_P10-4008_0,Evaluable,Basis,Media,Se parte del sistema EDITS para extenderlo.,COMPLETO,29,1
+50,P12-1028_P10-1025_0,Evaluable,Background,Alta,,COMPLETO,29,1
+51,P10-1097_P08-1028_1,Evaluable,Background,Alta,,COMPLETO,29,1
+52,E03-1017_P02-1013_0,Evaluable,Evidence,Media,,COMPLETO,29,1
+53,P11-1104_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,29,1
+54,P12-2051_N03-1033_0,Evaluable,Application,Alta,,COMPLETO,29,1
+55,P06-2098_P05-1012_0,Evaluable,Background,Media,,COMPLETO,29,1
+56,N07-1054_P03-1071_0,Evaluable,Application,Alta,,COMPLETO,29,1
+57,P04-1047_A97-1052_1,Evaluable,Evidence,Alta,Respalda el hecho de que las frames de subcategorización varían entre dominios.,COMPLETO,29,1
+58,D08-1091_P06-1055_4,Evaluable,Comparison,Alta,,COMPLETO,29,1
+59,E09-1011_W96-0213_0,Evaluable,Application,Alta,,COMPLETO,29,1
+60,P10-1058_P00-1041_0,Evaluable,Comparison,Alta,Compara su enfoque con la generación de titulares.,COMPLETO,29,1
+61,D09-1040_N06-1003_0,Evaluable,Evidence,Alta,Respalda el dato sobre el vocabulario aprendido y el problema de palabras sin traducir.,COMPLETO,29,1
+62,W10-3808_N04-4038_0,Evaluable,Gap,Media,Señala que el único trabajo previo con corpus no usa analizador morfológico.,COMPLETO,29,1
+63,P08-1089_P00-1056_0,Evaluable,Application,Alta,,COMPLETO,29,1
+64,E12-2012_W06-2920_0,Evaluable,Evidence,Alta,Respalda que MaltParser tiene rendimiento de estado del arte.,COMPLETO,29,1
+65,W13-4038_E09-1012_0,Evaluable,Background,Alta,,COMPLETO,29,1
+66,P12-1007_W05-0613_0,Evaluable,Background,Alta,,COMPLETO,29,1
+67,P10-1057_N09-1066_1,Evaluable,Background,Alta,,COMPLETO,29,1
+68,D09-1157_P06-4020_0,Evaluable,Application,Alta,,COMPLETO,29,1
+69,P09-1053_W06-1603_0,Evaluable,Further Reading,Media,Remite a trabajos sobre semántica como extensión posible.,COMPLETO,29,1
+70,P10-1028_N03-1017_1,Evaluable,Application,Media,,COMPLETO,29,1
+71,W03-1010_P03-1059_2,Evaluable,Application,Alta,,COMPLETO,29,1
+72,W04-0813_N01-1006_0,Evaluable,Application,Alta,,COMPLETO,29,1
+73,P04-1084_P04-1084_1,Evaluable,Further Reading,Alta,Remite a la fuente para más detalles y la prueba completa.,COMPLETO,29,1
+74,D08-1014_P07-1123_0,Evaluable,Comparison,Alta,Identifica el trabajo más cercano y lo contrasta.,COMPLETO,29,1
+75,P10-1003_D09-1127_2,Evaluable,Comparison,Alta,,COMPLETO,29,1
+76,N09-1017_W06-1617_3,Evaluable,Gap,Media,Señala que no estaba claro si los modelos funcionarían en ese entorno.,COMPLETO,29,1
+77,P05-1019_W02-0908_0,Evaluable,Evidence,Alta,Respalda que la similitud distribucional correlaciona con la semántica.,COMPLETO,29,1
+78,D09-1043_P08-1022_1,Evaluable,Comparison,Alta,Compara los resultados actuales con los de la versión previa.,COMPLETO,29,1
+79,W00-1803_P97-1040_2,Evaluable,Background,Media,,COMPLETO,29,1
+80,J13-4004_D09-1120_9,Evaluable,Basis,Media,El sistema extiende el modelo multi-pasada del trabajo citado.,COMPLETO,29,1
+81,D09-1044_W04-1017_2,Evaluable,Basis,Media,,COMPLETO,29,1
+82,P09-4003_W04-0208_0,Evaluable,Basis,Media,Incorpora elementos formales de TimeML en su representación.,COMPLETO,29,1
+83,P00-1057_P95-1021_0,Evaluable,Background,Media,,COMPLETO,29,1
+84,P90-1020_P84-1008_0,Evaluable,Evidence,Media,,COMPLETO,29,1
+85,W11-2163_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,29,1
+86,W12-3134_D11-1125_1,Evaluable,Identification of the Originator,Media,Atribuye PRO a quienes lo propusieron.,COMPLETO,29,1
+87,P87-1003_J88-2005_1,Evaluable,Evidence,Alta,,COMPLETO,29,1
+88,D09-1086_D08-1017_0,Evaluable,Comparison,Media,Equipara el entrenamiento del parser con la técnica de stacking.,COMPLETO,29,1
+89,W11-0503_D09-1118_0,Evaluable,Comparison,Alta,Contrasta sus actos de diálogo con los DDAs de trabajos previos.,COMPLETO,29,1
+90,P08-1109_P06-1055_1,Evaluable,Background,Alta,,COMPLETO,29,1
+91,W98-1419_P85-1008_1,Evaluable,Basis,Alta,La semántica adopta el enfoque de promiscuidad ontológica.,COMPLETO,29,1
+92,W11-3405_E03-1068_1,Evaluable,Comparison,Alta,Contrasta su enfoque con métodos previos de detección de errores.,COMPLETO,29,1
+93,D11-1046_N07-1051_2,Evaluable,Application,Alta,,COMPLETO,29,1
+94,P06-2066_W05-1505_0,Evaluable,Background,Alta,,COMPLETO,29,1
+95,P12-1001_W11-2103_1,Evaluable,Evidence,Alta,Respalda la afirmación de que BLEU es la más fácil de optimizar.,COMPLETO,29,1
+96,W03-1210_P00-1065_0,Evaluable,Background,Alta,,COMPLETO,29,1
+97,P13-2119_W04-3250_0,Evaluable,Application,Alta,,COMPLETO,29,1
+98,N06-1058_N04-1043_0,Evaluable,Background,Alta,,COMPLETO,29,1
+99,W13-2217_N06-1014_0,Evaluable,Application,Alta,,COMPLETO,29,1
+100,D11-1137_E06-1011_1,Evaluable,Comparison,Alta,,COMPLETO,29,1

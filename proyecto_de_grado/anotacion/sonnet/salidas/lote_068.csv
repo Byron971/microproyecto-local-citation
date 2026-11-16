@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,Q13-1034_E12-1007_1,Evaluable,Comparison,Alta,Compara explícitamente los resultados propios con los del trabajo citado sobre húngaro.,COMPLETO,68,1
+2,W10-1761_P05-1033_1,Evaluable,Background,Alta,,COMPLETO,68,1
+3,W05-1007_W04-0909_1,Evaluable,Further Reading,Alta,Remite a detalles sobre la densidad conceptual.,COMPLETO,68,1
+4,N12-1062_D11-1125_1,Evaluable,Background,Media,Describe el método de tuning de la obra citada como antecedente.,COMPLETO,68,1
+5,W12-3023_W11-2408_0,Evaluable,Basis,Media,Sigue el ejemplo del trabajo citado al considerar expectativas defraudadas.,COMPLETO,68,1
+6,P03-2039_N01-1025_0,Evaluable,Application,Alta,Usa YamCha tal cual como chunker.,COMPLETO,68,1
+7,D11-1095_W03-0410_3,Evaluable,Comparison,Alta,Compara resultados con los del trabajo citado.,COMPLETO,68,1
+8,W13-0204_W11-0118_0,Evaluable,Further Reading,Media,Remite a trabajo relacionado sobre cuantificación subespecificada.,COMPLETO,68,1
+9,P10-1073_N06-2034_0,Evaluable,Gap,Media,"Señala que el trabajo previo solo usa rasgos léxicos y semánticos, motivando el uso de sintaxis.",COMPLETO,68,1
+10,P03-1042_P02-1044_2,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+11,W12-0704_W11-2103_0,Evaluable,Application,Alta,Usa el corpus SMS de WMT11.,COMPLETO,68,1
+12,N07-2031_W05-1513_0,Evaluable,Comparison,Alta,Compara el rendimiento con el parser de Sagae-Lavie.,COMPLETO,68,1
+13,W12-2604_W04-1013_1,Evaluable,Background,Media,Presenta ROUGE como métrica de uso común.,COMPLETO,68,1
+14,D11-1017_W10-1749_0,Evaluable,Evidence,Alta,,COMPLETO,68,1
+15,S07-1098_S07-1014_0,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+16,J00-4004_W97-0320_0,Evaluable,Background,Alta,,COMPLETO,68,1
+17,W13-1704_P11-1019_2,Evaluable,Comparison,Media,Contrasta las características del modelo propio con las de trabajos previos a nivel de script.,COMPLETO,68,1
+18,P96-1004_P96-1004_0,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+19,W11-0202_P98-2127_0,Evaluable,Improvement / Modification,Alta,Construye una nueva medida a partir de la medida de Lin modificándola.,COMPLETO,68,1
+20,Q13-1003_N10-1011_1,Evaluable,Background,Media,Describe trabajo previo que fue el primero en añadir información visual a modelos de tópicos.,COMPLETO,68,1
+21,W08-1113_E06-1040_1,Evaluable,Comparison,Alta,,COMPLETO,68,1
+22,W05-1515_J04-4004_3,Evaluable,Comparison,Alta,Fila de tabla comparando resultados de parsers.,COMPLETO,68,1
+23,W09-1117_N03-1017_0,Evaluable,Background,Alta,,COMPLETO,68,1
+24,W12-4101_W10-2301_0,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+25,P10-2006_P03-1006_0,Evaluable,Evidence,Media,Respalda que el conteo esperado puede calcularse eficientemente con transductores de conteo.,COMPLETO,68,1
+26,P09-1098_J03-3002_1,Evaluable,Background,Alta,,COMPLETO,68,1
+27,W12-4212_N03-1017_1,Evaluable,Background,Alta,,COMPLETO,68,1
+28,P08-1061_W04-3201_0,Evaluable,Background,Alta,,COMPLETO,68,1
+29,W07-2307_P02-1013_1,Evaluable,Evidence,Media,Respalda la afirmación de que los plurales se tratan con variaciones menores de los algoritmos GRE.,COMPLETO,68,1
+30,W08-0130_W08-1111_1,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+31,P09-2087_S07-1100_0,Evaluable,Background,Alta,,COMPLETO,68,1
+32,N13-1064_W11-2020_6,Evaluable,Comparison,Alta,Contrasta el conjunto de rasgos reducido con el de trabajos previos.,COMPLETO,68,1
+33,P07-1015_W97-1102_0,Evaluable,Gap,Alta,"Señala que la ponderación por entropía dio resultados peores, una limitación de los métodos previos.",COMPLETO,68,1
+34,P06-1055_P05-1010_9,Evaluable,Comparison,Alta,,COMPLETO,68,1
+35,W10-1801_J94-2004_0,Evaluable,Evidence,Media,Respalda la definición de estados privados como no verificables.,COMPLETO,68,1
+36,W06-3103_J90-2002_0,Evaluable,Basis,Media,El enfoque propuesto generaliza el enfoque fuente-canal citado.,COMPLETO,68,1
+37,W05-0812_W02-1012_0,Evaluable,Background,Alta,,COMPLETO,68,1
+38,P06-2067_W04-3212_1,Evaluable,Evidence,Media,Justifica la forma de evaluar por su coincidencia con la práctica en etiquetado de roles semánticos.,COMPLETO,68,1
+39,D10-1078_E95-1020_0,Evaluable,Background,Alta,,COMPLETO,68,1
+40,N12-1044_W06-1672_0,Evaluable,Background,Alta,,COMPLETO,68,1
+41,W08-1105_P05-1036_0,Evaluable,Background,Alta,,COMPLETO,68,1
+42,W10-0716_P08-1054_0,Evaluable,Evidence,Media,Los acuerdos reportados respaldan la afirmación de bajo acuerdo entre anotadores.,COMPLETO,68,1
+43,P10-1099_N07-1070_1,Evaluable,Evidence,Alta,Respalda la afirmación sobre portabilidad de identificación y clasificación de argumentos.,COMPLETO,68,1
+44,P08-1116_P00-1056_0,Evaluable,Application,Alta,Ejecuta Giza++ sobre las oraciones paralelas.,COMPLETO,68,1
+45,W90-0119_P87-1030_2,Evaluable,Further Reading,Media,Remite a trabajos con respuestas que advierten sobre deficiencias del plan.,COMPLETO,68,1
+46,W01-0703_P92-1053_0,Evaluable,Background,Alta,,COMPLETO,68,1
+47,W09-3803_P09-1042_0,Evaluable,Background,Alta,,COMPLETO,68,1
+48,W94-0311_J91-4003_0,Evaluable,Basis,Media,Se apoya en mecanismos de la teoría del léxico generativo para explicar el espacio entre composicionalidad e idiomas.,COMPLETO,68,1
+49,N07-2050_W02-2035_0,Evaluable,Evidence,Alta,,COMPLETO,68,1
+50,W06-1006_P06-1120_1,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+51,W07-0401_J90-2002_0,Evaluable,Identification of the Originator,Media,Atribuye el enfoque fuente-canal a la obra citada.,COMPLETO,68,1
+52,W13-4038_W12-1613_1,Evaluable,Application,Alta,Usa la gramática y el método del trabajo citado para obtener la salida del parser.,COMPLETO,68,1
+53,W10-4237_A97-1039_0,Evaluable,Background,Alta,,COMPLETO,68,1
+54,W98-0720_P93-1025_0,Evaluable,Basis,Media,El análisis del trabajo citado sustenta conceptualmente el enfoque.,COMPLETO,68,1
+55,W03-0412_P01-1008_0,Evaluable,Basis,Alta,El componente propuesto está inspirado en el trabajo sobre reformulación.,COMPLETO,68,1
+56,W09-1704_W03-1608_1,Evaluable,Background,Alta,,COMPLETO,68,1
+57,P12-1023_W96-0213_0,Evaluable,Application,Alta,Usa el etiquetador MXPOST.,COMPLETO,68,1
+58,W13-3503_D11-1098_2,Evaluable,Basis,Alta,El trabajo se construye sobre el concepto de significancia a nivel de corpus introducido en la obra citada.,COMPLETO,68,1
+59,E12-1048_P08-1006_1,Evaluable,Background,Media,"Describe trabajo previo sobre evaluación basada en tareas, contrastado luego con el propio.",COMPLETO,68,1
+60,N10-3009_P97-1023_0,Evaluable,Background,Alta,,COMPLETO,68,1
+61,W07-1512_P05-1034_0,Evaluable,Comparison,Alta,Contrasta explícitamente sus reglas con las de los marcos citados.,COMPLETO,68,1
+62,D13-1171_P11-1016_3,Evaluable,Comparison,Alta,,COMPLETO,68,1
+63,P07-1083_W99-0626_0,Evaluable,Comparison,Alta,Anuncia mejoras frente a técnicas recientes de los trabajos citados.,COMPLETO,68,1
+64,W13-0113_E06-1040_1,Evaluable,Comparison,Alta,Contrasta la tendencia observada con la reportada para textos meteorológicos.,COMPLETO,68,1
+65,N03-2036_P02-1039_0,Evaluable,Background,Alta,,COMPLETO,68,1
+66,W11-2843_N10-1018_0,Evaluable,Basis,Media,Los clasificadores se construyen sobre elementos de los sistemas descritos en el trabajo citado.,COMPLETO,68,1
+67,E12-1003_P11-1112_2,Evaluable,Background,Media,Indica que la idea se exploró antes en representaciones semánticas superficiales.,COMPLETO,68,1
+68,N07-1046_W02-1039_0,Evaluable,Comparison,Media,Relaciona su supuesto de coherencia con el del trabajo citado.,COMPLETO,68,1
+69,D11-1109_P10-1110_0,Evaluable,Gap,Media,"Señala que trabajos previos usan etiquetas POS de oro, lo que motiva la optimización conjunta.",COMPLETO,68,1
+70,W11-2701_N10-1131_2,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+71,D12-1077_P05-1066_0,Evaluable,Background,Alta,,COMPLETO,68,1
+72,P10-1036_P07-1120_0,Evaluable,Background,Alta,,COMPLETO,68,1
+73,Q13-1005_D11-1039_2,Evaluable,Improvement / Modification,Alta,"Usa una variante del perceptrón guiado por pérdida, sustituyendo la función de pérdida por una señal de validación.",COMPLETO,68,1
+74,W13-4706_P09-1105_0,Evaluable,Background,Alta,,COMPLETO,68,1
+75,D12-1052_W07-1604_0,Evaluable,Background,Alta,,COMPLETO,68,1
+76,P98-1016_P93-1024_0,Evaluable,Background,Alta,,COMPLETO,68,1
+77,D11-1019_P10-1146_0,Evaluable,Gap,Alta,Señala la limitación de los modelos árbol a árbol (sobre-restricción).,COMPLETO,68,1
+78,D13-1168_N10-1087_0,Evaluable,Background,Media,Presenta la importancia de la inicialización en bootstrapping como idea general.,COMPLETO,68,1
+79,W11-0412_W10-1838_1,Evaluable,Evidence,Media,Respalda que distintas tareas requieren distintas longitudes de mención de entidad.,COMPLETO,68,1
+80,W09-0417_P03-1021_0,Evaluable,Application,Alta,Usa MERT para el ajuste de pesos.,COMPLETO,68,1
+81,W09-1115_W03-1004_1,Evaluable,Comparison,Alta,Contrasta su tarea con los trabajos citados sobre corpus comparables.,COMPLETO,68,1
+82,W02-0705_P93-1024_0,Evaluable,Further Reading,Media,Remite al trabajo para otras medidas de similitud posibles.,COMPLETO,68,1
+83,W11-2143_W09-0424_0,Evaluable,Application,Alta,Usa Joshua para la decodificación.,COMPLETO,68,1
+84,W03-1008_P00-1065_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para una descripción más detallada del enfoque.,COMPLETO,68,1
+85,E09-1090_W05-1514_0,Evaluable,Background,Alta,,COMPLETO,68,1
+86,D10-1091_W08-0302_0,Evaluable,Evidence,Media,Respalda la idea de funciones de puntuación dependientes del contexto.,COMPLETO,68,1
+87,W13-4912_W10-1411_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los rasgos específicos del idioma mejoran la precisión.,COMPLETO,68,1
+88,W11-1308_W03-1812_0,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+89,P13-2020_N12-1015_3,Evaluable,Comparison,Alta,Fila de tabla comparando resultados de etiquetado.,COMPLETO,68,1
+90,N10-1066_D08-1037_1,Evaluable,Comparison,Alta,,COMPLETO,68,1
+91,D11-1017_W11-2102_1,Evaluable,Application,Alta,Aplica la técnica propuesta para crear las alineaciones de referencia.,COMPLETO,68,1
+92,D09-1112_P03-1004_0,Evaluable,Background,Alta,,COMPLETO,68,1
+93,J03-4003_P91-1030_0,Evaluable,Background,Alta,Presenta uno de los primeros trabajos sobre el tema.,COMPLETO,68,1
+94,N03-1033_P98-1029_0,Evaluable,Comparison,Alta,,COMPLETO,68,1
+95,S13-1036_P12-1091_1,Evaluable,Basis,Alta,Su enfoque se construye sobre la observación y método del trabajo citado.,COMPLETO,68,1
+96,P99-1023_W96-0213_0,Evaluable,Background,Alta,,COMPLETO,68,1
+97,P11-1083_P10-1108_0,Evaluable,Further Reading,Alta,,COMPLETO,68,1
+98,D08-1070_W05-0636_0,Evaluable,Gap,Media,Los resultados negativos previos evidencian la dificultad del enfoque conjunto.,COMPLETO,68,1
+99,P11-1139_P08-1101_1,Evaluable,Background,Alta,,COMPLETO,68,1
+100,P13-1106_N10-1015_1,Evaluable,Comparison,Alta,,COMPLETO,68,1

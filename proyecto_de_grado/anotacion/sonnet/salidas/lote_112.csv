@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,E12-1073_P03-1054_0,Evaluable,Application,Alta,Se usa el parser de Berkeley tal cual para obtener árboles sintácticos.,COMPLETO,112,1
+2,N13-1115_D11-1125_0,Evaluable,Background,Media,"Enumera alternativas a MERT, entre ellas PRO, como contexto del área.",COMPLETO,112,1
+3,W12-4205_P07-2045_0,Evaluable,Application,Alta,Usan el sistema Moses para traducir en sus experimentos.,COMPLETO,112,1
+4,W05-1515_J04-4004_2,Evaluable,Comparison,Alta,Comparan puntuaciones del propio parser con las de los parsers citados entrenados sobre los mismos datos.,COMPLETO,112,1
+5,W02-2010_W01-0726_0,Evaluable,Comparison,Media,"El método propuesto se presenta como similar en espíritu al de Arévalo et al., destacando similitud.",COMPLETO,112,1
+6,P13-2021_P09-2012_0,Evaluable,Basis,Media,El enfoque extiende el trabajo previo de aprendizaje de TSG.,COMPLETO,112,1
+7,W03-1005_P03-1055_6,Evaluable,Comparison,Media,Se contrasta la conclusión del trabajo citado con los resultados propios en la discusión.,COMPLETO,112,1
+8,P08-2002_P06-1007_0,Evaluable,Evidence,Media,Respalda la afirmación de que la noción de sorpresa es aplicable entre tipos de oración e idiomas.,COMPLETO,112,1
+9,W12-4411_N12-1044_0,Evaluable,Background,Media,Describe trabajo reciente relacionado que mejora la precisión con transliteraciones suplementarias.,COMPLETO,112,1
+10,D11-1030_D08-1109_0,Evaluable,Background,Alta,Enumera aplicaciones del aprendizaje multilingüe no supervisado en la literatura.,COMPLETO,112,1
+11,P05-1044_J97-4005_0,Evaluable,Evidence,Baja,"Se cita para ejemplificar el muestreo aleatorio como técnica que no evita la dificultad, respaldando el argumento.",COMPLETO,112,1
+12,N10-1129_W09-0437_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el límite de distorsión puede eliminar la traducción oráculo.,COMPLETO,112,1
+13,D09-1160_P03-1004_1,Evaluable,Background,Media,"Ejemplos de clasificadores que suman pesos de rasgos, como contexto general.",COMPLETO,112,1
+14,W11-3808_N06-1020_0,Evaluable,Background,Alta,Resume resultados previos de auto-entrenamiento en parsing.,COMPLETO,112,1
+15,W13-0907_D11-1116_0,Evaluable,Application,Alta,Usan el parser FANSE tal cual para obtener estructura de dependencias.,COMPLETO,112,1
+16,P11-1048_N09-1037_0,Evaluable,Background,Alta,Enumera tareas mejoradas por modelos combinados.,COMPLETO,112,1
+17,W04-2808_P00-1065_0,Evaluable,Basis,Alta,La tarea se describe como extensión del trabajo citado.,COMPLETO,112,1
+18,P06-1055_P05-1022_1,Evaluable,Comparison,Alta,Contrasta la exactitud de la gramática propia con sistemas lexicalizados como el parser de Charniak.,COMPLETO,112,1
+19,J06-3003_P03-1044_0,Evaluable,Comparison,Alta,"Compara LRA con trabajos que también encuentran patrones automáticamente, señalando objetivos distintos.",COMPLETO,112,1
+20,W13-5403_J91-4003_2,Evaluable,Further Reading,Alta,Remite a la página del trabajo para la representación léxica del verbo drive.,COMPLETO,112,1
+21,W10-1810_W04-0401_0,Evaluable,Evidence,Media,Respalda la afirmación de que la aceptabilidad de una LVC depende de las propiedades semánticas del complemento.,COMPLETO,112,1
+22,D09-1102_P99-1048_0,Evaluable,Background,Alta,Enumera enfoques estadísticos previos al problema.,COMPLETO,112,1
+23,D12-1128_P07-1005_0,Evaluable,Evidence,Media,"Respalda la afirmación de que WSD y MT están entrelazadas, mostrando que la información de sentido mejora la MT.",COMPLETO,112,1
+24,P10-1142_W98-1119_0,Evaluable,Background,Media,Describe lo que implementaron en trabajos previos sobre rasgos sintácticos.,COMPLETO,112,1
+25,D09-1009_P07-1036_1,Evaluable,Comparison,Alta,Compara resultados propios con los del trabajo citado en condiciones distintas.,COMPLETO,112,1
+26,D13-1167_D12-1111_0,Evaluable,Gap,Alta,Señala la limitación de PILSA (solo dos relaciones opuestas) que motiva el trabajo.,COMPLETO,112,1
+27,S12-1094_J98-1004_0,Evaluable,Background,Alta,Enumera aplicaciones de la similitud de textos.,COMPLETO,112,1
+28,S07-1077_W01-0703_0,Evaluable,Application,Media,Siguen el enfoque citado y usan WordNet como clases de generalización.,COMPLETO,112,1
+29,P11-1029_W04-3221_0,Evaluable,Application,Alta,Replican el montaje experimental del trabajo citado.,COMPLETO,112,1
+30,N13-1125_P04-1082_1,Evaluable,Background,Alta,Resume resultados previos de trabajos sobre detección de categorías vacías.,COMPLETO,112,1
+31,W13-0908_P98-1013_0,Evaluable,Gap,Media,Señala que depender de recursos como FrameNet limita los enfoques a lenguas con muchos recursos.,COMPLETO,112,1
+32,P11-1084_P07-1089_1,Evaluable,Gap,Alta,Señala que el trabajo citado no resolvió bien cómo conectar los subárboles.,COMPLETO,112,1
+33,D12-1115_D08-1069_0,Evaluable,Application,Media,Siguen el modelo de ranking de candidatos propuesto en el trabajo citado.,COMPLETO,112,1
+34,N10-1118_P06-2066_0,Evaluable,Background,Media,Contextualiza la motivación con trabajo sobre árboles de dependencia no proyectivos.,COMPLETO,112,1
+35,P13-1111_P03-2041_0,Evaluable,Evidence,Media,Respalda la afirmación de que la divergencia estructural interlingüística perjudica los modelos.,COMPLETO,112,1
+36,W13-2230_W10-1749_0,Evaluable,Evidence,Media,Justifica la elección de la métrica de distancia según lo sugerido por el trabajo citado.,COMPLETO,112,1
+37,D10-1061_N03-1017_0,Evaluable,Application,Alta,Usan un marco SMT basado en frases similar al citado.,COMPLETO,112,1
+38,W07-0401_N04-1014_0,Evaluable,Background,Alta,Enumera métodos que usan información sintáctica para el reordenamiento.,COMPLETO,112,1
+39,W13-1738_P10-2009_3,Evaluable,Evidence,Media,Respalda que rechazar respuestas no interpretables podría ser una estrategia tutorial válida.,COMPLETO,112,1
+40,J08-2004_N06-1055_1,Evaluable,Comparison,Alta,"Los resultados se contrastan con los reportados en el trabajo citado, señalando mejora.",COMPLETO,112,1
+41,W05-1202_P99-1004_1,Evaluable,Application,Alta,Usan la medida de divergencia α-skew tal cual.,COMPLETO,112,1
+42,P13-1077_P07-2045_0,Evaluable,Background,Alta,Enumera sistemas líderes que usan unidades multipalabra.,COMPLETO,112,1
+43,E06-2002_N03-1017_0,Evaluable,Background,Media,Describe la extensión del modelo IBM 4 a frases con referencias previas.,COMPLETO,112,1
+44,E97-1026_W96-0410_1,Evaluable,Further Reading,Alta,Remite a otro trabajo donde se exploran factores adicionales no tratados aquí.,COMPLETO,112,1
+45,W11-3805_W10-1407_0,Evaluable,Basis,Alta,El trabajo se construye sobre el de Kallmeyer y Maier usando LCFRS.,COMPLETO,112,1
+46,W13-2221_P06-1055_0,Evaluable,Application,Alta,Usan el parser de Berkeley para analizar el corpus.,COMPLETO,112,1
+47,J89-2001_J88-3003_0,Evaluable,Evidence,Media,Respalda la afirmación sobre el plan subyacente y el foco de atención del hablante.,COMPLETO,112,1
+48,P08-1098_W05-0619_0,Evaluable,Background,Alta,Enumera trabajos de aprendizaje activo para NER.,COMPLETO,112,1
+49,N09-1026_P06-1055_0,Evaluable,Comparison,Media,Contrasta las gramáticas de primer paso con las de análisis sintáctico con muchos estados divididos.,COMPLETO,112,1
+50,W12-1819_W10-4304_1,Evaluable,Gap,Alta,Señala que los métodos previos no lograron precisión satisfactoria.,COMPLETO,112,1
+51,W04-0906_P00-1065_0,Evaluable,Gap,Media,Se cita como ejemplo de enfoque parcial cuyos resultados quedan lejos de buena calidad y cobertura.,COMPLETO,112,1
+52,W08-2102_P08-1068_2,Evaluable,Comparison,Alta,Compara el método propio con el parser de segundo orden citado.,COMPLETO,112,1
+53,W12-3307_P08-2068_1,Evaluable,Background,Media,"Ejemplos de trabajos que usan el conjunto de Choi, describiendo su uso común.",COMPLETO,112,1
+54,Q13-1024_P06-1055_0,Evaluable,Application,Alta,Usan el parser de Berkeley para analizar los textos.,COMPLETO,112,1
+55,W13-2904_J10-2002_0,Evaluable,Background,Alta,Resume el método y los resultados del trabajo previo sobre legibilidad.,COMPLETO,112,1
+56,S07-1035_P06-1057_0,Evaluable,Basis,Alta,El enfoque se declara inspirado en los trabajos citados.,COMPLETO,112,1
+57,D11-1042_W08-0309_0,Evaluable,Background,Media,Cita tareas compartidas donde se reportaron resultados controvertidos sobre el desempeño.,COMPLETO,112,1
+58,W00-0802_W99-0624_0,Evaluable,Evidence,Media,Respalda la afirmación de que los clusters de sentidos son cruciales mediante experimentos CLTR.,COMPLETO,112,1
+59,N13-1113_P07-1036_1,Evaluable,Background,Alta,Resume trabajos previos sobre restricciones declarativas en aprendizaje automático.,COMPLETO,112,1
+60,W11-0507_P10-1084_0,Evaluable,Comparison,Alta,Compara los resultados ROUGE con otros sistemas de resumen del estado del arte.,COMPLETO,112,1
+61,P13-1039_P08-1028_1,Evaluable,Background,Alta,Enumera modelos distribucionales composicionales propuestos.,COMPLETO,112,1
+62,E97-1063_J90-2002_0,Evaluable,Background,Alta,Resume la serie de modelos estadísticos de IBM para traducción automática.,COMPLETO,112,1
+63,D13-1204_P98-2240_0,Evaluable,Background,Alta,Enumera aplicaciones de heurísticas evolutivas.,COMPLETO,112,1
+64,D09-1095_P88-1012_0,Evaluable,Background,Alta,Describe el enfoque habitual de resolución de metonimias con trabajos previos.,COMPLETO,112,1
+65,W09-3306_W01-0521_0,Evaluable,Evidence,Alta,Respalda la tendencia general de peor desempeño en dominios ajenos.,COMPLETO,112,1
+66,P12-3004_N03-1017_1,Evaluable,Application,Alta,Siguen el método citado para estimar los valores de los rasgos.,COMPLETO,112,1
+67,P11-1135_P91-1030_0,Evaluable,Background,Alta,Enumera trabajos que usan frecuencias de co-ocurrencia para resolver ambigüedades.,COMPLETO,112,1
+68,W02-2002_E99-1001_0,Evaluable,Comparison,Media,Contrasta conclusiones de dos trabajos sobre el tamaño de las listas de nombres.,COMPLETO,112,1
+69,W11-2908_W09-1210_0,Evaluable,Application,Media,El parser usado emplea el modelo de rasgos del trabajo citado.,COMPLETO,112,1
+70,W07-1104_P98-2127_0,Evaluable,Background,Media,"Describe que otro trabajo se construye sobre el citado, como parte de la revisión de literatura.",COMPLETO,112,1
+71,W03-0401_P96-1025_0,Evaluable,Gap,Media,Critica que los modelos existentes son mera extensión de LPCFG con supuesto de independencia.,COMPLETO,112,1
+72,P09-1083_W04-3247_0,Evaluable,Background,Alta,Enumera aplicaciones exitosas de los algoritmos basados en grafos.,COMPLETO,112,1
+73,W09-0424_N04-1022_0,Evaluable,Application,Alta,Reordenan la salida con MBR tal como se propone en el trabajo citado.,COMPLETO,112,1
+74,W12-5707_P06-1124_0,Evaluable,Background,Alta,Enumera modelos de lenguaje suavizados previos.,COMPLETO,112,1
+75,P09-1064_N04-1022_1,Evaluable,Evidence,Alta,Respalda la afirmación de que minimizar el riesgo mejora el desempeño de MT.,COMPLETO,112,1
+76,W07-1901_P05-3012_0,Evaluable,Application,Alta,Los guiones se crearon con el planificador del sistema COMIC citado.,COMPLETO,112,1
+77,W96-0102_W95-0108_0,Evaluable,Further Reading,Media,Remite a trabajos citados para el detalle del cambio dinámico de ventana.,COMPLETO,112,1
+78,P10-2028_P01-1064_0,Evaluable,Background,Media,Presenta la idea de cohesión léxica con trabajos previos.,COMPLETO,112,1
+79,W07-2218_P07-1080_0,Evaluable,Basis,Alta,El modelo se basa en las ISBN propuestas en el trabajo citado.,COMPLETO,112,1
+80,N13-1107_P10-1013_1,Evaluable,Comparison,Media,Contrasta resultados contradictorios entre trabajos sobre REVERB y WOE.,COMPLETO,112,1
+81,P11-1144_N10-1138_7,Evaluable,Evidence,Alta,Justifica no comparar con otros sistemas porque SEMAFOR los supera significativamente.,COMPLETO,112,1
+82,D13-1014_P08-1028_1,Evaluable,Basis,Media,"La tarea es extensión de la definida en el trabajo citado, con pautas similares.",COMPLETO,112,1
+83,P11-1090_D09-1075_0,Evaluable,Comparison,Alta,Sus hallazgos se declaran concordantes con trabajos previos sobre segmentación.,COMPLETO,112,1
+84,N12-1052_D10-1120_0,Evaluable,Background,Alta,Enumera estudios de parsing no supervisado multilingüe.,COMPLETO,112,1
+85,N13-1115_W11-2103_0,Evaluable,Evidence,Alta,Respalda la afirmación de que optimizar con BLEU produce mejores traducciones.,COMPLETO,112,1
+86,P05-1011_P04-1014_1,Evaluable,Comparison,Alta,Compara los resultados propios con los de CCG reportados.,COMPLETO,112,1
+87,S13-2031_S13-2029_1,Evaluable,Further Reading,Alta,Remite a la descripción de la tarea compartida para la explicación completa.,COMPLETO,112,1
+88,D12-1129_E09-1005_0,Evaluable,Application,Alta,Siguen el procedimiento del trabajo citado para concentrar la masa de probabilidad en PPR.,COMPLETO,112,1
+89,W96-0410_J91-4003_1,Evaluable,Evidence,Media,Respalda la explicación de las colocaciones semánticas con la teoría del léxico generativo.,COMPLETO,112,1
+90,W98-1423_P98-2227_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para la descripción detallada de la generación guiada por núcleos.,COMPLETO,112,1
+91,W13-1703_W10-1004_0,Evaluable,Background,Alta,Describe corpus anotados de aprendices existentes y su tamaño.,COMPLETO,112,1
+92,P09-1072_P08-1028_2,Evaluable,Comparison,Alta,Los hallazgos propios se declaran consistentes con los del trabajo citado.,COMPLETO,112,1
+93,W13-1503_N07-4002_0,Evaluable,Background,Alta,Describe el uso general de textos simplificados en la literatura.,COMPLETO,112,1
+94,D09-1069_P04-1021_5,Evaluable,Comparison,Alta,Compara el desempeño de un sistema previo con los modelos propios.,COMPLETO,112,1
+95,W09-1103_P05-1073_0,Evaluable,Background,Alta,Enumera aplicaciones de los parsers estadísticos.,COMPLETO,112,1
+96,W06-0208_P99-1068_1,Evaluable,Background,Alta,Ejemplos de trabajos que explotan la Web en algoritmos no supervisados.,COMPLETO,112,1
+97,W07-2218_P05-1010_0,Evaluable,Background,Alta,Enumera modelos de variables latentes para parsing de constituyentes.,COMPLETO,112,1
+98,W05-0812_P00-1056_1,Evaluable,Application,Media,Usan la simetrización refinada del trabajo citado con los mismos parámetros.,COMPLETO,112,1
+99,W11-0406_W11-0416_0,Evaluable,Application,Alta,Usan la herramienta MAE para la anotación.,COMPLETO,112,1
+100,P10-1130_W10-2902_5,Evaluable,Comparison,Alta,Se tabulan resultados del trabajo citado junto a los del modelo propio.,COMPLETO,112,1

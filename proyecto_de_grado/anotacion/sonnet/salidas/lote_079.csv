@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W13-3724_N09-4006_0,Evaluable,Evidence,Media,Cita respalda el umbral de 90% como estándar recomendado para el acuerdo entre anotadores.,COMPLETO,79,1
+2,P11-2125_P06-1055_0,Evaluable,Application,Alta,Usan el parser de Berkeley tal cual para obtener clusters sintácticos.,COMPLETO,79,1
+3,S12-1105_P00-1056_1,Evaluable,Application,Alta,Se ejecuta Giza++ para alinear los corpus.,COMPLETO,79,1
+4,P07-1059_W04-2501_0,Evaluable,Background,Alta,Revisión de trabajos previos sobre expansión de consultas con datos FAQ.,COMPLETO,79,1
+5,W12-3126_N04-4026_0,Evaluable,Background,Alta,Describe modelos de reordenamiento léxico existentes como contexto.,COMPLETO,79,1
+6,W12-3140_W07-0732_0,Evaluable,Further Reading,Media,Remite con 'see' a detalles del enfoque SPE.,COMPLETO,79,1
+7,W07-1217_W02-2018_0,Evaluable,Evidence,Media,Respalda la afirmación de que los parámetros pueden estimarse eficientemente de un treebank.,COMPLETO,79,1
+8,P12-1084_D11-1099_0,Evaluable,Background,Alta,Revisa trabajos previos que usan estatus informativo.,COMPLETO,79,1
+9,P13-2144_P11-2104_0,Evaluable,Background,Alta,Trabajo previo sobre análisis de sentimiento en árabe.,COMPLETO,79,1
+10,W08-1006_P03-1013_2,Evaluable,Comparison,Alta,Contrasta explícitamente los resultados propios con los previos sobre lexicalización.,COMPLETO,79,1
+11,W12-3608_W07-1501_0,Evaluable,Basis,Media,"El trabajo se construye sobre GrAF, formato de anotación citado.",COMPLETO,79,1
+12,D11-1116_E06-1011_0,Evaluable,Comparison,Alta,MSTParser se incluye como parser contra el que se comparan resultados.,COMPLETO,79,1
+13,P12-1071_D11-1109_2,Evaluable,Comparison,Alta,Modelo de Li11 se presenta en tabla comparativa de precisión.,COMPLETO,79,1
+14,D09-1067_P08-1050_0,Evaluable,Background,Alta,Enumeración de enfoques previos de inducción automática de clases verbales.,COMPLETO,79,1
+15,S12-1100_W11-2112_1,Evaluable,Background,Alta,Describe la métrica TINE dentro de la revisión de métricas existentes.,COMPLETO,79,1
+16,W13-2108_W08-1109_1,Evaluable,Evidence,Media,Respalda la idea de que se evita describir relaciones por menor esfuerzo cognitivo.,COMPLETO,79,1
+17,P13-2123_D08-1084_2,Evaluable,Identification of the Originator,Alta,'MANLI was first developed by' atribuye el origen del sistema.,COMPLETO,79,1
+18,N13-1115_N12-1023_0,Evaluable,Background,Alta,Enumera investigación previa sobre ajuste de parámetros en SMT.,COMPLETO,79,1
+19,P04-1034_P97-1023_0,Evaluable,Identification of the Originator,Baja,"Se cita el concepto de orientación semántica, posiblemente por su origen, aunque podría ser Background.",COMPLETO,79,1
+20,P12-1007_D09-1036_4,Evaluable,Basis,Media,'Inspired by' reglas de producción sintácticas: se desarrolla una variante a partir de la obra citada.,COMPLETO,79,1
+21,P10-2060_W04-1013_0,Evaluable,Application,Alta,Se usa ROUGE como métrica de evaluación sin modificarla.,COMPLETO,79,1
+22,W12-3140_P07-2045_0,Evaluable,Application,Alta,Se usa el algoritmo Mert de Moses para ajustar pesos.,COMPLETO,79,1
+23,J11-3002_W02-1022_0,Evaluable,Further Reading,Media,"Señala trabajo futuro apoyado en métodos de extracción de diccionarios, remitiendo a literatura relevante.",COMPLETO,79,1
+24,P10-1049_W06-3105_3,Evaluable,Background,Media,Describe intentos previos para tratar el sobreajuste.,COMPLETO,79,1
+25,D11-1066_W06-2902_0,Evaluable,Background,Alta,Enumera trabajos que usan métodos kernel en PLN.,COMPLETO,79,1
+26,S12-1077_S12-1051_1,Evaluable,Application,Alta,Usan los corpus de la tarea 6 para entrenar y probar.,COMPLETO,79,1
+27,D12-1056_P00-1037_1,Evaluable,Background,Alta,Enumera variaciones previas del modelo de error.,COMPLETO,79,1
+28,W06-1670_W02-2004_0,Evaluable,Background,Alta,Cita el estado del arte de NER para situar el rendimiento.,COMPLETO,79,1
+29,D13-1073_W09-4405_0,Evaluable,Background,Alta,Describe trabajo previo sobre extracción de definiciones.,COMPLETO,79,1
+30,W13-1723_W12-3617_0,Evaluable,Gap,Alta,"Señala que no existen estudios de IAA para anotación gramatical, justificando el estudio.",COMPLETO,79,1
+31,P11-1003_P05-1033_2,Evaluable,Application,Alta,Se usa el Algoritmo 3 descrito en la obra citada.,COMPLETO,79,1
+32,P10-1085_N03-1017_0,Evaluable,Background,Media,Describe la SMT basada en frases y su determinación de límites como contexto previo al vacío.,COMPLETO,79,1
+33,W13-1733_P05-1074_0,Evaluable,Application,Media,Usan la fórmula de probabilidad de paráfrasis de la obra citada.,COMPLETO,79,1
+34,W12-2031_N07-1007_0,Evaluable,Background,Alta,Enumera trabajos previos de generación de determinantes y preposiciones.,COMPLETO,79,1
+35,P11-2036_P09-2012_0,Evaluable,Evidence,Media,Respalda la afirmación de que la estimación por máxima verosimilitud sobreajusta.,COMPLETO,79,1
+36,P06-1049_P03-1069_1,Evaluable,Background,Alta,Describe el modelo probabilístico de estructuración de texto previo.,COMPLETO,79,1
+37,J13-4004_P06-1005_0,Evaluable,Application,Alta,Usan un diccionario estático de la obra citada.,COMPLETO,79,1
+38,P12-1036_P09-1026_0,Evaluable,Background,Alta,Trabajos relacionados sobre extracción de aspectos.,COMPLETO,79,1
+39,W11-0150_W09-1402_0,Evaluable,Background,Alta,Describe el mejor sistema previo en la tarea compartida.,COMPLETO,79,1
+40,P13-2117_P09-1113_1,Evaluable,Evidence,Media,Respalda la afirmación de que los sistemas actuales detectan pocos falsos negativos.,COMPLETO,79,1
+41,J00-4004_J88-2003_4,Evaluable,Background,Media,Presenta el concepto de coerción aspectual de la literatura.,COMPLETO,79,1
+42,P12-1106_P11-1100_3,Evaluable,Application,Alta,Usan el modelo LIN por defecto como base sin modificarlo.,COMPLETO,79,1
+43,W08-2004_P06-1051_5,Evaluable,Comparison,Media,Se contrasta el kernel Kmax previo con el kernel híbrido Kpmx evaluado.,COMPLETO,79,1
+44,P12-1017_P11-1002_6,Evaluable,Comparison,Alta,Contrasta su enfoque con el LM de segmento completo reportado en el trabajo citado.,COMPLETO,79,1
+45,J10-4006_P06-1040_0,Evaluable,Background,Media,Introduce el concepto de similitud atributiva del trabajo citado como contexto.,COMPLETO,79,1
+46,W11-3714_P97-1023_0,Evaluable,Identification of the Originator,Alta,'was first introduced by' atribuye el origen de la técnica.,COMPLETO,79,1
+47,N10-1111_D09-1134_0,Evaluable,Gap,Media,Describe el trabajo y sus limitaciones (inferencia completa) para motivar el enfoque.,COMPLETO,79,1
+48,P11-1053_P05-1053_1,Evaluable,Application,Alta,Adoptan el conjunto completo de rasgos del sistema citado como base.,COMPLETO,79,1
+49,J08-4004_P93-1020_1,Evaluable,Evidence,Media,Respalda la afirmación de que existía gran desacuerdo en juicios simples.,COMPLETO,79,1
+50,P12-1020_P08-2042_0,Evaluable,Background,Alta,Trabajo relacionado sobre sistemas que aprenden unidades fonéticas.,COMPLETO,79,1
+51,W13-2223_P03-1021_3,Evaluable,Application,Alta,Los pesos se optimizan con Mert estándar.,COMPLETO,79,1
+52,W07-2305_E06-1040_0,Evaluable,Comparison,Media,Contrasta estudios previos con el actual (que evalúa en contexto).,COMPLETO,79,1
+53,P13-1031_N10-1069_0,Evaluable,Comparison,Alta,"Se contrasta el mezclado iterativo de parámetros con el método propio, más rápido.",COMPLETO,79,1
+54,P13-3014_W07-1701_0,Evaluable,Evidence,Media,Respalda la afirmación sobre rasgos del polaco y lenguas eslavas.,COMPLETO,79,1
+55,W10-2906_N07-1051_0,Evaluable,Application,Alta,Se usa el parser de Berkeley para los modelos monolingües.,COMPLETO,79,1
+56,E97-1034_P88-1015_3,Evaluable,Evidence,Media,Respalda la afirmación sobre repeticiones y cesión de iniciativa.,COMPLETO,79,1
+57,W12-4501_W11-1907_1,Evaluable,Background,Alta,Resume resultados previos reportados para chino.,COMPLETO,79,1
+58,W06-3601_N04-1014_0,Evaluable,Background,Media,Presenta los transductores extendidos definidos en la literatura como contexto.,COMPLETO,79,1
+59,W12-5903_W06-3108_0,Evaluable,Background,Alta,Describe trabajo previo sobre modelos de reordenamiento.,COMPLETO,79,1
+60,E97-1019_E93-1013_0,Evaluable,Basis,Alta,Trabajo previo que inicia la línea de glue language sobre la que se construye.,COMPLETO,79,1
+61,D12-1005_D11-1120_0,Evaluable,Comparison,Media,Contrasta el enfoque incremental con la precisión por volumen de datos del trabajo citado.,COMPLETO,79,1
+62,W09-2004_W05-1614_0,Evaluable,Background,Media,Cita una definición de pun como contexto conceptual.,COMPLETO,79,1
+63,P07-1107_W99-0611_0,Evaluable,Comparison,Alta,Compara con el sistema no supervisado más cercano y sus resultados.,COMPLETO,79,1
+64,D10-1067_P02-1017_1,Evaluable,Comparison,Alta,Contrasta las condiciones de entrenamiento y resultados del modelo CCM con el propio.,COMPLETO,79,1
+65,E09-3005_W06-1615_5,Evaluable,Evidence,Media,Respalda la decisión de aproximar el espacio de rasgos con SVD.,COMPLETO,79,1
+66,W13-1614_W08-1207_1,Evaluable,Background,Alta,Describe un resultado previo de uso de SentiWordNet.,COMPLETO,79,1
+67,P12-1028_W11-0110_1,Evaluable,Comparison,Alta,Compara la exactitud con el estado del arte del trabajo citado.,COMPLETO,79,1
+68,P12-1023_P05-1012_3,Evaluable,Application,Alta,Se usa el algoritmo de decodificación del trabajo citado.,COMPLETO,79,1
+69,W03-0407_W02-2018_0,Evaluable,Further Reading,Alta,'see' remite a métodos alternativos de entrenamiento.,COMPLETO,79,1
+70,P07-1021_E06-1010_1,Evaluable,Background,Media,Cita la definición de proyectividad ya establecida.,COMPLETO,79,1
+71,N07-4004_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ para construir la tabla de frases.,COMPLETO,79,1
+72,P10-1028_D08-1047_0,Evaluable,Background,Media,Resume que los modelos de error estadísticos se han vuelto populares y efectivos.,COMPLETO,79,1
+73,J09-1003_P87-1022_1,Evaluable,Background,Media,Presenta la definición estándar de la teoría de centrado.,COMPLETO,79,1
+74,P07-1062_P05-1022_0,Evaluable,Evidence,Media,Respalda la afirmación de que el reranking mejora la precisión del parseo.,COMPLETO,79,1
+75,W12-2006_N12-1067_0,Evaluable,Background,Media,Describe un esquema de evaluación alternativo propuesto previamente.,COMPLETO,79,1
+76,E12-1047_W10-1407_6,Evaluable,Comparison,Alta,Aparece en tabla comparando resultados de trabajos previos.,COMPLETO,79,1
+77,W00-1308_W96-0213_1,Evaluable,Gap,Media,"Señala que la máxima entropía se aplicó antes, pero su capacidad no se ha explorado del todo.",COMPLETO,79,1
+78,W06-3106_N03-1017_2,Evaluable,Application,Alta,Recogen parámetros de frases como en el método descrito.,COMPLETO,79,1
+79,P12-1083_P11-2111_0,Evaluable,Application,Media,Adoptan la definición de límite de oración del trabajo citado.,COMPLETO,79,1
+80,W07-2202_W05-1102_0,Evaluable,Background,Alta,Revisa trabajos previos de adaptación de parsers.,COMPLETO,79,1
+81,P12-1041_D09-1120_2,Evaluable,Comparison,Alta,Aparece en tabla de resultados comparada con el sistema propio.,COMPLETO,79,1
+82,N09-2064_N06-2033_0,Evaluable,Background,Alta,Trabajo relacionado sobre hibridación de parsers.,COMPLETO,79,1
+83,P12-1087_P09-1113_6,Evaluable,Background,Media,Refiere a la métrica de Freebase held-out usada en trabajos previos.,COMPLETO,79,1
+84,N10-1090_P07-1079_0,Evaluable,Application,Media,Usan la métrica de relaciones predicado-argumento como en trabajos previos.,COMPLETO,79,1
+85,D10-1074_D08-1081_0,Evaluable,Background,Alta,Trabajos recientes sobre resumen de conversaciones.,COMPLETO,79,1
+86,W11-1410_W10-1502_3,Evaluable,Evidence,Alta,Respalda la afirmación sobre calidad del coreano según el nivel de los términos semilla.,COMPLETO,79,1
+87,P13-1167_P06-1004_0,Evaluable,Background,Alta,Enumera segmentadores automáticos existentes.,COMPLETO,79,1
+88,W09-3910_P08-1054_2,Evaluable,Comparison,Alta,Compara los valores de acuerdo propios con los reportados en otros trabajos.,COMPLETO,79,1
+89,P13-2060_N03-1017_0,Evaluable,Background,Alta,Describe trabajo previo y menciona la SMT basada en frases.,COMPLETO,79,1
+90,D13-1108_D11-1020_2,Evaluable,Application,Alta,Generalizan reglas con el método propuesto en la obra citada.,COMPLETO,79,1
+91,P11-2085_P02-1019_0,Evaluable,Background,Alta,Revisa trabajos que usan rasgos fonéticos.,COMPLETO,79,1
+92,P09-2027_W04-1013_0,Evaluable,Evidence,Media,Se describe ROUGE y su correlación con juicios humanos para justificar su uso.,COMPLETO,79,1
+93,P11-1144_P00-1065_0,Evaluable,Identification of the Originator,Alta,'pioneered SRL' reconoce al pionero.,COMPLETO,79,1
+94,W02-0803_J96-1007_0,Evaluable,Basis,Alta,Siguen la distinción de Pinkal como fundamento conceptual.,COMPLETO,79,1
+95,W11-2107_W08-0509_0,Evaluable,Application,Alta,Se usa MGIZA++ para alinear palabras.,COMPLETO,79,1
+96,W10-0722_N04-1019_0,Evaluable,Background,Alta,Describe métodos de evaluación existentes como Pyramid.,COMPLETO,79,1
+97,D11-1142_P06-2094_0,Evaluable,Background,Media,Enumera enfoques previos de IE a gran escala.,COMPLETO,79,1
+98,W07-2202_P04-1014_0,Evaluable,Background,Alta,Resume hallazgos previos sobre supertagging.,COMPLETO,79,1
+99,W09-2301_P07-2045_0,Evaluable,Background,Media,Describe el trabajo previo que usa Moses como base de su sistema.,COMPLETO,79,1
+100,N09-1025_P07-1005_0,Evaluable,Basis,Media,"Los rasgos están en el espíritu del trabajo citado, y se incorporan al modelo propio.",COMPLETO,79,1

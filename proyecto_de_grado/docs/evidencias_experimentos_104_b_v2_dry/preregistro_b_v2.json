@@ -1,0 +1,191 @@
+{
+  "escrito_utc": "2026-11-15T01:27:26+00:00",
+  "diseno": {
+    "version": "v2",
+    "dry": true,
+    "experimento_mlflow": "clasificacion-funcion-104-b-v2-dry",
+    "estimando": {
+      "primario": "AB - A",
+      "secundario": "B - A (salvedad de constructo)"
+    },
+    "brazos": {
+      "nucleo": [
+        "A",
+        "B",
+        "AB"
+      ],
+      "controles": [
+        "AB_aleatorio",
+        "B_aleatorio",
+        "B_sin_seccion",
+        "B_barajada",
+        "C0",
+        "A-rep"
+      ],
+      "specter": [
+        "A",
+        "B",
+        "AB"
+      ],
+      "lr_de": {
+        "A": "A",
+        "B": "B",
+        "AB": "AB",
+        "AB_aleatorio": "AB",
+        "B_aleatorio": "B",
+        "B_barajada": "B",
+        "B_sin_seccion": "B",
+        "C0": "A"
+      }
+    },
+    "pistas": {
+      "M": {
+        "variante": "natural",
+        "modo": "kd",
+        "pista": "mixta"
+      },
+      "S": {
+        "variante": "sonnet",
+        "modo": "duro",
+        "pista": "sonnet"
+      }
+    },
+    "semillas": {
+      "nucleo": [
+        42,
+        1234
+      ],
+      "control": [
+        42
+      ],
+      "grilla": [
+        42,
+        1234
+      ],
+      "specter": [
+        42
+      ],
+      "repeticion": [
+        42
+      ]
+    },
+    "hiperparametros": {
+      "max_len": 512,
+      "weight_decay": 0.01,
+      "warmup": 0.1,
+      "batch_size": 8,
+      "acumulacion": 2,
+      "epocas": 6,
+      "paciencia": 2,
+      "clip": 1.0,
+      "dropout": 0.1,
+      "pesos_clase": true
+    },
+    "grilla_lr": [
+      2e-05,
+      5e-05
+    ],
+    "regla_lr": "mayor media de F1-macro de dev entre las semillas de la grilla; empate: lr menor; grilla completa",
+    "parada": "F1-macro sobre dev",
+    "dev": {
+      "fraccion": 0.15,
+      "sal": "dev-104-b-v2",
+      "regla": "sha256(sal:citing_id) % 100 < 15"
+    },
+    "sales": {
+      "dev": "dev-104-b-v2",
+      "aleatorio": "aleatorio-104-b-v2"
+    },
+    "semilla_barajado_especificacion": 42,
+    "especificacion_sha": {
+      "A": "855e6dc426a8b99aebcf686a04ea997bfa49ad82c8e54b186ab9f6c55fd6e09d",
+      "B": "dbb8cb085d7f66d3b1ea6db69b6f03b9a01296d83d94f8ce3571b73ab100ed59",
+      "B_barajada": "1c8535306d401739da3b0e186b87248f837a56eed61e950ba36432480e4b1375",
+      "B_sin_seccion": "23baf7dd3f41fbec7b0758e6a701c51d1e139a3feee62c550d46a18b66ffb9ca",
+      "AB": "95a969fa3e504c19356219cdf7c99fb253621c1fe5bfbb00dc688401ef8f050f",
+      "B_aleatorio": "5e46f526fdee3a45945341c8b32a6f96c0f362657fe7b2c56af551e6df883c02",
+      "AB_aleatorio": "5aecfb72ff1e313d44c87792148af5239f501c636f55bb40b787447b64999dc1",
+      "C0": "fd49ee5e01bff332b78a6b69a149ba350fd615935f9d1ea3200668a70a8a52ce"
+    },
+    "inferencia": {
+      "primarias": "AB - A por pista; F1-macro sobre V_B con la etiqueta de la pista; media de las semillas del nucleo",
+      "prueba": "t con varianza combinada: v_sem = s2(d)/n_semillas; v_art = var bootstrap por citante con semillas fijas (remuestra compartida); gl de Satterthwaite (inf si v_sem = 0)",
+      "n_bootstrap": 5000,
+      "semilla_bootstrap": 2026,
+      "holm": "por pasos sobre las 2 primarias; TOST en familia aparte con Holm",
+      "delta": 0.02,
+      "alfa": 0.05,
+      "min_signo": 2,
+      "veredicto": [
+        "incompleto",
+        "mejora/empeora",
+        "equivalente",
+        "no_concluyente"
+      ],
+      "ic_descriptivos": [
+        "bootstrap jerarquico (semillas y articulos)",
+        "ic_cluster (bootstrap por citante)"
+      ]
+    },
+    "poder_declarado": {
+      "M": [
+        0.023,
+        0.027
+      ],
+      "S": [
+        0.029,
+        0.034
+      ],
+      "potencia": 0.8
+    },
+    "secundarias": [
+      "B - A",
+      "AB - B",
+      "AB_aleatorio - AB",
+      "B_aleatorio - B",
+      "B_barajada - B",
+      "B_sin_seccion - B",
+      "A - C0",
+      "accuracy y F1 ponderado",
+      "F1 por clase con IC y contribucion",
+      "citado visto / no visto",
+      "validacion cruzada entre maestros",
+      "sesgo de cobertura",
+      "no determinismo",
+      "truncamiento",
+      "SPECTER"
+    ],
+    "test_gold": "predicciones ciegas de A (cobertura y todo), B y AB (cobertura) de los runs del nucleo y SPECTER; B - A y AB - A por pista y semilla",
+    "flags": {
+      "CORRER_AB_ALEATORIO": true,
+      "CORRER_B_ALEATORIO": true,
+      "CORRER_SIN_SECCION": true,
+      "CORRER_BARAJADA": true,
+      "CORRER_C0": true,
+      "CORRER_REPETICION": true,
+      "CORRER_SPECTER": true
+    },
+    "desviaciones": [
+      "Las pistas M y S y la grilla de #104 se eligieron con A sobre V.",
+      "Validez de constructo: todas las fuentes de etiqueta vieron solo contexto + titulo + abstract (la informacion de A).",
+      "1e-5 no esta en la grilla de lr."
+    ],
+    "L4": {
+      "umbral": 0.5,
+      "k_shingle": 8,
+      "descartar": true
+    },
+    "L10": {
+      "umbral": 0.5
+    },
+    "dev_sha": {
+      "M": "8c8077bbbab9189352b23a27a58a4fc44b877789cc06cc4c1586d67ef7615ae8",
+      "S": "8c8077bbbab9189352b23a27a58a4fc44b877789cc06cc4c1586d67ef7615ae8"
+    },
+    "manifiesto_datos_sha256": "a8427b09edf1ea7bf9819f89ac53e1d9fccbd25d0ebf681f4015be9e153a30c7",
+    "huella_codigo": {
+      "src_sha": "01f405dd62e7281d7393fb7ce58dd754abaa15e08fd845dc1724fd2d2e298ae5",
+      "celdas_sha": "ff8b7d3b21af1ac315b4fb63f506b65159c026e58689c7f052b914d5011632b4"
+    }
+  }
+}

@@ -1,0 +1,464 @@
+{
+  "por_clase": {
+    "M": [
+      {
+        "clase": "Background",
+        "soporte": 721,
+        "A": 0.8822267151673158,
+        "B": 0.8757195330312536,
+        "B-A": -0.006507182136062162
+      },
+      {
+        "clase": "Gap",
+        "soporte": 79,
+        "A": 0.5897336060609207,
+        "B": 0.5887288893250034,
+        "B-A": -0.0010047167359172882
+      },
+      {
+        "clase": "Basis",
+        "soporte": 68,
+        "A": 0.5149863826892537,
+        "B": 0.4747998259966923,
+        "B-A": -0.04018655669256138
+      },
+      {
+        "clase": "Comparison",
+        "soporte": 220,
+        "A": 0.8000289652814573,
+        "B": 0.7837917535207687,
+        "B-A": -0.016237211760688597
+      },
+      {
+        "clase": "Application",
+        "soporte": 475,
+        "A": 0.9067445440428236,
+        "B": 0.9024713572405503,
+        "B-A": -0.004273186802273288
+      },
+      {
+        "clase": "Improvement / Modification",
+        "soporte": 51,
+        "A": 0.41689881026406334,
+        "B": 0.39181438397267226,
+        "B-A": -0.02508442629139107
+      },
+      {
+        "clase": "Evidence",
+        "soporte": 143,
+        "A": 0.7154471376240377,
+        "B": 0.7164709970403921,
+        "B-A": 0.0010238594163544112
+      },
+      {
+        "clase": "Identification of the Originator",
+        "soporte": 30,
+        "A": 0.5982003129890453,
+        "B": 0.5263513513513512,
+        "B-A": -0.07184896163769405
+      },
+      {
+        "clase": "Further Reading",
+        "soporte": 27,
+        "A": 0.727008353746624,
+        "B": 0.7009646101627234,
+        "B-A": -0.026043743583900603
+      }
+    ],
+    "S": [
+      {
+        "clase": "Background",
+        "soporte": 831,
+        "A": 0.8572546432697196,
+        "B": 0.8548854845648545,
+        "B-A": -0.002369158704865093
+      },
+      {
+        "clase": "Gap",
+        "soporte": 52,
+        "A": 0.4798637616624258,
+        "B": 0.5025058500313803,
+        "B-A": 0.022642088368954483
+      },
+      {
+        "clase": "Basis",
+        "soporte": 91,
+        "A": 0.47866421749618476,
+        "B": 0.45235315631629,
+        "B-A": -0.02631106117989479
+      },
+      {
+        "clase": "Comparison",
+        "soporte": 259,
+        "A": 0.7691961357424937,
+        "B": 0.7726809188287787,
+        "B-A": 0.0034847830862849705
+      },
+      {
+        "clase": "Application",
+        "soporte": 357,
+        "A": 0.8440531507295997,
+        "B": 0.8471199599405566,
+        "B-A": 0.0030668092109568112
+      },
+      {
+        "clase": "Improvement / Modification",
+        "soporte": 19,
+        "A": 0.4694444444444445,
+        "B": 0.43311732785416995,
+        "B-A": -0.036327116590274544
+      },
+      {
+        "clase": "Evidence",
+        "soporte": 150,
+        "A": 0.6800203627789835,
+        "B": 0.6764844765639966,
+        "B-A": -0.0035358862149869053
+      },
+      {
+        "clase": "Identification of the Originator",
+        "soporte": 13,
+        "A": 0.41898148148148145,
+        "B": 0.3614202437731849,
+        "B-A": -0.057561237708296575
+      },
+      {
+        "clase": "Further Reading",
+        "soporte": 42,
+        "A": 0.7071208298289878,
+        "B": 0.6991869918699187,
+        "B-A": -0.007933837959069101
+      }
+    ]
+  },
+  "estratos": {
+    "M:citado_visto_en_train": {
+      "n": 1475,
+      "A": 0.6874339567888135,
+      "B": 0.6627512867943482,
+      "B-A": -0.024682669994465223
+    },
+    "M:citado_no_visto": {
+      "n": 339,
+      "A": 0.6742918793304806,
+      "B": 0.660149968857308,
+      "B-A": -0.014141910473172592
+    },
+    "S:citado_visto_en_train": {
+      "n": 1475,
+      "A": 0.6381477673954734,
+      "B": 0.6284399766535402,
+      "B-A": -0.009707790741933175
+    },
+    "S:citado_no_visto": {
+      "n": 339,
+      "A": 0.5936253295362385,
+      "B": 0.5838273197036797,
+      "B-A": -0.00979800983255874
+    }
+  },
+  "truncamiento": {
+    "M:A": {
+      "casos": 1814,
+      "longitud_media": 227.03969128996692,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.011025358324145534,
+          "tokens_truncados_media": 5.291620727673649,
+          "tokens_truncados_max": 1362
+        },
+        "contexto": {
+          "frac_truncado": 0.0005512679162072767,
+          "tokens_truncados_media": 0.007717750826901874,
+          "tokens_truncados_max": 14
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        }
+      }
+    },
+    "M:B": {
+      "casos": 1814,
+      "longitud_media": 480.62568908489527,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.37045203969129,
+          "tokens_truncados_media": 24.36052921719956,
+          "tokens_truncados_max": 343
+        },
+        "chunk_2": {
+          "frac_truncado": 0.4046306504961411,
+          "tokens_truncados_media": 27.007166482910694,
+          "tokens_truncados_max": 273
+        },
+        "chunk_3": {
+          "frac_truncado": 0.42282249173098124,
+          "tokens_truncados_media": 29.61576626240353,
+          "tokens_truncados_max": 296
+        },
+        "contexto": {
+          "frac_truncado": 0.0005512679162072767,
+          "tokens_truncados_media": 0.007717750826901874,
+          "tokens_truncados_max": 14
+        }
+      }
+    },
+    "S:A": {
+      "casos": 1814,
+      "longitud_media": 227.03969128996692,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.011025358324145534,
+          "tokens_truncados_media": 5.291620727673649,
+          "tokens_truncados_max": 1362
+        },
+        "contexto": {
+          "frac_truncado": 0.0005512679162072767,
+          "tokens_truncados_media": 0.007717750826901874,
+          "tokens_truncados_max": 14
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        }
+      }
+    },
+    "S:B": {
+      "casos": 1814,
+      "longitud_media": 480.62568908489527,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.37045203969129,
+          "tokens_truncados_media": 24.36052921719956,
+          "tokens_truncados_max": 343
+        },
+        "chunk_2": {
+          "frac_truncado": 0.4046306504961411,
+          "tokens_truncados_media": 27.007166482910694,
+          "tokens_truncados_max": 273
+        },
+        "chunk_3": {
+          "frac_truncado": 0.42282249173098124,
+          "tokens_truncados_media": 29.61576626240353,
+          "tokens_truncados_max": 296
+        },
+        "contexto": {
+          "frac_truncado": 0.0005512679162072767,
+          "tokens_truncados_media": 0.007717750826901874,
+          "tokens_truncados_max": 14
+        }
+      }
+    }
+  },
+  "referencia_104_sobre_V_B": {
+    "M-s42": {
+      "f1_macro": 0.7178863893066842,
+      "n": 1814
+    },
+    "M-s1234": {
+      "f1_macro": 0.7112655290476384,
+      "n": 1814
+    },
+    "M-s2026": {
+      "f1_macro": 0.7014224077168804,
+      "n": 1814
+    },
+    "S-s42": {
+      "f1_macro": 0.6552233930140224,
+      "n": 1814
+    },
+    "S-s1234": {
+      "f1_macro": 0.6595041717164486,
+      "n": 1814
+    },
+    "S-s2026": {
+      "f1_macro": 0.6248672668055449,
+      "n": 1814
+    }
+  },
+  "cobertura": {
+    "train_M": {
+      "candidatos": 12793,
+      "interseccion": 6988,
+      "cobertura_pct": 54.62,
+      "excluidos_por_motivo": {
+        "ValueError": 22,
+        "autocita": 6,
+        "menos_de_3_chunks": 7,
+        "ocl_404": 33,
+        "parrafo_largo": 5726,
+        "sin_descargar": 11
+      },
+      "por_clase_candidatos": {
+        "Background": 5174,
+        "Gap": 435,
+        "Basis": 577,
+        "Comparison": 1323,
+        "Application": 3538,
+        "Improvement / Modification": 224,
+        "Evidence": 868,
+        "Identification of the Originator": 349,
+        "Further Reading": 305
+      },
+      "por_clase_interseccion": {
+        "Background": 2853,
+        "Gap": 254,
+        "Basis": 301,
+        "Comparison": 733,
+        "Application": 1919,
+        "Improvement / Modification": 128,
+        "Evidence": 463,
+        "Identification of the Originator": 171,
+        "Further Reading": 166
+      },
+      "por_clase_excluidos": {
+        "Background": 2321,
+        "Gap": 181,
+        "Basis": 276,
+        "Comparison": 590,
+        "Application": 1619,
+        "Improvement / Modification": 96,
+        "Evidence": 405,
+        "Identification of the Originator": 178,
+        "Further Reading": 139
+      }
+    },
+    "train_S": {
+      "candidatos": 12764,
+      "interseccion": 6906,
+      "cobertura_pct": 54.11,
+      "excluidos_por_motivo": {
+        "ValueError": 21,
+        "autocita": 12,
+        "menos_de_3_chunks": 7,
+        "ocl_404": 34,
+        "parrafo_largo": 5776,
+        "sin_descargar": 8
+      },
+      "por_clase_candidatos": {
+        "Background": 4097,
+        "Gap": 657,
+        "Basis": 671,
+        "Comparison": 2138,
+        "Application": 1944,
+        "Improvement / Modification": 175,
+        "Evidence": 2060,
+        "Identification of the Originator": 318,
+        "Further Reading": 704
+      },
+      "por_clase_interseccion": {
+        "Background": 2221,
+        "Gap": 365,
+        "Basis": 335,
+        "Comparison": 1191,
+        "Application": 1072,
+        "Improvement / Modification": 93,
+        "Evidence": 1095,
+        "Identification of the Originator": 143,
+        "Further Reading": 391
+      },
+      "por_clase_excluidos": {
+        "Background": 1876,
+        "Gap": 292,
+        "Basis": 336,
+        "Comparison": 947,
+        "Application": 872,
+        "Improvement / Modification": 82,
+        "Evidence": 965,
+        "Identification of the Originator": 175,
+        "Further Reading": 313
+      }
+    },
+    "V": {
+      "candidatos": 3379,
+      "interseccion": 1814,
+      "cobertura_pct": 53.68,
+      "excluidos_por_motivo": {
+        "ValueError": 6,
+        "autocita": 4,
+        "menos_de_3_chunks": 2,
+        "ocl_404": 3,
+        "parrafo_largo": 1548,
+        "sin_descargar": 2
+      },
+      "por_clase_candidatos": {
+        "Background": 1307,
+        "Gap": 136,
+        "Basis": 120,
+        "Comparison": 441,
+        "Application": 899,
+        "Improvement / Modification": 107,
+        "Evidence": 262,
+        "Identification of the Originator": 59,
+        "Further Reading": 48
+      },
+      "por_clase_interseccion": {
+        "Background": 721,
+        "Gap": 79,
+        "Basis": 68,
+        "Comparison": 220,
+        "Application": 475,
+        "Improvement / Modification": 51,
+        "Evidence": 143,
+        "Identification of the Originator": 30,
+        "Further Reading": 27
+      },
+      "por_clase_excluidos": {
+        "Background": 586,
+        "Gap": 57,
+        "Basis": 52,
+        "Comparison": 221,
+        "Application": 424,
+        "Improvement / Modification": 56,
+        "Evidence": 119,
+        "Identification of the Originator": 29,
+        "Further Reading": 21
+      }
+    },
+    "gold_v2": {
+      "candidatos": 1533,
+      "interseccion": 839,
+      "cobertura_pct": 54.73,
+      "excluidos_por_motivo": {
+        "menos_de_3_chunks": 1,
+        "parrafo_largo": 693
+      },
+      "por_clase_candidatos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_interseccion": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_excluidos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      }
+    }
+  }
+}

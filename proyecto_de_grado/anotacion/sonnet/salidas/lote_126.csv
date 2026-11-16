@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D11-1140_P11-1149_0,Evaluable,Gap,Media,Se cita trabajo previo de aprendizaje no supervisado y se señala que requiere más inicialización específica de dominio que el enfoque actual.,COMPLETO,126,1
+2,P12-2008_N10-1017_0,Evaluable,Background,Alta,,COMPLETO,126,1
+3,W10-1744_W09-0408_2,Evaluable,Comparison,Alta,Se compara el desempeño del sistema actual con el del año anterior.,COMPLETO,126,1
+4,D12-1084_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,126,1
+5,W11-1816_P06-1055_0,Evaluable,Application,Alta,,COMPLETO,126,1
+6,D11-1006_W06-2920_3,Evaluable,Background,Media,Se menciona la disponibilidad de treebanks en formatos estandarizados.,COMPLETO,126,1
+7,W12-1511_P10-2024_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la gran mayoría de desarrolladores siguen la buena práctica.,COMPLETO,126,1
+8,J13-3008_N07-1025_0,Evaluable,Background,Alta,,COMPLETO,126,1
+9,W11-2166_P07-1089_0,Evaluable,Background,Alta,,COMPLETO,126,1
+10,W13-2905_P04-1082_0,Evaluable,Background,Alta,,COMPLETO,126,1
+11,W03-0603_J91-4003_0,Evaluable,Basis,Alta,El trabajo refleja ideas de la teoría del Generative Lexicon.,COMPLETO,126,1
+12,D09-1143_P05-1053_0,Evaluable,Background,Alta,,COMPLETO,126,1
+13,W13-1907_D09-1120_1,Evaluable,Improvement / Modification,Media,"Adaptan y amplían técnicas basadas en reglas, que a su vez derivan del enfoque determinista citado.",COMPLETO,126,1
+14,W10-2602_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,126,1
+15,P11-1050_P10-1084_2,Evaluable,Comparison,Alta,Se compara el mejor modelo con hLDA en la evaluación.,COMPLETO,126,1
+16,W04-3215_P03-1055_1,Evaluable,Gap,Alta,Señala que los métodos superficiales tienen dificultad con la extracción de objetos.,COMPLETO,126,1
+17,P12-1039_D10-1049_0,Evaluable,Comparison,Alta,,COMPLETO,126,1
+18,W10-0406_W09-3305_0,Evaluable,Background,Alta,,COMPLETO,126,1
+19,P09-1006_W00-1201_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados de distintos modelos.,COMPLETO,126,1
+20,P11-1090_P08-1084_0,Evaluable,Comparison,Media,Se contrastan modelos previos con menos hiperparámetros ajustados.,COMPLETO,126,1
+21,W12-3305_E09-1013_0,Evaluable,Background,Alta,,COMPLETO,126,1
+22,D12-1135_D11-1120_1,Evaluable,Evidence,Alta,Respalda la afirmación de que los perfiles son ruidosos.,COMPLETO,126,1
+23,D11-1070_W07-1013_3,Evaluable,Background,Alta,,COMPLETO,126,1
+24,P11-1109_P01-1008_3,Evaluable,Comparison,Alta,,COMPLETO,126,1
+25,P11-1109_P01-1008_2,Evaluable,Background,Alta,,COMPLETO,126,1
+26,N04-1041_W97-0313_0,Evaluable,Background,Alta,,COMPLETO,126,1
+27,W13-4009_W04-3230_0,Evaluable,Application,Alta,,COMPLETO,126,1
+28,W12-3134_P05-1074_0,Evaluable,Basis,Media,El kit extiende Thrax e implementa el enfoque de pivoteo; podría verse también como Application.,COMPLETO,126,1
+29,D10-1098_W03-0425_1,Evaluable,Comparison,Alta,,COMPLETO,126,1
+30,W99-0629_W99-0707_1,Evaluable,Further Reading,Alta,,COMPLETO,126,1
+31,W06-0601_W03-0601_0,Evaluable,Evidence,Alta,,COMPLETO,126,1
+32,W11-2105_W08-0309_0,Evaluable,Application,Media,Se usa la puntuación de juicio humano de WMT (solo Rank) para evaluar métricas.,COMPLETO,126,1
+33,D09-1122_N06-1007_0,Evaluable,Background,Alta,,COMPLETO,126,1
+34,W11-1818_W10-1919_0,Evaluable,Background,Alta,,COMPLETO,126,1
+35,E12-2001_W07-1501_0,Evaluable,Application,Alta,Se adopta el formato GrAF para representar anotaciones.,COMPLETO,126,1
+36,D13-1036_P12-2042_0,Evaluable,Gap,Media,Se señala que usar conectores discursivos dio resultados mixtos y no se usan.,COMPLETO,126,1
+37,W11-2017_N06-1018_0,Evaluable,Background,Alta,,COMPLETO,126,1
+38,D12-1018_D09-1025_0,Evaluable,Background,Alta,,COMPLETO,126,1
+39,P11-1128_J07-2003_2,Evaluable,Application,Alta,,COMPLETO,126,1
+40,D09-1003_P08-1068_1,Evaluable,Comparison,Alta,,COMPLETO,126,1
+41,D11-1035_W09-0401_1,Evaluable,Application,Alta,Se calcula Kappa del mismo modo que los talleres WMT.,COMPLETO,126,1
+42,W11-2027_W01-1616_0,Evaluable,Evidence,Alta,,COMPLETO,126,1
+43,W09-3824_P06-1055_2,Evaluable,Background,Media,Se describe el analizador de Petrov usado en trabajo previo; contexto para la evaluación.,COMPLETO,126,1
+44,D11-1079_P05-1034_0,Evaluable,Evidence,Alta,Respalda la suposición de que los constituyentes se mueven en bloque.,COMPLETO,126,1
+45,P12-1078_P11-1137_6,Evaluable,Comparison,Alta,,COMPLETO,126,1
+46,P11-1006_D08-1047_0,Evaluable,Comparison,Alta,Se contrasta con otro enfoque discriminativo.,COMPLETO,126,1
+47,P12-1034_P11-1151_0,Evaluable,Comparison,Media,Se enumeran trabajos de identificación de posturas y se indica que difieren del actual.,COMPLETO,126,1
+48,W13-4005_E09-1022_5,Evaluable,Application,Media,Se usa el mismo protocolo de tareas de identificación de objetos.,COMPLETO,126,1
+49,N10-1119_E09-1077_3,Evaluable,Background,Alta,,COMPLETO,126,1
+50,P10-1021_N01-1021_0,Evaluable,Background,Alta,,COMPLETO,126,1
+51,P04-1047_A97-1052_0,Evaluable,Gap,Alta,Se cita la observación de limitaciones de trabajos previos (pocas clases reconocidas).,COMPLETO,126,1
+52,P10-1032_P04-1043_1,Evaluable,Application,Alta,,COMPLETO,126,1
+53,W13-4917_E12-1006_3,Evaluable,Background,Media,Se describe el desarrollo de las métricas TedEval.,COMPLETO,126,1
+54,W08-2116_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,126,1
+55,P11-1060_D09-1001_0,Evaluable,Gap,Alta,Se indica que los parsers no supervisados existentes no manejan fenómenos como cuantificación y negación.,COMPLETO,126,1
+56,W09-0437_J07-2003_1,Evaluable,Application,Alta,,COMPLETO,126,1
+57,W04-1218_E99-1001_0,Evaluable,Evidence,Alta,Respalda que es práctica común usar el nivel de discurso en NER.,COMPLETO,126,1
+58,E09-1062_N01-1003_0,Evaluable,Background,Alta,,COMPLETO,126,1
+59,D10-1026_P08-1058_4,Evaluable,Comparison,Alta,"Se contrasta la estructura propuesta, más compacta, con la del trabajo citado.",COMPLETO,126,1
+60,W12-6004_W06-3002_0,Evaluable,Background,Alta,,COMPLETO,126,1
+61,D09-1127_P04-1015_1,Evaluable,Evidence,Alta,Respalda el argumento a favor de la actualización temprana (early update).,COMPLETO,126,1
+62,D09-1152_E95-1001_0,Evaluable,Background,Alta,,COMPLETO,126,1
+63,E97-1014_P87-1022_1,Evaluable,Background,Media,Se describe un algoritmo de centering común y su alcance.,COMPLETO,126,1
+64,P03-1040_P00-1056_0,Evaluable,Application,Alta,,COMPLETO,126,1
+65,P10-1013_N07-1015_3,Evaluable,Comparison,Alta,Se señala que la conclusión discrepa con los hallazgos del trabajo citado.,COMPLETO,126,1
+66,P11-2018_W10-2910_2,Evaluable,Basis,Media,Se remite a un trabajo previo propio cuyos resultados fundamentan el enfoque actual.,COMPLETO,126,1
+67,P10-2031_P10-2019_1,Evaluable,Background,Alta,,COMPLETO,126,1
+68,N09-1024_P08-1084_6,Evaluable,Comparison,Alta,,COMPLETO,126,1
+69,W09-0621_N06-1058_0,Evaluable,Background,Alta,,COMPLETO,126,1
+70,N12-1095_D11-1095_0,Evaluable,Background,Alta,,COMPLETO,126,1
+71,J11-2003_P07-1059_1,Evaluable,Background,Media,Se menciona trabajo relacionado que mejoró la arquitectura.,COMPLETO,126,1
+72,D10-1078_P09-1057_0,Evaluable,Background,Alta,,COMPLETO,126,1
+73,D12-1077_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,126,1
+74,P11-1139_W03-0433_0,Evaluable,Background,Alta,,COMPLETO,126,1
+75,W12-2207_W10-1001_0,Evaluable,Comparison,Alta,Se vincula el hallazgo citado con el del estudio descrito.,COMPLETO,126,1
+76,W11-2841_P03-1004_0,Evaluable,Application,Alta,,COMPLETO,126,1
+77,W11-2402_W07-1431_0,Evaluable,Background,Alta,,COMPLETO,126,1
+78,E09-1018_P06-1006_0,Evaluable,Background,Alta,,COMPLETO,126,1
+79,W12-3205_D08-1035_0,Evaluable,Background,Alta,,COMPLETO,126,1
+80,W13-0118_S12-1055_0,Evaluable,Background,Alta,,COMPLETO,126,1
+81,W07-1412_P06-1051_0,Evaluable,Background,Media,Se describe el modelo de similitud entre pares como punto de partida; también podría ser Basis.,COMPLETO,126,1
+82,D12-1018_P10-3017_1,Evaluable,Basis,Media,Se sigue el enfoque de trabajos previos de aprendizaje supervisado.,COMPLETO,126,1
+83,P11-2036_P06-1124_1,Evaluable,Application,Alta,,COMPLETO,126,1
+84,W12-4303_W06-1613_0,Evaluable,Evidence,Alta,,COMPLETO,126,1
+85,N13-1044_W12-2301_1,Evaluable,Background,Alta,,COMPLETO,126,1
+86,W12-1641_E09-1081_0,Evaluable,Application,Alta,,COMPLETO,126,1
+87,P13-2008_P03-1021_1,Evaluable,Application,Alta,,COMPLETO,126,1
+88,E12-1023_P11-1052_0,Evaluable,Basis,Alta,El modelo se inspira en el trabajo citado.,COMPLETO,126,1
+89,P12-1084_D11-1099_5,Evaluable,Application,Media,Se sigue el mismo diseño experimental del trabajo citado.,COMPLETO,126,1
+90,W13-0505_S12-1020_0,Evaluable,Background,Alta,,COMPLETO,126,1
+91,D11-1083_W09-0424_0,Evaluable,Basis,Media,El modelo se implementa en el marco de Forest Rescoring.,COMPLETO,126,1
+92,D13-1155_D12-1022_0,Evaluable,Basis,Alta,La puntuación de informatividad se inspira en el trabajo citado.,COMPLETO,126,1
+93,W12-3019_D11-1142_0,Evaluable,Application,Alta,,COMPLETO,126,1
+94,W11-2159_W11-2123_0,Evaluable,Application,Alta,,COMPLETO,126,1
+95,W11-1601_P06-2034_0,Evaluable,Background,Alta,,COMPLETO,126,1
+96,W11-0122_E09-1005_1,Evaluable,Application,Alta,,COMPLETO,126,1
+97,N09-1041_P07-1069_0,Evaluable,Evidence,Media,Respalda la afirmación de que un sistema de resumen debería facilitar el descubrimiento de contenido.,COMPLETO,126,1
+98,E12-1055_D11-1033_0,Evaluable,Background,Alta,,COMPLETO,126,1
+99,N06-1025_P03-1023_0,Evaluable,Background,Alta,,COMPLETO,126,1
+100,D10-1026_P08-1058_1,Evaluable,Comparison,Alta,,COMPLETO,126,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W01-0514_A00-2004_1,Evaluable,Evidence,Media,La cita respalda la afirmación de que un segmento temático es una colección de oraciones.,COMPLETO,120,1
+2,P13-1058_A97-1052_0,Evaluable,Background,Alta,,COMPLETO,120,1
+3,P13-1081_N03-1017_0,Evaluable,Application,Alta,Aplica la heurística grow-diagonal-final tal como está.,COMPLETO,120,1
+4,P13-2142_W11-1701_0,Evaluable,Improvement / Modification,Alta,El objetivo es mejorar el enfoque supervisado citado.,COMPLETO,120,1
+5,W02-2034_P97-1005_0,Evaluable,Background,Media,Enumera aplicaciones posibles del análisis de subjetividad.,COMPLETO,120,1
+6,W11-0417_E03-1049_0,Evaluable,Background,Alta,,COMPLETO,120,1
+7,W04-0305_W96-0213_0,Evaluable,Application,Alta,Usa un etiquetador disponible públicamente.,COMPLETO,120,1
+8,J08-1002_J97-4005_0,Evaluable,Evidence,Media,Respalda la afirmación de que las restricciones introducen inconsistencias en modelos de frecuencia relativa.,COMPLETO,120,1
+9,N07-2027_P97-1032_0,Evaluable,Evidence,Media,Sustenta la afirmación de que EngCG-2 obtiene alta precisión.,COMPLETO,120,1
+10,J11-1006_E06-1045_0,Evaluable,Comparison,Media,Compara los efectos de género hallados con los de otros estudios.,COMPLETO,120,1
+11,D12-1003_P08-1088_0,Evaluable,Background,Media,"Enumera métodos previos sin léxico semilla; también señala limitaciones, pero predomina la revisión.",COMPLETO,120,1
+12,P08-1066_N04-1014_1,Evaluable,Background,Media,Describe la propuesta previa de transductores xRS; podría leerse como originador.,COMPLETO,120,1
+13,W06-0701_W05-0905_2,Evaluable,Evidence,Alta,Respalda que Rouge no siempre correlaciona con juicios humanos.,COMPLETO,120,1
+14,W13-0201_J88-2003_0,Evaluable,Background,Media,Remite al concepto de coerción aspectual; también podría ser Further Reading.,COMPLETO,120,1
+15,W11-2915_D08-1050_0,Evaluable,Background,Alta,,COMPLETO,120,1
+16,D11-1110_P10-1003_0,Evaluable,Comparison,Alta,Contrasta explícitamente la proyección sintáctica con el análisis bilingüe.,COMPLETO,120,1
+17,W08-0406_P06-1067_0,Evaluable,Evidence,Media,Respalda la afirmación sobre el problema de las decisiones deterministas.,COMPLETO,120,1
+18,P07-1116_W04-0107_1,Evaluable,Background,Alta,,COMPLETO,120,1
+19,D11-1080_N03-2002_0,Evaluable,Comparison,Alta,Relaciona y contrasta los modelos factorizados con el trabajo actual.,COMPLETO,120,1
+20,W10-2922_W08-2112_0,Evaluable,Gap,Alta,Señala limitaciones de modelos incrementales previos.,COMPLETO,120,1
+21,N13-1115_D11-1125_1,Evaluable,Application,Alta,Usa PRO para optimizar pesos.,COMPLETO,120,1
+22,P11-1020_P07-2045_0,Evaluable,Application,Alta,Usa Moses con configuración por defecto.,COMPLETO,120,1
+23,P10-1034_N06-1033_0,Evaluable,Application,Alta,Sigue la binarización inversa propuesta en el trabajo citado.,COMPLETO,120,1
+24,D13-1053_W06-3601_0,Evaluable,Background,Media,Menciona modelos árbol-a-cadena dentro de un resultado comparativo ya atribuido a otra cita.,COMPLETO,120,1
+25,W05-1202_P98-2127_0,Evaluable,Background,Alta,,COMPLETO,120,1
+26,W12-1509_P10-1103_3,Evaluable,Evidence,Media,Justifica no comparar estrategias porque ya se hizo en el trabajo citado.,COMPLETO,120,1
+27,P13-1089_D12-1102_2,Evaluable,Basis,Alta,El trabajo actual revisa y se construye sobre los esquemas de inferencia amortizada.,COMPLETO,120,1
+28,P09-1114_P07-1034_0,Evaluable,Background,Alta,,COMPLETO,120,1
+29,W10-1733_W02-1020_0,Evaluable,Background,Alta,,COMPLETO,120,1
+30,S13-1024_P08-1028_0,Evaluable,Background,Media,Presenta espacios vectoriales como enfoque conocido.,COMPLETO,120,1
+31,D12-1018_P10-3017_2,Evaluable,Application,Media,Sigue el procedimiento de extracción de argumentos del trabajo citado.,COMPLETO,120,1
+32,N13-1053_P12-2034_0,Evaluable,Evidence,Alta,Respalda que las técnicas basadas en n-gramas detectan engaño.,COMPLETO,120,1
+33,P13-2144_P09-1026_0,Evaluable,Background,Alta,,COMPLETO,120,1
+34,W07-0409_N03-1017_0,Evaluable,Background,Alta,,COMPLETO,120,1
+35,D12-1038_P09-2014_0,Evaluable,Background,Alta,,COMPLETO,120,1
+36,J05-4002_P99-1004_2,Evaluable,Application,Media,"Describe una medida que el trabajo usa, tomada del trabajo citado.",COMPLETO,120,1
+37,W07-1411_W04-1013_0,Evaluable,Application,Alta,Implementa las medidas tal como se definen en la obra citada.,COMPLETO,120,1
+38,W12-4905_N03-1028_0,Evaluable,Application,Media,Toma la explicación de CRF del trabajo citado para describir el método usado.,COMPLETO,120,1
+39,D13-1064_D09-1092_0,Evaluable,Comparison,Media,"Compara la intuición del modelo citado con la propia, señalando diferencias.",COMPLETO,120,1
+40,E09-1044_P05-1033_1,Evaluable,Identification of the Originator,Alta,Atribuye a la obra citada la descripción original de los sistemas jerárquicos.,COMPLETO,120,1
+41,W05-1103_W04-0601_0,Evaluable,Further Reading,Alta,Remite al proceso descrito en detalle en otra fuente.,COMPLETO,120,1
+42,W99-0614_W95-0103_0,Evaluable,Background,Alta,,COMPLETO,120,1
+43,P13-3020_P12-1065_0,Evaluable,Background,Alta,,COMPLETO,120,1
+44,W10-1763_P03-1021_0,Evaluable,Application,Alta,Usa MERT para ajustar parámetros.,COMPLETO,120,1
+45,P13-1092_P09-1113_0,Evaluable,Gap,Media,Presenta la supervisión distante como excepción y señala sus limitaciones.,COMPLETO,120,1
+46,W06-1616_P05-1012_3,Evaluable,Background,Media,Describe el uso de CLE en trabajo previo antes de señalar su limitación.,COMPLETO,120,1
+47,W12-3124_P09-1107_0,Evaluable,Background,Media,Describe trabajo previo que extendió IHMM de forma incremental.,COMPLETO,120,1
+48,W13-4006_W00-1407_0,Evaluable,Gap,Media,Indica que los trabajos previos no abordan el rechazo en diálogo.,COMPLETO,120,1
+49,N13-1023_P07-2045_0,Evaluable,Application,Alta,Usa el toolkit Moses.,COMPLETO,120,1
+50,P12-1028_J98-1004_0,Evaluable,Evidence,Media,Respalda la capacidad de capturar similitud léxica en tareas de WSD.,COMPLETO,120,1
+51,W12-2032_D10-1094_1,Evaluable,Evidence,Alta,Respalda que incluso aprendices avanzados cometen estos errores.,COMPLETO,120,1
+52,W01-0509_P99-1042_0,Evaluable,Background,Alta,,COMPLETO,120,1
+53,W10-1714_W08-0509_0,Evaluable,Application,Alta,Usa MGIZA para los alineamientos.,COMPLETO,120,1
+54,W10-2606_N06-1020_1,Evaluable,Background,Media,Resume trabajo reciente de adaptación de dominio; también respalda una afirmación.,COMPLETO,120,1
+55,N13-1039_N10-1004_0,Evaluable,Evidence,Media,Respalda que el análisis de transcripciones de habla va rezagado.,COMPLETO,120,1
+56,P04-1045_N04-1026_0,Evaluable,Evidence,Alta,Sustenta la hipótesis planteada.,COMPLETO,120,1
+57,W11-2408_N07-1071_0,Evaluable,Background,Media,Describe el refinamiento previo con preferencias selectivas inferenciales.,COMPLETO,120,1
+58,W11-1009_P05-1033_0,Evaluable,Identification of the Originator,Media,Se atribuye la introducción de los modelos jerárquicos.,COMPLETO,120,1
+59,W11-3412_P11-3005_0,Evaluable,Background,Media,Describe trabajo previo sobre extracción de multipalabras en urdu.,COMPLETO,120,1
+60,P11-2022_P05-1018_5,Evaluable,Comparison,Media,Contrasta la definición de mención con la de otras implementaciones.,COMPLETO,120,1
+61,P12-1096_N03-1017_0,Evaluable,Background,Alta,,COMPLETO,120,1
+62,D12-1107_P07-2045_1,Evaluable,Application,Alta,Usa el decodificador chart de Moses.,COMPLETO,120,1
+63,W12-3307_P03-1071_2,Evaluable,Evidence,Media,Respalda que el conjunto de Choi es de uso común.,COMPLETO,120,1
+64,J94-4005_P91-1030_0,Evaluable,Background,Alta,,COMPLETO,120,1
+65,W12-4204_W07-0718_0,Evaluable,Comparison,Media,Compara el ranking relativo con fluidez y adecuación absolutas.,COMPLETO,120,1
+66,N01-1025_W95-0107_2,Evaluable,Identification of the Originator,Alta,Indica que el conjunto fue introducido por primera vez en el trabajo citado.,COMPLETO,120,1
+67,W13-4907_E12-2012_1,Evaluable,Evidence,Media,Respalda la observación de que los idiomas se benefician de fases distintas.,COMPLETO,120,1
+68,D11-1045_W06-3119_1,Evaluable,Background,Alta,,COMPLETO,120,1
+69,P11-1021_P98-1035_0,Evaluable,Background,Media,Describe el modelo SLM; podría ser Basis si se construye sobre él.,COMPLETO,120,1
+70,W07-1522_P04-1019_0,Evaluable,Background,Alta,,COMPLETO,120,1
+71,N12-1004_P10-1147_1,Evaluable,Improvement / Modification,Media,Aproxima con BP el modelo citado.,COMPLETO,120,1
+72,P12-1048_P07-2045_0,Evaluable,Application,Alta,Usa Moses como decodificador.,COMPLETO,120,1
+73,W10-1106_W08-0122_0,Evaluable,Background,Alta,,COMPLETO,120,1
+74,W12-1623_P09-2020_1,Evaluable,Comparison,Media,Explica por qué no se compara con ese sistema y contrasta sus condiciones de evaluación.,COMPLETO,120,1
+75,J11-2002_W05-0617_2,Evaluable,Background,Alta,,COMPLETO,120,1
+76,W06-2910_P03-1009_0,Evaluable,Background,Alta,,COMPLETO,120,1
+77,W11-1004_D10-1041_1,Evaluable,Evidence,Media,Respalda la descripción de que solo se permiten pocas paráfrasis en la construcción.,COMPLETO,120,1
+78,P06-1006_P04-1043_2,Evaluable,Application,Alta,Usa el kernel de convolución de árboles implementado por el trabajo citado.,COMPLETO,120,1
+79,P13-2073_P07-2045_1,Evaluable,Application,Alta,Usa Moses.,COMPLETO,120,1
+80,W04-0845_P97-1003_0,Evaluable,Application,Alta,Usa el analizador sintáctico para obtener árboles.,COMPLETO,120,1
+81,W10-2101_W09-1905_1,Evaluable,Background,Media,Describe IGT como formato estándar de datos.,COMPLETO,120,1
+82,D13-1116_N06-1024_1,Evaluable,Comparison,Alta,Contrasta los resultados propios con los del trabajo citado.,COMPLETO,120,1
+83,P11-1063_P07-1089_0,Evaluable,Background,Alta,,COMPLETO,120,1
+84,W09-3514_N04-1033_0,Evaluable,Application,Alta,Usa el algoritmo de decodificación frasal monótona.,COMPLETO,120,1
+85,W12-1914_D10-1083_0,Evaluable,Background,Alta,,COMPLETO,120,1
+86,D09-1151_P03-2013_0,Evaluable,Basis,Media,El modelo asume el concepto de zero adnominal definido en el trabajo citado.,COMPLETO,120,1
+87,W04-1906_P98-1013_0,Evaluable,Background,Alta,,COMPLETO,120,1
+88,P08-1025_W05-1507_1,Evaluable,Background,Media,Describe métodos alternativos de decodificación; incluye una limitación.,COMPLETO,120,1
+89,P13-1109_W02-0902_1,Evaluable,Background,Alta,,COMPLETO,120,1
+90,J13-4008_N07-1051_0,Evaluable,Background,Media,Describe el uso del modelo de división de estados en trabajo previo.,COMPLETO,120,1
+91,J02-1001_E95-1002_0,Evaluable,Improvement / Modification,Alta,Extiende el componente semántico UDRT del trabajo citado.,COMPLETO,120,1
+92,W03-0401_P97-1003_2,Evaluable,Evidence,Media,Respalda que las dependencias son cruciales para la desambiguación.,COMPLETO,120,1
+93,D10-1014_W06-3601_0,Evaluable,Background,Media,Menciona modelos árbol-a-cadena dentro de un resultado comparativo.,COMPLETO,120,1
+94,P06-1097_P03-1021_2,Evaluable,Application,Alta,Ejecuta Maximum BLEU del trabajo citado.,COMPLETO,120,1
+95,P02-1035_W01-0521_0,Evaluable,Comparison,Alta,Vincula el efecto de corpus observado con el hallado en el trabajo citado.,COMPLETO,120,1
+96,N13-1037_P11-1096_0,Evaluable,Background,Alta,,COMPLETO,120,1
+97,W08-0907_E03-1072_0,Evaluable,Background,Alta,,COMPLETO,120,1
+98,W13-2326_P10-1142_0,Evaluable,Gap,Media,Señala que los intentos previos aún dejan espacio de mejora.,COMPLETO,120,1
+99,N09-1028_P03-1021_0,Evaluable,Application,Alta,Usa MERT para optimizar pesos.,COMPLETO,120,1
+100,W11-3805_P09-1108_0,Evaluable,Background,Media,Describe el algoritmo de k-mejores en A* antes de señalar la limitación de las estimaciones.,COMPLETO,120,1

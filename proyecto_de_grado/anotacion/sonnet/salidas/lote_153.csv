@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W13-5412_E09-1013_2,Evaluable,Application,Alta,Aplica el modelo LDA tal cual sobre sus características.,COMPLETO,153,1
+2,W10-1708_W09-0411_0,Evaluable,Basis,Alta,Presenta la versión mejorada del sistema híbrido del año anterior.,COMPLETO,153,1
+3,P10-1145_P05-1034_0,Evaluable,Comparison,Media,Contrasta su modelo con enfoques árbol a árbol convencionales que usan un solo tipo de árbol.,COMPLETO,153,1
+4,P06-1123_W02-1039_1,Evaluable,Comparison,Alta,Señala diferencias de diseño entre su estudio y el citado.,COMPLETO,153,1
+5,W12-6337_N09-2064_0,Evaluable,Background,Media,Contexto sobre el estado del análisis sintáctico del inglés.,COMPLETO,153,1
+6,P11-1056_N07-1015_2,Evaluable,Comparison,Alta,Compara su sistema base con sistemas RE de última generación.,COMPLETO,153,1
+7,E06-3001_P88-1012_0,Evaluable,Background,Alta,Enumera modelos previos de discurso basados en conocimiento del mundo.,COMPLETO,153,1
+8,J05-4002_W03-1011_5,Evaluable,Comparison,Media,Contrasta la exhaustividad de sus experimentos con los del trabajo citado.,COMPLETO,153,1
+9,J11-3002_P07-1063_2,Evaluable,Further Reading,Alta,Remite a la fuente para una discusión más detallada.,COMPLETO,153,1
+10,D12-1052_W04-3250_0,Evaluable,Application,Alta,Usa la prueba de bootstrap tal como fue descrita.,COMPLETO,153,1
+11,D09-1111_N03-1017_0,Evaluable,Comparison,Media,Señala similitud con soluciones de SMT por frases y luego diferencias.,COMPLETO,153,1
+12,W11-2102_D10-1092_1,Evaluable,Comparison,Alta,Contrasta su enfoque con trabajo previo (no depende de coincidencia léxica).,COMPLETO,153,1
+13,W11-1701_W10-0214_5,Evaluable,Evidence,Media,Respalda la utilidad de la estructura de dependencias con investigación previa.,COMPLETO,153,1
+14,W06-3806_N04-3012_0,Evaluable,Application,Alta,Usa el paquete wn::similarity como herramienta.,COMPLETO,153,1
+15,W13-0803_P03-1021_1,Evaluable,Evidence,Alta,Respalda la afirmación de que Batch MIRA es superior a MERT.,COMPLETO,153,1
+16,N13-2006_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford para analizar la ontología.,COMPLETO,153,1
+17,P05-1022_P03-1054_0,Evaluable,Basis,Media,La característica se inspira en una similar del trabajo citado.,COMPLETO,153,1
+18,P13-1099_W09-1802_0,Evaluable,Identification of the Originator,Alta,Atribuye la introducción del ILP basado en conceptos.,COMPLETO,153,1
+19,P12-2066_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford para obtener árboles.,COMPLETO,153,1
+20,J13-1006_N03-1016_4,Evaluable,Comparison,Baja,Indica que su binarización coincide con la del trabajo citado; podría ser Application.,COMPLETO,153,1
+21,W09-3807_P06-2041_0,Evaluable,Evidence,Alta,Respalda que LIBSVM da los resultados más exactos.,COMPLETO,153,1
+22,W11-0610_N01-1021_0,Evaluable,Background,Media,Presenta la surprisal como medida psicolingüística habitual.,COMPLETO,153,1
+23,P03-1002_P02-1031_4,Evaluable,Comparison,Alta,Compara resultados con el enfoque estadístico citado.,COMPLETO,153,1
+24,W12-2013_P11-2038_4,Evaluable,Application,Alta,Sigue el procedimiento del trabajo citado para entrenar el SVM.,COMPLETO,153,1
+25,W11-3708_P09-1027_3,Evaluable,Background,Alta,Describe trabajo previo que extendió el de Banea.,COMPLETO,153,1
+26,W13-2810_P10-1017_0,Evaluable,Background,Media,Enumera trabajos previos sobre gramáticas ITG parcheadas.,COMPLETO,153,1
+27,P06-1052_W05-1105_0,Evaluable,Evidence,Media,Respalda que los algoritmos permiten enumerar eficientemente desde una USR.,COMPLETO,153,1
+28,P09-1015_N04-1043_0,Evaluable,Basis,Alta,El enfoque está inspirado en el trabajo citado.,COMPLETO,153,1
+29,P12-1002_P05-1033_0,Evaluable,Basis,Alta,El trabajo se basa en el marco jerárquico de traducción.,COMPLETO,153,1
+30,P08-1077_W04-3206_2,Evaluable,Comparison,Alta,Compara precisiones con TEASE.,COMPLETO,153,1
+31,D09-1004_W04-3212_2,Evaluable,Improvement / Modification,Alta,Sus técnicas de poda mejoran el algoritmo original.,COMPLETO,153,1
+32,J08-1003_N04-1013_1,Evaluable,Basis,Media,Adopta la terminología del trabajo citado.,COMPLETO,153,1
+33,P12-1002_W11-2123_0,Evaluable,Application,Alta,Usa kenlm para binarizar los modelos.,COMPLETO,153,1
+34,P06-1077_P04-1083_0,Evaluable,Background,Alta,Enumera trabajos previos sobre traducción como análisis sincrónico.,COMPLETO,153,1
+35,W07-1409_P98-1013_0,Evaluable,Evidence,Baja,Respalda la importancia del conocimiento sobre situaciones estereotípicas.,COMPLETO,153,1
+36,N13-1116_W12-3139_0,Evaluable,Evidence,Alta,Respalda que los modelos grandes mejoran la calidad.,COMPLETO,153,1
+37,W10-3005_P05-1012_0,Evaluable,Application,Alta,Usa el parser de dependencias citado para generar características.,COMPLETO,153,1
+38,N13-1115_P12-1098_0,Evaluable,Background,Media,Resume estudios previos sobre la tunabilidad de métricas.,COMPLETO,153,1
+39,P11-1134_P05-1074_0,Evaluable,Gap,Alta,Cita trabajos que señalan limitaciones de los recursos.,COMPLETO,153,1
+40,P13-2140_P10-1014_0,Evaluable,Application,Alta,Integra su pipeline en el sistema IE citado.,COMPLETO,153,1
+41,W10-2927_W04-0308_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para la semántica del sistema de transiciones.,COMPLETO,153,1
+42,S13-2021_S12-1108_0,Evaluable,Basis,Media,Sigue el enfoque previo de usar MT para el entailment.,COMPLETO,153,1
+43,W09-3814_W03-1008_0,Evaluable,Background,Alta,Describe trabajo previo que usó rasgos de análisis profundo.,COMPLETO,153,1
+44,W13-3604_P12-1101_1,Evaluable,Application,Alta,Usa el Treelet Language Model para corregir errores.,COMPLETO,153,1
+45,P11-1160_P06-2066_0,Evaluable,Evidence,Media,Respalda las restricciones requeridas por los parsers tradicionales.,COMPLETO,153,1
+46,W10-2917_N06-1013_1,Evaluable,Comparison,Alta,Contrasta su estrategia con la de Ayan y Dorr.,COMPLETO,153,1
+47,W11-2402_E09-1064_0,Evaluable,Evidence,Alta,Respalda que los sistemas léxicos simples son líneas base fuertes.,COMPLETO,153,1
+48,P12-1041_N10-1061_4,Evaluable,Comparison,Alta,Declara la comparación principal contra el enfoque citado.,COMPLETO,153,1
+49,W11-2402_E09-1064_2,Evaluable,Comparison,Alta,Compara con los mejores sistemas de RTE.,COMPLETO,153,1
+50,P98-1112_A97-1030_0,Evaluable,Background,Alta,Ejemplifica trabajo previo sobre reconocimiento de entidades.,COMPLETO,153,1
+51,W03-1019_W02-1002_1,Evaluable,Evidence,Alta,Respalda empíricamente la elección de modelos discriminativos.,COMPLETO,153,1
+52,J09-1005_P99-1041_5,Evaluable,Background,Alta,Revisa trabajos que identifican MWEs mediante pistas lingüísticas.,COMPLETO,153,1
+53,P08-1003_P06-1101_0,Evaluable,Background,Alta,Describe métodos actuales de extracción de información.,COMPLETO,153,1
+54,W10-3812_W04-3250_0,Evaluable,Application,Alta,Sigue las directrices de la prueba de significancia citada.,COMPLETO,153,1
+55,N10-1016_P00-1056_0,Evaluable,Application,Alta,Ejecuta GIZA++ sobre los corpus.,COMPLETO,153,1
+56,P13-1003_E06-1004_0,Evaluable,Evidence,Alta,Respalda que calcular expectativas es difícil.,COMPLETO,153,1
+57,N13-1039_P11-1038_0,Evaluable,Background,Baja,Menciona la normalización de Twitter como enfoque alternativo no adoptado.,COMPLETO,153,1
+58,P11-2027_W07-0718_1,Evaluable,Comparison,Alta,Contrasta su uso de Pearson con el Spearman del trabajo citado.,COMPLETO,153,1
+59,P13-1160_N13-1100_0,Evaluable,Background,Alta,Describe trabajo previo que extendió otro anterior.,COMPLETO,153,1
+60,W09-3734_J91-4003_1,Evaluable,Basis,Media,Construye sobre la estructura qualia del trabajo citado añadiendo roles.,COMPLETO,153,1
+61,D09-1143_P04-1043_1,Evaluable,Application,Alta,Usa las Tree Kernel Tools para los experimentos.,COMPLETO,153,1
+62,W06-2912_W00-0717_0,Evaluable,Evidence,Media,Respalda que existen etiquetadores no supervisados precisos combinables con parsing.,COMPLETO,153,1
+63,N10-1119_E09-1077_1,Evaluable,Background,Media,Cita trabajos previos que usaron propagación en grafos.,COMPLETO,153,1
+64,P13-2114_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford para generar rasgos.,COMPLETO,153,1
+65,D10-1094_P03-2026_1,Evaluable,Evidence,Alta,Respalda que tasas de error similares se han reportado.,COMPLETO,153,1
+66,W02-1029_P02-1030_2,Evaluable,Evidence,Media,Respalda con hallazgos previos que contextos complejos rinden mejor.,COMPLETO,153,1
+67,P11-1092_N10-1018_0,Evaluable,Background,Media,Resume hallazgos previos sobre la palabra observada como rasgo.,COMPLETO,153,1
+68,Q13-1004_D10-1125_0,Evaluable,Background,Media,Presenta la descomposición dual como técnica conocida.,COMPLETO,153,1
+69,P04-1087_P02-1047_0,Evaluable,Background,Alta,Describe trabajo previo sobre aprendizaje no supervisado de relaciones de discurso.,COMPLETO,153,1
+70,P09-2010_W06-2920_1,Evaluable,Application,Alta,Usa la versión del treebank de la tarea compartida CoNLL-X.,COMPLETO,153,1
+71,D12-1132_N09-1037_0,Evaluable,Background,Alta,Resume esfuerzos previos en modelado conjunto.,COMPLETO,153,1
+72,P13-1080_P07-2045_2,Evaluable,Application,Alta,Usa el componente sintáctico de Moses como sistema base.,COMPLETO,153,1
+73,W00-0205_J88-2005_0,Evaluable,Evidence,Media,Respalda la afirmación de que el aspecto léxico interpreta secuencias de eventos.,COMPLETO,153,1
+74,P09-1025_P08-1090_0,Evaluable,Basis,Alta,Extrae cadenas de eventos similares a las propuestas por el trabajo citado.,COMPLETO,153,1
+75,W11-0303_W10-2902_3,Evaluable,Evidence,Alta,Respalda que solo el 10% de las oraciones estaban anotadas.,COMPLETO,153,1
+76,D13-1204_P10-1076_0,Evaluable,Comparison,Alta,Contrasta sus combinadores con métodos convencionales de combinación en MT.,COMPLETO,153,1
+77,N10-1061_N09-1019_2,Evaluable,Comparison,Alta,Compara la dificultad de su tarea con el NER no supervisado citado.,COMPLETO,153,1
+78,E12-1049_P09-1113_0,Evaluable,Basis,Media,Adopta la supervisión distante como enfoque; podría ser Further Reading.,COMPLETO,153,1
+79,W10-2407_W09-3407_0,Evaluable,Background,Alta,Enumera trabajos previos de transliteración por pares de lenguas.,COMPLETO,153,1
+80,P87-1021_P87-1001_0,Evaluable,Identification of the Originator,Media,Atribuye la terminología de la estructura tripartita al trabajo citado.,COMPLETO,153,1
+81,W06-2209_W04-3202_1,Evaluable,Gap,Media,Señala una limitación del aprendizaje activo que justifica la anotación activa.,COMPLETO,153,1
+82,D09-1155_W06-1613_0,Evaluable,Comparison,Media,Indica la similitud del esquema con clasificaciones automáticas de función de cita.,COMPLETO,153,1
+83,N10-1068_P09-1057_0,Evaluable,Background,Alta,Enumera problemas previos abordados con cascadas de autómatas.,COMPLETO,153,1
+84,P11-1149_P06-2080_0,Evaluable,Background,Alta,Enumera trabajos previos de extracción de información.,COMPLETO,153,1
+85,E09-1011_N06-2013_1,Evaluable,Background,Alta,Resume hallazgos previos sobre esquemas de segmentación del árabe.,COMPLETO,153,1
+86,J12-4004_N09-4002_0,Evaluable,Evidence,Alta,Respalda la suposición de que más datos es mejor.,COMPLETO,153,1
+87,P10-1024_P09-1004_1,Evaluable,Evidence,Media,Respalda que la identificación de argumentos es difícil sin supervisión.,COMPLETO,153,1
+88,W12-3135_P96-1025_0,Evaluable,Application,Media,Usa heurísticas de cabeza similares a las del trabajo citado.,COMPLETO,153,1
+89,W11-1716_P97-1023_1,Evaluable,Basis,Alta,Se apoya en el principio de las conjunciones para expandir el léxico.,COMPLETO,153,1
+90,N13-1106_W96-0213_0,Evaluable,Application,Alta,Usa MXPOST para etiquetar.,COMPLETO,153,1
+91,W13-3210_N10-1013_1,Evaluable,Background,Alta,Enumera trabajos que adoptaron la idea de prototipos múltiples.,COMPLETO,153,1
+92,W03-1803_N01-1006_0,Evaluable,Application,Alta,Usa fnTBL para etiquetar el BNC.,COMPLETO,153,1
+93,P05-1023_P04-1013_0,Evaluable,Further Reading,Media,Remite a una discusión sobre por qué los modelos generativos son mejores.,COMPLETO,153,1
+94,P12-1062_W11-2836_0,Evaluable,Comparison,Alta,Su hallazgo coincide con el del trabajo citado.,COMPLETO,153,1
+95,P12-1079_P06-2124_0,Evaluable,Background,Alta,Resume trabajos previos sobre modelos de traducción por tema.,COMPLETO,153,1
+96,W12-2032_W10-1004_3,Evaluable,Basis,Media,Sigue la distinción de paradigmas de entrenamiento del trabajo citado.,COMPLETO,153,1
+97,N10-1079_W02-1012_0,Evaluable,Evidence,Alta,Justifica el uso de modelos HMM por su mejor desempeño.,COMPLETO,153,1
+98,P12-1106_P11-1100_1,Evaluable,Basis,Media,Su modelo parte de la matriz de roles de discurso del trabajo citado.,COMPLETO,153,1
+99,W13-2257_P07-2045_0,Evaluable,Application,Alta,Construye los sistemas con el toolkit Moses.,COMPLETO,153,1
+100,J02-1001_P98-1027_0,Evaluable,Further Reading,Alta,Remite a una presentación abreviada del argumento.,COMPLETO,153,1

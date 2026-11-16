@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P12-2023_P11-2080_0,Evaluable,Improvement / Modification,Alta,Extends the notion of conditioning on provenance by removing the mapping step.,COMPLETO,67,1
+2,W11-0136_W10-2806_1,Evaluable,Background,Media,Describes what the cited work showed on inner products in quotient algebras.,COMPLETO,67,1
+3,W13-1726_N07-1051_0,Evaluable,Application,Alta,Uses the Berkeley parser to build parse trees.,COMPLETO,67,1
+4,W09-2306_P08-1064_0,Evaluable,Background,Alta,Enumerates prior syntax-based SMT models.,COMPLETO,67,1
+5,N06-1036_N03-2002_3,Evaluable,Application,Alta,Uses the SRILM toolkit with extensions for training.,COMPLETO,67,1
+6,W09-2506_P05-1014_0,Evaluable,Gap,Alta,Cited for precision problems of existing rule-based approaches.,COMPLETO,67,1
+7,W12-0701_D11-1118_4,Evaluable,Comparison,Alta,Explicitly compares the results with the cited work.,COMPLETO,67,1
+8,P11-1064_P06-1124_3,Evaluable,Basis,Media,Builds on the Chinese Restaurant Process representation of the cited model.,COMPLETO,67,1
+9,D10-1042_P04-1021_0,Evaluable,Background,Alta,Lists statistical transliteration approaches as prior work.,COMPLETO,67,1
+10,P12-1028_P98-1013_0,Evaluable,Background,Alta,Introduces FrameNet as a widely used verb categorization scheme.,COMPLETO,67,1
+11,W07-1033_W04-1213_0,Evaluable,Background,Media,Refers to the shared task results as prior context on long names.,COMPLETO,67,1
+12,P13-1076_D12-1046_0,Evaluable,Evidence,Media,Supports the claim that segmentation and tagging interact strongly.,COMPLETO,67,1
+13,P13-1083_P07-1035_0,Evaluable,Improvement / Modification,Alta,Extends the monolingual infinite tree model to a bilingual setting.,COMPLETO,67,1
+14,W10-2920_P01-1008_0,Evaluable,Comparison,Alta,Contrasts the data set with paraphrase corpora.,COMPLETO,67,1
+15,W11-2117_W11-2123_0,Evaluable,Application,Alta,Uses KenLM for inference.,COMPLETO,67,1
+16,P09-1072_P08-1028_0,Evaluable,Background,Alta,Describes the framework proposed in the cited work.,COMPLETO,67,1
+17,W13-3518_N10-1115_0,Evaluable,Comparison,Media,Contrasts the Easy-First non-directional parser with the left-to-right approach.,COMPLETO,67,1
+18,S10-1005_J91-4003_0,Evaluable,Background,Media,Cited among works on type coercion and metonymy.,COMPLETO,67,1
+19,P10-1044_N07-1071_1,Evaluable,Background,Alta,Lists class-based approaches in related work.,COMPLETO,67,1
+20,P11-3001_W08-0336_0,Evaluable,Gap,Media,Describes prior bilingually motivated segmentation work whose performance is then said to be limited.,COMPLETO,67,1
+21,D13-1057_N12-1087_0,Evaluable,Improvement / Modification,Media,Augments the model with a temperature-like parameter from the cited work.,COMPLETO,67,1
+22,P07-1122_W06-2932_1,Evaluable,Comparison,Alta,Compares results against the top shared-task systems.,COMPLETO,67,1
+23,W11-1207_W08-0509_0,Evaluable,Application,Alta,Uses MGiza++ to align the data.,COMPLETO,67,1
+24,W10-2101_W07-1317_0,Evaluable,Background,Media,Cited as prior work on algorithms for language family reconstruction.,COMPLETO,67,1
+25,N07-2008_N03-1017_0,Evaluable,Background,Alta,Lists applications of parallel corpora.,COMPLETO,67,1
+26,W12-6308_P10-1110_1,Evaluable,Basis,Media,Follows the cited deductive system formalization.,COMPLETO,67,1
+27,J08-1002_W03-1013_2,Evaluable,Background,Alta,Reviews state-of-the-art studies adopting feature forest models.,COMPLETO,67,1
+28,P97-1016_A92-1021_0,Evaluable,Application,Alta,Integrates the rule-based tagger as a preprocessor.,COMPLETO,67,1
+29,P12-2045_W09-1401_0,Evaluable,Gap,Media,Cited as an example of event types being brittle to domains such as bio-text mining.,COMPLETO,67,1
+30,P11-1070_E06-1011_4,Evaluable,Comparison,Alta,Compares improved numbers against the cited parser's results.,COMPLETO,67,1
+31,W12-0704_J07-2003_0,Evaluable,Background,Alta,Lists approaches to reordering in the translation model.,COMPLETO,67,1
+32,W13-2325_S12-1051_0,Evaluable,Background,Media,Mentions the STS task as an example of ordinal-scale judgements.,COMPLETO,67,1
+33,Q13-1035_N12-1047_0,Evaluable,Application,Alta,Uses batch MIRA for tuning.,COMPLETO,67,1
+34,W10-1716_W09-0423_0,Evaluable,Comparison,Alta,Describes differences with respect to the previous year's system.,COMPLETO,67,1
+35,Q13-1007_W12-1909_3,Evaluable,Comparison,Alta,Compares results against participants of the PASCAL Challenge.,COMPLETO,67,1
+36,P11-2075_P09-1027_0,Evaluable,Background,Media,Cites successful cross-lingual adaptation studies before contrasting with them.,COMPLETO,67,1
+37,P11-1023_W05-0904_0,Evaluable,Comparison,Media,Contrasts the syntactic structural approach with Voss and Tate.,COMPLETO,67,1
+38,W09-2306_P08-1064_5,Evaluable,Gap,Alta,Says the cited definition is rough and not very accurate.,COMPLETO,67,1
+39,J12-1003_W03-1011_0,Evaluable,Application,Media,Uses the Cover measure suggested in the cited work.,COMPLETO,67,1
+40,P13-1092_D11-1140_1,Evaluable,Comparison,Alta,Compares accuracy with state-of-the-art supervised results.,COMPLETO,67,1
+41,P13-2083_D09-1120_0,Evaluable,Background,Alta,Cites research on entity coreference resolution.,COMPLETO,67,1
+42,W10-2926_P03-1004_0,Evaluable,Gap,Alta,Says these approaches lack a theoretical characterization.,COMPLETO,67,1
+43,D13-1105_W13-2301_0,Evaluable,Further Reading,Alta,Refers to more details in the cited works.,COMPLETO,67,1
+44,P12-1096_W06-3108_0,Evaluable,Background,Alta,Lists discriminative distortion models in prior work.,COMPLETO,67,1
+45,D10-1049_P09-1011_2,Evaluable,Comparison,Alta,Compares BLEU against a model similar to the cited one.,COMPLETO,67,1
+46,D09-1105_P06-1067_0,Evaluable,Evidence,Media,Cites finding as support for the inadequacy of such decoders.,COMPLETO,67,1
+47,W13-5412_P07-1005_0,Evaluable,Evidence,Media,Supports the claim that lexical disambiguation improves SMT.,COMPLETO,67,1
+48,D11-1114_W07-2216_0,Evaluable,Background,Alta,Reviews recent MST-based non-projective parsing work.,COMPLETO,67,1
+49,N10-1140_N03-1017_0,Evaluable,Evidence,Alta,Supports the experimental finding that longer phrases yield better output.,COMPLETO,67,1
+50,P13-1143_D09-1052_0,Evaluable,Application,Alta,Trains classifiers with the cited algorithm.,COMPLETO,67,1
+51,N09-1029_E99-1010_0,Evaluable,Application,Alta,Uses the mkcls toolkit for word classification.,COMPLETO,67,1
+52,W05-0803_P04-1083_0,Evaluable,Gap,Media,"Prior work only viewed grammar induction as instrumental to translation, motivating the present paper.",COMPLETO,67,1
+53,P13-4033_W11-2123_0,Evaluable,Application,Alta,Uses the KenLM toolkit for language models.,COMPLETO,67,1
+54,P04-1042_P00-1065_1,Evaluable,Comparison,Media,"Relates the feature to prior use, noting it was first used there.",COMPLETO,67,1
+55,P10-1020_P03-1069_0,Evaluable,Evidence,Alta,Supports the claim of low human agreement.,COMPLETO,67,1
+56,W10-1729_P07-2045_0,Evaluable,Application,Alta,Trains systems with the Moses toolkit.,COMPLETO,67,1
+57,W09-2403_P98-2127_0,Evaluable,Application,Alta,The method employs the automatically created thesaurus from the cited work.,COMPLETO,67,1
+58,W13-2254_W11-2112_0,Evaluable,Background,Media,"Describes the TINE metric as previous work, noting a lack of tuning.",COMPLETO,67,1
+59,W10-1735_P08-1115_1,Evaluable,Application,Alta,Relies on the existing Moses implementation of lattice decoding.,COMPLETO,67,1
+60,P10-1020_P05-1018_1,Evaluable,Basis,Media,Introduces the entity grid on which the work builds.,COMPLETO,67,1
+61,W13-2517_P97-1063_0,Evaluable,Background,Alta,Lists applications such as bilingual lexical acquisition.,COMPLETO,67,1
+62,W13-2805_P08-1108_0,Evaluable,Gap,Media,Describes the prior combination and notes it did not add other parser types.,COMPLETO,67,1
+63,P11-1144_N10-1138_2,Evaluable,Basis,Alta,SEMAFOR from the cited work is extended in this work.,COMPLETO,67,1
+64,J08-1003_E03-1005_0,Evaluable,Background,Alta,Part of a list of treebank-based grammar acquisition efforts.,COMPLETO,67,1
+65,P07-1066_P06-2124_0,Evaluable,Background,Alta,Related work section describing BiTAM.,COMPLETO,67,1
+66,W11-1724_P09-1027_2,Evaluable,Evidence,Media,Justifies the feature choice as suggested by the cited work.,COMPLETO,67,1
+67,S12-1032_W11-2402_3,Evaluable,Comparison,Alta,Restricts resources for consistency with the best prior model.,COMPLETO,67,1
+68,N09-2037_P05-1036_0,Evaluable,Background,Alta,Cites the common sentence compression paradigm.,COMPLETO,67,1
+69,P13-1174_D11-1101_3,Evaluable,Comparison,Alta,Compares performance with HITS and PageRank approaches.,COMPLETO,67,1
+70,P13-4032_N10-1011_0,Evaluable,Gap,Alta,Says image-enhanced models have only scratched the potential.,COMPLETO,67,1
+71,P06-1055_P03-1054_0,Evaluable,Evidence,Alta,Supports the claim that a naive treebank PCFG performs poorly.,COMPLETO,67,1
+72,D13-1112_P04-1015_0,Evaluable,Evidence,Alta,Supports the claim that the standard perceptron performs poorly with search error.,COMPLETO,67,1
+73,W13-2245_W12-3102_0,Evaluable,Further Reading,Alta,Directs readers to other descriptions of QE tasks.,COMPLETO,67,1
+74,D10-1083_P09-1057_1,Evaluable,Background,Alta,Related work listing unsupervised POS tagging progress.,COMPLETO,67,1
+75,P10-1126_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser to obtain dependencies.,COMPLETO,67,1
+76,W13-0108_P03-1054_0,Evaluable,Application,Alta,Uses the pre-trained Stanford PCFG model.,COMPLETO,67,1
+77,E09-1018_W05-0612_1,Evaluable,Application,Media,Uses the scoring metric also used in the cited work.,COMPLETO,67,1
+78,P06-1023_P04-1082_2,Evaluable,Comparison,Alta,Table compares accuracies with the cited work.,COMPLETO,67,1
+79,P08-1020_P98-1116_0,Evaluable,Background,Media,Describes the cited work as the first to apply SLMs to SNLG.,COMPLETO,67,1
+80,A00-1009_A97-1039_1,Evaluable,Background,Alta,Describes the framework's development history.,COMPLETO,67,1
+81,D13-1027_P02-1014_0,Evaluable,Background,Media,Cites common coarse performance analysis practice.,COMPLETO,67,1
+82,W13-0808_E09-1055_0,Evaluable,Background,Alta,Cites LCFRS as an established formalism for discontinuity.,COMPLETO,67,1
+83,W12-3618_W11-1508_1,Evaluable,Background,Baja,Refers to the improved NE tagger described in prior work.,COMPLETO,67,1
+84,D09-1112_N01-1025_0,Evaluable,Application,Alta,Uses YamCHA to train the baseline.,COMPLETO,67,1
+85,P13-2018_P03-1054_1,Evaluable,Comparison,Alta,Includes the cited parser results in the comparison table.,COMPLETO,67,1
+86,J09-2001_W93-0307_0,Evaluable,Background,Media,Describes the cited observation on PP attachment preferences.,COMPLETO,67,1
+87,W07-2206_N04-1013_0,Evaluable,Background,Alta,Lists statistical parsing with linguistically motivated grammars.,COMPLETO,67,1
+88,D11-1144_W03-0428_0,Evaluable,Evidence,Media,Supports the claim that sophisticated unknown word models are needed.,COMPLETO,67,1
+89,P10-1112_P03-1054_2,Evaluable,Application,Alta,Includes ten of the cited refinement features.,COMPLETO,67,1
+90,W11-0803_W03-1812_0,Evaluable,Evidence,Alta,Cited finding is confirmed by the current experiment.,COMPLETO,67,1
+91,J11-2002_W08-0704_1,Evaluable,Background,Alta,Notes other works containing generative models.,COMPLETO,67,1
+92,W12-3622_W10-0701_0,Evaluable,Background,Alta,Cites exploration of MTurk usability for annotation.,COMPLETO,67,1
+93,P12-1023_E06-1011_5,Evaluable,Comparison,Alta,Compares with the second-order parser of the cited work.,COMPLETO,67,1
+94,W10-3809_N09-3004_0,Evaluable,Background,Media,Mentions syntactic language models as a possible feature source.,COMPLETO,67,1
+95,E95-1003_J93-1007_0,Evaluable,Gap,Alta,"Notes the cited effort assesses only one stage, leaving others unassessed.",COMPLETO,67,1
+96,P13-1001_W04-0308_0,Evaluable,Comparison,Alta,Contrasts the algorithm with monolingual shift-reduce parsers.,COMPLETO,67,1
+97,W09-2501_W05-1210_0,Evaluable,Comparison,Alta,Contrasts results with previous RTE studies on paraphrases.,COMPLETO,67,1
+98,J13-1009_P06-1055_2,Evaluable,Background,Media,Cites the Berkeley parser's memoryless binarization.,COMPLETO,67,1
+99,S13-2088_S13-2052_1,Evaluable,Further Reading,Alta,Refers to the task description paper for further details.,COMPLETO,67,1
+100,W06-1110_W96-0102_0,Evaluable,Background,Alta,Cites memory-based learning applications to NLP tasks.,COMPLETO,67,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J13-4004_N09-1065_0,Evaluable,Background,Media,Enumera trabajos previos sobre inferencia global en correferencia.,COMPLETO,41,1
+2,D13-1184_P11-1138_4,Evaluable,Application,Media,Se usan los mismos 4 conjuntos de datos que el trabajo citado.,COMPLETO,41,1
+3,P11-2015_P03-1054_0,Evaluable,Application,Alta,Usa directamente la implementación PCFG del trabajo citado.,COMPLETO,41,1
+4,J95-1002_J88-3006_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para una discusión más detallada del tema.,COMPLETO,41,1
+5,D12-1038_P07-2055_0,Evaluable,Background,Alta,Enumera estrategias de trabajos previos para segmentación y etiquetado.,COMPLETO,41,1
+6,W09-1117_P08-1088_5,Evaluable,Background,Media,Resume que la literatura previa se centra en sustantivos.,COMPLETO,41,1
+7,D11-1097_D10-1113_6,Evaluable,Application,Media,Sigue el modelo de contexto de ventana del trabajo citado sin modificarlo.,COMPLETO,41,1
+8,W04-2808_N03-4011_0,Evaluable,Background,Media,Se cita como ejemplo de algoritmo de agrupamiento no supervisado.,COMPLETO,41,1
+9,W11-2120_W05-0908_0,Evaluable,Application,Alta,Aplica bootstrap resampling como prueba de significancia.,COMPLETO,41,1
+10,N13-1070_P09-1087_1,Evaluable,Background,Alta,Menciona aplicaciones previas del análisis de dependencias.,COMPLETO,41,1
+11,W07-2202_P05-1011_2,Evaluable,Background,Media,Describe cómo se desarrolló originalmente el parser Enju.,COMPLETO,41,1
+12,D08-1042_E06-1015_0,Evaluable,Background,Media,Describe un algoritmo eficiente previo para calcular tree kernels.,COMPLETO,41,1
+13,N06-1012_N03-1028_0,Evaluable,Background,Alta,Lista de tareas donde se usan métodos discriminativos.,COMPLETO,41,1
+14,W13-0604_J91-4003_0,Evaluable,Background,Media,Alude al debate teórico previo sobre verbos de metonimia lógica.,COMPLETO,41,1
+15,D08-1033_W02-1018_2,Evaluable,Evidence,Alta,Respalda que el modelo de distorsión posicional funciona mejor.,COMPLETO,41,1
+16,W10-1905_W09-1418_0,Evaluable,Basis,Media,La modificación se inspira en la selección basada en POS del trabajo citado.,COMPLETO,41,1
+17,W06-2903_P05-1010_1,Evaluable,Comparison,Alta,Contrasta su variable latente global con los no terminales latentes del trabajo citado.,COMPLETO,41,1
+18,W08-1116_W98-1411_0,Evaluable,Gap,Media,Señala la limitación de intratabilidad del enfoque restringido.,COMPLETO,41,1
+19,E12-1009_P04-1015_1,Evaluable,Application,Alta,Emplea actualizaciones tempranas tal como en el trabajo citado.,COMPLETO,41,1
+20,D12-1062_P09-1046_5,Evaluable,Gap,Alta,Señala la limitación del trabajo citado (solo pares en oraciones adyacentes).,COMPLETO,41,1
+21,W04-0909_P04-1048_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles del proceso.,COMPLETO,41,1
+22,S10-1074_W00-1427_0,Evaluable,Application,Alta,Usa morpha para la lematización.,COMPLETO,41,1
+23,D13-1157_N12-1093_1,Evaluable,Improvement / Modification,Alta,Extiende el modelo citado añadiendo planificación de documento.,COMPLETO,41,1
+24,S13-2049_P09-1002_0,Evaluable,Evidence,Alta,Respalda que los anotadores encuentran múltiples sentidos aplicables.,COMPLETO,41,1
+25,J12-2001_W09-1304_0,Evaluable,Background,Alta,Traza el desarrollo del enfoque en trabajos previos.,COMPLETO,41,1
+26,P12-1076_D10-1099_0,Evaluable,Gap,Media,Trabajos previos señalaron el ruido pero no lo abordaron directamente.,COMPLETO,41,1
+27,P13-3019_W12-3105_0,Evaluable,Comparison,Alta,Compara su correlación con la de TerrorCat y otras métricas.,COMPLETO,41,1
+28,W11-0149_P04-1014_0,Evaluable,Application,Alta,Usa el parser de Clark y Curran en su sistema.,COMPLETO,41,1
+29,N10-1146_E06-1015_3,Evaluable,Application,Alta,Usa SVM-light-TK como herramienta publicada.,COMPLETO,41,1
+30,W07-0406_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para alinear oraciones.,COMPLETO,41,1
+31,W09-3820_W08-1006_0,Evaluable,Background,Media,Describe el enfoque de un trabajo previo del taller sobre análisis del alemán.,COMPLETO,41,1
+32,W13-2254_E06-1031_0,Evaluable,Background,Media,Lista CDER entre métricas de evaluación existentes.,COMPLETO,41,1
+33,S12-1076_S12-1051_0,Evaluable,Further Reading,Alta,Remite a la descripción de la tarea para más detalles.,COMPLETO,41,1
+34,W98-1423_P98-2227_3,Evaluable,Gap,Media,Señala dificultades de la generación guiada por núcleo con HPSG que justifican el trabajo.,COMPLETO,41,1
+35,P13-1104_P09-1040_2,Evaluable,Comparison,Media,Compara enfoques de análisis no proyectivo con el propio.,COMPLETO,41,1
+36,P13-1170_D11-1027_0,Evaluable,Background,Alta,Lista trabajos previos sobre adquisición de relaciones causales.,COMPLETO,41,1
+37,P08-3003_P00-1010_1,Evaluable,Gap,Media,Señala una limitación (propagación de errores) del trabajo previo.,COMPLETO,41,1
+38,W12-6335_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford como sistema base.,COMPLETO,41,1
+39,D08-1012_P08-1025_2,Evaluable,Gap,Media,Señala la limitación del enfoque previo de pases de menor orden.,COMPLETO,41,1
+40,P10-1147_P09-2058_0,Evaluable,Comparison,Alta,Contrasta explícitamente su enfoque con el del trabajo citado.,COMPLETO,41,1
+41,P12-1100_J07-2003_0,Evaluable,Basis,Media,El modelo propuesto se construye sobre el modelo jerárquico citado.,COMPLETO,41,1
+42,W12-2004_N10-1099_1,Evaluable,Background,Media,Menciona la aplicación previa del modelo de entidades a texto de aprendices.,COMPLETO,41,1
+43,D13-1090_N06-1058_0,Evaluable,Background,Alta,Ejemplo de tarea donde importa la similitud semántica.,COMPLETO,41,1
+44,N13-1019_P11-1153_0,Evaluable,Evidence,Media,Respalda la afirmación sobre segmentos tópicamente coherentes.,COMPLETO,41,1
+45,P12-1073_P00-1056_0,Evaluable,Application,Alta,Usa características de alineamiento HMM del trabajo citado.,COMPLETO,41,1
+46,P11-1124_N03-1017_1,Evaluable,Application,Alta,Usa las heurísticas de refinamiento y extracción de frases descritas.,COMPLETO,41,1
+47,W13-4901_E03-1008_0,Evaluable,Comparison,Alta,Sus resultados concuerdan con experimentos similares en inglés.,COMPLETO,41,1
+48,N10-1125_P08-1032_1,Evaluable,Basis,Media,Trabajo previo propio que el actual retoma y desarrolla.,COMPLETO,41,1
+49,P11-1160_D08-1052_0,Evaluable,Basis,Alta,El algoritmo se inspira en trabajos no direccionales previos.,COMPLETO,41,1
+50,W13-3009_P10-1106_4,Evaluable,Application,Media,Usa el algoritmo citado como sujeto de análisis de complejidad.,COMPLETO,41,1
+51,D13-1023_P11-1027_0,Evaluable,Background,Alta,Resume métodos previos para mejorar la eficiencia de modelos de lenguaje.,COMPLETO,41,1
+52,P04-1029_J93-3006_2,Evaluable,Further Reading,Alta,Remite a la presentación formal en el trabajo citado.,COMPLETO,41,1
+53,W13-2026_W13-2020_0,Evaluable,Comparison,Media,Lista sistemas competidores junto a los resultados propios.,COMPLETO,41,1
+54,P09-1089_P04-1036_0,Evaluable,Evidence,Media,Respalda que seleccionar la regla más frecuente es una heurística útil.,COMPLETO,41,1
+55,P02-1019_P00-1037_2,Evaluable,Evidence,Alta,Cita hallazgos sobre el efecto del modelo de lenguaje fuente.,COMPLETO,41,1
+56,D09-1029_P05-1050_2,Evaluable,Identification of the Originator,Media,Atribuye la introducción del modelo de dominio al trabajo citado.,COMPLETO,41,1
+57,W12-1814_E09-1085_0,Evaluable,Evidence,Media,Respalda que el procesamiento incremental se percibe como más natural.,COMPLETO,41,1
+58,W12-5302_P04-1014_0,Evaluable,Application,Alta,Usa la implementación del parser de Clark y Curran.,COMPLETO,41,1
+59,P12-3022_P03-1021_0,Evaluable,Application,Alta,Usa MERT para ajustar pesos.,COMPLETO,41,1
+60,W12-1706_N07-1051_0,Evaluable,Comparison,Media,Incluye la gramática de Berkeley en la comparación.,COMPLETO,41,1
+61,P08-1069_P06-2036_0,Evaluable,Background,Media,Refiere métodos previos de k-arización de SCFG.,COMPLETO,41,1
+62,D11-1135_P10-1044_0,Evaluable,Evidence,Media,Respalda la afirmación sobre preferencias de selección de las relaciones.,COMPLETO,41,1
+63,W04-0857_P96-1025_0,Evaluable,Application,Alta,Usa el parser estadístico citado para generar árboles.,COMPLETO,41,1
+64,W09-0603_P07-2045_0,Evaluable,Application,Alta,Usa la herramienta Moses.,COMPLETO,41,1
+65,N07-2019_N04-4034_0,Evaluable,Evidence,Media,Respalda la dificultad de modelar efectos entre hablantes con n-gramas.,COMPLETO,41,1
+66,N12-1087_P04-1062_1,Evaluable,Background,Media,Señala que la literatura ya notó la equivalencia con EM duro.,COMPLETO,41,1
+67,D09-1147_P07-2045_0,Evaluable,Background,Media,Menciona a Moses como sistema de referencia del estado del arte.,COMPLETO,41,1
+68,W06-2910_P93-1024_0,Evaluable,Background,Media,Resume trabajos previos sobre similitud distribucional.,COMPLETO,41,1
+69,W03-0434_W03-0425_0,Evaluable,Further Reading,Alta,Remite al estudio sobre combinación de sistemas.,COMPLETO,41,1
+70,W11-1422_P06-1055_0,Evaluable,Application,Alta,Usa el parser PCFG-LA citado para analizar oraciones.,COMPLETO,41,1
+71,J97-1005_P93-1020_1,Evaluable,Basis,Media,La sección se apoya en el trabajo citado.,COMPLETO,41,1
+72,W10-3812_N10-3010_0,Evaluable,Background,Alta,Resume trabajos recientes sobre reordenamiento.,COMPLETO,41,1
+73,W10-0206_S07-1072_0,Evaluable,Background,Alta,Enumera enfoques estadísticos previos de clasificación de emociones.,COMPLETO,41,1
+74,N13-1014_P09-1057_2,Evaluable,Background,Media,Describe el método previo para predecir etiquetas de palabras desconocidas.,COMPLETO,41,1
+75,P13-2030_P11-2095_1,Evaluable,Comparison,Alta,Fila de tabla que compara resultados con otros métodos.,COMPLETO,41,1
+76,P13-1028_W12-0701_0,Evaluable,Gap,Alta,Señala la limitación de requerir identificación manual de verbos.,COMPLETO,41,1
+77,W05-1516_P97-1003_1,Evaluable,Comparison,Alta,"Contrasta maximizar P(S,T) con su P(T|S).",COMPLETO,41,1
+78,W03-0403_W02-2030_2,Evaluable,Comparison,Alta,Compara su exactitud con el mejor modelo log-lineal reportado.,COMPLETO,41,1
+79,E12-1051_N01-1013_0,Evaluable,Background,Media,Describe el trabajo previo sobre generalización de pares relación-concepto.,COMPLETO,41,1
+80,W06-1619_P03-1064_0,Evaluable,Comparison,Alta,Compara la exactitud con la de otros supertaggers.,COMPLETO,41,1
+81,W04-0212_W98-0315_1,Evaluable,Basis,Alta,El proyecto se construye sobre las ideas del trabajo citado.,COMPLETO,41,1
+82,W10-1738_J07-2003_0,Evaluable,Basis,Media,El toolkit implementa el modelo descrito en el trabajo citado.,COMPLETO,41,1
+83,D10-1108_D09-1099_5,Evaluable,Background,Baja,Menciona taxonomías perspectivales previas como contexto.,COMPLETO,41,1
+84,J11-3002_W94-0306_0,Evaluable,Background,Alta,Lista investigación previa sobre generación con estilos variados.,COMPLETO,41,1
+85,W13-3703_J08-3003_1,Evaluable,Evidence,Alta,Los resultados concuerdan con lo reportado para turco.,COMPLETO,41,1
+86,W13-1706_D12-1064_0,Evaluable,Background,Alta,Enumera enfoques previos de identificación de lengua nativa.,COMPLETO,41,1
+87,N07-1030_W99-0212_0,Evaluable,Background,Alta,Lista trabajos previos de correferencia con máxima entropía.,COMPLETO,41,1
+88,P13-1145_P11-1062_0,Evaluable,Basis,Media,Sigue los supuestos de independencia descritos en el trabajo citado.,COMPLETO,41,1
+89,N09-1049_J07-2003_2,Evaluable,Application,Alta,Implementa cube pruning tal como se describe en el trabajo citado.,COMPLETO,41,1
+90,J97-4008_P88-1015_0,Evaluable,Evidence,Media,Respalda la afirmación sobre coordinación en la entrada y salida de secciones.,COMPLETO,41,1
+91,D13-1108_D11-1020_3,Evaluable,Comparison,Alta,El modelo dependency-to-string se usa como línea base de comparación.,COMPLETO,41,1
+92,P13-2067_W11-2112_0,Evaluable,Gap,Alta,Señala que no se ha ajustado un sistema SMT contra TINE.,COMPLETO,41,1
+93,N13-1097_N12-1033_0,Evaluable,Basis,Media,La motivación para ampliar las características proviene del trabajo citado.,COMPLETO,41,1
+94,W09-3829_P08-1068_1,Evaluable,Evidence,Alta,Respalda que distintos niveles de granularidad de clusters son útiles.,COMPLETO,41,1
+95,W07-0706_P06-1077_4,Evaluable,Comparison,Alta,Contrasta explícitamente su modelo con los modelos árbol-cadena previos.,COMPLETO,41,1
+96,P98-2228_A92-1021_0,Evaluable,Application,Alta,Usa el etiquetador de Brill.,COMPLETO,41,1
+97,D11-1034_N03-1017_0,Evaluable,Application,Alta,Entrena sistemas MT basados en frases según el trabajo citado.,COMPLETO,41,1
+98,J13-3008_D10-1012_2,Evaluable,Improvement / Modification,Alta,SquaT++ extiende SquaT añadiendo el patrón diamante.,COMPLETO,41,1
+99,D08-1079_P03-2021_0,Evaluable,Background,Alta,Describe sistemas de resumen previos en la revisión de literatura.,COMPLETO,41,1
+100,P09-1042_P05-1012_0,Evaluable,Background,Alta,Lista enfoques supervisados previos de análisis de dependencias.,COMPLETO,41,1

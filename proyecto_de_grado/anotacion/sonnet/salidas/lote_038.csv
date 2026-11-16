@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J08-1001_P98-1116_0,Evaluable,Background,Media,Enumeración de trabajos previos sobre ranking en generación de lenguaje.,COMPLETO,38,1
+2,D10-1052_P03-1021_1,Evaluable,Application,Alta,Usa el algoritmo MERT tal cual para fijar los parámetros.,COMPLETO,38,1
+3,N10-1008_P08-1036_0,Evaluable,Background,Alta,Lista estudios previos sobre análisis de reseñas.,COMPLETO,38,1
+4,W11-4411_A92-1021_0,Evaluable,Identification of the Originator,Media,"Atribuye la técnica de etiquetado basada en reglas a su autor ('is due to', 'He introduced').",COMPLETO,38,1
+5,W06-3110_W99-0604_0,Evaluable,Gap,Media,"Señala que los sistemas citados no usan un modelo explícito de longitud de oración, lo que justifica el aporte.",COMPLETO,38,1
+6,P11-1019_P98-1032_0,Evaluable,Background,Media,Referencia a la versión anterior de e-Rater para describir el sistema en el contexto de un estudio previo.,COMPLETO,38,1
+7,W10-3010_W09-1304_0,Evaluable,Background,Alta,Revisión de estudios previos sobre detección del alcance de la especulación.,COMPLETO,38,1
+8,W13-2909_D08-1020_5,Evaluable,Comparison,Alta,Contrasta el desempeño de la característica de relaciones discursivas con lo hallado por el trabajo citado.,COMPLETO,38,1
+9,W11-3207_W09-3503_0,Evaluable,Evidence,Media,Respalda la afirmación de que el problema se fundamenta en la teoría de autómatas de estados finitos.,COMPLETO,38,1
+10,W09-1127_P98-1013_0,Evaluable,Background,Alta,Menciona FrameNet como recurso dentro de la revisión del estado del área.,COMPLETO,38,1
+11,W11-2843_D10-1094_1,Evaluable,Evidence,Alta,Respalda la afirmación de que los errores de no nativos son sistemáticos y dependen de la L1.,COMPLETO,38,1
+12,W11-2926_W06-2932_3,Evaluable,Gap,Alta,Señala que los enfoques existentes no modelan las relaciones de simetría entre conjuntos.,COMPLETO,38,1
+13,W11-2158_W11-2132_1,Evaluable,Further Reading,Alta,Remite a otro artículo donde el efecto se estudia en detalle.,COMPLETO,38,1
+14,W12-1614_P09-1077_0,Evaluable,Background,Alta,Describe clases de características usadas en trabajos previos; luego se señala el vacío.,COMPLETO,38,1
+15,W11-0216_P04-1054_1,Evaluable,Background,Alta,Describe la propuesta previa de núcleos de árboles de dependencia como trabajo relacionado.,COMPLETO,38,1
+16,D13-1172_P12-1036_3,Evaluable,Comparison,Media,Explica por qué no se compara con modelos con semillas del trabajo citado.,COMPLETO,38,1
+17,D13-1172_P13-2144_0,Evaluable,Background,Alta,Enumeración de enfoques previos en trabajos relacionados.,COMPLETO,38,1
+18,P13-1113_N12-1064_0,Evaluable,Evidence,Media,Respalda la afirmación de que algoritmos de segmentación detectan cambios de subtema.,COMPLETO,38,1
+19,E95-1020_P90-1031_0,Evaluable,Background,Media,"Lista aplicaciones del etiquetado POS, incluido el análisis sintáctico general.",COMPLETO,38,1
+20,P11-1112_N10-1137_1,Evaluable,Comparison,Alta,Compara los resultados del algoritmo propio con el modelo no supervisado citado.,COMPLETO,38,1
+21,S12-1026_P11-1112_2,Evaluable,Comparison,Alta,Contrasta explícitamente la configuración propia con la del trabajo citado (restringe a 21 clusters).,COMPLETO,38,1
+22,J12-2001_W09-1304_1,Evaluable,Comparison,Alta,"Compara el sistema de Councill et al. con el de Morante et al., señalando diferencias.",COMPLETO,38,1
+23,W11-3807_W10-1411_0,Evaluable,Gap,Media,Señala que generalizaciones como la concordancia siguen sin explotarse en el entrenamiento.,COMPLETO,38,1
+24,P04-1014_N03-1028_0,Evaluable,Evidence,Alta,Respalda la observación de convergencia lenta de GIS con resultados de la literatura.,COMPLETO,38,1
+25,D13-1039_P09-1116_1,Evaluable,Application,Alta,Construye el repositorio de similitudes siguiendo el método citado.,COMPLETO,38,1
+26,P13-1159_W12-2104_0,Evaluable,Background,Media,Cita trabajos de análisis de sentimiento como alternativa evidente.,COMPLETO,38,1
+27,W13-0118_S12-1047_1,Evaluable,Background,Alta,Sección de trabajo previo sobre similitud relacional.,COMPLETO,38,1
+28,D13-1014_J91-4003_1,Evaluable,Basis,Alta,La teoría del Léxico Generativo es el fundamento conceptual del modelo propuesto.,COMPLETO,38,1
+29,D09-1077_N01-1016_0,Evaluable,Comparison,Alta,Contrasta la precisión de los enfoques de análisis con la de sistemas de clasificación.,COMPLETO,38,1
+30,W12-1642_W11-0503_0,Evaluable,Background,Media,Cita trabajos previos de resumen de reuniones que comparten el mismo supuesto.,COMPLETO,38,1
+31,W02-2010_N01-1006_0,Evaluable,Application,Alta,Usa el sistema fnTBL en los experimentos.,COMPLETO,38,1
+32,W13-0803_D11-1125_1,Evaluable,Application,Alta,Entrena los sistemas con el algoritmo PRO sin modificarlo.,COMPLETO,38,1
+33,W10-3408_W03-1802_0,Evaluable,Evidence,Media,Respalda la necesidad de definir estructuras sintácticas lexicalizables.,COMPLETO,38,1
+34,P13-1127_N10-1138_0,Evaluable,Background,Alta,Ejemplos de representaciones de significado en trabajos previos.,COMPLETO,38,1
+35,W11-2165_J07-2003_0,Evaluable,Application,Media,Incorpora los rasgos durante la decodificación con la técnica estándar citada.,COMPLETO,38,1
+36,W13-3611_P11-1092_0,Evaluable,Evidence,Alta,Respalda que el uso de valores observados beneficia la corrección gramatical.,COMPLETO,38,1
+37,N10-1058_P98-2127_0,Evaluable,Application,Alta,Usa el tesauro de Lin para calcular similitud.,COMPLETO,38,1
+38,J08-4004_P93-1020_2,Evaluable,Evidence,Media,Respalda la afirmación de que los trabajos de segmentación temática reportan menor acuerdo.,COMPLETO,38,1
+39,P10-1145_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para alinear palabras.,COMPLETO,38,1
+40,P09-1053_W07-1401_0,Evaluable,Evidence,Media,Respalda que los alineamientos se han aprovechado en tareas como implicación textual.,COMPLETO,38,1
+41,N13-1018_P11-1154_0,Evaluable,Background,Media,Agrupa enfoques existentes de etiquetado de tópicos; luego se señala una limitación.,COMPLETO,38,1
+42,W11-2504_P05-1074_1,Evaluable,Basis,Alta,"Presenta la probabilidad de paráfrasis definida por el trabajo citado, base del método actual.",COMPLETO,38,1
+43,D12-1095_P04-1015_0,Evaluable,Identification of the Originator,Alta,'Early update was introduced by' atribuye el origen de la técnica.,COMPLETO,38,1
+44,P13-2032_D09-1158_0,Evaluable,Background,Alta,Describe trabajos previos semisupervisados.,COMPLETO,38,1
+45,Q13-1035_D10-1091_0,Evaluable,Evidence,Alta,"Respalda que los errores de búsqueda son menos del 5%, consistente con resultados previos.",COMPLETO,38,1
+46,W11-0309_N10-1075_1,Evaluable,Comparison,Media,Contrasta los resultados propios con las ganancias encontradas por el trabajo citado con LDA supervisado.,COMPLETO,38,1
+47,D11-1022_P10-1110_0,Evaluable,Comparison,Alta,Se incluyen los mejores resultados publicados para comparar con el modelo propio.,COMPLETO,38,1
+48,W05-0803_P03-1011_0,Evaluable,Background,Media,Describe cómo trabajos previos generalizan la correspondencia entre árboles.,COMPLETO,38,1
+49,P13-2104_D09-1060_4,Evaluable,Comparison,Alta,Compara explícitamente el sistema propio con el del trabajo citado.,COMPLETO,38,1
+50,W13-2105_P98-2199_0,Evaluable,Background,Alta,"Describe trabajo previo que asumía entrada semántica totalmente especificada, preparando el vacío.",COMPLETO,38,1
+51,W04-0404_P03-1040_0,Evaluable,Evidence,Alta,Respalda la decisión de traducir sintagmas nominales como sintagmas nominales.,COMPLETO,38,1
+52,P13-2144_W11-1701_0,Evaluable,Background,Alta,Describe el método supervisado del trabajo citado en la revisión de literatura.,COMPLETO,38,1
+53,W12-4410_W09-3520_1,Evaluable,Background,Media,Describe un enfoque previo de transliteración; luego se señala su debilidad.,COMPLETO,38,1
+54,N13-1032_P06-1067_0,Evaluable,Background,Media,Describe los modelos de distorsión usados por sistemas basados en frases.,COMPLETO,38,1
+55,W11-3903_J04-3002_2,Evaluable,Comparison,Alta,Contrasta los resultados propios con la afirmación del trabajo citado.,COMPLETO,38,1
+56,P08-2007_W06-3105_2,Evaluable,Background,Media,"Describe el enfoque de programación dinámica del trabajo citado, con contraste implícito de práctica.",COMPLETO,38,1
+57,D09-1107_P08-2007_0,Evaluable,Gap,Alta,Señala la dificultad teórica del enfoque previo para justificar una tercera alternativa.,COMPLETO,38,1
+58,W04-0713_P98-2204_0,Evaluable,Evidence,Media,Respalda la afirmación de que los criterios asignan mayor prominencia a entidades dadas.,COMPLETO,38,1
+59,W09-0427_W06-3115_0,Evaluable,Background,Alta,Enumera trabajos previos sobre representaciones morfológicas en SMT.,COMPLETO,38,1
+60,D12-1091_W04-3250_0,Evaluable,Gap,Alta,"Indica que los estudios previos se centran en tareas únicas, justificando el estudio actual.",COMPLETO,38,1
+61,N13-1100_D08-1035_0,Evaluable,Comparison,Alta,Contrasta el uso de conectores en el trabajo citado con el del trabajo actual.,COMPLETO,38,1
+62,W11-0704_W09-2010_1,Evaluable,Background,Alta,Describe el análisis de transformaciones del trabajo citado en la revisión previa.,COMPLETO,38,1
+63,D09-1047_W04-3212_0,Evaluable,Evidence,Alta,Respalda que los modelos de máxima entropía logran resultados de vanguardia en SRL.,COMPLETO,38,1
+64,W04-1215_W03-1304_0,Evaluable,Basis,Alta,El trabajo actual extiende la idea de colocados del trabajo citado.,COMPLETO,38,1
+65,W10-2401_P06-1010_0,Evaluable,Background,Alta,Enumera trabajos previos de transliteración.,COMPLETO,38,1
+66,D09-1051_P06-1120_0,Evaluable,Background,Alta,Enumera trabajos previos que usan recursos adicionales para extracción de colocaciones.,COMPLETO,38,1
+67,W10-2304_E09-1005_2,Evaluable,Basis,Media,El trabajo se apoya en el PPR definido en el trabajo citado.,COMPLETO,38,1
+68,P13-4017_W04-3205_0,Evaluable,Application,Media,VerbOcean se enumera como uno de los recursos usados.,COMPLETO,38,1
+69,N10-1053_N04-3012_1,Evaluable,Application,Alta,Usa el paquete WordNet::Similarity para calcular puntajes.,COMPLETO,38,1
+70,W12-3904_P03-1054_0,Evaluable,Application,Alta,Emplea el analizador Stanford para textos en inglés.,COMPLETO,38,1
+71,P10-1073_D09-1036_0,Evaluable,Background,Alta,Enumera trabajos previos que solo usan características léxicas y semánticas.,COMPLETO,38,1
+72,W10-1707_J07-2003_0,Evaluable,Basis,Media,El sistema base se fundamenta en el modelo jerárquico basado en SCFG citado.,COMPLETO,38,1
+73,E97-1058_E91-1027_0,Evaluable,Comparison,Alta,Sección de comparación con trabajo previo que aproxima la capacidad de reconocimiento.,COMPLETO,38,1
+74,D10-1054_N03-1017_0,Evaluable,Application,Alta,Usa el método grow-diag-final para refinar alineamientos.,COMPLETO,38,1
+75,D11-1066_P05-1050_0,Evaluable,Background,Alta,"Enumera aplicaciones previas de núcleos, incluida la desambiguación de sentidos.",COMPLETO,38,1
+76,W04-2710_W97-0206_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la menor precisión de etiquetadores novatos.,COMPLETO,38,1
+77,W11-2850_W10-4203_2,Evaluable,Further Reading,Alta,Remite a más detalles sobre el uso de la teoría en el desafío GIVE.,COMPLETO,38,1
+78,D13-1201_D11-1125_1,Evaluable,Basis,Media,"El trabajo aborda una preocupación seria planteada por el trabajo citado, que motiva su método.",COMPLETO,38,1
+79,P13-1114_P06-2005_0,Evaluable,Identification of the Originator,Media,Indica que la metáfora de SMT fue la primera propuesta para normalización de texto.,COMPLETO,38,1
+80,P12-1018_P09-1088_0,Evaluable,Background,Alta,Enumera avances previos en técnicas de alineamiento muchos a muchos.,COMPLETO,38,1
+81,D13-1007_N10-1083_0,Evaluable,Gap,Media,Señala que las técnicas de programación dinámica citadas no son aplicables por su complejidad.,COMPLETO,38,1
+82,P10-2054_P06-1055_0,Evaluable,Application,Alta,Usa el analizador de Berkeley para parsear oraciones.,COMPLETO,38,1
+83,W13-2210_W08-1006_0,Evaluable,Application,Alta,Usa el analizador de Stanford para generar árboles sintácticos.,COMPLETO,38,1
+84,W09-1704_W06-0206_0,Evaluable,Evidence,Alta,Respalda la afirmación de que auto-entrenamiento y bootstrapping requieren buena selección de datos.,COMPLETO,38,1
+85,W09-1105_W06-2920_0,Evaluable,Application,Alta,Sigue el formato estándar de la tarea compartida CoNLL 2006.,COMPLETO,38,1
+86,E12-1009_W08-0804_0,Evaluable,Background,Media,Describe que el trabajo citado usó la técnica de hash en predicción estructurada.,COMPLETO,38,1
+87,P11-1052_E09-1089_3,Evaluable,Comparison,Alta,Aparece en una tabla de resultados para comparar con el sistema propio.,COMPLETO,38,1
+88,W05-1002_P00-1065_1,Evaluable,Identification of the Originator,Alta,Indica que las características estándar fueron propuestas por primera vez en el trabajo citado.,COMPLETO,38,1
+89,W11-0303_P10-1130_9,Evaluable,Comparison,Alta,Aparece en una tabla que compara con sistemas recientes de vanguardia.,COMPLETO,38,1
+90,D13-1155_E06-1038_0,Evaluable,Background,Alta,Enumera enfoques supervisados previos de compresión de oraciones.,COMPLETO,38,1
+91,W09-0436_N06-1014_0,Evaluable,Application,Alta,Usa el alineador de Berkeley para el alineamiento de palabras.,COMPLETO,38,1
+92,W10-3812_N04-4026_1,Evaluable,Background,Alta,Describe el modelo de reordenamiento MSD de trabajo previo.,COMPLETO,38,1
+93,D11-1137_P09-1067_1,Evaluable,Background,Media,Describe la regla de decisión variacional propuesta como alternativa a MBR.,COMPLETO,38,1
+94,P13-2119_W12-3154_0,Evaluable,Evidence,Alta,Respalda que los datos aumentados mejoran la estimación estadística o cobertura de palabras.,COMPLETO,38,1
+95,W09-0621_N06-4007_0,Evaluable,Application,Alta,Usa el algoritmo PK1 tal como fue propuesto.,COMPLETO,38,1
+96,W09-0308_W99-0707_0,Evaluable,Application,Alta,Usa el analizador superficial basado en memoria para etiquetar y analizar.,COMPLETO,38,1
+97,P13-1092_P11-1149_0,Evaluable,Gap,Alta,Señala que el sistema citado aún requería un léxico construido manualmente.,COMPLETO,38,1
+98,W13-3522_P07-1005_1,Evaluable,Evidence,Media,Respalda que las traducciones se capturan con alineamiento automático robusto.,COMPLETO,38,1
+99,P09-1058_P07-2055_5,Evaluable,Background,Alta,Describe hallazgos de un trabajo previo sobre modelos basados en caracteres vs palabras.,COMPLETO,38,1
+100,S13-1036_P09-1002_3,Evaluable,Comparison,Alta,Compara el acuerdo entre anotadores obtenido con el reportado por el trabajo citado.,COMPLETO,38,1

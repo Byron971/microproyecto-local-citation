@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P12-1109_P11-1038_3,Evaluable,Basis,Media,Se sigue la configuración de la investigación previa (normalización con detección perfecta de tokens no estándar).,COMPLETO,91,1
+2,D12-1015_N06-1026_0,Evaluable,Background,Alta,Describe enfoques basados en diccionario en la literatura.,COMPLETO,91,1
+3,E12-1003_D11-1122_5,Evaluable,Comparison,Alta,Se compara el desempeño con el método Split-Merge citado.,COMPLETO,91,1
+4,P10-1046_P07-1028_2,Evaluable,Gap,Alta,Se señala que el trabajo previo no evalúa todos los datos vistos.,COMPLETO,91,1
+5,D11-1122_W04-3213_0,Evaluable,Identification of the Originator,Alta,'were the first to introduce' atribuye el origen del SRL no supervisado.,COMPLETO,91,1
+6,D10-1049_D09-1042_1,Evaluable,Background,Alta,Enumera trabajos previos de realización superficial.,COMPLETO,91,1
+7,S12-1030_P09-1092_0,Evaluable,Background,Alta,Resume estudios previos sobre orden de constituyentes.,COMPLETO,91,1
+8,J97-4002_P97-1051_1,Evaluable,Evidence,Media,Respalda la afirmación de que la similitud de elementos paralelos es una pista de relación discursiva.,COMPLETO,91,1
+9,W13-2254_W07-0738_0,Evaluable,Background,Alta,Describe una métrica existente (ULC) en la revisión de literatura.,COMPLETO,91,1
+10,P11-1114_P98-1067_0,Evaluable,Background,Alta,Enumera conjuntos de datos de extracción de eventos en trabajos relacionados.,COMPLETO,91,1
+11,A00-1031_W96-0213_0,Evaluable,Background,Media,Resume comparaciones previas sobre enfoques de etiquetado POS.,COMPLETO,91,1
+12,P12-2023_D09-1074_0,Evaluable,Background,Alta,Describe trabajo previo sobre adaptación del modelo de traducción.,COMPLETO,91,1
+13,D13-1173_P03-1021_0,Evaluable,Application,Alta,Se usa MERT tal cual para ajustar pesos.,COMPLETO,91,1
+14,W12-3153_P11-1122_0,Evaluable,Basis,Media,Se sigue el trabajo exploratorio citado para crear el conjunto de evaluación con Mechanical Turk.,COMPLETO,91,1
+15,W13-2222_P07-2045_0,Evaluable,Application,Alta,Se usa Moses para los sistemas.,COMPLETO,91,1
+16,J06-3002_P91-1030_3,Evaluable,Background,Media,Describe el supuesto subyacente de enfoques inspirados en el trabajo citado.,COMPLETO,91,1
+17,P05-1014_P03-1017_0,Evaluable,Evidence,Media,"Se cita el hallazgo de que los modelos basados en dependencias distinguen relaciones léxicas, respaldando la motivación.",COMPLETO,91,1
+18,P11-3015_W06-1613_1,Evaluable,Comparison,Alta,Se compara el desempeño del sistema con el del trabajo citado.,COMPLETO,91,1
+19,J13-4004_D09-1120_0,Evaluable,Background,Media,Resume hallazgos prevalentes sobre rasgos en correferencia.,COMPLETO,91,1
+20,D13-1185_P06-2027_0,Evaluable,Background,Media,Describe la línea previa de inducción de esquemas basada en agrupamiento.,COMPLETO,91,1
+21,P12-3010_W02-0109_0,Evaluable,Application,Alta,Se usa NLTK para tokenizar y lematizar.,COMPLETO,91,1
+22,P04-3022_N04-1001_0,Evaluable,Further Reading,Alta,Remite al lector para más detalles de módulos no descritos.,COMPLETO,91,1
+23,W09-3811_P09-1040_2,Evaluable,Basis,Alta,El oráculo original propuesto por la obra citada es el punto de partida que el trabajo modifica.,COMPLETO,91,1
+24,D12-1111_P98-2127_1,Evaluable,Background,Media,Describe trabajo previo sobre antónimos que se construye sobre la obra citada.,COMPLETO,91,1
+25,P10-1142_N07-1010_0,Evaluable,Background,Media,Reporta resultados previos del estado del arte en datos ACE.,COMPLETO,91,1
+26,P09-2031_N03-1017_0,Evaluable,Application,Alta,Se usa la heurística grow-diag-final tal cual para refinar alineamientos.,COMPLETO,91,1
+27,N13-1007_P07-2045_0,Evaluable,Comparison,Alta,Se compara el desempeño con métodos no supervisados previos.,COMPLETO,91,1
+28,E12-1009_P11-2033_0,Evaluable,Improvement / Modification,Alta,El conjunto de rasgos es similar al citado pero se amplía con productos cruzados morfológicos.,COMPLETO,91,1
+29,P10-1003_D08-1092_0,Evaluable,Background,Alta,Enumera estudios previos de análisis sintáctico de bitextos.,COMPLETO,91,1
+30,D09-1021_P04-1083_0,Evaluable,Background,Alta,Enumera modelos de traducción previos.,COMPLETO,91,1
+31,W11-3216_N03-1017_0,Evaluable,Application,Alta,Se emplea la heurística de extracción de frases citada.,COMPLETO,91,1
+32,W12-4407_P07-2045_0,Evaluable,Application,Alta,Se usa Moses para implementar el modelo.,COMPLETO,91,1
+33,W13-5007_N10-1087_0,Evaluable,Evidence,Media,Respalda la afirmación de que el desempeño depende de la selección de semillas.,COMPLETO,91,1
+34,D13-1093_N12-1015_0,Evaluable,Improvement / Modification,Alta,Se generaliza el perceptrón de violación fija a hipergrafos.,COMPLETO,91,1
+35,W07-0716_N06-1003_0,Evaluable,Gap,Media,Se describe el trabajo previo señalando su limitación: no parafrasean oraciones completas.,COMPLETO,91,1
+36,S07-1054_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ para alinear palabras.,COMPLETO,91,1
+37,D09-1119_N01-1025_0,Evaluable,Further Reading,Alta,'see' remite a la formulación de SVM en PLN.,COMPLETO,91,1
+38,Q13-1007_W12-1912_1,Evaluable,Basis,Media,Se sigue el fragmento restringido de CCG del trabajo citado.,COMPLETO,91,1
+39,P12-1084_D11-1099_4,Evaluable,Gap,Alta,"Se contrasta con el trabajo citado, que ignora la estructura interna de las menciones.",COMPLETO,91,1
+40,D08-1091_P06-1055_2,Evaluable,Background,Media,"Describe cómo el trabajo previo abordó parcialmente el problema, antes de señalar su limitación.",COMPLETO,91,1
+41,D13-1036_D11-1027_2,Evaluable,Background,Media,Indica que la mayoría de trabajos relacionados usa PMI.,COMPLETO,91,1
+42,P06-1099_P01-1025_2,Evaluable,Evidence,Alta,Respalda la decisión de elegir la prueba t por su buen desempeño demostrado.,COMPLETO,91,1
+43,J04-4002_W03-1001_0,Evaluable,Background,Alta,Enumera trabajos sobre aprendizaje de léxicos de frases.,COMPLETO,91,1
+44,W13-1717_W13-1706_0,Evaluable,Background,Alta,Presenta la tarea compartida NLI como antecedente.,COMPLETO,91,1
+45,N10-1008_P08-1031_0,Evaluable,Background,Alta,Enumera estudios previos de análisis de reseñas.,COMPLETO,91,1
+46,D09-1045_P08-1028_0,Evaluable,Basis,Alta,El trabajo actual aplica y continúa el marco de composición propuesto antes por los autores.,COMPLETO,91,1
+47,D13-1204_N12-1069_1,Evaluable,Comparison,Alta,Aparece en una tabla comparativa de sistemas y resultados.,COMPLETO,91,1
+48,E09-1037_J99-4004_2,Evaluable,Evidence,Media,Respalda que la prueba más probable puede representarse en el valor del semianillo.,COMPLETO,91,1
+49,E09-1068_W06-1663_0,Evaluable,Background,Media,Contexto general sobre recursos léxicos y aplicaciones de PLN.,COMPLETO,91,1
+50,P04-1043_W04-2403_0,Evaluable,Evidence,Media,Respalda la afirmación de que el tipo de argumento no depende del tamaño.,COMPLETO,91,1
+51,W06-3125_N03-1017_0,Evaluable,Comparison,Alta,Contrasta el modelo de n-gramas bilingües con el enfoque basado en frases.,COMPLETO,91,1
+52,P10-1075_P08-1042_1,Evaluable,Basis,Alta,Se toman como punto de partida los métodos citados.,COMPLETO,91,1
+53,D12-1125_D11-1006_6,Evaluable,Application,Media,Se usa el método de transferencia directa tal cual para reportar resultados.,COMPLETO,91,1
+54,W13-2302_W11-0415_4,Evaluable,Comparison,Alta,Se comparan las precisiones de etiquetado sin normalización con las de otros estudios.,COMPLETO,91,1
+55,W13-2237_W08-0509_0,Evaluable,Application,Alta,Se usa la herramienta MGiza para alinear.,COMPLETO,91,1
+56,P13-1070_P06-1005_0,Evaluable,Application,Alta,"Se usa el conjunto de datos citado, filtrándolo.",COMPLETO,91,1
+57,E95-1020_P93-1034_1,Evaluable,Comparison,Alta,Contrasta el uso separado de contextos izquierdo y derecho con el uso concatenado previo.,COMPLETO,91,1
+58,W13-2239_P04-1063_0,Evaluable,Background,Alta,Enumera técnicas de combinación de sistemas.,COMPLETO,91,1
+59,W08-2102_N07-1051_0,Evaluable,Comparison,Alta,Se compara la precisión con la de enfoques previos.,COMPLETO,91,1
+60,E09-2007_P98-2199_0,Evaluable,Gap,Alta,Señala que los componentes previos usan reglas incompletas.,COMPLETO,91,1
+61,D13-1108_P05-1033_0,Evaluable,Comparison,Alta,Se compara el desempeño BLEU con el modelo jerárquico.,COMPLETO,91,1
+62,W13-2204_N12-1005_1,Evaluable,Evidence,Media,Respalda la afirmación de que los NNLM manejan contextos largos.,COMPLETO,91,1
+63,D12-1110_P03-1054_0,Evaluable,Application,Alta,Se usa el Stanford Parser para binarizar árboles.,COMPLETO,91,1
+64,J07-4003_P04-1069_0,Evaluable,Further Reading,Media,Remite a trabajo adicional sobre la relación entre CFG y PDA ponderados.,COMPLETO,91,1
+65,W13-2231_P11-1022_0,Evaluable,Background,Alta,Enumera trabajos de estimación de calidad en MT.,COMPLETO,91,1
+66,N10-1085_W05-1009_0,Evaluable,Evidence,Media,Respalda la creencia de que la morfología ayuda con resultados preliminares prometedores.,COMPLETO,91,1
+67,N13-1015_P06-1055_1,Evaluable,Application,Alta,Se binarizan los árboles con el mismo método citado.,COMPLETO,91,1
+68,N07-1008_P00-1006_0,Evaluable,Background,Alta,Resume trabajos previos sobre modelos directos.,COMPLETO,91,1
+69,W12-0602_W10-0713_0,Evaluable,Background,Alta,Enumera trabajos previos sobre Twitter.,COMPLETO,91,1
+70,N13-1056_P08-1088_1,Evaluable,Evidence,Media,Respalda que un diccionario puede compilarse automáticamente.,COMPLETO,91,1
+71,D13-1090_D12-1050_0,Evaluable,Background,Alta,Resume trabajo previo relevante sobre composición.,COMPLETO,91,1
+72,N13-1093_W09-1401_0,Evaluable,Background,Alta,Describe esfuerzos previos en tareas compartidas BioNLP.,COMPLETO,91,1
+73,P12-1017_P11-1002_0,Evaluable,Gap,Alta,Señala la limitación de los enfoques previos a vocabularios pequeños.,COMPLETO,91,1
+74,E12-3008_N09-1046_0,Evaluable,Application,Alta,Se usa el segmentador de compuestos citado.,COMPLETO,91,1
+75,D09-1010_P06-1051_2,Evaluable,Comparison,Alta,Se compara con el cálculo del kernel presentado en el trabajo citado.,COMPLETO,91,1
+76,N13-1126_P06-1043_0,Evaluable,Background,Alta,Resume la eficacia del autoentrenamiento en trabajos previos.,COMPLETO,91,1
+77,N07-1029_A94-1016_1,Evaluable,Comparison,Alta,"Se señala similitud con el marco multimotor citado, que no reordena.",COMPLETO,91,1
+78,P08-1004_N04-4028_0,Evaluable,Application,Alta,Se usa la técnica forward-backward restringida descrita.,COMPLETO,91,1
+79,W08-0127_P05-1018_1,Evaluable,Background,Alta,Enumera trabajo reciente sobre coherencia discursiva.,COMPLETO,91,1
+80,W03-1022_W02-0903_0,Evaluable,Further Reading,Media,'cf.' remite a otra fuente sobre este problema.,COMPLETO,91,1
+81,N13-2009_D08-1021_0,Evaluable,Improvement / Modification,Alta,Se extiende el enfoque pivote al modelo SCFG.,COMPLETO,91,1
+82,P13-1115_P07-1028_0,Evaluable,Background,Media,"Describe el método pionero basado en similitud, en el marco de los métodos de comparación.",COMPLETO,91,1
+83,W10-0214_W05-0308_0,Evaluable,Evidence,Media,Respalda la definición de sentimiento usada en el trabajo.,COMPLETO,91,1
+84,N10-1033_P08-1012_0,Evaluable,Background,Alta,Describe la solución habitual de búsqueda heurística.,COMPLETO,91,1
+85,D09-1128_P07-1068_7,Evaluable,Comparison,Alta,Se comparan explícitamente las puntuaciones MUC.,COMPLETO,91,1
+86,P01-1009_P88-1012_0,Evaluable,Basis,Alta,El análisis sigue el paradigma de interpretación como abducción.,COMPLETO,91,1
+87,N10-1076_N07-2014_0,Evaluable,Background,Alta,Enumera recursos usados en metodologías existentes.,COMPLETO,91,1
+88,P09-2018_P05-1014_1,Evaluable,Background,Media,Describe la hipótesis del trabajo previo sobre inclusión distribucional.,COMPLETO,91,1
+89,P13-1090_D11-1130_0,Evaluable,Gap,Alta,Señala la limitación de los modelos de espacio vectorial que motiva el enfoque propio.,COMPLETO,91,1
+90,S13-2027_S10-1052_0,Evaluable,Background,Alta,Enumera enfoques exitosos de la tarea previa de SemEval.,COMPLETO,91,1
+91,D13-1111_W11-2123_0,Evaluable,Application,Alta,Se usa KenLM para la inferencia del modelo de lenguaje.,COMPLETO,91,1
+92,P08-1006_P03-1054_1,Evaluable,Background,Media,Reporta la crítica previa de sobreajuste de los analizadores a WSJ.,COMPLETO,91,1
+93,W04-3241_P02-1026_0,Evaluable,Basis,Alta,El trabajo se construye sobre el principio de tasa de entropía introducido por la obra citada.,COMPLETO,91,1
+94,W06-0113_W95-0107_0,Evaluable,Background,Alta,Presenta antecedentes históricos del chunking con aprendizaje automático.,COMPLETO,91,1
+95,P11-1038_N10-1027_0,Evaluable,Application,Alta,Se usa el método de identificación de idioma citado.,COMPLETO,91,1
+96,W13-0114_W11-0908_0,Evaluable,Background,Alta,Describe trabajo previo de sistemas de argumentos implícitos.,COMPLETO,91,1
+97,P11-2055_P07-1005_0,Evaluable,Background,Alta,Resume hallazgos previos sobre WSD en traducción automática.,COMPLETO,91,1
+98,D09-1073_P01-1067_0,Evaluable,Background,Alta,Enumera métodos del estado del arte en la introducción.,COMPLETO,91,1
+99,P03-1059_N01-1006_0,Evaluable,Application,Alta,Se usa el etiquetador basado en fnTBL.,COMPLETO,91,1
+100,J08-3003_P96-1025_0,Evaluable,Application,Media,Se emplea el modelo de probabilidad condicional citado como componente.,COMPLETO,91,1

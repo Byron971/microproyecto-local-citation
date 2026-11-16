@@ -1,0 +1,114 @@
+[
+  {
+    "pista": "M",
+    "comparacion": "B - A",
+    "primaria": true,
+    "diferencia": -0.021129125136014837,
+    "ic95": [
+      -0.03443736697028821,
+      -0.009012905677785343
+    ],
+    "prob_b_mayor": 0.0,
+    "n_remuestras": 1000,
+    "casos": 1814,
+    "grupos": 362,
+    "semillas": 3,
+    "diferencia_por_semilla": [
+      -0.02308261652640775,
+      -0.009400563393614836,
+      -0.030904195488022035
+    ],
+    "mismo_signo_semillas": true,
+    "semillas_usadas": [
+      42,
+      1234,
+      2026
+    ],
+    "ic_excluye_0": true,
+    "afirmable": true
+  },
+  {
+    "pista": "M",
+    "comparacion": "B_barajada - B",
+    "primaria": false,
+    "diferencia": 0.00713468225747016,
+    "ic95": [
+      -0.0029595209904890174,
+      0.017610343625451774
+    ],
+    "prob_b_mayor": 0.912,
+    "n_remuestras": 1000,
+    "casos": 1814,
+    "grupos": 362,
+    "semillas": 3,
+    "diferencia_por_semilla": [
+      -0.007068833498524718,
+      0.016612149396327935,
+      0.011860730874607373
+    ],
+    "mismo_signo_semillas": false,
+    "semillas_usadas": [
+      42,
+      1234,
+      2026
+    ],
+    "ic_excluye_0": false,
+    "afirmable": false
+  },
+  {
+    "pista": "S",
+    "comparacion": "B - A",
+    "primaria": true,
+    "diferencia": -0.011649401965687867,
+    "ic95": [
+      -0.030274063032644127,
+      0.006650745250167733
+    ],
+    "prob_b_mayor": 0.1,
+    "n_remuestras": 1000,
+    "casos": 1814,
+    "grupos": 362,
+    "semillas": 3,
+    "diferencia_por_semilla": [
+      -0.005917036603360959,
+      -0.02252962292769678,
+      -0.0065015463660058614
+    ],
+    "mismo_signo_semillas": true,
+    "semillas_usadas": [
+      42,
+      1234,
+      2026
+    ],
+    "ic_excluye_0": false,
+    "afirmable": false
+  },
+  {
+    "pista": "S",
+    "comparacion": "B_barajada - B",
+    "primaria": false,
+    "diferencia": 0.007422073011243646,
+    "ic95": [
+      -0.004701616956268695,
+      0.020533217478830634
+    ],
+    "prob_b_mayor": 0.893,
+    "n_remuestras": 1000,
+    "casos": 1814,
+    "grupos": 362,
+    "semillas": 3,
+    "diferencia_por_semilla": [
+      0.018373253914304555,
+      0.003215706553134412,
+      0.0006772585662920827
+    ],
+    "mismo_signo_semillas": true,
+    "semillas_usadas": [
+      42,
+      1234,
+      2026
+    ],
+    "ic_excluye_0": false,
+    "afirmable": false
+  }
+]

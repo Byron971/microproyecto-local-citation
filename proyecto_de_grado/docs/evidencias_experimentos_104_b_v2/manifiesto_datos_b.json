@@ -1,0 +1,290 @@
+{
+  "dry": false,
+  "version": "v2",
+  "top3_sha": "3bd5cf81ffb88a287f5bba781a8cd1b14783f8c61556e95c3ad215a5e3de7dc9",
+  "aleatorias_sha": "70a5ccf65cfff6158d3f139091fcd8d45309acd19bd333eda87339daa444d4c3",
+  "sha256_ids_pistas": {
+    "M_train": "08673d6c90d63b513d6ddff2873902d50d2b0367c68a6506c4bb8febd653a1b0",
+    "M_dev": "14eae13480bfe7a2a4047e8579766e560ea3d2cc534658f7da43f477201a9c90",
+    "M_val": "5aea258566866a6775cad6d73c3f4584e650fc5b6c383085fbf6c5be5fd42081",
+    "S_train": "4dfb37a9b2af8e2dbf67a1940e6572ba00663991cbe792df626cbdc35a0559de",
+    "S_dev": "d2d747d28c11135d7530d3feb6e498a3edfd95c4970624a492e9bfe1a8bf8c85",
+    "S_val": "5aea258566866a6775cad6d73c3f4584e650fc5b6c383085fbf6c5be5fd42081"
+  },
+  "dev": {
+    "fraccion": 0.15,
+    "sal": "dev-104-b-v2",
+    "dev_sha": {
+      "M": "14eae13480bfe7a2a4047e8579766e560ea3d2cc534658f7da43f477201a9c90",
+      "S": "d2d747d28c11135d7530d3feb6e498a3edfd95c4970624a492e9bfe1a8bf8c85"
+    },
+    "n": {
+      "M": 974,
+      "S": 975
+    }
+  },
+  "n": {
+    "train_M_B": 5383,
+    "train_S_B": 5308,
+    "dev_M_B": 974,
+    "dev_S_B": 975,
+    "V_B": 1719,
+    "V_sonnet_B": 1719,
+    "gold_v2": 1533,
+    "gold_v2_B": 839
+  },
+  "sha256_ids": {
+    "train_M_B": "08673d6c90d63b513d6ddff2873902d50d2b0367c68a6506c4bb8febd653a1b0",
+    "train_S_B": "4dfb37a9b2af8e2dbf67a1940e6572ba00663991cbe792df626cbdc35a0559de",
+    "dev_M_B": "14eae13480bfe7a2a4047e8579766e560ea3d2cc534658f7da43f477201a9c90",
+    "dev_S_B": "d2d747d28c11135d7530d3feb6e498a3edfd95c4970624a492e9bfe1a8bf8c85",
+    "V_B": "5aea258566866a6775cad6d73c3f4584e650fc5b6c383085fbf6c5be5fd42081",
+    "V_sonnet_B": "5aea258566866a6775cad6d73c3f4584e650fc5b6c383085fbf6c5be5fd42081",
+    "gold_v2_B": "86a27d17c269e5b62f8fd4c64628430ee69f57e7b67b4dec4afb205a417fdf1b"
+  },
+  "datos_104_sha256_ids": {
+    "natural": "f6b7bd2fbccf3cd6351dfd77e69b04061b9c42f290e0e4b3a3a0328f8ffd77d4",
+    "sonnet": "eb5cd4a9d79e426377d3b3393594ca00b292f885bbad7a347b7356dc6cdb47de",
+    "validacion": "db20c0aa3cb1919ca6012a6573fedc7277607a6dcd08044a4d1ea57ab069ef84",
+    "validacion_sonnet": "db20c0aa3cb1919ca6012a6573fedc7277607a6dcd08044a4d1ea57ab069ef84"
+  },
+  "cobertura": {
+    "train_M": {
+      "candidatos": 12793,
+      "interseccion": 6996,
+      "cobertura_pct": 54.69,
+      "excluidos_por_motivo": {
+        "ValueError": 22,
+        "autocita": 6,
+        "menos_de_3_chunks": 7,
+        "ocl_404": 33,
+        "parrafo_largo": 5729
+      },
+      "por_clase_candidatos": {
+        "Background": 5174,
+        "Gap": 435,
+        "Basis": 577,
+        "Comparison": 1323,
+        "Application": 3538,
+        "Improvement / Modification": 224,
+        "Evidence": 868,
+        "Identification of the Originator": 349,
+        "Further Reading": 305
+      },
+      "por_clase_interseccion": {
+        "Background": 2858,
+        "Gap": 254,
+        "Basis": 301,
+        "Comparison": 733,
+        "Application": 1921,
+        "Improvement / Modification": 128,
+        "Evidence": 463,
+        "Identification of the Originator": 171,
+        "Further Reading": 167
+      },
+      "por_clase_excluidos": {
+        "Background": 2316,
+        "Gap": 181,
+        "Basis": 276,
+        "Comparison": 590,
+        "Application": 1617,
+        "Improvement / Modification": 96,
+        "Evidence": 405,
+        "Identification of the Originator": 178,
+        "Further Reading": 138
+      }
+    },
+    "train_S": {
+      "candidatos": 12764,
+      "interseccion": 6908,
+      "cobertura_pct": 54.12,
+      "excluidos_por_motivo": {
+        "ValueError": 21,
+        "autocita": 12,
+        "menos_de_3_chunks": 7,
+        "ocl_404": 34,
+        "parrafo_largo": 5782
+      },
+      "por_clase_candidatos": {
+        "Background": 4097,
+        "Gap": 657,
+        "Basis": 671,
+        "Comparison": 2138,
+        "Application": 1944,
+        "Improvement / Modification": 175,
+        "Evidence": 2060,
+        "Identification of the Originator": 318,
+        "Further Reading": 704
+      },
+      "por_clase_interseccion": {
+        "Background": 2223,
+        "Gap": 365,
+        "Basis": 335,
+        "Comparison": 1191,
+        "Application": 1072,
+        "Improvement / Modification": 93,
+        "Evidence": 1095,
+        "Identification of the Originator": 143,
+        "Further Reading": 391
+      },
+      "por_clase_excluidos": {
+        "Background": 1874,
+        "Gap": 292,
+        "Basis": 336,
+        "Comparison": 947,
+        "Application": 872,
+        "Improvement / Modification": 82,
+        "Evidence": 965,
+        "Identification of the Originator": 175,
+        "Further Reading": 313
+      }
+    },
+    "V": {
+      "candidatos": 3379,
+      "interseccion": 1816,
+      "cobertura_pct": 53.74,
+      "excluidos_por_motivo": {
+        "ValueError": 6,
+        "autocita": 4,
+        "menos_de_3_chunks": 2,
+        "ocl_404": 3,
+        "parrafo_largo": 1548
+      },
+      "por_clase_candidatos": {
+        "Background": 1307,
+        "Gap": 136,
+        "Basis": 120,
+        "Comparison": 441,
+        "Application": 899,
+        "Improvement / Modification": 107,
+        "Evidence": 262,
+        "Identification of the Originator": 59,
+        "Further Reading": 48
+      },
+      "por_clase_interseccion": {
+        "Background": 722,
+        "Gap": 79,
+        "Basis": 68,
+        "Comparison": 220,
+        "Application": 476,
+        "Improvement / Modification": 51,
+        "Evidence": 143,
+        "Identification of the Originator": 30,
+        "Further Reading": 27
+      },
+      "por_clase_excluidos": {
+        "Background": 585,
+        "Gap": 57,
+        "Basis": 52,
+        "Comparison": 221,
+        "Application": 423,
+        "Improvement / Modification": 56,
+        "Evidence": 119,
+        "Identification of the Originator": 29,
+        "Further Reading": 21
+      }
+    },
+    "gold_v2": {
+      "candidatos": 1533,
+      "interseccion": 839,
+      "cobertura_pct": 54.73,
+      "excluidos_por_motivo": {
+        "menos_de_3_chunks": 1,
+        "parrafo_largo": 693
+      },
+      "por_clase_candidatos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_interseccion": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_excluidos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      }
+    }
+  },
+  "sha256_top3_csv": {
+    "train_M": "189cc2f03ef72827dd1274c89749dc95c2c213c3e22f3eb1f3c62da13580f1c7",
+    "train_S": "af2c9c402370e149fba2bc279e9fe28623dbf9f627b587e6de733e0e2ba67a1c",
+    "V": "c7dc18521e6141b60b4391b4b62f215292c55b3ddd7667577656b986a7401fdd",
+    "gold_v2": "bddcc09e7feed196811f23fbeaed114dd3db96406fe6c4984e5dd9ba39a443c7"
+  },
+  "aleatorias": {
+    "sal": "aleatorio-104-b-v2",
+    "contextos": 11643,
+    "solape_medio": 0.10810501302642501,
+    "frac_identicos": 0.00515331100231899
+  },
+  "L1_dev_total_fugas": {
+    "M": 0,
+    "S": 0
+  },
+  "L10": {
+    "umbral": 0.5,
+    "descartes": {
+      "M": {
+        "train": 7,
+        "dev": 1
+      },
+      "S": {
+        "train": 21,
+        "dev": 1
+      }
+    }
+  },
+  "L4": {
+    "umbral": 0.5,
+    "citados_descartados": 58
+  },
+  "hiperparametros": {
+    "epocas": 6,
+    "paciencia": 2
+  },
+  "grilla_lr": [
+    2e-05,
+    3e-05,
+    5e-05
+  ],
+  "semillas": {
+    "nucleo": [
+      42,
+      1234,
+      2026,
+      7,
+      31337
+    ],
+    "control": [
+      42,
+      1234,
+      2026
+    ],
+    "grilla": [
+      42,
+      1234
+    ]
+  }
+}

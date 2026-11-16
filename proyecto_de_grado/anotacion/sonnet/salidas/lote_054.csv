@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W10-4356_W02-0109_0,Evaluable,Application,Alta,Uses NLTK tool directly for processing.,COMPLETO,54,1
+2,D12-1133_P09-1040_0,Evaluable,Background,Media,Lists transition systems for non-projective dependencies.,COMPLETO,54,1
+3,P11-1130_P08-1115_0,Evaluable,Background,Baja,Cites works that concatenate bi-texts to build phrase tables; Evidence also plausible.,COMPLETO,54,1
+4,W11-2908_P03-1013_0,Evaluable,Background,Media,Prior findings on lexicalization of PCFGs in German.,COMPLETO,54,1
+5,W06-2717_W04-1910_0,Evaluable,Basis,Media,Refers to authors' earlier experiments on which the current work builds.,COMPLETO,54,1
+6,N09-2066_W06-2920_0,Evaluable,Application,Alta,Uses CoNLL-X shared task data for evaluation.,COMPLETO,54,1
+7,P04-1052_E91-1028_0,Evaluable,Comparison,Media,"Contrasts the cited algorithm (relations, exponential search) with the IA.",COMPLETO,54,1
+8,D08-1066_W06-3105_5,Evaluable,Comparison,Alta,Explicit contrast with the cited model's segmentation.,COMPLETO,54,1
+9,W13-3733_N13-1013_0,Evaluable,Background,Media,Notes differing choices across conversion schemes.,COMPLETO,54,1
+10,E09-1026_P06-4020_1,Evaluable,Application,Alta,Uses RASP parser to parse corpora.,COMPLETO,54,1
+11,W04-2403_P03-1002_0,Evaluable,Background,Alta,Enumerates prior ML approaches.,COMPLETO,54,1
+12,P10-1147_N06-1015_1,Evaluable,Background,Alta,Summarizes prior work on discriminative alignment.,COMPLETO,54,1
+13,D11-1141_P11-1037_0,Evaluable,Comparison,Media,Describes parallel related work and contrasts its scope with the current work.,COMPLETO,54,1
+14,P12-2042_W10-0905_0,Evaluable,Comparison,Media,Contrasts scope with the current approach.,COMPLETO,54,1
+15,D13-1114_D11-1120_1,Evaluable,Background,Alta,Lists recent work on Twitter gender inference.,COMPLETO,54,1
+16,J02-1003_W98-1419_1,Evaluable,Background,Media,Lists works on overloading/superfluous properties.,COMPLETO,54,1
+17,W01-1610_P01-1048_0,Evaluable,Background,Media,Refers to authors' prior papers with descriptive statistics.,COMPLETO,54,1
+18,W13-4307_P09-1002_0,Evaluable,Evidence,Media,Supports claim that annotation disagreement reflects human cognition.,COMPLETO,54,1
+19,N13-1048_P06-1096_0,Evaluable,Basis,Alta,Follows the pioneering discriminative training work.,COMPLETO,54,1
+20,D10-1004_W06-2932_1,Evaluable,Comparison,Alta,Results compared against previously reported best results.,COMPLETO,54,1
+21,W09-2416_E03-1073_0,Evaluable,Evidence,Alta,Supports a specific statistic about NC types in the BNC.,COMPLETO,54,1
+22,P11-1102_P88-1015_1,Evaluable,Background,Media,Defines initiative and control concepts from prior work.,COMPLETO,54,1
+23,P12-2022_P10-2042_3,Evaluable,Application,Alta,Uses the Goodman transform to represent the TSG as a CFG.,COMPLETO,54,1
+24,W12-3705_P11-2103_1,Evaluable,Evidence,Alta,Supports claim that many Arabic tweets come from organizations.,COMPLETO,54,1
+25,E12-1055_D09-1074_0,Evaluable,Comparison,Media,Contrasts fine-grained weighting approaches with the coarse-grained mixture modelling.,COMPLETO,54,1
+26,P10-1033_P09-1104_5,Evaluable,Comparison,Alta,Baseline comparison of results.,COMPLETO,54,1
+27,W09-0615_E06-1040_0,Evaluable,Gap,Media,Notes that prior evaluations ignore effectiveness.,COMPLETO,54,1
+28,D12-1133_P08-1068_0,Evaluable,Identification of the Originator,Alta,Cluster features as first used by the cited work.,COMPLETO,54,1
+29,J01-4003_P89-1031_3,Evaluable,Background,Baja,Aside describing a modification of the BFP algorithm proposed by others.,COMPLETO,54,1
+30,N12-2004_P11-1070_0,Evaluable,Background,Alta,General research interest in web-scale data.,COMPLETO,54,1
+31,W06-3105_W02-1018_2,Evaluable,Comparison,Alta,Contrasts own model with the cited model and compares results.,COMPLETO,54,1
+32,P05-1071_P03-1004_0,Evaluable,Application,Alta,Uses Yamcha to train classifiers.,COMPLETO,54,1
+33,W11-3210_W02-0902_0,Evaluable,Background,Alta,Enumerates prior approaches to learning translation lexicons.,COMPLETO,54,1
+34,W10-3005_P05-1012_1,Evaluable,Application,Alta,Uses MSTParser to train a parser.,COMPLETO,54,1
+35,W13-4008_W10-0214_3,Evaluable,Comparison,Alta,Compares own approach with the cited method.,COMPLETO,54,1
+36,P10-1076_N03-1017_0,Evaluable,Background,Alta,Lists SMT frameworks.,COMPLETO,54,1
+37,W06-0202_P05-1047_2,Evaluable,Background,Media,Describes previous work using SVO with indirect evaluation.,COMPLETO,54,1
+38,W12-5902_D11-1045_0,Evaluable,Comparison,Alta,Compared against as a state-of-the-art system.,COMPLETO,54,1
+39,P13-1125_D11-1082_3,Evaluable,Application,Alta,Uses alignments from the cited supervised aligner.,COMPLETO,54,1
+40,D10-1108_D09-1099_1,Evaluable,Basis,Media,Terminology is adopted from the cited work.,COMPLETO,54,1
+41,W03-1728_P03-1064_0,Evaluable,Evidence,Media,Cited work shows the bidirectional strategy has been successful.,COMPLETO,54,1
+42,P13-1043_W05-1513_0,Evaluable,Background,Alta,Lists greedy classifier-based parsers.,COMPLETO,54,1
+43,W13-3517_D08-1031_0,Evaluable,Background,Alta,Lists works adopting the widely used model.,COMPLETO,54,1
+44,P12-1095_J07-2003_1,Evaluable,Basis,Media,Follows the cited work's deductive description of the algorithm.,COMPLETO,54,1
+45,P06-2118_S01-1005_0,Evaluable,Evidence,Alta,Supports the figure on top system performance.,COMPLETO,54,1
+46,P11-1088_P03-1004_0,Evaluable,Application,Alta,Uses Yamcha to build SVM classifiers.,COMPLETO,54,1
+47,D12-1077_N03-1017_0,Evaluable,Background,Alta,Cites phrase-based SMT as an example method.,COMPLETO,54,1
+48,J99-1003_P97-1017_0,Evaluable,Background,Media,Describes findings of the cited work on cognates.,COMPLETO,54,1
+49,D09-1135_P05-1010_0,Evaluable,Background,Alta,Reviews prior symbol-splitting methods.,COMPLETO,54,1
+50,W05-1514_P05-1024_0,Evaluable,Evidence,Alta,Supports claim that partial parse information matters.,COMPLETO,54,1
+51,D11-1010_P10-2021_1,Evaluable,Evidence,Media,Supports claim that this has been the common evaluation setup.,COMPLETO,54,1
+52,S13-1043_S10-1059_0,Evaluable,Comparison,Alta,Compares results with previously reported systems.,COMPLETO,54,1
+53,E09-1097_W07-2216_0,Evaluable,Evidence,Alta,Supports the NP-hardness claim.,COMPLETO,54,1
+54,P10-1040_P09-1116_2,Evaluable,Comparison,Alta,Result table row compared with other systems.,COMPLETO,54,1
+55,D09-1089_P06-1046_0,Evaluable,Background,Media,Cites efforts to reduce computational complexity.,COMPLETO,54,1
+56,P13-2150_W05-0904_0,Evaluable,Background,Alta,Enumerates tasks where tree kernels were useful.,COMPLETO,54,1
+57,P10-2003_N03-1017_0,Evaluable,Background,Alta,Introduces phrase-based systems as state of the art.,COMPLETO,54,1
+58,D11-1110_P04-1060_0,Evaluable,Comparison,Media,Contrasts bilingual grammar induction with syntax projection.,COMPLETO,54,1
+59,P13-1013_W12-6304_0,Evaluable,Evidence,Alta,Supports claim that Chinese words have internal structure.,COMPLETO,54,1
+60,W11-1701_W10-0214_2,Evaluable,Background,Alta,Summarizes prior findings on stance classification.,COMPLETO,54,1
+61,P13-1077_P09-1088_0,Evaluable,Background,Media,Lists related work on SCFG estimation.,COMPLETO,54,1
+62,P10-1090_P04-1043_2,Evaluable,Application,Alta,Uses the Tree Kernel Tools framework.,COMPLETO,54,1
+63,P13-2122_W08-0334_0,Evaluable,Background,Alta,Reviews prior domain adaptation work.,COMPLETO,54,1
+64,D08-1012_P96-1021_0,Evaluable,Further Reading,Alta,Refers reader for a detailed exposition.,COMPLETO,54,1
+65,W13-2713_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit.,COMPLETO,54,1
+66,N07-1070_P00-1065_0,Evaluable,Basis,Media,Formulation follows the cited initiating work.,COMPLETO,54,1
+67,E09-1018_P08-4003_0,Evaluable,Background,Alta,Describes the BART system among existing systems.,COMPLETO,54,1
+68,D12-1038_W06-1615_0,Evaluable,Background,Alta,Reviews domain adaptation research.,COMPLETO,54,1
+69,P12-1028_D09-1012_1,Evaluable,Application,Media,Fragments extracted following the cited method.,COMPLETO,54,1
+70,D09-1012_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser.,COMPLETO,54,1
+71,S13-2040_D12-1128_2,Evaluable,Application,Alta,Uses BabelNet's sense translation API.,COMPLETO,54,1
+72,W13-3507_P05-1010_0,Evaluable,Background,Alta,Lists related work on EM-estimated L-PCFGs.,COMPLETO,54,1
+73,W09-0419_W07-0732_1,Evaluable,Basis,Media,Future directions build on authors' previous work.,COMPLETO,54,1
+74,E12-1050_P08-2009_1,Evaluable,Evidence,Media,Supports claim that the framework applies to morphologically complex languages.,COMPLETO,54,1
+75,W11-2843_W10-1004_1,Evaluable,Evidence,Alta,Supports claim that learner errors are systematic and L1-dependent.,COMPLETO,54,1
+76,D11-1022_W06-2932_1,Evaluable,Comparison,Alta,Compared with best published results.,COMPLETO,54,1
+77,P06-1045_P98-2127_1,Evaluable,Basis,Media,The idea of the measure came from Lin's method.,COMPLETO,54,1
+78,W12-1707_J91-4003_1,Evaluable,Evidence,Media,Supports claim about knowledge in lexical entries of nouns.,COMPLETO,54,1
+79,P07-1025_P00-1065_0,Evaluable,Identification of the Originator,Media,Credits the work that used parse tree paths for semantic role labeling.,COMPLETO,54,1
+80,W11-2902_E09-1053_0,Evaluable,Evidence,Media,Supports claim that CCG may be arbitrarily discontinuous.,COMPLETO,54,1
+81,N06-3005_J04-3002_0,Evaluable,Background,Alta,Reviews prior work on subjective language.,COMPLETO,54,1
+82,W11-0133_W04-2307_0,Evaluable,Gap,Alta,Notes the granularity of existing schemas is too coarse.,COMPLETO,54,1
+83,S12-1076_P11-1020_0,Evaluable,Application,Alta,Uses the cited corpus as a data source.,COMPLETO,54,1
+84,P13-5004_W11-0704_0,Evaluable,Background,Alta,Presents characteristics of Twitter.,COMPLETO,54,1
+85,W09-2307_W06-3108_0,Evaluable,Improvement / Modification,Alta,Improves the cited classifier by adding path features.,COMPLETO,54,1
+86,W12-3404_P11-1112_2,Evaluable,Application,Alta,Uses purity and collocation measures as in prior work.,COMPLETO,54,1
+87,D13-1115_N10-1011_0,Evaluable,Background,Alta,Lists prior grounded language tasks.,COMPLETO,54,1
+88,P09-1073_P02-1014_1,Evaluable,Gap,Media,Criticizes existing ML methods for lacking attention to the problem.,COMPLETO,54,1
+89,J92-2004_P91-1025_0,Evaluable,Background,Alta,Describes infon lattices introduced in prior work.,COMPLETO,54,1
+90,P11-1001_P05-1033_3,Evaluable,Comparison,Media,Contrasts the cited contribution with other grammar induction work.,COMPLETO,54,1
+91,E12-1078_P09-1092_0,Evaluable,Evidence,Alta,Cited experiments show the effect extends further.,COMPLETO,54,1
+92,P11-1163_W10-1905_0,Evaluable,Gap,Alta,"Notes prior models ignore the structure, motivating the new approach.",COMPLETO,54,1
+93,P06-1035_W97-1102_0,Evaluable,Background,Alta,Lists work on computational language taxonomies.,COMPLETO,54,1
+94,W05-1510_P05-1011_5,Evaluable,Application,Alta,Imports features directly from prior HPSG work.,COMPLETO,54,1
+95,W02-0602_P01-1063_1,Evaluable,Comparison,Alta,Explicitly contrasts probability model and search technique.,COMPLETO,54,1
+96,D13-1047_E06-1038_0,Evaluable,Gap,Media,Notes prior work relies on generic compression that may not fit summarization.,COMPLETO,54,1
+97,E97-1028_P96-1027_0,Evaluable,Background,Media,Lists related chart-based generators.,COMPLETO,54,1
+98,W05-1202_P98-2127_3,Evaluable,Comparison,Alta,Contrasts the proposed measure with measures needing weighting.,COMPLETO,54,1
+99,N13-1136_W04-1013_0,Evaluable,Background,Alta,Describes ROUGE as the evaluation used by prior approaches.,COMPLETO,54,1
+100,W98-0614_P93-1012_0,Evaluable,Background,Media,Summarizes the cited work's distinction on metonymy.,COMPLETO,54,1

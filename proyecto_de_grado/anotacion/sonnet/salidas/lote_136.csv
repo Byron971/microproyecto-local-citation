@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W03-2710_P95-1016_0,Evaluable,Background,Alta,Enumeración de técnicas previas para reconocimiento de intención.,COMPLETO,136,1
+2,W09-3207_D08-1095_0,Evaluable,Background,Alta,Revisa trabajos previos sobre grafos para relación semántica.,COMPLETO,136,1
+3,W06-3123_W02-1018_0,Evaluable,Background,Media,"Describe el modelo de probabilidad conjunta propuesto por el trabajo citado, como contexto previo.",COMPLETO,136,1
+4,N10-1128_W06-3119_0,Evaluable,Comparison,Media,"Contrasta explícitamente el trabajo actual con los previos (""Like these... but this is the first"").",COMPLETO,136,1
+5,D08-1094_P08-1028_3,Evaluable,Comparison,Alta,Compara el modelo SVS con el modelo state-of-the-art de M&L.,COMPLETO,136,1
+6,P12-1052_P04-1014_0,Evaluable,Application,Media,Usa las restricciones de corte y razón del trabajo citado en el diccionario de etiquetas.,COMPLETO,136,1
+7,D11-1022_P10-1110_1,Evaluable,Comparison,Alta,Contrasta velocidad y precisión con analizadores basados en transiciones.,COMPLETO,136,1
+8,P13-1028_D12-1063_1,Evaluable,Background,Alta,Revisión de trabajos previos en inducción de dependencias no supervisada.,COMPLETO,136,1
+9,S10-1087_P04-1036_2,Evaluable,Application,Media,Aplica la heurística de sentido predominante similar a la citada.,COMPLETO,136,1
+10,W10-4148_N07-1051_0,Evaluable,Background,Media,Describe en qué se basa el analizador de Berkeley.,COMPLETO,136,1
+11,Q13-1024_N06-1014_0,Evaluable,Evidence,Media,"Respalda la afirmación de que modelos basados en secuencia modificados rinden comparable, justificando la decisión de diseño.",COMPLETO,136,1
+12,P11-2094_D09-1136_0,Evaluable,Background,Alta,Afirmación general sobre aplicaciones exitosas de modelos bayesianos.,COMPLETO,136,1
+13,W12-1637_W11-2006_3,Evaluable,Comparison,Baja,Resume el desempeño de los sistemas base del trabajo citado y los compara con RM.,COMPLETO,136,1
+14,W11-2161_J07-2003_0,Evaluable,Identification of the Originator,Media,Atribuye el enfoque jerárquico de frases con huecos a su origen.,COMPLETO,136,1
+15,W00-1425_W98-1411_1,Evaluable,Background,Media,Menciona planificadores como ejemplos de arquitecturas apropiadas.,COMPLETO,136,1
+16,E12-1045_N04-4038_0,Evaluable,Application,Alta,Usa AMIRA para segmentar el texto árabe.,COMPLETO,136,1
+17,P06-1040_P03-1044_0,Evaluable,Gap,Media,Señala la limitación de requerir patrones iniciales manuales.,COMPLETO,136,1
+18,P09-1114_P04-1054_1,Evaluable,Background,Alta,Enumera kernels propuestos para extracción de relaciones.,COMPLETO,136,1
+19,P10-1020_P09-1008_0,Evaluable,Evidence,Alta,"Respalda que el parser funciona bien en la tarea, justificando su elección.",COMPLETO,136,1
+20,P10-1071_W07-0103_0,Evaluable,Background,Media,"Describe el enfoque previo de metáforas con verbos, sustantivos y adjetivos.",COMPLETO,136,1
+21,N07-1002_W05-0307_1,Evaluable,Further Reading,Alta,Remite a la descripción completa de las guías de anotación.,COMPLETO,136,1
+22,P11-1064_N03-1017_3,Evaluable,Evidence,Alta,Respalda la afirmación de que la extracción exhaustiva supera a enfoques con sintaxis.,COMPLETO,136,1
+23,W13-2605_P06-1055_1,Evaluable,Application,Baja,"Referencia al entrenador usado, cuya salida se transforma.",COMPLETO,136,1
+24,W03-1703_A00-1012_0,Evaluable,Evidence,Alta,Respalda el hallazgo de desacuerdo humano en puntuación.,COMPLETO,136,1
+25,J08-2003_W05-0625_0,Evaluable,Evidence,Media,Sustenta la afirmación de que la inferencia conjunta mejora la exactitud.,COMPLETO,136,1
+26,N06-2040_P02-1048_0,Evaluable,Background,Alta,Ejemplos de agentes de diálogo en dominios de navegación.,COMPLETO,136,1
+27,D11-1070_W09-1401_0,Evaluable,Background,Media,Describe trabajo previo de participantes de la tarea compartida; luego se contrasta.,COMPLETO,136,1
+28,W96-0111_W96-0213_0,Evaluable,Evidence,Alta,Respalda la afirmación de inconsistencias en el Penn Treebank.,COMPLETO,136,1
+29,P10-1109_N04-1014_1,Evaluable,Background,Media,Historia del redescubrimiento de los transductores de árboles extendidos.,COMPLETO,136,1
+30,D11-1038_P03-1054_1,Evaluable,Application,Alta,Usa el parser de Stanford sin modificación.,COMPLETO,136,1
+31,J13-3003_D10-1113_3,Evaluable,Background,Alta,Enumera trabajos evaluados en sustitución léxica.,COMPLETO,136,1
+32,J02-4002_E99-1011_0,Evaluable,Evidence,Media,Respalda que los extractos son útiles en recuperación de información.,COMPLETO,136,1
+33,S12-1044_W09-1105_0,Evaluable,Background,Alta,Describe el método previo de Morante y Daelemans.,COMPLETO,136,1
+34,W13-1006_W03-1812_4,Evaluable,Comparison,Alta,Contrasta el enfoque propio con el de la obra citada.,COMPLETO,136,1
+35,Q13-1034_P09-1040_1,Evaluable,Evidence,Alta,Respalda la afirmación sobre la escasez de dependencias no proyectivas y tiempo lineal.,COMPLETO,136,1
+36,D12-1117_P09-1031_0,Evaluable,Gap,Media,"Tras enumerar trabajos previos, señala que pocos incorporan especificaciones de tarea.",COMPLETO,136,1
+37,S12-1067_W03-1812_0,Evaluable,Basis,Media,Reglas de relevancia definidas apoyándose en trabajo previo de semántica composicional.,COMPLETO,136,1
+38,P12-1071_P09-1006_4,Evaluable,Comparison,Alta,Compara resultados con el reranker y mejoras en F de los autores citados.,COMPLETO,136,1
+39,P88-1004_P84-1085_0,No evaluable,,Baja,El contexto está truncado y corrupto; no permite juzgar la función.,REGISTRADO,136,1
+40,Q13-1027_W09-0434_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la importancia del orden de palabras en SMT.,COMPLETO,136,1
+41,P06-1037_E03-1052_0,Evaluable,Comparison,Media,Vincula el uso de supertags con trabajo previo comparable.,COMPLETO,136,1
+42,S07-1066_P98-2127_0,Evaluable,Further Reading,Media,"""see, for example"" remite a otro método para obtener sinónimos.",COMPLETO,136,1
+43,W12-1614_P02-1047_0,Evaluable,Background,Alta,Describe la práctica previa de datos sintéticos.,COMPLETO,136,1
+44,D13-1157_P09-1010_0,Evaluable,Application,Media,Usa el dominio/conjunto de datos WINHELP del trabajo citado para evaluar.,COMPLETO,136,1
+45,N09-1041_N06-2046_0,Evaluable,Background,Alta,Enumera enfoques de modelado de contenido.,COMPLETO,136,1
+46,W04-1109_W03-1720_0,Evaluable,Comparison,Alta,Compara resultados con el método similar del trabajo citado.,COMPLETO,136,1
+47,P13-1104_P11-2121_3,Evaluable,Comparison,Alta,Señala similitud y diferencias del algoritmo con el trabajo citado.,COMPLETO,136,1
+48,P07-1099_P06-1054_0,Evaluable,Application,Alta,Usa el parser citado para segmentar chino.,COMPLETO,136,1
+49,W99-0614_P91-1030_0,Evaluable,Background,Alta,Enumera soluciones estadísticas previas al problema de adjunción de PP.,COMPLETO,136,1
+50,P02-1003_P96-1027_1,Evaluable,Basis,Media,Sigue trabajos previos al enriquecer la gramática TAG con interfaz sintaxis-semántica.,COMPLETO,136,1
+51,W09-2503_P05-1074_1,Evaluable,Basis,Media,El trabajo actual se construye sobre el enfoque de paráfrasis con pivotes.,COMPLETO,136,1
+52,W13-3507_P12-1024_4,Evaluable,Further Reading,Alta,"""see ... for details"" remite a detalles.",COMPLETO,136,1
+53,P04-1042_W03-1005_2,Evaluable,Comparison,Alta,Tabla que compara con trabajos previos.,COMPLETO,136,1
+54,W10-4310_N09-4006_0,Evaluable,Application,Alta,Usa las anotaciones de correferencia de OntoNotes.,COMPLETO,136,1
+55,D11-1070_W07-1013_1,Evaluable,Background,Alta,Resume tareas compartidas recientes en NLP clínico.,COMPLETO,136,1
+56,P06-2096_E99-1023_0,Evaluable,Identification of the Originator,Alta,Atribuye el nombre IOB a quienes lo nombraron.,COMPLETO,136,1
+57,N13-1070_P09-2079_0,Evaluable,Background,Alta,Aplicaciones útiles del análisis de dependencias.,COMPLETO,136,1
+58,Q13-1027_N04-4038_0,Evaluable,Application,Alta,Usa AMIRA para segmentar y etiquetar.,COMPLETO,136,1
+59,D09-1109_P09-1116_0,Evaluable,Evidence,Media,Respalda que la línea base de frecuencia supera a la mayoría de sistemas.,COMPLETO,136,1
+60,J99-3002_P98-2156_0,Evaluable,Comparison,Alta,Contrasta con algoritmos LR previos que no cumplen la propiedad del prefijo correcto.,COMPLETO,136,1
+61,J05-4002_P98-2127_0,Evaluable,Background,Alta,Enumera trabajos sobre generación automática de tesauros.,COMPLETO,136,1
+62,W04-2410_P98-2124_1,Evaluable,Comparison,Alta,Tabla que compara exactitud de varios modelos.,COMPLETO,136,1
+63,P08-1078_N07-1071_6,Evaluable,Comparison,Alta,Contrasta resultados propios con los del trabajo citado.,COMPLETO,136,1
+64,W09-3832_P03-1064_0,Evaluable,Background,Alta,Enumera usos de supertags en otras tareas.,COMPLETO,136,1
+65,P11-2112_P09-1116_0,Evaluable,Background,Alta,Ejemplos de tareas donde mejoró el aprendizaje supervisado.,COMPLETO,136,1
+66,W12-3128_N07-1051_0,Evaluable,Application,Alta,Usa el analizador de Berkeley.,COMPLETO,136,1
+67,P09-1054_P05-1073_0,Evaluable,Background,Alta,Enumera tareas donde se aplican modelos loglineales.,COMPLETO,136,1
+68,W09-0208_D08-1094_3,Evaluable,Basis,Alta,Extiende el trabajo previo propio de un solo paso a aplicación recursiva.,COMPLETO,136,1
+69,N12-1073_P97-1023_0,Evaluable,Background,Alta,Describe el enfoque común de detección de sentimiento.,COMPLETO,136,1
+70,N06-2001_W03-1021_0,Evaluable,Evidence,Alta,Respalda que estos modelos superan a los de back-off.,COMPLETO,136,1
+71,P12-1037_N04-1001_0,Evaluable,Application,Alta,Usa el sistema SIRE para extraer hechos.,COMPLETO,136,1
+72,E09-1055_P07-1021_1,Evaluable,Evidence,Media,Respalda la afirmación sobre representar bloques de subárboles.,COMPLETO,136,1
+73,N13-1007_D12-1058_0,Evaluable,Background,Alta,Enumera métodos de adquisición de paráfrasis.,COMPLETO,136,1
+74,W07-2208_P05-1011_6,Evaluable,Comparison,Alta,Tabla comparando modelos.,COMPLETO,136,1
+75,D13-1049_J90-2002_0,Evaluable,Identification of the Originator,Media,Reconoce el trabajo fundacional sobre orden de palabras en MT.,COMPLETO,136,1
+76,W09-0407_P05-3026_0,Evaluable,Comparison,Alta,"Contrasta con enfoques existentes (""In contrast to"").",COMPLETO,136,1
+77,W11-2116_D08-1065_0,Evaluable,Background,Media,Describe el BLEU lineal propuesto por el trabajo citado.,COMPLETO,136,1
+78,W10-4205_P09-4003_0,Evaluable,Evidence,Alta,Respalda la afirmación de usabilidad de la herramienta.,COMPLETO,136,1
+79,P09-1068_P98-1013_1,Evaluable,Background,Alta,Menciona FrameNet como representación relacionada.,COMPLETO,136,1
+80,N13-1125_P11-2037_0,Evaluable,Background,Alta,Describe la práctica común en dos etapas.,COMPLETO,136,1
+81,P11-2124_P11-2037_0,Evaluable,Background,Media,Menciona una aplicación exitosa de parsing con retículos para predicción de elementos vacíos.,COMPLETO,136,1
+82,P03-1014_E03-1052_2,Evaluable,Comparison,Alta,Compara resultados similares con trabajo previo.,COMPLETO,136,1
+83,P04-1014_P02-1042_1,Evaluable,Further Reading,Alta,Remite a introducciones al parsing estadístico con CCG.,COMPLETO,136,1
+84,P05-1031_P04-1019_1,Evaluable,Background,Media,Menciona trabajos relacionados de resolución de pronombres.,COMPLETO,136,1
+85,W06-1654_P06-1046_0,Evaluable,Comparison,Alta,Contrasta resultados de Random Indexing citados con los propios.,COMPLETO,136,1
+86,D10-1034_P05-1052_0,Evaluable,Background,Alta,Enumera enfoques supervisados de extracción de relaciones.,COMPLETO,136,1
+87,P11-1118_P08-2011_8,Evaluable,Comparison,Alta,Compara el mejor resultado con el modelo de comparación citado.,COMPLETO,136,1
+88,W91-0103_P89-1005_1,Evaluable,Comparison,Media,Señala similitud con la interpretación semántica de signos insaturados.,COMPLETO,136,1
+89,W13-3004_J88-2003_1,Evaluable,Evidence,Media,Respalda la distinción de Aktionsart por durabilidad y telicidad.,COMPLETO,136,1
+90,P13-1089_D12-1102_1,Evaluable,Background,Media,Introduce el concepto de inferencia amortizada de trabajo previo.,COMPLETO,136,1
+91,N13-1027_D11-1075_2,Evaluable,Comparison,Alta,"Contrasta (""Unlike"") con el enfoque basado en anotaciones humanas.",COMPLETO,136,1
+92,D08-1105_N09-4006_0,Evaluable,Background,Alta,Describe el proyecto OntoNotes como esfuerzo de anotación.,COMPLETO,136,1
+93,W11-2149_P10-2041_0,Evaluable,Application,Alta,Aplica el método de selección de datos propuesto.,COMPLETO,136,1
+94,W12-1637_W06-1303_0,Evaluable,Application,Alta,Usa el enfoque de Relevance Model adaptado a QA.,COMPLETO,136,1
+95,N04-1001_W03-1026_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el rendimiento depende de integrar fuentes.,COMPLETO,136,1
+96,N10-1082_N09-1026_0,Evaluable,Application,Alta,Usa el decodificador citado para analizar.,COMPLETO,136,1
+97,P10-1076_D09-1114_0,Evaluable,Background,Media,Indica que la función de consenso se ha adoptado con éxito en combinación de sistemas.,COMPLETO,136,1
+98,W99-0609_P99-1008_0,Evaluable,Background,Alta,Revisa métodos automáticos para construir recursos léxicos.,COMPLETO,136,1
+99,D13-1064_P09-1113_0,Evaluable,Background,Alta,Utilidad previa en preguntas-respuestas y extracción de relaciones.,COMPLETO,136,1
+100,N09-1061_N06-1033_0,Evaluable,Evidence,Alta,Respalda que reglas más pequeñas mejoran la generalización.,COMPLETO,136,1

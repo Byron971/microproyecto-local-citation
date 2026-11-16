@@ -1,0 +1,54 @@
+{
+  "encoder": "reanudado: top3 ya calculado",
+  "sha256_manifiesto_modelo": "d64d1ac222fa40fb65d148ab4b87ca24b5063d4d54dc2317f280e8c50d671e7a",
+  "huellas": {},
+  "segundos": 0.0,
+  "cobertura_chunks": {
+    "train_M": [
+      7003,
+      12793
+    ],
+    "train_S": [
+      6915,
+      12764
+    ],
+    "V": [
+      1818,
+      3379
+    ],
+    "gold_v2": [
+      840,
+      1533
+    ]
+  },
+  "regresion_a4": {
+    "train_M": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 1144,
+      "coinciden": 1144,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "train_S": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 1144,
+      "coinciden": 1144,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "V": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 246,
+      "coinciden": 246,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "gold_v2": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 840,
+      "coinciden": 840,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    }
+  }
+}

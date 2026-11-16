@@ -1,0 +1,93 @@
+{
+  "apto": true,
+  "errores": [],
+  "avisos": [
+    "1815 Evaluable sin justificacion"
+  ],
+  "resumen": {
+    "archivo": "/home/carlos/microproyecto-local-citation/proyecto_de_grado/anotacion/sonnet/etiquetas_sonnet.csv",
+    "sha256": "d0e95e927c9f57860e6ec75caf5338c07834dca3c7588bf45eccc6e87dcbba1c",
+    "distribucion": {
+      "filas": 16711,
+      "usables_entrenamiento": 16704,
+      "abstenciones": 7,
+      "por_clase": {
+        "Background": 5744,
+        "Gap": 784,
+        "Basis": 871,
+        "Comparison": 2776,
+        "Application": 2716,
+        "Improvement / Modification": 224,
+        "Evidence": 2428,
+        "Identification of the Originator": 345,
+        "Further Reading": 816
+      },
+      "confianza": {
+        "Media": 5208,
+        "Alta": 11348,
+        "Baja": 155
+      },
+      "confianza_por_clase": {
+        "Background": {
+          "Alta": 4041,
+          "Media": 1667,
+          "Baja": 36
+        },
+        "Gap": {
+          "Alta": 316,
+          "Media": 468
+        },
+        "Basis": {
+          "Alta": 324,
+          "Media": 526,
+          "Baja": 21
+        },
+        "Comparison": {
+          "Media": 539,
+          "Alta": 2221,
+          "Baja": 16
+        },
+        "Application": {
+          "Media": 434,
+          "Alta": 2278,
+          "Baja": 4
+        },
+        "Improvement / Modification": {
+          "Alta": 190,
+          "Media": 34
+        },
+        "Evidence": {
+          "Media": 1186,
+          "Alta": 1208,
+          "Baja": 34
+        },
+        "Identification of the Originator": {
+          "Media": 108,
+          "Alta": 232,
+          "Baja": 5
+        },
+        "Further Reading": {
+          "Alta": 538,
+          "Media": 246,
+          "Baja": 32
+        }
+      }
+    },
+    "cobertura": {
+      "ids_esperados": 16711,
+      "sha256_ids_coincide": true,
+      "lotes": {
+        "esperados": 168,
+        "con_salida": 168,
+        "distintos": 0
+      }
+    },
+    "fugas_y_calidad": {
+      "sin_contexto": 0,
+      "vetados": 0,
+      "anios_excluidos": 0,
+      "citantes_gold": 0,
+      "sin_titulo_abstract": 0
+    }
+  }
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "pista": "M",
+    "comparacion": "B - A",
+    "primaria": true,
+    "diferencia": 0.021805452744539953,
+    "ic95": [
+      0.0023965628646680573,
+      0.03587881262500851
+    ],
+    "prob_b_mayor": 0.975,
+    "n_remuestras": 200,
+    "casos": 64,
+    "grupos": 14,
+    "semillas": 2,
+    "diferencia_por_semilla": [
+      0.04195111509689514,
+      0.001659790392184765
+    ],
+    "mismo_signo_semillas": true,
+    "semillas_usadas": [
+      42,
+      1234
+    ],
+    "ic_excluye_0": true,
+    "afirmable": false
+  },
+  {
+    "pista": "M",
+    "comparacion": "B_barajada - B",
+    "primaria": false,
+    "diferencia": -0.01912098240194696,
+    "ic95": [
+      -0.03478283295303968,
+      0.0016989380568471976
+    ],
+    "prob_b_mayor": 0.045,
+    "n_remuestras": 200,
+    "casos": 64,
+    "grupos": 14,
+    "semillas": 2,
+    "diferencia_por_semilla": [
+      -0.03721722464871898,
+      -0.0010247401551749385
+    ],
+    "mismo_signo_semillas": true,
+    "semillas_usadas": [
+      42,
+      1234
+    ],
+    "ic_excluye_0": false,
+    "afirmable": false
+  },
+  {
+    "pista": "S",
+    "comparacion": "B - A",
+    "primaria": true,
+    "diferencia": 0.012198538161854816,
+    "ic95": [
+      -0.0037811898277014533,
+      0.026923263159644613
+    ],
+    "prob_b_mayor": 0.905,
+    "n_remuestras": 200,
+    "casos": 64,
+    "grupos": 14,
+    "semillas": 2,
+    "diferencia_por_semilla": [
+      0.004382909555323347,
+      0.020014166768386278
+    ],
+    "mismo_signo_semillas": true,
+    "semillas_usadas": [
+      42,
+      1234
+    ],
+    "ic_excluye_0": false,
+    "afirmable": false
+  },
+  {
+    "pista": "S",
+    "comparacion": "B_barajada - B",
+    "primaria": false,
+    "diferencia": -0.0019552130497040715,
+    "ic95": [
+      -0.017806267806267807,
+      0.01997142965831357
+    ],
+    "prob_b_mayor": 0.375,
+    "n_remuestras": 200,
+    "casos": 64,
+    "grupos": 14,
+    "semillas": 2,
+    "diferencia_por_semilla": [
+      -0.0007093405969810437,
+      -0.0032010855024270785
+    ],
+    "mismo_signo_semillas": true,
+    "semillas_usadas": [
+      42,
+      1234
+    ],
+    "ic_excluye_0": false,
+    "afirmable": false
+  }
+]

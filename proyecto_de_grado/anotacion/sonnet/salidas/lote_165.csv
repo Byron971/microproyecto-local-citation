@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,E09-1030_N03-1028_0,Evaluable,Background,Media,Cita de CRFs aplicados a tareas de NLP como shallow parsing; describe el estado del área.,COMPLETO,165,1
+2,N07-1048_W06-1646_0,Evaluable,Background,Media,Enumera trabajos previos con mejoras modestas en reconocimiento de voz.,COMPLETO,165,1
+3,P98-1112_A97-1042_0,Evaluable,Background,Media,Enumera sistemas de resumen que se centran en frases nominales.,COMPLETO,165,1
+4,P12-1018_P02-1051_0,Evaluable,Background,Alta,Revisión de métodos previos de traducción de entidades nombradas.,COMPLETO,165,1
+5,W10-3809_P02-1039_0,Evaluable,Background,Media,Cita de enfoques basados en sintaxis para MT en la introducción.,COMPLETO,165,1
+6,W13-1612_D08-1014_0,Evaluable,Background,Alta,Resume estudios previos sobre análisis de subjetividad en español.,COMPLETO,165,1
+7,P12-2011_N09-1041_0,Evaluable,Comparison,Media,Declara que el modelo propio es muy similar al del trabajo citado.,COMPLETO,165,1
+8,D09-1127_P09-1042_0,Evaluable,Background,Media,Describe trabajo previo de proyección; el contraste con el propio trabajo es secundario.,COMPLETO,165,1
+9,D10-1043_D08-1022_2,Evaluable,Comparison,Media,Sistema usado como línea base de comparación en la evaluación.,COMPLETO,165,1
+10,P10-1043_P07-1055_0,Evaluable,Background,Alta,Enumera enfoques previos para mejorar clasificadores de sentimiento.,COMPLETO,165,1
+11,N10-1005_N04-1011_0,Evaluable,Background,Alta,Describe trabajo previo sobre integración de prosodia en parsing.,COMPLETO,165,1
+12,P11-1157_P10-2041_0,Evaluable,Background,Alta,Describe trabajo previo sobre selección de datos para modelos de lenguaje.,COMPLETO,165,1
+13,W09-2808_P99-1072_0,Evaluable,Comparison,Alta,Contrasta explícitamente el método propio con métodos que usan correferencia de SN.,COMPLETO,165,1
+14,D10-1082_P07-2055_1,Evaluable,Comparison,Alta,Modelo citado es un sistema comparado en la tabla de resultados.,COMPLETO,165,1
+15,P03-1055_E03-1005_0,Evaluable,Gap,Media,Señala que los trabajos citados evitan el problema de dependencias de larga distancia.,COMPLETO,165,1
+16,J13-4004_D09-1120_3,Evaluable,Application,Media,Usa la definición estándar de aposición del trabajo citado sin modificarla.,COMPLETO,165,1
+17,P09-1087_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador citado para obtener etiquetas POS.,COMPLETO,165,1
+18,W10-4233_P09-2076_1,Evaluable,Evidence,Media,Respalda la afirmación sobre los resultados de GIVE comparables a los de laboratorio.,COMPLETO,165,1
+19,P10-2031_W04-3224_0,Evaluable,Application,Alta,Usa el analizador de Bikel tal cual para parsing automático.,COMPLETO,165,1
+20,W07-2202_W06-1619_3,Evaluable,Background,Media,Describe trabajo previo que usó características trigrama y POS 5-grama; es un antecedente del modelo.,COMPLETO,165,1
+21,W08-2004_P06-1117_0,Evaluable,Background,Media,Remite a aplicaciones de NLP de los tree kernels como contexto.,COMPLETO,165,1
+22,W10-2926_D09-1012_0,Evaluable,Basis,Media,Trabajo previo propio del que parte el marco actual de selección de características.,COMPLETO,165,1
+23,W04-3256_W00-0405_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la capacidad esencial de un resumidor multidocumento.,COMPLETO,165,1
+24,J13-4006_W05-1505_0,Evaluable,Background,Alta,Agrupa enfoques previos de manejo de grafos no planos.,COMPLETO,165,1
+25,W11-0314_D08-1093_0,Evaluable,Background,Media,Describe trabajo previo sobre predicción de precisión del parser.,COMPLETO,165,1
+26,D10-1090_N06-1014_1,Evaluable,Application,Alta,Usa el alineador de Berkeley como herramienta.,COMPLETO,165,1
+27,P13-2034_P08-2068_0,Evaluable,Evidence,Media,Respalda la afirmación de que LDA es eficaz en tareas de segmentación.,COMPLETO,165,1
+28,W04-3209_W02-1002_1,Evaluable,Evidence,Alta,Los resultados son consistentes con hallazgos del trabajo citado.,COMPLETO,165,1
+29,J13-4004_P02-1014_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la importancia de rasgos léxicos y sintácticos.,COMPLETO,165,1
+30,D11-1038_P09-1094_0,Evaluable,Gap,Media,"Señala limitaciones de modelos previos, con excepciones, para justificar el modelo propio.",COMPLETO,165,1
+31,J11-3004_P96-1025_2,Evaluable,Comparison,Media,Relaciona el parser propio con el citado mediante filtrado.,COMPLETO,165,1
+32,J13-2004_W06-2920_0,Evaluable,Background,Media,Cita a parsers de dependencias disponibles como contexto general.,COMPLETO,165,1
+33,N12-1088_N04-1023_1,Evaluable,Background,Alta,Revisa literatura sobre reranking discriminativo.,COMPLETO,165,1
+34,J09-1003_P05-1018_5,Evaluable,Gap,Media,Señala que los trabajos citados no consideran empates entre ordenamientos.,COMPLETO,165,1
+35,D12-1077_D11-1018_3,Evaluable,Application,Media,Usa rasgos de frecuencia de frase tomados del trabajo citado.,COMPLETO,165,1
+36,P06-2004_P91-1030_0,Evaluable,Background,Media,Describe el enfoque no supervisado previo y su exactitud.,COMPLETO,165,1
+37,W03-0103_E99-1001_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre el desempeño sin gazetteers.,COMPLETO,165,1
+38,D10-1005_P07-1055_0,Evaluable,Background,Media,Menciona trabajo sobre estructura del documento en sentimiento como información relevante.,COMPLETO,165,1
+39,Q13-1007_D10-1120_3,Evaluable,Comparison,Alta,Compara explícitamente el sistema propio con el citado.,COMPLETO,165,1
+40,W10-3102_W10-1103_0,Evaluable,Background,Alta,Describe el primer trabajo previo sobre detección de negación en sueco.,COMPLETO,165,1
+41,P13-1145_N06-1046_0,Evaluable,Background,Media,Ejemplos de uso extendido de ILP en NLP.,COMPLETO,165,1
+42,J13-1009_P10-1112_0,Evaluable,Comparison,Baja,"Señala que el trabajo citado también experimentó con rasgos manuales, vinculándolo con el propio.",COMPLETO,165,1
+43,P13-1077_W06-1600_0,Evaluable,Background,Media,Cita sistemas líderes de traducción que usan unidades multipalabra.,COMPLETO,165,1
+44,S13-1004_N12-1017_0,Evaluable,Application,Baja,Los datos de traducción generados por FST provienen del trabajo citado y se usan en el conjunto.,COMPLETO,165,1
+45,P13-1010_N07-1055_0,Evaluable,Background,Alta,Describe extensiones previas de Elsner y Charniak.,COMPLETO,165,1
+46,D10-1047_P03-1021_1,Evaluable,Application,Alta,Usa MERT directamente para optimizar los pesos.,COMPLETO,165,1
+47,W11-2119_W10-1748_2,Evaluable,Further Reading,Media,Remite a una fuente para una restricción diferenciable.,COMPLETO,165,1
+48,D12-1085_P11-2040_0,Evaluable,Evidence,Alta,Justifica el uso de deslizadores continuos porque la gente los prefiere.,COMPLETO,165,1
+49,W05-0310_W04-0904_0,Evaluable,Further Reading,Alta,"Indica 'for further discussion, see' para más detalle.",COMPLETO,165,1
+50,P13-1092_P11-1060_2,Evaluable,Background,Media,Describe el trabajo previo que propuso DCS dentro de la revisión de literatura.,COMPLETO,165,1
+51,W09-0608_P99-1018_2,Evaluable,Application,Media,Adopta la definición de SN simple de la fuente citada.,COMPLETO,165,1
+52,P11-1126_P05-1033_0,Evaluable,Background,Media,Cita modelos de SMT como contexto en la introducción.,COMPLETO,165,1
+53,W13-4102_P08-1036_1,Evaluable,Background,Media,Trabajos previos que usaron etiquetas de valoración para extraer sentimientos.,COMPLETO,165,1
+54,W07-1002_W93-0307_0,Evaluable,Background,Alta,Enumera trabajos sobre ambigüedad de compuestos nominales.,COMPLETO,165,1
+55,J12-1003_W04-3205_1,Evaluable,Application,Alta,Usa VerbOcean como recurso de relaciones entre verbos.,COMPLETO,165,1
+56,W11-0408_P08-2008_0,Evaluable,Application,Media,Emplea el sistema citado basado en SVM para los experimentos.,COMPLETO,165,1
+57,W12-3152_W06-3119_1,Evaluable,Comparison,Alta,Compara gramáticas Hiero y SAMT.,COMPLETO,165,1
+58,P09-1031_P98-2127_1,Evaluable,Background,Alta,Enumera enfoques de clustering basados en vectores de contexto.,COMPLETO,165,1
+59,P99-1005_P93-1024_1,Evaluable,Improvement / Modification,Alta,El modelo actual es un refinamiento del modelo anterior citado.,COMPLETO,165,1
+60,W10-0406_E09-1027_0,Evaluable,Application,Media,Algunas características usadas ya fueron empleadas en trabajos previos.,COMPLETO,165,1
+61,D11-1045_P02-1039_0,Evaluable,Background,Alta,Cita trabajos que superan distorsión con sintaxis.,COMPLETO,165,1
+62,W12-2032_W10-1004_5,Evaluable,Evidence,Alta,Respalda el dato de que más del 90% del uso de preposiciones y artículos es correcto.,COMPLETO,165,1
+63,P98-2144_J93-3006_0,Evaluable,Basis,Media,Las estructuras de rasgos tipadas son la base formal de HPSG usada en el trabajo.,COMPLETO,165,1
+64,W04-1106_W00-1202_0,Evaluable,Evidence,Alta,Aporta el dato del 5.51% de palabras desconocidas.,COMPLETO,165,1
+65,E12-1003_N07-1070_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el desempeño cae en un dominio nuevo.,COMPLETO,165,1
+66,J13-3003_D10-1113_2,Evaluable,Background,Media,Enumera enfoques recientes de significado en contexto.,COMPLETO,165,1
+67,P13-4033_N12-1046_0,Evaluable,Background,Media,Describe enfoques previos limitados por decodificadores a nivel de oración.,COMPLETO,165,1
+68,D10-1038_P03-1071_2,Evaluable,Identification of the Originator,Alta,Usa 'first proposed' para atribuir LCSeg.,COMPLETO,165,1
+69,P10-1129_P09-1010_4,Evaluable,Improvement / Modification,Alta,La función de recompensa es una simplificación de la descrita en el trabajo citado.,COMPLETO,165,1
+70,E12-1029_P11-1114_3,Evaluable,Evidence,Media,Justifica el diseño de clasificadores por analogía con el escenario supervisado.,COMPLETO,165,1
+71,D12-1082_P11-3004_0,Evaluable,Gap,Media,Señala que trabajos previos usan rasgos NIL pero no abordan si las frases no enlazables son entidades.,COMPLETO,165,1
+72,D09-1119_W00-0726_1,Evaluable,Evidence,Media,Respalda la afirmación de que la información sintáctica es importante en Chunking y NER.,COMPLETO,165,1
+73,W10-2915_W02-1018_0,Evaluable,Comparison,Media,Relaciona el modelo conjunto de frases como un caso particular del enfoque propio.,COMPLETO,165,1
+74,P11-2029_P09-1104_1,Evaluable,Comparison,Alta,Contrasta mejoras reportadas con las propias y explica las diferencias.,COMPLETO,165,1
+75,W10-2304_E09-1005_1,Evaluable,Background,Media,Describe la propuesta previa de Personalized PageRank.,COMPLETO,165,1
+76,D09-1100_P09-1011_2,Evaluable,Comparison,Alta,Contrasta el enfoque propio con el trabajo citado (differs by accounting for syntax).,COMPLETO,165,1
+77,D12-1133_P04-1015_1,Evaluable,Background,Media,Describe el trabajo previo y la estrategia de early update.,COMPLETO,165,1
+78,P11-2006_P09-1045_1,Evaluable,Evidence,Media,Hallazgo previo que respalda la dificultad de seleccionar buenas semillas.,COMPLETO,165,1
+79,P11-2121_P09-1040_1,Evaluable,Comparison,Alta,Señala similitud y diferencia con el algoritmo con SWAP.,COMPLETO,165,1
+80,N12-1065_P06-4020_0,Evaluable,Application,Alta,Usa el lematizador de RASP.,COMPLETO,165,1
+81,P98-1095_P97-1034_0,Evaluable,Background,Media,"Atribución de un algoritmo, pero el uso del mismo en el trabajo no es explícito.",COMPLETO,165,1
+82,P13-1087_P06-4020_0,Evaluable,Application,Alta,Usa el parser RASP para obtener relaciones gramaticales.,COMPLETO,165,1
+83,D13-1004_P12-1020_0,Evaluable,Background,Alta,Enumera modelos recientes de aprendizaje conjunto.,COMPLETO,165,1
+84,P12-2010_E06-1015_0,Evaluable,Application,Alta,Usa las herramientas de tree kernel citadas.,COMPLETO,165,1
+85,P97-1029_A92-1018_0,Evaluable,Background,Alta,Enumera estudios previos de etiquetado estadístico.,COMPLETO,165,1
+86,J05-1005_P91-1030_0,Evaluable,Background,Alta,Enumera enfoques estocásticos previos de adquisición de requisitos lingüísticos.,COMPLETO,165,1
+87,P04-1042_A97-1014_1,Evaluable,Further Reading,Media,Remite a una descripción detallada del algoritmo en otra fuente.,COMPLETO,165,1
+88,W05-0309_W04-2807_0,Evaluable,Evidence,Alta,Respalda el dato de que 95% de los grupos mapean a un sentido de PropBank.,COMPLETO,165,1
+89,D12-1117_W04-3206_0,Evaluable,Background,Alta,Cita el uso general de taxonomías en tareas de NLP.,COMPLETO,165,1
+90,J04-4004_W01-0521_1,Evaluable,Evidence,Alta,Respalda la afirmación de que las dependencias bilexicales juegan un papel pequeño.,COMPLETO,165,1
+91,N13-1060_P03-1021_0,Evaluable,Application,Alta,Usa MERT estándar para ajustar pesos.,COMPLETO,165,1
+92,W11-2102_W10-1749_0,Evaluable,Evidence,Media,Respalda que las métricas con reordenamiento correlacionan mejor con juicios humanos.,COMPLETO,165,1
+93,E12-1029_P11-1098_0,Evaluable,Background,Alta,Describe trabajo reciente previo sobre adquisición de palabras de evento.,COMPLETO,165,1
+94,P12-1018_N03-2016_0,Evaluable,Background,Alta,Enumera trabajos que usan cognados o transliteración.,COMPLETO,165,1
+95,E97-1029_A92-1018_0,Evaluable,Background,Alta,Enumera estudios previos de etiquetado estadístico.,COMPLETO,165,1
+96,N03-3009_A00-2004_1,Evaluable,Comparison,Alta,Compara el algoritmo propio con C99.,COMPLETO,165,1
+97,P12-1046_P06-1055_3,Evaluable,Comparison,Alta,Compara el modelo SR-TSG con el parser de Berkeley.,COMPLETO,165,1
+98,P13-1117_P11-1112_1,Evaluable,Background,Media,Describe el enfoque heurístico común en SRL no supervisado.,COMPLETO,165,1
+99,P09-1009_P02-1017_1,Evaluable,Comparison,Alta,El CCM es la línea base con la que se compara el modelo.,COMPLETO,165,1
+100,P12-3022_P10-1034_5,Evaluable,Further Reading,Media,Remite a una figura del trabajo citado ('c.f.') como ejemplo.,COMPLETO,165,1

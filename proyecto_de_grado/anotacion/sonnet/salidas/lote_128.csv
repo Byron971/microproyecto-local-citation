@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P07-1117_E87-1003_0,Evaluable,Identification of the Originator,Alta,'was first proposed by' atribuye el origen del enfoque basado en particiones.,COMPLETO,128,1
+2,D13-1168_P09-1045_0,Evaluable,Evidence,Media,Respalda la afirmación de que la inicialización es un paso crítico en procedimientos de bootstrapping.,COMPLETO,128,1
+3,W13-2603_W11-0301_0,Evaluable,Background,Alta,Resume trabajos previos sobre adquisición de morfemas antes de señalar la limitación.,COMPLETO,128,1
+4,P11-1092_P03-1054_0,Evaluable,Application,Alta,Usa el parser de Stanford tal cual como herramienta de preprocesamiento.,COMPLETO,128,1
+5,D09-1115_N03-1017_0,Evaluable,Application,Media,Aplica el algoritmo grow-diag-final de extracción de frases a alineamientos monolingües.,COMPLETO,128,1
+6,P12-1100_P03-2041_0,Evaluable,Evidence,Media,Respalda que la cohesión sintáctica explica la mayoría del movimiento en traducción.,COMPLETO,128,1
+7,W06-3505_W04-2312_0,Evaluable,Further Reading,Baja,"Remite a una fuente sobre desambiguación semántica del término desconocido, no desarrollada en el texto.",COMPLETO,128,1
+8,Q13-1026_P97-1013_0,Evaluable,Background,Alta,Historia del campo: el trabajo del citado popularizó el análisis del discurso.,COMPLETO,128,1
+9,W12-3125_W07-0404_2,Evaluable,Comparison,Media,"Contrasta el algoritmo lineal del citado con la implementación propia, que difiere.",COMPLETO,128,1
+10,P12-1111_P07-1096_0,Evaluable,Evidence,Alta,Sustenta que la información de vecinos ayuda a resolver la ambigüedad de POS.,COMPLETO,128,1
+11,W13-3825_P03-1054_0,Evaluable,Application,Alta,Emplea el parser de Stanford para extraer dependencias sintácticas.,COMPLETO,128,1
+12,P09-2032_J07-2003_0,Evaluable,Background,Alta,Enumera trabajos con gramáticas sincrónicas en SMT para describir la tendencia.,COMPLETO,128,1
+13,W11-2160_J07-2003_1,Evaluable,Background,Media,Introduce y describe el tipo de gramática Hiero que se usará en el trabajo.,COMPLETO,128,1
+14,D10-1031_P06-1117_0,Evaluable,Gap,Alta,Se señala que estos enfoques tratan MANNER como cualquier otro rol sin rasgos específicos.,COMPLETO,128,1
+15,W12-4515_P08-4003_0,Evaluable,Application,Alta,El sistema de la competición se basa en la herramienta BART.,COMPLETO,128,1
+16,P95-1008_E89-1009_3,Evaluable,Background,Baja,"Nota al pie sobre las definiciones originales de DATR, sin otra función clara.",COMPLETO,128,1
+17,Q13-1015_P11-1060_0,Evaluable,Gap,Media,Describe el método y señala su limitación (específico de parsing de preguntas).,COMPLETO,128,1
+18,W06-2110_P03-1065_1,Evaluable,Comparison,Alta,Compara explícitamente el desempeño y el esfuerzo manual con el trabajo citado.,COMPLETO,128,1
+19,P00-1007_W99-0629_0,Evaluable,Background,Alta,Describe un enfoque previo de análisis parcial como antecedente.,COMPLETO,128,1
+20,N10-1083_N06-1014_1,Evaluable,Application,Alta,Usa el entrenamiento por acuerdo para el HMM tal como fue propuesto.,COMPLETO,128,1
+21,D13-1041_P11-1138_2,Evaluable,Comparison,Alta,Señala que resembla su enfoque y marca diferencias (stacking).,COMPLETO,128,1
+22,D13-1169_N13-1090_0,Evaluable,Basis,Alta,El trabajo actual empuja más lejos el hallazgo citado sobre regularidades en representaciones.,COMPLETO,128,1
+23,P04-2007_W03-1011_0,Evaluable,Basis,Media,Propone trabajo futuro en la dirección del trabajo citado (rankings de similitud).,COMPLETO,128,1
+24,W11-0307_N10-1123_3,Evaluable,Evidence,Media,Ejemplifica que los resultados dependen de la calidad del parsing sintáctico.,COMPLETO,128,1
+25,N09-1063_N07-1051_0,Evaluable,Background,Alta,Revisa trabajos previos sobre jerarquías de aproximaciones coarse-to-fine.,COMPLETO,128,1
+26,W13-2516_W09-3110_0,Evaluable,Background,Media,"Describe el trabajo citado como relevante, resumiendo su contenido.",COMPLETO,128,1
+27,W03-1013_J97-4005_0,Evaluable,Gap,Alta,Señala los problemas de modelos generativos con dependencias de largo alcance descritos por el citado.,COMPLETO,128,1
+28,P13-1020_P11-1049_2,Evaluable,Background,Media,"Describe enfoques previos de resumen, aunque luego señala una desventaja.",COMPLETO,128,1
+29,W11-2136_W06-3119_1,Evaluable,Application,Media,Relaja los árboles siguiendo el procedimiento SAMT.,COMPLETO,128,1
+30,W09-0433_P03-1021_0,Evaluable,Application,Alta,El sistema base se sintoniza con MERT.,COMPLETO,128,1
+31,W07-0604_W06-2920_0,Evaluable,Evidence,Media,Respalda que el parser tiene precisión de vanguardia en las tareas CoNLL.,COMPLETO,128,1
+32,J04-1001_P99-1020_0,Evaluable,Further Reading,Alta,'For other related work... see' remite a literatura adicional.,COMPLETO,128,1
+33,P13-1162_W10-0723_2,Evaluable,Background,Alta,Sección de trabajo relacionado que sitúa el trabajo sobre estudios previos.,COMPLETO,128,1
+34,W13-4702_P06-2005_0,Evaluable,Background,Alta,Resume el enfoque y los resultados de Aw et al. como trabajo previo.,COMPLETO,128,1
+35,D09-1120_N07-1011_4,Evaluable,Comparison,Alta,Resultados supervisados del citado en una tabla comparativa.,COMPLETO,128,1
+36,N07-1057_P00-1056_0,Evaluable,Application,Alta,Entrena los modelos IBM con el paquete GIZA++.,COMPLETO,128,1
+37,W00-1425_P98-2242_0,Evaluable,Background,Media,Describe las interacciones que el citado identifica para la agregación.,COMPLETO,128,1
+38,P11-2006_N06-1020_0,Evaluable,Background,Alta,"Enumera aplicaciones de bootstrapping, incluido el parsing estadístico.",COMPLETO,128,1
+39,P13-1028_D12-1063_4,Evaluable,Comparison,Media,Se presentan resultados del citado para contrastarlos con los propios.,COMPLETO,128,1
+40,D12-1015_P06-1134_0,Evaluable,Comparison,Alta,Se describe la tarea citada y se afirma que es diferente de la actual.,COMPLETO,128,1
+41,W13-2711_W11-0415_1,Evaluable,Comparison,Alta,Compara el rendimiento de POS-tagging con experimentos similares en otros corpus históricos.,COMPLETO,128,1
+42,W13-2213_W13-2212_0,Evaluable,Evidence,Alta,Respalda que la búsqueda basada en frases mejora cobertura y reduce errores.,COMPLETO,128,1
+43,N06-2006_W04-1013_0,Evaluable,Application,Alta,Usa ROUGE 1.5.5 para evaluar resultados.,COMPLETO,128,1
+44,W12-3307_P03-1071_4,Evaluable,Comparison,Alta,Compara resultados propios con los publicados en el trabajo citado.,COMPLETO,128,1
+45,W10-3707_W09-3539_0,Evaluable,Evidence,Alta,Respalda la afirmación de que identificar NEs en bangla es más difícil.,COMPLETO,128,1
+46,E12-1055_W10-1715_0,Evaluable,Background,Alta,Enumera enfoques existentes de interpolación de pesos antes de criticarlos.,COMPLETO,128,1
+47,W08-0607_P07-1125_5,Evaluable,Comparison,Alta,Compara su BEP con el 0.76 del clasificador débilmente supervisado.,COMPLETO,128,1
+48,P11-1003_N03-1017_0,Evaluable,Background,Alta,Enumera tipos de reglas de traducción en SMT como contexto.,COMPLETO,128,1
+49,W09-0621_W03-1004_1,Evaluable,Comparison,Alta,Contrasta su medida TF*IDF con la medida de solapamiento de palabras del citado.,COMPLETO,128,1
+50,P13-1143_N12-1067_2,Evaluable,Application,Alta,Los rasgos de los clasificadores siguen los del trabajo citado.,COMPLETO,128,1
+51,P05-1021_P98-2143_1,Evaluable,Evidence,Alta,Respalda que la similitud de contexto es un factor de saliencia.,COMPLETO,128,1
+52,D11-1023_D10-1120_0,Evaluable,Evidence,Alta,Respalda que un poco de información lingüística supera los problemas mencionados.,COMPLETO,128,1
+53,W09-1116_N04-1041_0,Evaluable,Background,Media,Describe un hallazgo previo que ilustra limitaciones de WordNet.,COMPLETO,128,1
+54,P13-2108_N10-1069_0,Evaluable,Application,Alta,Usa la optimización estocástica paralela de SVM estructurado del citado.,COMPLETO,128,1
+55,W09-0609_W08-1131_1,Evaluable,Background,Alta,Describe las tareas compartidas y el uso de aprendizaje automático en ellas.,COMPLETO,128,1
+56,P06-1109_E03-1005_2,Evaluable,Comparison,Alta,Contrasta el rendimiento del PCFG de corpus con el del citado.,COMPLETO,128,1
+57,P08-2041_N06-1003_0,Evaluable,Gap,Alta,Describe el trabajo y señala su limitación ('only found semantically similar phrases').,COMPLETO,128,1
+58,S12-1044_S12-1035_0,Evaluable,Further Reading,Alta,Remite al artículo del volumen para definiciones y detalles.,COMPLETO,128,1
+59,P09-2036_N06-1033_1,Evaluable,Background,Media,Describe el hallazgo previo sobre reranking con binarización.,COMPLETO,128,1
+60,P08-1057_P03-1009_1,Evaluable,Comparison,Alta,Contrasta su modelo con los enfoques de clustering suave citados.,COMPLETO,128,1
+61,W10-1404_P08-1108_2,Evaluable,Background,Media,Menciona aprendizaje apilado probado en trabajos previos.,COMPLETO,128,1
+62,P10-1081_P08-1030_0,Evaluable,Background,Alta,Enumera estudios previos que usan información de alto nivel en extracción.,COMPLETO,128,1
+63,P13-1162_P11-1035_2,Evaluable,Background,Alta,Sección de trabajo relacionado sobre reconocimiento de postura.,COMPLETO,128,1
+64,P09-1108_P06-1055_0,Evaluable,Application,Media,Se extraen listas k-best para las gramáticas state-split del citado.,COMPLETO,128,1
+65,W13-2214_P13-1031_0,Evaluable,Evidence,Alta,Respalda que una tasa de aprendizaje adaptativa por rasgo es ventajosa.,COMPLETO,128,1
+66,P06-1079_P00-1065_0,Evaluable,Background,Alta,Describe un rasgo sintáctico típico usado en etiquetado de roles.,COMPLETO,128,1
+67,P06-1070_W02-0902_0,Evaluable,Basis,Media,La hipótesis se apoya en detectar traducciones por la forma de la palabra.,COMPLETO,128,1
+68,W12-5307_W02-2016_0,Evaluable,Application,Alta,Usa CaboCha como herramienta de análisis de dependencias.,COMPLETO,128,1
+69,S12-1047_J06-3003_0,Evaluable,Background,Alta,Define el concepto de similitud relacional con base en la literatura.,COMPLETO,128,1
+70,W10-3503_P07-1068_1,Evaluable,Background,Alta,Enumera sistemas evaluados sobre versiones de ACE.,COMPLETO,128,1
+71,D13-1056_D08-1084_1,Evaluable,Evidence,Alta,Respalda que el corpus es mayormente alineado por tokens.,COMPLETO,128,1
+72,D11-1096_E06-1015_0,Evaluable,Evidence,Alta,Respalda que los métodos no se aplican bien a estructuras de dependencias.,COMPLETO,128,1
+73,D10-1061_P02-1016_0,Evaluable,Background,Alta,Enumera trabajos de aprendizaje activo no supervisado.,COMPLETO,128,1
+74,D10-1004_W06-2932_0,Evaluable,Background,Alta,Cita trabajos que muestran que modelos ricos en rasgos mejoran el parsing.,COMPLETO,128,1
+75,P08-1012_W02-1018_0,Evaluable,Gap,Alta,Describe el trabajo y señala las dificultades que experimentó.,COMPLETO,128,1
+76,W06-1606_P05-1033_1,Evaluable,Comparison,Alta,Compara la expresividad de los modelos.,COMPLETO,128,1
+77,W12-2004_P11-1019_8,Evaluable,Further Reading,Alta,'See ... for details' remite a detalles adicionales.,COMPLETO,128,1
+78,P11-1104_N03-1017_0,Evaluable,Gap,Alta,Señala que el modelo lineal de distancia resulta en reordenamiento global deficiente.,COMPLETO,128,1
+79,W13-3728_P04-1082_0,Evaluable,Evidence,Alta,Respalda que los enfoques basados en reglas bastan en problemas restringidos.,COMPLETO,128,1
+80,N10-1135_P00-1065_0,Evaluable,Background,Alta,Enumera tareas de PLN donde son útiles las preferencias selectivas.,COMPLETO,128,1
+81,P09-1088_J07-2003_1,Evaluable,Background,Alta,"Describe la traducción como análisis con SCFG, trasfondo del enfoque.",COMPLETO,128,1
+82,D12-1069_N06-1056_0,Evaluable,Background,Alta,Enumera enfoques supervisados de análisis semántico en trabajo relacionado.,COMPLETO,128,1
+83,N12-1097_N09-1031_0,Evaluable,Application,Media,Incorpora rasgos binarios de términos siguiendo el trabajo citado.,COMPLETO,128,1
+84,W13-2235_W12-3131_4,Evaluable,Further Reading,Alta,Remite a la descripción de filtros adicionales en la fuente citada.,COMPLETO,128,1
+85,W02-1008_P02-1014_0,Evaluable,Further Reading,Alta,'See ... for a detailed description' remite a detalles de los rasgos.,COMPLETO,128,1
+86,W06-1207_P04-1036_0,Evaluable,Evidence,Alta,Respalda que el sentido predominante es útil para desambiguación.,COMPLETO,128,1
+87,N12-1064_P03-1071_0,Evaluable,Background,Alta,Reporta un hallazgo previo en el repaso de literatura.,COMPLETO,128,1
+88,P98-1088_E93-1013_0,Evaluable,Identification of the Originator,Media,'In a line of research beginning with' atribuye el origen del uso de lógica lineal como glue.,COMPLETO,128,1
+89,N13-1115_P03-1021_0,Evaluable,Identification of the Originator,Alta,MERT fue el primer enfoque en optimizar directamente una métrica de evaluación.,COMPLETO,128,1
+90,P04-1066_W03-0301_0,Evaluable,Application,Alta,Usa los datos del taller de alineamiento de palabras para entrenar y evaluar.,COMPLETO,128,1
+91,D13-1162_N09-1033_0,Evaluable,Background,Alta,Enumera trabajos previos de inducción de léxicos desde Wikipedia.,COMPLETO,128,1
+92,W03-0209_A00-2019_0,Evaluable,Background,Alta,Revisa enfoques previos de calificación automática de ensayos.,COMPLETO,128,1
+93,P11-1090_D09-1075_5,Evaluable,Comparison,Alta,Compara el modelo citado (Model-1) con el modelo bilingüe completo.,COMPLETO,128,1
+94,W08-0704_J99-3006_0,Evaluable,Comparison,Media,Vincula las gramáticas adaptadoras con el aprendizaje de fragmentos del trabajo citado.,COMPLETO,128,1
+95,E12-1002_W07-0718_0,Evaluable,Further Reading,Media,"'See, e.g.' remite a una fuente sobre los bitextos de WMT.",COMPLETO,128,1
+96,D11-1110_P09-1042_0,Evaluable,Background,Alta,Enumera investigaciones previas sobre proyección sintáctica.,COMPLETO,128,1
+97,N13-1118_W07-0103_0,Evaluable,Gap,Alta,Señala que los enfoques previos se limitaron a un dominio o subconjunto de fenómenos.,COMPLETO,128,1
+98,W13-3601_N12-1067_0,Evaluable,Background,Alta,Describe trabajo previo capaz de tratar múltiples errores interactuantes.,COMPLETO,128,1
+99,W11-1003_N09-2004_0,Evaluable,Evidence,Alta,Respalda que crece la demanda de traducción semánticamente consistente.,COMPLETO,128,1
+100,P08-1064_N03-1017_1,Evaluable,Evidence,Alta,Respalda que las frases no sintácticas son útiles en métodos basados en frases.,COMPLETO,128,1

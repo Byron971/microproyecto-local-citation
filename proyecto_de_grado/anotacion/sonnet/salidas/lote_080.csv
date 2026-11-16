@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D09-1160_P03-1004_0,Evaluable,Background,Media,,COMPLETO,80,1
+2,N10-1003_A00-2005_0,Evaluable,Gap,Media,"Bagging/boosting have had limited success for parsing, motivating a different approach.",COMPLETO,80,1
+3,D13-1192_P12-1056_3,Evaluable,Comparison,Alta,,COMPLETO,80,1
+4,W10-1406_P05-1010_0,Evaluable,Background,Media,,COMPLETO,80,1
+5,W11-2504_P08-1008_0,Evaluable,Background,Media,,COMPLETO,80,1
+6,D13-1173_D12-1025_4,Evaluable,Application,Alta,,COMPLETO,80,1
+7,P08-1009_P07-2045_0,Evaluable,Improvement / Modification,Alta,,COMPLETO,80,1
+8,D11-1085_N03-1017_0,Evaluable,Background,Media,,COMPLETO,80,1
+9,J12-2001_P11-1059_0,Evaluable,Comparison,Media,Contrasts a different annotation approach with the previous one.,COMPLETO,80,1
+10,W03-0402_N01-1025_0,Evaluable,Gap,Media,Points out the limitation (deterministic decoding) of the cited work.,COMPLETO,80,1
+11,N13-1111_P04-1019_1,Evaluable,Gap,Alta,,COMPLETO,80,1
+12,P96-1026_W94-0307_0,Evaluable,Basis,Media,Coding concerns were guided by previous work.,COMPLETO,80,1
+13,N10-1129_J07-2003_0,Evaluable,Evidence,Media,,COMPLETO,80,1
+14,W11-1601_P07-2045_3,Evaluable,Application,Alta,,COMPLETO,80,1
+15,D08-1025_P02-1026_0,Evaluable,Evidence,Media,,COMPLETO,80,1
+16,W12-1637_W11-2006_2,Evaluable,Further Reading,Media,Refers the reader to the source for details of the score.,COMPLETO,80,1
+17,W97-0114_A92-1021_0,Evaluable,Application,Alta,,COMPLETO,80,1
+18,W08-0319_P05-1034_0,Evaluable,Comparison,Alta,,COMPLETO,80,1
+19,W13-0705_J91-4003_1,Evaluable,Basis,Media,Follows the cited theory's assumption about perception verbs.,COMPLETO,80,1
+20,P10-1099_N07-1070_0,Evaluable,Evidence,Media,,COMPLETO,80,1
+21,J08-2002_P00-1065_3,Evaluable,Application,Media,Uses features defined by the cited work.,COMPLETO,80,1
+22,S10-1005_W04-2705_0,Evaluable,Background,Media,,COMPLETO,80,1
+23,P12-1018_P05-1059_0,Evaluable,Background,Media,,COMPLETO,80,1
+24,S13-1039_W03-1812_0,Evaluable,Background,Alta,,COMPLETO,80,1
+25,E09-1025_P07-1058_1,Evaluable,Background,Media,,COMPLETO,80,1
+26,W07-1106_W03-1812_0,Evaluable,Background,Alta,,COMPLETO,80,1
+27,P95-1020_E93-1033_0,Evaluable,Evidence,Media,,COMPLETO,80,1
+28,P10-1001_E06-1011_5,Evaluable,Application,Media,Follows standard practice from cited work.,COMPLETO,80,1
+29,P91-1009_P86-1031_2,Evaluable,Gap,Alta,,COMPLETO,80,1
+30,N12-1016_P93-1020_0,Evaluable,Basis,Media,Metric adapted by cited work and used here.,COMPLETO,80,1
+31,N10-1013_P93-1024_1,Evaluable,Background,Alta,,COMPLETO,80,1
+32,N10-1068_N09-1005_0,Evaluable,Background,Alta,,COMPLETO,80,1
+33,P06-1139_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,80,1
+34,P12-1085_D11-1144_0,Evaluable,Gap,Media,"Notes that these works assume property names are known, unlike the present problem.",COMPLETO,80,1
+35,N06-1021_P05-1012_5,Evaluable,Comparison,Alta,,COMPLETO,80,1
+36,P13-1070_W04-3221_1,Evaluable,Background,Media,,COMPLETO,80,1
+37,W13-2257_P05-1066_0,Evaluable,Further Reading,Alta,,COMPLETO,80,1
+38,N06-1012_P05-1001_1,Evaluable,Comparison,Alta,,COMPLETO,80,1
+39,W06-0107_N03-1028_0,Evaluable,Background,Media,,COMPLETO,80,1
+40,W09-2901_W06-1206_1,Evaluable,Basis,Media,The approach follows the cited work to some extent.,COMPLETO,80,1
+41,P04-1065_P03-1006_0,Evaluable,Background,Alta,,COMPLETO,80,1
+42,W11-3201_W06-1672_0,Evaluable,Background,Alta,,COMPLETO,80,1
+43,P13-1080_P11-1083_2,Evaluable,Improvement / Modification,Alta,,COMPLETO,80,1
+44,N12-1029_D10-1018_1,Evaluable,Evidence,Alta,,COMPLETO,80,1
+45,D13-1019_P12-1005_1,Evaluable,Application,Alta,,COMPLETO,80,1
+46,P13-1100_P11-1052_1,Evaluable,Comparison,Alta,,COMPLETO,80,1
+47,W10-3802_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,80,1
+48,W12-2108_N10-1102_0,Evaluable,Background,Alta,,COMPLETO,80,1
+49,P99-1061_P99-1052_0,Evaluable,Further Reading,Alta,,COMPLETO,80,1
+50,P06-2028_P98-1020_1,Evaluable,Evidence,Media,,COMPLETO,80,1
+51,D12-1108_N03-1017_0,Evaluable,Background,Media,"Describes who proposed the DP beam search algorithm, but not as priority attribution.",COMPLETO,80,1
+52,P10-1008_P10-1103_0,Evaluable,Background,Alta,,COMPLETO,80,1
+53,W09-3511_P04-1021_0,Evaluable,Evidence,Media,,COMPLETO,80,1
+54,W11-2920_P03-1026_0,Evaluable,Background,Media,,COMPLETO,80,1
+55,W11-2819_P04-1014_0,Evaluable,Application,Alta,,COMPLETO,80,1
+56,A97-1043_P91-1034_0,Evaluable,Background,Alta,,COMPLETO,80,1
+57,P04-1082_P03-1055_3,Evaluable,Comparison,Alta,,COMPLETO,80,1
+58,N13-1006_P10-1065_0,Evaluable,Gap,Media,"Followed by 'However, large-scale bilingual named entity dictionaries...' signalling a limitation.",COMPLETO,80,1
+59,P12-3022_J93-3006_0,Evaluable,Background,Media,,COMPLETO,80,1
+60,D09-1130_N06-1027_0,Evaluable,Gap,Alta,,COMPLETO,80,1
+61,W12-3404_N10-1137_0,Evaluable,Background,Alta,,COMPLETO,80,1
+62,W12-4102_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,80,1
+63,P11-1087_P06-1124_1,Evaluable,Evidence,Alta,,COMPLETO,80,1
+64,E09-1018_W05-0612_0,Evaluable,Comparison,Alta,,COMPLETO,80,1
+65,W13-2704_S12-1009_0,Evaluable,Background,Alta,,COMPLETO,80,1
+66,W08-0123_A00-1008_0,Evaluable,Background,Alta,,COMPLETO,80,1
+67,W12-0503_P08-1108_0,Evaluable,Background,Media,"Describes prior combination work, with a noted limitation.",COMPLETO,80,1
+68,W10-4143_N07-1051_0,Evaluable,Background,Alta,,COMPLETO,80,1
+69,P11-1036_E06-1039_0,Evaluable,Background,Alta,,COMPLETO,80,1
+70,S12-1031_W07-1204_1,Evaluable,Comparison,Alta,,COMPLETO,80,1
+71,D13-1004_P06-1111_0,Evaluable,Gap,Media,"Cited systems use morpheme-like features but do not model morphemes explicitly, in the context of little joint work.",COMPLETO,80,1
+72,P10-1147_P07-2045_1,Evaluable,Application,Alta,,COMPLETO,80,1
+73,N13-1044_W08-0509_0,Evaluable,Application,Alta,,COMPLETO,80,1
+74,J88-4010_J98-4000_0,Evaluable,Background,Media,Lists books as previous introductions to the field in a book review.,COMPLETO,80,1
+75,W10-4010_W06-3805_0,Evaluable,Basis,Media,Technique is similar to that of cited work.,COMPLETO,80,1
+76,P13-1153_W10-2417_4,Evaluable,Comparison,Alta,,COMPLETO,80,1
+77,J11-4005_J88-2003_0,Evaluable,Background,Alta,,COMPLETO,80,1
+78,P13-1048_D12-1083_0,Evaluable,Background,Alta,,COMPLETO,80,1
+79,D11-1044_D09-1023_1,Evaluable,Improvement / Modification,Alta,,COMPLETO,80,1
+80,E12-1013_D08-1088_1,Evaluable,Evidence,Alta,,COMPLETO,80,1
+81,P11-1110_W02-0406_0,Evaluable,Evidence,Alta,,COMPLETO,80,1
+82,W12-2205_J10-2002_0,Evaluable,Gap,Media,Notes that these approaches do not address individual lexical item readability.,COMPLETO,80,1
+83,W09-1405_P06-4020_0,Evaluable,Application,Alta,,COMPLETO,80,1
+84,W08-1006_P06-1055_0,Evaluable,Evidence,Media,,COMPLETO,80,1
+85,P10-1097_P08-1028_2,Evaluable,Comparison,Alta,,COMPLETO,80,1
+86,W02-1030_E99-1005_2,Evaluable,Evidence,Alta,,COMPLETO,80,1
+87,N13-1117_P06-1124_0,Evaluable,Background,Media,,COMPLETO,80,1
+88,D11-1079_P11-1103_0,Evaluable,Evidence,Alta,,COMPLETO,80,1
+89,J12-2006_P05-1033_1,Evaluable,Background,Media,,COMPLETO,80,1
+90,D13-1042_P12-1059_0,Evaluable,Background,Alta,,COMPLETO,80,1
+91,P09-1065_A94-1016_0,Evaluable,Evidence,Alta,,COMPLETO,80,1
+92,W13-2214_N09-1046_0,Evaluable,Application,Alta,,COMPLETO,80,1
+93,D11-1069_P10-1029_0,Evaluable,Application,Alta,,COMPLETO,80,1
+94,W09-3412_P08-2024_4,Evaluable,Application,Alta,,COMPLETO,80,1
+95,N09-2039_N04-1002_0,Evaluable,Evidence,Media,,COMPLETO,80,1
+96,P11-1124_N03-1017_0,Evaluable,Application,Alta,,COMPLETO,80,1
+97,N03-2008_P00-1065_3,Evaluable,Comparison,Alta,,COMPLETO,80,1
+98,W12-3709_D08-1014_0,Evaluable,Background,Alta,,COMPLETO,80,1
+99,W09-1901_P04-1075_0,Evaluable,Background,Alta,,COMPLETO,80,1
+100,D10-1044_W08-0334_0,Evaluable,Background,Media,,COMPLETO,80,1

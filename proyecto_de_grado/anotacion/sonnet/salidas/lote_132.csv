@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N13-1010_N01-1021_2,Evaluable,Application,Alta,Uses surprisal as defined by Hale's Earley-parser model as a measure.,COMPLETO,132,1
+2,J10-4007_P04-1003_0,Evaluable,Background,Media,,COMPLETO,132,1
+3,W11-1004_N06-1003_1,Evaluable,Comparison,Alta,Cited method is a compared baseline.,COMPLETO,132,1
+4,P04-1017_P83-1007_0,Evaluable,Evidence,Media,Centering theory research supports the claim that local focus affects pronoun processing.,COMPLETO,132,1
+5,W12-2022_W05-0202_1,Evaluable,Evidence,Media,Supports the point about the need for public datasets.,COMPLETO,132,1
+6,D13-1074_D10-1094_1,Evaluable,Identification of the Originator,Media,Metric was proposed in the cited work.,COMPLETO,132,1
+7,W12-4501_N01-1016_0,Evaluable,Background,Media,Reports prior results on edit detection.,COMPLETO,132,1
+8,W10-1712_P07-2045_0,Evaluable,Application,Alta,Uses Moses toolkit as is.,COMPLETO,132,1
+9,D12-1081_P09-1113_0,Evaluable,Background,Alta,,COMPLETO,132,1
+10,P08-1114_W04-3250_0,Evaluable,Application,Alta,Applies paired bootstrap resampling.,COMPLETO,132,1
+11,W97-1507_J93-3006_0,Evaluable,Basis,Baja,Notation follows the cited work.,COMPLETO,132,1
+12,A97-1039_W96-0507_0,Evaluable,Comparison,Alta,Planned comparison with similar system.,COMPLETO,132,1
+13,W09-1117_W02-0902_0,Evaluable,Background,Alta,,COMPLETO,132,1
+14,W05-1004_J91-4003_1,Evaluable,Background,Media,Describes the Generative Lexicon framework and its Aristotelian roots.,COMPLETO,132,1
+15,P13-1135_J03-3002_0,Evaluable,Background,Alta,Historical account of early web parallel text mining.,COMPLETO,132,1
+16,N13-1053_P11-1032_7,Evaluable,Comparison,Alta,Contrasts rates with prior positive review results.,COMPLETO,132,1
+17,W09-2601_W03-1008_1,Evaluable,Comparison,Alta,,COMPLETO,132,1
+18,W11-2843_D10-1094_2,Evaluable,Application,Media,Accuracy and baseline computed following the cited procedure.,COMPLETO,132,1
+19,J02-4002_A00-2004_0,Evaluable,Comparison,Media,Contrasts the task with topic segmentation work.,COMPLETO,132,1
+20,W13-3512_N06-2001_0,Evaluable,Comparison,Alta,Identifies closest related work.,COMPLETO,132,1
+21,W12-4501_W06-0609_0,Evaluable,Basis,Media,Annotation guidelines are based on the cited revised guidelines.,COMPLETO,132,1
+22,J11-2003_W03-1022_0,Evaluable,Application,Media,Uses supersense tag set from cited work.,COMPLETO,132,1
+23,W13-2902_P99-1068_0,Evaluable,Identification of the Originator,Alta,Was first to discuss web parallel corpora.,COMPLETO,132,1
+24,E03-1041_P98-1014_0,Evaluable,Background,Media,Describes prior work's concepts.,COMPLETO,132,1
+25,W11-1015_N07-1051_0,Evaluable,Application,Alta,Uses Berkeley parser.,COMPLETO,132,1
+26,P13-1115_N07-1071_0,Evaluable,Background,Alta,List of applications of selectional preferences.,COMPLETO,132,1
+27,P11-2096_D08-1021_3,Evaluable,Evidence,Media,Supports claim that language models and syntax improve grammaticality.,COMPLETO,132,1
+28,D09-1127_W04-0308_2,Evaluable,Further Reading,Media,Footnote pointing to arguments for arc-eager.,COMPLETO,132,1
+29,W11-0807_W04-0401_1,Evaluable,Evidence,Media,Supports claim about canonical syntactic structure of LVCs.,COMPLETO,132,1
+30,W13-2230_P11-1105_0,Evaluable,Further Reading,Alta,Refers reader for more details.,COMPLETO,132,1
+31,N13-1063_P08-1068_1,Evaluable,Evidence,Alta,Supports claim that compound cluster features help.,COMPLETO,132,1
+32,W05-1004_J91-4003_0,Evaluable,Identification of the Originator,Alta,Qualia structures originally introduced by the cited work.,COMPLETO,132,1
+33,P06-2111_P98-2127_1,Evaluable,Background,Alta,,COMPLETO,132,1
+34,D13-1109_P08-1088_0,Evaluable,Gap,Alta,Prior work stops short of using lexicons in translation.,COMPLETO,132,1
+35,D13-1205_D11-1006_0,Evaluable,Evidence,Media,Supports claim that projected systems are more accurate than unsupervised ones.,COMPLETO,132,1
+36,W07-2208_P05-1011_4,Evaluable,Comparison,Alta,,COMPLETO,132,1
+37,D10-1048_P08-2012_3,Evaluable,Comparison,Alta,Results table comparing with prior system.,COMPLETO,132,1
+38,J10-3005_W05-0618_0,Evaluable,Background,Alta,,COMPLETO,132,1
+39,P11-2127_N07-1051_1,Evaluable,Further Reading,Media,Footnote refers to the exact experimental setup.,COMPLETO,132,1
+40,P12-1046_P06-1124_0,Evaluable,Evidence,Alta,Supports claim that power-law distributions suit language modeling.,COMPLETO,132,1
+41,W11-2031_P97-1035_1,Evaluable,Comparison,Alta,Contrasts approach with PARADISE.,COMPLETO,132,1
+42,N04-1035_W02-1039_2,Evaluable,Comparison,Alta,Notes similarity and difference with the cited span definition.,COMPLETO,132,1
+43,W12-2004_N10-1099_0,Evaluable,Comparison,Alta,Explicitly states main difference from the cited approach.,COMPLETO,132,1
+44,W11-2149_W06-3108_2,Evaluable,Application,Alta,Applies n-gram posteriors model in reranking.,COMPLETO,132,1
+45,W04-1501_P91-1030_0,Evaluable,Background,Media,Reports prior use of dependency in PP disambiguation.,COMPLETO,132,1
+46,W11-0328_P10-1110_1,Evaluable,Comparison,Alta,Result table row compared with proposed parser.,COMPLETO,132,1
+47,W08-1116_W94-0305_0,Evaluable,Background,Media,Describes earliest work taking this approach.,COMPLETO,132,1
+48,P10-1003_D09-1127_0,Evaluable,Background,Alta,,COMPLETO,132,1
+49,N13-1007_P10-1134_0,Evaluable,Comparison,Alta,Performance compared with supervised methods.,COMPLETO,132,1
+50,W11-2017_P10-1103_0,Evaluable,Background,Media,Notes similar prior data-driven approaches.,COMPLETO,132,1
+51,W11-2118_N07-1029_0,Evaluable,Comparison,Alta,Contrasts approach with existing ones.,COMPLETO,132,1
+52,W11-0130_S07-1044_1,Evaluable,Evidence,Media,Cited findings support the data-density hypothesis.,COMPLETO,132,1
+53,N10-1146_N04-3012_3,Evaluable,Comparison,Alta,Compares speed against WordNet similarity software.,COMPLETO,132,1
+54,W13-0119_S12-1056_0,Evaluable,Background,Alta,,COMPLETO,132,1
+55,P10-1029_N03-1033_0,Evaluable,Application,Alta,Uses Stanford POS tagger.,COMPLETO,132,1
+56,W11-2505_P08-1028_0,Evaluable,Comparison,Alta,Compares results with best of prior work.,COMPLETO,132,1
+57,P98-1007_E87-1001_0,Evaluable,Evidence,Media,Supports claim that choosing causal form is non-trivial.,COMPLETO,132,1
+58,W11-2807_P02-1013_0,Evaluable,Background,Alta,,COMPLETO,132,1
+59,D10-1057_D08-1072_4,Evaluable,Background,Media,Describes prior work on CW for active learning.,COMPLETO,132,1
+60,J08-3002_P02-1014_2,Evaluable,Application,Media,Follows cited suggestion in candidate selection.,COMPLETO,132,1
+61,P11-1160_P06-2066_1,Evaluable,Background,Media,Standard definition of dependency graph constraints.,COMPLETO,132,1
+62,P98-2164_P97-1010_0,Evaluable,Gap,Media,Points out lack of reliability studies across domains.,COMPLETO,132,1
+63,D11-1129_P08-1028_6,Evaluable,Further Reading,Baja,Footnote describing the cited model's details and results.,COMPLETO,132,1
+64,N13-1090_S12-1055_0,Evaluable,Comparison,Alta,Results outperform previous best system.,COMPLETO,132,1
+65,W10-3813_W96-0213_0,Evaluable,Application,Alta,Uses MXPOST tagger.,COMPLETO,132,1
+66,D09-1043_N09-2041_0,Evaluable,Gap,Media,Error analysis reveals NE realization problems motivating the work.,COMPLETO,132,1
+67,P09-1016_P07-1016_0,Evaluable,Application,Alta,Uses the IIR phoneme set.,COMPLETO,132,1
+68,N10-1090_P07-1079_1,Evaluable,Background,Alta,Describes prior related work.,COMPLETO,132,1
+69,W13-0803_J07-2003_0,Evaluable,Background,Media,Introduces the Hiero model.,COMPLETO,132,1
+70,W12-1814_E09-1081_1,Evaluable,Basis,Alta,Toolkit realises the cited X-model.,COMPLETO,132,1
+71,N13-1126_D10-1120_2,Evaluable,Application,Alta,Uses the cited tag mapping.,COMPLETO,132,1
+72,P06-2067_W02-1007_1,Evaluable,Evidence,Media,Supports the explanation of comma effects on parsers.,COMPLETO,132,1
+73,W09-0421_P07-2045_0,Evaluable,Application,Alta,Uses Moses toolkit.,COMPLETO,132,1
+74,W13-2229_W11-2123_0,Evaluable,Application,Alta,Uses KenLM during decoding.,COMPLETO,132,1
+75,D13-1093_P13-2109_2,Evaluable,Comparison,Alta,Compares parser speed and accuracy.,COMPLETO,132,1
+76,P01-1046_E99-1005_6,Evaluable,Basis,Media,Extends the results of the cited work.,COMPLETO,132,1
+77,W13-4068_P13-1046_1,Evaluable,Evidence,Alta,Justifies choice of discriminative model.,COMPLETO,132,1
+78,D10-1049_P09-1011_0,Evaluable,Application,Alta,Uses the cited model as is.,COMPLETO,132,1
+79,W10-2503_N04-1014_2,Evaluable,Background,Media,Points to where the classical semantics is presented.,COMPLETO,132,1
+80,P10-1143_D08-1068_0,Evaluable,Gap,Media,Notes model is customized and hard to extend.,COMPLETO,132,1
+81,E09-1018_N04-4009_2,Evaluable,Background,Media,Mentions more recent supervised systems.,COMPLETO,132,1
+82,D10-1094_W10-1004_2,Evaluable,Background,Alta,Describes prior finding on artificial errors.,COMPLETO,132,1
+83,P13-2117_D12-1042_1,Evaluable,Background,Media,Describes state-of-the-art distant supervision systems.,COMPLETO,132,1
+84,W07-0716_P03-1021_0,Evaluable,Identification of the Originator,Alta,MERT was introduced by the cited work.,COMPLETO,132,1
+85,P00-1038_W97-0704_0,Evaluable,Background,Alta,,COMPLETO,132,1
+86,J11-2001_P10-1141_0,Evaluable,Further Reading,Alta,See-also pointer to IR techniques in sentiment analysis.,COMPLETO,132,1
+87,W13-3606_N04-1014_0,Evaluable,Background,Alta,,COMPLETO,132,1
+88,N13-1048_P03-1021_1,Evaluable,Evidence,Alta,Supports claim that MLE is not optimal for the metric.,COMPLETO,132,1
+89,P94-1022_P93-1017_2,Evaluable,Evidence,Alta,Proof relies on the cited lemma.,COMPLETO,132,1
+90,W12-3205_W06-3309_0,Evaluable,Background,Alta,,COMPLETO,132,1
+91,E09-1044_J07-2003_2,Evaluable,Identification of the Originator,Alta,Cube pruning introduced by the cited work.,COMPLETO,132,1
+92,P06-1055_P03-1054_8,Evaluable,Comparison,Alta,Reports error reduction over cited parsers.,COMPLETO,132,1
+93,W05-0613_N03-1030_0,Evaluable,Background,Media,Mentions related work on sentence-level discourse structures.,COMPLETO,132,1
+94,W09-1905_P08-2017_0,Evaluable,Gap,Alta,Unit-cost measures don't represent actual annotation cost.,COMPLETO,132,1
+95,W02-1041_P01-1039_1,Evaluable,Comparison,Media,Finding is compared with the cited observation.,COMPLETO,132,1
+96,W13-3201_D12-1110_0,Evaluable,Comparison,Alta,Contrasts what the models can learn.,COMPLETO,132,1
+97,D11-1059_P08-1084_0,Evaluable,Evidence,Alta,Supports claim that parallel text helps.,COMPLETO,132,1
+98,D11-1017_P06-1063_1,Evaluable,Application,Alta,Uses the Question Treebank.,COMPLETO,132,1
+99,P04-1005_N01-1016_1,Evaluable,Application,Alta,Follows the cited data split.,COMPLETO,132,1
+100,W11-1708_P06-2063_0,Evaluable,Evidence,Media,Supports claim that word order influences interpretation.,COMPLETO,132,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W12-3606_A00-1044_1,Evaluable,Background,Alta,Enumera estudios previos sobre entidades nombradas en datos históricos.,COMPLETO,107,1
+2,S13-2034_W13-0801_0,Evaluable,Further Reading,Alta,Remite a otro trabajo para una exploración más detallada del papel del contexto.,COMPLETO,107,1
+3,D13-1013_N06-2019_2,Evaluable,Comparison,Alta,Se cita como sistema en la tabla de resultados comparados.,COMPLETO,107,1
+4,W13-2903_W11-1601_3,Evaluable,Gap,Media,Se señala la falta de métricas comunes de evaluación de simplificación textual como vacío que el artículo aborda.,COMPLETO,107,1
+5,D09-1058_P08-1068_8,Evaluable,Comparison,Alta,Aparece en una tabla comparando precisión de parsers.,COMPLETO,107,1
+6,W07-0711_P00-1056_7,Evaluable,Background,Media,"Describe trabajos previos sobre modelos de transición en alineación HMM, aunque insinúa su limitación.",COMPLETO,107,1
+7,W10-2808_P05-1077_1,Evaluable,Background,Media,Describe un trabajo previo que usa funciones hash sensibles a la localidad; la limitación de memoria sugiere un matiz de brecha.,COMPLETO,107,1
+8,P11-2069_N07-1051_0,Evaluable,Application,Alta,Usan el parser de Berkeley tal cual para obtener árboles sintácticos.,COMPLETO,107,1
+9,P09-2011_P04-1015_1,Evaluable,Background,Media,Enumera enfoques previos (búsqueda en haz) para evitar la ambigüedad local infinita.,COMPLETO,107,1
+10,P11-2109_W04-3242_0,Evaluable,Comparison,Alta,Compara el trabajo citado con el propio respecto a la violación de la Propiedad 5.,COMPLETO,107,1
+11,D11-1096_J08-2003_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los kernels de árbol solos rinden menos que las características manuales.,COMPLETO,107,1
+12,D13-1036_D11-1027_0,Evaluable,Evidence,Alta,Sustenta la afirmación de que las relaciones de discurso estructuran la narrativa en varios géneros.,COMPLETO,107,1
+13,P10-1074_P08-1101_0,Evaluable,Background,Alta,Describe éxitos recientes previos en modelado conjunto.,COMPLETO,107,1
+14,P09-1040_W07-2218_0,Evaluable,Background,Alta,Lista modelos de análisis sintáctico dirigidos por datos como contexto general.,COMPLETO,107,1
+15,W10-1814_W09-3007_0,Evaluable,Background,Media,Describe un trabajo previo de transferencia léxica interlingüe para anotar verbos.,COMPLETO,107,1
+16,D13-1173_P08-1088_0,Evaluable,Background,Alta,Enumera investigación previa sobre léxicos de traducción a partir de datos comparables.,COMPLETO,107,1
+17,E03-1076_P01-1030_0,Evaluable,Application,Alta,Se usa el decodificador disponible gratuitamente tal como está.,COMPLETO,107,1
+18,P10-1049_W99-0604_0,Evaluable,Background,Media,Describe el método común de extracción heurística de la tabla de frases.,COMPLETO,107,1
+19,W12-2409_W09-1901_1,Evaluable,Evidence,Alta,Los resultados previos respaldan la decisión de probar primero en tamaños menores.,COMPLETO,107,1
+20,W06-2602_W00-0726_0,Evaluable,Application,Alta,Usan el conjunto de datos de la tarea compartida CoNLL-2000.,COMPLETO,107,1
+21,W04-0914_W03-0905_0,Evaluable,Further Reading,Media,El 'see' remite a fuentes sobre la necesidad de scripts en otras tareas de PLN.,COMPLETO,107,1
+22,W04-3223_W02-2018_1,Evaluable,Evidence,Media,Aporta un dato concreto sobre el tamaño de la matriz en un experimento previo.,COMPLETO,107,1
+23,N13-1067_W12-4303_0,Evaluable,Background,Alta,Revisa trabajos previos sobre sentimiento en citas y sus hallazgos.,COMPLETO,107,1
+24,P05-1073_P00-1065_2,Evaluable,Application,Alta,Usan el conjunto de características estándar del trabajo citado.,COMPLETO,107,1
+25,P10-1004_P08-1026_0,Evaluable,Improvement / Modification,Alta,Se presenta una versión más general del algoritmo de eliminación de redundancia citado.,COMPLETO,107,1
+26,W11-0311_D09-1020_9,Evaluable,Basis,Media,El clasificador S/O citado es la base de una etapa del sistema actual.,COMPLETO,107,1
+27,W10-2925_N09-1069_6,Evaluable,Comparison,Alta,Se compara con trabajos que usan la misma métrica y reportan cifras comparables.,COMPLETO,107,1
+28,P11-1103_P03-1021_0,Evaluable,Application,Alta,Se aplica MERT tal cual con LRscore como función objetivo.,COMPLETO,107,1
+29,W12-3615_W95-0107_0,Evaluable,Background,Media,"Referencia a la medida de exactitud IOB usada en chunking, como nota contextual.",COMPLETO,107,1
+30,P13-1043_N06-2033_2,Evaluable,Comparison,Alta,Aparece en una tabla comparando tiempos de ejecución de parsers.,COMPLETO,107,1
+31,D13-1013_N13-1102_1,Evaluable,Background,Alta,Describe un trabajo previo de detección de disfluencias y su desempeño.,COMPLETO,107,1
+32,W13-2227_D11-1033_0,Evaluable,Basis,Media,"Su enfoque de selección se extiende y usa como punto de partida, con variaciones propias.",COMPLETO,107,1
+33,E09-1017_P05-1018_0,Evaluable,Background,Alta,Enumera trabajos previos sobre coherencia a nivel de discurso.,COMPLETO,107,1
+34,W11-1006_W09-2413_1,Evaluable,Further Reading,Alta,Remite a la fuente para una descripción más detallada de la construcción del conjunto de datos.,COMPLETO,107,1
+35,P91-1043_P86-1003_0,Evaluable,Gap,Alta,"Se señala que esos trabajos no describen las formas lógicas, un vacío que la investigación aborda.",COMPLETO,107,1
+36,N13-1019_D12-1049_0,Evaluable,Basis,Media,El trabajo usa los avances en modelado jerárquico de tópicos citados.,COMPLETO,107,1
+37,N13-2008_W12-3152_0,Evaluable,Evidence,Alta,Respalda la suposición de que es realista contar con pocos datos paralelos por crowdsourcing.,COMPLETO,107,1
+38,D13-1004_D10-1083_0,Evaluable,Background,Alta,Describe sistemas previos que usan características similares a morfemas.,COMPLETO,107,1
+39,D12-1129_E09-1005_2,Evaluable,Comparison,Alta,Contrasta con aplicaciones previas de PPR que usaban el grafo de WordNet.,COMPLETO,107,1
+40,J07-4001_J00-2014_0,Evaluable,Background,Alta,Contextualiza la adopción de la Teoría de la Optimalidad en fonología.,COMPLETO,107,1
+41,W02-1401_P92-1014_0,Evaluable,Evidence,Alta,Sustenta la afirmación de que los pares modificador-núcleo mejoran recall y precisión.,COMPLETO,107,1
+42,J09-4005_P00-1065_0,Evaluable,Background,Media,"Se cita como ejemplo de estudio que no especifica el manejo de desacuerdos, con matiz de brecha.",COMPLETO,107,1
+43,W09-1103_J04-3001_1,Evaluable,Comparison,Alta,Compara resultados con el método de entropía de árboles del trabajo citado.,COMPLETO,107,1
+44,P04-1007_W02-2018_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la técnica es eficaz en diversas tareas de PLN.,COMPLETO,107,1
+45,W10-4150_W03-1025_0,Evaluable,Gap,Media,Describe el parser citado señalando que no usaba información de caracteres.,COMPLETO,107,1
+46,J12-2003_P03-1054_0,Evaluable,Application,Alta,Usan el parser de Stanford para obtener grafos de dependencias.,COMPLETO,107,1
+47,W10-1757_P08-1098_0,Evaluable,Background,Alta,Describe un trabajo previo que introdujo una estrategia de aprendizaje activo multitarea.,COMPLETO,107,1
+48,W13-2124_W11-2819_0,Evaluable,Identification of the Originator,Media,Se cita como fuente de las DRS de la Teoría de Representación del Discurso.,COMPLETO,107,1
+49,J08-1002_N04-1013_1,Evaluable,Background,Alta,Resume aplicaciones previas de los modelos de bosque de características.,COMPLETO,107,1
+50,W12-2414_D09-1120_0,Evaluable,Basis,Alta,El algoritmo implementado se inspira en el trabajo citado.,COMPLETO,107,1
+51,P10-1135_P09-1045_1,Evaluable,Comparison,Alta,Los resultados propios concuerdan con los hallazgos del trabajo citado.,COMPLETO,107,1
+52,N10-1101_W04-3252_0,Evaluable,Application,Alta,Aplican TextRank directamente para extracción de palabras clave.,COMPLETO,107,1
+53,S13-2038_P98-2127_0,Evaluable,Basis,Media,La expansión con sinónimos de un tesauro distribucional sigue el trabajo citado.,COMPLETO,107,1
+54,D09-1087_P08-1068_0,Evaluable,Background,Alta,Menciona otros enfoques semisupervisados exitosos de análisis de dependencias.,COMPLETO,107,1
+55,N13-1111_P04-1019_0,Evaluable,Gap,Alta,Se señala la limitación de trabajos previos restringidos a SNs definidos.,COMPLETO,107,1
+56,W10-2310_P06-1004_0,Evaluable,Comparison,Alta,La observación propia es consistente con las del trabajo citado.,COMPLETO,107,1
+57,W09-3534_E99-1023_0,Evaluable,Application,Alta,Emplean la representación IOB2 tal como está.,COMPLETO,107,1
+58,D12-1096_W03-2401_0,Evaluable,Gap,Alta,Señala que esos análisis no consideran causas comunes de los errores.,COMPLETO,107,1
+59,W01-1616_P01-1031_0,Evaluable,Background,Media,Describe el análisis detallado del trabajo citado sobre la forma de fragmento.,COMPLETO,107,1
+60,P13-2002_N03-1017_0,Evaluable,Evidence,Alta,Respalda que el Modelo 1 rinde casi tan bien como modelos complejos en sistemas de frases.,COMPLETO,107,1
+61,P08-1064_P07-1089_2,Evaluable,Gap,Alta,Señala una limitación del método previo en describir fenómenos complejos.,COMPLETO,107,1
+62,D13-1115_N10-1011_1,Evaluable,Background,Alta,Describe el primer trabajo previo con información visual en modelos de tópicos.,COMPLETO,107,1
+63,D13-1099_E06-1015_0,Evaluable,Application,Media,Se emplea el clasificador de kernel de árbol citado para la detección de alcance.,COMPLETO,107,1
+64,J08-4003_W02-2016_0,Evaluable,Identification of the Originator,Alta,Reconoce que el trabajo citado fue pionero del análisis de dependencias basado en clasificadores.,COMPLETO,107,1
+65,P13-1033_P07-2045_0,Evaluable,Application,Alta,Usan el decodificador Moses con configuración por defecto.,COMPLETO,107,1
+66,W12-3159_W05-0908_1,Evaluable,Evidence,Alta,Justifica la elección de la prueba de aleatorización por su menor error tipo I.,COMPLETO,107,1
+67,W13-5409_J91-4003_1,Evaluable,Evidence,Media,Se cita el argumento del autor contra léxicos de enumeración de sentidos como respaldo.,COMPLETO,107,1
+68,P10-1074_N09-1037_0,Evaluable,Background,Media,"Describe un modelo conjunto previo y sus resultados, anterior al trabajo actual.",COMPLETO,107,1
+69,P10-1142_N01-1008_0,Evaluable,Evidence,Media,Respalda la afirmación de que algunas relaciones de correferencia son más difíciles de identificar.,COMPLETO,107,1
+70,W11-1402_W06-1650_1,Evaluable,Background,Alta,Enumera estudios previos sobre utilidad de reseñas de productos.,COMPLETO,107,1
+71,P10-1132_P07-1049_1,Evaluable,Evidence,Alta,Respalda que la representación distribucional es eficaz para análisis no supervisado.,COMPLETO,107,1
+72,W05-1516_P96-1025_0,Evaluable,Background,Alta,Cita trabajos que muestran el progreso en análisis estadístico.,COMPLETO,107,1
+73,P10-1150_W09-1703_0,Evaluable,Gap,Media,"Reporta problemas de los patrones en bootstrapping, motivando el trabajo actual.",COMPLETO,107,1
+74,W11-2827_J07-2003_0,Evaluable,Improvement / Modification,Media,Adapta las reglas glue de TA a la realización para mayor robustez.,COMPLETO,107,1
+75,W10-0702_D09-1076_0,Evaluable,Evidence,Alta,Respalda que la información sintáctica mejora la precisión en traducción automática.,COMPLETO,107,1
+76,D11-1022_P10-1001_1,Evaluable,Comparison,Alta,Se incluye como mejor resultado publicado en la comparación de analizadores.,COMPLETO,107,1
+77,W12-3402_J91-4003_0,Evaluable,Background,Media,Presenta las relaciones qualia como propuesta existente de inventario de relaciones.,COMPLETO,107,1
+78,W13-2901_W10-0701_0,Evaluable,Evidence,Alta,Respalda el uso de MTurk por sus resultados comparables a otros anotadores.,COMPLETO,107,1
+79,S12-1001_W11-0908_1,Evaluable,Comparison,Alta,Compara explícitamente el F1 de enlace con el sistema citado.,COMPLETO,107,1
+80,W12-3706_W11-2123_0,Evaluable,Application,Alta,Usan la biblioteca KenLM para consultar los modelos.,COMPLETO,107,1
+81,W13-2232_D09-1092_2,Evaluable,Basis,Alta,El trabajo se centra en el modelo PLTM del trabajo citado.,COMPLETO,107,1
+82,E09-1018_W98-1119_1,Evaluable,Application,Alta,Usan el conjunto de datos anotado por Ge para desarrollo y prueba.,COMPLETO,107,1
+83,J13-4007_W04-3250_0,Evaluable,Application,Alta,Aplican el método de remuestreo bootstrap citado para pruebas de significancia.,COMPLETO,107,1
+84,W11-0202_P06-4020_0,Evaluable,Application,Alta,Usan el sistema RASP para analizar y extraer dependencias.,COMPLETO,107,1
+85,P13-2019_D09-1060_0,Evaluable,Comparison,Alta,Aparece en una tabla comparando resultados de analizadores.,COMPLETO,107,1
+86,W10-2004_N01-1021_0,Evaluable,Identification of the Originator,Alta,Atribuye la introducción de la métrica de sorpresa (surprisal) al trabajo citado.,COMPLETO,107,1
+87,D10-1099_W09-1406_1,Evaluable,Background,Alta,Describe un trabajo previo con Markov Logic y señala sus limitaciones.,COMPLETO,107,1
+88,P06-1043_E03-1008_0,Evaluable,Background,Alta,Describe enfoques previos de adaptación de analizadores sintácticos.,COMPLETO,107,1
+89,W00-0905_P96-1025_0,Evaluable,Background,Alta,Enumera aplicaciones computacionales donde importan las probabilidades de subcategorización.,COMPLETO,107,1
+90,P03-1017_P99-1004_2,Evaluable,Further Reading,Alta,'see ... for an overview' remite a una revisión de medidas de distancia.,COMPLETO,107,1
+91,P04-1035_J94-2004_0,Evaluable,Evidence,Alta,Respalda la afirmación de que segmentos cercanos comparten estatus de subjetividad.,COMPLETO,107,1
+92,D12-1018_W03-1011_1,Evaluable,Application,Alta,Aplican la medida de precisión de Weeds sin modificación.,COMPLETO,107,1
+93,S07-1074_N01-1006_0,Evaluable,Application,Alta,Usan la herramienta fnTBL para el etiquetado PoS.,COMPLETO,107,1
+94,N13-1025_N12-1047_0,Evaluable,Background,Alta,Enumera trabajos previos sobre algoritmos de predicción estructurada.,COMPLETO,107,1
+95,J99-2007_P91-1030_0,Evaluable,Gap,Alta,"Señala que métodos previos asumen independencia entre casos, justificando el nuevo método.",COMPLETO,107,1
+96,D13-1029_D09-1120_1,Evaluable,Comparison,Alta,Compara el rendimiento del sistema propio con el trabajo citado.,COMPLETO,107,1
+97,J13-3003_P08-1028_1,Evaluable,Background,Alta,Enumera trabajos previos sobre representación vectorial del significado.,COMPLETO,107,1
+98,N10-1083_P09-1104_0,Evaluable,Comparison,Media,"Contrasta con los mejores resultados publicados, supervisados y con más datos.",COMPLETO,107,1
+99,W11-0906_P00-1065_0,Evaluable,Background,Alta,Describe el enfoque tradicional de dos pasos en el etiquetado de roles semánticos.,COMPLETO,107,1
+100,P09-1054_P07-1096_0,Evaluable,Comparison,Alta,Contrasta la exactitud reportada por el trabajo citado en el mismo conjunto de datos.,COMPLETO,107,1

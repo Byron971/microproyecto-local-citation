@@ -1,0 +1,378 @@
+{
+  "primaria": "AB - A",
+  "metrica": "f1_macro",
+  "delta": 0.02,
+  "alfa": 0.05,
+  "min_signo": 2,
+  "semillas_nucleo": [
+    42,
+    1234
+  ],
+  "lr": {
+    "M:A": 2e-05,
+    "M:AB": 5e-05,
+    "M:B": 5e-05,
+    "S:A": 5e-05,
+    "S:AB": 5e-05,
+    "S:B": 5e-05
+  },
+  "preregistro_commit": "dry",
+  "pistas": {
+    "M": {
+      "metrica": "f1_macro",
+      "diferencia": 0.014198810246872955,
+      "diferencia_por_semilla": [
+        0.011569378709338142,
+        0.01682824178440777
+      ],
+      "sd_semillas": 0.0037185777417132727,
+      "v_sem": 6.913910210582691e-06,
+      "v_art": 0.0002525963815636234,
+      "se": 0.016109323132093605,
+      "gl": 1408.8400906201448,
+      "p": 0.3782499260753811,
+      "ic95": [
+        -0.017402031466333966,
+        0.045799651960079873
+      ],
+      "delta": 0.02,
+      "p_tost_inferior": 0.016967245096938366,
+      "p_tost_superior": 0.35940800101239456,
+      "p_tost": 0.35940800101239456,
+      "ic90": [
+        -0.012316103341661427,
+        0.040713723835407334
+      ],
+      "semillas": 2,
+      "casos": 64,
+      "grupos": 12,
+      "n_remuestras": 5000,
+      "semilla_bootstrap": 2026,
+      "semillas_usadas": [
+        42,
+        1234
+      ],
+      "ic_jerarquico": {
+        "diferencia": 0.014198810246872954,
+        "ic95": [
+          -0.023045535463613608,
+          0.05368068719712836
+        ],
+        "n_remuestras": 5000,
+        "semillas": 2,
+        "casos": 64,
+        "grupos": 12,
+        "por_clase": [
+          {
+            "clase": "Background",
+            "soporte": 24,
+            "f1_a": 0.07142857142857142,
+            "f1_x": 0.25,
+            "diferencia": 0.17857142857142858,
+            "ic95": [
+              0.0,
+              0.5569724009130523
+            ],
+            "contribucion_macro": 0.01984126984126984
+          },
+          {
+            "clase": "Gap",
+            "soporte": 2,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Basis",
+            "soporte": 1,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Comparison",
+            "soporte": 6,
+            "f1_a": 0.1016949152542373,
+            "f1_x": 0.03333333333333333,
+            "diferencia": -0.06836158192090397,
+            "ic95": [
+              -0.23687343358395987,
+              0.0
+            ],
+            "contribucion_macro": -0.007595731324544885
+          },
+          {
+            "clase": "Application",
+            "soporte": 25,
+            "f1_a": 0.2697768762677485,
+            "f1_x": 0.28735632183908044,
+            "diferencia": 0.017579445571331967,
+            "ic95": [
+              -0.16,
+              0.2320954907161803
+            ],
+            "contribucion_macro": 0.0019532717301479962
+          },
+          {
+            "clase": "Improvement / Modification",
+            "soporte": 1,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Evidence",
+            "soporte": 5,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Identification of the Originator",
+            "soporte": 0,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Further Reading",
+            "soporte": 0,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          }
+        ]
+      },
+      "ic_cluster": {
+        "diferencia": 0.014198810246872945,
+        "ic95": [
+          -0.016588153764117666,
+          0.04447838708947316
+        ],
+        "prob_b_mayor": 0.8354,
+        "n_remuestras": 5000,
+        "casos": 64,
+        "grupos": 12,
+        "semillas": 2,
+        "diferencia_por_semilla": [
+          0.011569378709338142,
+          0.01682824178440776
+        ],
+        "mismo_signo_semillas": true
+      },
+      "p_holm": 0.5937760561540695,
+      "p_tost_holm": 0.7188160020247891,
+      "veredicto": "no_concluyente"
+    },
+    "S": {
+      "metrica": "f1_macro",
+      "diferencia": 0.029968687712760542,
+      "diferencia_por_semilla": [
+        0.047044030953229246,
+        0.012893344472291839
+      ],
+      "sd_semillas": 0.024148181992846594,
+      "v_sem": 0.00029156734677982025,
+      "v_art": 0.0003798923045309242,
+      "se": 0.02591253849607839,
+      "gl": 5.303493873451112,
+      "p": 0.29688802807703474,
+      "ic95": [
+        -0.0355112780433019,
+        0.09544865346882297
+      ],
+      "delta": 0.02,
+      "p_tost_inferior": 0.05420963475378904,
+      "p_tost_superior": 0.6422985506439693,
+      "p_tost": 0.6422985506439693,
+      "ic90": [
+        -0.02159346989657532,
+        0.08153084532209641
+      ],
+      "semillas": 2,
+      "casos": 64,
+      "grupos": 12,
+      "n_remuestras": 5000,
+      "semilla_bootstrap": 2026,
+      "semillas_usadas": [
+        42,
+        1234
+      ],
+      "ic_jerarquico": {
+        "diferencia": 0.029968687712760535,
+        "ic95": [
+          -0.021117904573786928,
+          0.0774056004186612
+        ],
+        "n_remuestras": 5000,
+        "semillas": 2,
+        "casos": 64,
+        "grupos": 12,
+        "por_clase": [
+          {
+            "clase": "Background",
+            "soporte": 26,
+            "f1_a": 0.14035087719298245,
+            "f1_x": 0.23979591836734693,
+            "diferencia": 0.09944504117436449,
+            "ic95": [
+              -0.030004716981132072,
+              0.2571536796536795
+            ],
+            "contribucion_macro": 0.011049449019373832
+          },
+          {
+            "clase": "Gap",
+            "soporte": 4,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Basis",
+            "soporte": 4,
+            "f1_a": 0.08711433756805807,
+            "f1_x": 0.11017543859649123,
+            "diferencia": 0.023061101028433152,
+            "ic95": [
+              -0.006296620046620057,
+              0.07853006420628005
+            ],
+            "contribucion_macro": 0.0025623445587147947
+          },
+          {
+            "clase": "Comparison",
+            "soporte": 7,
+            "f1_a": 0.06666666666666667,
+            "f1_x": 0.07142857142857142,
+            "diferencia": 0.004761904761904759,
+            "ic95": [
+              -0.23529411764705882,
+              0.23529411764705882
+            ],
+            "contribucion_macro": 0.0005291005291005288
+          },
+          {
+            "clase": "Application",
+            "soporte": 19,
+            "f1_a": 0.037037037037037035,
+            "f1_x": 0.1794871794871795,
+            "diferencia": 0.14245014245014245,
+            "ic95": [
+              -0.05304913582352606,
+              0.47619047619047616
+            ],
+            "contribucion_macro": 0.015827793605571384
+          },
+          {
+            "clase": "Improvement / Modification",
+            "soporte": 0,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Evidence",
+            "soporte": 2,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Identification of the Originator",
+            "soporte": 0,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          },
+          {
+            "clase": "Further Reading",
+            "soporte": 2,
+            "f1_a": 0.0,
+            "f1_x": 0.0,
+            "diferencia": 0.0,
+            "ic95": [
+              0.0,
+              0.0
+            ],
+            "contribucion_macro": 0.0
+          }
+        ]
+      },
+      "ic_cluster": {
+        "diferencia": 0.029968687712760532,
+        "ic95": [
+          -0.012974934032953515,
+          0.06227791741861838
+        ],
+        "prob_b_mayor": 0.9224,
+        "n_remuestras": 5000,
+        "casos": 64,
+        "grupos": 12,
+        "semillas": 2,
+        "diferencia_por_semilla": [
+          0.047044030953229246,
+          0.012893344472291835
+        ],
+        "mismo_signo_semillas": true
+      },
+      "p_holm": 0.5937760561540695,
+      "p_tost_holm": 0.7188160020247891,
+      "veredicto": "no_concluyente"
+    }
+  },
+  "veredictos": {
+    "M": "no_concluyente",
+    "S": "no_concluyente"
+  }
+}

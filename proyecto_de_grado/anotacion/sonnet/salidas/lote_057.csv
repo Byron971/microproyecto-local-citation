@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,E09-1061_N04-1021_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que hay que integrar el modelo de lenguaje en la búsqueda.,COMPLETO,57,1
+2,W08-0105_P03-1070_1,Evaluable,Evidence,Media,Respalda un hallazgo concreto sobre visibilidad y longitud de las conversaciones.,COMPLETO,57,1
+3,P13-1127_P11-1149_0,Evaluable,Background,Alta,Enumera trabajos previos con representaciones de significado.,COMPLETO,57,1
+4,W11-1007_N07-1008_1,Evaluable,Comparison,Baja,"Describe cómo el trabajo citado usa el conteo de frases como prior, contrastando con el propio enfoque.",COMPLETO,57,1
+5,N10-1018_W09-2112_0,Evaluable,Comparison,Alta,Contrasta explícitamente ('Unlike previous work') con el enfoque actual.,COMPLETO,57,1
+6,D12-1079_P07-2045_0,Evaluable,Application,Alta,Usa el pipeline string-to-tree de Moses sin modificarlo.,COMPLETO,57,1
+7,P92-1025_P91-1007_1,Evaluable,Further Reading,Alta,Remite a otro trabajo para más ventajas del modelo.,COMPLETO,57,1
+8,W05-0620_W05-0623_3,Evaluable,Comparison,Alta,Compara los valores de F1 de distintos sistemas.,COMPLETO,57,1
+9,N04-4037_P00-1065_0,Evaluable,Background,Media,Presenta un conjunto alternativo de roles temáticos propuestos en la literatura.,COMPLETO,57,1
+10,P07-1021_P04-1054_0,Evaluable,Background,Alta,Enumera tareas donde se usan dependencias.,COMPLETO,57,1
+11,N04-1026_P01-1048_2,Evaluable,Evidence,Media,Respalda la afirmación de que las características de contexto pueden mejorar la predicción.,COMPLETO,57,1
+12,P13-2061_P10-1049_1,Evaluable,Comparison,Alta,Fila de tabla que compara los resultados del método citado con la línea base y los propios.,COMPLETO,57,1
+13,P07-1077_E06-1010_2,Evaluable,Evidence,Alta,Los resultados propios apoyan los hallazgos del trabajo citado.,COMPLETO,57,1
+14,N10-1083_N09-1069_0,Evaluable,Improvement / Modification,Alta,Mejora el modelo de segmentación citado añadiendo rasgos fonológicos.,COMPLETO,57,1
+15,D12-1056_N03-1017_0,Evaluable,Basis,Media,La formulación del problema se inspira en la traducción basada en frases.,COMPLETO,57,1
+16,N12-1039_P11-2010_0,Evaluable,Comparison,Alta,Indica similitudes y diferencias con el método citado.,COMPLETO,57,1
+17,P12-1046_P03-1054_1,Evaluable,Background,Media,"Describe trabajo previo sobre refinamiento manual de símbolos, que se contrasta con el aprendizaje automático propio.",COMPLETO,57,1
+18,W06-1619_E03-1071_0,Evaluable,Comparison,Alta,Tabla que compara la exactitud de supertaggers.,COMPLETO,57,1
+19,J13-4006_W05-1512_0,Evaluable,Background,Alta,Enumera trabajos con representaciones latentes en parsing.,COMPLETO,57,1
+20,D09-1023_P05-1034_0,Evaluable,Background,Alta,Describe trabajo previo con características sintácticas en SMT.,COMPLETO,57,1
+21,W11-2917_P02-1016_2,Evaluable,Comparison,Media,Indica que la medida propia es cercana a las medidas de incertidumbre citadas.,COMPLETO,57,1
+22,W13-2814_W04-3248_0,Evaluable,Background,Alta,Describe el enfoque y las características del trabajo previo.,COMPLETO,57,1
+23,W13-2263_P07-2045_0,Evaluable,Application,Alta,Usa el script de entrenamiento de Moses.,COMPLETO,57,1
+24,J11-1005_P08-1101_8,Evaluable,Basis,Media,El decodificador propuesto previamente se usa como base para el análisis actual.,COMPLETO,57,1
+25,W08-0336_E03-1076_0,Evaluable,Background,Alta,Resume trabajos previos sobre preprocesamiento para MT.,COMPLETO,57,1
+26,N10-1033_P08-1012_1,Evaluable,Application,Media,Usa una variante del ITG por frases descrito en el trabajo citado.,COMPLETO,57,1
+27,J10-3009_W06-1600_1,Evaluable,Background,Alta,Enumera modelos basados en sintaxis.,COMPLETO,57,1
+28,P05-1055_N04-1017_0,Evaluable,Background,Alta,Describe trabajo previo reciente sobre lattices.,COMPLETO,57,1
+29,D11-1060_W04-2609_0,Evaluable,Background,Alta,Enumera trabajos de una línea de investigación.,COMPLETO,57,1
+30,W12-3149_W06-3110_0,Evaluable,Comparison,Media,"Relaciona el enfoque propio con los posteriores de n-gramas, señalando similitudes y diferencias.",COMPLETO,57,1
+31,W13-1903_W11-0419_0,Evaluable,Basis,Alta,La representación se basa en el modelo de narrative containers.,COMPLETO,57,1
+32,W06-3603_W05-1515_3,Evaluable,Comparison,Alta,Compara resultados propios con los de los parsers citados.,COMPLETO,57,1
+33,D13-1040_D11-1135_2,Evaluable,Improvement / Modification,Alta,Extiende el modelo relational LDA con reglas FOL.,COMPLETO,57,1
+34,N10-1135_W02-0902_0,Evaluable,Evidence,Media,Respalda que los cognados comparten significado.,COMPLETO,57,1
+35,W07-0409_P00-1056_3,Evaluable,Application,Alta,Usa Giza++ para alinear los corpus.,COMPLETO,57,1
+36,D11-1141_W00-0726_0,Evaluable,Application,Alta,Usa las etiquetas de la tarea compartida CoNLL para anotar.,COMPLETO,57,1
+37,D13-1036_P09-1077_1,Evaluable,Background,Media,Enumera trabajos previos que usan conectivos o taggers de discurso.,COMPLETO,57,1
+38,P05-1038_P03-1054_0,Evaluable,Background,Media,Describe un hallazgo previo que cuestionó la visión dominante sobre lexicalización.,COMPLETO,57,1
+39,W07-0401_P04-1083_0,Evaluable,Background,Alta,Enumera métodos que usan sintaxis para el reordenamiento.,COMPLETO,57,1
+40,W11-2132_W07-0733_0,Evaluable,Background,Alta,Enumera trabajos de adaptación de dominio.,COMPLETO,57,1
+41,W06-3312_W05-1306_0,Evaluable,Further Reading,Alta,Remite a una revisión de corpus biomédicos.,COMPLETO,57,1
+42,D10-1094_N10-1018_2,Evaluable,Background,Media,Describe un resultado previo sobre generación de errores.,COMPLETO,57,1
+43,P13-2104_P09-1043_0,Evaluable,Background,Alta,Resume trabajo previo sobre adaptación de parsers.,COMPLETO,57,1
+44,N13-1001_P11-1105_6,Evaluable,Improvement / Modification,Alta,Extiende los pasos de entrenamiento del trabajo citado.,COMPLETO,57,1
+45,P13-1078_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para obtener alineaciones.,COMPLETO,57,1
+46,W09-3817_W04-3205_2,Evaluable,Background,Alta,Describe trabajo previo sobre relaciones verbales.,COMPLETO,57,1
+47,D12-1069_P11-1060_0,Evaluable,Gap,Media,"Señala que otras formas de supervisión aún requieren anotaciones por oración, justificando el trabajo.",COMPLETO,57,1
+48,D12-1046_D11-1109_1,Evaluable,Comparison,Alta,Indica que la observación es similar a las reportadas.,COMPLETO,57,1
+49,N12-1044_W11-3206_2,Evaluable,Basis,Media,El experimento extiende el resultado de combinación de sistemas citado.,COMPLETO,57,1
+50,E09-1053_P07-1021_0,Evaluable,Further Reading,Media,El 'see also' remite a más detalles sobre linearizaciones.,COMPLETO,57,1
+51,W10-4102_P02-1047_0,Evaluable,Gap,Media,Señala que hay poco trabajo previo sobre relaciones causales en dominios abiertos.,COMPLETO,57,1
+52,N09-1070_W05-0905_0,Evaluable,Application,Media,Usa el corpus con resúmenes extractivos anotados.,COMPLETO,57,1
+53,W13-3816_N07-1025_0,Evaluable,Background,Alta,Enumera enfoques previos de enlazado a WordNet.,COMPLETO,57,1
+54,W13-0801_W09-2413_4,Evaluable,Comparison,Alta,Compara el sistema WSD propio con los resultados oficiales.,COMPLETO,57,1
+55,P10-1025_N07-1070_0,Evaluable,Evidence,Alta,Respalda la explicación sobre la poca generalización de rasgos léxicos.,COMPLETO,57,1
+56,P07-1032_P04-1014_0,Evaluable,Background,Alta,Enumera parsers para distintos formalismos.,COMPLETO,57,1
+57,P10-1001_P05-1012_3,Evaluable,Comparison,Alta,Tabla que compara el UAS con el parser citado.,COMPLETO,57,1
+58,W11-0319_D09-1025_2,Evaluable,Comparison,Media,Usa las mismas clases y el mismo conjunto de prueba para comparar.,COMPLETO,57,1
+59,W09-2809_W03-0501_2,Evaluable,Improvement / Modification,Alta,Adapta Hedge Trimmer al chino con diferencias.,COMPLETO,57,1
+60,J10-3003_W06-2920_0,Evaluable,Evidence,Media,Cita evaluaciones compartidas como ejemplo que respalda el argumento.,COMPLETO,57,1
+61,W03-0317_P02-1051_0,Evaluable,Background,Alta,Enumera trabajos de transliteración por par de lenguas.,COMPLETO,57,1
+62,W11-1701_P09-1026_3,Evaluable,Comparison,Alta,Identifica el trabajo más similar y lo contrasta.,COMPLETO,57,1
+63,P13-1056_P12-1015_0,Evaluable,Background,Alta,Enumera trabajos sobre aprendizaje fundamentado.,COMPLETO,57,1
+64,W12-3127_W06-3119_0,Evaluable,Background,Media,Describe el enfoque SAMT como trabajo previo.,COMPLETO,57,1
+65,P13-1117_D11-1006_1,Evaluable,Evidence,Media,Respalda la decisión metodológica de asumir un POS tagger.,COMPLETO,57,1
+66,N10-1066_P08-2014_1,Evaluable,Comparison,Alta,Compara el enfoque propio con enfoques conjuntos específicos.,COMPLETO,57,1
+67,P06-2014_P05-1057_0,Evaluable,Background,Alta,Describe soluciones discriminativas previas.,COMPLETO,57,1
+68,P10-1034_J93-3006_0,Evaluable,Further Reading,Media,Remite a la fuente sobre la definición de TFS.,COMPLETO,57,1
+69,D11-1044_N03-1017_2,Evaluable,Basis,Media,Rasgos propios similares al ponderado léxico de MT por frases.,COMPLETO,57,1
+70,N10-1104_N03-2002_0,Evaluable,Background,Alta,Presenta los FLM como alternativa existente.,COMPLETO,57,1
+71,P00-1051_P89-1031_0,Evaluable,Background,Alta,Indica que estudios previos usan una variante de la teoría.,COMPLETO,57,1
+72,W10-3015_P07-1125_0,Evaluable,Background,Alta,Describe el conjunto de datos y las cifras reportadas.,COMPLETO,57,1
+73,P13-1012_D12-1114_1,Evaluable,Basis,Media,Algunos rasgos se inspiraron en el trabajo citado.,COMPLETO,57,1
+74,P12-1101_P11-1027_1,Evaluable,Application,Alta,Usa la herramienta Berkeley LM sin modificarla.,COMPLETO,57,1
+75,W10-3106_P07-1125_1,Evaluable,Comparison,Media,Contrasta los criterios poco detallados con el trabajo detallado citado.,COMPLETO,57,1
+76,P10-1056_E09-1018_0,Evaluable,Application,Alta,Usa el sistema de resolución de pronombres disponible públicamente.,COMPLETO,57,1
+77,D10-1030_N07-1051_0,Evaluable,Application,Alta,Usa el parser de Berkeley como herramienta.,COMPLETO,57,1
+78,D09-1086_P09-1042_0,Evaluable,Comparison,Alta,Describe el trabajo más cercano y lo compara con el propio.,COMPLETO,57,1
+79,W13-1006_P10-4006_0,Evaluable,Further Reading,Alta,'For more information' remite a otras fuentes.,COMPLETO,57,1
+80,P13-2016_P03-1069_2,Evaluable,Application,Media,Usa el modelo probabilístico del trabajo citado con sus rasgos.,COMPLETO,57,1
+81,W12-4515_N01-1008_0,Evaluable,Background,Alta,Enumera sistemas que usan WordNet.,COMPLETO,57,1
+82,W12-2906_W04-3217_0,Evaluable,Background,Alta,Enumera trabajos de análisis de tramas.,COMPLETO,57,1
+83,W06-1671_P04-1054_0,Evaluable,Gap,Media,Señala que los extractores binarios no sirven para la extracción de registros.,COMPLETO,57,1
+84,P13-1020_P11-1049_1,Evaluable,Application,Alta,"Usa los bigramas como conceptos, como en el trabajo citado.",COMPLETO,57,1
+85,D13-1187_D11-1120_0,Evaluable,Comparison,Alta,Indica que los resultados son consistentes con los de otros trabajos.,COMPLETO,57,1
+86,P08-1049_N06-1003_0,Evaluable,Comparison,Alta,Indica la similitud de la idea con el uso de paráfrasis en MT.,COMPLETO,57,1
+87,W08-2101_P00-1065_0,Evaluable,Background,Alta,Cita la definición de la tarea SRL de investigadores previos.,COMPLETO,57,1
+88,W06-3402_A92-1021_0,Evaluable,Application,Alta,Usa el tagger de Brill.,COMPLETO,57,1
+89,E12-1019_S07-1014_0,Evaluable,Comparison,Alta,Compara la tarea propia con las tareas A y C de TempEval.,COMPLETO,57,1
+90,P10-1036_P06-1043_0,Evaluable,Background,Alta,Resume resultados previos mixtos sobre self-training.,COMPLETO,57,1
+91,P10-1142_P02-1014_0,Evaluable,Background,Alta,Describe el método de creación de instancias propuesto previamente.,COMPLETO,57,1
+92,W07-2307_W00-1416_0,Evaluable,Further Reading,Media,Remite al trabajo sobre lecturas distributivas para más detalle.,COMPLETO,57,1
+93,P12-1023_D09-1060_0,Evaluable,Comparison,Media,Los ajustes de datos se eligen para coincidir con trabajos previos y permitir comparación.,COMPLETO,57,1
+94,D09-1028_P06-1046_0,Evaluable,Background,Alta,Describe esfuerzos previos de eficiencia computacional.,COMPLETO,57,1
+95,W03-1006_P02-1031_5,Evaluable,Comparison,Alta,Compara resultados con los del trabajo citado.,COMPLETO,57,1
+96,D12-1001_D11-1006_6,Evaluable,Comparison,Alta,Incluye los resultados base del trabajo citado para comparar.,COMPLETO,57,1
+97,W08-0122_W05-0308_0,Evaluable,Basis,Media,Sigue las definiciones de sentimiento del trabajo citado.,COMPLETO,57,1
+98,P13-2136_E99-1010_1,Evaluable,Identification of the Originator,Alta,Señala el trabajo más temprano sobre clustering bilingüe.,COMPLETO,57,1
+99,P12-1098_D11-1035_1,Evaluable,Evidence,Alta,Respalda la afirmación de que con MERT conviene sintonizar con la métrica evaluada.,COMPLETO,57,1
+100,P13-1173_W09-2307_0,Evaluable,Application,Alta,Usa el Stanford Parser para el preprocesamiento del chino.,COMPLETO,57,1

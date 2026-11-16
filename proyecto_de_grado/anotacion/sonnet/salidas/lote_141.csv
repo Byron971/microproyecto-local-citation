@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N13-1053_P11-1032_8,Evaluable,Application,Alta,Usa el dataset de opiniones engañosas positivas del trabajo citado junto con el propio.,COMPLETO,141,1
+2,P01-1064_W98-1123_0,Evaluable,Background,Alta,Enumera tareas de PLN donde la segmentación es importante.,COMPLETO,141,1
+3,S13-1013_S12-1076_3,Evaluable,Comparison,Alta,Compara resultados propios con la mejor entrega del trabajo citado.,COMPLETO,141,1
+4,D10-1058_D08-1033_0,Evaluable,Comparison,Media,Contrasta con el trabajo citado: aplicó MCMC al alineamiento pero no modela fertilidad.,COMPLETO,141,1
+5,W06-0803_J98-1004_0,Evaluable,Background,Media,Sitúa el problema dentro de WSD como trabajo relacionado.,COMPLETO,141,1
+6,P06-1099_P01-1025_1,Evaluable,Gap,Media,Critica que usaron una prueba chi-cuadrado inadecuada.,COMPLETO,141,1
+7,J09-4009_P05-1033_2,Evaluable,Evidence,Alta,Respalda la afirmación de que el modelo de lenguaje es muy importante para la calidad.,COMPLETO,141,1
+8,P13-2125_P08-2029_0,Evaluable,Basis,Alta,El trabajo actual extiende trabajos previos propios en QA.,COMPLETO,141,1
+9,J08-4003_P06-2089_0,Evaluable,Background,Media,Menciona trabajos previos con clasificadores probabilísticos y beam search.,COMPLETO,141,1
+10,D11-1108_W03-1004_0,Evaluable,Background,Alta,Enumera técnicas de SMT reutilizadas para paráfrasis.,COMPLETO,141,1
+11,P10-1112_D09-1076_0,Evaluable,Background,Alta,Lista de sistemas que usan subestructuras (árboles sintácticos).,COMPLETO,141,1
+12,W07-1003_W04-3239_0,Evaluable,Background,Alta,Enumera trabajos previos sobre clasificación de texto.,COMPLETO,141,1
+13,W10-2923_N09-1035_0,Evaluable,Evidence,Media,Respalda que SVMHMM/CRF se han aplicado con éxito a tareas secuenciales como silabificación.,COMPLETO,141,1
+14,W11-3201_P04-1021_2,Evaluable,Background,Media,Describe trabajo previo que extiende el modelo citado; el citado se presenta como antecedente.,COMPLETO,141,1
+15,W12-0208_P07-1083_1,Evaluable,Background,Alta,Describe el método de trabajo previo sobre cognados.,COMPLETO,141,1
+16,P06-4009_W06-0902_0,Evaluable,Further Reading,Alta,Remite a una descripción más detallada del modelo.,COMPLETO,141,1
+17,W11-3206_P11-1041_1,Evaluable,Evidence,Media,Apoya la afirmación sobre la importancia de usar múltiples idiomas con hallazgo del trabajo citado.,COMPLETO,141,1
+18,P09-2003_E99-1008_1,Evaluable,Further Reading,Alta,Remite al lector para detalles sobre RCG.,COMPLETO,141,1
+19,P99-1014_P93-1024_1,Evaluable,Comparison,Media,Su tarea es similar a la del trabajo citado pero difiere en detalles.,COMPLETO,141,1
+20,W06-1638_P05-1010_4,Evaluable,Application,Alta,Aplica la binarización center-parent tal como se describe.,COMPLETO,141,1
+21,J91-2001_P86-1038_1,Evaluable,Background,Media,Presenta el modelo más conocido de estructuras de rasgos como antecedente.,COMPLETO,141,1
+22,N10-1138_D09-1029_0,Evaluable,Background,Alta,Resume trabajos que extienden FrameNet con otros recursos.,COMPLETO,141,1
+23,P11-1054_P08-1004_0,Evaluable,Evidence,Alta,Respalda la observación de que las relaciones usan pocos patrones sintácticos.,COMPLETO,141,1
+24,P98-1010_P97-1057_0,Evaluable,Basis,Media,La construcción de dos árboles de sufijos se inspira en el trabajo citado.,COMPLETO,141,1
+25,W11-0310_W06-1615_0,Evaluable,Evidence,Alta,Respalda el hecho conocido de que el aprendizaje automático no transfiere bien entre dominios.,COMPLETO,141,1
+26,W10-0608_P06-4020_0,Evaluable,Application,Alta,Usa el analizador RASP tal cual.,COMPLETO,141,1
+27,W11-2915_W10-1905_0,Evaluable,Background,Alta,Ejemplos de trabajos sobre adaptación de dominio.,COMPLETO,141,1
+28,D13-1155_W08-1105_1,Evaluable,Gap,Media,Señala limitaciones de los métodos de poda de árboles.,COMPLETO,141,1
+29,W04-2410_W97-0322_0,Evaluable,Evidence,Alta,Respalda que el sentido más frecuente es una heurística útil para WSD.,COMPLETO,141,1
+30,P99-1077_J98-1004_0,Evaluable,Basis,Alta,El sistema VecTile se basa en el modelo WordSpace citado.,COMPLETO,141,1
+31,D11-1019_N06-1033_0,Evaluable,Background,Media,Cita la técnica popular de binarización de reglas como contexto.,COMPLETO,141,1
+32,W10-3705_P98-1030_0,Evaluable,Background,Alta,Describe trabajo previo en trabajos relacionados.,COMPLETO,141,1
+33,N06-1007_P05-1018_0,Evaluable,Basis,Media,Formalización entity-based que el trabajo actual adopta como criterio.,COMPLETO,141,1
+34,P09-1025_P05-1018_1,Evaluable,Application,Alta,Usa el enfoque Entity Grid descrito en el trabajo citado.,COMPLETO,141,1
+35,P09-2061_P03-1021_0,Evaluable,Application,Alta,Usa el decodificador/ componentes estándar citados.,COMPLETO,141,1
+36,W12-5708_N07-1029_0,Evaluable,Further Reading,Media,Remite a trabajos relacionados sobre re-ranking en SMT.,COMPLETO,141,1
+37,D13-1064_D09-1001_1,Evaluable,Evidence,Media,Respalda la utilidad de estas expresiones en QA y extracción de relaciones.,COMPLETO,141,1
+38,J92-3002_P85-1021_0,Evaluable,Further Reading,Alta,Remite explícitamente a documentación de implementaciones.,COMPLETO,141,1
+39,D13-1122_D12-1082_0,Evaluable,Evidence,Media,Respalda que entidades nuevas faltan en las enciclopedias.,COMPLETO,141,1
+40,W02-1005_N01-1006_0,Evaluable,Application,Alta,Usa el algoritmo fnTBL para anotar los datos.,COMPLETO,141,1
+41,W12-6337_P03-1054_1,Evaluable,Further Reading,Alta,Remite al trabajo para la explicación de una nota.,COMPLETO,141,1
+42,N12-1093_D10-1049_5,Evaluable,Comparison,Alta,Compara el resultado del generador con el del sistema citado.,COMPLETO,141,1
+43,W13-1912_W09-3811_0,Evaluable,Application,Alta,Aplica MaltParser a las oraciones.,COMPLETO,141,1
+44,P11-2096_P05-1074_2,Evaluable,Improvement / Modification,Alta,BCB-S extiende el enfoque citado añadiendo restricción sintáctica.,COMPLETO,141,1
+45,P06-1052_W05-1105_4,Evaluable,Application,Alta,Usa la herramienta utool para traducir las representaciones.,COMPLETO,141,1
+46,W10-4326_P09-1077_4,Evaluable,Comparison,Alta,Compara con el rendimiento previo del estado del arte.,COMPLETO,141,1
+47,W11-3906_P00-1065_0,Evaluable,Identification of the Originator,Alta,Reconoce a quien introdujo SRL (seminal).,COMPLETO,141,1
+48,E03-1058_W01-0514_1,Evaluable,Further Reading,Alta,Remite a trabajos para justificación adicional.,COMPLETO,141,1
+49,N10-1090_W09-3832_0,Evaluable,Evidence,Media,Respalda la afirmación sobre dependencias de largo alcance en modelos secuenciales.,COMPLETO,141,1
+50,P01-1007_E99-1008_0,Evaluable,Further Reading,Alta,Indica que hay más detalles en la fuente citada.,COMPLETO,141,1
+51,D08-1108_W02-2018_0,Evaluable,Evidence,Alta,Respalda que el método ha sido efectivo en tareas de PLN.,COMPLETO,141,1
+52,W05-0604_N03-1032_0,Evaluable,Background,Media,Resume resultados previos sobre PMI en el TOEFL.,COMPLETO,141,1
+53,W13-4902_W10-1412_1,Evaluable,Comparison,Media,Contrasta el efecto de rasgos en lituano con hebreo del trabajo citado.,COMPLETO,141,1
+54,D10-1039_P02-1047_0,Evaluable,Background,Media,Describe el método previo como pionero en relaciones implícitas.,COMPLETO,141,1
+55,P06-2013_W99-0707_0,Evaluable,Further Reading,Alta,Remite a otras fuentes para detalles completos.,COMPLETO,141,1
+56,P11-1019_W03-0209_1,Evaluable,Background,Alta,Describe trabajo previo en puntuación automática de ensayos.,COMPLETO,141,1
+57,W12-6001_D10-1109_0,Evaluable,Background,Alta,Enumera técnicas previas de clasificación de preguntas.,COMPLETO,141,1
+58,P12-1033_N03-1017_0,Evaluable,Application,Alta,Usa la heurística grow-diag-final tal cual.,COMPLETO,141,1
+59,W09-2302_P03-1012_0,Evaluable,Gap,Alta,Señala la limitación del modelo citado (unidad de alineamiento palabra).,COMPLETO,141,1
+60,W09-2601_W04-3212_1,Evaluable,Application,Alta,Usa el conjunto de rasgos estándar del trabajo citado.,COMPLETO,141,1
+61,P11-1049_W09-1802_1,Evaluable,Background,Media,Describe un enfoque previo basado en cobertura de bigramas.,COMPLETO,141,1
+62,E99-1017_P96-1015_2,Evaluable,Gap,Alta,Señala un problema del algoritmo citado.,COMPLETO,141,1
+63,P05-1020_W97-0319_0,Evaluable,Background,Media,Ejemplo de funciones de puntuación como la regla de Dempster-Shafer.,COMPLETO,141,1
+64,W03-1307_P02-1060_5,Evaluable,Evidence,Media,Respalda que la abreviatura reconocida ayuda a clasificar otras en el documento.,COMPLETO,141,1
+65,W12-3810_W11-1701_1,Evaluable,Background,Alta,Trabajos relacionados: describe lo que demostró el trabajo previo.,COMPLETO,141,1
+66,P11-2125_P05-1012_0,Evaluable,Basis,Alta,El trabajo mejora parsing dentro del marco MSTParser citado.,COMPLETO,141,1
+67,W09-3821_P06-1055_1,Evaluable,Background,Media,Describe contribución previa sobre PCFG-LA.,COMPLETO,141,1
+68,W11-2916_W95-0103_0,Evaluable,Evidence,Alta,Respalda que las heurísticas estructurales rinden mal.,COMPLETO,141,1
+69,W04-1501_J89-1001_0,Evaluable,Evidence,Alta,Respalda que el orden básico del italiano es SVC.,COMPLETO,141,1
+70,J06-2003_J02-2001_3,Evaluable,Basis,Alta,El trabajo se basa en el modelo del trabajo citado.,COMPLETO,141,1
+71,E06-3002_J91-4003_0,Evaluable,Background,Media,Cita Semántica Léxica con relaciones ricas en el léxico como contexto.,COMPLETO,141,1
+72,E09-1088_P05-1010_1,Evaluable,Comparison,Alta,Compara su inferencia con el Best Hidden Path del trabajo citado.,COMPLETO,141,1
+73,D13-1022_W06-3602_1,Evaluable,Background,Alta,Trabajos relacionados sobre búsqueda aproximada.,COMPLETO,141,1
+74,W05-1510_P05-1011_1,Evaluable,Comparison,Alta,Compara resultados de generación con los de parsing.,COMPLETO,141,1
+75,D12-1080_N03-1033_0,Evaluable,Application,Alta,Usa Stanford Core NLP para anotar documentos.,COMPLETO,141,1
+76,W06-1640_P00-1023_1,Evaluable,Background,Alta,Ejemplos de trabajos sobre correferencia.,COMPLETO,141,1
+77,D13-1027_N13-2001_1,Evaluable,Gap,Media,"Señala que el análisis citado se centró en métricas, no en el comportamiento de los sistemas.",COMPLETO,141,1
+78,W09-3726_P01-1019_0,Evaluable,Comparison,Alta,Compara DUDES con formalismos relacionados.,COMPLETO,141,1
+79,P04-1086_W99-0619_2,Evaluable,Basis,Media,Sigue una línea de investigación que incorpora contenido informativo.,COMPLETO,141,1
+80,J09-4006_N03-1028_0,Evaluable,Background,Media,Menciona shallow parsing como tarea análoga para aplicación futura.,COMPLETO,141,1
+81,W10-2602_W07-0733_0,Evaluable,Evidence,Alta,Respalda que pocos datos en dominio son suficientes.,COMPLETO,141,1
+82,D11-1001_W10-1905_3,Evaluable,Background,Alta,Describe soluciones previas a la ambigüedad.,COMPLETO,141,1
+83,Q13-1004_D11-1022_1,Evaluable,Application,Media,Usa los rasgos del modelo completo del trabajo citado.,COMPLETO,141,1
+84,W06-2910_E03-1040_0,Evaluable,Background,Alta,Lista de enfoques automáticos de clasificación de verbos.,COMPLETO,141,1
+85,P07-1020_P05-1059_0,Evaluable,Comparison,Alta,Contrasta su enfoque BOW con los basados en parsing.,COMPLETO,141,1
+86,P11-1156_D08-1007_0,Evaluable,Background,Media,Explica cómo se determina la preferencia selectiva en trabajos previos.,COMPLETO,141,1
+87,J05-4002_N01-1013_0,Evaluable,Background,Alta,Lista de trabajos que usan pseudo-desambiguación.,COMPLETO,141,1
+88,W10-1404_P07-1122_2,Evaluable,Background,Alta,Indica que las transformaciones de árboles se aplican desde hace tiempo.,COMPLETO,141,1
+89,W13-2610_P11-1100_0,Evaluable,Gap,Media,Señala que simplificar la tarea omite distinciones importantes.,COMPLETO,141,1
+90,P12-1019_P10-1110_0,Evaluable,Comparison,Alta,Compara el uso de estados equivalentes con el del trabajo citado.,COMPLETO,141,1
+91,D09-1037_N03-1017_3,Evaluable,Application,Alta,Usa la simetrización grow-diag-final-and.,COMPLETO,141,1
+92,P13-1029_N04-1013_0,Evaluable,Application,Alta,Usa PARC700 siguiendo el trabajo previo.,COMPLETO,141,1
+93,D12-1090_P05-1012_0,Evaluable,Application,Alta,Usa MSTParser tal cual.,COMPLETO,141,1
+94,N09-1062_E03-1005_1,Evaluable,Gap,Media,Señala problemas del estimador de máxima verosimilitud en DOP.,COMPLETO,141,1
+95,W13-2233_P12-1003_0,Evaluable,Evidence,Media,Respalda que los corpus paralelos escasean.,COMPLETO,141,1
+96,P11-1158_N09-1063_0,Evaluable,Background,Alta,Menciona éxito previo de A* en parsing.,COMPLETO,141,1
+97,W10-0215_E06-2010_0,Evaluable,Background,Media,Describe el sistema SOBA como trabajo relacionado.,COMPLETO,141,1
+98,D12-1095_N04-1023_0,Evaluable,Background,Alta,Enumera aplicaciones de reranking en tareas estructuradas.,COMPLETO,141,1
+99,W11-3901_W11-0303_1,Evaluable,Comparison,Alta,Compara resultados propios con los reportados.,COMPLETO,141,1
+100,J13-4004_D09-1120_7,Evaluable,Background,Alta,Enumera sistemas basados en reglas para correferencia.,COMPLETO,141,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D12-1077_D11-1018_5,Evaluable,Comparison,Alta,Compara sus resultados con los del trabajo citado y explica diferencias.,COMPLETO,140,1
+2,D11-1108_W07-0716_3,Evaluable,Comparison,Alta,Contrasta explícitamente sus reglas con las del trabajo citado.,COMPLETO,140,1
+3,P11-1101_E09-1014_1,Evaluable,Evidence,Media,Respalda el uso de la correlación de Spearman citando trabajos que la usaron.,COMPLETO,140,1
+4,P13-2153_P02-1019_0,Evaluable,Background,Alta,Enumera áreas donde se ha investigado la similitud fonética.,COMPLETO,140,1
+5,W11-1218_P91-1022_0,Evaluable,Basis,Media,El enfoque propio se basa en un algoritmo de alineamiento similar al citado.,COMPLETO,140,1
+6,W06-1208_E03-1073_0,Evaluable,Evidence,Alta,Respalda el dato de que ~70% de los compuestos aparecen una sola vez.,COMPLETO,140,1
+7,J13-3008_D10-1012_1,Evaluable,Basis,Media,El algoritmo integra patrones de grafo previamente explotados en el trabajo citado y añade uno nuevo.,COMPLETO,140,1
+8,N13-1019_P06-1004_0,Evaluable,Background,Media,Enumera modelos de segmentación basados en cohesión léxica.,COMPLETO,140,1
+9,P13-1048_N09-1064_2,Evaluable,Evidence,Media,Se cita el corpus instruccional como fuente de un dato (12% de oraciones con límites difusos) que apoya la afirmación.,COMPLETO,140,1
+10,P07-1096_N03-1033_1,Evaluable,Comparison,Alta,Contrasta el orden de inferencia fijo del trabajo citado con el dinámico propio.,COMPLETO,140,1
+11,P09-1103_P08-1064_2,Evaluable,Comparison,Media,"Indica que su gramática cubre las propuestas previas, incluida la de secuencias de árboles.",COMPLETO,140,1
+12,P12-1036_D10-1006_1,Evaluable,Background,Alta,Enumera trabajos que descubren aspectos y sentimientos por separado.,COMPLETO,140,1
+13,P96-1021_J90-2002_0,Evaluable,Identification of the Originator,Alta,Atribuye al modelo estadístico introducido por IBM el enfoque de canal ruidoso.,COMPLETO,140,1
+14,P13-1080_P11-1083_3,Evaluable,Application,Alta,Aplica directamente el método de extracción de reglas citado.,COMPLETO,140,1
+15,D09-1133_N04-1032_0,Evaluable,Background,Alta,Describe trabajos pioneros previos en SRL del chino.,COMPLETO,140,1
+16,E09-1053_E03-1036_0,Evaluable,Evidence,Media,Respalda la afirmación sobre las restricciones de reglas mediante tipos de barra.,COMPLETO,140,1
+17,W09-4105_P07-1096_0,Evaluable,Comparison,Alta,Compara su resultado con el mejor resultado en inglés del trabajo citado.,COMPLETO,140,1
+18,E03-1038_W02-2004_1,Evaluable,Further Reading,Alta,Remite al lector a la fuente para detalles del sistema.,COMPLETO,140,1
+19,P09-1027_D08-1014_2,Evaluable,Background,Media,Describe que los métodos se usaron antes en análisis de subjetividad en rumano con resultados poco prometedores.,COMPLETO,140,1
+20,P13-1045_P03-1054_2,Evaluable,Application,Alta,Usa el Stanford PCFG Parser como base de su gramática.,COMPLETO,140,1
+21,J13-4002_P05-1013_1,Evaluable,Identification of the Originator,Alta,Atribuye la técnica de parsing pseudo-proyectivo a los autores que la propusieron.,COMPLETO,140,1
+22,S13-1009_S12-1060_0,Evaluable,Background,Alta,Describe el sistema Takelab y su modelo en la literatura previa.,COMPLETO,140,1
+23,W13-2604_P11-2038_0,Evaluable,Comparison,Media,Distingue su tarea de la detección de errores estándar citada.,COMPLETO,140,1
+24,W98-1117_A97-1014_0,Evaluable,Further Reading,Media,Remite (cf.) al proyecto de treebank para más detalle.,COMPLETO,140,1
+25,P11-3013_P09-1087_0,Evaluable,Gap,Media,Señala que usos previos de la estructura interna de NP carecían de evaluación respecto a los NP.,COMPLETO,140,1
+26,P13-1008_P04-1015_1,Evaluable,Identification of the Originator,Alta,Atribuye la idea de early-update a quienes la propusieron.,COMPLETO,140,1
+27,P11-1109_W04-3219_0,Evaluable,Further Reading,Media,Remite a otros métodos SMT 'entre otros'.,COMPLETO,140,1
+28,D10-1091_N09-2003_1,Evaluable,Comparison,Alta,"Compara su decodificador con el enfoque citado, que usa una técnica similar.",COMPLETO,140,1
+29,P12-1095_J07-2003_0,Evaluable,Background,Media,Menciona el sistema jerárquico como otro sistema basado en CKY al que se adaptan los algoritmos.,COMPLETO,140,1
+30,W12-4501_P11-2037_1,Evaluable,Background,Alta,Resume los resultados reportados para la recuperación de elementos vacíos en chino.,COMPLETO,140,1
+31,W06-1409_E91-1028_0,Evaluable,Gap,Alta,Señala la limitación de trabajos previos que usan relaciones solo en ejemplos pequeños.,COMPLETO,140,1
+32,P07-1087_P03-1020_1,Evaluable,Further Reading,Media,Remite a fuentes para las definiciones de las medidas.,COMPLETO,140,1
+33,D11-1066_P05-1024_0,Evaluable,Background,Alta,Enumera trabajos que usan métodos kernel en PLN.,COMPLETO,140,1
+34,W13-2005_N06-1020_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el self-training mejora el parsing.,COMPLETO,140,1
+35,P05-1072_W03-1008_1,Evaluable,Background,Alta,Reporta un hallazgo previo sobre rasgos CCG en etiquetado semántico.,COMPLETO,140,1
+36,P13-1138_E06-1040_0,Evaluable,Evidence,Media,Respalda que textos generados más cortos es una observación no inusual en NLG.,COMPLETO,140,1
+37,P11-1126_W04-3250_0,Evaluable,Application,Alta,Usa el bootstrap resampling propuesto por el trabajo citado.,COMPLETO,140,1
+38,W11-0417_P97-1003_1,Evaluable,Comparison,Media,Contrasta las técnicas para categorías vacías en Penn Treebank con el treebank hindi.,COMPLETO,140,1
+39,N13-1045_W06-2606_1,Evaluable,Comparison,Alta,Contrasta características sintácticas monolingües con las bilingües de otro trabajo.,COMPLETO,140,1
+40,P10-2019_P06-2013_1,Evaluable,Comparison,Alta,La tabla compara el desempeño del trabajo citado con los resultados propios.,COMPLETO,140,1
+41,D08-1012_N07-1051_0,Evaluable,Background,Media,Cita métodos de poda posterior como contexto de aceleraciones en parsing monolingüe.,COMPLETO,140,1
+42,W02-0211_P88-1012_2,Evaluable,Background,Alta,Resume la larga historia de la inferencia abductiva.,COMPLETO,140,1
+43,P06-1071_N01-1016_1,Evaluable,Evidence,Media,Respalda que mejor identificación de regiones editadas mejora el parsing.,COMPLETO,140,1
+44,P08-1074_N01-1025_0,Evaluable,Background,Alta,Enumera sistemas de chunking previos.,COMPLETO,140,1
+45,W10-2606_N06-1020_5,Evaluable,Comparison,Alta,Compara sus resultados con los del self-training con reranking citado.,COMPLETO,140,1
+46,D13-1003_P12-2011_3,Evaluable,Comparison,Media,Compara el modelo jerárquico original con el MLE y con la extensión propia.,COMPLETO,140,1
+47,W10-1808_P09-1032_2,Evaluable,Comparison,Alta,Compara el escenario de anotación única con el de descartar desacuerdos del trabajo citado.,COMPLETO,140,1
+48,J13-1006_W08-1005_0,Evaluable,Comparison,Alta,Compara sus resultados con los del trabajo citado en TIGER.,COMPLETO,140,1
+49,P12-1066_W06-2920_0,Evaluable,Application,Alta,Usa los conjuntos de datos distribuidos en las tareas compartidas CoNLL.,COMPLETO,140,1
+50,P08-1042_P07-1031_0,Evaluable,Further Reading,Baja,"El 'see, e.g.' remite a trabajos con aplicaciones específicas del treebank.",COMPLETO,140,1
+51,N12-1004_P10-1147_4,Evaluable,Further Reading,Alta,Remite al trabajo citado para una lista más completa de rasgos.,COMPLETO,140,1
+52,D09-1088_P06-1055_0,Evaluable,Evidence,Baja,Cita split-and-merge como técnica que respalda la estrategia sugerida.,COMPLETO,140,1
+53,E09-1025_W07-1409_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la sustitución léxica explica pocos casos de implicación.,COMPLETO,140,1
+54,P10-1061_P07-1123_0,Evaluable,Background,Alta,Resume trabajos previos que portan recursos del inglés a otros idiomas.,COMPLETO,140,1
+55,W98-1106_W97-0313_2,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles del algoritmo.,COMPLETO,140,1
+56,D10-1030_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford como herramienta de entrada.,COMPLETO,140,1
+57,W11-2131_P07-2045_1,Evaluable,Application,Alta,Emplea Moses con configuración por defecto.,COMPLETO,140,1
+58,W09-4410_W06-2609_3,Evaluable,Background,Media,Describe el trabajo previo de extracción de definiciones desde Wikipedia.,COMPLETO,140,1
+59,N10-1096_N06-2022_0,Evaluable,Evidence,Media,Respalda la afirmación de que LIWC esboza la dinámica verbal de un texto.,COMPLETO,140,1
+60,P13-1171_N10-1013_0,Evaluable,Background,Alta,Enumera modelos de similitud de palabras.,COMPLETO,140,1
+61,W10-2913_P08-2007_0,Evaluable,Comparison,Media,Describe el trabajo previo y contrasta con el propio (la diferencia principal).,COMPLETO,140,1
+62,P06-2103_P05-1018_5,Evaluable,Comparison,Alta,Indica que las cifras no son comparables directamente con las del trabajo citado.,COMPLETO,140,1
+63,N09-1040_D08-1035_1,Evaluable,Background,Alta,Describe el trabajo previo que extiende modelos de segmentación bayesianos.,COMPLETO,140,1
+64,J89-1003_P85-1013_3,Evaluable,Further Reading,Alta,Remite al lector a la descripción de la interpretación semántica.,COMPLETO,140,1
+65,N07-2045_W00-0708_1,Evaluable,Basis,Media,Sigue el procedimiento de entrenamiento del trabajo citado.,COMPLETO,140,1
+66,P07-1002_W02-1039_0,Evaluable,Evidence,Alta,Respalda que los constituyentes respetan restricciones de cohesión frasal.,COMPLETO,140,1
+67,P13-2012_D12-1032_0,Evaluable,Application,Alta,Usa el modelo de transductor del trabajo citado.,COMPLETO,140,1
+68,W13-2203_W07-0718_0,Evaluable,Evidence,Media,Respalda que los anotadores no separan fluidez y adecuación.,COMPLETO,140,1
+69,P94-1006_E93-1030_0,Evaluable,Background,Media,Cita DICE como ejemplo de lógica no monotónica.,COMPLETO,140,1
+70,D08-1083_P07-1055_1,Evaluable,Background,Media,Describe un trabajo previo de polaridad en oración y documento y su limitación.,COMPLETO,140,1
+71,D12-1062_D08-1073_5,Evaluable,Comparison,Alta,"Contrasta sus clasificadores, que no usan anotaciones oro, con trabajos previos.",COMPLETO,140,1
+72,P10-1097_W09-2506_0,Evaluable,Basis,Alta,Se construye sobre trabajo previo para proponer representaciones de segundo orden.,COMPLETO,140,1
+73,P11-1004_W08-0336_0,Evaluable,Evidence,Media,Respalda que mayor precisión lingüística en segmentación no garantiza mejor traducción.,COMPLETO,140,1
+74,W11-0115_J06-1010_0,Evaluable,Further Reading,Media,Remite a una fuente (capítulo 5) para la suma vectorial en recuperación de información.,COMPLETO,140,1
+75,P12-1083_P02-1047_0,Evaluable,Background,Alta,Describe trabajo previo no supervisado sobre relaciones discursivas.,COMPLETO,140,1
+76,P06-1066_P96-1021_2,Evaluable,Comparison,Alta,Contrasta su forma de definir el modelo con la recursión de programación dinámica de los trabajos citados.,COMPLETO,140,1
+77,D13-1187_D10-1021_0,Evaluable,Background,Alta,Describe trabajo relacionado sobre clasificación de género en microblogs.,COMPLETO,140,1
+78,P13-2017_D11-1006_4,Evaluable,Comparison,Alta,Contrasta sus observaciones con las del trabajo citado.,COMPLETO,140,1
+79,W00-1307_P98-1115_1,Evaluable,Comparison,Alta,Compara las CFG de LexTract con las del algoritmo citado.,COMPLETO,140,1
+80,W11-0216_E06-1015_1,Evaluable,Background,Media,Presenta el PTK como uno de los enfoques efectivos de kernels de árbol.,COMPLETO,140,1
+81,W09-1706_P99-1004_0,Evaluable,Background,Alta,Indica que la mayoría de la investigación usa pocas relaciones sintácticas.,COMPLETO,140,1
+82,P10-1100_P09-1068_0,Evaluable,Background,Alta,Enumera enfoques recientes de aprendizaje de cadenas de eventos.,COMPLETO,140,1
+83,P11-1151_W09-3305_0,Evaluable,Background,Alta,Cita ejemplos de dominios donde las estructuras de red asisten la clasificación.,COMPLETO,140,1
+84,E97-1051_E95-1032_0,Evaluable,Background,Alta,Enumera trabajos sobre elipsis de VP.,COMPLETO,140,1
+85,W12-6004_W03-1201_0,Evaluable,Background,Media,Reporta hallazgos de trabajos previos en QA que apoyan un concepto.,COMPLETO,140,1
+86,J08-1002_W03-0403_4,Evaluable,Comparison,Media,"Compara los métodos previos de desambiguación con el propio, señalando el problema de explosión exponencial.",COMPLETO,140,1
+87,W03-2605_W97-1301_2,Evaluable,Evidence,Media,Respalda que implementar el filtro con solo WordNet es difícil.,COMPLETO,140,1
+88,N03-3003_W03-2317_2,Evaluable,Evidence,Media,Los experimentos preliminares previos sustentan la decisión de diseño.,COMPLETO,140,1
+89,P08-2062_P08-1026_0,Evaluable,Background,Alta,Indica que las RTG se usan como formalismo de subespecificación en semántica.,COMPLETO,140,1
+90,N13-1040_W01-0521_0,Evaluable,Evidence,Alta,Respalda que los rasgos léxicos aprendidos en un dominio benefician poco en otros.,COMPLETO,140,1
+91,D10-1048_P08-2012_1,Evaluable,Further Reading,Alta,Remite al lector a análisis de las métricas.,COMPLETO,140,1
+92,P07-2046_N04-4015_0,Evaluable,Background,Alta,Resume trabajos previos sobre análisis morfológico en SMT.,COMPLETO,140,1
+93,P13-1041_N04-1043_0,Evaluable,Background,Alta,Enumera trabajos que usaron clusters de palabras en NER.,COMPLETO,140,1
+94,D08-1092_N06-1014_1,Evaluable,Application,Alta,Usa el alineador de palabras citado para obtener probabilidades posteriores.,COMPLETO,140,1
+95,W12-2011_P11-1019_0,Evaluable,Background,Alta,Presenta líneas de investigación en ICALL sobre habilidad del aprendiz.,COMPLETO,140,1
+96,P03-1008_P93-1025_0,Evaluable,Evidence,Alta,Respalda que muchas lecturas metonímicas son regulares.,COMPLETO,140,1
+97,P06-1130_P96-1027_1,Evaluable,Identification of the Originator,Alta,Atribuye al trabajo citado la descripción original del problema.,COMPLETO,140,1
+98,W99-0614_W95-0103_1,Evaluable,Further Reading,Media,Remite a fuentes sobre técnicas de estimación backed-off.,COMPLETO,140,1
+99,N09-1025_P06-1055_1,Evaluable,Application,Alta,Usa el analizador Berkeley para parsear el chino.,COMPLETO,140,1
+100,D09-1045_P08-1028_6,Evaluable,Application,Alta,Construye el espacio semántico siguiendo el procedimiento del trabajo citado.,COMPLETO,140,1

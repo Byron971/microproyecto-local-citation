@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P00-1053_W99-0307_2,Evaluable,Evidence,Media,Cita el hallazgo de acuerdo entre anotadores para respaldar la afirmación sobre segmentación discursiva.,COMPLETO,116,1
+2,W11-1602_N10-2012_0,Evaluable,Application,Alta,Usan el Microsoft Web N-gram Service para obtener puntuaciones.,COMPLETO,116,1
+3,W11-0503_A00-2004_0,Evaluable,Application,Alta,Usan el software de segmentación de texto citado como baseline.,COMPLETO,116,1
+4,P10-1020_W07-2321_6,Evaluable,Evidence,Alta,Respalda la afirmación de bajo acuerdo en juicios humanos de estructura informativa.,COMPLETO,116,1
+5,P12-1023_P08-1068_2,Evaluable,Background,Alta,Trabajo relacionado: describe qué hizo el trabajo previo.,COMPLETO,116,1
+6,W11-1109_P10-2036_4,Evaluable,Comparison,Alta,Comparan resultados con modelos del estado del arte.,COMPLETO,116,1
+7,N10-1076_P06-1073_2,Evaluable,Comparison,Alta,"Contraste explícito: 'unlike', su enfoque difiere del citado.",COMPLETO,116,1
+8,W08-2113_P06-1101_1,Evaluable,Gap,Media,Describe trabajos previos y señala su limitación (requieren conjuntos de entrenamiento).,COMPLETO,116,1
+9,D09-1038_W06-1600_1,Evaluable,Application,Media,Su sistema se construye con los métodos de extracción de reglas citados.,COMPLETO,116,1
+10,N09-1026_N07-1051_0,Evaluable,Basis,Media,"Siguen el enfoque de agrupar símbolos en análisis sintáctico previo, adaptándolo.",COMPLETO,116,1
+11,W05-1511_P04-1014_0,Evaluable,Evidence,Alta,Respalda la afirmación de que las relaciones predicado-argumento se representan con localidad de rasgos.,COMPLETO,116,1
+12,J05-4004_W00-0400_0,Evaluable,Further Reading,Alta,'See ... for a comprehensive overview'.,COMPLETO,116,1
+13,W98-1226_W98-1218_1,Evaluable,Basis,Media,El concepto de menor esfuerzo de Zipf es la base conceptual de la sección.,COMPLETO,116,1
+14,W01-0717_W95-0103_0,Evaluable,Evidence,Media,Se cita para respaldar la técnica de estimación backed-off que alivia la escasez de datos.,COMPLETO,116,1
+15,J89-1003_P85-1013_2,Evaluable,Further Reading,Alta,"'for details, see' remite a información adicional.",COMPLETO,116,1
+16,W11-0124_P88-1012_0,Evaluable,Background,Media,Describe el trabajo citado sobre razonamiento abductivo en el discurso como marco previo.,COMPLETO,116,1
+17,P13-2108_E06-1011_0,Evaluable,Evidence,Alta,Respalda la afirmación de que rasgos de orden superior mejoran la precisión en dependencias.,COMPLETO,116,1
+18,W10-4127_W03-1709_0,Evaluable,Background,Alta,Enumera enfoques previos de segmentación de chino.,COMPLETO,116,1
+19,N13-1089_S12-1051_2,Evaluable,Evidence,Media,Respalda el dato del baseline de 31% mencionado.,COMPLETO,116,1
+20,P12-1109_P11-1037_1,Evaluable,Evidence,Alta,Aporta dato empírico que sustenta la dificultad de la tarea.,COMPLETO,116,1
+21,W04-2103_W97-0803_0,Evaluable,Evidence,Media,Justifica la elección de algoritmos por su robustez demostrada previamente.,COMPLETO,116,1
+22,Q13-1003_P11-1020_0,Evaluable,Background,Media,Describe el recurso MSVD como corpus relacionado.,COMPLETO,116,1
+23,W11-2813_P10-1103_1,Evaluable,Basis,Alta,'We follow the overall framework of' el trabajo citado.,COMPLETO,116,1
+24,N04-1033_W99-0604_1,Evaluable,Comparison,Alta,"Compara el sistema AT con el propio, señalando similitud y diferencia.",COMPLETO,116,1
+25,D12-1108_N03-1017_1,Evaluable,Application,Media,Usan la tabla de frases con las características estándar del trabajo citado.,COMPLETO,116,1
+26,E12-1075_P07-1096_0,Evaluable,Evidence,Media,Respalda la observación de que construir primero lo fácil mejora la precisión.,COMPLETO,116,1
+27,W07-2216_P05-1013_0,Evaluable,Background,Alta,Trabajo relacionado: enumera trabajos de análisis no proyectivo.,COMPLETO,116,1
+28,P08-1042_P07-1086_0,Evaluable,Evidence,Alta,Respalda la afirmación de que entrenar con reglas erróneas perjudica el análisis.,COMPLETO,116,1
+29,S13-1043_P11-1118_2,Evaluable,Comparison,Alta,Compara resultados de modelos citados con los del modelo basado en entity grid.,COMPLETO,116,1
+30,W10-2903_N06-1056_0,Evaluable,Comparison,Alta,Compara su sistema con sistemas existentes.,COMPLETO,116,1
+31,P13-1059_P97-1017_0,Evaluable,Background,Alta,Resume trabajo previo sobre traducción de nombres.,COMPLETO,116,1
+32,W12-1512_A00-1020_0,Evaluable,Background,Alta,Enumera algoritmos previos en distintos idiomas.,COMPLETO,116,1
+33,P11-1012_P07-1034_1,Evaluable,Background,Alta,Describe el enfoque de trabajos previos sobre ponderación de instancias.,COMPLETO,116,1
+34,Q13-1022_W07-2216_0,Evaluable,Evidence,Alta,Respalda la afirmación de intractabilidad con modelos más informados.,COMPLETO,116,1
+35,N03-1018_J90-2002_0,Evaluable,Application,Alta,Entrenan un modelo de traducción estilo IBM.,COMPLETO,116,1
+36,W13-3515_D10-1106_0,Evaluable,Background,Alta,Enumera aplicaciones de PLN que usan bases de conocimiento.,COMPLETO,116,1
+37,N13-1140_N06-2013_0,Evaluable,Gap,Media,"Señala desventajas del enfoque previo (supervisión, trabajo manual).",COMPLETO,116,1
+38,W13-1715_P12-2038_0,Evaluable,Evidence,Media,Respalda que rasgos lingüísticos pueden ser útiles para la tarea.,COMPLETO,116,1
+39,P13-2051_N06-1039_0,Evaluable,Background,Alta,Introducción: señala tareas donde las reglas de inferencia fueron útiles.,COMPLETO,116,1
+40,D10-1003_N07-1051_1,Evaluable,Application,Alta,Usan el analizador generativo citado tal cual.,COMPLETO,116,1
+41,P11-1112_P00-1065_0,Evaluable,Background,Alta,Define el uso común del término con trabajo previo.,COMPLETO,116,1
+42,W10-4117_P08-1019_1,Evaluable,Background,Alta,Trabajo relacionado: describe lo propuesto en el trabajo citado.,COMPLETO,116,1
+43,W11-0505_W02-0109_0,Evaluable,Application,Alta,Usan NLTK para dividir oraciones.,COMPLETO,116,1
+44,W06-3604_W95-0104_0,Evaluable,Background,Alta,Enumera trabajos previos sobre desambiguación de confusables.,COMPLETO,116,1
+45,D12-1129_E06-1016_0,Evaluable,Background,Alta,Enumera métodos distribucionales previos.,COMPLETO,116,1
+46,P13-1073_W10-1201_0,Evaluable,Evidence,Alta,Respalda que los tópicos LDA ayudan en similitud temática.,COMPLETO,116,1
+47,J10-3005_N06-1046_0,Evaluable,Background,Alta,Lista de aplicaciones previas de la técnica.,COMPLETO,116,1
+48,D13-1082_P03-1021_0,Evaluable,Application,Alta,Usan MERT para ajustar el sistema.,COMPLETO,116,1
+49,W11-2149_W06-3105_0,Evaluable,Basis,Media,"Procedimiento similar al descrito en el trabajo citado, con versión modificada.",COMPLETO,116,1
+50,E06-2013_P98-1013_1,Evaluable,Background,Alta,Introduce FrameNet como recurso.,COMPLETO,116,1
+51,P13-4030_W10-0701_1,Evaluable,Background,Alta,Trabajo relacionado sobre crowdsourcing.,COMPLETO,116,1
+52,J10-2001_W05-0307_0,Evaluable,Basis,Media,Adoptan la sugerencia del trabajo citado para el tratamiento de temas.,COMPLETO,116,1
+53,W10-2004_P08-2002_2,Evaluable,Evidence,Alta,Respalda la afirmación sobre pocas hipótesis concurrentes.,COMPLETO,116,1
+54,A97-1013_A94-1008_0,Evaluable,Evidence,Alta,Respalda la afirmación de que las heurísticas manuales son útiles.,COMPLETO,116,1
+55,N13-1044_E06-1047_0,Evaluable,Background,Alta,Resume trabajo previo de mapeo DA a MSA.,COMPLETO,116,1
+56,W03-1205_W00-1411_3,Evaluable,Basis,Media,Trabajo futuro apoyado en la combinación de principios de centering del trabajo citado.,COMPLETO,116,1
+57,W07-2208_W06-1619_5,Evaluable,Comparison,Alta,Tabla que compara el modelo citado con los propios.,COMPLETO,116,1
+58,W11-0221_P03-1054_0,Evaluable,Application,Alta,Usan el Stanford Parser para analizar las consultas.,COMPLETO,116,1
+59,W05-0821_N03-2002_0,Evaluable,Background,Media,Describe el modelo FLM como antecedente; también podría ser Originator.,COMPLETO,116,1
+60,D09-1043_N09-2041_1,Evaluable,Comparison,Alta,Contrasta puntajes BLEU entre dos versiones previas.,COMPLETO,116,1
+61,N07-1015_P05-1053_2,Evaluable,Evidence,Alta,Respalda que los tipos de entidad son útiles.,COMPLETO,116,1
+62,W10-1405_J97-4005_0,Evaluable,Evidence,Alta,Respalda la afirmación de que modelos generativos pueden perder probabilidad.,COMPLETO,116,1
+63,N12-1018_N10-1125_2,Evaluable,Comparison,Alta,Contraste explícito ('Unlike') con técnicas de extracción de oraciones del trabajo citado.,COMPLETO,116,1
+64,P11-1052_N09-1041_0,Evaluable,Comparison,Alta,Tabla de resultados comparados con el sistema citado.,COMPLETO,116,1
+65,P03-1042_P02-1044_1,Evaluable,Background,Alta,Describe el algoritmo de bootstrapping bilingüe propuesto en trabajo previo.,COMPLETO,116,1
+66,D09-1151_P04-1019_0,Evaluable,Background,Alta,Enumera estudios previos de resolución de anáfora.,COMPLETO,116,1
+67,P10-2033_W04-3250_0,Evaluable,Application,Alta,Usan remuestreo bootstrap para pruebas de significancia.,COMPLETO,116,1
+68,D13-1020_P11-1149_0,Evaluable,Background,Alta,Describe recursos y trabajo previo.,COMPLETO,116,1
+69,N03-1033_W96-0213_5,Evaluable,Comparison,Alta,Contrasta el método de los autores con el de trabajos citados.,COMPLETO,116,1
+70,W11-1004_P10-2001_0,Evaluable,Evidence,Media,Sustenta la observación sobre el mejor desempeño del método de lattice.,COMPLETO,116,1
+71,S12-1023_P99-1004_0,Evaluable,Application,Alta,Usan la similitud coseno estándar.,COMPLETO,116,1
+72,J11-2001_N10-1119_1,Evaluable,Comparison,Media,Coinciden con una ventaja señalada por el trabajo citado.,COMPLETO,116,1
+73,W10-4316_D09-1017_0,Evaluable,Basis,Alta,Se apoya en trabajo previo propio del que parte el sistema actual.,COMPLETO,116,1
+74,P10-1113_W06-1617_1,Evaluable,Application,Alta,Adoptan el algoritmo de selección de rasgos descrito.,COMPLETO,116,1
+75,P08-1061_J04-3004_0,Evaluable,Background,Alta,Trabajo relacionado: describe extensiones del trabajo previo.,COMPLETO,116,1
+76,W13-4034_D10-1084_0,Evaluable,Background,Alta,Enumera trabajos previos en dominios de chat.,COMPLETO,116,1
+77,P97-1062_P96-1025_0,Evaluable,Comparison,Alta,Contrasta el enfoque citado con el propio sistema.,COMPLETO,116,1
+78,Q13-1011_P03-1003_0,Evaluable,Background,Alta,Enumera aplicaciones previas de SMT.,COMPLETO,116,1
+79,W11-1801_W10-1905_1,Evaluable,Comparison,Alta,Tabla de resultados que incluye el sistema citado como referencia.,COMPLETO,116,1
+80,P95-1017_P89-1031_0,Evaluable,Background,Media,Describe el trabajo previo que compara enfoques de centering y Hobbs.,COMPLETO,116,1
+81,W03-0433_N01-1025_0,Evaluable,Background,Alta,Reseña aplicaciones previas de SVM.,COMPLETO,116,1
+82,W09-3815_D08-1018_2,Evaluable,Evidence,Media,Se cita su hallazgo para respaldar la discusión sobre binarización.,COMPLETO,116,1
+83,P13-2135_W08-0509_0,Evaluable,Application,Alta,Usan MGIZA++ para construir los modelos de alineamiento.,COMPLETO,116,1
+84,E03-1007_W99-0604_0,Evaluable,Further Reading,Alta,'For descriptions of SMT systems see for example'.,COMPLETO,116,1
+85,S12-1089_P08-1028_4,Evaluable,Improvement / Modification,Alta,Extienden un modelo con una operación de composición aditiva siguiendo el trabajo citado.,COMPLETO,116,1
+86,J10-4007_P97-1003_0,Evaluable,Application,Alta,Usan el analizador citado para analizar el corpus.,COMPLETO,116,1
+87,W11-0214_W09-1313_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre las guías de anotación.,COMPLETO,116,1
+88,D13-1177_N10-1123_0,Evaluable,Background,Alta,Trabajo relacionado: describe métodos previos.,COMPLETO,116,1
+89,W07-2305_W06-1403_1,Evaluable,Application,Alta,Usan el generador OpenCCG.,COMPLETO,116,1
+90,D13-1093_W06-2920_1,Evaluable,Comparison,Media,Los mejores resultados se toman de los trabajos citados para comparar.,COMPLETO,116,1
+91,W11-2149_W06-3110_1,Evaluable,Application,Alta,Usan el modelo de reordenamiento discriminativo citado en su sistema.,COMPLETO,116,1
+92,D11-1080_P06-1067_0,Evaluable,Basis,Media,Siguen el procedimiento de simulación de salida de MT de trabajos previos.,COMPLETO,116,1
+93,P11-1107_P98-1033_0,Evaluable,Background,Alta,Resume proyectos notables previos de metagramática.,COMPLETO,116,1
+94,E06-1040_W00-1401_0,Evaluable,Gap,Alta,Señala que solo se han hecho estudios de componentes y no de sistemas.,COMPLETO,116,1
+95,J11-2002_W98-1241_0,Evaluable,Further Reading,Alta,Lista de revisiones previas para el lector.,COMPLETO,116,1
+96,W09-2903_W09-0213_1,Evaluable,Evidence,Alta,Respalda que el rasgo NE ayuda en el entorno no supervisado.,COMPLETO,116,1
+97,P13-3006_W09-1301_0,Evaluable,Background,Alta,Enumera avances previos en minería de textos biomédicos.,COMPLETO,116,1
+98,W13-0807_W06-3119_1,Evaluable,Background,Alta,Describe el uso actual de gramáticas síncronas citando trabajos previos.,COMPLETO,116,1
+99,N04-1004_W98-1119_0,Evaluable,Comparison,Media,Describe el enfoque citado y lo compara con el propio de maximizar saliencia.,COMPLETO,116,1
+100,J10-1002_N01-1013_0,Evaluable,Background,Alta,Describe métodos previos de estimación de distribuciones sobre conceptos.,COMPLETO,116,1

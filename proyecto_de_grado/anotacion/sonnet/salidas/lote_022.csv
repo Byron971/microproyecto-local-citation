@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D08-1010_P05-1033_1,Evaluable,Background,Media,Presents the hierarchical phrase-based model as the formally syntax-based SMT model in prior work.,COMPLETO,22,1
+2,W00-1803_J00-2014_0,Evaluable,Further Reading,Media,Points to the textbook that devotes a chapter to Constraint Demotion.,COMPLETO,22,1
+3,N13-1123_D10-1007_1,Evaluable,Comparison,Media,"Describes the cited model and then contrasts it with the current model ('In comparison, our model...').",COMPLETO,22,1
+4,D11-1132_N07-1015_0,Evaluable,Comparison,Media,"Reports the cited result with heuristic rules, which is compared against the current system's results.",COMPLETO,22,1
+5,W13-3209_D12-1050_0,Evaluable,Background,Alta,Lists prior work applying sentence-level models to paraphrase detection.,COMPLETO,22,1
+6,A00-1035_A92-1015_0,Evaluable,Improvement / Modification,Alta,"The Danish system is a further development of the CORRie prototype, adapted to Danish.",COMPLETO,22,1
+7,P11-2069_P01-1008_1,Evaluable,Evidence,Alta,Supports the claim that monolingual parallel corpora are the most appropriate for extracting paraphrases.,COMPLETO,22,1
+8,J10-3009_P08-1114_1,Evaluable,Comparison,Alta,Contrasts constrained decoding with soft and hard constraint approaches.,COMPLETO,22,1
+9,D13-1158_W98-1124_1,Evaluable,Comparison,Alta,Marcu's method is one of the baselines the proposed method is compared with.,COMPLETO,22,1
+10,W12-2022_W10-1808_0,Evaluable,Evidence,Media,"Cited work argues that single annotation of more data is better, supporting the speculation.",COMPLETO,22,1
+11,N13-1121_N12-1052_0,Evaluable,Background,Alta,Lists prior NLP tasks where word clusters were used as features.,COMPLETO,22,1
+12,D10-1117_P10-1130_1,Evaluable,Comparison,Media,"Compares model accuracy on longer vs shorter sentences with other models, citing prior results.",COMPLETO,22,1
+13,W05-0811_W03-0320_0,Evaluable,Comparison,Alta,States the technique is similar to the cited one but with a different goal.,COMPLETO,22,1
+14,P03-1013_P97-1003_8,Evaluable,Background,Alta,Reviews prior work applying the Collins model to Czech and Chinese.,COMPLETO,22,1
+15,N10-1019_W00-0708_0,Evaluable,Background,Alta,Enumerates prior work using POS tags as features.,COMPLETO,22,1
+16,P13-1101_P11-1049_1,Evaluable,Gap,Media,Describes the prior ILP formulation and then notes the limitation that exact solving is hard at scale.,COMPLETO,22,1
+17,J12-3007_J07-2003_1,Evaluable,Comparison,Alta,Compares BLEU results from the cited Hiero study with the current results.,COMPLETO,22,1
+18,N13-1134_D12-1110_1,Evaluable,Background,Alta,Describes the cited model in a related-work discussion.,COMPLETO,22,1
+19,W98-1008_E89-1008_1,Evaluable,Further Reading,Baja,"Reference attached to string variables, likely pointing to the source of the notion (string equations).",COMPLETO,22,1
+20,W10-2101_W09-1905_0,Evaluable,Background,Alta,Cites examples of work covering minority languages while describing the state of the field.,COMPLETO,22,1
+21,D10-1008_P97-1023_0,Evaluable,Basis,Media,The observation about conjoined adjectives from the cited work is the starting point of the bootstrapping approach.,COMPLETO,22,1
+22,P13-2019_P10-1110_0,Evaluable,Comparison,Alta,The cited system's results appear in a comparison table against the proposed approach.,COMPLETO,22,1
+23,P13-1058_N09-2004_0,Evaluable,Background,Alta,Cited as an example of work integrating semantic roles into SMT (cf.).,COMPLETO,22,1
+24,D12-1082_N04-1041_0,Evaluable,Background,Alta,Lists pattern-based approaches in related work.,COMPLETO,22,1
+25,N07-1038_P02-1047_1,Evaluable,Evidence,Alta,Supports the choice of lexicalized features by their previously shown effectiveness.,COMPLETO,22,1
+26,W09-3821_P08-1068_1,Evaluable,Evidence,Media,Supports the choice of the clustering algorithm by its usefulness in dependency parsing.,COMPLETO,22,1
+27,W13-3009_P10-1106_1,Evaluable,Basis,Media,The paper investigates the algorithm given in the cited work and builds its analysis on it.,COMPLETO,22,1
+28,W07-0401_N04-1023_0,Evaluable,Gap,Alta,"Notes prior syntactic-feature reranking gave very small gains, motivating the new strategy.",COMPLETO,22,1
+29,W13-5404_S12-1023_1,Evaluable,Evidence,Media,Supports the claim that such information is not usually included in WordNet.,COMPLETO,22,1
+30,W06-1655_N03-1028_0,Evaluable,Background,Alta,Reviews prior work using CRFs for chunking tasks.,COMPLETO,22,1
+31,W04-2602_W00-0717_0,Evaluable,Evidence,Media,Supports the claim that POS categories can be induced from distributional information.,COMPLETO,22,1
+32,W13-3007_P11-2011_1,Evaluable,Further Reading,Alta,Footnote 'See' directs the reader to competing characterizations.,COMPLETO,22,1
+33,N10-1089_W07-1204_0,Evaluable,Background,Alta,Describes prior work extending earlier approaches with word sense information.,COMPLETO,22,1
+34,N03-1027_W01-0521_5,Evaluable,Evidence,Media,Cited finding of small improvements supports the paper's interpretation of its own results.,COMPLETO,22,1
+35,J13-3006_P11-2123_0,Evaluable,Background,Alta,Lists prior applications of selectional preferences and semantic classes.,COMPLETO,22,1
+36,W13-1608_P11-2103_2,Evaluable,Application,Alta,Uses the ArabSenti lexicon as a resource.,COMPLETO,22,1
+37,D13-1107_P12-1099_0,Evaluable,Background,Alta,Lists previous domain adaptation approaches for SMT.,COMPLETO,22,1
+38,D13-1182_P03-1071_0,Evaluable,Further Reading,Baja,"Mentions automatic segmentation methods as future work, referring to existing literature.",COMPLETO,22,1
+39,N12-2010_D08-1020_0,Evaluable,Background,Alta,Reviews computational coherence metrics in related work.,COMPLETO,22,1
+40,N13-1113_W09-3603_0,Evaluable,Evidence,Alta,Supports the claim that SVM and MaxEnt have proved successful in information structure analysis.,COMPLETO,22,1
+41,N07-1048_W02-0603_0,Evaluable,Background,Alta,Summarizes earlier findings on MAP-based morph segmentation.,COMPLETO,22,1
+42,W08-1122_A00-2023_0,Evaluable,Background,Alta,Categorizes types of probabilistic generators with example work.,COMPLETO,22,1
+43,P13-1062_D12-1104_0,Evaluable,Gap,Media,Describes PATTY and then points out a limitation that motivates the bilingual approach ('However').,COMPLETO,22,1
+44,W05-0312_J03-4002_0,Evaluable,Basis,Alta,The CDTB project adopts the idea presented in the cited work.,COMPLETO,22,1
+45,P06-2013_W00-0726_2,Evaluable,Evidence,Alta,Reported results on combining systems support the decision to use voting.,COMPLETO,22,1
+46,W13-3602_N10-1018_2,Evaluable,Improvement / Modification,Media,The modules build on the cited systems.,COMPLETO,22,1
+47,W13-5409_J91-4003_2,Evaluable,Background,Media,Describes how the cited work uses qualia roles within its lexical framework.,COMPLETO,22,1
+48,D09-1004_W05-0625_0,Evaluable,Background,Alta,Cites CoNLL shared task results to describe the state of SRL.,COMPLETO,22,1
+49,N13-1093_P04-1043_1,Evaluable,Comparison,Alta,The PET kernel results are listed in a comparison table with the proposed approaches.,COMPLETO,22,1
+50,P13-1048_N09-1064_1,Evaluable,Comparison,Alta,Contrasts the globally optimal approach with the greedy algorithms of prior work.,COMPLETO,22,1
+51,W10-4213_W03-2317_0,Evaluable,Background,Alta,Describes related generation work on discourse choices and readability.,COMPLETO,22,1
+52,S12-1042_P00-1065_0,Evaluable,Improvement / Modification,Alta,The Dependency Graph Path feature is inspired by and adapted from the Parse Tree Path feature.,COMPLETO,22,1
+53,P10-1131_W00-1201_0,Evaluable,Application,Alta,Uses the Bikel Chinese head finder to convert parses.,COMPLETO,22,1
+54,W13-1739_W11-2843_1,Evaluable,Comparison,Alta,States the baseline is similar to the cited approach except for the corpus size.,COMPLETO,22,1
+55,E12-1032_P02-1014_2,Evaluable,Application,Alta,Applies the cited automatic coreference resolution tool.,COMPLETO,22,1
+56,W13-3818_P98-2127_0,Evaluable,Comparison,Alta,Compares results with Lin's dependency-based approach.,COMPLETO,22,1
+57,P10-2070_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit.,COMPLETO,22,1
+58,E03-1004_P00-1056_0,Evaluable,Application,Media,Uses GIZA++/ISI ReWrite decoder as a statistical translation system for comparison.,COMPLETO,22,1
+59,P10-1129_P09-1010_5,Evaluable,Comparison,Alta,The cited results serve as a baseline for comparison.,COMPLETO,22,1
+60,W13-0801_W09-2413_2,Evaluable,Further Reading,Alta,Refers to the cited work for a more detailed description of the annotation process.,COMPLETO,22,1
+61,D11-1001_W09-1406_3,Evaluable,Application,Media,The ILP representation is taken from the cited MLNs.,COMPLETO,22,1
+62,P12-1040_N10-1061_1,Evaluable,Comparison,Alta,"Compares the hierarchical model with entity-based systems, noting their limitations.",COMPLETO,22,1
+63,P10-1029_P02-1045_0,Evaluable,Comparison,Alta,Relates cross-category training to co-training while pointing out differences.,COMPLETO,22,1
+64,P10-2047_P09-1013_0,Evaluable,Background,Alta,Lists proposed remedies in the literature on word frequency distributions.,COMPLETO,22,1
+65,N09-2055_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit for training and translation.,COMPLETO,22,1
+66,P13-1043_N06-1020_1,Evaluable,Comparison,Alta,"Compares performance with self-trained parsers, noting the exception.",COMPLETO,22,1
+67,P12-1081_P10-1001_1,Evaluable,Basis,Media,The dynamic programming for this factorization was derived in the cited work and is used here.,COMPLETO,22,1
+68,N12-1026_P07-2045_0,Evaluable,Application,Alta,Moses is used as a baseline system.,COMPLETO,22,1
+69,W13-4008_W10-0214_0,Evaluable,Background,Alta,Related-work listing of prior approaches to stance classification.,COMPLETO,22,1
+70,N09-2055_W07-0718_1,Evaluable,Evidence,Alta,Previous work supports the claim of discrepancy between automatic and human evaluations.,COMPLETO,22,1
+71,W13-0904_P10-1071_0,Evaluable,Further Reading,Alta,Footnote directs the reader to a broad survey.,COMPLETO,22,1
+72,D08-1057_P03-1069_0,Evaluable,Gap,Media,"Notes prior work on schemata for ordering, then states the novelty of the current use ('to our knowledge').",COMPLETO,22,1
+73,D13-1042_P11-1138_0,Evaluable,Background,Alta,Lists work on corpus annotation.,COMPLETO,22,1
+74,N09-1053_N09-1051_3,Evaluable,Evidence,Alta,"The cited work shows that the equation holds, supporting the claim.",COMPLETO,22,1
+75,D11-1061_W05-1203_1,Evaluable,Application,Alta,Uses the WordNet-based model defined in the cited work as a baseline.,COMPLETO,22,1
+76,D09-1004_P05-1006_0,Evaluable,Background,Media,Lists prior works on features for SRL.,COMPLETO,22,1
+77,D13-1090_P12-1091_4,Evaluable,Comparison,Alta,Compares against state-of-the-art unsupervised matrix factorization work.,COMPLETO,22,1
+78,W05-0908_W04-3250_1,Evaluable,Application,Alta,Uses the cited decoder as a publicly available component.,COMPLETO,22,1
+79,N07-1037_E06-1026_1,Evaluable,Background,Alta,Describes prior work on semantic orientation of phrases.,COMPLETO,22,1
+80,W13-0801_S01-1005_0,Evaluable,Background,Alta,Describes the all-words task setting in prior evaluations.,COMPLETO,22,1
+81,P05-1001_N03-1028_0,Evaluable,Comparison,Alta,Figure compares with previous best results including the cited work.,COMPLETO,22,1
+82,W07-1306_P06-1035_0,Evaluable,Background,Alta,Notes the long history of studies of inter-language distances.,COMPLETO,22,1
+83,W13-3602_D10-1094_3,Evaluable,Evidence,Alta,Supports the observation that similar error patterns exist in other ESL corpora.,COMPLETO,22,1
+84,N12-1069_D10-1120_0,Evaluable,Basis,Media,The cited finding on parent-child constraints motivates and underlies the added rule.,COMPLETO,22,1
+85,P09-1037_P08-1114_1,Evaluable,Background,Alta,Related-work listing of ideas related to the constituency feature.,COMPLETO,22,1
+86,W04-3215_P02-1042_2,Evaluable,Comparison,Alta,"Compares current results with those of the earlier work, which recovered fewer dependencies.",COMPLETO,22,1
+87,P11-1069_P05-1012_1,Evaluable,Comparison,Alta,Related work compares MSTParser with MaltParser for dependency parsing.,COMPLETO,22,1
+88,W12-3154_W07-0733_1,Evaluable,Evidence,Media,Cited as an example of the practice of interpolating language models to minimize perplexity.,COMPLETO,22,1
+89,P12-1084_P09-1092_2,Evaluable,Comparison,Alta,Contrasts the paper's finding with the studies' findings on precedence.,COMPLETO,22,1
+90,W07-2202_P06-1043_1,Evaluable,Background,Alta,Describes prior parser adaptation work.,COMPLETO,22,1
+91,W12-3619_S12-1018_2,Evaluable,Improvement / Modification,Alta,The annotation scheme extends the cited scheme to a more complex domain.,COMPLETO,22,1
+92,W12-3154_W99-0604_0,Evaluable,Background,Alta,Describes the standard phrase extraction step in the translation pipeline.,COMPLETO,22,1
+93,N12-1092_W10-0705_1,Evaluable,Background,Alta,Lists prior question generation approaches.,COMPLETO,22,1
+94,W13-2218_W08-0509_0,Evaluable,Application,Alta,Uses MGIZA++ for alignment.,COMPLETO,22,1
+95,W12-4510_D08-1068_0,Evaluable,Background,Alta,Related work listing of unsupervised approaches.,COMPLETO,22,1
+96,W10-4143_P10-1113_0,Evaluable,Background,Alta,Describes prior work on Chinese parsing.,COMPLETO,22,1
+97,P10-1049_W06-3105_1,Evaluable,Background,Media,"Related work describing the cited analysis and model, which is similar to the proposed one.",COMPLETO,22,1
+98,N13-1053_P11-1032_3,Evaluable,Comparison,Alta,Compares the average review length with the one reported in the cited work.,COMPLETO,22,1
+99,W13-2228_N03-1017_0,Evaluable,Application,Alta,Uses the grow-diag-final-and heuristic for symmetrization.,COMPLETO,22,1
+100,P13-1104_W06-2932_1,Evaluable,Comparison,Alta,Compares with the state-of-the-art parser from the cited work in the results table.,COMPLETO,22,1

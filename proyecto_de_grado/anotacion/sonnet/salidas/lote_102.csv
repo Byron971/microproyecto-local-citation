@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D10-1114_P93-1024_0,Evaluable,Background,Media,Cita la hipótesis distribucional como contexto general del campo.,COMPLETO,102,1
+2,N13-1070_S12-1042_1,Evaluable,Evidence,Baja,Se cita el trabajo previo para justificar la decisión de usar el modelo de Maltparser preentrenado.,COMPLETO,102,1
+3,J02-4001_W02-0406_1,Evaluable,Evidence,Media,"Respalda la afirmación de que BLEU es prometedor pero insuficiente, basada en los hallazgos del trabajo citado.",COMPLETO,102,1
+4,D10-1041_E09-1082_0,Evaluable,Background,Alta,Describe un trabajo previo sobre retículas de palabras para traducción multi-fuente.,COMPLETO,102,1
+5,N13-1060_P12-1095_0,Evaluable,Gap,Alta,Señala la limitación del trabajo citado: solo consideró el reordenamiento entre argumentos y predicados.,COMPLETO,102,1
+6,J05-1005_W97-0209_0,Evaluable,Background,Alta,Enumera enfoques estocásticos previos de adquisición de requisitos lingüísticos.,COMPLETO,102,1
+7,P13-2144_W04-1606_0,Evaluable,Application,Alta,Usa la codificación Buckwalter tal cual para transformar el texto árabe.,COMPLETO,102,1
+8,P04-1040_P03-2006_1,Evaluable,Basis,Media,"El trabajo actual extiende el enfoque de Jijkoun, que se construyó sobre las ideas previas.",COMPLETO,102,1
+9,P13-1048_P02-1047_0,Evaluable,Evidence,Media,Respalda la afirmación de que las relaciones retóricas a menudo no están señaladas por marcadores.,COMPLETO,102,1
+10,P05-1074_N03-1017_0,Evaluable,Basis,Media,El método de paráfrasis extiende el trabajo en traducción basada en frases.,COMPLETO,102,1
+11,P09-1082_P07-1059_0,Evaluable,Background,Alta,Enumera soluciones previas al problema de la brecha léxica.,COMPLETO,102,1
+12,W10-2927_N06-2033_0,Evaluable,Background,Alta,Describe un resultado previo sobre combinación de analizadores sintácticos.,COMPLETO,102,1
+13,P05-1066_N04-1014_1,Evaluable,Background,Alta,Enumera investigaciones sobre SMT basada en sintaxis.,COMPLETO,102,1
+14,W06-1504_P94-1022_0,Evaluable,Background,Media,Menciona la TAG de forma regular de Rogers como antecedente relacionado.,COMPLETO,102,1
+15,D13-1070_W04-3252_1,Evaluable,Comparison,Media,Se afirma que el desempeño de MA es equivalente al de TextRank.,COMPLETO,102,1
+16,N10-1004_D08-1072_0,Evaluable,Background,Alta,Enumera trabajos previos de adaptación de dominio con múltiples fuentes.,COMPLETO,102,1
+17,J10-4007_N07-1071_0,Evaluable,Background,Alta,Lista aplicaciones de las preferencias de selección en la literatura.,COMPLETO,102,1
+18,P11-2052_P06-2057_0,Evaluable,Comparison,Media,Se citan resultados previos (55% F) para compararlos con el 60% propio.,COMPLETO,102,1
+19,W07-2217_E06-1011_2,Evaluable,Comparison,Alta,Compara la exactitud del parser propio con la del parser MST de segundo orden.,COMPLETO,102,1
+20,P13-4028_W05-1203_0,Evaluable,Background,Alta,Enumera métodos propuestos de similitud semántica entre oraciones.,COMPLETO,102,1
+21,D11-1113_P05-1012_1,Evaluable,Application,Alta,Usa MSTParser como parser de base.,COMPLETO,102,1
+22,W11-2908_W06-2920_0,Evaluable,Background,Media,Cita resultados previos de parsers de dependencias en alemán.,COMPLETO,102,1
+23,W04-0822_P04-1081_1,Evaluable,Further Reading,Alta,Remite al lector al trabajo citado para detalles completos del modelo.,COMPLETO,102,1
+24,P11-1090_D09-1075_6,Evaluable,Evidence,Alta,Respalda el hallazgo propio al coincidir con trabajos previos.,COMPLETO,102,1
+25,D13-1051_P12-1001_0,Evaluable,Comparison,Media,Contrasta con el enfoque citado para justificar no incluirlo como baseline.,COMPLETO,102,1
+26,P11-2127_P10-1112_2,Evaluable,Comparison,Media,"La tabla presenta resultados del sistema citado, en el contexto de una comparación de exactitud.",COMPLETO,102,1
+27,N12-1030_N06-1020_1,Evaluable,Comparison,Alta,La tabla compara la exactitud de enfoques de parsing.,COMPLETO,102,1
+28,W06-1101_E95-1009_0,Evaluable,Identification of the Originator,Media,Atribuye el uso original de la distancia de edición para medir diferencias de pronunciación.,COMPLETO,102,1
+29,W10-2210_P08-1084_0,Evaluable,Background,Alta,Enumera estudios de segmentación morfológica no supervisada.,COMPLETO,102,1
+30,W10-1761_P08-1023_0,Evaluable,Comparison,Alta,Contrasta explícitamente el método propio con el trabajo citado.,COMPLETO,102,1
+31,D10-1120_P10-1131_2,Evaluable,Comparison,Alta,La tabla compara el modelo propio con DMV y PGI.,COMPLETO,102,1
+32,J13-4004_P02-1014_2,Evaluable,Background,Alta,Enumera sistemas supervisados previos de correferencia.,COMPLETO,102,1
+33,W03-1023_W03-2607_0,Evaluable,Further Reading,Media,Remite a otro enfoque basado en la web para anáfora asociativa.,COMPLETO,102,1
+34,W12-1706_N01-1021_0,Evaluable,Identification of the Originator,Media,Atribuye la teoría del surprisal a su fuente original (Hale).,COMPLETO,102,1
+35,D09-1025_P98-2127_0,Evaluable,Background,Media,Presenta el enfoque de extracción por similitud de contextos con sistemas de ejemplo.,COMPLETO,102,1
+36,P05-1057_P03-1012_0,Evaluable,Background,Media,Describe un modelo previo de alineamiento de palabras.,COMPLETO,102,1
+37,W10-3814_W06-3119_3,Evaluable,Improvement / Modification,Alta,Propone mejoras al modelo jerárquico y su extensión sintáctica.,COMPLETO,102,1
+38,N09-1026_D08-1018_0,Evaluable,Comparison,Alta,Compara su política de binarización con el enfoque voraz similar del trabajo citado.,COMPLETO,102,1
+39,P13-2012_D12-1045_0,Evaluable,Background,Alta,Reseña trabajos previos sobre correferencia de eventos.,COMPLETO,102,1
+40,E97-1032_A92-1018_0,Evaluable,Background,Alta,"Enumera tipos de modelos estadísticos para etiquetado, incluyendo HMM.",COMPLETO,102,1
+41,W13-2213_P11-1105_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para la lista de operaciones y el algoritmo de conversión.,COMPLETO,102,1
+42,W13-2117_W04-3252_0,Evaluable,Application,Alta,TextRank se usa como sistema baseline sin modificación.,COMPLETO,102,1
+43,W09-0905_P08-1068_0,Evaluable,Background,Media,Ejemplo de trabajo previo que muestra la utilidad de los métodos de agrupamiento.,COMPLETO,102,1
+44,E09-1005_S01-1005_0,Evaluable,Evidence,Media,Respalda la afirmación de que los sistemas supervisados son los mejores en evaluaciones públicas.,COMPLETO,102,1
+45,P10-1075_P08-1042_0,Evaluable,Background,Alta,Menciona técnicas similares aplicadas previamente a datos anotados manualmente.,COMPLETO,102,1
+46,J98-4001_P91-1006_2,Evaluable,Background,Alta,Describe el trabajo previo que añadió un tercer tipo de plan.,COMPLETO,102,1
+47,W13-2909_P05-1018_1,Evaluable,Application,Alta,Usa la entity grid como característica tal como fue propuesta.,COMPLETO,102,1
+48,P06-1105_P00-1065_0,Evaluable,Basis,Alta,El modelo propuesto está inspirado en el método de etiquetado de roles semánticos citado.,COMPLETO,102,1
+49,W12-2208_N12-1063_0,Evaluable,Basis,Alta,Trabajo previo propio sobre el que se construye el actual.,COMPLETO,102,1
+50,D12-1031_P06-1010_0,Evaluable,Background,Alta,Menciona trabajo reciente relevante sobre transliteración.,COMPLETO,102,1
+51,W11-1917_P08-2012_0,Evaluable,Improvement / Modification,Alta,Extiende trabajos previos de ILP con una estrategia de selección de restricciones.,COMPLETO,102,1
+52,W12-5209_N12-1051_0,Evaluable,Gap,Alta,Cita las limitaciones señaladas de los enfoques existentes de construcción de ontologías.,COMPLETO,102,1
+53,D09-1085_D08-1050_0,Evaluable,Application,Alta,Usa los datos de preguntas del trabajo citado.,COMPLETO,102,1
+54,E09-1070_E99-1001_0,Evaluable,Evidence,Alta,Respalda la afirmación de que listas de NE mayores no implican mejor desempeño.,COMPLETO,102,1
+55,P95-1015_P93-1020_5,Evaluable,Evidence,Media,Sustenta la interpretación de los resultados de características NP.,COMPLETO,102,1
+56,P13-2104_E06-1011_1,Evaluable,Application,Alta,Emplea los modelos de parsing de primer y segundo orden de los trabajos citados.,COMPLETO,102,1
+57,W07-2216_P05-1012_6,Evaluable,Basis,Alta,Los resultados extienden el trabajo citado.,COMPLETO,102,1
+58,E09-1054_P08-1115_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la importancia de los grafos de palabras en tareas de habla.,COMPLETO,102,1
+59,D09-1135_P08-1037_1,Evaluable,Evidence,Media,Justifica la estrategia de WSD indicando que resultó útil en el trabajo citado.,COMPLETO,102,1
+60,D11-1068_D09-1036_2,Evaluable,Basis,Media,La característica de reglas de producción está inspirada en el trabajo citado.,COMPLETO,102,1
+61,W10-4216_W06-1661_1,Evaluable,Background,Media,Señala el uso prevalente del umbral de frecuencia en la literatura de ranking de fluidez.,COMPLETO,102,1
+62,J13-1004_W09-1210_5,Evaluable,Comparison,Media,Se indica el mejor resultado previo para alemán como referencia de comparación.,COMPLETO,102,1
+63,P12-1100_W02-1039_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la traducción inglés-francés satisface la cohesión.,COMPLETO,102,1
+64,D11-1006_D10-1069_0,Evaluable,Background,Alta,Enumera trabajos de adaptación de analizadores a nuevos dominios.,COMPLETO,102,1
+65,N01-1003_A00-2026_0,Evaluable,Background,Alta,Describe enfoques previos de generación basada en plantillas.,COMPLETO,102,1
+66,P10-1033_J07-2003_0,Evaluable,Application,Media,Adopta las frases jerárquicas del trabajo citado.,COMPLETO,102,1
+67,J03-4003_W98-1206_0,Evaluable,Background,Alta,Describe trabajos previos que sugieren la estrategia de transformación del treebank.,COMPLETO,102,1
+68,N13-1023_N12-1048_0,Evaluable,Background,Alta,Enumera trabajos previos de traducción en tiempo real.,COMPLETO,102,1
+69,D12-1114_W11-1904_0,Evaluable,Comparison,Alta,Los sistemas propios superan a los sistemas basados en aprendizaje citados.,COMPLETO,102,1
+70,W12-3716_P06-1134_0,Evaluable,Evidence,Alta,Respalda el argumento de que las distinciones de sentido importan en análisis de sentimiento.,COMPLETO,102,1
+71,Q13-1004_P08-1068_0,Evaluable,Comparison,Alta,La tabla compara el sistema con el estado del arte.,COMPLETO,102,1
+72,P13-1117_D11-1006_3,Evaluable,Background,Alta,Enumera métodos de transferencia de modelos translingüe.,COMPLETO,102,1
+73,D13-1152_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador POS de Stanford tal cual.,COMPLETO,102,1
+74,S10-1002_S07-1009_1,Evaluable,Comparison,Alta,Compara los resultados con los de la tarea LEXSUB.,COMPLETO,102,1
+75,P11-1118_P03-1069_1,Evaluable,Background,Baja,"Atribuye previamente la consideración del modelo IBM-1 para coherencia, aunque la cita no es claramente de origen.",COMPLETO,102,1
+76,D09-1021_P05-1033_0,Evaluable,Background,Alta,Ejemplifica enfoques de SMT basada en sintaxis con gramáticas síncronas.,COMPLETO,102,1
+77,P10-1016_W02-1018_0,Evaluable,Gap,Alta,Señala la limitación de complejidad computacional del trabajo citado.,COMPLETO,102,1
+78,N13-1048_W02-1018_0,Evaluable,Background,Alta,Enumera trabajos previos de mejora de la tabla de frases.,COMPLETO,102,1
+79,W09-1704_P04-1053_0,Evaluable,Background,Alta,Describe un enfoque previo de descubrimiento de paráfrasis.,COMPLETO,102,1
+80,N12-1079_J07-2003_0,Evaluable,Application,Alta,"El sistema de MT aprende una gramática síncrona libre de contexto según el trabajo citado, usada sin cambios.",COMPLETO,102,1
+81,D13-1071_P10-1110_6,Evaluable,Comparison,Alta,Contrasta la complejidad temporal con la del trabajo citado.,COMPLETO,102,1
+82,P13-2064_P03-1021_0,Evaluable,Application,Alta,Emplea el entrenamiento de tasa mínima de error para optimizar pesos.,COMPLETO,102,1
+83,P00-1007_W99-0707_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la información léxica mejora el chunking.,COMPLETO,102,1
+84,W12-2102_W08-0616_0,Evaluable,Background,Alta,Describe trabajos previos de clasificación de notas suicidas.,COMPLETO,102,1
+85,S12-1065_N10-1045_1,Evaluable,Comparison,Alta,Contrasta el uso de MT con el del trabajo citado.,COMPLETO,102,1
+86,P87-1013_P86-1038_0,Evaluable,Basis,Alta,La formulación se construye sobre la lógica de Kasper y Rounds.,COMPLETO,102,1
+87,P10-1130_N09-1037_0,Evaluable,Background,Alta,Describe la práctica estándar en modelado conjunto de parsing y NER.,COMPLETO,102,1
+88,W13-3720_P06-2066_1,Evaluable,Comparison,Alta,Los datos de AG reflejan las mismas tendencias observadas en otros trabajos.,COMPLETO,102,1
+89,D12-1133_D11-1109_0,Evaluable,Background,Alta,Reporta resultados previos de modelos conjuntos para chino.,COMPLETO,102,1
+90,P10-1096_P08-2035_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la lexicalización es importante.,COMPLETO,102,1
+91,P12-1096_P05-1066_0,Evaluable,Background,Alta,Enumera reglas de reordenamiento sintáctico hechas a mano en trabajos previos.,COMPLETO,102,1
+92,W12-1908_N04-1043_0,Evaluable,Background,Alta,Lista enfoques semisupervisados previos.,COMPLETO,102,1
+93,P06-1101_W97-0313_0,Evaluable,Background,Alta,Enumera algoritmos previos de adquisición léxica.,COMPLETO,102,1
+94,D11-1017_D11-1138_1,Evaluable,Comparison,Alta,Señala la similitud del trabajo propio con el citado.,COMPLETO,102,1
+95,D09-1099_W02-1111_0,Evaluable,Background,Alta,Enumera trabajos previos de construcción automatizada de ontologías.,COMPLETO,102,1
+96,P09-1037_P05-1033_1,Evaluable,Background,Media,Describe la hipótesis y el trabajo previo sobre la característica de constituyentes.,COMPLETO,102,1
+97,W09-3905_W04-0304_0,Evaluable,Background,Media,Menciona un trabajo previo que trata la interacción entre referencia y parsing.,COMPLETO,102,1
+98,N09-1061_P04-1084_0,Evaluable,Gap,Alta,Señala que el algoritmo previo no garantiza un incremento mínimo del fanout.,COMPLETO,102,1
+99,J10-3002_P03-1021_3,Evaluable,Application,Alta,Usa el entrenamiento de tasa mínima de error para entrenar los pesos.,COMPLETO,102,1
+100,W05-1519_N01-1016_8,Evaluable,Comparison,Media,El código CJ'01 designa el método citado como referencia en la tabla de resultados comparativos.,COMPLETO,102,1

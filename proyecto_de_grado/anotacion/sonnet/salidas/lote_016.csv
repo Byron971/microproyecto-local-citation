@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W12-1905_P11-2056_2,Evaluable,Comparison,Media,Compara la precisión de los sistemas con el enfoque no supervisado citado.,COMPLETO,16,1
+2,W11-2929_P10-1075_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre el cuello de botella de la anotación.,COMPLETO,16,1
+3,D11-1056_P06-1089_0,Evaluable,Evidence,Media,Respalda la limitación de la información contextual local.,COMPLETO,16,1
+4,W11-2929_P10-1075_2,Evaluable,Basis,Media,El trabajo actual sigue la idea de comparar pares de relaciones y etiquetas POS.,COMPLETO,16,1
+5,S12-1076_W08-0902_0,Evaluable,Background,Alta,Enumera aplicaciones de la similitud entre oraciones.,COMPLETO,16,1
+6,W12-5212_W96-0213_0,Evaluable,Background,Alta,Enumera taggers de POS.,COMPLETO,16,1
+7,P10-3010_P06-2041_1,Evaluable,Evidence,Media,Respalda la afirmación de que SVM supera a MBL.,COMPLETO,16,1
+8,P09-1021_P08-1098_2,Evaluable,Background,Alta,Describe trabajo previo sobre aprendizaje activo multitarea.,COMPLETO,16,1
+9,W12-3127_P03-1021_0,Evaluable,Application,Alta,Usa MERT para entrenar los pesos.,COMPLETO,16,1
+10,W09-3712_W08-0208_0,Evaluable,Further Reading,Alta,Remite a una visión general reciente (see).,COMPLETO,16,1
+11,N13-1126_P12-1066_5,Evaluable,Further Reading,Alta,Remite al lector para detalles sobre los treebanks.,COMPLETO,16,1
+12,W12-2801_P11-1060_0,Evaluable,Background,Alta,Agrupa trabajos sobre aprendizaje del lenguaje situado.,COMPLETO,16,1
+13,D13-1163_W13-3304_0,Evaluable,Evidence,Media,Respalda la afirmación de que la información discursiva es importante en traducción.,COMPLETO,16,1
+14,P13-1031_P06-1096_0,Evaluable,Application,Alta,Usa el alineador de Berkeley.,COMPLETO,16,1
+15,N13-1019_P03-1071_1,Evaluable,Background,Media,Enumera algoritmos de segmentación existentes.,COMPLETO,16,1
+16,N13-1139_P10-1080_0,Evaluable,Comparison,Alta,Compara el modelo discriminativo con el de Bisani y Ney.,COMPLETO,16,1
+17,W11-0112_W09-3714_1,Evaluable,Background,Media,Describe trabajo previo que extendió otro trabajo.,COMPLETO,16,1
+18,P13-2131_W08-2227_0,Evaluable,Gap,Media,Señala que el trabajo citado no aborda cómo determinar los alineamientos.,COMPLETO,16,1
+19,W12-4303_P97-1023_1,Evaluable,Background,Alta,Describe un enfoque común en detección de sentimiento.,COMPLETO,16,1
+20,D13-1152_D08-1017_0,Evaluable,Background,Media,Enumera aproximaciones a parsing de orden superior a las que el método es aplicable.,COMPLETO,16,1
+21,P03-1054_P96-1025_1,Evaluable,Comparison,Alta,Fila de tabla que compara resultados con otros sistemas.,COMPLETO,16,1
+22,W13-3602_N10-1018_3,Evaluable,Evidence,Alta,Respalda que patrones de error similares se observan en otros corpus ESL.,COMPLETO,16,1
+23,P10-1075_E06-1011_0,Evaluable,Application,Alta,Usa MSTParser con configuración por defecto.,COMPLETO,16,1
+24,D11-1137_P03-1021_1,Evaluable,Application,Alta,Entrena parámetros con MERT.,COMPLETO,16,1
+25,W13-1907_D09-1120_0,Evaluable,Evidence,Alta,Respalda que los sistemas deterministas superan a los de aprendizaje en correferencia.,COMPLETO,16,1
+26,N12-1001_P10-1015_0,Evaluable,Background,Alta,Cita trabajos sobre comprensión de textos narrativos.,COMPLETO,16,1
+27,W09-3102_W07-1007_2,Evaluable,Comparison,Alta,Contrasta el trabajo actual con enfoques basados en corpus comparables más cercanos.,COMPLETO,16,1
+28,N12-1054_P10-1001_0,Evaluable,Background,Media,Describe que el trabajo previo podó con un modelo de primer orden.,COMPLETO,16,1
+29,W12-1904_E93-1006_0,Evaluable,Background,Media,Describe el enfoque DOP existente que usa todos los fragmentos.,COMPLETO,16,1
+30,P11-1156_D08-1017_0,Evaluable,Comparison,Alta,Fila de tabla que compara resultados finales con otros sistemas.,COMPLETO,16,1
+31,P13-1047_P05-1001_1,Evaluable,Application,Alta,Usa ASO para construir el marco multitarea.,COMPLETO,16,1
+32,W11-0601_W08-0704_0,Evaluable,Evidence,Media,Respalda que modelar la estructura morfofonológica mejora el rendimiento.,COMPLETO,16,1
+33,D09-1101_D08-1069_1,Evaluable,Comparison,Media,Describe el modelo citado y lo contrasta con el propio ('Unlike ours').,COMPLETO,16,1
+34,P13-1127_P09-1011_0,Evaluable,Background,Alta,Enumera representaciones de significado usadas en investigación previa.,COMPLETO,16,1
+35,P12-1069_P10-1001_0,Evaluable,Comparison,Alta,Fila de tabla comparativa de resultados.,COMPLETO,16,1
+36,S12-1059_S12-1051_0,Evaluable,Further Reading,Alta,Remite a la descripción de la tarea para un panorama completo.,COMPLETO,16,1
+37,P07-1051_P06-1109_1,Evaluable,Comparison,Alta,Compara el f-score propio con el del modelo UML-DOP.,COMPLETO,16,1
+38,E09-1076_E06-1050_3,Evaluable,Comparison,Alta,Compara con el enfoque previo usando el mismo conjunto de preguntas.,COMPLETO,16,1
+39,N09-1040_D08-1035_3,Evaluable,Comparison,Media,Señala que el trabajo citado usa el mismo conjunto de datos con una evaluación distinta.,COMPLETO,16,1
+40,J05-4003_J90-2002_1,Evaluable,Identification of the Originator,Alta,Atribuye la introducción de los alineamientos de palabras (first introduced).,COMPLETO,16,1
+41,W99-0207_P98-2143_0,Evaluable,Comparison,Alta,Compara las tasas de éxito con los resultados reportados.,COMPLETO,16,1
+42,W13-1728_W02-0109_0,Evaluable,Application,Alta,Usa el etiquetador POS de NLTK.,COMPLETO,16,1
+43,W11-3207_W09-3519_0,Evaluable,Evidence,Alta,Respalda que SMT basada en frases es buena estrategia para transliteración.,COMPLETO,16,1
+44,J11-1008_N10-1118_2,Evaluable,Comparison,Alta,Contrasta el algoritmo específico de LCFRS con el método de descomposición propio.,COMPLETO,16,1
+45,P13-1077_P09-1088_2,Evaluable,Application,Media,Entrena el modelo de lenguaje con los datos de un trabajo previo.,COMPLETO,16,1
+46,D13-1173_D12-1025_0,Evaluable,Gap,Media,"Describe trabajo previo y su limitación (funciona bien para español/francés, 'Although').",COMPLETO,16,1
+47,P11-1003_P10-1034_0,Evaluable,Background,Alta,Enumera tipos de reglas de traducción usadas en SMT.,COMPLETO,16,1
+48,S10-1099_J94-2004_0,Evaluable,Background,Media,Cita la definición de análisis de subjetividad en el estado del arte.,COMPLETO,16,1
+49,D09-1076_P03-1021_0,Evaluable,Application,Alta,Entrena pesos con max-BLEU.,COMPLETO,16,1
+50,P10-1111_P03-1054_0,Evaluable,Background,Media,Describe trabajo previo sobre etiquetas funcionales en parsing.,COMPLETO,16,1
+51,D09-1120_P08-2012_0,Evaluable,Evidence,Alta,Respalda que la métrica MUC es problemática.,COMPLETO,16,1
+52,N07-1045_N03-1032_0,Evaluable,Application,Alta,Usa el sistema Waterloo MultiText para estimar conteos.,COMPLETO,16,1
+53,P09-1031_W97-0313_0,Evaluable,Background,Alta,Describe trabajo previo sobre relaciones de hermandad.,COMPLETO,16,1
+54,S13-1040_N10-1147_1,Evaluable,Basis,Alta,Adopta la definición de interpretación de metáfora del trabajo citado.,COMPLETO,16,1
+55,P11-1003_D08-1022_5,Evaluable,Gap,Alta,Señala que el trabajo citado ignoró el problema de las palabras no alineadas.,COMPLETO,16,1
+56,D13-1134_P13-2014_0,Evaluable,Gap,Alta,Indica que los modelos citados no soportan interacción en tiempo real.,COMPLETO,16,1
+57,P13-1010_N10-1099_0,Evaluable,Background,Alta,Enumera aplicaciones previas del entity grid.,COMPLETO,16,1
+58,W10-2926_P04-1054_0,Evaluable,Background,Alta,Agrupa trabajos sobre el uso de kernels.,COMPLETO,16,1
+59,W13-3602_W10-1004_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la proporción de errores de determinantes.,COMPLETO,16,1
+60,W06-0706_P00-1038_0,Evaluable,Comparison,Alta,Reconoce el trabajo citado y lo contrasta con el corpus propio.,COMPLETO,16,1
+61,W12-1642_P08-1004_0,Evaluable,Evidence,Media,Respalda el uso de restricciones sintácticas en IE.,COMPLETO,16,1
+62,W13-4204_P10-1014_0,Evaluable,Background,Media,Describe el sistema SystemT como componente de la arquitectura.,COMPLETO,16,1
+63,W10-3001_W10-3005_0,Evaluable,Background,Media,Describe resultados de sistemas participantes en la tarea compartida.,COMPLETO,16,1
+64,P12-2044_W02-0109_0,Evaluable,Application,Alta,Usa el etiquetador de NLTK.,COMPLETO,16,1
+65,D10-1046_P03-1070_0,Evaluable,Background,Alta,Describe estudios previos sobre la mirada en conversación.,COMPLETO,16,1
+66,P12-1023_P05-1012_2,Evaluable,Improvement / Modification,Alta,Extiende el modelo citado con un modelo de lenguaje de dependencias.,COMPLETO,16,1
+67,W11-3201_P04-1021_0,Evaluable,Background,Alta,Enumera investigación previa sobre transliteración.,COMPLETO,16,1
+68,D09-1086_P02-1017_0,Evaluable,Background,Alta,Describe trabajo previo que usó etiquetas POS de referencia.,COMPLETO,16,1
+69,P08-1108_P05-1012_1,Evaluable,Evidence,Media,Respalda la afirmación de complejidad del algoritmo de árbol de expansión.,COMPLETO,16,1
+70,W10-2409_P04-1021_0,Evaluable,Identification of the Originator,Media,Indica que este tipo de característica fue propuesto por primera vez en el trabajo citado.,COMPLETO,16,1
+71,W12-3128_N03-1017_0,Evaluable,Application,Alta,Aplica el refinamiento grow-diag-final-and.,COMPLETO,16,1
+72,P13-1169_J90-2002_0,Evaluable,Application,Alta,Entrena un modelo de traducción siguiendo el trabajo citado.,COMPLETO,16,1
+73,W11-2102_D08-1078_0,Evaluable,Evidence,Alta,Respalda que el reordenamiento determina la dificultad de la traducción.,COMPLETO,16,1
+74,J12-1003_P98-2127_0,Evaluable,Application,Alta,Calcula la medida de Lin tal como se define.,COMPLETO,16,1
+75,J08-2003_P00-1065_1,Evaluable,Background,Alta,Cita el conjunto de características lingüísticas ampliamente aceptado en SRL.,COMPLETO,16,1
+76,P11-1004_P07-1039_0,Evaluable,Comparison,Alta,Contrasta el enfoque citado con el propio ('somewhat orthogonal').,COMPLETO,16,1
+77,P05-1049_P02-1044_2,Evaluable,Comparison,Alta,Tabla que compara precisiones con las del trabajo citado.,COMPLETO,16,1
+78,W11-0412_N03-1023_0,Evaluable,Background,Alta,Enumera enfoques de aprendizaje semisupervisado usados en distintas tareas.,COMPLETO,16,1
+79,P06-1071_W02-2018_0,Evaluable,Background,Alta,Cita trabajos que usan modelos de máxima entropía en PLN.,COMPLETO,16,1
+80,P11-1066_N03-1017_0,Evaluable,Basis,Alta,El modelo propuesto está inspirado en SMT basada en frases.,COMPLETO,16,1
+81,W13-0404_W09-1313_0,Evaluable,Evidence,Media,Respalda la observación similar en extracción de proteínas.,COMPLETO,16,1
+82,W13-2806_P06-1055_0,Evaluable,Application,Alta,Usa el parser de Berkeley para obtener etiquetas POS.,COMPLETO,16,1
+83,P10-3003_E09-1005_0,Evaluable,Comparison,Media,Compara con sistemas WSD basados en conocimiento que usan fuentes similares.,COMPLETO,16,1
+84,W09-2601_P00-1065_0,Evaluable,Background,Alta,Describe el desarrollo de investigación en SRL.,COMPLETO,16,1
+85,D13-1055_W10-3504_0,Evaluable,Background,Alta,Enumera aplicaciones de ediciones de Wikipedia.,COMPLETO,16,1
+86,W04-2322_P84-1085_0,Evaluable,Background,Media,Presenta el modelo LDM como antecedente.,COMPLETO,16,1
+87,P10-1083_P09-1010_1,Evaluable,Basis,Alta,La formulación de aprendizaje por refuerzo sigue de cerca el trabajo citado.,COMPLETO,16,1
+88,P12-1078_W11-1506_0,Evaluable,Background,Alta,Enumera trabajos previos sobre textos históricos.,COMPLETO,16,1
+89,N07-1015_P05-1053_1,Evaluable,Gap,Media,Señala que el espacio de características se exploró de forma ad hoc.,COMPLETO,16,1
+90,W09-2001_W08-1202_0,Evaluable,Evidence,Alta,Respalda la tasa de validación de metáforas.,COMPLETO,16,1
+91,D09-1130_W04-3239_2,Evaluable,Application,Alta,Usa el procedimiento branch-and-bound del trabajo citado.,COMPLETO,16,1
+92,N09-1005_D08-1037_0,Evaluable,Background,Alta,Enumera técnicas existentes para transliteración.,COMPLETO,16,1
+93,S12-1090_S12-1051_0,Evaluable,Background,Media,Presenta la tarea STS de SemEval 2012.,COMPLETO,16,1
+94,W10-4221_W08-1131_0,Evaluable,Application,Alta,Usa los conjuntos de datos TUNA 2008 para entrenar y evaluar.,COMPLETO,16,1
+95,W12-2006_W11-2838_0,Evaluable,Further Reading,Alta,Remite al informe de la ronda piloto.,COMPLETO,16,1
+96,P00-1007_P97-1003_0,Evaluable,Background,Alta,Enumera métodos estadísticos de parsing completo.,COMPLETO,16,1
+97,W11-0209_W10-1906_0,Evaluable,Evidence,Media,Respalda la afirmación sobre predicados en texto biomédico.,COMPLETO,16,1
+98,N13-1121_P11-1096_0,Evaluable,Background,Alta,Enumera trabajos de predicción de geolocalización de usuarios.,COMPLETO,16,1
+99,D12-1063_W06-2920_0,Evaluable,Application,Alta,Usa los conjuntos de datos de la tarea compartida CoNLL.,COMPLETO,16,1
+100,W09-2808_W02-2016_0,Evaluable,Application,Alta,Usa Cabocha para el análisis sintáctico.,COMPLETO,16,1

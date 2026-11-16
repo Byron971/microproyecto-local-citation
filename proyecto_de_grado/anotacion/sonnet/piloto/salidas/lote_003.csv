@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W14-5411_P13-1008_0,Evaluable,Application,Alta,"Se aplica directamente el sistema IE citado para extraer entidades, relaciones y eventos.",COMPLETO,3,1
+2,P13-1135_W02-0109_0,Evaluable,Application,Alta,Se usa la herramienta NLTK (Punkt) tal cual para segmentar.,COMPLETO,3,1
+3,D12-1038_P11-2126_0,Evaluable,Background,Alta,Enumera trabajos previos sobre adaptación entre guías de anotación.,COMPLETO,3,1
+4,P11-1125_P03-1054_0,Evaluable,Application,Media,Se emplea la markovización vertical/horizontal del trabajo citado para limitar el contexto.,COMPLETO,3,1
+5,P12-2005_P07-2045_0,Evaluable,Application,Alta,Se usa Moses para crear la tabla de frases del experimento.,COMPLETO,3,1
+6,P99-1013_P99-1013_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para el detalle de la prueba.,COMPLETO,3,1
+7,D08-1055_P06-1079_0,Evaluable,Background,Alta,Lista de estudios previos sobre identificación de pronombres cero.,COMPLETO,3,1
+8,D12-1056_P02-1019_0,Evaluable,Gap,Media,"Trabajos previos se limitaron a corrección fuera de contexto por falta de datos, lo que señala una limitación.",COMPLETO,3,1
+9,D09-1044_W04-1017_0,Evaluable,Comparison,Alta,El enfoque de eventos atómicos se compara con el enfoque novedoso GRE.,COMPLETO,3,1
+10,W15-1811_E09-1005_1,Evaluable,Application,Alta,Se aplica el sistema UKB como línea base.,COMPLETO,3,1
+11,D14-1066_N13-1133_2,Evaluable,Comparison,Alta,Contrasta el uso de recursos (UMLS vs WordNet) con el trabajo citado.,COMPLETO,3,1
+12,N13-1053_P11-1032_6,Evaluable,Comparison,Alta,Compara el comportamiento de rasgos en reseñas falsas negativas frente a las positivas del trabajo citado.,COMPLETO,3,1
+13,P15-1040_P13-1045_1,Evaluable,Application,Alta,Se usa el parser de Stanford para obtener dependencias.,COMPLETO,3,1
+14,D15-1143_N10-1028_1,Evaluable,Background,Alta,Describe el trabajo previo que propuso slice sampling para SCFG.,COMPLETO,3,1
+15,D12-1068_P10-2029_0,Evaluable,Background,Media,Cita para indicar la amplia aplicación de la correferencia en otras tareas.,COMPLETO,3,1
+16,N09-2001_P07-2045_0,Evaluable,Application,Alta,Se usa la extracción de frases de Moses para construir los sistemas base.,COMPLETO,3,1
+17,W09-1117_W06-2920_0,Evaluable,Evidence,Media,Respalda la motivación del uso de árboles de dependencias con los avances en análisis multilingüe.,COMPLETO,3,1
+18,E97-1063_P97-1039_2,Evaluable,Evidence,Media,Respalda la afirmación de que los diccionarios bilingües tienen cobertura limitada.,COMPLETO,3,1
+19,P13-2122_D09-1074_0,Evaluable,Background,Alta,Lista de trabajos previos sobre adaptación de dominio en SMT.,COMPLETO,3,1
+20,W12-3709_N03-1017_0,Evaluable,Further Reading,Alta,'For more details see' remite a la fuente para más detalles.,COMPLETO,3,1
+21,W15-1612_W07-1604_0,Evaluable,Background,Alta,Enumeración de estudios sobre semántica de preposiciones en distintos contextos.,COMPLETO,3,1
+22,W13-1103_W04-3252_0,Evaluable,Improvement / Modification,Alta,Adapta el algoritmo tipo PageRank de TextRank para considerar pesos de aristas.,COMPLETO,3,1
+23,W12-0704_P07-2045_0,Evaluable,Application,Alta,Se usa el toolkit Moses para entrenamiento y decodificación.,COMPLETO,3,1
+24,N13-1075_P08-1088_1,Evaluable,Further Reading,Media,Menciona una alternativa (CCA) y remite al trabajo donde se describe.,COMPLETO,3,1
+25,W15-2104_N06-1058_0,Evaluable,Identification of the Originator,Alta,'was introduced by' atribuye el origen del parafraseo dirigido para evaluación de MT.,COMPLETO,3,1
+26,P04-1066_W03-0301_0,Evaluable,Application,Alta,Se usan los datos del taller de alineamiento para entrenar y evaluar.,COMPLETO,3,1
+27,W06-1616_W96-0102_0,Evaluable,Application,Alta,Se usó el etiquetador MBT para el etiquetado de POS del corpus.,COMPLETO,3,1
+28,P10-1112_P96-1024_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre gramáticas de sustitución de árboles.,COMPLETO,3,1
+29,P15-1148_P10-1110_2,Evaluable,Basis,Media,La programación dinámica con beam search del trabajo citado se traslada al análisis de constituyentes.,COMPLETO,3,1
+30,P14-2083_P14-2062_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para una descripción más detallada del conjunto de datos.,COMPLETO,3,1
+31,P14-1092_P12-1007_2,Evaluable,Application,Alta,Se usa el parser de discurso citado para generar los árboles.,COMPLETO,3,1
+32,P02-1036_J97-4005_0,Evaluable,Background,Media,Resume lo señalado por el trabajo citado sobre las limitaciones de PCFG para gramáticas de unificación.,COMPLETO,3,1
+33,W11-1208_P08-1089_2,Evaluable,Comparison,Alta,Contrasta resultados del modelo log-lineal citado frente a la estimación de máxima verosimilitud y los compara con el propio enfoque.,COMPLETO,3,1
+34,P98-1112_A97-1028_0,Evaluable,Background,Alta,Enumera trabajos sobre la tarea de entidades nombradas.,COMPLETO,3,1
+35,W15-5507_Q14-1019_0,Evaluable,Evidence,Alta,Respalda la afirmación de que Babelfy logra rendimiento de estado del arte en WSD.,COMPLETO,3,1
+36,W10-2406_W09-3510_0,Evaluable,Evidence,Alta,Respalda que BLEU es un proxy razonable para las métricas usadas.,COMPLETO,3,1
+37,J15-3005_N10-1115_0,Evaluable,Comparison,Media,"Señala que métodos similares se han usado en otros trabajos, vinculando obras citadas con el método propio.",COMPLETO,3,1
+38,J12-1003_W04-3205_0,Evaluable,Background,Media,Describe el trabajo previo que construyó patrones manuales para relaciones entre predicados.,COMPLETO,3,1
+39,Q13-1005_D11-1039_1,Evaluable,Improvement / Modification,Alta,Adapta el Perceptron sensible a pérdida con función de validación e inferencia coarse-to-fine.,COMPLETO,3,1
+40,D09-1115_N03-1017_0,Evaluable,Application,Alta,Se aplica el algoritmo grow-diag-final a alineamientos monolingües.,COMPLETO,3,1
+41,W00-1801_P96-1015_0,Evaluable,Background,Alta,Enumera notaciones de alto nivel existentes para morfología de estados finitos.,COMPLETO,3,1
+42,P13-3025_W11-2103_0,Evaluable,Background,Alta,'see e.g.' apoya la descripción general de SMT como enfoque actual.,COMPLETO,3,1
+43,P11-1128_D09-1076_3,Evaluable,Application,Alta,Se siguen los procedimientos de conteo y normalización del trabajo citado.,COMPLETO,3,1
+44,P01-1064_A00-2004_4,Evaluable,Comparison,Media,"Compara los resultados propios con los del artículo de Choi, señalando diferencias por el tamaño de muestra.",COMPLETO,3,1
+45,P96-1011_E89-1003_0,Evaluable,Background,Alta,Enumera intentos previos de resolver ambigüedad espuria.,COMPLETO,3,1
+46,P10-1049_W06-3105_1,Evaluable,Background,Media,"Describe un trabajo previo sobre dificultades del entrenamiento generativo de frases, similar al modelo propuesto.",COMPLETO,3,1
+47,P99-1041_P98-2127_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles sobre la construcción de la base de colocaciones.,COMPLETO,3,1
+48,P15-1099_P12-1105_4,Evaluable,Comparison,Alta,"Contrasta explícitamente el resultado propio, más general, con el del trabajo citado.",COMPLETO,3,1
+49,P10-1110_P04-1015_0,Evaluable,Application,Alta,Se adopta la estrategia de early-update del trabajo citado.,COMPLETO,3,1
+50,P07-1069_W03-0501_0,Evaluable,Background,Alta,Menciona trabajos relacionados sobre generación de títulos.,COMPLETO,3,1
+51,P09-1070_P06-1101_0,Evaluable,Background,Alta,Revisa trabajos previos de extensión de WordNet.,COMPLETO,3,1
+52,P14-1093_D11-1027_2,Evaluable,Application,Alta,Se usan características basadas en la medida CEA del trabajo citado.,COMPLETO,3,1
+53,W11-1716_P97-1023_0,Evaluable,Comparison,Media,Contrasta el enfoque propuesto con el trabajo citado ('different from').,COMPLETO,3,1
+54,D15-1186_D14-1003_0,Evaluable,Background,Media,Describe un trabajo previo que usó LSTM bidireccional para modelar traducción.,COMPLETO,3,1
+55,W02-1027_P88-1012_1,Evaluable,Gap,Media,Señala limitación de trabajos previos que usan solo ejemplos construidos sin resultados numéricos.,COMPLETO,3,1
+56,P14-2097_P13-1006_0,Evaluable,Background,Alta,Resume trabajo previo en generación de descripciones de imágenes.,COMPLETO,3,1
+57,W06-0803_P04-1036_1,Evaluable,Background,Media,Cita trabajos previos que usan WordNet en tareas de desambiguación.,COMPLETO,3,1
+58,W13-2904_J10-2002_0,Evaluable,Background,Media,Describe un método previo de legibilidad basado en ordenar textos.,COMPLETO,3,1
+59,J13-4004_D09-1120_1,Evaluable,Background,Alta,Cita trabajos recientes que sugieren que reglas deterministas superan al aprendizaje automático.,COMPLETO,3,1
+60,D11-1093_P94-1019_3,Evaluable,Application,Alta,Se usa la medida de similitud del trabajo citado con dos versiones de profundidad.,COMPLETO,3,1
+61,D09-1073_N04-4026_0,Evaluable,Background,Alta,Enumeración de métodos previos de reordenamiento de frases.,COMPLETO,3,1
+62,P11-1110_N04-1019_1,Evaluable,Application,Alta,Se emplea el modelo Pyramid para valorar factoides.,COMPLETO,3,1
+63,P12-2056_W08-0336_1,Evaluable,Further Reading,Alta,'see ... for detail' remite al trabajo citado.,COMPLETO,3,1
+64,N10-1145_W07-1401_3,Evaluable,Comparison,Alta,Compara estadísticamente los resultados del modelo propio con el sistema citado.,COMPLETO,3,1
+65,S12-1100_W11-2112_1,Evaluable,Background,Alta,Describe la métrica TINE propuesta en el trabajo citado dentro de una revisión de métricas.,COMPLETO,3,1
+66,W09-3520_N07-1046_0,Evaluable,Comparison,Media,"Señala que el trabajo citado también usa subcadenas ('blocks'), vinculándolo con el enfoque propio.",COMPLETO,3,1
+67,W11-2912_P09-2056_0,Evaluable,Comparison,Alta,Contrasta explícitamente la anotación del Quranic Treebank con otros esfuerzos para MSA.,COMPLETO,3,1
+68,W07-0716_P00-1056_0,Evaluable,Application,Alta,Se ejecuta GIZA++ para alinear el corpus paralelo.,COMPLETO,3,1
+69,P13-1140_P06-1011_2,Evaluable,Application,Media,Se usa el método citado para intentar extraer pares paralelos y verificar que los datos no son comparables.,COMPLETO,3,1
+70,P85-1023_J81-4003_0,Evaluable,Basis,Alta,"El formalismo MSG extiende la Extraposition Grammar citada, que es su base.",COMPLETO,3,1
+71,W14-3342_N07-1051_0,Evaluable,Application,Alta,Se usa el Berkeley parser para obtener árboles de constituyentes.,COMPLETO,3,1
+72,W10-4102_P09-1095_0,Evaluable,Background,Media,Cita trabajos previos que usan información semántica para identificar relaciones causales.,COMPLETO,3,1
+73,W01-0712_W95-0107_0,Evaluable,Identification of the Originator,Alta,El conjunto de datos estándar fue usado por primera vez por el trabajo citado ('first used by').,COMPLETO,3,1
+74,E14-1003_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para estimar pesos log-lineales.,COMPLETO,3,1
+75,P06-1122_N03-1017_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los sistemas basados en frases superan a los basados en palabras.,COMPLETO,3,1
+76,W05-0803_W02-1039_0,Evaluable,Background,Media,Describe un estudio previo sistemático sobre alineamientos inglés-francés con distintas representaciones.,COMPLETO,3,1
+77,W13-2901_P11-2117_2,Evaluable,Application,Alta,Se usa el conjunto de datos del trabajo citado para entrenar y evaluar.,COMPLETO,3,1
+78,W03-2605_W97-1301_2,Evaluable,Application,Media,Se utiliza WordNet como recurso para implementar el filtro de Sidner.,COMPLETO,3,1
+79,S10-1077_N03-1028_0,Evaluable,Application,Alta,Se usa L-BFGS para maximizar la log-verosimilitud penalizada.,COMPLETO,3,1
+80,W15-4634_W04-1013_0,Evaluable,Application,Alta,Se usa ROUGE para evaluar los sistemas.,COMPLETO,3,1
+81,W09-2421_P04-1054_0,Evaluable,Background,Alta,Cita trabajos sobre detección de relaciones en extracción de información.,COMPLETO,3,1
+82,D13-1025_P03-1021_0,Evaluable,Application,Alta,Se optimizan los pesos con MERT.,COMPLETO,3,1
+83,E95-1020_P90-1031_0,Evaluable,Background,Alta,"Enumera aplicaciones del etiquetado POS, incluido el análisis sintáctico general.",COMPLETO,3,1
+84,W15-4303_P07-2045_0,Evaluable,Application,Alta,Se usa el decodificador de Moses con beam search.,COMPLETO,3,1
+85,W13-2018_W11-1802_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles sobre la tarea Genia Event.,COMPLETO,3,1
+86,W09-0621_N06-1003_0,Evaluable,Background,Media,Cita trabajos que muestran el valor de la paráfrasis en traducción automática.,COMPLETO,3,1
+87,W14-1701_P10-2065_0,Evaluable,Gap,Media,"Señala que la investigación previa se limita a pocos tipos de error, justificando el estudio.",COMPLETO,3,1
+88,W05-0636_W04-3212_0,Evaluable,Application,Alta,Se usa el procedimiento de poda determinista del trabajo citado.,COMPLETO,3,1
+89,W11-3708_D08-1014_2,Evaluable,Background,Alta,Describe el trabajo previo que propuso una solución con traducción automática para análisis multilingüe.,COMPLETO,3,1
+90,W15-3057_D13-1160_0,Evaluable,Background,Media,Cita trabajos de QA que usan Free917 para indicar su uso extendido.,COMPLETO,3,1
+91,P10-1142_D09-1101_1,Evaluable,Further Reading,Media,'see' remite a trabajos sobre métodos de puntuación con NPs extraídos automáticamente.,COMPLETO,3,1
+92,W09-2504_P06-1113_0,Evaluable,Background,Media,Describe el único trabajo previo que enriquece WordNet con mapeos de argumentos.,COMPLETO,3,1
+93,W14-3902_N10-1027_0,Evaluable,Background,Alta,Enumera trabajos recientes sobre identificación de lenguaje en medios sociales.,COMPLETO,3,1
+94,W14-4407_W13-2117_1,Evaluable,Background,Alta,Describe un sistema previo de resumen abstractivo de reuniones en trabajos relacionados.,COMPLETO,3,1
+95,W07-2202_W06-1619_0,Evaluable,Application,Media,Se adapta/usa el parser HPSG citado entrenado con WSJ como punto de partida.,COMPLETO,3,1
+96,Q14-1033_P11-1019_1,Evaluable,Application,Media,Se usa el corpus CLC/FCE como datos para los experimentos.,COMPLETO,3,1
+97,E09-1017_P03-1069_0,Evaluable,Background,Alta,Cita trabajos sobre restricciones de coherencia a nivel de discurso.,COMPLETO,3,1
+98,W07-0704_W06-3110_0,Evaluable,Further Reading,Media,Sugiere técnicas del trabajo citado como posible dirección futura para identificar palabras.,COMPLETO,3,1
+99,W11-1902_P02-1014_0,Evaluable,Background,Media,Cita trabajos previos de correferencia que usan bases de datos semánticas.,COMPLETO,3,1
+100,P15-2071_P14-2017_0,Evaluable,Basis,Media,La metodología previamente exitosa es el punto de partida del trabajo actual.,COMPLETO,3,1

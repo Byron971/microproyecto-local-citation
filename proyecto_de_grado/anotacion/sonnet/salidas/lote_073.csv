@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D08-1066_W06-3105_6,Evaluable,Evidence,Alta,Cita respalda la expectativa de sobreajuste de EM sin suavizado.,COMPLETO,73,1
+2,P06-1100_W04-3206_0,Evaluable,Background,Alta,Enumera trabajos previos sobre extracción de relaciones.,COMPLETO,73,1
+3,W12-3150_P07-2045_0,Evaluable,Application,Media,Se usa el toolkit Moses para la extracción de reglas jerárquicas.,COMPLETO,73,1
+4,W02-2103_W00-1401_0,Evaluable,Comparison,Alta,"Compara HALogen con Fergus, el único otro sistema evaluado así.",COMPLETO,73,1
+5,N06-2009_P01-1008_0,Evaluable,Basis,Alta,El trabajo se inspira en el uso de traducciones paralelas para minar paráfrasis.,COMPLETO,73,1
+6,W09-2506_D08-1094_1,Evaluable,Comparison,Alta,Señala similitudes y diferencias con el modelo citado.,COMPLETO,73,1
+7,W10-4149_N06-1020_2,Evaluable,Background,Alta,Describe resultados previos sobre auto-entrenamiento en parsing.,COMPLETO,73,1
+8,N13-1041_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford Parser tal cual para obtener árboles de dependencia.,COMPLETO,73,1
+9,W12-3019_P11-1098_1,Evaluable,Comparison,Alta,Compara los Rel-clusters con los slots descubiertos por el enfoque citado.,COMPLETO,73,1
+10,P04-1043_P03-1002_2,Evaluable,Comparison,Media,La medida permite comparar resultados con trabajos previos.,COMPLETO,73,1
+11,W13-1106_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford parser para el análisis sintáctico.,COMPLETO,73,1
+12,E12-1020_P05-1053_2,Evaluable,Application,Alta,Usa directamente el espacio de rasgos citado para representar ejemplos.,COMPLETO,73,1
+13,N10-1028_P07-2045_1,Evaluable,Background,Media,Describe trabajo previo (muestreador por bloques) en la revisión de literatura.,COMPLETO,73,1
+14,W12-5903_P10-1052_0,Evaluable,Application,Alta,Se adopta el enfoque CRF (y su implementación) para la tarea.,COMPLETO,73,1
+15,W09-1803_P08-2012_0,Evaluable,Background,Alta,Describe el hallazgo del trabajo previo sobre ILP en la revisión de literatura.,COMPLETO,73,1
+16,P13-2115_P11-1052_0,Evaluable,Basis,Media,El método se inspira en métodos de resumen submodulares.,COMPLETO,73,1
+17,W11-2020_W10-4304_5,Evaluable,Evidence,Alta,Respalda que la métrica es superior a otras.,COMPLETO,73,1
+18,W06-3004_P05-1026_0,Evaluable,Basis,Media,Remite al trabajo previo propio sobre el que se construye la arquitectura.,COMPLETO,73,1
+19,D10-1084_W10-2923_1,Evaluable,Background,Media,Describe trabajo reciente sobre dependencias entre etiquetas de posts.,COMPLETO,73,1
+20,N13-1072_P10-1080_0,Evaluable,Evidence,Alta,Respalda la afirmación de que ALINE supera a otros métodos de alineación 1-1.,COMPLETO,73,1
+21,P99-1032_P98-2188_1,Evaluable,Further Reading,Media,Remite a trabajos con rasgos basados en etiquetas previas para trabajo futuro.,COMPLETO,73,1
+22,P11-2044_D08-1084_3,Evaluable,Application,Alta,Usa los parámetros de entrenamiento especificados en el trabajo citado.,COMPLETO,73,1
+23,P10-1121_N01-1021_0,Evaluable,Identification of the Originator,Alta,Atribuye la introducción del cálculo de surprisal basado en parser.,COMPLETO,73,1
+24,W10-3411_P06-1036_0,Evaluable,Further Reading,Media,Remite a trabajo inicial sobre cambios de tema.,COMPLETO,73,1
+25,J13-3003_D09-1046_1,Evaluable,Comparison,Alta,Indica que los resultados no son comparables con los del trabajo citado.,COMPLETO,73,1
+26,W12-3131_P03-1054_0,Evaluable,Application,Alta,Usa el tokenizador del Stanford parser con opciones por defecto.,COMPLETO,73,1
+27,W11-0118_W10-1809_0,Evaluable,Basis,Alta,Reutiliza y amplía las anotaciones propias del trabajo citado.,COMPLETO,73,1
+28,Q13-1005_P09-1011_0,Evaluable,Background,Alta,Revisión de trabajo previo sobre aprendizaje con datos fundamentados.,COMPLETO,73,1
+29,P12-1066_D10-1120_1,Evaluable,Background,Alta,Enumera trabajos que usan conjuntos de etiquetas comunes en parsing multilingüe.,COMPLETO,73,1
+30,N13-1016_W11-2503_0,Evaluable,Background,Alta,Enumera trabajos que combinan visión por computador con PLN.,COMPLETO,73,1
+31,W13-0307_D08-1074_0,Evaluable,Evidence,Alta,Respalda que los tipos de evento indican el tiempo verbal.,COMPLETO,73,1
+32,W07-1102_W03-1812_0,Evaluable,Background,Alta,Resume investigación previa centrada en la no composicionalidad de MWEs.,COMPLETO,73,1
+33,P08-3003_P00-1010_0,Evaluable,Background,Alta,Trabajo relacionado que describe el esquema de anotación y método previos.,COMPLETO,73,1
+34,W06-1638_P05-1010_3,Evaluable,Application,Alta,Sigue el procedimiento de palabras desconocidas del trabajo citado.,COMPLETO,73,1
+35,P09-1076_W01-1007_0,Evaluable,Background,Alta,Cita trabajos previos de clasificación automática de géneros.,COMPLETO,73,1
+36,W09-2904_W02-2001_1,Evaluable,Further Reading,Media,Remite a un trabajo que trata las combinaciones verbo-partícula.,COMPLETO,73,1
+37,W12-3157_W06-3105_1,Evaluable,Background,Alta,Resume literatura previa sobre sobreajuste en modelos de frases generativos.,COMPLETO,73,1
+38,D12-1047_P10-2041_1,Evaluable,Background,Alta,Describe trabajo previo de selección de datos por entropía cruzada.,COMPLETO,73,1
+39,N12-1092_W03-0203_0,Evaluable,Background,Alta,Enumera sistemas previos de generación de preguntas.,COMPLETO,73,1
+40,W99-0621_P98-2186_0,Evaluable,Evidence,Media,Respalda que SNoW se ha usado con éxito en tareas de PLN.,COMPLETO,73,1
+41,P11-1109_P05-1074_0,Evaluable,Further Reading,Alta,Remite a otros métodos SMT con 'among others'.,COMPLETO,73,1
+42,J12-1002_P10-1093_2,Evaluable,Evidence,Media,Respalda la descripción de la suma vectorial como multiplicación de matrices.,COMPLETO,73,1
+43,D13-1161_D12-1069_0,Evaluable,Background,Alta,Enumera aplicaciones previas de parsers semánticos aprendidos.,COMPLETO,73,1
+44,D10-1096_W09-1403_1,Evaluable,Background,Media,Describe trabajo previo que propuso escenarios de colapso.,COMPLETO,73,1
+45,W10-1757_W08-0804_0,Evaluable,Evidence,Alta,Respalda que el hashing aleatorio reduce dimensión sin pérdida de fidelidad.,COMPLETO,73,1
+46,D12-1091_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford parser como uno de los modelos base.,COMPLETO,73,1
+47,P13-1122_D11-1134_0,Evaluable,Background,Alta,Enumera sistemas abiertos de extracción de relaciones.,COMPLETO,73,1
+48,J09-3004_P98-2127_4,Evaluable,Identification of the Originator,Media,Atribuye la medida de similitud a quien la desarrolló.,COMPLETO,73,1
+49,W13-0805_D11-1018_0,Evaluable,Background,Alta,Describe trabajo previo sobre reglas de reordenamiento.,COMPLETO,73,1
+50,W12-1901_D11-1122_0,Evaluable,Background,Alta,Enumera enfoques previos de inducción de roles semánticos.,COMPLETO,73,1
+51,P10-1112_N07-1051_2,Evaluable,Further Reading,Alta,Remite a los trabajos que describen los detalles del objetivo.,COMPLETO,73,1
+52,W10-3808_A00-2013_0,Evaluable,Background,Alta,Describe trabajo previo que usó diccionarios como fuente de análisis morfológicos.,COMPLETO,73,1
+53,W09-1420_W09-1401_1,Evaluable,Application,Media,Usa la Tarea 3 de la tarea compartida citada para experimentos.,COMPLETO,73,1
+54,W13-0801_P03-1040_0,Evaluable,Evidence,Alta,Respalda que las frases son menos ambiguas que las palabras individuales.,COMPLETO,73,1
+55,P97-1058_E91-1027_0,Evaluable,Comparison,Media,Sección de comparación con trabajo previo sobre aproximación de gramáticas.,COMPLETO,73,1
+56,W13-1615_P07-1123_0,Evaluable,Background,Alta,Enumera trabajos de clasificación de subjetividad en otros idiomas.,COMPLETO,73,1
+57,P11-1144_P06-1101_0,Evaluable,Background,Alta,Cita trabajos de inducción automática de recursos semánticos.,COMPLETO,73,1
+58,W12-2004_P11-1019_4,Evaluable,Gap,Alta,Señala que el sistema previo no consideró la distribución de POS por grado.,COMPLETO,73,1
+59,P11-1055_P08-1004_0,Evaluable,Background,Alta,Enumera sistemas Open IE existentes.,COMPLETO,73,1
+60,E09-1053_P07-1021_1,Evaluable,Evidence,Alta,Respalda la afirmación sobre árboles de dependencia derivables de TAG.,COMPLETO,73,1
+61,W10-3807_W05-0904_1,Evaluable,Background,Alta,Describe el trabajo previo que propuso STM.,COMPLETO,73,1
+62,W02-2010_E99-1023_0,Evaluable,Application,Alta,Usa el método de etiquetado IOB citado.,COMPLETO,73,1
+63,J06-2003_W02-0909_0,Evaluable,Further Reading,Alta,Remite a una discusión más detallada en el trabajo citado.,COMPLETO,73,1
+64,Q13-1012_N12-1054_1,Evaluable,Comparison,Alta,Compara la precisión con sistemas basados en grafos de tercer orden.,COMPLETO,73,1
+65,W13-3408_W11-0705_0,Evaluable,Background,Alta,Enumera usos amplios de kernels de convolución en PLN.,COMPLETO,73,1
+66,P04-1087_P02-1047_1,Evaluable,Evidence,Alta,Respalda que las co-ocurrencias léxicas son útiles en tareas de discurso.,COMPLETO,73,1
+67,W12-3122_P07-2045_0,Evaluable,Application,Alta,Usa el toolkit Moses para extraer la tabla de frases.,COMPLETO,73,1
+68,W08-1106_N04-1019_0,Evaluable,Background,Alta,Presenta y describe el método Pyramid como método de evaluación existente.,COMPLETO,73,1
+69,W03-0403_W02-2030_1,Evaluable,Background,Alta,Resume hallazgos previos sobre modelos log-lineales en Redwoods.,COMPLETO,73,1
+70,W02-1109_E99-1001_1,Evaluable,Evidence,Alta,Respalda la dependencia de los gazetteers con resultados reportados.,COMPLETO,73,1
+71,P09-1002_S07-1009_1,Evaluable,Further Reading,Alta,Remite a más información sobre LEXSUB.,COMPLETO,73,1
+72,J13-3004_P02-1047_0,Evaluable,Evidence,Alta,Respalda que los opuestos indican la relación de contraste.,COMPLETO,73,1
+73,P13-1047_P02-1047_1,Evaluable,Background,Alta,Describe el enfoque basado en patrones del trabajo citado.,COMPLETO,73,1
+74,P12-1036_P11-1026_0,Evaluable,Background,Alta,Revisión de trabajos previos sobre modelado de tópicos.,COMPLETO,73,1
+75,W04-0404_W02-2016_0,Evaluable,Application,Alta,Usa CaboCha para obtener etiquetas y dependencias en japonés.,COMPLETO,73,1
+76,W13-0102_N12-1065_0,Evaluable,Background,Alta,Enumera aplicaciones de LDA en PLN.,COMPLETO,73,1
+77,A00-2015_P98-1083_3,Evaluable,Comparison,Alta,Compara el modelo con uno aprendido con árboles de decisión.,COMPLETO,73,1
+78,W11-1402_W06-1650_4,Evaluable,Evidence,Alta,Respalda la inclusión de rasgos sociales por su influencia en la utilidad percibida.,COMPLETO,73,1
+79,D11-1096_P05-1024_0,Evaluable,Background,Alta,Enumera trabajos de kernels estructurales.,COMPLETO,73,1
+80,W06-2917_P85-1009_0,Evaluable,Background,Media,Menciona trabajo relacionado inspirado por Angluin.,COMPLETO,73,1
+81,N13-1037_W09-2010_0,Evaluable,Background,Alta,Enumera enfoques previos de normalización.,COMPLETO,73,1
+82,P12-1066_P10-1131_0,Evaluable,Background,Alta,Describe trabajo previo sobre árboles filogenéticos en transferencia multilingüe.,COMPLETO,73,1
+83,P13-4014_W12-3102_0,Evaluable,Further Reading,Alta,Remite al lector a la tarea compartida para un panorama de algoritmos.,COMPLETO,73,1
+84,W11-2020_W10-4304_1,Evaluable,Background,Alta,Describe resultado de trabajo previo con HMMs.,COMPLETO,73,1
+85,J12-4002_P11-2119_0,Evaluable,Background,Media,Menciona trabajo reciente sobre restringir celdas del chart.,COMPLETO,73,1
+86,E12-1003_P11-1112_6,Evaluable,Comparison,Alta,Compara los resultados de reimplementación con los reportados.,COMPLETO,73,1
+87,E06-1009_P04-1009_1,Evaluable,Background,Alta,Describe la extensión previa del enfoque de Polifroni et al.,COMPLETO,73,1
+88,P10-1145_P07-2045_0,Evaluable,Comparison,Media,Contrasta modelos árbol a árbol con el sistema Moses.,COMPLETO,73,1
+89,W11-2847_W11-2010_1,Evaluable,Gap,Alta,Señala limitaciones de métodos basados en corpus previos.,COMPLETO,73,1
+90,W00-1308_W96-0213_5,Evaluable,Evidence,Alta,Respalda la afirmación de inconsistencia de etiquetado en datos de entrenamiento.,COMPLETO,73,1
+91,S13-2025_P06-2064_0,Evaluable,Evidence,Alta,Respalda el dato sobre tipos de compuestos que ocurren una vez.,COMPLETO,73,1
+92,D08-1002_W07-1431_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre contextos monótonos ascendentes.,COMPLETO,73,1
+93,N10-1063_N09-2024_0,Evaluable,Background,Alta,Enumera trabajos previos sobre alineación automática de documentos.,COMPLETO,73,1
+94,D11-1080_W05-0821_1,Evaluable,Background,Alta,Describe resultados previos sobre modelos de lenguaje factorizados.,COMPLETO,73,1
+95,D09-1031_W09-1905_1,Evaluable,Further Reading,Alta,Remite a más detalles sobre la configuración de anotación.,COMPLETO,73,1
+96,W10-0202_P04-1045_0,Evaluable,Evidence,Media,Respalda el consenso sobre el uso de rasgos léxicos.,COMPLETO,73,1
+97,A00-1031_W96-0213_2,Evaluable,Comparison,Alta,Compara la exactitud del sistema con la reportada por el trabajo citado.,COMPLETO,73,1
+98,W08-2102_P07-1079_0,Evaluable,Further Reading,Alta,Remite con 'See also' a un método relacionado.,COMPLETO,73,1
+99,N07-2025_P04-1043_0,Evaluable,Application,Media,Usa el método de kernel PAK definido en el trabajo citado como sistema.,COMPLETO,73,1
+100,P12-2057_P05-1033_0,Evaluable,Background,Alta,Presenta modelos jerárquicos como estado del arte en SMT.,COMPLETO,73,1

@@ -156,3 +156,82 @@ def test_probabilidades_y_filas_de_prediccion(base, tmp_path):
     assert set(filas[0]) == set(exportar.ESQUEMA_PREDICCION) and filas[0]["case_id"] == "c200"
     paired = pytest.importorskip("src.evaluation.commercial.paired_benchmark")
     assert len(paired.index_predictions(filas, {e["context_id"] for e in ej}, "t")) == 5
+
+
+# ---------------------------------------------------------------- perdida suave, pesos, callback
+def _logits_y():
+    torch.manual_seed(0)
+    return torch.randn(6, 9), torch.tensor([0, 3, 8, 1, 1, 5])
+
+
+def test_perdida_suave_one_hot_igual_a_la_dura():
+    logits, y = _logits_y()
+    pesos = torch.tensor(dominio.pesos_clase(y.tolist()), dtype=torch.float32)
+    dura = torch.nn.CrossEntropyLoss(weight=pesos)(logits, y)
+    suave = ct.calcular_perdida(logits, y, pesos, objetivo=torch.nn.functional.one_hot(y, 9).float())
+    assert torch.allclose(dura, suave, atol=1e-6)
+
+
+def test_perdida_sin_campos_opcionales_igual_a_cross_entropy():
+    logits, y = _logits_y()
+    assert torch.allclose(ct.calcular_perdida(logits, y), torch.nn.CrossEntropyLoss()(logits, y),
+                          atol=1e-6)
+
+
+def test_pesos_de_muestra_iguales_a_uno_no_cambian_la_perdida():
+    logits, y = _logits_y()
+    pesos = torch.tensor(dominio.pesos_clase(y.tolist()), dtype=torch.float32)
+    base_ = ct.calcular_perdida(logits, y, pesos)
+    assert torch.allclose(base_, ct.calcular_perdida(logits, y, pesos, peso=torch.ones(6)), atol=1e-6)
+    assert not torch.allclose(base_, ct.calcular_perdida(logits, y, pesos, peso=torch.tensor(
+        [1.0, 0.1, 1.0, 1.0, 1.0, 1.0])), atol=1e-6)
+
+
+def test_entrenar_con_objetivo_peso_y_callback(base, tmp_path):
+    ruta, tok = base
+    hp = ct.Hiperparametros(max_len=128, epocas=2, batch_size=4, acumulacion=2, paciencia=5)
+    train = ejemplos(tok, conjunto(20), "B")
+    for e in train:
+        e["objetivo"] = [1.0 if i == e["indice"] else 0.0 for i in range(9)]
+        e["peso"] = 0.5
+    vistas = []
+    modelo = ct.ClasificadorCLS(ruta, 1)
+    res = ct.entrenar(modelo, train, ejemplos(tok, conjunto(8, 100), "B"), tok.pad_id, 1, hp,
+                      tmp_path / "kd", torch.device("cpu"), al_terminar_epoca=vistas.append)
+    assert [v["epoca"] for v in vistas] == [1, 2] == [h["epoca"] for h in res["historial"]]
+    assert all(v["loss_train"] == v["loss_train"] for v in vistas)  # finita (no NaN)
+
+
+def test_preparar_ejemplos_conserva_objetivo_y_peso(base):
+    _, tok = base
+    entradas = conjunto(4)
+    entradas[0].update(objetivo=[0.7, 0.3] + [0.0] * 7, peso=0.4)
+    res = ejemplos(tok, entradas, "B")
+    assert res[0]["objetivo"] == [0.7, 0.3] + [0.0] * 7 and res[0]["peso"] == 0.4
+    assert "objetivo" not in res[1] and "peso" not in res[1]  # solo cuando la entrada los trae
+
+
+def test_perdida_kd_y_ponderada_cambia_el_entrenamiento_pasando_por_preparar_ejemplos(base, tmp_path):
+    """Regresion: `preparar_ejemplos` descartaba `objetivo`/`peso` y kd/ponderado == duro."""
+    ruta, tok = base
+    hp = ct.Hiperparametros(max_len=128, epocas=1, batch_size=4, acumulacion=2)
+
+    def perdida(extra, nombre):
+        entradas = conjunto(20)
+        for e in entradas:
+            e.update(extra(e))
+        ct.fijar_determinismo(1)
+        res = ct.entrenar(ct.ClasificadorCLS(ruta, 1), ejemplos(tok, entradas, "B"),
+                          ejemplos(tok, conjunto(8, 100), "B"), tok.pad_id, 1, hp,
+                          tmp_path / nombre, torch.device("cpu"))
+        return res["historial"][0]["loss_train"]
+
+    duro = perdida(lambda e: {}, "duro")
+    kd = perdida(lambda e: {"objetivo": [0.6 if i == e["indice"] else 0.05 for i in range(9)]}, "kd")
+    pond = perdida(lambda e: {"peso": 0.2 if e["indice"] == 0 else 1.0}, "pond")
+    assert kd != duro and pond != duro
+
+
+def test_entrenar_reporta_pico_de_memoria_gpu_solo_en_cuda(base, tmp_path):
+    _, res, _ = entrenar(base, tmp_path)
+    assert "gpu_mem_pico_gb" in res and res["gpu_mem_pico_gb"] is None  # CPU

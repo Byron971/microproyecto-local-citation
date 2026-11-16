@@ -1,0 +1,456 @@
+{
+  "por_clase": {
+    "M": [
+      {
+        "clase": "Background",
+        "soporte": 22,
+        "A": 0.0,
+        "B": 0.1764705882352941,
+        "B-A": 0.1764705882352941
+      },
+      {
+        "clase": "Gap",
+        "soporte": 2,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Basis",
+        "soporte": 1,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Comparison",
+        "soporte": 7,
+        "A": 0.09859154929577464,
+        "B": 0.10606060606060608,
+        "B-A": 0.007469056764831436
+      },
+      {
+        "clase": "Application",
+        "soporte": 25,
+        "A": 0.08571428571428572,
+        "B": 0.09090909090909091,
+        "B-A": 0.0051948051948051965
+      },
+      {
+        "clase": "Improvement / Modification",
+        "soporte": 2,
+        "A": 0.03636363636363636,
+        "B": 0.04347826086956522,
+        "B-A": 0.007114624505928861
+      },
+      {
+        "clase": "Evidence",
+        "soporte": 4,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Identification of the Originator",
+        "soporte": 1,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Further Reading",
+        "soporte": 0,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      }
+    ],
+    "S": [
+      {
+        "clase": "Background",
+        "soporte": 25,
+        "A": 0.38201487491548347,
+        "B": 0.5297049441786285,
+        "B-A": 0.14769006926314499
+      },
+      {
+        "clase": "Gap",
+        "soporte": 3,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Basis",
+        "soporte": 5,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Comparison",
+        "soporte": 8,
+        "A": 0.11290322580645161,
+        "B": 0.075,
+        "B-A": -0.03790322580645161
+      },
+      {
+        "clase": "Application",
+        "soporte": 19,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Improvement / Modification",
+        "soporte": 0,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Evidence",
+        "soporte": 1,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Identification of the Originator",
+        "soporte": 1,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      },
+      {
+        "clase": "Further Reading",
+        "soporte": 2,
+        "A": 0.0,
+        "B": 0.0,
+        "B-A": 0.0
+      }
+    ]
+  },
+  "estratos": {
+    "M:citado_visto_en_train": {
+      "n": 25,
+      "A": 0.038029100529100524,
+      "B": 0.05849361967009026,
+      "B-A": 0.020464519140989734
+    },
+    "M:citado_no_visto": {
+      "n": 39,
+      "A": 0.013603891168870648,
+      "B": 0.037511032198444594,
+      "B-A": 0.023907141029573947
+    },
+    "S:citado_visto_en_train": {
+      "n": 25,
+      "A": 0.05624359537403016,
+      "B": 0.06843292872704637,
+      "B-A": 0.01218933335301621
+    },
+    "S:citado_no_visto": {
+      "n": 39,
+      "A": 0.053956115359624135,
+      "B": 0.06749834527612306,
+      "B-A": 0.013542229916498921
+    }
+  },
+  "truncamiento": {
+    "M:A": {
+      "casos": 146,
+      "longitud_media": 226.66438356164383,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.00684931506849315,
+          "tokens_truncados_media": 1.2465753424657535,
+          "tokens_truncados_max": 182
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        }
+      }
+    },
+    "M:B": {
+      "casos": 146,
+      "longitud_media": 492.56849315068496,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.3835616438356164,
+          "tokens_truncados_media": 22.17808219178082,
+          "tokens_truncados_max": 219
+        },
+        "chunk_2": {
+          "frac_truncado": 0.4657534246575342,
+          "tokens_truncados_media": 28.924657534246574,
+          "tokens_truncados_max": 263
+        },
+        "chunk_3": {
+          "frac_truncado": 0.4589041095890411,
+          "tokens_truncados_media": 35.32876712328767,
+          "tokens_truncados_max": 239
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        }
+      }
+    },
+    "S:A": {
+      "casos": 146,
+      "longitud_media": 226.66438356164383,
+      "segmentos": {
+        "abstract": {
+          "frac_truncado": 0.00684931506849315,
+          "tokens_truncados_media": 1.2465753424657535,
+          "tokens_truncados_max": 182
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        },
+        "titulo": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        }
+      }
+    },
+    "S:B": {
+      "casos": 146,
+      "longitud_media": 492.56849315068496,
+      "segmentos": {
+        "chunk_1": {
+          "frac_truncado": 0.3835616438356164,
+          "tokens_truncados_media": 22.17808219178082,
+          "tokens_truncados_max": 219
+        },
+        "chunk_2": {
+          "frac_truncado": 0.4657534246575342,
+          "tokens_truncados_media": 28.924657534246574,
+          "tokens_truncados_max": 263
+        },
+        "chunk_3": {
+          "frac_truncado": 0.4589041095890411,
+          "tokens_truncados_media": 35.32876712328767,
+          "tokens_truncados_max": 239
+        },
+        "contexto": {
+          "frac_truncado": 0.0,
+          "tokens_truncados_media": 0.0,
+          "tokens_truncados_max": 0
+        }
+      }
+    }
+  },
+  "referencia_104_sobre_V_B": {
+    "M-s42": {
+      "f1_macro": 0.6660181063936932,
+      "n": 146
+    },
+    "M-s1234": {
+      "f1_macro": 0.6853106475747985,
+      "n": 146
+    },
+    "M-s2026": {
+      "f1_macro": 0.6779554185033637,
+      "n": 146
+    },
+    "S-s42": {
+      "f1_macro": 0.5211041091400015,
+      "n": 146
+    },
+    "S-s1234": {
+      "f1_macro": 0.4839034032141578,
+      "n": 146
+    },
+    "S-s2026": {
+      "f1_macro": 0.4715950235447064,
+      "n": 146
+    }
+  },
+  "cobertura": {
+    "train_M": {
+      "candidatos": 300,
+      "interseccion": 151,
+      "cobertura_pct": 50.33,
+      "excluidos_por_motivo": {
+        "ValueError": 1,
+        "ocl_404": 2,
+        "parrafo_largo": 146
+      },
+      "por_clase_candidatos": {
+        "Background": 126,
+        "Gap": 9,
+        "Basis": 9,
+        "Comparison": 51,
+        "Application": 71,
+        "Improvement / Modification": 5,
+        "Evidence": 24,
+        "Identification of the Originator": 2,
+        "Further Reading": 3
+      },
+      "por_clase_interseccion": {
+        "Background": 62,
+        "Gap": 4,
+        "Basis": 4,
+        "Comparison": 21,
+        "Application": 42,
+        "Improvement / Modification": 4,
+        "Evidence": 12,
+        "Identification of the Originator": 1,
+        "Further Reading": 1
+      },
+      "por_clase_excluidos": {
+        "Background": 64,
+        "Gap": 5,
+        "Basis": 5,
+        "Comparison": 30,
+        "Application": 29,
+        "Improvement / Modification": 1,
+        "Evidence": 12,
+        "Identification of the Originator": 1,
+        "Further Reading": 2
+      }
+    },
+    "train_S": {
+      "candidatos": 300,
+      "interseccion": 151,
+      "cobertura_pct": 50.33,
+      "excluidos_por_motivo": {
+        "ValueError": 1,
+        "ocl_404": 2,
+        "parrafo_largo": 146
+      },
+      "por_clase_candidatos": {
+        "Background": 140,
+        "Gap": 10,
+        "Basis": 17,
+        "Comparison": 52,
+        "Application": 47,
+        "Improvement / Modification": 4,
+        "Evidence": 24,
+        "Identification of the Originator": 0,
+        "Further Reading": 6
+      },
+      "por_clase_interseccion": {
+        "Background": 71,
+        "Gap": 4,
+        "Basis": 13,
+        "Comparison": 21,
+        "Application": 25,
+        "Improvement / Modification": 3,
+        "Evidence": 12,
+        "Identification of the Originator": 0,
+        "Further Reading": 2
+      },
+      "por_clase_excluidos": {
+        "Background": 69,
+        "Gap": 6,
+        "Basis": 4,
+        "Comparison": 31,
+        "Application": 22,
+        "Improvement / Modification": 1,
+        "Evidence": 12,
+        "Identification of the Originator": 0,
+        "Further Reading": 4
+      }
+    },
+    "V": {
+      "candidatos": 300,
+      "interseccion": 146,
+      "cobertura_pct": 48.67,
+      "excluidos_por_motivo": {
+        "ValueError": 2,
+        "ocl_404": 1,
+        "parrafo_largo": 113,
+        "sin_descargar": 38
+      },
+      "por_clase_candidatos": {
+        "Background": 113,
+        "Gap": 18,
+        "Basis": 10,
+        "Comparison": 51,
+        "Application": 68,
+        "Improvement / Modification": 8,
+        "Evidence": 25,
+        "Identification of the Originator": 7,
+        "Further Reading": 0
+      },
+      "por_clase_interseccion": {
+        "Background": 56,
+        "Gap": 8,
+        "Basis": 4,
+        "Comparison": 26,
+        "Application": 36,
+        "Improvement / Modification": 4,
+        "Evidence": 10,
+        "Identification of the Originator": 2,
+        "Further Reading": 0
+      },
+      "por_clase_excluidos": {
+        "Background": 57,
+        "Gap": 10,
+        "Basis": 6,
+        "Comparison": 25,
+        "Application": 32,
+        "Improvement / Modification": 4,
+        "Evidence": 15,
+        "Identification of the Originator": 5,
+        "Further Reading": 0
+      }
+    },
+    "gold_v2": {
+      "candidatos": 300,
+      "interseccion": 164,
+      "cobertura_pct": 54.67,
+      "excluidos_por_motivo": {
+        "menos_de_3_chunks": 1,
+        "parrafo_largo": 135
+      },
+      "por_clase_candidatos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_interseccion": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      },
+      "por_clase_excluidos": {
+        "Background": 0,
+        "Gap": 0,
+        "Basis": 0,
+        "Comparison": 0,
+        "Application": 0,
+        "Improvement / Modification": 0,
+        "Evidence": 0,
+        "Identification of the Originator": 0,
+        "Further Reading": 0
+      }
+    }
+  }
+}

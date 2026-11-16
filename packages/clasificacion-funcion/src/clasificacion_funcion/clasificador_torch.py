@@ -26,6 +26,8 @@ from . import dominio, exportar, revision
 
 # Debe fijarse antes de la primera operacion CUDA para que los matmul sean deterministas.
 os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+# Menos fragmentacion de memoria en corridas largas (tambien antes de la primera operacion CUDA).
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
 
 @dataclass(frozen=True)
@@ -110,8 +112,12 @@ def preparar_ejemplos(entradas: list[dict], tipo: str, tokenizador, max_len: int
     for e in entradas:
         segmentos = dominio.tokenizar_segmentos(dominio.construir_segmentos(e, tipo), tokenizador)
         r = dominio.ensamblar(segmentos, max_len, tokenizador.cls_id, tokenizador.sep_id)
-        ejemplos.append({"context_id": e["context_id"], "input_ids": r["input_ids"],
-                         "truncados": r["truncados"], "indice": e.get("indice")})
+        ejemplo = {"context_id": e["context_id"], "input_ids": r["input_ids"],
+                   "truncados": r["truncados"], "indice": e.get("indice")}
+        for campo in ("objetivo", "peso"):  # perdidas kd / ponderado: no deben perderse aqui
+            if e.get(campo) is not None:
+                ejemplo[campo] = e[campo]
+        ejemplos.append(ejemplo)
     return ejemplos
 
 
@@ -140,6 +146,31 @@ def _lote(ejemplos: list[dict], pad_id: int, dispositivo) -> tuple:
     if all(e.get("indice") is not None for e in ejemplos):
         etiquetas = torch.tensor([e["indice"] for e in ejemplos], dtype=torch.long)
     return ids.to(dispositivo), mask.to(dispositivo), (etiquetas.to(dispositivo) if etiquetas is not None else None)
+
+
+def _extras(ejemplos: list[dict], dispositivo) -> tuple:
+    """(objetivo, peso) del lote; None cuando los ejemplos no traen el campo opcional."""
+    objetivo = peso = None
+    if all(e.get("objetivo") is not None for e in ejemplos):
+        objetivo = torch.tensor([e["objetivo"] for e in ejemplos], dtype=torch.float32).to(dispositivo)
+    if all(e.get("peso") is not None for e in ejemplos):
+        peso = torch.tensor([e["peso"] for e in ejemplos], dtype=torch.float32).to(dispositivo)
+    return objetivo, peso
+
+
+def calcular_perdida(logits, y, pesos_clase=None, objetivo=None, peso=None):
+    """Entropia cruzada media ponderada. Con `objetivo` (distribucion de 9 clases) usa etiquetas
+    suaves; `peso` pondera cada muestra. Sin campos opcionales == CrossEntropyLoss(weight)."""
+    logp = torch.log_softmax(logits.float(), dim=-1)
+    if objetivo is not None:
+        por_muestra = -(objetivo * logp).sum(-1)
+        w = (objetivo * pesos_clase).sum(-1) if pesos_clase is not None else torch.ones_like(por_muestra)
+    else:
+        por_muestra = nn.functional.nll_loss(logp, y, reduction="none")
+        w = pesos_clase[y] if pesos_clase is not None else torch.ones_like(por_muestra)
+    if peso is not None:
+        w = w * peso
+    return (por_muestra * w).sum() / w.sum()
 
 
 def _autocast(dispositivo):
@@ -202,16 +233,23 @@ def hardware() -> dict:
 
 # ---------------------------------------------------------------- entrenamiento
 def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id: int,
-             semilla: int, hp: Hiperparametros, salida: Path, dispositivo) -> dict:
+             semilla: int, hp: Hiperparametros, salida: Path, dispositivo,
+             al_terminar_epoca=None) -> dict:
     """Entrena con early stopping sobre macro-F1 de val y guarda el MEJOR checkpoint.
 
     `train`/`val`: ejemplos de `preparar_ejemplos` con `indice`. Devuelve el manifiesto de
-    entrenamiento (historial, mejor epoca, metricas de val, SHA del checkpoint)."""
+    entrenamiento (historial, mejor epoca, metricas de val, SHA del checkpoint).
+
+    Campos opcionales de los ejemplos de `train`: `objetivo` (distribucion de 9 clases, perdida
+    de etiquetas suaves) y `peso` (ponderacion por muestra). `al_terminar_epoca(registro)` se
+    llama tras cada epoca con el registro del historial."""
     if not train or not val:
         raise ValueError("Se necesitan ejemplos de train y val.")
     if any(e["indice"] is None for e in (*train, *val)):
         raise ValueError("train y val deben tener etiquetas.")
     fijar_determinismo(semilla)
+    if dispositivo.type == "cuda":
+        torch.cuda.reset_peak_memory_stats(dispositivo)
     modelo.to(dispositivo)
     salida.mkdir(parents=True, exist_ok=True)
     sin_decay = ("bias", "LayerNorm.weight")
@@ -228,7 +266,7 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
     plan = get_linear_schedule_with_warmup(optimizador, round(hp.warmup * total), total)
     pesos = (torch.tensor(dominio.pesos_clase([e["indice"] for e in train]), dtype=torch.float32)
              if hp.pesos_clase else None)
-    perdida = nn.CrossEntropyLoss(weight=pesos.to(dispositivo) if pesos is not None else None)
+    pesos = pesos.to(dispositivo) if pesos is not None else None
     generador = torch.Generator().manual_seed(semilla)
     cargador = DataLoader(train, batch_size=hp.batch_size, shuffle=True, generator=generador,
                           collate_fn=lambda b: b)
@@ -244,7 +282,8 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
             ids, mask, y = _lote(lote, pad_id, dispositivo)
             with _autocast(dispositivo):
                 logits = modelo(ids, mask)
-            valor = perdida(logits.float(), y)
+            objetivo, peso = _extras(lote, dispositivo)
+            valor = calcular_perdida(logits, y, pesos, objetivo, peso)
             (valor / hp.acumulacion).backward()
             acumulado += float(valor.detach())
             n_lotes += 1
@@ -257,6 +296,8 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
         historial.append({"epoca": epoca, "loss_train": acumulado / n_lotes,
                           "f1_macro_val": m_val["f1_macro"], "accuracy_val": m_val["accuracy"],
                           "segundos": round(time.perf_counter() - t0, 1)})
+        if al_terminar_epoca is not None:
+            al_terminar_epoca(historial[-1])
         if mejor is None or m_val["f1_macro"] > mejor["f1_macro"]:
             mejor, mejor_epoca, sin_mejora = m_val, epoca, 0
             sha = guardar_checkpoint(modelo, ruta_ckpt)
@@ -274,6 +315,8 @@ def entrenar(modelo: ClasificadorCLS, train: list[dict], val: list[dict], pad_id
         "parada_temprana": len(historial) < hp.epocas,
         "historial": historial, "metricas_val": mejor, "checkpoint_sha256": sha,
         "segundos_entrenamiento": round(time.perf_counter() - t_inicio, 1),
+        "gpu_mem_pico_gb": (round(torch.cuda.max_memory_allocated(dispositivo) / 1024 ** 3, 3)
+                            if dispositivo.type == "cuda" else None),
         "hardware": hardware(),
     }
 

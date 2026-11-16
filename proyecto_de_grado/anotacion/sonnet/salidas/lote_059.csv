@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W01-1626_W98-1126_0,Evaluable,Basis,Media,La hipótesis actual se construye sobre el trabajo previo citado.,COMPLETO,59,1
+2,E09-1012_N03-1030_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre análisis del discurso.,COMPLETO,59,1
+3,W98-1207_W97-0307_0,Evaluable,Evidence,Alta,La cita respalda la afirmación sobre la fiabilidad del etiquetado automático.,COMPLETO,59,1
+4,D11-1068_P02-1047_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre relaciones implícitas.,COMPLETO,59,1
+5,W02-2101_P96-1025_0,Evaluable,Application,Alta,Se usa el parser de Collins tal cual.,COMPLETO,59,1
+6,W12-1511_P10-2024_1,Evaluable,Background,Media,Referencia al proyecto y trabajo previo del grupo en el que se enmarca el estudio.,COMPLETO,59,1
+7,J03-3002_W02-1013_0,Evaluable,Basis,Media,Descripción del trabajo propio previo sobre el que se construye el actual.,COMPLETO,59,1
+8,W13-0803_J07-2003_2,Evaluable,Background,Media,Se presentan las gramáticas Hiero como línea base descrita en la literatura.,COMPLETO,59,1
+9,P13-1077_N03-1017_1,Evaluable,Application,Alta,Se usa la heurística de simetrización grow-diag-final-and.,COMPLETO,59,1
+10,P10-1099_W05-0634_1,Evaluable,Comparison,Alta,Se compara el sistema con resultados de otros en tabla.,COMPLETO,59,1
+11,P13-4034_P07-1096_0,Evaluable,Background,Alta,Lista de tareas donde los métodos online han tenido auge.,COMPLETO,59,1
+12,N03-2011_P99-1047_0,Evaluable,Comparison,Alta,Contraste explícito con el enfoque del trabajo citado.,COMPLETO,59,1
+13,D12-1114_P02-1014_1,Evaluable,Background,Media,Se describe el uso previo del clustering best-first y su eficacia.,COMPLETO,59,1
+14,P10-2007_N06-1020_0,Evaluable,Application,Alta,Se usa el parser de Charniak auto-entrenado para anotar los datos.,COMPLETO,59,1
+15,E06-1015_P04-1043_4,Evaluable,Comparison,Alta,Se contrastan los resultados propios con los del trabajo citado.,COMPLETO,59,1
+16,J13-4004_P11-1079_1,Evaluable,Further Reading,Media,Se remite a enfoques semánticos no supervisados como camino a seguir.,COMPLETO,59,1
+17,N04-1026_E03-1072_0,Evaluable,Evidence,Alta,La cita respalda que la interactividad se correlaciona con ganancias de aprendizaje.,COMPLETO,59,1
+18,P13-2074_N03-1017_0,Evaluable,Application,Alta,Se usa el peso léxico como una de las características estándar.,COMPLETO,59,1
+19,P07-1007_P04-1036_1,Evaluable,Background,Media,Se describe el método previo de sentido predominante como contexto.,COMPLETO,59,1
+20,P87-1010_P86-1009_0,Evaluable,Evidence,Alta,La cita sustenta la crítica sobre la ineficiencia computacional de KIMMO.,COMPLETO,59,1
+21,W06-1105_P03-1017_0,Evaluable,Evidence,Media,Respalda la intuición distribucional; 'see e.g.' apunta a soporte general.,COMPLETO,59,1
+22,P11-1021_W06-1626_0,Evaluable,Background,Alta,Se revisa el trabajo existente sobre modelos de lenguaje distribuidos.,COMPLETO,59,1
+23,P12-1066_D10-1120_2,Evaluable,Application,Alta,Se usa el conjunto de etiquetas gruesas universal existente.,COMPLETO,59,1
+24,E12-1017_W04-3250_0,Evaluable,Application,Alta,Se emplea el remuestreo bootstrap pareado para significancia estadística.,COMPLETO,59,1
+25,N04-4040_N01-1016_0,Evaluable,Background,Alta,Se resume trabajo previo sobre detección de ediciones y parsing.,COMPLETO,59,1
+26,D11-1081_P09-1088_0,Evaluable,Improvement / Modification,Media,Método motivado en el muestreador de Gibbs pero adaptado para decodificación.,COMPLETO,59,1
+27,W10-3304_D08-1021_2,Evaluable,Basis,Media,La restricción sintáctica se apoya en la idea introducida en el trabajo citado.,COMPLETO,59,1
+28,W04-3233_N03-1028_0,Evaluable,Evidence,Alta,Respalda la cifra de precisión y recall de los chunkers actuales.,COMPLETO,59,1
+29,P13-2074_N09-2004_0,Evaluable,Background,Alta,Describe el trabajo previo que mostró la utilidad de rasgos semánticos en MT.,COMPLETO,59,1
+30,D13-1177_D12-1062_2,Evaluable,Basis,Media,El modelo propio sigue la estructura del trabajo citado (clasificador local y restricciones globales).,COMPLETO,59,1
+31,P11-2109_D09-1116_1,Evaluable,Background,Media,Ejemplos de práctica común de interpolación en árboles de decisión.,COMPLETO,59,1
+32,W04-3234_N04-1043_0,Evaluable,Evidence,Alta,Se presenta como corroboración sólida del enfoque defendido.,COMPLETO,59,1
+33,W13-3109_W04-1013_0,Evaluable,Application,Alta,Se usan las métricas ROUGE para evaluar.,COMPLETO,59,1
+34,P07-1074_W06-0204_1,Evaluable,Comparison,Alta,Se comparan los resultados propios con los mejores reportados en el trabajo citado.,COMPLETO,59,1
+35,D13-1178_P09-1068_0,Evaluable,Background,Media,Se destaca trabajo seminal previo sobre inducción de esquemas de eventos.,COMPLETO,59,1
+36,D12-1125_D10-1120_1,Evaluable,Background,Alta,Enumeración de enfoques recientes de transferencia.,COMPLETO,59,1
+37,D10-1019_P08-1101_1,Evaluable,Comparison,Alta,Resultados citados en tabla comparativa con el sistema propio.,COMPLETO,59,1
+38,W11-2128_W04-3250_0,Evaluable,Application,Alta,Se usa la prueba de significancia del trabajo citado.,COMPLETO,59,1
+39,P11-1144_N10-1138_4,Evaluable,Basis,Media,"Aprendizaje e inferencia en gran parte similares al trabajo citado, con cambios menores.",COMPLETO,59,1
+40,W13-4006_N12-1072_1,Evaluable,Application,Alta,Se usa el corpus IAC descrito en el trabajo citado.,COMPLETO,59,1
+41,N13-1103_P09-1010_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre mapeo de lenguaje natural a representaciones.,COMPLETO,59,1
+42,W13-2906_P06-3008_0,Evaluable,Evidence,Alta,Respalda el papel de la puntuación como indicadores de segmentación.,COMPLETO,59,1
+43,P08-1061_P02-1017_0,Evaluable,Gap,Media,Señala que trabajos previos no superaron el estado del arte supervisado.,COMPLETO,59,1
+44,P13-1020_D12-1022_5,Evaluable,Further Reading,Media,"Se mencionan aspectos adicionales que podrían añadirse, con referencias.",COMPLETO,59,1
+45,N13-1126_P10-1131_0,Evaluable,Background,Alta,Resumen del estado de métodos de transferencia y comparación general.,COMPLETO,59,1
+46,W09-1110_N04-1043_0,Evaluable,Background,Alta,Se citan enfoques eficaces previos que usan recursos semánticos.,COMPLETO,59,1
+47,N13-1033_J07-2003_0,Evaluable,Further Reading,Baja,Se menciona el modelo jerárquico como siguiente paso futuro; podría ser Background.,COMPLETO,59,1
+48,D13-1030_D12-1115_0,Evaluable,Gap,Media,Se describe un trabajo previo y se anticipa su limitación.,COMPLETO,59,1
+49,W06-1104_P94-1019_0,Evaluable,Background,Alta,Enumeración de enfoques para calcular relación semántica.,COMPLETO,59,1
+50,N10-1145_P04-1054_0,Evaluable,Comparison,Alta,Se contrasta el kernel propio con el CTK aplicado en el trabajo citado.,COMPLETO,59,1
+51,P11-1033_D08-1014_2,Evaluable,Evidence,Alta,Trabajo previo respalda la utilidad de traducir datos etiquetados.,COMPLETO,59,1
+52,W12-5611_N04-4015_0,Evaluable,Identification of the Originator,Media,Se indica que la idea se remonta al trabajo citado.,COMPLETO,59,1
+53,W10-2603_D08-1081_2,Evaluable,Further Reading,Alta,Se remite al trabajo citado para la descripción detallada de los rasgos.,COMPLETO,59,1
+54,W12-6216_W99-0604_0,Evaluable,Background,Media,Se menciona el modelo de plantillas de alineamiento como contexto.,COMPLETO,59,1
+55,P91-1009_P89-1007_0,Evaluable,Further Reading,Media,'cf.' remite a fuentes adicionales sobre los datos.,COMPLETO,59,1
+56,D09-1101_N03-1033_0,Evaluable,Application,Alta,Se usa el etiquetador POS de Stanford.,COMPLETO,59,1
+57,W13-1108_D09-1020_0,Evaluable,Evidence,Alta,Respalda la afirmación de que las expresiones polares son muy ambiguas.,COMPLETO,59,1
+58,W12-2031_W11-2838_0,Evaluable,Background,Alta,Se sitúa la tarea respecto a la edición piloto anterior.,COMPLETO,59,1
+59,W06-1664_P93-1024_0,Evaluable,Identification of the Originator,Alta,Se indica que el clustering distribucional fue propuesto por primera vez en el trabajo citado.,COMPLETO,59,1
+60,J01-4006_P89-1031_0,Evaluable,Further Reading,Alta,Se remite a la discusión de problemas de consistencia en estudios.,COMPLETO,59,1
+61,Q13-1007_P12-1066_0,Evaluable,Comparison,Alta,Se compara el sistema con resultados previamente publicados.,COMPLETO,59,1
+62,W13-4904_P13-2020_0,Evaluable,Background,Alta,Revisión de trabajo relacionado que extiende el enfoque easy-first.,COMPLETO,59,1
+63,J97-3002_J90-2002_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los corpus paralelos aportan restricciones.,COMPLETO,59,1
+64,W07-1425_W05-1202_0,Evaluable,Background,Alta,Enumeración de trabajos que siguen la hipótesis distribucional.,COMPLETO,59,1
+65,W13-4706_W04-1613_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la complejidad de la representación vocálica.,COMPLETO,59,1
+66,N10-1117_W07-2216_0,Evaluable,Evidence,Alta,Respalda que no existe programa dinámico para inferencia marginal no proyectiva.,COMPLETO,59,1
+67,W11-0324_N10-1006_0,Evaluable,Evidence,Media,Respalda que las puntuaciones de confianza del ASR reducen errores.,COMPLETO,59,1
+68,W08-2102_W04-3201_1,Evaluable,Gap,Alta,Se señala la limitación del modelo citado (solo oraciones cortas).,COMPLETO,59,1
+69,W08-0310_P07-2045_0,Evaluable,Application,Alta,Se usa Moses para buscar la mejor oración objetivo.,COMPLETO,59,1
+70,W13-3522_D08-1021_1,Evaluable,Comparison,Alta,Se comparan los acuerdos entre anotadores con los reportados previamente.,COMPLETO,59,1
+71,N10-1040_N04-1023_0,Evaluable,Gap,Media,Se describen reordenadores n-best y sus limitaciones para motivar el enfoque.,COMPLETO,59,1
+72,P10-1034_D08-1022_0,Evaluable,Background,Alta,Enumeración de enfoques de SMT basados en sintaxis.,COMPLETO,59,1
+73,S13-1014_S12-1051_0,Evaluable,Background,Alta,Describe la tarea piloto previa y sus tendencias.,COMPLETO,59,1
+74,P13-2104_P05-1012_1,Evaluable,Application,Alta,Se usan los modelos de parsing de primer y segundo orden.,COMPLETO,59,1
+75,N06-1023_W02-2016_1,Evaluable,Background,Media,Se describe el mejor trabajo previo y sus resultados.,COMPLETO,59,1
+76,P13-2013_P09-1077_3,Evaluable,Comparison,Alta,Contraste explícito ('Unlike') con el trabajo citado.,COMPLETO,59,1
+77,W13-3602_W10-1004_3,Evaluable,Evidence,Alta,Respalda que se observan patrones de error similares en otros corpus.,COMPLETO,59,1
+78,N10-1086_W03-0203_0,Evaluable,Background,Alta,Revisión de trabajos previos sobre generación de preguntas.,COMPLETO,59,1
+79,J05-3004_P02-1014_1,Evaluable,Evidence,Alta,Respalda que el desempeño en SN definidos es inferior.,COMPLETO,59,1
+80,N13-1076_D08-1063_1,Evaluable,Basis,Alta,El enfoque está inspirado en los métodos de datos pseudo-paralelos citados.,COMPLETO,59,1
+81,W12-2017_W12-1507_0,Evaluable,Application,Alta,Se usa el algoritmo GraDe tal como se describe.,COMPLETO,59,1
+82,D13-1064_P04-1014_0,Evaluable,Application,Baja,El contexto está fragmentado; probablemente se usa una herramienta o método citado.,COMPLETO,59,1
+83,P11-1130_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para ajustar los pesos.,COMPLETO,59,1
+84,N09-1014_P07-2045_0,Evaluable,Application,Alta,Se usa el decodificador Moses.,COMPLETO,59,1
+85,W12-1517_W04-1501_0,Evaluable,Evidence,Baja,La cita respalda la definición de la etiqueta RMOD.,COMPLETO,59,1
+86,D13-1184_P11-1138_0,Evaluable,Background,Alta,Se resume el estudio extenso de D2W y sus aplicaciones.,COMPLETO,59,1
+87,N04-2006_W00-0708_3,Evaluable,Comparison,Alta,Se compara la exactitud base con la reportada en el trabajo citado.,COMPLETO,59,1
+88,N12-1026_W04-3201_0,Evaluable,Background,Alta,Enumeración de objetivos de entrenamiento de trabajos previos.,COMPLETO,59,1
+89,P07-1005_P03-1021_0,Evaluable,Application,Alta,Se usa MERT para ajustar pesos.,COMPLETO,59,1
+90,W10-0717_P08-1088_0,Evaluable,Background,Alta,Enumeración de trabajos previos sobre similitud ortográfica y contextual.,COMPLETO,59,1
+91,W98-0715_W91-0209_0,Evaluable,Evidence,Media,La regla léxica citada ejemplifica y respalda la regularidad señalada.,COMPLETO,59,1
+92,W08-0607_P03-1054_1,Evaluable,Application,Alta,Se usa el parser léxico de Stanford.,COMPLETO,59,1
+93,E97-1021_E93-1006_0,Evaluable,Background,Alta,Se describe trabajo previo sobre DOP e implementación.,COMPLETO,59,1
+94,J12-2006_P08-1001_1,Evaluable,Application,Alta,Se usa el etiquetador Phoenix.,COMPLETO,59,1
+95,W08-1206_W04-1908_1,Evaluable,Further Reading,Alta,Remite a fuentes para más detalle.,COMPLETO,59,1
+96,P12-1042_P09-1026_0,Evaluable,Background,Alta,Se describe trabajo previo relacionado.,COMPLETO,59,1
+97,D13-1065_W11-0123_0,Evaluable,Gap,Alta,"Se señala que trabajos previos se centran en oraciones y documentos completos, no en patrones cortos.",COMPLETO,59,1
+98,N13-1032_D11-1045_1,Evaluable,Basis,Alta,El trabajo actual parte del modelo TSP y lo extiende con rasgos de orden superior.,COMPLETO,59,1
+99,W12-1509_P10-1103_0,Evaluable,Background,Alta,Se resumen enfoques estadísticos previos de NLG.,COMPLETO,59,1
+100,J02-1001_E91-1008_0,Evaluable,Background,Alta,Se describen elaboraciones previas del algoritmo.,COMPLETO,59,1

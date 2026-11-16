@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P12-1084_D11-1099_2,Evaluable,Application,Media,"Usan las características de Nissim y de la obra citada como características locales tal cual, como punto de comparación.",COMPLETO,121,1
+2,N13-1015_P12-1024_3,Evaluable,Further Reading,Alta,Remite a la fuente para detalles omitidos por brevedad.,COMPLETO,121,1
+3,P11-2100_N10-1119_0,Evaluable,Background,Media,"Menciona trabajos sobre inducción de léxicos de polaridad como contexto, ortogonales al enfoque propuesto.",COMPLETO,121,1
+4,W11-0221_E03-1008_0,Evaluable,Background,Alta,Enumera trabajos previos de adaptación de dominio en trabajos relacionados.,COMPLETO,121,1
+5,P10-1151_P06-2066_2,Evaluable,Evidence,Media,Se cita para respaldar el hallazgo de que la mayoría de estructuras en treebanks son well-nested y de pequeño gap degree.,COMPLETO,121,1
+6,W09-1703_W02-1111_0,Evaluable,Background,Alta,Menciona una línea de trabajo relacionada (construcción automática de ontologías).,COMPLETO,121,1
+7,D13-1038_P00-1024_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los hablantes no siguen la máxima de cantidad y dan propiedades redundantes.,COMPLETO,121,1
+8,P12-1111_P07-1096_3,Evaluable,Comparison,Media,Contrasta el efecto de la característica B en el trabajo citado con el enfoque propio con lookahead.,COMPLETO,121,1
+9,W12-3015_P10-1031_0,Evaluable,Gap,Media,Señala que estos sistemas no construyen una base de conocimiento probabilística coherente.,COMPLETO,121,1
+10,P06-2057_P00-1065_1,Evaluable,Basis,Media,"Las características convencionales provienen de la primera descripción bien conocida, que es la base de las usadas.",COMPLETO,121,1
+11,W13-2223_W08-1006_0,Evaluable,Application,Alta,Usa el parser de Stanford tal cual para analizar el corpus.,COMPLETO,121,1
+12,E12-1032_P05-1018_9,Evaluable,Comparison,Alta,Explica discrepancias entre sus exactitudes y las del trabajo citado.,COMPLETO,121,1
+13,W06-3319_W04-1213_0,Evaluable,Comparison,Alta,Compara su sistema con los participantes de la tarea compartida JNLPBA.,COMPLETO,121,1
+14,P06-1109_N06-1020_0,Evaluable,Comparison,Media,Contrasta el rendimiento mediocre del PCFG con el de sistemas citados.,COMPLETO,121,1
+15,S12-1002_N10-2012_0,Evaluable,Application,Alta,Usa los modelos de lenguaje del Microsoft Web N-Gram Corpus directamente.,COMPLETO,121,1
+16,P13-2011_P07-1125_1,Evaluable,Background,Alta,Resume enfoques supervisados previos para identificar incertidumbre.,COMPLETO,121,1
+17,S13-1043_P11-2040_0,Evaluable,Application,Alta,Usa el paquete NLTK como herramienta para el experimento.,COMPLETO,121,1
+18,P13-1053_W13-0215_2,Evaluable,Further Reading,Media,"El 'see, e.g.' remite a ejemplos de la literatura sobre el enfoque más común.",COMPLETO,121,1
+19,P08-2019_P03-1031_0,Evaluable,Comparison,Alta,"Contrasta el uso de una lista de estados para incertidumbre con el enfoque propio, que es más formal.",COMPLETO,121,1
+20,W10-1721_N06-1014_0,Evaluable,Background,Media,Menciona herramientas con las que se puede crear la matriz de alineamiento.,COMPLETO,121,1
+21,S10-1003_W02-0808_0,Evaluable,Background,Alta,Cita estudios que muestran la validez de la evidencia interlingüe como contexto de la tarea.,COMPLETO,121,1
+22,J12-2001_W09-1105_1,Evaluable,Comparison,Alta,Compara el sistema de Councill et al. con el de Morante et al. señalando diferencias.,COMPLETO,121,1
+23,W10-0705_N10-1086_3,Evaluable,Comparison,Alta,Los resultados son consistentes con los hallazgos del trabajo citado.,COMPLETO,121,1
+24,W11-4008_P06-2005_0,Evaluable,Gap,Media,"Señala que estudios recientes requieren preprocesamiento pesado, lo que contrasta con el propio enfoque.",COMPLETO,121,1
+25,P09-1088_W06-1600_0,Evaluable,Background,Media,Nota al pie que incluye transductores gramaticales en la definición de modelos basados en frases.,COMPLETO,121,1
+26,W09-2503_P07-2045_0,Evaluable,Application,Alta,Usa Moses para construir los sistemas de traducción.,COMPLETO,121,1
+27,W13-2807_J90-2002_2,Evaluable,Application,Alta,El sistema base se montó con el modelo basado en frases.,COMPLETO,121,1
+28,P07-1074_W06-0204_0,Evaluable,Gap,Alta,"Señala limitaciones de estos enfoques (relaciones binarias, sin roles, sin filtrado).",COMPLETO,121,1
+29,D13-1087_P11-1025_2,Evaluable,Background,Media,"Describe a quienes primero descifraron automáticamente el Zodiac 408, como antecedente.",COMPLETO,121,1
+30,W04-3204_S01-1001_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los métodos supervisados rinden mejor en WSD.,COMPLETO,121,1
+31,N13-1040_N06-1020_0,Evaluable,Background,Alta,Revisa trabajos previos sobre reranking indicando sus mejoras.,COMPLETO,121,1
+32,D08-1028_E03-1032_0,Evaluable,Background,Alta,Describe una línea de trabajo relacionada: traducción asistida por humanos.,COMPLETO,121,1
+33,N13-1046_P07-2045_0,Evaluable,Application,Alta,Usa el decodificador Moses como sistema base.,COMPLETO,121,1
+34,P05-1025_P02-1017_0,Evaluable,Evidence,Alta,Se cita su argumento informal para sustentar la afirmación sobre separabilidad de etiquetas.,COMPLETO,121,1
+35,P10-1074_D09-1015_1,Evaluable,Background,Alta,Describe el trabajo previo escaso en aprendizaje multitarea en NLP.,COMPLETO,121,1
+36,P07-1067_P02-1014_0,Evaluable,Background,Alta,Resume que trabajos previos usan léxicos semánticos como WordNet.,COMPLETO,121,1
+37,W12-4501_P08-4003_0,Evaluable,Application,Alta,El sistema se construye sobre la herramienta BART usada tal cual.,COMPLETO,121,1
+38,Q13-1035_W07-0733_0,Evaluable,Background,Alta,Cita trabajos sobre combinación log-lineal en arquitecturas SMT.,COMPLETO,121,1
+39,P09-1006_N06-1020_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el auto-entrenamiento ayuda al análisis sintáctico.,COMPLETO,121,1
+40,W13-3516_N01-1016_0,Evaluable,Evidence,Media,Aporta un resultado que apoya la decisión de no eliminar las ediciones.,COMPLETO,121,1
+41,P04-1064_W03-0305_0,Evaluable,Comparison,Alta,Compara resultados del sistema citado con el propio en AER.,COMPLETO,121,1
+42,D10-1063_N09-1026_1,Evaluable,Background,Media,"Describe la Forma Normal Léxica propuesta en trabajo previo, que luego se discute.",COMPLETO,121,1
+43,J02-3004_W95-0103_0,Evaluable,Background,Media,Menciona el uso previo exitoso de modelos back-off en desambiguación de adjunción PP.,COMPLETO,121,1
+44,D12-1062_D08-1073_8,Evaluable,Background,Alta,Enumera trabajos previos que formularon el razonamiento temporal como ILP.,COMPLETO,121,1
+45,D13-1005_P08-1016_1,Evaluable,Evidence,Alta,"Respalda que GGJ sobresegmenta con entradas ruidosas, y los resultados lo replican.",COMPLETO,121,1
+46,P10-1052_P07-1096_0,Evaluable,Comparison,Alta,Compara su tasa de error con los mejores resultados de la tarea.,COMPLETO,121,1
+47,W05-0824_P00-1056_0,Evaluable,Application,Alta,Usa Giza para obtener el alineamiento de palabras.,COMPLETO,121,1
+48,S12-1056_S12-1048_0,Evaluable,Background,Media,Presenta la tarea SpRL de SemEval-2012 que aborda el trabajo.,COMPLETO,121,1
+49,W06-1619_P04-1014_1,Evaluable,Background,Alta,Describe el efecto del supertagging en un parser CCG como trabajo previo.,COMPLETO,121,1
+50,N13-1037_W13-1102_0,Evaluable,Evidence,Media,Respalda la explicación sobre la transcripción ortográfica de la variación fonológica.,COMPLETO,121,1
+51,P11-1118_P08-2011_2,Evaluable,Identification of the Originator,Alta,Indica que el uso del resolvedor generativo de pronombres para coherencia se originó en ese trabajo.,COMPLETO,121,1
+52,P07-1128_P03-1071_0,Evaluable,Background,Alta,Describe algoritmos existentes de cohesión léxica como LCSEG.,COMPLETO,121,1
+53,W00-0737_W95-0107_0,Evaluable,Comparison,Alta,Compara las relaciones estructurales propias con B-Chunk e I-Chunk del trabajo citado.,COMPLETO,121,1
+54,W10-4146_P04-1054_0,Evaluable,Background,Alta,"Enumera aplicaciones del procesamiento de dependencias, incluida extracción de relaciones.",COMPLETO,121,1
+55,W11-3906_P02-1046_0,Evaluable,Evidence,Alta,Respalda que el supuesto de independencia puede relajarse.,COMPLETO,121,1
+56,W10-3017_W09-1304_1,Evaluable,Comparison,Alta,Compara explícitamente el sistema propio con el estado del arte citado.,COMPLETO,121,1
+57,W10-1903_W09-1403_0,Evaluable,Background,Media,Informa del resultado del mejor sistema como contexto del estado del arte en extracción de PTM.,COMPLETO,121,1
+58,N09-1046_P08-1115_2,Evaluable,Evidence,Media,Respalda que la búsqueda puede hacerse eficientemente con programación dinámica.,COMPLETO,121,1
+59,J12-1001_P07-1101_0,Evaluable,Background,Media,Resume los resultados de un estudio previo de percepción sobre 'okay'.,COMPLETO,121,1
+60,W10-3304_P05-1074_3,Evaluable,Comparison,Alta,Es el segundo método con el que se compara; se indica quién lo introdujo.,COMPLETO,121,1
+61,J11-3004_W07-2216_0,Evaluable,Background,Alta,Describe el modelo edge-factored y el parser MST de trabajo previo.,COMPLETO,121,1
+62,D10-1107_W09-3714_0,Evaluable,Evidence,Alta,Respalda la afirmación de que muchas inferencias textuales son composicionales.,COMPLETO,121,1
+63,W12-4209_P03-2041_0,Evaluable,Identification of the Originator,Baja,Atribuye el entrenamiento EM hacia adelante-atrás a sus fuentes originales en una tabla.,COMPLETO,121,1
+64,P98-1083_P96-1025_0,Evaluable,Background,Alta,Describe el parser de Collins como antecedente de los parsers de alta precisión.,COMPLETO,121,1
+65,W13-4902_P05-1013_0,Evaluable,Application,Alta,Usa el parsing pseudo-proyectivo sin modificación en MaltParser.,COMPLETO,121,1
+66,N13-1053_P11-1032_1,Evaluable,Gap,Alta,"El trabajo previo cubrió el spam positivo, dejando sin estudiar el negativo.",COMPLETO,121,1
+67,W05-1510_P05-1011_6,Evaluable,Comparison,Alta,Compara los resultados de saturación con los reportados en parsing.,COMPLETO,121,1
+68,P12-1018_P11-1140_0,Evaluable,Background,Alta,Enumera trabajos previos sobre morfología y regularización en traducción.,COMPLETO,121,1
+69,W08-2140_P08-1040_1,Evaluable,Further Reading,Alta,Remite al trabajo citado para más detalles del conjunto de reglas.,COMPLETO,121,1
+70,S07-1048_P03-1004_0,Evaluable,Application,Alta,Usa YamCha para detectar entidades nombradas.,COMPLETO,121,1
+71,P12-2022_N09-1062_0,Evaluable,Background,Alta,Resume la incorporación de modelos DP a las TSG en trabajo previo.,COMPLETO,121,1
+72,D13-1123_S12-1100_1,Evaluable,Comparison,Alta,Aparece en una tabla comparando correlaciones del sistema citado con las del propio.,COMPLETO,121,1
+73,W11-0123_W07-1401_0,Evaluable,Background,Alta,Presenta la tarea RTE como contexto del problema.,COMPLETO,121,1
+74,D12-1018_P05-1014_0,Evaluable,Background,Alta,Enumera trabajos sobre medidas de similitud distribucional.,COMPLETO,121,1
+75,N13-1032_W06-3119_0,Evaluable,Background,Alta,Enumera enfoques previos basados en sintaxis.,COMPLETO,121,1
+76,W09-0438_P07-1080_0,Evaluable,Background,Alta,"Cita usos previos de redes neuronales en NLP, como parsing de constituyentes.",COMPLETO,121,1
+77,D09-1140_D08-1049_1,Evaluable,Comparison,Alta,Contrasta explícitamente sus trigramas parcialmente instanciados con los totalmente instanciados del trabajo citado.,COMPLETO,121,1
+78,W06-1603_W05-1202_0,Evaluable,Background,Alta,Describe el trabajo previo que usó parses para reconocimiento de paráfrasis.,COMPLETO,121,1
+79,W13-3522_P07-2045_0,Evaluable,Application,Alta,Usa el toolkit Moses para construir el sistema SMT.,COMPLETO,121,1
+80,W06-1620_N03-1028_0,Evaluable,Evidence,Media,"Respalda que L-BFGS rinde bien para entrenar modelos log-lineales, justificando la elección.",COMPLETO,121,1
+81,E12-1003_P09-1011_0,Evaluable,Background,Alta,Enumera trabajos previos semi-supervisados en dominios restringidos.,COMPLETO,121,1
+82,D09-1136_D08-1033_1,Evaluable,Evidence,Alta,Respalda que la inferencia bayesiana con DP evita el sobreajuste en MT.,COMPLETO,121,1
+83,D11-1042_W04-1013_1,Evaluable,Application,Alta,Emplea las variantes estándar de ROUGE como métricas.,COMPLETO,121,1
+84,W07-2208_W06-1619_0,Evaluable,Background,Alta,Enumera trabajos sobre supertagging como contexto.,COMPLETO,121,1
+85,N06-1055_P05-1073_1,Evaluable,Basis,Media,La idea de reranking del trabajo citado motiva la sección propia.,COMPLETO,121,1
+86,P07-1035_N06-1041_1,Evaluable,Comparison,Alta,Compara resultados no supervisados con los reportados en el trabajo citado.,COMPLETO,121,1
+87,P13-1077_J07-2003_0,Evaluable,Background,Alta,Menciona sistemas de traducción líderes en la introducción.,COMPLETO,121,1
+88,N13-1050_P11-1038_2,Evaluable,Gap,Media,Trabajos previos se centraron en normalización de palabras y no hay datos con puntuación corregida.,COMPLETO,121,1
+89,D12-1037_D09-1147_0,Evaluable,Background,Alta,Enumera métodos de entrenamiento de parámetros en SMT.,COMPLETO,121,1
+90,P11-2011_P10-1092_4,Evaluable,Evidence,Alta,Respalda la afirmación sobre el costo de intersección de lenguajes de una misma clase.,COMPLETO,121,1
+91,J05-4002_W03-1011_1,Evaluable,Background,Media,Resume experimentos previos propios con funciones de peso.,COMPLETO,121,1
+92,W06-2602_W95-0107_0,Evaluable,Application,Media,Usa la codificación IOB introducida en el trabajo citado.,COMPLETO,121,1
+93,N10-1015_P09-1104_5,Evaluable,Comparison,Alta,Contrasta los alineamientos del corpus con los usados en el trabajo citado.,COMPLETO,121,1
+94,D12-1127_D08-1109_0,Evaluable,Background,Alta,Menciona el entrenamiento conjunto multilingüe como contexto.,COMPLETO,121,1
+95,W13-2254_E06-1031_1,Evaluable,Background,Alta,Enumera métricas basadas en similitud léxica.,COMPLETO,121,1
+96,D09-1034_P04-1015_0,Evaluable,Application,Media,Usarán modelos ricos como los de parsing incremental para derivar sus puntuaciones.,COMPLETO,121,1
+97,N07-1021_W05-1601_0,Evaluable,Application,Media,"pCRU emplea técnicas existentes del trabajo citado, aunque las extiende.",COMPLETO,121,1
+98,W13-2605_P06-1055_0,Evaluable,Application,Alta,Aplica el entrenador de PCFG con variables latentes tal cual.,COMPLETO,121,1
+99,P13-1132_W09-3204_1,Evaluable,Comparison,Alta,Contrasta la representación semántica similar del trabajo citado con el enfoque propio.,COMPLETO,121,1
+100,E12-1051_P07-1028_0,Evaluable,Background,Alta,Describe trabajos previos sobre preferencias de selección.,COMPLETO,121,1

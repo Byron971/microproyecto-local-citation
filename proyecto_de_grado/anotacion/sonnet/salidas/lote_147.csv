@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D11-1064_N03-2002_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que los rasgos morfológicos ayudan en lenguas muy flexivas.,COMPLETO,147,1
+2,E09-3005_W06-1615_9,Evaluable,Evidence,Alta,Los hallazgos previos respaldan la observación de que la dimensionalidad h tiene poco efecto.,COMPLETO,147,1
+3,N04-2004_P98-1013_0,Evaluable,Background,Media,Se presenta FrameNet como uno de los proyectos de anotación semántica que sirven de contexto.,COMPLETO,147,1
+4,W12-4209_P89-1005_0,Evaluable,Gap,Media,"Se cita trabajo previo sobre gramáticas de unificación y se señala su limitación (demasiado potentes, sin algoritmos eficientes).",COMPLETO,147,1
+5,E12-1045_P03-1021_0,Evaluable,Application,Alta,Se usa MERT tal cual para ajustar los pesos de las características.,COMPLETO,147,1
+6,W11-0902_W06-3312_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que las correcciones heurísticas de errores sistemáticos son importantes.,COMPLETO,147,1
+7,D11-1110_D08-1092_0,Evaluable,Comparison,Media,Se contrasta el análisis sintáctico bilingüe con la proyección sintáctica.,COMPLETO,147,1
+8,P12-1109_P11-1037_0,Evaluable,Background,Media,Enumera aplicaciones de NLP que usan texto social; la cita es parte de esa lista general.,COMPLETO,147,1
+9,N13-1015_P12-1024_4,Evaluable,Identification of the Originator,Alta,Dice explícitamente que el trabajo citado introdujo el algoritmo de aprendizaje espectral.,COMPLETO,147,1
+10,W09-1205_P07-1080_0,Evaluable,Basis,Alta,El modelo actual se basa en los ISBN del trabajo citado.,COMPLETO,147,1
+11,W11-0501_J10-3004_0,Evaluable,Background,Media,Se cita investigación reciente sobre detección de hilos de conversación como contexto general.,COMPLETO,147,1
+12,W12-2004_P06-2103_2,Evaluable,Background,Media,Se describe el trabajo previo (modelo log-lineal de coherencia) dentro de una revisión de literatura.,COMPLETO,147,1
+13,W10-0205_N03-1033_0,Evaluable,Application,Alta,Se usa el etiquetador de Stanford sin modificarlo.,COMPLETO,147,1
+14,W11-2913_W09-3810_0,Evaluable,Evidence,Alta,La cita respalda empíricamente que la reescritura sincrónica aparece en los treebanks.,COMPLETO,147,1
+15,W06-1637_N06-2031_3,Evaluable,Evidence,Media,La cita sustenta la afirmación de que el priming es sensible a la frecuencia.,COMPLETO,147,1
+16,J12-1003_W04-3205_0,Evaluable,Background,Media,Se describe el trabajo previo (patrones manuales para relaciones entre predicados) como antecedente.,COMPLETO,147,1
+17,W05-0622_W04-3212_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que los modelos de máxima entropía han tenido buena generalización en SRL.,COMPLETO,147,1
+18,N12-1032_W09-3819_0,Evaluable,Background,Media,Se resume un hallazgo previo sobre rasgos morfológicos en el análisis del hebreo.,COMPLETO,147,1
+19,W09-0205_J06-3003_2,Evaluable,Comparison,Alta,Se compara el rendimiento del sistema con el de modelos atribucionales comparables reportados en el trabajo citado.,COMPLETO,147,1
+20,J99-4002_E95-1012_0,Evaluable,Comparison,Alta,Contrasta explícitamente el enfoque actual con propuestas previas de probabilidades en TFS/HPSG.,COMPLETO,147,1
+21,W13-2213_W13-2212_3,Evaluable,Evidence,Media,"Los resultados citados respaldan que el filtrado MML reduce el BLEU, sustentando la especulación.",COMPLETO,147,1
+22,W04-2405_S01-1027_0,Evaluable,Basis,Media,"Se usan los dominios asociados a los sentidos tal como se introdujeron en el trabajo citado, como punto de partida del análisis.",COMPLETO,147,1
+23,W08-2001_W02-0604_0,Evaluable,Comparison,Media,"Se contrasta el modelo propio con enfoques que realizan segmentación, entre ellos el citado.",COMPLETO,147,1
+24,P13-1045_W04-3201_0,Evaluable,Background,Media,Se resume trabajo previo sobre ingeniería de rasgos en análisis discriminativo.,COMPLETO,147,1
+25,P13-1161_W10-2910_0,Evaluable,Background,Alta,Enumera técnicas previas de extracción de expresiones de opinión.,COMPLETO,147,1
+26,W12-3105_N06-1014_0,Evaluable,Application,Alta,Se emplea el alineador de Berkeley para aumentar la cobertura de alineación.,COMPLETO,147,1
+27,P12-1082_N06-1020_0,Evaluable,Comparison,Alta,Se compara el trabajo propio con los enfoques de auto-entrenamiento citados.,COMPLETO,147,1
+28,P13-2074_J07-2003_0,Evaluable,Application,Alta,Se usa el decodificador con poda de cubo del trabajo citado.,COMPLETO,147,1
+29,J05-4002_W03-1011_2,Evaluable,Basis,Media,Se retoma la metodología del trabajo previo propio del autor como base del procedimiento actual.,COMPLETO,147,1
+30,W12-2032_W10-1004_2,Evaluable,Basis,Media,Los módulos actuales se construyen sobre los sistemas descritos en el trabajo citado.,COMPLETO,147,1
+31,W13-3517_D08-1031_7,Evaluable,Comparison,Alta,La cita corresponde a una fila de resultados comparados en una tabla.,COMPLETO,147,1
+32,W11-0311_P06-1134_0,Evaluable,Application,Media,Se adoptan las definiciones de subjetivo y objetivo de los trabajos citados.,COMPLETO,147,1
+33,P05-1001_W03-0423_0,Evaluable,Comparison,Alta,Se citan los mejores resultados previos en una tabla de comparación.,COMPLETO,147,1
+34,P06-2041_W02-2016_0,Evaluable,Identification of the Originator,Alta,Dice que fue el primero en usar la metodología para análisis de dependencias no etiquetadas (japonés).,COMPLETO,147,1
+35,D11-1110_P06-1109_0,Evaluable,Background,Alta,Enumera trabajos previos de métodos no supervisados.,COMPLETO,147,1
+36,W13-4010_W12-1621_0,Evaluable,Improvement / Modification,Alta,El nuevo enfoque extiende el anterior basado en grafos usando hipergrafos.,COMPLETO,147,1
+37,P09-1037_P07-1090_0,Evaluable,Improvement / Modification,Alta,"El modelo es sucesor del citado, ampliándolo con pares de palabras funcionales.",COMPLETO,147,1
+38,P12-2031_P07-1058_1,Evaluable,Comparison,Alta,Contrasta explícitamente la simplificación propia con la del trabajo citado.,COMPLETO,147,1
+39,P09-1063_N03-1017_0,Evaluable,Application,Alta,Se aplica la regla de refinamiento grow-diag-final-and sin modificarla.,COMPLETO,147,1
+40,W10-1919_W09-1401_2,Evaluable,Comparison,Alta,Compara los resultados propios con los mejores de la tarea compartida BioNLP'09.,COMPLETO,147,1
+41,W13-3601_D10-1094_0,Evaluable,Background,Alta,Enumera investigación previa sobre errores de artículos y preposiciones.,COMPLETO,147,1
+42,N09-1037_W00-0717_0,Evaluable,Application,Alta,Se entrena y usa el modelo del trabajo citado con su código.,COMPLETO,147,1
+43,P09-1029_J04-3002_0,Evaluable,Evidence,Media,El hallazgo citado sobre hapax legomena respalda la afirmación sobre su utilidad para subjetividad.,COMPLETO,147,1
+44,W07-1307_E95-1009_0,Evaluable,Identification of the Originator,Alta,Dice que la distancia de Levenshtein fue introducida por el trabajo citado como medida de distancia lingüística.,COMPLETO,147,1
+45,W93-0107_A92-1013_0,Evaluable,Evidence,Baja,La cita respalda la valoración de las clasificaciones obtenidas y su ruido semántico.,COMPLETO,147,1
+46,W99-0106_W98-1119_1,Evaluable,Evidence,Media,Los trabajos citados respaldan que las técnicas lineales alcanzan resultados cercanos al 80%.,COMPLETO,147,1
+47,N10-1066_P09-1053_2,Evaluable,Comparison,Alta,Es una fila de comparación de sistemas en una tabla de resultados.,COMPLETO,147,1
+48,P13-2019_P11-2033_0,Evaluable,Comparison,Alta,Fila de una tabla que compara enfoques en el conjunto de prueba CTB5.,COMPLETO,147,1
+49,W04-1216_N03-1032_0,Evaluable,Evidence,Media,La cita respalda que las relaciones de dependencia se aproximan por co-ocurrencia en ventanas pequeñas.,COMPLETO,147,1
+50,E12-1082_P03-2041_0,Evaluable,Background,Alta,Enumera modelos de traducción basados en árboles como contexto.,COMPLETO,147,1
+51,W10-1711_P10-1049_0,Evaluable,Further Reading,Alta,Remite al trabajo citado para una descripción detallada del procedimiento de entrenamiento.,COMPLETO,147,1
+52,D13-1029_D08-1068_1,Evaluable,Comparison,Alta,El sistema se compara con el trabajo citado con menciones de referencia.,COMPLETO,147,1
+53,Q13-1020_D09-1037_3,Evaluable,Comparison,Alta,Contrasta con 'Differently' el muestreador del trabajo citado con el propio.,COMPLETO,147,1
+54,W09-3821_P08-1068_0,Evaluable,Basis,Alta,Dice que el trabajo citado inspiró directamente el actual.,COMPLETO,147,1
+55,P06-1124_N04-1039_0,Evaluable,Comparison,Alta,Contrasta la interpretación propia con las basadas en modelos de máxima entropía.,COMPLETO,147,1
+56,E06-1011_W96-0213_0,Evaluable,Application,Alta,Se usa el etiquetador POS citado para generar las etiquetas.,COMPLETO,147,1
+57,N13-1118_D11-1095_1,Evaluable,Evidence,Media,La cita respalda la afirmación de que HGFC supera al clustering aglomerativo.,COMPLETO,147,1
+58,P10-1151_P06-2066_1,Evaluable,Evidence,Alta,Los resultados citados sustentan que la mayoría de estructuras no proyectivas son no planares.,COMPLETO,147,1
+59,P12-1018_N04-4015_0,Evaluable,Background,Alta,Enumera trabajos previos sobre manejo de morfología.,COMPLETO,147,1
+60,W06-3106_P00-1056_0,Evaluable,Application,Alta,Se usa el paquete GIZA++ para entrenar modelos de palabras.,COMPLETO,147,1
+61,D09-1160_W02-2016_0,Evaluable,Application,Alta,Se usa el conjunto estándar de rasgos de los trabajos citados.,COMPLETO,147,1
+62,D12-1121_P04-1062_0,Evaluable,Comparison,Alta,"Contrasta el resultado citado con los resultados propios, que son mejores.",COMPLETO,147,1
+63,D08-1066_N06-1033_1,Evaluable,Basis,Media,Se sigue la concepción de los trabajos citados para definir segmentaciones binarizables.,COMPLETO,147,1
+64,W13-4601_W13-0404_0,Evaluable,Background,Alta,Se resume trabajo previo sobre uso de recursos médicos en NER.,COMPLETO,147,1
+65,W13-1723_P11-1019_0,Evaluable,Evidence,Media,La cita respalda que las propiedades gramaticales ayudan a determinar el nivel de competencia.,COMPLETO,147,1
+66,J05-3002_W02-1022_0,Evaluable,Comparison,Alta,"Contrasta las aproximaciones previas (cadenas, datos paralelos) con el trabajo propio.",COMPLETO,147,1
+67,N07-1054_P96-1025_0,Evaluable,Application,Alta,Se usa el analizador de Collins para parsear los casos.,COMPLETO,147,1
+68,J02-1001_P89-1032_1,Evaluable,Further Reading,Media,Remite a una página concreta del trabajo citado sobre casos de correferencia hacia atrás.,COMPLETO,147,1
+69,Q13-1028_P03-1054_0,Evaluable,Application,Alta,Se usa el analizador de Stanford para obtener las relaciones sintácticas.,COMPLETO,147,1
+70,J09-1003_W02-2111_1,Evaluable,Identification of the Originator,Media,Se reconoce el trabajo citado como origen del nombre/principio de CONTINUIDAD.,COMPLETO,147,1
+71,P08-1091_P04-1043_3,Evaluable,Application,Alta,Se usa la herramienta SVM-Light-TK con parámetros por defecto.,COMPLETO,147,1
+72,J12-4005_S07-1016_0,Evaluable,Evidence,Alta,La cita respalda las cifras de exactitud en las tareas de SemEval.,COMPLETO,147,1
+73,W13-3213_P07-1096_0,Evaluable,Comparison,Alta,Compara la velocidad del enfoque con la del sistema citado.,COMPLETO,147,1
+74,W12-3127_N03-1017_1,Evaluable,Application,Alta,Se usa la ponderación léxica de reglas definida en el trabajo citado.,COMPLETO,147,1
+75,D12-1124_P11-1137_0,Evaluable,Background,Media,Se enumera trabajo relacionado de predicción de cantidades del mundo real con texto.,COMPLETO,147,1
+76,N13-1140_P06-1124_0,Evaluable,Evidence,Alta,La cita respalda que estos modelos igualan los modelos de lenguaje del estado del arte y siguen leyes de potencia.,COMPLETO,147,1
+77,W11-1410_W07-1604_0,Evaluable,Evidence,Alta,Justifica la decisión de usar aprendizaje automático porque fue eficaz en tareas similares.,COMPLETO,147,1
+78,W13-1501_W08-0910_0,Evaluable,Evidence,Media,La cita respalda los resultados prometedores de aprendizaje en estudios piloto.,COMPLETO,147,1
+79,W05-0617_N01-1024_2,Evaluable,Comparison,Alta,Se establece un punto de comparación con los resultados F1 del trabajo citado.,COMPLETO,147,1
+80,D12-1115_P89-1007_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que el inglés prefiere demostrativos en la anáfora abstracta.,COMPLETO,147,1
+81,P07-1028_P00-1065_1,Evaluable,Evidence,Media,La cita respalda que los modelos basados en EM funcionan mejor en SRL.,COMPLETO,147,1
+82,P10-1145_P07-2045_1,Evaluable,Comparison,Alta,Compara el rendimiento del sistema de base con Moses y con el modelo citado.,COMPLETO,147,1
+83,S12-1089_P08-1028_1,Evaluable,Improvement / Modification,Media,Se extiende un modelo con una operación de composición aditiva siguiendo el trabajo citado.,COMPLETO,147,1
+84,W11-1820_W09-1418_0,Evaluable,Background,Alta,Describe un grupo de enfoques previos basados en reglas.,COMPLETO,147,1
+85,D13-1093_J07-2003_0,Evaluable,Background,Media,Describe la aproximación típica mediante poda de cubo en hipergrafos.,COMPLETO,147,1
+86,P10-1145_D08-1022_1,Evaluable,Improvement / Modification,Alta,Se extiende el algoritmo de extracción de reglas árbol-a-cadena al nuevo escenario.,COMPLETO,147,1
+87,D10-1003_N03-1028_0,Evaluable,Background,Alta,Enumera usos previos de los CRF en distintas tareas.,COMPLETO,147,1
+88,P13-1172_D12-1123_6,Evaluable,Application,Media,"Se estima la asociación de forma similar al trabajo citado, empleando su método.",COMPLETO,147,1
+89,Q13-1021_D10-1028_0,Evaluable,Background,Alta,Enumera aplicaciones previas de las gramáticas adaptadoras.,COMPLETO,147,1
+90,D10-1063_N06-1033_2,Evaluable,Comparison,Alta,Compara el método de reducción de alcance con el del trabajo citado.,COMPLETO,147,1
+91,W02-1401_P96-1003_0,Evaluable,Evidence,Alta,Los estudios citados respaldan que los pares modificador-núcleo mejoran recall y precisión.,COMPLETO,147,1
+92,P10-1100_W03-0418_0,Evaluable,Comparison,Alta,Se describe el trabajo citado y se contrasta con el propio señalando que no adquiere ni representa el orden temporal.,COMPLETO,147,1
+93,P09-1041_P06-1111_2,Evaluable,Application,Alta,Se usan las restricciones de estructura sintagmática de prototipos del trabajo citado.,COMPLETO,147,1
+94,D09-1044_W04-1017_6,Evaluable,Comparison,Alta,Contrasta la representación propia con los descriptores de eventos del trabajo citado.,COMPLETO,147,1
+95,W13-3308_W01-1408_0,Evaluable,Background,Media,Describe el funcionamiento estándar de los sistemas SMT y su programación dinámica.,COMPLETO,147,1
+96,W07-2305_P01-1008_0,Evaluable,Background,Alta,Sección de trabajo previo que enumera estudios sobre paráfrasis.,COMPLETO,147,1
+97,W11-2911_N03-1023_0,Evaluable,Evidence,Alta,La cita respalda que EM semisupervisado suele dar modelos peores que el supervisado.,COMPLETO,147,1
+98,S07-1025_N01-1025_0,Evaluable,Evidence,Alta,La cita respalda la decisión de elegir SVM por su buen desempeño en NLP.,COMPLETO,147,1
+99,Q13-1004_D10-1125_1,Evaluable,Background,Media,Describe las dos versiones previas de modelos de segundo orden.,COMPLETO,147,1
+100,D11-1068_N10-1043_0,Evaluable,Background,Alta,Enumera trabajos previos sobre relaciones discursivas implícitas.,COMPLETO,147,1

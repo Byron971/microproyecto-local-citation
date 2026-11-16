@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,E03-1020_J98-1004_0,Evaluable,Evidence,Media,La cita respalda la afirmación de que la misma evidencia de corpus sirve para decidir qué sentido se refiere en un contexto.,COMPLETO,159,1
+2,W10-4223_P07-1059_0,Evaluable,Background,Media,Enumera usos previos de la paráfrasis en aplicaciones de PLN.,COMPLETO,159,1
+3,W10-3023_P07-1125_0,Evaluable,Background,Media,Trabajo relacionado que describe cómo otros extendieron la metodología citada.,COMPLETO,159,1
+4,E12-1085_W06-2932_0,Evaluable,Evidence,Media,Respalda la afirmación de que los datos anotados permiten entrenar parsers con precisión superior al 80%.,COMPLETO,159,1
+5,P09-1040_W06-2932_0,Evaluable,Comparison,Alta,"Se compara con los mejores sistemas de CoNLL-X, incluido el citado.",COMPLETO,159,1
+6,S13-1043_P05-1018_0,Evaluable,Background,Alta,Presenta el modelo entity grid como enfoque prominente en trabajos relacionados.,COMPLETO,159,1
+7,P08-1095_P03-1071_0,Evaluable,Basis,Media,El conjunto de rasgos incorpora información útil en segmentación de reuniones según el trabajo citado.,COMPLETO,159,1
+8,D11-1113_P05-1012_0,Evaluable,Identification of the Originator,Alta,Se señala como trabajo seminal del análisis basado en grafos.,COMPLETO,159,1
+9,W10-1734_E03-1076_6,Evaluable,Background,Alta,Describe enfoques previos de división de compuestos con etiquetador POS.,COMPLETO,159,1
+10,W11-1913_P09-1068_0,Evaluable,Basis,Media,Los rasgos semánticos del sistema se basan en investigación sobre esquemas narrativos.,COMPLETO,159,1
+11,E12-1013_N09-2003_1,Evaluable,Application,Media,"Se emplea el enfoque de oráculo con modelo de lenguaje introducido en la obra citada, sin modificarlo.",COMPLETO,159,1
+12,P11-1126_P05-1033_2,Evaluable,Application,Alta,Usa las reglas jerárquicas extraídas con el método del trabajo citado.,COMPLETO,159,1
+13,D13-1177_D12-1062_3,Evaluable,Application,Media,Los rasgos se toman de trabajos previos citados para el par de disparadores.,COMPLETO,159,1
+14,D09-1102_P02-1014_1,Evaluable,Background,Alta,Enumera enfoques previos clasificados por categorías.,COMPLETO,159,1
+15,W07-2217_P06-2041_2,Evaluable,Comparison,Alta,Compara explícitamente los tiempos de entrenamiento y análisis con los reportados en el trabajo citado.,COMPLETO,159,1
+16,N13-1008_P04-1053_0,Evaluable,Gap,Media,Describe trabajos previos de agrupamiento y los contrasta con un objetivo distinto del enfoque actual.,COMPLETO,159,1
+17,J94-2001_A92-1018_0,Evaluable,Background,Alta,Lista enfoques probabilísticos previos de etiquetado.,COMPLETO,159,1
+18,W10-1738_W06-3119_1,Evaluable,Comparison,Baja,"Contrasta la extracción SAMT del trabajo citado, no totalmente soportada, con la generalización elegida.",COMPLETO,159,1
+19,W10-1603_P07-1096_1,Evaluable,Background,Media,Describe el algoritmo del trabajo citado dentro de la revisión de aprendizaje guiado.,COMPLETO,159,1
+20,W04-0811_S01-1005_0,Evaluable,Evidence,Baja,Respalda la afirmación sobre los sistemas no supervisados; la cita apunta a la descripción de la tarea.,COMPLETO,159,1
+21,W04-2405_N03-1023_2,Evaluable,Evidence,Alta,Sustenta la afirmación de que no existe método principiado para elegir parámetros.,COMPLETO,159,1
+22,W11-0106_W04-2609_0,Evaluable,Background,Alta,Enumera trabajos previos sobre relaciones dentro de sintagmas nominales.,COMPLETO,159,1
+23,P13-1105_P06-1109_1,Evaluable,Comparison,Alta,Contrasta explícitamente su enfoque de autoentrenamiento con trabajos no supervisados previos.,COMPLETO,159,1
+24,N13-1122_P11-1138_1,Evaluable,Application,Alta,Usa el procedimiento propuesto en el trabajo citado para extraer frases clave.,COMPLETO,159,1
+25,D11-1137_P09-1067_3,Evaluable,Background,Alta,Reseña trabajos previos de decodificación en SMT.,COMPLETO,159,1
+26,D10-1091_P01-1030_0,Evaluable,Background,Alta,Indica usos previos de ILP en SMT.,COMPLETO,159,1
+27,D08-1035_P06-1004_4,Evaluable,Comparison,Alta,Se compara contra el sistema citado como línea base.,COMPLETO,159,1
+28,P10-1130_W10-2902_3,Evaluable,Comparison,Alta,Contrasta resultados con los de Leapfrog.,COMPLETO,159,1
+29,D10-1004_P10-1001_1,Evaluable,Comparison,Alta,Compara su precisión con la del parser de tercer orden citado.,COMPLETO,159,1
+30,P11-1145_D09-1001_3,Evaluable,Comparison,Alta,Se contrasta explícitamente el formalismo de cálculo lambda del trabajo citado con el enfoque actual.,COMPLETO,159,1
+31,W05-0709_N04-1001_2,Evaluable,Evidence,Alta,Respalda la afirmación de que el contexto es un rasgo importante.,COMPLETO,159,1
+32,D13-1093_D10-1004_0,Evaluable,Application,Alta,Entrena el parser siguiendo el procedimiento del trabajo citado.,COMPLETO,159,1
+33,N12-1092_N10-1086_1,Evaluable,Background,Alta,Enumera sistemas previos de generación de preguntas.,COMPLETO,159,1
+34,W12-1509_P10-1103_2,Evaluable,Application,Alta,Usa directamente el simulador de usuario del trabajo citado.,COMPLETO,159,1
+35,D13-1141_P03-1021_0,Evaluable,Application,Alta,Emplea MERT tal como fue propuesto para ajustar el decodificador.,COMPLETO,159,1
+36,P07-1064_P03-1071_0,Evaluable,Background,Alta,Enumera métodos previos de segmentación temática.,COMPLETO,159,1
+37,W07-0724_P03-1021_0,Evaluable,Application,Alta,Optimiza los pesos con el algoritmo descrito en el trabajo citado.,COMPLETO,159,1
+38,W02-1019_W96-0213_0,Evaluable,Application,Alta,Usa el etiquetador POS de Ratnaparkhi para obtener los árboles.,COMPLETO,159,1
+39,P10-1100_P98-1013_0,Evaluable,Gap,Media,Señala la limitación de escala de los marcos de escenario anotados manualmente en FrameNet.,COMPLETO,159,1
+40,D11-1119_N10-1018_0,Evaluable,Gap,Media,Señala limitación (escasez de datos) de trabajos que introducen errores artificiales.,COMPLETO,159,1
+41,P12-1078_W11-1513_0,Evaluable,Background,Alta,Enumera trabajos relacionados sobre datos históricos.,COMPLETO,159,1
+42,W11-2919_E09-1055_1,Evaluable,Evidence,Media,Respalda la afirmación de que las técnicas conocidas de extracción producen reglas monótonas.,COMPLETO,159,1
+43,P03-1002_P02-1031_0,Evaluable,Background,Media,Presenta un parser aumentado previo con estructuras predicado-argumento como antecedente.,COMPLETO,159,1
+44,P11-2035_N10-1066_0,Evaluable,Comparison,Alta,Contrasta su uso de LSVM con aplicaciones previas que inducen estructuras latentes.,COMPLETO,159,1
+45,J08-2001_P00-1065_4,Evaluable,Background,Media,Describe una tarea de Senseval-3 cuyo objetivo era replicar el trabajo citado.,COMPLETO,159,1
+46,N10-1063_J03-3002_0,Evaluable,Background,Alta,Enumera enfoques previos de extracción de oraciones paralelas.,COMPLETO,159,1
+47,D09-1110_D08-1084_0,Evaluable,Comparison,Alta,Contrasta los enfoques léxicos previos con el formalismo más expresivo propio.,COMPLETO,159,1
+48,W13-1608_W02-0109_0,Evaluable,Application,Alta,Usa la implementación de NLTK del clasificador.,COMPLETO,159,1
+49,P12-1089_D11-1135_0,Evaluable,Background,Alta,Describe trabajos relacionados de IE abierta.,COMPLETO,159,1
+50,W12-2032_W12-2006_0,Evaluable,Background,Media,Remite a la descripción general de la tarea compartida HOO 2012.,COMPLETO,159,1
+51,P11-1052_W04-1017_1,Evaluable,Background,Media,Describe resumen basado en conceptos como trabajo previo.,COMPLETO,159,1
+52,P91-1043_J88-2003_0,Evaluable,Gap,Media,"Señala que estos trabajos no describen las formas lógicas, lo que justifica el estudio.",COMPLETO,159,1
+53,Q13-1014_W08-0208_0,Evaluable,Basis,Media,Sigue la práctica del trabajo citado de implementar los retos en Python.,COMPLETO,159,1
+54,P07-3016_A97-1052_0,Evaluable,Background,Alta,Enumera trabajos previos de adquisición de marcos de subcategorización.,COMPLETO,159,1
+55,D13-1131_D12-1124_0,Evaluable,Evidence,Media,Respalda la afirmación de que regresión logística y SVM han tenido éxito en PLN.,COMPLETO,159,1
+56,W02-1013_P99-1068_0,Evaluable,Background,Alta,Ejemplos de minería de la Web para texto paralelo.,COMPLETO,159,1
+57,E09-1097_W00-1401_0,Evaluable,Identification of the Originator,Alta,Indica que la tarea fue propuesta primero en el trabajo citado.,COMPLETO,159,1
+58,W07-1412_E06-1015_1,Evaluable,Background,Media,Describe el modelo de similitud entre pares como trabajo previo y sus límites.,COMPLETO,159,1
+59,D10-1067_J04-3001_0,Evaluable,Background,Alta,Enumera trabajos previos de aprendizaje activo para análisis sintáctico.,COMPLETO,159,1
+60,W13-2217_P06-1055_0,Evaluable,Application,Alta,"Usa el Berkeley Parser, mediante su extensión, para generar dependencias.",COMPLETO,159,1
+61,E09-3005_W06-1615_6,Evaluable,Evidence,Media,Se apoya en lo señalado por el trabajo citado sobre rasgos predictivos de los pivotes.,COMPLETO,159,1
+62,D13-1198_N13-1133_5,Evaluable,Application,Alta,Usa el modelo de ranking citado como línea base.,COMPLETO,159,1
+63,P10-1047_N03-1017_1,Evaluable,Further Reading,Media,Remite al lector a la traducción basada en frases como conocimiento previo asumido.,COMPLETO,159,1
+64,D13-1005_P12-1020_0,Evaluable,Gap,Media,"Trabajos que asumen entrada presegmentada, lo que contrasta con el primer modelo propuesto.",COMPLETO,159,1
+65,N13-2008_P11-2071_0,Evaluable,Background,Alta,Resume señales usadas en trabajos previos de inducción de léxico bilingüe.,COMPLETO,159,1
+66,W03-1608_P93-1024_0,Evaluable,Gap,Media,Señala que no está claro si el agrupamiento distribucional produce paráfrasis.,COMPLETO,159,1
+67,P12-1071_P08-1068_0,Evaluable,Background,Alta,"Describe recursos usados para mejorar el análisis, como datos no etiquetados.",COMPLETO,159,1
+68,W13-2102_P98-1116_0,Evaluable,Comparison,Alta,Compara el enfoque híbrido con sistemas como HALogen.,COMPLETO,159,1
+69,N04-1038_P02-1014_0,Evaluable,Background,Alta,Enumera sistemas supervisados previos de correferencia.,COMPLETO,159,1
+70,D13-1055_E12-1036_1,Evaluable,Background,Alta,Describe los rasgos definidos en trabajo relacionado.,COMPLETO,159,1
+71,E09-1031_W01-0701_0,Evaluable,Background,Alta,Menciona trabajos previos con TBL para segmentación y etiquetado del chino.,COMPLETO,159,1
+72,W10-1814_W07-2218_0,Evaluable,Application,Alta,Usa el parser citado para analizar las oraciones.,COMPLETO,159,1
+73,W12-5105_S12-1019_1,Evaluable,Application,Alta,Emplea el método introducido en el trabajo citado para medir el solapamiento.,COMPLETO,159,1
+74,N10-1043_N09-4006_0,Evaluable,Application,Alta,Usa el corpus OntoNotes como fuente de datos de correferencia.,COMPLETO,159,1
+75,W09-2209_W06-0901_0,Evaluable,Basis,Media,El marco de pipeline es similar al de los trabajos citados.,COMPLETO,159,1
+76,N07-2006_P00-1056_0,Evaluable,Background,Alta,Menciona algoritmos propuestos de extracción de pares de frases.,COMPLETO,159,1
+77,D09-1133_W06-1617_1,Evaluable,Application,Media,Adopta la convención de nombres de rasgos del trabajo citado.,COMPLETO,159,1
+78,W13-3408_P04-1054_0,Evaluable,Background,Alta,Enumera aplicaciones de núcleos de convolución en PLN.,COMPLETO,159,1
+79,S13-2040_P12-3012_1,Evaluable,Application,Alta,Usa BabelNet para anotar semánticamente el corpus.,COMPLETO,159,1
+80,W09-3817_W02-2016_1,Evaluable,Application,Alta,Usa el parser CaboCha como sistema de comparación.,COMPLETO,159,1
+81,D10-1106_N06-1039_0,Evaluable,Gap,Media,"Contrasta el trabajo previo, que no aprende reglas sobre relaciones tipadas, con el objetivo actual.",COMPLETO,159,1
+82,P13-1047_N06-2034_0,Evaluable,Background,Alta,Describe una extensión previa que mejoró la clasificación de relaciones.,COMPLETO,159,1
+83,S12-1054_S12-1046_0,Evaluable,Evidence,Media,La cita respalda la definición de palabras simples.,COMPLETO,159,1
+84,W09-3713_W03-2106_0,Evaluable,Further Reading,Media,Remite a trabajos sobre construcción de fragmentos con inferencia.,COMPLETO,159,1
+85,W10-1729_P07-2045_1,Evaluable,Application,Alta,Usa la herramienta Moses para traducción automática.,COMPLETO,159,1
+86,W09-3519_P07-2045_0,Evaluable,Application,Alta,Emplea Moses para implementar el modelo de canal ruidoso.,COMPLETO,159,1
+87,D13-1025_W06-3119_1,Evaluable,Background,Media,Menciona modelos SMT jerárquicos o sintácticos a los que son aplicables las formalizaciones.,COMPLETO,159,1
+88,D13-1081_P05-1033_0,Evaluable,Background,Alta,Enumera sistemas SMT modernos con grandes conjuntos de reglas.,COMPLETO,159,1
+89,W06-1608_N03-1017_0,Evaluable,Evidence,Alta,Respalda el hallazgo de que los sistemas basados en frases no se ven afectados por la calidad del alineamiento.,COMPLETO,159,1
+90,D13-1129_P05-1001_1,Evaluable,Comparison,Alta,Señala similitud en espíritu con el trabajo citado.,COMPLETO,159,1
+91,W04-2405_W03-0407_1,Evaluable,Basis,Alta,Adopta la definición de autoentrenamiento del trabajo citado.,COMPLETO,159,1
+92,P12-1111_P07-1096_2,Evaluable,Application,Alta,Replica el conjunto de rasgos B usado en el trabajo citado.,COMPLETO,159,1
+93,P13-2064_P08-1115_0,Evaluable,Background,Alta,Reseña trabajos previos con representaciones compactas como lattices.,COMPLETO,159,1
+94,D13-1118_P12-1101_0,Evaluable,Background,Alta,Enumera extensiones previas de modelos de lenguaje.,COMPLETO,159,1
+95,E12-1003_W06-1601_2,Evaluable,Background,Alta,Reseña enfoques no supervisados previos de SRL.,COMPLETO,159,1
+96,W13-3519_N09-1069_0,Evaluable,Comparison,Alta,Compara su algoritmo CVB con EM en línea con actualizaciones MAP.,COMPLETO,159,1
+97,W06-1304_A00-2023_0,Evaluable,Comparison,Media,"Contrasta con otros enfoques y señala que su generador usa sobregeneración y ranking, como los trabajos citados.",COMPLETO,159,1
+98,W98-1005_P97-1017_2,Evaluable,Background,Media,Describe el modelo de cinco distribuciones del trabajo citado como antecedente.,COMPLETO,159,1
+99,P12-1036_D10-1006_0,Evaluable,Comparison,Alta,"Relaciona sus modelos con modelos conjuntos previos y los contrasta (no supervisados, sin semillas).",COMPLETO,159,1
+100,P06-1105_W02-2016_2,Evaluable,Gap,Alta,Señala una limitación de los analizadores estadísticos existentes que motiva el trabajo.,COMPLETO,159,1

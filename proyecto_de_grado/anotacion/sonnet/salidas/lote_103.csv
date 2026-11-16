@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P10-1057_N09-1066_0,Evaluable,Evidence,Media,Cited work supports the claim that citations contain survey-worthy information.,COMPLETO,103,1
+2,P09-1043_P06-1043_0,Evaluable,Background,Alta,,COMPLETO,103,1
+3,W10-1901_W09-1403_1,Evaluable,Comparison,Media,Authors' finding of annotation inconsistency is compared with the same observation in the cited work.,COMPLETO,103,1
+4,W11-1203_P05-1012_0,Evaluable,Application,Alta,,COMPLETO,103,1
+5,P13-2077_P13-4009_0,Evaluable,Application,Alta,,COMPLETO,103,1
+6,P12-1109_P06-2005_0,Evaluable,Background,Alta,,COMPLETO,103,1
+7,S13-1011_S12-1051_0,Evaluable,Application,Media,Uses the STS 2012 data as training and validation.,COMPLETO,103,1
+8,W09-0425_W08-0509_0,Evaluable,Application,Alta,,COMPLETO,103,1
+9,P13-1092_D09-1001_0,Evaluable,Gap,Media,"Introduces USP as prior work whose limitations the paper goes on to address (""While their approach completely obviates..."").",COMPLETO,103,1
+10,N09-1033_P02-1060_0,Evaluable,Background,Alta,,COMPLETO,103,1
+11,P89-1003_P84-1008_1,Evaluable,Basis,Alta,The proposed solution formalizes the notion of negation from the cited work.,COMPLETO,103,1
+12,D09-1049_W03-1806_0,Evaluable,Evidence,Alta,"Supports the claim that order and distance matter, motivating surface features.",COMPLETO,103,1
+13,W03-1015_N03-1031_1,Evaluable,Basis,Media,The new ranking method is inspired by the cited work.,COMPLETO,103,1
+14,N07-1046_W02-0505_1,Evaluable,Comparison,Alta,,COMPLETO,103,1
+15,W09-3710_W07-1414_1,Evaluable,Comparison,Media,The flexible rule matching is likened to the cited work.,COMPLETO,103,1
+16,D13-1184_P11-1138_5,Evaluable,Comparison,Alta,,COMPLETO,103,1
+17,D09-1058_E06-1011_4,Evaluable,Comparison,Alta,Result table comparing against other parsers.,COMPLETO,103,1
+18,W97-0114_J93-1006_0,Evaluable,Background,Alta,,COMPLETO,103,1
+19,P13-1106_W10-2906_3,Evaluable,Background,Media,Describes a related paper approach to obtaining training signals.,COMPLETO,103,1
+20,W03-2606_W02-1030_0,Evaluable,Evidence,Alta,Supports the claim that using the Web handles data sparseness better than smoothing.,COMPLETO,103,1
+21,P12-1076_D11-1132_0,Evaluable,Background,Alta,,COMPLETO,103,1
+22,W13-1724_N12-1033_0,Evaluable,Background,Alta,,COMPLETO,103,1
+23,P12-1071_P08-1101_2,Evaluable,Application,Alta,Adopts the POS tagging features proposed in the cited work.,COMPLETO,103,1
+24,W03-0302_N03-2017_0,Evaluable,Further Reading,Alta,,COMPLETO,103,1
+25,W11-2831_W06-1513_0,Evaluable,Evidence,Alta,Supports the claim that surface realization is exponential in input length.,COMPLETO,103,1
+26,N03-1004_A94-1016_0,Evaluable,Background,Alta,,COMPLETO,103,1
+27,N07-1050_P06-2066_0,Evaluable,Further Reading,Alta,Footnote pointing to alternative notions explored elsewhere.,COMPLETO,103,1
+28,P10-1123_P04-1019_0,Evaluable,Gap,Media,Notes prior studies address only a few specific bridging relations and no wide-scope systems exist.,COMPLETO,103,1
+29,D09-1143_P04-1054_3,Evaluable,Background,Alta,,COMPLETO,103,1
+30,P10-2017_W09-0201_0,Evaluable,Background,Alta,,COMPLETO,103,1
+31,W06-2604_W05-0608_0,Evaluable,Comparison,Alta,,COMPLETO,103,1
+32,P95-1011_E91-1024_0,Evaluable,Further Reading,Alta,,COMPLETO,103,1
+33,D10-1113_W09-0215_0,Evaluable,Background,Alta,,COMPLETO,103,1
+34,J10-4006_P06-1040_7,Evaluable,Comparison,Media,The tensor arrangement reproduces the relational similarity space of the cited work.,COMPLETO,103,1
+35,D13-1025_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,103,1
+36,W08-1407_W00-0400_0,Evaluable,Evidence,Media,Supports the claim about who prefers query-based summaries.,COMPLETO,103,1
+37,J02-3001_P97-1003_0,Evaluable,Evidence,Alta,Reported parser accuracy supports the authors' estimated error rate.,COMPLETO,103,1
+38,W11-2149_W06-3108_1,Evaluable,Application,Alta,Uses the reordering model in the submission.,COMPLETO,103,1
+39,P12-1111_P07-1106_0,Evaluable,Background,Alta,,COMPLETO,103,1
+40,D10-1038_A00-2004_0,Evaluable,Background,Media,Prior work on lexical chaining that accounts only for repetition.,COMPLETO,103,1
+41,P12-1023_E06-1011_1,Evaluable,Application,Alta,Uses MIRA for training.,COMPLETO,103,1
+42,D08-1058_P97-1023_0,Evaluable,Background,Alta,,COMPLETO,103,1
+43,W03-2304_P98-1116_0,Evaluable,Background,Alta,,COMPLETO,103,1
+44,D11-1110_P00-1056_0,Evaluable,Application,Alta,,COMPLETO,103,1
+45,E09-3006_P99-1048_1,Evaluable,Comparison,Alta,Notes similar use of the definite probability measure with a slightly different computation.,COMPLETO,103,1
+46,W03-2316_P89-1005_0,Evaluable,Evidence,Media,The cited work supports the claim that such NPs challenge first-order unification approaches.,COMPLETO,103,1
+47,N13-1111_W03-2606_0,Evaluable,Gap,Alta,"Prior work is restricted to part-of relations, which the paper goes beyond.",COMPLETO,103,1
+48,E91-1017_E89-1020_0,Evaluable,Basis,Media,The environment relies on the paradigmatic morphology model of the cited work.,COMPLETO,103,1
+49,Q13-1014_W12-3134_1,Evaluable,Application,Alta,,COMPLETO,103,1
+50,D08-1035_P06-1004_2,Evaluable,Evidence,Alta,Supports the claim that the number of segments is commonly assumed known.,COMPLETO,103,1
+51,P04-2010_P00-1023_0,Evaluable,Background,Alta,,COMPLETO,103,1
+52,J12-1003_W04-3206_2,Evaluable,Background,Media,Lists distributional similarity algorithms that compare binary templates directly.,COMPLETO,103,1
+53,W11-2803_W07-2315_0,Evaluable,Improvement / Modification,Alta,,COMPLETO,103,1
+54,N13-1123_P12-1034_0,Evaluable,Gap,Media,Contrasts the cited work's focus with the authors' own different focus.,COMPLETO,103,1
+55,W10-1914_W09-1406_0,Evaluable,Gap,Alta,Quotes a limitation of Markov Logic approaches that motivates the objective.,COMPLETO,103,1
+56,D11-1035_J07-2003_0,Evaluable,Background,Media,Describes Joshua as a state-of-the-art hierarchical phrase-based system.,COMPLETO,103,1
+57,D12-1125_W06-2920_1,Evaluable,Application,Alta,,COMPLETO,103,1
+58,W13-4034_D10-1084_1,Evaluable,Background,Alta,,COMPLETO,103,1
+59,D12-1055_W11-1405_1,Evaluable,Evidence,Media,The cited observation supports the claim that measures are less reliable for short responses.,COMPLETO,103,1
+60,P10-1031_D09-1001_5,Evaluable,Further Reading,Alta,,COMPLETO,103,1
+61,N04-1019_W02-0406_1,Evaluable,Evidence,Alta,Reported agreement rate supports the claim that annotation is unreliable.,COMPLETO,103,1
+62,W11-0201_W02-0301_0,Evaluable,Evidence,Media,Supports the general claim that ML-based methods perform well given enough training data.,COMPLETO,103,1
+63,J13-4004_P10-2007_0,Evaluable,Evidence,Media,Supports the claim that naive head matching generates spurious links.,COMPLETO,103,1
+64,S13-1024_S12-1087_0,Evaluable,Application,Alta,Uses the vector permutation technique.,COMPLETO,103,1
+65,N13-1037_W10-0713_1,Evaluable,Background,Alta,,COMPLETO,103,1
+66,D09-1161_E03-1005_0,Evaluable,Comparison,Alta,,COMPLETO,103,1
+67,D13-1203_D09-1120_0,Evaluable,Background,Alta,,COMPLETO,103,1
+68,W09-3939_D08-1069_2,Evaluable,Comparison,Media,Contrasts the current setting with a discourse status model used in the cited work.,COMPLETO,103,1
+69,W13-4901_D08-1093_0,Evaluable,Background,Media,Describes prior findings contrasting with the approach just described.,COMPLETO,103,1
+70,W06-2904_W01-0521_0,Evaluable,Evidence,Alta,Supports the claim that bi-lexical statistics contribute little.,COMPLETO,103,1
+71,W09-1120_P07-1049_2,Evaluable,Application,Alta,,COMPLETO,103,1
+72,W10-2101_N06-2002_0,Evaluable,Gap,Alta,Even these works cover relatively few languages.,COMPLETO,103,1
+73,W00-1307_E99-1025_1,Evaluable,Comparison,Alta,,COMPLETO,103,1
+74,W13-3201_D12-1069_0,Evaluable,Background,Alta,,COMPLETO,103,1
+75,W10-2310_A00-2004_0,Evaluable,Comparison,Alta,,COMPLETO,103,1
+76,P11-1003_P05-1033_0,Evaluable,Background,Alta,,COMPLETO,103,1
+77,P09-1115_P04-1053_0,Evaluable,Background,Alta,,COMPLETO,103,1
+78,P10-1142_P02-1014_5,Evaluable,Comparison,Media,Reports best prior results for comparison with the authors' work.,COMPLETO,103,1
+79,D08-1108_W01-0516_0,Evaluable,Background,Alta,,COMPLETO,103,1
+80,P13-1043_W05-1513_3,Evaluable,Comparison,Alta,Results table of parsers.,COMPLETO,103,1
+81,W13-4912_P05-1013_0,Evaluable,Background,Alta,,COMPLETO,103,1
+82,D13-1026_D09-1037_0,Evaluable,Background,Alta,,COMPLETO,103,1
+83,S12-1077_S12-1051_4,Evaluable,Comparison,Media,Reports the run's ranking in the official task results.,COMPLETO,103,1
+84,P13-2058_P12-3005_0,Evaluable,Application,Alta,,COMPLETO,103,1
+85,P11-1038_W09-2010_3,Evaluable,Comparison,Alta,,COMPLETO,103,1
+86,P12-1072_W11-2202_3,Evaluable,Comparison,Alta,Contrasts the novel sampling procedure with the cited one.,COMPLETO,103,1
+87,W13-2116_N09-1066_0,Evaluable,Background,Media,Describes a prior system for generating surveys from citations.,COMPLETO,103,1
+88,J11-1005_P07-1106_0,Evaluable,Basis,Alta,The paper presents its earlier conference papers in a single coherent framework.,COMPLETO,103,1
+89,W07-2305_E06-1040_1,Evaluable,Comparison,Alta,The result agrees with the cited studies.,COMPLETO,103,1
+90,P07-1069_P00-1041_0,Evaluable,Gap,Media,"Related work lacks hierarchical generation, which is unique to this task.",COMPLETO,103,1
+91,W13-3703_J08-3003_0,Evaluable,Gap,Media,"Cited work is related and has contributed to the topic, which the present study analyzes more deeply.",COMPLETO,103,1
+92,W06-1634_P05-1052_0,Evaluable,Evidence,Alta,Supports the proposed future improvement.,COMPLETO,103,1
+93,D13-1150_N13-1097_1,Evaluable,Background,Alta,,COMPLETO,103,1
+94,P05-1021_P03-1022_0,Evaluable,Background,Alta,,COMPLETO,103,1
+95,D13-1108_D11-1020_4,Evaluable,Application,Media,Implements the dependency-to-string model as a baseline.,COMPLETO,103,1
+96,D12-1006_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,103,1
+97,W13-3101_W04-1013_1,Evaluable,Application,Alta,,COMPLETO,103,1
+98,P02-1044_P99-1020_0,Evaluable,Further Reading,Media,Points to other related work.,COMPLETO,103,1
+99,D12-1077_J07-2003_2,Evaluable,Application,Alta,Tests the hierarchical phrase-based SMT implementation as is.,COMPLETO,103,1
+100,D12-1001_D11-1006_4,Evaluable,Evidence,Media,Supports the idea that other treebanks can proxy for feature transfer.,COMPLETO,103,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P07-1003_W05-0812_1,Evaluable,Comparison,Media,Contrasts the proposed model with prior syntax-based distortion HMMs (simpler tree distance model).,COMPLETO,143,1
+2,N13-1080_N09-1068_0,Evaluable,Background,Alta,Lists multi-domain learning works in the opening sentence.,COMPLETO,143,1
+3,P12-1019_D09-1116_0,Evaluable,Evidence,Media,Supports the claim that long-distance dependencies and syntax help LMs predict words.,COMPLETO,143,1
+4,E12-1009_P11-2033_1,Evaluable,Application,Media,Follows prior work's evaluation protocol of excluding punctuation.,COMPLETO,143,1
+5,D11-1135_P09-1113_2,Evaluable,Background,Alta,Describes distant supervision approaches in prior work before noting their limits.,COMPLETO,143,1
+6,W12-3207_P06-2118_0,Evaluable,Background,Media,Cited for the definition of collocation as a recurrent conventional expression.,COMPLETO,143,1
+7,D12-1062_D08-1073_4,Evaluable,Application,Media,"Features are defined following previous work, with additional ones added.",COMPLETO,143,1
+8,P98-1076_J97-4004_1,Evaluable,Application,Media,The tokenization criterion adopted is the critical tokenization defined in the cited work.,COMPLETO,143,1
+9,P07-1020_W02-2018_0,Evaluable,Comparison,Alta,Compares the proposed algorithm's convergence with L2-regularized L-BFGS.,COMPLETO,143,1
+10,P13-1113_P98-2127_0,Evaluable,Background,Alta,Lists vector-space model works as general context.,COMPLETO,143,1
+11,W11-0817_P10-2020_0,Evaluable,Further Reading,Media,'see e.g.' directs the reader to work on statistical MWE extraction across languages.,COMPLETO,143,1
+12,W03-0430_N03-1028_1,Evaluable,Evidence,Alta,Supports the claim that quasi-Newton methods are more efficient than iterative scaling and conjugate gradient.,COMPLETO,143,1
+13,D11-1140_P09-1110_0,Evaluable,Background,Media,Describes prior work that extended CCG semantic parsing to context-dependent settings.,COMPLETO,143,1
+14,D13-1034_P84-1038_0,Evaluable,Background,Alta,Cites finite-state transducer analysis of concatenative morphology as general background.,COMPLETO,143,1
+15,P11-1162_W97-0313_1,Evaluable,Background,Alta,Lists researchers' work on automated extraction of semantic lexicons.,COMPLETO,143,1
+16,Q13-1021_N09-1024_0,Evaluable,Gap,Media,"Notes the cited log-linear model has only been run on Semitic languages and English, a limitation.",COMPLETO,143,1
+17,W11-2602_D10-1041_0,Evaluable,Evidence,Media,Supports the plausibility of treating MSA variants of a DA phrase as monolingual paraphrases.,COMPLETO,143,1
+18,W03-2315_W02-2120_1,Evaluable,Comparison,Media,"Contrasts the cited approach with Stone et al.'s, noting it extends it with finer-grained goals.",COMPLETO,143,1
+19,P06-2014_P05-1057_1,Evaluable,Comparison,Media,"Contrasts related alignment approaches (log-linear, greedy search) with the current structured SVM approach.",COMPLETO,143,1
+20,P10-1112_P04-1013_0,Evaluable,Background,Alta,Describes a recent trend in subcategory-inducing models.,COMPLETO,143,1
+21,D13-1060_W09-2903_0,Evaluable,Background,Alta,"Lists prior work on literal vs. idiomatic classification, which the paper does not attempt.",COMPLETO,143,1
+22,W09-3836_N04-1012_0,Evaluable,Comparison,Media,Contrasts previously reported high accuracy on short sentences with the harder datasets used here.,COMPLETO,143,1
+23,W10-2405_D08-1037_0,Evaluable,Evidence,Media,"Supports the claim that the approach succeeded in transliteration discovery, motivating its adoption.",COMPLETO,143,1
+24,P12-1007_D09-1036_5,Evaluable,Application,Alta,Employs the same feature selection method as the cited work.,COMPLETO,143,1
+25,P10-1130_N03-1033_0,Evaluable,Application,Alta,Uses the Stanford tagger to tag the data.,COMPLETO,143,1
+26,Q13-1028_N07-1055_0,Evaluable,Application,Alta,Computes entity transition probabilities with the Brown Coherence Toolkit.,COMPLETO,143,1
+27,E12-1045_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit to build phrase-based systems.,COMPLETO,143,1
+28,W06-1616_W06-2932_0,Evaluable,Comparison,Alta,Compares the best CoNLL system's accuracy with the baseline and constrained versions.,COMPLETO,143,1
+29,P09-1067_W06-3110_0,Evaluable,Comparison,Alta,"Notes similarities (decision rule, posterior n-gram features) and differences (N-best) with the cited work.",COMPLETO,143,1
+30,W07-0401_W03-1709_1,Evaluable,Application,Alta,Uses the ICTCLAS segmenter for Chinese word segmentation.,COMPLETO,143,1
+31,P03-1008_P93-1012_0,Evaluable,Evidence,Media,Supports the claim that resolving metonymies matters for question answering.,COMPLETO,143,1
+32,P13-1127_W10-2903_2,Evaluable,Comparison,Media,The cited semantic parsing framework serves as a state-of-the-art baseline.,COMPLETO,143,1
+33,P06-1009_P05-1057_0,Evaluable,Gap,Media,"Points to early discriminative models as complicated and intractable, motivating the current approach.",COMPLETO,143,1
+34,W13-5511_D12-1130_1,Evaluable,Evidence,Alta,Supports the claim that psycholinguistic semantic features improve NLP semantic tasks.,COMPLETO,143,1
+35,W11-1801_W10-1919_0,Evaluable,Evidence,Media,Supports the task design decision as informed by prior studies on domain IE requirements.,COMPLETO,143,1
+36,N13-1063_P08-1068_0,Evaluable,Background,Alta,Cites works showing semi-supervised methods improving supervised systems.,COMPLETO,143,1
+37,D13-1076_W12-1602_0,Evaluable,Further Reading,Alta,Refers the reader to the cited work for a detailed presentation of the corpus and annotation scheme.,COMPLETO,143,1
+38,P95-1029_P89-1005_0,Evaluable,Further Reading,Alta,Directs the reader to a thorough discussion of the unification problem.,COMPLETO,143,1
+39,W07-1201_P07-1021_0,Evaluable,Further Reading,Alta,'See ... on the relationship' points the reader to additional material.,COMPLETO,143,1
+40,J10-3008_N04-1022_0,Evaluable,Background,Alta,Lists works using MBR decoding to rescore hypotheses as a current SMT trend.,COMPLETO,143,1
+41,J10-4007_P00-1065_2,Evaluable,Comparison,Media,"Compares the model's coverage result with the cited findings, noting consistency.",COMPLETO,143,1
+42,D12-1047_D11-1033_0,Evaluable,Background,Alta,Describes the prevailing practice of selecting similar training data.,COMPLETO,143,1
+43,W10-1906_W09-2603_0,Evaluable,Background,Alta,Describes the cited work as part of the review of related work on nominalizations.,COMPLETO,143,1
+44,D10-1069_N06-1020_2,Evaluable,Identification of the Originator,Alta,States they were the first to improve a constituency parser via self-training.,COMPLETO,143,1
+45,P12-1046_N10-1003_2,Evaluable,Application,Alta,Applies the cited tree-level inference method for combining grammars.,COMPLETO,143,1
+46,P10-1083_P09-1010_2,Evaluable,Comparison,Alta,"Cited policy gradient algorithm is a comparison baseline, described relative to the exploration policy.",COMPLETO,143,1
+47,D12-1117_N07-1031_0,Evaluable,Gap,Media,"Describes prior taxonomy-carving work, contrasting with the proposed support for arbitrary collections.",COMPLETO,143,1
+48,N10-3010_P01-1067_0,Evaluable,Background,Alta,Lists SMT systems as general context in the introduction.,COMPLETO,143,1
+49,W13-0801_N12-1047_0,Evaluable,Application,Alta,Uses batch MIRA to learn feature weights.,COMPLETO,143,1
+50,W12-1517_W11-2823_0,Evaluable,Further Reading,Alta,'More details ... can be' found in the cited work.,COMPLETO,143,1
+51,W12-3134_W09-0424_0,Evaluable,Background,Alta,Recounts the history of Joshua's original version.,COMPLETO,143,1
+52,P10-1003_N06-1014_1,Evaluable,Application,Alta,Uses the Berkeley Aligner to generate word alignments.,COMPLETO,143,1
+53,W12-0608_P07-1053_0,Evaluable,Background,Alta,Lists opinion mining works as context.,COMPLETO,143,1
+54,W00-0708_P97-1056_0,Evaluable,Evidence,Media,Supports the claim that feature weighting yields smoothing-by-similarity when data is sparse.,COMPLETO,143,1
+55,W12-1642_P08-1004_1,Evaluable,Application,Media,Starts from basic features shown useful in relation extraction in prior work.,COMPLETO,143,1
+56,P11-2115_D10-1049_0,Evaluable,Comparison,Alta,"Relates the work to the cited one, noting both address interdependent decisions but differ in optimisation.",COMPLETO,143,1
+57,P12-1078_P11-1137_3,Evaluable,Application,Alta,Follows the cited MAP estimation method to train sparse latent variables.,COMPLETO,143,1
+58,D12-1114_P10-1142_0,Evaluable,Further Reading,Alta,'Interested readers can refer to' the literature review.,COMPLETO,143,1
+59,Q13-1035_W09-2412_0,Evaluable,Basis,Media,"Defines 'sense' in line with the cited work, adopting its conceptual definition.",COMPLETO,143,1
+60,D10-1099_W10-2924_0,Evaluable,Gap,Alta,Notes existing joint approaches are not directly applicable because they consider fewer facts.,COMPLETO,143,1
+61,P05-1073_W04-3212_3,Evaluable,Comparison,Alta,"Contrasts own template with the similar syntactic frame feature, noting an important difference.",COMPLETO,143,1
+62,D10-1027_J07-2003_3,Evaluable,Evidence,Media,Supports the claim that LM integration overhead makes syntax-based decoding slow.,COMPLETO,143,1
+63,P03-1012_P00-1056_1,Evaluable,Comparison,Alta,Explicitly compares results with those of the cited work.,COMPLETO,143,1
+64,W04-0845_P00-1065_0,Evaluable,Evidence,Media,Supports the choice of features by noting they were shown helpful for SRL.,COMPLETO,143,1
+65,P99-1030_J89-2001_0,Evaluable,Background,Alta,Reviews past knowledge-based dialogue analysis work.,COMPLETO,143,1
+66,W13-4706_E09-1050_0,Evaluable,Background,Alta,Lists SMT-based transliteration works.,COMPLETO,143,1
+67,W13-2225_P13-2121_0,Evaluable,Application,Alta,Uses the KenLM toolkit to estimate LMs.,COMPLETO,143,1
+68,W02-1610_W01-1402_0,Evaluable,Comparison,Alta,Notes similarity to the cited work and contrasts with it ('However').,COMPLETO,143,1
+69,W09-1120_W06-2912_0,Evaluable,Background,Alta,Cites recent progress in unsupervised parsing as field overview.,COMPLETO,143,1
+70,D09-1085_W04-3215_0,Evaluable,Gap,Media,"Describes prior evaluation on a small corpus, contrasting with the scope of this paper.",COMPLETO,143,1
+71,W03-1308_W00-1704_0,Evaluable,Basis,Media,The cited ontology underlies the classification scheme used.,COMPLETO,143,1
+72,P10-1112_E93-1006_0,Evaluable,Background,Alta,Lists tree-substitution grammar approaches in parsing literature.,COMPLETO,143,1
+73,J08-3003_W06-2931_0,Evaluable,Comparison,Alta,Appears in a results table comparing systems' scores.,COMPLETO,143,1
+74,W11-2919_E09-1055_2,Evaluable,Evidence,Media,Supports the claim that excluding worst-case rules does not significantly affect accuracy.,COMPLETO,143,1
+75,D13-1175_W11-2123_0,Evaluable,Application,Alta,Uses KenLM to train and query the language model.,COMPLETO,143,1
+76,P07-1028_P97-1003_0,Evaluable,Application,Alta,Uses the Collins parser to parse the corpus.,COMPLETO,143,1
+77,D13-1041_D08-1017_0,Evaluable,Background,Alta,Lists applications of stacking in NLP.,COMPLETO,143,1
+78,N09-3017_P98-1013_0,Evaluable,Background,Media,Describes prior work using FrameNet as a high-level feature resource.,COMPLETO,143,1
+79,W07-0720_E99-1010_1,Evaluable,Application,Media,Implements a class-based language model following the cited method.,COMPLETO,143,1
+80,D09-1095_J91-4003_0,Evaluable,Background,Alta,Describes the standard approach to metonymy resolution via violated verb constraints.,COMPLETO,143,1
+81,D13-1140_J07-2003_1,Evaluable,Application,Alta,Uses the hierarchical phrase-based MT system for experiments.,COMPLETO,143,1
+82,P98-2208_P97-1029_0,Evaluable,Basis,Alta,The paper extends the constraint-based tagging approach first applied to Turkish.,COMPLETO,143,1
+83,D13-1134_W12-1604_3,Evaluable,Comparison,Alta,The cited movement-based system's metric serves as a baseline for comparison.,COMPLETO,143,1
+84,N10-1135_P99-1004_0,Evaluable,Application,Media,Uses standard vector space similarity measures from the cited work.,COMPLETO,143,1
+85,W05-1512_P03-1013_0,Evaluable,Gap,Alta,Cites evidence that full lexicalization is problematic across treebanks and domains.,COMPLETO,143,1
+86,W04-2403_P00-1065_2,Evaluable,Identification of the Originator,Alta,States the standard features were firstly proposed in the cited work.,COMPLETO,143,1
+87,D13-1036_P09-1068_1,Evaluable,Background,Media,Lists previous work defining events by surface verb.,COMPLETO,143,1
+88,W05-0803_P96-1027_0,Evaluable,Basis,Media,"The algorithm is a variant of Earley-style chart generation, building on the cited work.",COMPLETO,143,1
+89,W06-1630_P06-1010_0,Evaluable,Further Reading,Media,'and see' points to additional work comparing time correlation metrics.,COMPLETO,143,1
+90,W11-4507_P07-1123_1,Evaluable,Improvement / Modification,Alta,Uses a variation of the cited method with an online translation system instead of a dictionary.,COMPLETO,143,1
+91,D09-1012_W09-1106_1,Evaluable,Comparison,Alta,Lists advantages of the present algorithm over the cited one.,COMPLETO,143,1
+92,E06-1047_N04-4038_0,Evaluable,Application,Alta,Uses the ASVM Toolkit for tokenization.,COMPLETO,143,1
+93,W09-2506_P07-1058_0,Evaluable,Evidence,Alta,Supports the claim that inference is context-sensitive.,COMPLETO,143,1
+94,W13-2908_P11-2087_1,Evaluable,Evidence,Alta,Supports the decision to retain context since lexical complexity is influenced by it.,COMPLETO,143,1
+95,W11-1015_W09-0424_0,Evaluable,Application,Alta,Uses the Joshua decoder for experiments.,COMPLETO,143,1
+96,S12-1083_S12-1051_0,Evaluable,Background,Media,"Introduces the shared task the paper participates in, describing its goal.",COMPLETO,143,1
+97,D09-1085_N07-1051_0,Evaluable,Background,Alta,Lists parsers achieving high Parseval scores as context.,COMPLETO,143,1
+98,P13-1045_N07-1051_0,Evaluable,Comparison,Alta,Results are compared against the Berkeley parser among others.,COMPLETO,143,1
+99,D13-1204_W09-1803_0,Evaluable,Background,Alta,Summarizes prior NLP work showing local search outperforming greedy solutions.,COMPLETO,143,1
+100,W10-1406_E09-1080_0,Evaluable,Background,Alta,Lists works showing the usefulness of spinal grammar extraction.,COMPLETO,143,1

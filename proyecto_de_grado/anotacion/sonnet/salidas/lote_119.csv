@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P10-1112_P96-1024_0,Evaluable,Background,Alta,,COMPLETO,119,1
+2,D10-1022_P10-2066_0,Evaluable,Basis,Media,PU learning is adopted as the approach to solve the problem.,COMPLETO,119,1
+3,W06-2904_J04-4004_1,Evaluable,Evidence,Alta,,COMPLETO,119,1
+4,P13-1037_E09-1071_0,Evaluable,Background,Alta,,COMPLETO,119,1
+5,N06-1032_P05-1034_1,Evaluable,Comparison,Alta,,COMPLETO,119,1
+6,D13-1107_W07-0717_0,Evaluable,Background,Alta,,COMPLETO,119,1
+7,W09-0401_P07-1038_0,Evaluable,Background,Media,,COMPLETO,119,1
+8,W09-3309_W04-0210_1,Evaluable,Comparison,Alta,,COMPLETO,119,1
+9,W08-1105_P06-4020_0,Evaluable,Application,Alta,,COMPLETO,119,1
+10,D09-1086_P04-1060_0,Evaluable,Background,Media,,COMPLETO,119,1
+11,D12-1045_D08-1068_0,Evaluable,Evidence,Media,,COMPLETO,119,1
+12,D11-1105_N09-1041_2,Evaluable,Comparison,Alta,,COMPLETO,119,1
+13,P10-2031_D09-1153_0,Evaluable,Background,Alta,,COMPLETO,119,1
+14,P13-3004_W06-3506_2,Evaluable,Gap,Media,,COMPLETO,119,1
+15,D11-1042_P05-1034_0,Evaluable,Background,Alta,,COMPLETO,119,1
+16,W06-1619_P05-1011_3,Evaluable,Comparison,Alta,,COMPLETO,119,1
+17,S13-1011_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,119,1
+18,W09-3412_P08-2024_0,Evaluable,Background,Alta,,COMPLETO,119,1
+19,W12-4108_D11-1146_1,Evaluable,Comparison,Alta,,COMPLETO,119,1
+20,D13-1047_P11-1049_4,Evaluable,Comparison,Alta,,COMPLETO,119,1
+21,D11-1081_P06-1091_0,Evaluable,Background,Alta,,COMPLETO,119,1
+22,P12-1109_W10-0513_1,Evaluable,Application,Alta,,COMPLETO,119,1
+23,P11-1144_P05-1012_0,Evaluable,Application,Alta,,COMPLETO,119,1
+24,W01-1603_P98-2188_0,Evaluable,Evidence,Media,,COMPLETO,119,1
+25,W12-0113_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,119,1
+26,W09-0215_P05-1014_0,Evaluable,Background,Media,,COMPLETO,119,1
+27,W04-3213_P00-1065_5,Evaluable,Comparison,Alta,,COMPLETO,119,1
+28,W12-1642_W11-0503_1,Evaluable,Basis,Media,"Authors build on their previous work, adopting its baselines and methods.",COMPLETO,119,1
+29,D13-1107_P03-1021_0,Evaluable,Application,Alta,,COMPLETO,119,1
+30,P00-1052_P83-1007_0,Evaluable,Basis,Alta,,COMPLETO,119,1
+31,P11-1162_N10-1087_0,Evaluable,Gap,Media,Cited work shows a regularity but does not explain why; this motivates the current work.,COMPLETO,119,1
+32,W07-0901_W01-0716_0,Evaluable,Evidence,Media,,COMPLETO,119,1
+33,P09-1024_W05-0618_0,Evaluable,Background,Media,,COMPLETO,119,1
+34,P13-1020_P11-1049_4,Evaluable,Application,Alta,,COMPLETO,119,1
+35,N13-1121_N04-1043_0,Evaluable,Background,Alta,,COMPLETO,119,1
+36,Q13-1023_P97-1023_0,Evaluable,Background,Alta,,COMPLETO,119,1
+37,J12-2001_J94-2004_0,Evaluable,Background,Alta,,COMPLETO,119,1
+38,P10-1097_W09-2506_1,Evaluable,Basis,Alta,,COMPLETO,119,1
+39,D12-1106_P06-2103_0,Evaluable,Background,Alta,,COMPLETO,119,1
+40,N10-1140_P08-1114_0,Evaluable,Further Reading,Baja,,COMPLETO,119,1
+41,W12-3135_P05-1012_0,Evaluable,Basis,Alta,,COMPLETO,119,1
+42,D10-1055_W04-3250_0,Evaluable,Application,Alta,,COMPLETO,119,1
+43,D10-1049_P02-1003_0,Evaluable,Background,Media,,COMPLETO,119,1
+44,P12-1084_D09-1151_0,Evaluable,Gap,Alta,,COMPLETO,119,1
+45,W04-3009_P00-1037_0,Evaluable,Background,Alta,,COMPLETO,119,1
+46,P10-1036_W01-0521_0,Evaluable,Evidence,Alta,,COMPLETO,119,1
+47,W11-2402_P11-2098_0,Evaluable,Basis,Alta,,COMPLETO,119,1
+48,J11-1005_P08-1101_0,Evaluable,Comparison,Alta,,COMPLETO,119,1
+49,P07-1042_W05-1605_1,Evaluable,Further Reading,Alta,,COMPLETO,119,1
+50,W06-1620_W02-2018_0,Evaluable,Evidence,Media,,COMPLETO,119,1
+51,W12-2032_D10-1094_4,Evaluable,Application,Alta,,COMPLETO,119,1
+52,W13-3516_N07-1070_0,Evaluable,Evidence,Alta,,COMPLETO,119,1
+53,P13-1008_W09-1406_0,Evaluable,Background,Alta,,COMPLETO,119,1
+54,W13-2104_W08-0111_0,Evaluable,Background,Media,,COMPLETO,119,1
+55,W13-2236_E03-1076_0,Evaluable,Application,Alta,,COMPLETO,119,1
+56,W98-1008_E89-1008_0,Evaluable,Basis,Alta,,COMPLETO,119,1
+57,E99-1017_P96-1031_0,Evaluable,Improvement / Modification,Alta,,COMPLETO,119,1
+58,D11-1045_W06-3119_0,Evaluable,Background,Alta,,COMPLETO,119,1
+59,P10-1037_W04-3202_0,Evaluable,Background,Alta,,COMPLETO,119,1
+60,W12-2032_N10-1018_2,Evaluable,Basis,Alta,,COMPLETO,119,1
+61,N12-1015_P04-1015_3,Evaluable,Identification of the Originator,Alta,,COMPLETO,119,1
+62,W05-1002_P04-1043_1,Evaluable,Background,Media,,COMPLETO,119,1
+63,P13-1135_P07-2045_0,Evaluable,Application,Alta,,COMPLETO,119,1
+64,W10-0402_W06-1613_4,Evaluable,Comparison,Alta,,COMPLETO,119,1
+65,P05-1070_P98-2199_0,Evaluable,Gap,Media,,COMPLETO,119,1
+66,P05-1048_P91-1034_0,Evaluable,Comparison,Media,,COMPLETO,119,1
+67,P13-1043_W05-1513_5,Evaluable,Comparison,Alta,,COMPLETO,119,1
+68,P11-3004_N10-1072_0,Evaluable,Comparison,Alta,,COMPLETO,119,1
+69,N13-1016_W13-0102_0,Evaluable,Application,Alta,,COMPLETO,119,1
+70,E09-1071_P06-4020_0,Evaluable,Application,Alta,,COMPLETO,119,1
+71,W00-1322_W97-0201_3,Evaluable,Evidence,Alta,,COMPLETO,119,1
+72,P07-2026_J90-2002_0,Evaluable,Identification of the Originator,Media,,COMPLETO,119,1
+73,D12-1017_W98-0720_0,Evaluable,Gap,Media,,COMPLETO,119,1
+74,P06-1059_W04-1213_0,Evaluable,Evidence,Alta,,COMPLETO,119,1
+75,P12-2047_D08-1107_1,Evaluable,Comparison,Alta,,COMPLETO,119,1
+76,P99-1047_P97-1013_0,Evaluable,Evidence,Alta,,COMPLETO,119,1
+77,J08-1002_W02-2030_4,Evaluable,Evidence,Media,,COMPLETO,119,1
+78,D13-1029_P10-1142_0,Evaluable,Further Reading,Alta,,COMPLETO,119,1
+79,W13-2227_N07-1029_0,Evaluable,Application,Alta,,COMPLETO,119,1
+80,W10-4205_P87-1002_0,Evaluable,Background,Alta,,COMPLETO,119,1
+81,N04-1029_W95-0107_0,Evaluable,Application,Alta,,COMPLETO,119,1
+82,W10-2924_W09-2201_0,Evaluable,Gap,Alta,,COMPLETO,119,1
+83,W13-2124_N07-1021_0,Evaluable,Evidence,Alta,,COMPLETO,119,1
+84,N12-1076_P08-1028_0,Evaluable,Background,Alta,,COMPLETO,119,1
+85,P13-1127_P09-1010_1,Evaluable,Background,Alta,,COMPLETO,119,1
+86,W12-3148_W11-2132_0,Evaluable,Background,Media,,COMPLETO,119,1
+87,W06-1409_W05-1606_0,Evaluable,Background,Media,,COMPLETO,119,1
+88,W13-2210_W09-0435_0,Evaluable,Basis,Media,,COMPLETO,119,1
+89,P01-1011_P95-1021_0,Evaluable,Background,Alta,,COMPLETO,119,1
+90,D09-1122_P05-1014_1,Evaluable,Background,Alta,,COMPLETO,119,1
+91,W12-1634_D10-1084_0,Evaluable,Background,Alta,,COMPLETO,119,1
+92,P08-1060_P07-1008_5,Evaluable,Background,Media,,COMPLETO,119,1
+93,Q13-1014_P00-1056_0,Evaluable,Application,Alta,,COMPLETO,119,1
+94,J92-3003_P85-1032_1,Evaluable,Background,Alta,,COMPLETO,119,1
+95,W08-2004_P06-1051_4,Evaluable,Basis,Alta,,COMPLETO,119,1
+96,P05-1073_P00-1065_4,Evaluable,Evidence,Alta,,COMPLETO,119,1
+97,P13-1039_W04-1013_0,Evaluable,Application,Alta,,COMPLETO,119,1
+98,W04-2704_W98-0315_0,Evaluable,Identification of the Originator,Alta,,COMPLETO,119,1
+99,N12-1034_N06-1003_0,Evaluable,Background,Alta,,COMPLETO,119,1
+100,P92-1002_J90-4001_0,Evaluable,Gap,Alta,,COMPLETO,119,1

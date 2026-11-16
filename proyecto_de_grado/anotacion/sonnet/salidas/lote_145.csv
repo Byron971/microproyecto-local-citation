@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P13-2020_N12-1015_2,Evaluable,Background,Media,Describes the cited work's theoretical findings on perceptron convergence as prior work.,COMPLETO,145,1
+2,W09-0434_P05-1033_0,Evaluable,Background,Alta,Cites hierarchical model as an example of grammar-based SMT models in a general context.,COMPLETO,145,1
+3,D13-1111_N04-1022_1,Evaluable,Comparison,Media,Notes similarity between the current approach and MBR decoding.,COMPLETO,145,1
+4,W09-1116_W98-1119_1,Evaluable,Evidence,Alta,Supports the claim that gender is a key feature for pronoun resolution.,COMPLETO,145,1
+5,D11-1132_P09-1113_0,Evaluable,Background,Alta,Situates the work within the distant supervision line of research.,COMPLETO,145,1
+6,W04-2403_P03-1002_3,Evaluable,Comparison,Alta,Results of the cited work are compared against the SVM results in a table.,COMPLETO,145,1
+7,P11-1160_P10-1002_0,Evaluable,Background,Alta,Lists prior uses of parallel corpora for information transfer.,COMPLETO,145,1
+8,D10-1015_N04-4015_0,Evaluable,Evidence,Media,Supports the claim that word-level approaches are inadequate for morphologically rich languages.,COMPLETO,145,1
+9,P09-1090_P05-1066_0,Evaluable,Comparison,Alta,States the preprocessing is similar to the cited approach.,COMPLETO,145,1
+10,P08-1058_P07-1065_0,Evaluable,Background,Media,"Describes recent work showing randomized encodings for n-gram counts, motivating the proposal.",COMPLETO,145,1
+11,D13-1052_P09-1065_1,Evaluable,Basis,Media,"Cited combination is a special configuration of the framework and is replicated; related work context makes Basis/Application plausible, but it is described as a special case of the current framework.",COMPLETO,145,1
+12,D11-1074_N10-1072_0,Evaluable,Background,Alta,Notes strategies explored in existing literature before pointing out limitations.,COMPLETO,145,1
+13,D10-1031_P06-1040_0,Evaluable,Background,Alta,Enumerates unsupervised approaches in related work.,COMPLETO,145,1
+14,J13-2001_P02-1051_1,Evaluable,Background,Alta,Describes the cited asymmetric NE translation algorithm as prior work.,COMPLETO,145,1
+15,P13-1128_P12-1055_0,Evaluable,Background,Alta,Lists tweet-related research areas.,COMPLETO,145,1
+16,W10-1709_W06-3119_0,Evaluable,Basis,Alta,Features are largely inspired by the cited SAMT system.,COMPLETO,145,1
+17,E09-1025_P07-1058_2,Evaluable,Evidence,Media,Supports the claim that evaluating a rule collection is non-trivial.,COMPLETO,145,1
+18,N13-1120_S12-1055_0,Evaluable,Background,Media,Reports the prior result of a SemEval system that outperformed the PMI baseline.,COMPLETO,145,1
+19,N13-1038_N12-1015_2,Evaluable,Application,Media,Uses the definition of violating constraints from the cited work.,COMPLETO,145,1
+20,D12-1008_P10-1103_3,Evaluable,Comparison,Media,"Says IP strategies were compared in detail by the cited work, delimiting scope against it.",COMPLETO,145,1
+21,P11-1065_P05-1034_0,Evaluable,Background,Alta,Enumerates SMT models using source-side syntax.,COMPLETO,145,1
+22,P09-1029_W04-3239_0,Evaluable,Evidence,Media,Supports the claim that syntactic features improve sentiment analysis.,COMPLETO,145,1
+23,W11-2136_W06-3119_2,Evaluable,Application,Media,"Follows the tree relaxation method of the cited work, applied to the current input trees.",COMPLETO,145,1
+24,D11-1097_P08-1028_0,Evaluable,Background,Alta,Cites recent developments in compositional distributional semantics.,COMPLETO,145,1
+25,P09-1114_D08-1072_0,Evaluable,Background,Alta,Lists NLP applications of transfer learning.,COMPLETO,145,1
+26,W11-2843_W10-1004_2,Evaluable,Application,Media,Accuracy and baseline are computed using the procedure from the cited work.,COMPLETO,145,1
+27,E12-1055_W10-1715_1,Evaluable,Background,Media,Mentions prior work weighting translation models with monolingual perplexity.,COMPLETO,145,1
+28,P06-1088_N03-1033_0,Evaluable,Evidence,Media,Supports the claim that POS tagging accuracy exceeds 97%.,COMPLETO,145,1
+29,D13-1186_W11-1904_0,Evaluable,Background,Alta,"Notes ILP used for global inference in prior works, before stating a gap.",COMPLETO,145,1
+30,N10-1130_J90-2002_0,Evaluable,Identification of the Originator,Media,"Called a seminal paper on the statistical approach, crediting its origin.",COMPLETO,145,1
+31,D08-1033_W02-1018_1,Evaluable,Basis,Alta,"Describes the cited joint model, which the current work extends.",COMPLETO,145,1
+32,W12-3154_W11-2123_0,Evaluable,Application,Alta,KenLM is used as a tool at runtime.,COMPLETO,145,1
+33,J01-2002_P98-1029_1,Evaluable,Comparison,Alta,Experiments allow comparing results with those reported in the cited work.,COMPLETO,145,1
+34,P98-2143_P87-1022_0,Evaluable,Evidence,Media,Centering theory proposal is used to explain the salience preference.,COMPLETO,145,1
+35,D08-1020_P05-1018_1,Evaluable,Background,Alta,Describes the cited generalization of centering as prior work.,COMPLETO,145,1
+36,W12-1634_D10-1084_1,Evaluable,Background,Alta,Lists prior work on synchronous chat analysis.,COMPLETO,145,1
+37,W11-0315_N09-1068_0,Evaluable,Gap,Media,"Prior domain adaptation work assumes labeled data, contrasted with the current investigation.",COMPLETO,145,1
+38,D10-1052_N03-1017_0,Evaluable,Application,Alta,Uses the grow-diag-final-and heuristic for initialization.,COMPLETO,145,1
+39,D09-1161_P06-1055_0,Evaluable,Background,Alta,"Categorizes parsing models, listing un-lexicalized ones.",COMPLETO,145,1
+40,J12-2001_W09-1418_0,Evaluable,Background,Alta,Describes the best-scoring shared task system.,COMPLETO,145,1
+41,P11-2003_P07-1080_0,Evaluable,Background,Alta,Lists model types with high-dimensional hidden representations.,COMPLETO,145,1
+42,J13-2004_P06-2066_0,Evaluable,Further Reading,Alta,Directs reader to the cited work for similar results on other data sets.,COMPLETO,145,1
+43,W13-3518_P08-1108_0,Evaluable,Comparison,Alta,Contrasts stacking approaches with the present parser.,COMPLETO,145,1
+44,E09-1099_N07-1010_0,Evaluable,Background,Alta,Describes a common approach to coreference with example works.,COMPLETO,145,1
+45,W12-4404_N09-1022_0,Evaluable,Background,Alta,Lists tasks where the model has achieved good performance.,COMPLETO,145,1
+46,D11-1066_P06-2010_3,Evaluable,Background,Alta,Lists tasks where STK is state-of-the-art.,COMPLETO,145,1
+47,D11-1081_W04-3250_0,Evaluable,Application,Alta,Uses the cited significance testing method.,COMPLETO,145,1
+48,N13-1136_P05-1018_0,Evaluable,Gap,Media,"Prior work treats selection and ordering separately, motivating a joint model.",COMPLETO,145,1
+49,J12-1003_D10-1107_0,Evaluable,Background,Alta,Describes the cited use of ILP in a related task.,COMPLETO,145,1
+50,P06-3014_W02-1007_1,Evaluable,Evidence,Media,Supports the claim that parsers condition on neighboring constituents.,COMPLETO,145,1
+51,N10-1107_N03-1017_0,Evaluable,Further Reading,Alta,Refers to the cited work as a review of phrase extraction.,COMPLETO,145,1
+52,W13-1201_P11-2037_0,Evaluable,Background,Alta,"Cites parsers enriching output representation, then discusses their reported performance.",COMPLETO,145,1
+53,D11-1059_D10-1083_1,Evaluable,Comparison,Media,"Describes the cited type-based model, later contrasted with the current model.",COMPLETO,145,1
+54,W11-0507_N09-1041_6,Evaluable,Background,Alta,Describes HIERSUM as an extension of TOPICSUM in prior work.,COMPLETO,145,1
+55,W12-5707_P09-1064_0,Evaluable,Background,Alta,Lists works on system combination.,COMPLETO,145,1
+56,W04-3230_N03-1028_0,Evaluable,Background,Alta,Lists CRF applications in shallow parsing.,COMPLETO,145,1
+57,P08-1068_N04-1043_1,Evaluable,Evidence,Media,Supports choice of Brown clustering by its prior success.,COMPLETO,145,1
+58,W90-0109_E87-1001_0,Evaluable,Background,Alta,Categorizes text planning architectures in prior work.,COMPLETO,145,1
+59,W08-2101_W05-0631_0,Evaluable,Comparison,Alta,Result of the cited system is compared in a results table.,COMPLETO,145,1
+60,W03-2205_J90-2002_0,Evaluable,Application,Media,Uses the cited statistical alignment models to obtain word alignments.,COMPLETO,145,1
+61,P12-1023_D09-1060_1,Evaluable,Comparison,Alta,Cited parser is compared in the results.,COMPLETO,145,1
+62,W13-0112_P08-1028_1,Evaluable,Application,Alta,Uses the test set of the cited work.,COMPLETO,145,1
+63,P10-1001_P08-1068_1,Evaluable,Comparison,Alta,Notes the cited model is not directly comparable because it uses unlabeled data.,COMPLETO,145,1
+64,P10-2025_P00-1056_0,Evaluable,Application,Media,Uses standard alignment metrics defined in the cited work.,COMPLETO,145,1
+65,P11-1126_P09-1107_2,Evaluable,Application,Alta,Re-implements the cited system combination method as a baseline.,COMPLETO,145,1
+66,P12-1001_D11-1035_0,Evaluable,Background,Media,Refers to the issue of metric tunability discussed in the cited work.,COMPLETO,145,1
+67,N10-1145_W07-1401_3,Evaluable,Comparison,Alta,Compares results with the Wang et al. system.,COMPLETO,145,1
+68,W12-3412_D09-1161_1,Evaluable,Comparison,Alta,Compares results with the cited multi-parser combination.,COMPLETO,145,1
+69,W13-2117_W00-0400_0,Evaluable,Evidence,Alta,Supports the claim that inter-annotator agreement is low for summarization.,COMPLETO,145,1
+70,D09-1127_D08-1092_1,Evaluable,Gap,Media,"Points out the limitation of separate parsing and reranking, motivating the proposed alternative.",COMPLETO,145,1
+71,P10-1028_P00-1037_1,Evaluable,Evidence,Alta,Supports the claim that statistical error models are effective.,COMPLETO,145,1
+72,P04-1064_W03-0301_1,Evaluable,Application,Alta,Uses the data provided by the shared task.,COMPLETO,145,1
+73,D09-1161_N06-2033_3,Evaluable,Comparison,Alta,Result of combination model is compared in tables.,COMPLETO,145,1
+74,W12-1901_N10-1137_1,Evaluable,Application,Alta,Uses the evaluation metrics as defined in the cited work.,COMPLETO,145,1
+75,E87-1032_P84-1065_0,Evaluable,Evidence,Media,Supports the claim that syntactic constraints may affect sentence content.,COMPLETO,145,1
+76,P11-1065_W06-3105_0,Evaluable,Evidence,Alta,Supports the claim that ML estimation overfits.,COMPLETO,145,1
+77,W13-2807_N03-1017_1,Evaluable,Background,Media,Cited with other works as showing improvements over baseline.,COMPLETO,145,1
+78,P13-1147_P07-1034_3,Evaluable,Comparison,Alta,Prior work result listed for comparison in a table.,COMPLETO,145,1
+79,W09-3828_P05-1011_2,Evaluable,Application,Alta,Methods are implemented for the Enju parser.,COMPLETO,145,1
+80,W07-1511_P05-2003_0,Evaluable,Evidence,Alta,Supports the claim that collocation extraction performance is unsatisfactory.,COMPLETO,145,1
+81,W13-2309_P12-1008_0,Evaluable,Gap,Alta,"Notes the cited corpus is not yet available, motivating the current annotation.",COMPLETO,145,1
+82,D10-1057_D08-1070_0,Evaluable,Background,Alta,Describes prior pipeline model work in related work.,COMPLETO,145,1
+83,W08-2004_P06-1051_0,Evaluable,Background,Alta,Describes how the cited work addressed kernels for entailment.,COMPLETO,145,1
+84,W13-4023_P12-3007_0,Evaluable,Background,Media,"Mentions the IRIS agent as an existing system, described in the cited work.",COMPLETO,145,1
+85,D12-1057_P08-1008_0,Evaluable,Evidence,Alta,Supports the claim that contradiction is important for RTE.,COMPLETO,145,1
+86,P13-1140_W04-3250_0,Evaluable,Application,Alta,Applies the pairwise re-sampling significance test.,COMPLETO,145,1
+87,D09-1037_N09-1062_1,Evaluable,Basis,Alta,The current sampler is an extension of the cited sampler.,COMPLETO,145,1
+88,W08-2102_P08-1068_1,Evaluable,Comparison,Alta,Results of cited model are compared in the table.,COMPLETO,145,1
+89,D10-1057_W01-1007_0,Evaluable,Background,Alta,Lists techniques for static genre classification.,COMPLETO,145,1
+90,P11-1052_N09-1041_1,Evaluable,Comparison,Alta,The system outperforms the cited topic-model-based system.,COMPLETO,145,1
+91,W12-5016_P06-2025_0,Evaluable,Application,Media,Manipuri transliteration was reported using the modified joint source channel model.,COMPLETO,145,1
+92,D09-1038_P05-1033_0,Evaluable,Background,Alta,Cites SCFG-based SMT systems as extensively investigated.,COMPLETO,145,1
+93,D13-1025_E03-1032_0,Evaluable,Evidence,Media,Supports the claim that MT models can be used with modified search procedures.,COMPLETO,145,1
+94,P99-1064_J88-2003_0,Evaluable,Background,Media,"Cited work questioned coherence of achievement verbs, described as prior literature.",COMPLETO,145,1
+95,W13-5007_D11-1011_0,Evaluable,Background,Alta,Follows definitions of bootstrapping in existing NLP papers.,COMPLETO,145,1
+96,P96-1044_P95-1031_0,Evaluable,Background,Alta,Lists programs using compression for unsupervised language learning.,COMPLETO,145,1
+97,W11-3207_P07-2045_0,Evaluable,Application,Alta,Uses the Moses toolkit.,COMPLETO,145,1
+98,W05-0830_N03-1017_1,Evaluable,Evidence,Alta,Supports the decision to avoid long phrases.,COMPLETO,145,1
+99,D09-1021_P08-1023_0,Evaluable,Background,Alta,Lists recent syntax-based translation models.,COMPLETO,145,1
+100,W11-2702_W08-1109_2,Evaluable,Background,Media,Refers to previously reported observation of a laziness effect.,COMPLETO,145,1

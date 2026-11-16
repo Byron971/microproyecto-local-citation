@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J10-3005_P05-1036_1,Evaluable,Background,Alta,Enumeración de trabajos previos sobre compresión generativa.,COMPLETO,129,1
+2,P10-1033_P05-1059_2,Evaluable,Comparison,Media,Tictac es una línea base contra la que se evalúa DPDI.,COMPLETO,129,1
+3,W11-1215_P08-1030_0,Evaluable,Background,Media,Resume estudios recientes de IE sobre redundancia de información.,COMPLETO,129,1
+4,W06-2918_E99-1001_0,Evaluable,Background,Media,Describe trabajo previo sobre gazetteers y sus hallazgos.,COMPLETO,129,1
+5,Q13-1029_P06-1040_3,Evaluable,Comparison,Alta,Contrasta la velocidad de SuperSim con LRA.,COMPLETO,129,1
+6,E12-3008_W98-0609_1,Evaluable,Evidence,Alta,Respalda una afirmación lingüística sobre los elementos de enlace en alemán.,COMPLETO,129,1
+7,W13-3612_N10-1018_0,Evaluable,Basis,Media,La línea base se define de forma similar a la del trabajo citado.,COMPLETO,129,1
+8,W03-2205_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ tal cual para obtener el diccionario estadístico.,COMPLETO,129,1
+9,N01-1009_J91-4003_0,Evaluable,Further Reading,Alta,Remite a la fuente y sus referencias con 'see ... and the references therein'.,COMPLETO,129,1
+10,N09-1047_P03-1021_0,Evaluable,Application,Alta,Se usa el algoritmo MERT descrito en el trabajo citado para optimizar pesos.,COMPLETO,129,1
+11,W13-2006_D11-1001_1,Evaluable,Comparison,Alta,Compara explícitamente los puntajes con el modelo UMass.,COMPLETO,129,1
+12,W04-3111_N03-1028_0,Evaluable,Evidence,Alta,Respalda que los CRF logran resultados de vanguardia en chunking y etiquetado.,COMPLETO,129,1
+13,P11-1125_A00-2023_0,Evaluable,Background,Media,Sitúa el enfoque dentro de la generación estadística previa.,COMPLETO,129,1
+14,W09-2807_A00-2024_1,Evaluable,Comparison,Media,"Contrasta el trabajo actual con el resumen cut-and-paste, que era manual.",COMPLETO,129,1
+15,D09-1049_P05-1075_0,Evaluable,Background,Alta,Resume la línea de investigación sobre medidas de asociación.,COMPLETO,129,1
+16,P10-3005_P97-1023_0,Evaluable,Background,Alta,Describe trabajo previo sobre inducción de léxicos de sentimiento.,COMPLETO,129,1
+17,P11-1127_D08-1065_1,Evaluable,Gap,Media,Presenta el método citado para contrastarlo con el espacio de hipótesis del trabajo actual.,COMPLETO,129,1
+18,S13-2046_W08-0902_0,Evaluable,Background,Alta,Enumera enfoques existentes para la calificación automática.,COMPLETO,129,1
+19,P08-1011_N03-1017_1,Evaluable,Application,Alta,Se aplica la regla de refinamiento descrita en el trabajo citado.,COMPLETO,129,1
+20,D12-1037_P03-1021_1,Evaluable,Basis,Media,El trabajo citado motiva la aproximación mediante pérdida esperada.,COMPLETO,129,1
+21,E09-1049_W06-3119_1,Evaluable,Background,Media,Reporta hallazgos previos sobre categorías sintácticas en frases.,COMPLETO,129,1
+22,J06-3003_P98-2127_3,Evaluable,Evidence,Alta,Respalda que la transformación logarítmica mejora la similitud coseno.,COMPLETO,129,1
+23,P04-1051_W00-1411_1,Evaluable,Background,Media,Presenta las clases de transiciones definidas en trabajo previo.,COMPLETO,129,1
+24,D12-1076_S07-1107_0,Evaluable,Background,Media,Enumera métodos previos de similitud basados en grafos.,COMPLETO,129,1
+25,P13-1066_P12-1036_0,Evaluable,Basis,Alta,El trabajo actual mejora y extiende el trabajo previo de los autores.,COMPLETO,129,1
+26,N10-1134_W04-3252_0,Evaluable,Background,Alta,Describe trabajo previo sobre centralidad de vectores propios en resumen.,COMPLETO,129,1
+27,W13-2206_P07-2045_0,Evaluable,Comparison,Alta,Compara el rendimiento con el sistema base Moses.,COMPLETO,129,1
+28,W07-0201_P94-1019_0,Evaluable,Background,Alta,Describe una medida de similitud previa en una enumeración de medidas.,COMPLETO,129,1
+29,S13-2049_D09-1046_0,Evaluable,Gap,Media,"Las correlaciones previas suponen posiciones igualmente importantes, lo que motiva la versión ponderada.",COMPLETO,129,1
+30,W13-2208_W12-3139_0,Evaluable,Evidence,Media,Respalda la decisión de probar conjuntos de ajuste mayores.,COMPLETO,129,1
+31,N10-1138_P05-1012_0,Evaluable,Application,Alta,Se usa el analizador MST para el preprocesamiento.,COMPLETO,129,1
+32,N12-1044_W11-3206_0,Evaluable,Background,Media,Describe un resultado previo en el área de trabajo relacionado.,COMPLETO,129,1
+33,W11-1611_W06-1421_0,Evaluable,Evidence,Alta,Respalda los beneficios de la evaluación de tarea compartida.,COMPLETO,129,1
+34,E09-1075_P98-1013_0,Evaluable,Background,Alta,Presenta el proyecto FrameNet como recurso de contexto.,COMPLETO,129,1
+35,P12-1044_P06-4020_3,Evaluable,Evidence,Alta,Respalda que el analizador rinde bien en lenguaje general.,COMPLETO,129,1
+36,P10-2005_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ para generar el alineamiento base.,COMPLETO,129,1
+37,W12-3157_N09-1046_0,Evaluable,Background,Alta,Describe trabajo previo sobre segmentación de compuestos.,COMPLETO,129,1
+38,J04-2003_J90-2002_0,Evaluable,Identification of the Originator,Alta,Atribuye los modelos IBM 1–5 a sus autores originales.,COMPLETO,129,1
+39,J11-1008_P06-2066_0,Evaluable,Background,Media,Menciona contextos de aplicación de factorización de reglas.,COMPLETO,129,1
+40,P11-1135_P07-1086_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los errores de coordinación de NP dominan.,COMPLETO,129,1
+41,D12-1117_P06-1101_0,Evaluable,Background,Media,Enumera enfoques recientes que construyen la taxonomía completa.,COMPLETO,129,1
+42,D11-1120_D10-1021_0,Evaluable,Background,Alta,Citas múltiples sobre el interés en predecir rasgos demográficos.,COMPLETO,129,1
+43,P12-2062_P03-1021_1,Evaluable,Evidence,Alta,Respalda el hecho conocido de que optimizar una métrica perjudica otras.,COMPLETO,129,1
+44,D11-1137_P10-1001_4,Evaluable,Comparison,Alta,Aparece en una tabla que compara resultados con otros analizadores.,COMPLETO,129,1
+45,P06-1139_P01-1030_0,Evaluable,Evidence,Alta,Respalda que la búsqueda A* completa no suele ser posible en traducción automática.,COMPLETO,129,1
+46,J94-1001_J91-2001_4,Evaluable,Background,Media,Reporta propuestas previas de conceptualizar arcos como relaciones.,COMPLETO,129,1
+47,N10-1100_J86-2002_0,Evaluable,Background,Alta,Trabajo temprano en una sección de trabajo relacionado.,COMPLETO,129,1
+48,W10-0101_W04-3202_0,Evaluable,Background,Media,Describe el muestreo por incertidumbre con un solo clasificador.,COMPLETO,129,1
+49,D09-1005_D09-1147_1,Evaluable,Comparison,Media,Señala que otro trabajo observó un patrón similar al propio.,COMPLETO,129,1
+50,W13-5307_N10-1027_0,Evaluable,Background,Media,Reporta estudios previos sobre factores que influyen en el éxito.,COMPLETO,129,1
+51,W10-2105_N06-1020_1,Evaluable,Background,Alta,Trabajo previo sobre sistemas de análisis individuales en trabajo relacionado.,COMPLETO,129,1
+52,W13-3703_W12-5205_0,Evaluable,Background,Alta,Describe trabajo previo que aplicó MaltOptimizer.,COMPLETO,129,1
+53,S13-2078_P06-2063_0,Evaluable,Background,Alta,Enumera trabajos previos que examinan la posición de palabras.,COMPLETO,129,1
+54,P08-1088_W02-0902_5,Evaluable,Comparison,Alta,Compara la exactitud obtenida con la reportada en el trabajo citado.,COMPLETO,129,1
+55,J10-4007_J91-4003_0,Evaluable,Identification of the Originator,Media,Atribuye a Pustejovsky el léxico generativo y sus roles qualia.,COMPLETO,129,1
+56,W07-2303_W05-1510_0,Evaluable,Background,Alta,Describe modelos probabilísticos previos similares en trabajo relacionado.,COMPLETO,129,1
+57,S13-2049_S13-2040_0,Evaluable,Evidence,Alta,Respalda el hallazgo de que los anotadores encuentran múltiples sentidos aplicables.,COMPLETO,129,1
+58,W12-1910_P10-2036_0,Evaluable,Comparison,Alta,"El baseline supera a PR-DVM, comparación explícita de desempeño.",COMPLETO,129,1
+59,N09-1005_P06-2065_0,Evaluable,Basis,Media,Sigue la sugerencia del trabajo citado para formular el modelo.,COMPLETO,129,1
+60,P10-1056_N03-2024_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre reescritura de menciones de personas.,COMPLETO,129,1
+61,E12-1003_N09-2004_0,Evaluable,Background,Alta,Enumera aplicaciones de roles semánticos.,COMPLETO,129,1
+62,W12-2032_W11-2838_0,Evaluable,Evidence,Media,Respalda que la mejora fue exitosa en una tarea compartida anterior.,COMPLETO,129,1
+63,J07-2003_P00-1056_0,Evaluable,Application,Alta,Se usa GIZA++ para obtener los alineamientos.,COMPLETO,129,1
+64,W12-1642_D09-1044_4,Evaluable,Comparison,Alta,Se comparan los mejores resultados de GRE del trabajo citado en la tabla.,COMPLETO,129,1
+65,S13-2029_S07-1009_0,Evaluable,Application,Alta,Se usa la métrica BEST introducida en el trabajo citado.,COMPLETO,129,1
+66,P10-2003_N04-4026_1,Evaluable,Comparison,Media,Señala que el modelo citado está relacionado con el propio pero no se compara.,COMPLETO,129,1
+67,W11-2166_W99-0604_0,Evaluable,Background,Alta,Presenta la extracción basada en frases como ejemplo histórico.,COMPLETO,129,1
+68,N09-1001_P05-1017_1,Evaluable,Comparison,Alta,Contrasta el alcance del trabajo actual con el citado.,COMPLETO,129,1
+69,N13-1008_W12-3022_1,Evaluable,Basis,Alta,El trabajo actual extiende un artículo de taller previo de los autores.,COMPLETO,129,1
+70,D12-1021_P11-1064_0,Evaluable,Gap,Alta,Señala limitaciones de trabajos previos que el modelo actual supera.,COMPLETO,129,1
+71,N07-1051_P05-1022_3,Evaluable,Comparison,Alta,Compara tiempo y F1 con el analizador citado.,COMPLETO,129,1
+72,P10-1057_N09-1066_2,Evaluable,Gap,Media,"Trabajos previos usan solo oraciones de citas, lo que motiva añadir contexto.",COMPLETO,129,1
+73,W07-0604_P05-1025_2,Evaluable,Evidence,Alta,Respalda que el análisis con GR ha sido eficaz en la práctica.,COMPLETO,129,1
+74,N04-1021_P03-1021_0,Evaluable,Application,Alta,Se usa el método de optimización de pesos descrito en el trabajo citado.,COMPLETO,129,1
+75,N13-1032_D11-1045_3,Evaluable,Basis,Media,El decodificador TSP del trabajo citado es el punto de partida del enfoque.,COMPLETO,129,1
+76,W12-4303_P97-1023_0,Evaluable,Evidence,Alta,Respalda que los conectores han sido eficaces en otros trabajos.,COMPLETO,129,1
+77,J13-3005_P84-1075_0,Evaluable,Identification of the Originator,Media,Reconoce a quien acuñó el término de completitud débil.,COMPLETO,129,1
+78,P12-1100_P00-1056_1,Evaluable,Application,Alta,Se usa la herramienta GIZA++ para el alineamiento.,COMPLETO,129,1
+79,W00-1108_W97-0704_0,Evaluable,Background,Alta,Enumera métodos de resumen basados en posición.,COMPLETO,129,1
+80,P09-1060_W02-2016_0,Evaluable,Application,Alta,Se usa CaboCha como analizador de dependencias.,COMPLETO,129,1
+81,E09-1051_P04-1051_0,Evaluable,Background,Alta,Enumera enfoques ILP existentes en PLN.,COMPLETO,129,1
+82,D10-1023_W02-1022_0,Evaluable,Background,Media,Señala el uso previo del alineamiento de secuencias en generación de paráfrasis.,COMPLETO,129,1
+83,W10-1808_P09-1032_0,Evaluable,Basis,Media,Se consideran y evalúan los argumentos del trabajo citado.,COMPLETO,129,1
+84,W04-1907_W03-0424_0,Evaluable,Application,Alta,Se usa el etiquetador de entidades C&C sin modificación.,COMPLETO,129,1
+85,W12-2032_W10-1004_1,Evaluable,Evidence,Alta,Respalda que incluso estudiantes avanzados cometen estos errores.,COMPLETO,129,1
+86,P13-1071_E12-1079_0,Evaluable,Evidence,Media,Respalda la importancia de neutralidad y estilo en Wikipedia.,COMPLETO,129,1
+87,W04-2505_P03-1003_0,Evaluable,Background,Media,Describe el modelo de canal ruidoso introducido en el trabajo citado.,COMPLETO,129,1
+88,N12-1008_P07-1075_0,Evaluable,Background,Alta,Enumera algoritmos basados en clasificadores.,COMPLETO,129,1
+89,W11-0327_P10-1099_1,Evaluable,Comparison,Alta,Se compara con el sistema reentrenado del trabajo citado en la tabla.,COMPLETO,129,1
+90,E12-1013_D10-1091_0,Evaluable,Evidence,Media,Respalda el uso de hipótesis oráculo para análisis de fallos.,COMPLETO,129,1
+91,D12-1133_D11-1109_4,Evaluable,Comparison,Alta,"Contrasta los modelos conjuntos previos, que solo hacen análisis no etiquetado.",COMPLETO,129,1
+92,W11-1006_P10-1023_0,Evaluable,Background,Media,Describe trabajo previo que usó Google Translate para enriquecer BabelNet.,COMPLETO,129,1
+93,E12-1005_D09-1045_0,Evaluable,Evidence,Media,Respalda que los operadores por componentes son populares.,COMPLETO,129,1
+94,D10-1113_P98-2127_0,Evaluable,Background,Alta,Enumera aplicaciones de modelos vectoriales de similitud.,COMPLETO,129,1
+95,W04-2307_W03-2707_0,Evaluable,Evidence,Media,Respalda la estrategia socrática de tutoría y el proceso de pistas.,COMPLETO,129,1
+96,P09-1036_P05-1033_1,Evaluable,Comparison,Alta,Contrasta el modelo SDB con CMVC.,COMPLETO,129,1
+97,W04-3202_N04-1012_0,Evaluable,Basis,Alta,Se apoya en resultados previos de los mismos autores para el siguiente paso.,COMPLETO,129,1
+98,W13-0111_N10-1138_0,Evaluable,Basis,Alta,El sistema extiende el etiquetador de roles semánticos citado.,COMPLETO,129,1
+99,W06-2607_E06-1015_1,Evaluable,Further Reading,Media,Señala otras funciones kernel de árbol como trabajo futuro y fuentes adicionales.,COMPLETO,129,1
+100,W10-2503_N04-1014_1,Evaluable,Further Reading,Media,Remite a fuentes donde se presenta la semántica de reescritura de términos.,COMPLETO,129,1

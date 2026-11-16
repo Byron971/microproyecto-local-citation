@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,S07-1060_P04-1036_0,Evaluable,Background,Media,Describes the cited method as prior work that motivates the section.,COMPLETO,162,1
+2,N13-1121_P08-1068_0,Evaluable,Background,Alta,,COMPLETO,162,1
+3,P08-1114_P00-1056_0,Evaluable,Application,Alta,,COMPLETO,162,1
+4,J03-3005_P02-1030_0,Evaluable,Background,Alta,,COMPLETO,162,1
+5,P11-2062_W07-0802_0,Evaluable,Evidence,Media,,COMPLETO,162,1
+6,P12-1095_N03-1017_1,Evaluable,Comparison,Media,"The proposed model is integrated 'just like' the conventional model, drawing a parallel.",COMPLETO,162,1
+7,W08-1005_N07-1051_0,Evaluable,Further Reading,Alta,,COMPLETO,162,1
+8,S13-2055_S13-2052_0,Evaluable,Further Reading,Alta,,COMPLETO,162,1
+9,W10-4208_W09-0613_0,Evaluable,Application,Alta,,COMPLETO,162,1
+10,W13-0806_N03-1017_0,Evaluable,Gap,Media,Cited phrase-based models are criticized for committing to word alignments alien to the grammar.,COMPLETO,162,1
+11,P99-1015_P93-1024_0,Evaluable,Gap,Media,Cited approaches are described as limited due to sparse co-occurrence.,COMPLETO,162,1
+12,W11-0301_P09-1055_0,Evaluable,Background,Alta,,COMPLETO,162,1
+13,W02-0502_E89-1009_0,Evaluable,Identification of the Originator,Media,Credits the designers and implementers of DATR.,COMPLETO,162,1
+14,W12-2006_P11-1019_0,Evaluable,Application,Alta,,COMPLETO,162,1
+15,P11-1080_N10-1061_0,Evaluable,Background,Alta,,COMPLETO,162,1
+16,W12-3139_D11-1033_0,Evaluable,Application,Alta,,COMPLETO,162,1
+17,W08-1405_P03-1069_0,Evaluable,Basis,Alta,,COMPLETO,162,1
+18,W02-0908_P02-1030_1,Evaluable,Background,Baja,,COMPLETO,162,1
+19,D11-1137_W09-3839_0,Evaluable,Background,Alta,,COMPLETO,162,1
+20,N13-1037_W11-2210_1,Evaluable,Background,Alta,,COMPLETO,162,1
+21,P07-1092_J03-3002_0,Evaluable,Further Reading,Alta,,COMPLETO,162,1
+22,W00-1803_P97-1040_1,Evaluable,Evidence,Media,Supports the assumption that an efficient OT generation function exists.,COMPLETO,162,1
+23,N13-1008_W04-3206_0,Evaluable,Comparison,Alta,,COMPLETO,162,1
+24,W05-0906_E99-1011_0,Evaluable,Background,Alta,,COMPLETO,162,1
+25,P12-1109_N10-2012_0,Evaluable,Application,Alta,,COMPLETO,162,1
+26,D09-1057_D08-1097_0,Evaluable,Comparison,Media,"The sentence contrasts the proposed classifier with the previous feature-driven work, and the abstract is explicit about the contrast.",COMPLETO,162,1
+27,P06-2101_P96-1024_0,Evaluable,Background,Alta,,COMPLETO,162,1
+28,P07-1002_P01-1067_0,Evaluable,Background,Alta,,COMPLETO,162,1
+29,P99-1023_P96-1043_0,Evaluable,Background,Alta,,COMPLETO,162,1
+30,P10-1051_N06-1019_0,Evaluable,Background,Alta,,COMPLETO,162,1
+31,P13-1056_D12-1130_0,Evaluable,Background,Alta,,COMPLETO,162,1
+32,N09-3006_P02-1019_2,Evaluable,Background,Alta,,COMPLETO,162,1
+33,N04-2003_A97-1030_0,Evaluable,Background,Alta,,COMPLETO,162,1
+34,D12-1127_W96-0213_0,Evaluable,Background,Alta,,COMPLETO,162,1
+35,W09-0208_D08-1094_0,Evaluable,Basis,Media,The authors' own earlier model is the starting point of the present work.,COMPLETO,162,1
+36,P13-1001_D12-1109_0,Evaluable,Background,Alta,,COMPLETO,162,1
+37,D13-1077_P10-1005_1,Evaluable,Evidence,Media,Supports the claim that genericity recognition is still in its infancy.,COMPLETO,162,1
+38,W13-2238_W12-3158_0,Evaluable,Application,Alta,,COMPLETO,162,1
+39,N13-1019_D08-1035_1,Evaluable,Background,Alta,,COMPLETO,162,1
+40,J11-1005_W00-1201_0,Evaluable,Comparison,Alta,,COMPLETO,162,1
+41,N04-4015_W03-1001_0,Evaluable,Application,Media,The phrase translation model is used as is to test the impact of morphological analysis.,COMPLETO,162,1
+42,W96-0413_P95-1028_0,Evaluable,Background,Alta,,COMPLETO,162,1
+43,P12-1084_W03-1023_0,Evaluable,Gap,Media,"Notes that these approaches address only antecedent selection, not recognition.",COMPLETO,162,1
+44,D13-1090_P12-1091_2,Evaluable,Background,Alta,,COMPLETO,162,1
+45,N03-1027_W01-0521_0,Evaluable,Comparison,Alta,,COMPLETO,162,1
+46,P09-1117_D08-1112_1,Evaluable,Evidence,Alta,,COMPLETO,162,1
+47,W11-1805_W11-0307_2,Evaluable,Comparison,Alta,,COMPLETO,162,1
+48,W10-4213_N10-1144_0,Evaluable,Evidence,Media,The cited findings back the claim that different audiences need different formulations.,COMPLETO,162,1
+49,N04-1016_W95-0104_1,Evaluable,Comparison,Alta,,COMPLETO,162,1
+50,N12-1049_P00-1010_1,Evaluable,Comparison,Alta,,COMPLETO,162,1
+51,D12-1106_P03-1069_0,Evaluable,Background,Alta,,COMPLETO,162,1
+52,W10-3809_N03-1017_0,Evaluable,Application,Alta,,COMPLETO,162,1
+53,N13-1008_P09-1113_1,Evaluable,Background,Alta,,COMPLETO,162,1
+54,N04-1040_P98-1029_0,Evaluable,Evidence,Media,"The cited work shows that classifier combination yields gains, motivating the approach.",COMPLETO,162,1
+55,P09-1031_P99-1008_0,Evaluable,Background,Alta,,COMPLETO,162,1
+56,D13-1004_N10-1083_0,Evaluable,Background,Alta,,COMPLETO,162,1
+57,W06-2605_N03-1030_0,Evaluable,Gap,Media,Notes that previous work used only syntactic and lexical features.,COMPLETO,162,1
+58,S12-1050_W06-2920_0,Evaluable,Further Reading,Alta,,COMPLETO,162,1
+59,P13-1024_P08-1030_0,Evaluable,Gap,Media,Typical event extraction systems are said to fail on short texts such as tweets.,COMPLETO,162,1
+60,W06-3804_W99-0611_0,Evaluable,Application,Alta,,COMPLETO,162,1
+61,P09-1104_P05-1059_0,Evaluable,Background,Alta,,COMPLETO,162,1
+62,D13-1136_D12-1093_0,Evaluable,Background,Media,Describes the prior work as the first to use both KB data and text; this is related-work context.,COMPLETO,162,1
+63,J05-2002_E91-1027_0,Evaluable,Identification of the Originator,Media,Credits the idea as previously envisioned by the cited work.,COMPLETO,162,1
+64,P05-1071_N04-4038_0,Evaluable,Gap,Media,"Cited work is the only prior one and lacks a morphological analyzer, which the current work adds.",COMPLETO,162,1
+65,P13-1122_P00-1041_0,Evaluable,Evidence,Alta,,COMPLETO,162,1
+66,W09-3825_P06-1054_6,Evaluable,Comparison,Alta,,COMPLETO,162,1
+67,W10-3003_W09-1401_0,Evaluable,Evidence,Alta,,COMPLETO,162,1
+68,P07-1092_W99-0604_0,Evaluable,Application,Alta,,COMPLETO,162,1
+69,N13-1115_P12-1001_4,Evaluable,Improvement / Modification,Media,Builds on previous MMO methods and extends them.,COMPLETO,162,1
+70,W09-1704_P05-1074_1,Evaluable,Background,Alta,,COMPLETO,162,1
+71,W07-2323_W05-1614_0,Evaluable,Further Reading,Baja,The 'see also' pointer refers the reader to a page with more on tractability.,COMPLETO,162,1
+72,N13-1110_P12-1041_1,Evaluable,Comparison,Alta,,COMPLETO,162,1
+73,W12-3125_N04-4026_0,Evaluable,Background,Alta,,COMPLETO,162,1
+74,W03-0802_W02-1706_0,Evaluable,Comparison,Alta,,COMPLETO,162,1
+75,W11-1709_W10-0201_0,Evaluable,Background,Alta,,COMPLETO,162,1
+76,J08-1002_W03-1013_1,Evaluable,Background,Alta,,COMPLETO,162,1
+77,P10-1085_P09-1036_0,Evaluable,Gap,Media,"Notes that the constraints were learned from parsed corpora, which are unavailable for many languages.",COMPLETO,162,1
+78,W09-4304_W97-0704_0,Evaluable,Evidence,Baja,Supports the definition of the compression ratio.,COMPLETO,162,1
+79,E12-1055_N03-1017_0,Evaluable,Basis,Media,The proposal builds on lexical weights as defined in the cited work.,COMPLETO,162,1
+80,E09-1017_P05-1018_1,Evaluable,Evidence,Media,Supports the claim that context affects fluency.,COMPLETO,162,1
+81,N12-1006_N06-2013_0,Evaluable,Evidence,Alta,,COMPLETO,162,1
+82,P07-1025_P98-2127_1,Evaluable,Evidence,Media,Supports the observation by the distributional hypothesis.,COMPLETO,162,1
+83,P11-1067_W10-2902_5,Evaluable,Background,Alta,,COMPLETO,162,1
+84,W11-1004_P10-2001_2,Evaluable,Basis,Media,Future work will use the cited features.,COMPLETO,162,1
+85,S12-1056_P03-1054_0,Evaluable,Application,Alta,,COMPLETO,162,1
+86,W06-0505_W95-0107_0,Evaluable,Further Reading,Baja,Points to a noun chunker as an example of a preprocessing tool.,COMPLETO,162,1
+87,W12-0703_A00-2004_0,Evaluable,Application,Alta,,COMPLETO,162,1
+88,W12-1909_W06-2920_0,Evaluable,Background,Alta,,COMPLETO,162,1
+89,N12-1064_P03-1071_1,Evaluable,Gap,Media,Points out a problem not addressed in the cited approaches.,COMPLETO,162,1
+90,N13-1019_D08-1035_0,Evaluable,Identification of the Originator,Media,Attributes the concept of lexical cohesion to the cited work.,COMPLETO,162,1
+91,P13-1001_P09-1087_2,Evaluable,Comparison,Alta,,COMPLETO,162,1
+92,P11-1139_P07-1106_0,Evaluable,Identification of the Originator,Alta,,COMPLETO,162,1
+93,P09-1037_P07-1090_1,Evaluable,Application,Alta,,COMPLETO,162,1
+94,N12-1093_D10-1049_3,Evaluable,Comparison,Alta,,COMPLETO,162,1
+95,D13-1198_N13-1133_6,Evaluable,Comparison,Alta,,COMPLETO,162,1
+96,J09-1008_W03-2409_0,Evaluable,Evidence,Media,A quotation used to back the claim about human performance as an upper bound.,COMPLETO,162,1
+97,S13-1026_J98-1004_1,Evaluable,Application,Alta,,COMPLETO,162,1
+98,W07-1712_W02-2010_0,Evaluable,Evidence,Media,Supports the claim that the best results come from ensemble methods.,COMPLETO,162,1
+99,N03-3009_A00-2004_2,Evaluable,Comparison,Alta,,COMPLETO,162,1
+100,N10-1146_N04-3012_2,Evaluable,Application,Alta,,COMPLETO,162,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N13-1044_W07-0812_0,Evaluable,Background,Media,Lists works that proposed the reduced tag set for MSA.,COMPLETO,74,1
+2,W10-4343_N09-2028_3,Evaluable,Further Reading,Alta,Refers reader to the cited work for details.,COMPLETO,74,1
+3,P03-1005_W02-2016_0,Evaluable,Application,Alta,Uses cabocha tool for chunk analysis.,COMPLETO,74,1
+4,W10-3304_P05-1074_2,Evaluable,Comparison,Alta,Results compared against method adapted from cited work.,COMPLETO,74,1
+5,P02-1003_P96-1027_2,Evaluable,Comparison,Alta,Section relates the system to chart generation approaches.,COMPLETO,74,1
+6,N07-1010_P02-1014_5,Evaluable,Comparison,Alta,Proposed model compared to simple thresholding of cited work.,COMPLETO,74,1
+7,W12-3617_W10-1004_0,Evaluable,Comparison,Media,Contrasts annotation decision with previous work that corrected errors.,COMPLETO,74,1
+8,W10-1841_W05-0307_0,Evaluable,Background,Alta,Reviews existing annotation schemes.,COMPLETO,74,1
+9,E09-1073_P04-1053_0,Evaluable,Evidence,Media,Supports claim that the complete item count is often unavailable in IE.,COMPLETO,74,1
+10,W09-2404_N04-3012_0,Evaluable,Application,Alta,Uses the WordNet Similarity package.,COMPLETO,74,1
+11,W08-0409_P05-1057_1,Evaluable,Evidence,Media,Supports claim that POS tags help with data sparseness.,COMPLETO,74,1
+12,W12-3204_D08-1038_0,Evaluable,Basis,Media,Follows earlier work applying LDA to the ACL Anthology.,COMPLETO,74,1
+13,P11-1029_P07-1008_2,Evaluable,Basis,Alta,Wildcard builds on results of cited work.,COMPLETO,74,1
+14,P06-1104_P05-1053_1,Evaluable,Comparison,Alta,Results table compares with cited feature-based SVM.,COMPLETO,74,1
+15,W96-0414_W94-0307_0,Evaluable,Background,Alta,Introductory context on NLG for technical documentation.,COMPLETO,74,1
+16,P10-1112_P05-1010_1,Evaluable,Further Reading,Media,Points to works describing details of the objectives.,COMPLETO,74,1
+17,J12-1001_W09-3936_0,Evaluable,Background,Alta,Describes recent related work on backchannel cues.,COMPLETO,74,1
+18,P03-1014_E03-1052_1,Evaluable,Comparison,Alta,Compares speed-up factor with the reported one.,COMPLETO,74,1
+19,W12-0208_A00-2038_0,Evaluable,Identification of the Originator,Media,ALINE was originally developed in the cited work.,COMPLETO,74,1
+20,P13-1157_W04-3230_0,Evaluable,Application,Alta,Uses Mecab for Japanese POS tagging.,COMPLETO,74,1
+21,W10-1754_P05-1074_0,Evaluable,Evidence,Alta,Supports observation about pivot-based similarity.,COMPLETO,74,1
+22,W07-2217_P06-2041_1,Evaluable,Comparison,Alta,Compares accuracy with cited parser.,COMPLETO,74,1
+23,P12-2001_N09-2064_1,Evaluable,Basis,Media,Weighting scheme follows the cited work.,COMPLETO,74,1
+24,W06-3321_N01-1006_0,Evaluable,Application,Alta,Uses the fnTBL tagger as is.,COMPLETO,74,1
+25,W13-1716_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford Parser to obtain parse trees.,COMPLETO,74,1
+26,P10-1120_P08-2002_1,Evaluable,Evidence,Alta,Supports decision to use a small n-best list.,COMPLETO,74,1
+27,P13-1028_D12-1063_0,Evaluable,Background,Alta,Describes current state of unsupervised parsing.,COMPLETO,74,1
+28,N07-2016_E06-1010_0,Evaluable,Background,Media,Reports a claim made in prior work about well-nestedness.,COMPLETO,74,1
+29,P11-2052_N10-1137_3,Evaluable,Evidence,Alta,Supports the claim on A0/A1 syntactic-semantic correlation.,COMPLETO,74,1
+30,W13-3705_P09-3002_0,Evaluable,Basis,Media,Chunk definition taken from cited scheme.,COMPLETO,74,1
+31,W04-0915_E03-3006_0,Evaluable,Basis,Media,Builds on authors' prior work on communicative goals.,COMPLETO,74,1
+32,W08-0319_P07-2045_0,Evaluable,Application,Media,Uses the factored translation approach.,COMPLETO,74,1
+33,J13-4004_P07-1107_1,Evaluable,Background,Alta,Reviews recent joint coreference work.,COMPLETO,74,1
+34,W09-1704_D08-1021_1,Evaluable,Background,Alta,Related work listing paraphrase discovery.,COMPLETO,74,1
+35,P13-1041_P09-1027_0,Evaluable,Background,Alta,Describes popular CLSA approaches.,COMPLETO,74,1
+36,D13-1003_P12-2011_1,Evaluable,Background,Alta,Describes the cited model in a background section.,COMPLETO,74,1
+37,P13-1013_D12-1046_2,Evaluable,Background,Alta,Describes prior joint decoding work.,COMPLETO,74,1
+38,P12-1040_D09-1101_0,Evaluable,Background,Alta,Summarizes recent work on entity-level properties.,COMPLETO,74,1
+39,W07-1009_W00-1427_0,Evaluable,Application,Alta,Uses the morpha lemmatiser.,COMPLETO,74,1
+40,J96-2002_E93-1026_0,Evaluable,Comparison,Media,Notes difference from cited DATR analysis regarding evaluable paths.,COMPLETO,74,1
+41,S10-1070_W06-0901_0,Evaluable,Background,Alta,Lists existing temporal tagging systems.,COMPLETO,74,1
+42,W12-0701_P07-1049_0,Evaluable,Background,Media,"Notes the only other related study, on constituency parsing.",COMPLETO,74,1
+43,W13-4101_P97-1023_0,Evaluable,Evidence,Media,Supports claim that 'but' sentences are solvable by a rule.,COMPLETO,74,1
+44,J91-4002_P87-1033_0,Evaluable,Background,Alta,Describes prior work on systemic grammar generation.,COMPLETO,74,1
+45,W13-3826_J91-4003_0,Evaluable,Basis,Media,CPA is inspired by Generative Lexicon theory.,COMPLETO,74,1
+46,D12-1012_P10-1014_1,Evaluable,Gap,Media,Cites work requiring substantial manual effort to motivate the present approach.,COMPLETO,74,1
+47,P10-1145_N03-1017_1,Evaluable,Application,Alta,Uses the grow-diag-and refinement heuristic.,COMPLETO,74,1
+48,W09-3840_W05-1605_1,Evaluable,Improvement / Modification,Alta,Extends the polarization procedure to FTAG.,COMPLETO,74,1
+49,P11-1144_N10-1138_0,Evaluable,Background,Media,Describes authors' past work on unseen targets.,COMPLETO,74,1
+50,N06-1012_N03-1028_2,Evaluable,Comparison,Alta,Results table compares with cited system.,COMPLETO,74,1
+51,P09-1088_W02-1018_1,Evaluable,Gap,Media,Notes limitation of prior phrase alignment model.,COMPLETO,74,1
+52,W10-3008_W09-1304_2,Evaluable,Background,Alta,Describes prior work using BioScope.,COMPLETO,74,1
+53,W13-2902_P11-2117_2,Evaluable,Comparison,Alta,Notes assumption contrary to the cited work.,COMPLETO,74,1
+54,D09-1101_P02-1014_0,Evaluable,Background,Alta,Describes traditional mention-pair resolvers.,COMPLETO,74,1
+55,N07-1052_P00-1056_0,Evaluable,Background,Media,Cites cases where admissible heuristics are known.,COMPLETO,74,1
+56,W06-1320_W00-0400_0,Evaluable,Evidence,Alta,Supports claim that segmentation helps summarization.,COMPLETO,74,1
+57,P13-1070_D11-1120_5,Evaluable,Background,Alta,Lists prior work on social media analysis by gender.,COMPLETO,74,1
+58,N07-1058_N04-4015_0,Evaluable,Evidence,Alta,Cited finding supports the claim on morphology helping SMT.,COMPLETO,74,1
+59,P13-4017_N03-1013_0,Evaluable,Application,Alta,Implements a plug-in for the CatVar resource.,COMPLETO,74,1
+60,W12-5707_P06-2093_0,Evaluable,Background,Alta,Lists applications of NPLM.,COMPLETO,74,1
+61,W11-1402_P05-1012_0,Evaluable,Application,Alta,Uses MSTParser for syntactic analysis.,COMPLETO,74,1
+62,P06-1072_E03-1008_0,Evaluable,Comparison,Alta,Explicitly contrasts approach with cited bootstrapping work.,COMPLETO,74,1
+63,P13-1125_D11-1045_1,Evaluable,Basis,Alta,Reordering model forms the basis of the work.,COMPLETO,74,1
+64,W13-2234_P07-2045_0,Evaluable,Application,Alta,Uses Moses toolkit for baseline system.,COMPLETO,74,1
+65,N09-1001_W08-1207_3,Evaluable,Improvement / Modification,Alta,Adapts method from previous work.,COMPLETO,74,1
+66,E06-1011_P05-1013_0,Evaluable,Evidence,Alta,Supports observation that most trees are primarily projective.,COMPLETO,74,1
+67,P11-1042_D09-1106_0,Evaluable,Evidence,Media,Supports claim that n-best alignment extraction has value.,COMPLETO,74,1
+68,D09-1122_P05-1014_0,Evaluable,Background,Alta,Classifies previous studies in related work.,COMPLETO,74,1
+69,N10-1129_P08-1114_0,Evaluable,Comparison,Media,Contrasts performance advantage over hierarchical systems.,COMPLETO,74,1
+70,P11-1156_E06-1011_0,Evaluable,Background,Alta,Describes state-of-the-art parsers and their weakness.,COMPLETO,74,1
+71,D09-1073_P06-1006_0,Evaluable,Background,Alta,Lists applications of kernel methods.,COMPLETO,74,1
+72,D13-1038_W08-1109_0,Evaluable,Gap,Media,Cited setups share an assumption that does not hold in situated settings.,COMPLETO,74,1
+73,D12-1122_W10-2910_1,Evaluable,Gap,Media,Reviews prior syntactic approaches followed by 'However' limitation.,COMPLETO,74,1
+74,N07-1015_P05-1052_2,Evaluable,Evidence,Alta,Previous studies support usefulness of entity types.,COMPLETO,74,1
+75,W11-2903_P10-1109_1,Evaluable,Background,Media,Describes alternative representation of STAG from prior work.,COMPLETO,74,1
+76,W10-4237_P05-1008_0,Evaluable,Background,Alta,Lists statistical surface realisation work.,COMPLETO,74,1
+77,P13-1062_P09-1098_0,Evaluable,Background,Alta,Describes corpus-based approaches in related work.,COMPLETO,74,1
+78,P08-1009_W02-1039_1,Evaluable,Background,Alta,Describes previous approaches to measuring cohesion.,COMPLETO,74,1
+79,P87-1014_P84-1065_1,Evaluable,Comparison,Alta,Compares FUG constraints with the DCG system.,COMPLETO,74,1
+80,P10-2051_P04-1021_1,Evaluable,Basis,Media,JSCM model is taken from the cited work.,COMPLETO,74,1
+81,D12-1018_P02-1047_0,Evaluable,Basis,Alta,Inspired by cited work's markers.,COMPLETO,74,1
+82,W10-4201_E06-1040_0,Evaluable,Evidence,Alta,Supports claim that stable judgments are hard in NLG.,COMPLETO,74,1
+83,W13-3302_W12-3156_0,Evaluable,Background,Media,Reports a suggestion from the cited work.,COMPLETO,74,1
+84,W10-3906_P98-2127_0,Evaluable,Gap,Media,"Traditional approaches use all words as context, causing noise.",COMPLETO,74,1
+85,W09-2504_P06-1113_0,Evaluable,Gap,Media,"Only previous work, described with its limitations.",COMPLETO,74,1
+86,J12-1003_W04-3206_0,Evaluable,Background,Alta,Lists existing methods.,COMPLETO,74,1
+87,J03-3002_W02-1013_2,Evaluable,Comparison,Alta,Compares threshold with that reported in cited work.,COMPLETO,74,1
+88,W13-2238_W06-3105_1,Evaluable,Comparison,Alta,Results similar to those observed in cited work.,COMPLETO,74,1
+89,N13-3006_W04-3230_0,Evaluable,Basis,Media,Procedure is basically the same as Viterbi search for Japanese morphological analysis.,COMPLETO,74,1
+90,N13-1053_P11-1032_4,Evaluable,Background,Alta,Reports finding of prior study on human performance.,COMPLETO,74,1
+91,W11-3206_P11-1041_0,Evaluable,Application,Alta,Applies SVM re-ranking as in prior G2P work.,COMPLETO,74,1
+92,P13-2141_P09-1113_0,Evaluable,Background,Alta,Introduces distant supervision as an existing approach.,COMPLETO,74,1
+93,P13-1081_P03-1055_0,Evaluable,Background,Alta,Related work on empty categories.,COMPLETO,74,1
+94,P08-1059_P07-1017_0,Evaluable,Gap,Media,Cited work introduced the model but did not apply it to MT.,COMPLETO,74,1
+95,W11-2106_D11-1035_0,Evaluable,Comparison,Alta,Findings differ from previously reported results.,COMPLETO,74,1
+96,S10-1059_N10-1138_0,Evaluable,Improvement / Modification,Alta,Extends SEMAFOR 1.0 parser.,COMPLETO,74,1
+97,D13-1074_D12-1052_0,Evaluable,Background,Alta,Lists previous studies on verb and noun errors.,COMPLETO,74,1
+98,N06-1022_N03-1016_3,Evaluable,Evidence,Alta,Supports claim that parent labeling improves accuracy.,COMPLETO,74,1
+99,P96-1011_E89-1003_0,Evaluable,Background,Alta,Lists similar past attempts.,COMPLETO,74,1
+100,N10-1066_D08-1037_3,Evaluable,Comparison,Alta,LCLR outperforms the cited joint system.,COMPLETO,74,1

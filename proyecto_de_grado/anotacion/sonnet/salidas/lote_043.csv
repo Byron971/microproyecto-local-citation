@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P09-1087_N04-1021_0,Evaluable,Background,Media,Describes prior work's findings (reranking with syntactic features gave minor gains) within a literature overview.,COMPLETO,43,1
+2,W98-1116_P97-1003_1,Evaluable,Background,Media,"General statement about empirically-induced models giving best practical results, situating the field.",COMPLETO,43,1
+3,E12-1076_W10-0721_0,Evaluable,Identification of the Originator,Media,The PASCAL sentence data set was 'introduced in' the cited work.,COMPLETO,43,1
+4,D10-1104_W04-2609_0,Evaluable,Background,Alta,Related-work enumeration of tasks using SRL results.,COMPLETO,43,1
+5,W13-0123_P09-1077_3,Evaluable,Evidence,Media,Cited to support the claim that word pairs are a useful feature for implicit discourse relations.,COMPLETO,43,1
+6,W13-2512_W02-0902_0,Evaluable,Further Reading,Baja,Lists context-based approaches as future work directions; could also be Background.,COMPLETO,43,1
+7,S13-2040_D12-1128_1,Evaluable,Application,Alta,The authors use BabelNet 1.1.1 to annotate their test corpus.,COMPLETO,43,1
+8,W13-2257_D08-1078_0,Evaluable,Evidence,Alta,Supports the claim that word reordering is an important factor of SMT performance.,COMPLETO,43,1
+9,P13-1118_A92-1021_0,Evaluable,Background,Media,General statement that taggers are commonly the first NLP tools developed for a language.,COMPLETO,43,1
+10,W04-1609_W99-0512_1,Evaluable,Comparison,Media,Compares overlap findings in the cited work with the authors' own Arabic results.,COMPLETO,43,1
+11,W13-3515_P11-1062_0,Evaluable,Background,Alta,Lists applications that use a knowledge base of facts.,COMPLETO,43,1
+12,P13-1007_P03-1054_0,Evaluable,Application,Alta,The Stanford parser is used as a tool for feature extraction.,COMPLETO,43,1
+13,W11-3708_P09-1027_1,Evaluable,Application,Alta,The authors adopt the cited multilingual review classification methods in their experiments.,COMPLETO,43,1
+14,P07-1017_P00-1056_0,Evaluable,Application,Alta,GIZA++ is used for word alignment.,COMPLETO,43,1
+15,J09-4009_P05-1033_3,Evaluable,Background,Media,"Describes the k-best rescoring method and its speed, then notes its limitations.",COMPLETO,43,1
+16,D13-1199_P11-1032_6,Evaluable,Comparison,Media,"The authors' results are said to be in line with previous findings, comparing results.",COMPLETO,43,1
+17,W11-2903_P10-1109_0,Evaluable,Basis,Media,The concepts of input and output product from the cited work are used as the framework for the description.,COMPLETO,43,1
+18,P09-1114_W06-1615_1,Evaluable,Background,Alta,Related-work description of prior domain adaptation work.,COMPLETO,43,1
+19,D08-1091_P08-1109_0,Evaluable,Gap,Alta,"Prior discriminative parsing work is said to fall short of generative models, motivating the current work.",COMPLETO,43,1
+20,D12-1018_P08-1090_0,Evaluable,Background,Alta,Describes what the cited work does as part of the related-work overview.,COMPLETO,43,1
+21,S13-2044_S12-1048_0,Evaluable,Identification of the Originator,Alta,The task was initially introduced at SemEval-2012 in the cited work.,COMPLETO,43,1
+22,D13-1150_N10-1122_0,Evaluable,Further Reading,Media,Points to prior aspect-based sentiment work as a venue for further investigation.,COMPLETO,43,1
+23,D12-1018_D10-1106_0,Evaluable,Background,Alta,Cites prior work on learning entailment rules as part of the field overview.,COMPLETO,43,1
+24,N10-1084_P01-1008_0,Evaluable,Evidence,Media,"Cited as also noting that paraphrase applicability depends on context, supporting the claim.",COMPLETO,43,1
+25,W09-0213_W03-1812_0,Evaluable,Gap,Media,"Prior work addressed type classification, not token classification, which motivates the current work.",COMPLETO,43,1
+26,W06-3119_P02-1039_0,Evaluable,Comparison,Alta,Explicitly contrasts the authors' phrase-level approach with the cited transformation-based approach.,COMPLETO,43,1
+27,W13-0603_P08-1028_2,Evaluable,Gap,Media,"Notes that the cited datasets focus on verb meaning and treat determiners as placeholders, a limitation.",COMPLETO,43,1
+28,P13-1154_D12-1025_1,Evaluable,Comparison,Alta,Compares the authors' symbol error rate directly with the cited work's results.,COMPLETO,43,1
+29,W10-3812_P05-1033_0,Evaluable,Background,Alta,Describes hierarchical methods based on ITG as part of prior literature.,COMPLETO,43,1
+30,P12-1109_W11-0704_0,Evaluable,Background,Alta,Summarizes a prior finding in a related-work enumeration.,COMPLETO,43,1
+31,W12-1638_W11-2014_0,Evaluable,Application,Media,Candidate results are scored for stability using the cited method.,COMPLETO,43,1
+32,P09-1064_N04-1022_0,Evaluable,Background,Media,Describes MBR procedure as established by the cited work.,COMPLETO,43,1
+33,P11-2070_P09-2036_0,Evaluable,Background,Alta,Describes prior binarization work in a related-work discussion.,COMPLETO,43,1
+34,W10-3807_P07-1005_0,Evaluable,Background,Alta,Lists prior WSD models for SMT in a literature overview.,COMPLETO,43,1
+35,P11-1087_P06-1124_2,Evaluable,Evidence,Alta,Supports the claim that the PYP is well suited to language modelling and generalizes Kneser-Ney.,COMPLETO,43,1
+36,D11-1079_P05-1066_0,Evaluable,Evidence,Media,Supports the claim that the approach captures reordering patterns observed in German-English.,COMPLETO,43,1
+37,W03-0305_P00-1056_0,Evaluable,Application,Alta,GIZA++ package is used for word alignment with default parameters.,COMPLETO,43,1
+38,D12-1058_P11-1020_0,Evaluable,Background,Alta,Describes prior approaches that created corpora through crowdsourcing.,COMPLETO,43,1
+39,W10-1907_W00-0400_0,Evaluable,Background,Alta,General reference on the history of summarization research.,COMPLETO,43,1
+40,W02-1022_P01-1008_0,Evaluable,Basis,Alta,The paraphrase induction method is motivated by the cited work.,COMPLETO,43,1
+41,N13-1103_P06-2034_0,Evaluable,Background,Alta,Enumerates research on mapping natural language to meaning representations.,COMPLETO,43,1
+42,E12-1003_P11-1112_4,Evaluable,Application,Alta,The authors compute aggregate scores in the same way as the cited work.,COMPLETO,43,1
+43,E09-1011_N06-2013_0,Evaluable,Evidence,Alta,Supports the claim that morphological segmentation benefits Arabic-to-English translation.,COMPLETO,43,1
+44,P02-1036_J97-4005_1,Evaluable,Background,Media,Section overview reviewing stochastic unification grammars from the cited work.,COMPLETO,43,1
+45,W12-4105_P10-1154_1,Evaluable,Evidence,Alta,Supports the claim that degree achieves state-of-the-art performance.,COMPLETO,43,1
+46,P11-1098_P08-1090_1,Evaluable,Basis,Media,The authors adopt a view of relation similarity based on the cited observation.,COMPLETO,43,1
+47,P08-1089_W04-3219_0,Evaluable,Comparison,Media,"Contrasts the paraphrase patterns with the conventional MT-based generation method, which cannot reorder.",COMPLETO,43,1
+48,P07-1060_W03-1004_2,Evaluable,Improvement / Modification,Alta,The model is described as a simplification of and extension to the cited model.,COMPLETO,43,1
+49,W11-2929_W06-2920_1,Evaluable,Application,Alta,Uses the CoNLL-X shared task data split.,COMPLETO,43,1
+50,N12-1095_N03-1015_0,Evaluable,Background,Alta,Related-work enumeration of previous word sense induction work.,COMPLETO,43,1
+51,P10-1142_P02-1014_3,Evaluable,Evidence,Media,Cited as example supporting the claim that anaphoricity filtering improves resolvers.,COMPLETO,43,1
+52,A00-2015_P98-1083_2,Evaluable,Comparison,Alta,Contrasts the authors' decision list feature selection with the decision tree approach.,COMPLETO,43,1
+53,E99-1019_P98-1112_0,Evaluable,Evidence,Media,Supports the claim that building semantic class word lists is arduous.,COMPLETO,43,1
+54,W12-3124_N03-1016_0,Evaluable,Background,Media,Describes the A* heuristic from prior work that reduced computational complexity.,COMPLETO,43,1
+55,S13-2062_N03-1033_0,Evaluable,Application,Alta,The Stanford NLP tools are used for preprocessing and feature selection.,COMPLETO,43,1
+56,W11-0116_P06-1050_0,Evaluable,Identification of the Originator,Alta,The duration prediction task was first proposed by the cited work.,COMPLETO,43,1
+57,W11-2139_N09-1069_0,Evaluable,Evidence,Alta,Supports the claim that online algorithms are effective for non-convex objectives.,COMPLETO,43,1
+58,W11-3412_W02-1203_1,Evaluable,Background,Media,Introduces the Urdu LFG grammar from prior work as context.,COMPLETO,43,1
+59,S12-1100_P98-2127_0,Evaluable,Application,Alta,Uses Lin's distributional thesaurus to retrieve related words.,COMPLETO,43,1
+60,P13-1079_N03-1017_0,Evaluable,Background,Alta,Related-work statement that bilingual phrases are cornerstones of phrase-based SMT.,COMPLETO,43,1
+61,W10-2904_W09-0904_0,Evaluable,Evidence,Alta,Refers to the cited work for arguments that the model is plausible.,COMPLETO,43,1
+62,W11-1913_P09-1068_1,Evaluable,Application,Media,Features derived from the narrative schemas developed by the cited work are used.,COMPLETO,43,1
+63,W00-1801_W98-1007_1,Evaluable,Further Reading,Alta,Refers to previous publications where the system is described in detail.,COMPLETO,43,1
+64,D10-1015_N03-1017_1,Evaluable,Evidence,Alta,Supports the claim that higher phrase lengths yield no performance benefit.,COMPLETO,43,1
+65,P10-1100_D08-1073_1,Evaluable,Background,Alta,Reviews recent approaches to learning event chains.,COMPLETO,43,1
+66,W07-0406_P05-1033_0,Evaluable,Background,Alta,Reports a prior finding from the cited work in a footnote.,COMPLETO,43,1
+67,W11-2701_N06-1058_0,Evaluable,Gap,Media,"Cited approaches are noted as requiring paraphrase recognizers not yet available, a limitation.",COMPLETO,43,1
+68,P12-1041_N10-1061_0,Evaluable,Gap,Alta,"Notes the cited work's knowledge acquisition is limited in scale, motivating Web sources.",COMPLETO,43,1
+69,N13-1016_P11-1154_0,Evaluable,Background,Alta,Describes existing techniques for textual topic labels before introducing the alternative.,COMPLETO,43,1
+70,W11-2014_E09-1085_2,Evaluable,Background,Media,Reports prior findings on incremental systems; part of literature review.,COMPLETO,43,1
+71,W12-3101_W11-2103_2,Evaluable,Gap,Alta,Critiques the statistical testing in the cited report as inadequate.,COMPLETO,43,1
+72,D13-1043_P03-1054_1,Evaluable,Application,Alta,Uses the Stanford Parser pipeline for preprocessing.,COMPLETO,43,1
+73,N13-1074_D09-1074_0,Evaluable,Background,Alta,Describes related work on sentence-level weighting.,COMPLETO,43,1
+74,D12-1071_P08-1090_0,Evaluable,Background,Media,Presents a chain learned by the cited work as illustration of narrative chains.,COMPLETO,43,1
+75,W07-0203_P05-3013_0,Evaluable,Evidence,Media,Supports the claim that extractive summarization is portable by not using linguistic knowledge.,COMPLETO,43,1
+76,W13-2219_P03-1021_0,Evaluable,Application,Alta,MERT is used to optimize scaling factors.,COMPLETO,43,1
+77,N13-1035_P03-1021_0,Evaluable,Background,Alta,Describes MERT as the most popular weight optimization algorithm.,COMPLETO,43,1
+78,W13-3010_N03-1017_0,Evaluable,Basis,Media,The consistency definition was refined in the cited work and the authors follow it.,COMPLETO,43,1
+79,S12-1086_P12-2028_1,Evaluable,Background,Media,Describes the authors' own prior work as context; could be Basis.,COMPLETO,43,1
+80,P09-1063_J07-2003_1,Evaluable,Identification of the Originator,Alta,Packed forest concept is said to be first used by the cited work.,COMPLETO,43,1
+81,W04-2601_W03-0904_0,Evaluable,Further Reading,Alta,Refers the reader to the cited work for details of the approach.,COMPLETO,43,1
+82,W00-0405_P95-1053_1,Evaluable,Background,Alta,Related-work enumeration of approaches to summarization.,COMPLETO,43,1
+83,P13-1087_E09-1005_0,Evaluable,Background,Alta,Notes graph-based methods have attracted attention in recent years.,COMPLETO,43,1
+84,W13-0908_W07-0103_0,Evaluable,Gap,Alta,"Existing work relies on rules and resources, limiting applicability to rich-resource languages.",COMPLETO,43,1
+85,D10-1119_N06-1056_1,Evaluable,Comparison,Alta,Explicitly compares performance with previous methods.,COMPLETO,43,1
+86,W06-1006_J98-4009_0,Evaluable,Evidence,Alta,Supports the claim that collocations constitute the bulk of a language's lexicon.,COMPLETO,43,1
+87,J08-2003_W05-0407_4,Evaluable,Comparison,Alta,Compares the polynomial kernel with state-of-the-art features against the authors' ASTm1.,COMPLETO,43,1
+88,W11-0409_P00-1056_0,Evaluable,Application,Alta,Giza++ is used to produce word alignments.,COMPLETO,43,1
+89,W12-0513_E09-1018_0,Evaluable,Background,Alta,Lists recent approaches to anaphora resolution.,COMPLETO,43,1
+90,P12-1069_P11-2033_0,Evaluable,Comparison,Alta,Appears in a results table comparing against previous parsers.,COMPLETO,43,1
+91,S10-1021_P06-1055_0,Evaluable,Application,Alta,Uses parses from a state-of-the-art parser to extract mentions.,COMPLETO,43,1
+92,P09-1030_P97-1063_0,Evaluable,Background,Alta,Related-work enumeration of translation lexicon acquisition methods.,COMPLETO,43,1
+93,W13-2206_P07-2045_1,Evaluable,Application,Alta,Moses SMT system is used to develop translation models.,COMPLETO,43,1
+94,N12-1052_D11-1006_5,Evaluable,Evidence,Alta,Supports the claim that delexicalization is important for direct transfer of parsers.,COMPLETO,43,1
+95,W05-1512_P05-1010_1,Evaluable,Comparison,Alta,Contrasts the cited independent similar approach with the authors' own.,COMPLETO,43,1
+96,P06-1110_P04-1015_0,Evaluable,Evidence,Alta,Cited finding of improvement from punctuation features supports the point about punctuation information.,COMPLETO,43,1
+97,W12-3105_W11-2111_0,Evaluable,Evidence,Alta,Supports the claim that fluency is an important component of translation quality.,COMPLETO,43,1
+98,P05-1023_P04-1015_1,Evaluable,Comparison,Alta,Compares the authors' parser results with several other statistical parsers.,COMPLETO,43,1
+99,P13-1016_N04-4026_0,Evaluable,Background,Alta,Lists prior research on word reordering.,COMPLETO,43,1
+100,P02-1053_P97-1023_0,Evaluable,Comparison,Alta,"Contrasts the cited algorithm, designed for isolated adjectives, with the authors' phrase-level algorithm.",COMPLETO,43,1

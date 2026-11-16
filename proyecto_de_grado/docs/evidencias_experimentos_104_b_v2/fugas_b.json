@@ -1,0 +1,1894 @@
+{
+  "dry": false,
+  "bloqueantes": {
+    "L1_fugas_contexto": 0,
+    "L1_dev_fugas": 0,
+    "L3_citas_v_a_citantes_gold": 0,
+    "L4_violaciones_texto": 0,
+    "L5_ids_distintos": 0,
+    "L6_discrepancias_top3": 0,
+    "L9_prefijo_a_en_ab": 0,
+    "L10_casi_duplicados": 0
+  },
+  "L1": {
+    "anios_excluidos": [
+      2014,
+      2015
+    ],
+    "citas_de_anios_excluidos": 0,
+    "total_fugas": 0,
+    "por_variante": {
+      "natural": {
+        "train~val:context_id": 0,
+        "train~val:citing_id": 0,
+        "train~val:par_citante_citado": 0,
+        "train~val:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "val~gold:context_id": 0,
+        "val~gold:citing_id": 0,
+        "val~gold:par_citante_citado": 0,
+        "val~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "val~excluidos:context_id": 0,
+        "val~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      },
+      "sonnet": {
+        "train~val:context_id": 0,
+        "train~val:citing_id": 0,
+        "train~val:par_citante_citado": 0,
+        "train~val:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "val~gold:context_id": 0,
+        "val~gold:citing_id": 0,
+        "val~gold:par_citante_citado": 0,
+        "val~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "val~excluidos:context_id": 0,
+        "val~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      }
+    }
+  },
+  "L1_dev": {
+    "M": {
+      "conjuntos": {
+        "train": 5502,
+        "dev": 1026,
+        "V": 1816,
+        "gold": 1533
+      },
+      "fugas": {
+        "train~dev:context_id": 0,
+        "train~dev:citing_id": 0,
+        "train~dev:par_citante_citado": 0,
+        "train~dev:sha_texto_targetcit": 0,
+        "train~V:context_id": 0,
+        "train~V:citing_id": 0,
+        "train~V:par_citante_citado": 0,
+        "train~V:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "dev~V:context_id": 0,
+        "dev~V:citing_id": 0,
+        "dev~V:par_citante_citado": 0,
+        "dev~V:sha_texto_targetcit": 0,
+        "dev~gold:context_id": 0,
+        "dev~gold:citing_id": 0,
+        "dev~gold:par_citante_citado": 0,
+        "dev~gold:sha_texto_targetcit": 0,
+        "V~gold:context_id": 0,
+        "V~gold:citing_id": 0,
+        "V~gold:par_citante_citado": 0,
+        "V~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "dev~excluidos:context_id": 0,
+        "dev~gold_v2:context_id": 0,
+        "V~excluidos:context_id": 0,
+        "V~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      },
+      "total_fugas": 0,
+      "cited_id_compartidos_no_bloqueante": {
+        "train~dev": 393,
+        "train~V": 414,
+        "train~gold": 204,
+        "dev~V": 230,
+        "dev~gold": 116,
+        "V~gold": 154
+      }
+    },
+    "S": {
+      "conjuntos": {
+        "train": 5591,
+        "dev": 1021,
+        "V": 1816,
+        "gold": 1533
+      },
+      "fugas": {
+        "train~dev:context_id": 0,
+        "train~dev:citing_id": 0,
+        "train~dev:par_citante_citado": 0,
+        "train~dev:sha_texto_targetcit": 0,
+        "train~V:context_id": 0,
+        "train~V:citing_id": 0,
+        "train~V:par_citante_citado": 0,
+        "train~V:sha_texto_targetcit": 0,
+        "train~gold:context_id": 0,
+        "train~gold:citing_id": 0,
+        "train~gold:par_citante_citado": 0,
+        "train~gold:sha_texto_targetcit": 0,
+        "dev~V:context_id": 0,
+        "dev~V:citing_id": 0,
+        "dev~V:par_citante_citado": 0,
+        "dev~V:sha_texto_targetcit": 0,
+        "dev~gold:context_id": 0,
+        "dev~gold:citing_id": 0,
+        "dev~gold:par_citante_citado": 0,
+        "dev~gold:sha_texto_targetcit": 0,
+        "V~gold:context_id": 0,
+        "V~gold:citing_id": 0,
+        "V~gold:par_citante_citado": 0,
+        "V~gold:sha_texto_targetcit": 0,
+        "train~excluidos:context_id": 0,
+        "train~gold_v2:context_id": 0,
+        "dev~excluidos:context_id": 0,
+        "dev~gold_v2:context_id": 0,
+        "V~excluidos:context_id": 0,
+        "V~gold_v2:context_id": 0,
+        "gold~excluidos:context_id": 0,
+        "gold~gold_v2:context_id": 0
+      },
+      "total_fugas": 0,
+      "cited_id_compartidos_no_bloqueante": {
+        "train~dev": 384,
+        "train~V": 415,
+        "train~gold": 216,
+        "dev~V": 223,
+        "dev~gold": 114,
+        "V~gold": 154
+      }
+    }
+  },
+  "L2_citas_quitadas_por_clase": {
+    "natural": {
+      "Application": 160,
+      "Background": 180,
+      "Basis": 23,
+      "Comparison": 87,
+      "Evidence": 37,
+      "Further Reading": 18,
+      "Gap": 13,
+      "Identification of the Originator": 9,
+      "Improvement / Modification": 11
+    },
+    "sonnet": {
+      "Application": 79,
+      "Background": 117,
+      "Basis": 27,
+      "Comparison": 148,
+      "Evidence": 104,
+      "Further Reading": 40,
+      "Gap": 29,
+      "Identification of the Originator": 4,
+      "Improvement / Modification": 13
+    }
+  },
+  "L2_dev_citas_quitadas_por_clase": {
+    "M": {
+      "Application": 160,
+      "Background": 146,
+      "Basis": 24,
+      "Comparison": 56,
+      "Evidence": 24,
+      "Further Reading": 8,
+      "Gap": 18,
+      "Identification of the Originator": 8,
+      "Improvement / Modification": 16
+    },
+    "S": {
+      "Application": 29,
+      "Background": 82,
+      "Basis": 20,
+      "Comparison": 58,
+      "Evidence": 54,
+      "Further Reading": 9,
+      "Gap": 13,
+      "Identification of the Originator": 4,
+      "Improvement / Modification": 5
+    }
+  },
+  "L3": {
+    "citas_v_a_citantes_gold": 0,
+    "citas_v": 3379
+  },
+  "L4": {
+    "umbral": 0.5,
+    "k_shingle": 8,
+    "pares": {
+      "train_M~V": {
+        "conjunto": "train_M",
+        "objetivo": "V",
+        "chunks_unicos": 43681,
+        "contextos": 3379,
+        "max_solape": 0.3659,
+        "histograma": {
+          "(0,0.1]": 227,
+          "(0.1,0.2]": 32,
+          "(0.2,0.3]": 6,
+          "(0.3,0.4]": 3,
+          "0": 43413
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_M~gold": {
+        "conjunto": "train_M",
+        "objetivo": "gold",
+        "chunks_unicos": 43681,
+        "contextos": 3401,
+        "max_solape": 0.4118,
+        "histograma": {
+          "(0,0.1]": 173,
+          "(0.1,0.2]": 7,
+          "(0.2,0.3]": 5,
+          "(0.3,0.4]": 2,
+          "(0.4,0.5]": 1,
+          "0": 43493
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_M~dev": {
+        "conjunto": "train_M",
+        "objetivo": "dev",
+        "chunks_unicos": 43681,
+        "contextos": 1525,
+        "max_solape": 0.45,
+        "histograma": {
+          "(0,0.1]": 177,
+          "(0.1,0.2]": 18,
+          "(0.2,0.3]": 8,
+          "(0.3,0.4]": 10,
+          "(0.4,0.5]": 1,
+          "0": 43467
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_S~V": {
+        "conjunto": "train_S",
+        "objetivo": "V",
+        "chunks_unicos": 41995,
+        "contextos": 3379,
+        "max_solape": 0.3659,
+        "histograma": {
+          "(0,0.1]": 227,
+          "(0.1,0.2]": 32,
+          "(0.2,0.3]": 6,
+          "(0.3,0.4]": 4,
+          "0": 41726
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_S~gold": {
+        "conjunto": "train_S",
+        "objetivo": "gold",
+        "chunks_unicos": 41995,
+        "contextos": 3401,
+        "max_solape": 0.4118,
+        "histograma": {
+          "(0,0.1]": 172,
+          "(0.1,0.2]": 7,
+          "(0.2,0.3]": 6,
+          "(0.3,0.4]": 2,
+          "(0.4,0.5]": 1,
+          "0": 41807
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "train_S~dev": {
+        "conjunto": "train_S",
+        "objetivo": "dev",
+        "chunks_unicos": 41995,
+        "contextos": 1525,
+        "max_solape": 0.4493,
+        "histograma": {
+          "(0,0.1]": 181,
+          "(0.1,0.2]": 18,
+          "(0.2,0.3]": 6,
+          "(0.3,0.4]": 5,
+          "(0.4,0.5]": 2,
+          "0": 41783
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "dev~V": {
+        "conjunto": "dev",
+        "objetivo": "V",
+        "chunks_unicos": 21933,
+        "contextos": 3379,
+        "max_solape": 0.3659,
+        "histograma": {
+          "(0,0.1]": 124,
+          "(0.1,0.2]": 18,
+          "(0.2,0.3]": 4,
+          "(0.3,0.4]": 1,
+          "0": 21786
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "dev~gold": {
+        "conjunto": "dev",
+        "objetivo": "gold",
+        "chunks_unicos": 21933,
+        "contextos": 3401,
+        "max_solape": 0.3095,
+        "histograma": {
+          "(0,0.1]": 92,
+          "(0.1,0.2]": 3,
+          "(0.2,0.3]": 4,
+          "(0.3,0.4]": 1,
+          "0": 21833
+        },
+        "violaciones": 0,
+        "detalle": []
+      },
+      "V~gold": {
+        "conjunto": "V",
+        "objetivo": "gold",
+        "chunks_unicos": 20301,
+        "contextos": 3401,
+        "max_solape": 0.3095,
+        "histograma": {
+          "(0,0.1]": 108,
+          "(0.1,0.2]": 4,
+          "(0.2,0.3]": 3,
+          "(0.3,0.4]": 1,
+          "0": 20185
+        },
+        "violaciones": 0,
+        "detalle": []
+      }
+    },
+    "total_violaciones": 0
+  },
+  "L4_inicial": {
+    "umbral": 0.5,
+    "k_shingle": 8,
+    "pares": {
+      "train_M~V": {
+        "conjunto": "train_M",
+        "objetivo": "V",
+        "chunks_unicos": 44795,
+        "contextos": 3379,
+        "max_solape": 1.0,
+        "histograma": {
+          "(0,0.1]": 242,
+          "(0.1,0.2]": 37,
+          "(0.2,0.3]": 9,
+          "(0.3,0.4]": 4,
+          "(0.4,0.5]": 3,
+          "0": 44487,
+          ">0.5": 13
+        },
+        "violaciones": 15,
+        "detalle": [
+          {
+            "context_id": "P13-2103_P12-2003_0",
+            "cited_id": "P12-2003",
+            "chunk_id": "p00023-p00023",
+            "contexto_eval": "P12-1023_D09-1060_0",
+            "solape": 1.0
+          },
+          {
+            "context_id": "N03-2017_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00013-p00014",
+            "contexto_eval": "E97-1063_J90-2002_1",
+            "solape": 0.9608
+          },
+          {
+            "context_id": "D08-1108_W04-1102_0",
+            "cited_id": "W04-1102",
+            "chunk_id": "p00001-p00002",
+            "contexto_eval": "W06-0103_W04-1102_2",
+            "solape": 0.96
+          },
+          {
+            "context_id": "N03-2017_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00051-p00052",
+            "contexto_eval": "E97-1063_P97-1039_2",
+            "solape": 0.9565
+          },
+          {
+            "context_id": "S10-1056_W09-2414_1",
+            "cited_id": "W09-2414",
+            "chunk_id": "p00004-p00005",
+            "contexto_eval": "S10-1005_P88-1012_0",
+            "solape": 0.814
+          },
+          {
+            "context_id": "N03-2017_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "E97-1063_J90-2002_0",
+            "solape": 0.7609
+          },
+          {
+            "context_id": "N03-2017_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00063-p00064",
+            "contexto_eval": "E97-1063_P97-1039_4",
+            "solape": 0.7436
+          },
+          {
+            "context_id": "N03-2017_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00002-p00003",
+            "contexto_eval": "E97-1063_P97-1039_0",
+            "solape": 0.6667
+          },
+          {
+            "context_id": "N03-2017_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00045-p00046",
+            "contexto_eval": "E97-1063_P97-1039_1",
+            "solape": 0.6667
+          },
+          {
+            "context_id": "D12-1045_D10-1048_2",
+            "cited_id": "D10-1048",
+            "chunk_id": "p00032-p00033",
+            "contexto_eval": "J13-4004_P10-2007_0",
+            "solape": 0.6444
+          },
+          {
+            "context_id": "D12-1045_D10-1048_2",
+            "cited_id": "D10-1048",
+            "chunk_id": "p00039-p00040",
+            "contexto_eval": "J13-4004_P06-1005_0",
+            "solape": 0.619
+          },
+          {
+            "context_id": "W10-2413_W09-3510_0",
+            "cited_id": "W09-3510",
+            "chunk_id": "p00009-p00009",
+            "contexto_eval": "W10-2406_W09-3510_0",
+            "solape": 0.5455
+          },
+          {
+            "context_id": "D13-1052_P09-1065_1",
+            "cited_id": "P09-1065",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "D09-1115_N07-1029_0",
+            "solape": 0.5429
+          },
+          {
+            "context_id": "D12-1029_P11-2033_1",
+            "cited_id": "P11-2033",
+            "chunk_id": "p00033-p00033",
+            "contexto_eval": "P12-1023_D09-1060_0",
+            "solape": 0.5
+          },
+          {
+            "context_id": "S10-1056_W09-2414_1",
+            "cited_id": "W09-2414",
+            "chunk_id": "p00013-p00014",
+            "contexto_eval": "S10-1005_W04-2705_0",
+            "solape": 0.5
+          }
+        ]
+      },
+      "train_M~gold": {
+        "conjunto": "train_M",
+        "objetivo": "gold",
+        "chunks_unicos": 44795,
+        "contextos": 3401,
+        "max_solape": 0.7097,
+        "histograma": {
+          "(0,0.1]": 188,
+          "(0.1,0.2]": 7,
+          "(0.2,0.3]": 5,
+          "(0.3,0.4]": 2,
+          "(0.4,0.5]": 2,
+          "0": 44590,
+          ">0.5": 1
+        },
+        "violaciones": 2,
+        "detalle": [
+          {
+            "context_id": "N10-1054_D09-1020_0",
+            "cited_id": "D09-1020",
+            "chunk_id": "p00029-p00030",
+            "contexto_eval": "W15-2916_D09-1020_0",
+            "solape": 0.7097
+          },
+          {
+            "context_id": "P13-1042_S13-1045_0",
+            "cited_id": "S13-1045",
+            "chunk_id": "p00022-p00022",
+            "contexto_eval": "E14-1037_D12-1069_0",
+            "solape": 0.5
+          }
+        ]
+      },
+      "train_M~dev": {
+        "conjunto": "train_M",
+        "objetivo": "dev",
+        "chunks_unicos": 44795,
+        "contextos": 1601,
+        "max_solape": 1.0,
+        "histograma": {
+          "(0,0.1]": 189,
+          "(0.1,0.2]": 21,
+          "(0.2,0.3]": 10,
+          "(0.3,0.4]": 13,
+          "(0.4,0.5]": 1,
+          "0": 44534,
+          ">0.5": 27
+        },
+        "violaciones": 27,
+        "detalle": [
+          {
+            "context_id": "P08-2054_W05-1512_0",
+            "cited_id": "W05-1512",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "W05-1512_P03-1013_0",
+            "solape": 1.0
+          },
+          {
+            "context_id": "W12-1641_W12-1814_0",
+            "cited_id": "W12-1814",
+            "chunk_id": "p00000-p00000",
+            "contexto_eval": "W12-1814_E09-1085_0",
+            "solape": 1.0
+          },
+          {
+            "context_id": "W04-1215_W03-1308_0",
+            "cited_id": "W03-1308",
+            "chunk_id": "p00008-p00009",
+            "contexto_eval": "W03-1308_W00-1704_0",
+            "solape": 0.9815
+          },
+          {
+            "context_id": "W12-1909_W07-0604_0",
+            "cited_id": "W07-0604",
+            "chunk_id": "p00036-p00037",
+            "contexto_eval": "W07-0604_P05-1025_1",
+            "solape": 0.9815
+          },
+          {
+            "context_id": "N09-2032_P07-1080_0",
+            "cited_id": "P07-1080",
+            "chunk_id": "p00059-p00059",
+            "contexto_eval": "P07-1080_W96-0213_0",
+            "solape": 0.9792
+          },
+          {
+            "context_id": "D08-1058_W06-1641_0",
+            "cited_id": "W06-1641",
+            "chunk_id": "p00053-p00054",
+            "contexto_eval": "W06-1641_P97-1023_0",
+            "solape": 0.9756
+          },
+          {
+            "context_id": "J10-1004_P05-1005_1",
+            "cited_id": "P05-1005",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "P05-1005_W97-0201_0",
+            "solape": 0.9737
+          },
+          {
+            "context_id": "J13-3008_D10-1012_1",
+            "cited_id": "D10-1012",
+            "chunk_id": "p00007-p00008",
+            "contexto_eval": "D10-1012_W98-0704_0",
+            "solape": 0.9556
+          },
+          {
+            "context_id": "W12-1909_W07-0604_0",
+            "cited_id": "W07-0604",
+            "chunk_id": "p00045-p00046",
+            "contexto_eval": "W07-0604_P05-1025_2",
+            "solape": 0.9524
+          },
+          {
+            "context_id": "J07-2002_P02-1030_0",
+            "cited_id": "P02-1030",
+            "chunk_id": "p00004-p00005",
+            "contexto_eval": "W02-0908_P98-2127_0",
+            "solape": 0.95
+          },
+          {
+            "context_id": "D12-1096_P11-1045_0",
+            "cited_id": "P11-1045",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "P11-1045_P10-1146_0",
+            "solape": 0.9487
+          },
+          {
+            "context_id": "P11-1134_E09-1025_0",
+            "cited_id": "E09-1025",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "W09-3710_W07-1409_0",
+            "solape": 0.8333
+          },
+          {
+            "context_id": "D09-1070_W05-0617_0",
+            "cited_id": "W05-0617",
+            "chunk_id": "p00054-p00055",
+            "contexto_eval": "W05-0617_N01-1024_2",
+            "solape": 0.8214
+          },
+          {
+            "context_id": "W06-3210_W04-0106_0",
+            "cited_id": "W04-0106",
+            "chunk_id": "p00006-p00007",
+            "contexto_eval": "W04-0106_N01-1024_0",
+            "solape": 0.8
+          },
+          {
+            "context_id": "P11-1134_E09-1025_0",
+            "cited_id": "E09-1025",
+            "chunk_id": "p00015-p00016",
+            "contexto_eval": "W09-3710_W07-1409_1",
+            "solape": 0.7843
+          },
+          {
+            "context_id": "W13-1614_W08-1207_1",
+            "cited_id": "W08-1207",
+            "chunk_id": "p00013-p00014",
+            "contexto_eval": "W08-1207_P97-1023_0",
+            "solape": 0.7391
+          },
+          {
+            "context_id": "W01-1407_P98-2158_0",
+            "cited_id": "P98-2158",
+            "chunk_id": "p00017-p00018",
+            "contexto_eval": "P98-2158_P96-1021_0",
+            "solape": 0.7234
+          },
+          {
+            "context_id": "W10-3809_N09-3004_0",
+            "cited_id": "N09-3004",
+            "chunk_id": "p00013-p00014",
+            "contexto_eval": "N09-3004_P07-1002_0",
+            "solape": 0.6667
+          },
+          {
+            "context_id": "P12-1089_P10-2054_0",
+            "cited_id": "P10-2054",
+            "chunk_id": "p00034-p00034",
+            "contexto_eval": "P10-2054_N10-1061_1",
+            "solape": 0.6579
+          },
+          {
+            "context_id": "J92-2004_P87-1032_0",
+            "cited_id": "P87-1032",
+            "chunk_id": "p00039-p00040",
+            "contexto_eval": "P87-1032_P85-1013_0",
+            "solape": 0.6458
+          },
+          {
+            "context_id": "D08-1066_W06-3105_4",
+            "cited_id": "W06-3105",
+            "chunk_id": "p00015-p00015",
+            "contexto_eval": "W06-3105_W02-1018_1",
+            "solape": 0.6216
+          },
+          {
+            "context_id": "P11-1134_E09-1025_0",
+            "cited_id": "E09-1025",
+            "chunk_id": "p00009-p00009",
+            "contexto_eval": "W09-3710_P07-1058_0",
+            "solape": 0.6111
+          },
+          {
+            "context_id": "E06-1045_P05-3012_0",
+            "cited_id": "P05-3012",
+            "chunk_id": "p00008-p00009",
+            "contexto_eval": "P05-3012_W04-0601_0",
+            "solape": 0.5652
+          },
+          {
+            "context_id": "W06-0206_W02-1029_0",
+            "cited_id": "W02-1029",
+            "chunk_id": "p00006-p00007",
+            "contexto_eval": "W02-0908_P98-2127_0",
+            "solape": 0.55
+          },
+          {
+            "context_id": "D13-1097_W08-2125_0",
+            "cited_id": "W08-2125",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "W08-2125_W05-0625_0",
+            "solape": 0.5417
+          },
+          {
+            "context_id": "S13-2004_N12-1049_0",
+            "cited_id": "N12-1049",
+            "chunk_id": "p00028-p00029",
+            "contexto_eval": "N12-1049_D11-1140_0",
+            "solape": 0.5278
+          },
+          {
+            "context_id": "P08-1061_W05-1516_0",
+            "cited_id": "W05-1516",
+            "chunk_id": "p00041-p00042",
+            "contexto_eval": "W04-1216_P98-2127_0",
+            "solape": 0.5227
+          }
+        ]
+      },
+      "train_S~V": {
+        "conjunto": "train_S",
+        "objetivo": "V",
+        "chunks_unicos": 43277,
+        "contextos": 3379,
+        "max_solape": 1.0,
+        "histograma": {
+          "(0,0.1]": 243,
+          "(0.1,0.2]": 37,
+          "(0.2,0.3]": 10,
+          "(0.3,0.4]": 5,
+          "(0.4,0.5]": 4,
+          "0": 42963,
+          ">0.5": 15
+        },
+        "violaciones": 18,
+        "detalle": [
+          {
+            "context_id": "Q13-1025_P12-2003_1",
+            "cited_id": "P12-2003",
+            "chunk_id": "p00023-p00023",
+            "contexto_eval": "P12-1023_D09-1060_0",
+            "solape": 1.0
+          },
+          {
+            "context_id": "P04-3019_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00013-p00014",
+            "contexto_eval": "E97-1063_J90-2002_1",
+            "solape": 0.9608
+          },
+          {
+            "context_id": "N09-2069_W04-1102_0",
+            "cited_id": "W04-1102",
+            "chunk_id": "p00001-p00002",
+            "contexto_eval": "W06-0103_W04-1102_2",
+            "solape": 0.96
+          },
+          {
+            "context_id": "P04-3019_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00051-p00052",
+            "contexto_eval": "E97-1063_P97-1039_2",
+            "solape": 0.9565
+          },
+          {
+            "context_id": "P11-2085_P09-2007_0",
+            "cited_id": "P09-2007",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "W09-3412_P08-2024_0",
+            "solape": 0.8205
+          },
+          {
+            "context_id": "S10-1056_W09-2414_1",
+            "cited_id": "W09-2414",
+            "chunk_id": "p00004-p00005",
+            "contexto_eval": "S10-1005_P88-1012_0",
+            "solape": 0.814
+          },
+          {
+            "context_id": "P11-2085_P09-2007_0",
+            "cited_id": "P09-2007",
+            "chunk_id": "p00015-p00016",
+            "contexto_eval": "W09-3412_P08-2024_2",
+            "solape": 0.8039
+          },
+          {
+            "context_id": "P04-3019_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "E97-1063_J90-2002_0",
+            "solape": 0.7609
+          },
+          {
+            "context_id": "P04-3019_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00063-p00064",
+            "contexto_eval": "E97-1063_P97-1039_4",
+            "solape": 0.7436
+          },
+          {
+            "context_id": "P04-3019_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00002-p00003",
+            "contexto_eval": "E97-1063_P97-1039_0",
+            "solape": 0.6667
+          },
+          {
+            "context_id": "P04-3019_P97-1063_0",
+            "cited_id": "P97-1063",
+            "chunk_id": "p00045-p00046",
+            "contexto_eval": "E97-1063_P97-1039_1",
+            "solape": 0.6667
+          },
+          {
+            "context_id": "D12-1045_D10-1048_1",
+            "cited_id": "D10-1048",
+            "chunk_id": "p00032-p00033",
+            "contexto_eval": "J13-4004_P10-2007_0",
+            "solape": 0.6444
+          },
+          {
+            "context_id": "D12-1045_D10-1048_1",
+            "cited_id": "D10-1048",
+            "chunk_id": "p00039-p00040",
+            "contexto_eval": "J13-4004_P06-1005_0",
+            "solape": 0.619
+          },
+          {
+            "context_id": "P11-2085_P09-2007_0",
+            "cited_id": "P09-2007",
+            "chunk_id": "p00019-p00020",
+            "contexto_eval": "W09-3412_P08-2024_4",
+            "solape": 0.55
+          },
+          {
+            "context_id": "D13-1052_P09-1065_1",
+            "cited_id": "P09-1065",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "D09-1115_N07-1029_0",
+            "solape": 0.5429
+          },
+          {
+            "context_id": "D13-1160_P11-1028_0",
+            "cited_id": "P11-1028",
+            "chunk_id": "p00007-p00007",
+            "contexto_eval": "P12-1014_P09-1010_0",
+            "solape": 0.5
+          },
+          {
+            "context_id": "D12-1029_P11-2033_0",
+            "cited_id": "P11-2033",
+            "chunk_id": "p00033-p00033",
+            "contexto_eval": "P12-1023_D09-1060_0",
+            "solape": 0.5
+          },
+          {
+            "context_id": "S10-1056_W09-2414_1",
+            "cited_id": "W09-2414",
+            "chunk_id": "p00013-p00014",
+            "contexto_eval": "S10-1005_W04-2705_0",
+            "solape": 0.5
+          }
+        ]
+      },
+      "train_S~gold": {
+        "conjunto": "train_S",
+        "objetivo": "gold",
+        "chunks_unicos": 43277,
+        "contextos": 3401,
+        "max_solape": 0.9556,
+        "histograma": {
+          "(0,0.1]": 185,
+          "(0.1,0.2]": 8,
+          "(0.2,0.3]": 6,
+          "(0.3,0.4]": 2,
+          "(0.4,0.5]": 3,
+          "0": 43071,
+          ">0.5": 2
+        },
+        "violaciones": 4,
+        "detalle": [
+          {
+            "context_id": "W13-3815_P12-1013_0",
+            "cited_id": "P12-1013",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "J15-2003_P14-1133_0",
+            "solape": 0.9556
+          },
+          {
+            "context_id": "D11-1100_D09-1020_0",
+            "cited_id": "D09-1020",
+            "chunk_id": "p00029-p00030",
+            "contexto_eval": "W15-2916_D09-1020_0",
+            "solape": 0.7097
+          },
+          {
+            "context_id": "D13-1029_D13-1203_0",
+            "cited_id": "D13-1203",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "D15-1271_N10-1061_0",
+            "solape": 0.5
+          },
+          {
+            "context_id": "P13-1042_S13-1045_0",
+            "cited_id": "S13-1045",
+            "chunk_id": "p00022-p00022",
+            "contexto_eval": "E14-1037_D12-1069_0",
+            "solape": 0.5
+          }
+        ]
+      },
+      "train_S~dev": {
+        "conjunto": "train_S",
+        "objetivo": "dev",
+        "chunks_unicos": 43277,
+        "contextos": 1601,
+        "max_solape": 1.0,
+        "histograma": {
+          "(0,0.1]": 194,
+          "(0.1,0.2]": 22,
+          "(0.2,0.3]": 9,
+          "(0.3,0.4]": 8,
+          "(0.4,0.5]": 3,
+          "0": 43007,
+          ">0.5": 34
+        },
+        "violaciones": 34,
+        "detalle": [
+          {
+            "context_id": "J04-4001_P02-1012_1",
+            "cited_id": "P02-1012",
+            "chunk_id": "p00007-p00008",
+            "contexto_eval": "P02-1012_P91-1050_0",
+            "solape": 1.0
+          },
+          {
+            "context_id": "D12-1012_P10-1014_1",
+            "cited_id": "P10-1014",
+            "chunk_id": "p00022-p00023",
+            "contexto_eval": "P10-1014_W06-1658_0",
+            "solape": 1.0
+          },
+          {
+            "context_id": "D08-1017_P05-1012_0",
+            "cited_id": "P05-1012",
+            "chunk_id": "p00041-p00042",
+            "contexto_eval": "P05-1012_W96-0213_0",
+            "solape": 0.98
+          },
+          {
+            "context_id": "N12-1006_W10-0701_0",
+            "cited_id": "W10-0701",
+            "chunk_id": "p00049-p00050",
+            "contexto_eval": "W10-0701_W10-0715_0",
+            "solape": 0.9796
+          },
+          {
+            "context_id": "D09-1040_W04-3250_0",
+            "cited_id": "W04-3250",
+            "chunk_id": "p00007-p00007",
+            "contexto_eval": "W04-3250_W03-1001_0",
+            "solape": 0.9762
+          },
+          {
+            "context_id": "S13-2040_P12-3012_0",
+            "cited_id": "P12-3012",
+            "chunk_id": "p00013-p00013",
+            "contexto_eval": "P12-3012_S07-1068_0",
+            "solape": 0.975
+          },
+          {
+            "context_id": "P13-1151_P11-2117_0",
+            "cited_id": "P11-2117",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "P11-2117_P08-1040_0",
+            "solape": 0.9667
+          },
+          {
+            "context_id": "P13-1151_P11-2117_0",
+            "cited_id": "P11-2117",
+            "chunk_id": "p00002-p00003",
+            "contexto_eval": "P11-2117_P10-1146_0",
+            "solape": 0.9643
+          },
+          {
+            "context_id": "P13-1151_P11-2117_0",
+            "cited_id": "P11-2117",
+            "chunk_id": "p00017-p00018",
+            "contexto_eval": "P11-2117_W04-3250_0",
+            "solape": 0.9583
+          },
+          {
+            "context_id": "D13-1111_N04-1022_0",
+            "cited_id": "N04-1022",
+            "chunk_id": "p00030-p00031",
+            "contexto_eval": "N04-1022_P02-1016_0",
+            "solape": 0.9556
+          },
+          {
+            "context_id": "W04-3110_A00-1026_0",
+            "cited_id": "A00-1026",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "A00-1026_P99-1001_0",
+            "solape": 0.9535
+          },
+          {
+            "context_id": "D09-1155_W06-1613_0",
+            "cited_id": "W06-1613",
+            "chunk_id": "p00005-p00006",
+            "contexto_eval": "W06-1613_W06-1312_0",
+            "solape": 0.9535
+          },
+          {
+            "context_id": "D09-1015_W02-0301_0",
+            "cited_id": "W02-0301",
+            "chunk_id": "p00010-p00011",
+            "contexto_eval": "W02-0301_W95-0107_0",
+            "solape": 0.9524
+          },
+          {
+            "context_id": "J03-3005_P02-1030_0",
+            "cited_id": "P02-1030",
+            "chunk_id": "p00004-p00005",
+            "contexto_eval": "W02-0908_P98-2127_0",
+            "solape": 0.95
+          },
+          {
+            "context_id": "D10-1099_P10-1030_0",
+            "cited_id": "P10-1030",
+            "chunk_id": "p00072-p00073",
+            "contexto_eval": "P10-1030_P09-1113_0",
+            "solape": 0.9474
+          },
+          {
+            "context_id": "D08-1017_P05-1012_0",
+            "cited_id": "P05-1012",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "P05-1012_W04-3201_0",
+            "solape": 0.9459
+          },
+          {
+            "context_id": "D10-1028_N10-1081_1",
+            "cited_id": "N10-1081",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "N10-1081_W08-0704_0",
+            "solape": 0.9429
+          },
+          {
+            "context_id": "D10-1099_P10-1030_0",
+            "cited_id": "P10-1030",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "P10-1030_P98-1067_0",
+            "solape": 0.931
+          },
+          {
+            "context_id": "D12-1084_E09-1025_0",
+            "cited_id": "E09-1025",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "W09-3710_W07-1409_0",
+            "solape": 0.8333
+          },
+          {
+            "context_id": "W08-2101_W05-0623_1",
+            "cited_id": "W05-0623",
+            "chunk_id": "p00003-p00004",
+            "contexto_eval": "W05-0623_P05-1073_0",
+            "solape": 0.8125
+          },
+          {
+            "context_id": "S13-2040_P12-3012_0",
+            "cited_id": "P12-3012",
+            "chunk_id": "p00000-p00001",
+            "contexto_eval": "P12-3012_P11-1033_0",
+            "solape": 0.7879
+          },
+          {
+            "context_id": "D12-1084_E09-1025_0",
+            "cited_id": "E09-1025",
+            "chunk_id": "p00015-p00016",
+            "contexto_eval": "W09-3710_W07-1409_1",
+            "solape": 0.7843
+          },
+          {
+            "context_id": "N12-1006_W10-0701_0",
+            "cited_id": "W10-0701",
+            "chunk_id": "p00043-p00043",
+            "contexto_eval": "W10-0701_W10-0727_0",
+            "solape": 0.7778
+          },
+          {
+            "context_id": "D13-1124_D11-1016_0",
+            "cited_id": "D11-1016",
+            "chunk_id": "p00107-p00107",
+            "contexto_eval": "D11-1016_P97-1023_0",
+            "solape": 0.75
+          },
+          {
+            "context_id": "W11-1007_W10-1749_0",
+            "cited_id": "W10-1749",
+            "chunk_id": "p00023-p00024",
+            "contexto_eval": "W10-1749_P03-1069_0",
+            "solape": 0.75
+          },
+          {
+            "context_id": "S13-2040_P12-3012_0",
+            "cited_id": "P12-3012",
+            "chunk_id": "p00012-p00012",
+            "contexto_eval": "P12-3012_S07-1006_0",
+            "solape": 0.7353
+          },
+          {
+            "context_id": "J10-3002_N06-1015_1",
+            "cited_id": "N06-1015",
+            "chunk_id": "p00035-p00036",
+            "contexto_eval": "N06-1015_W03-0301_0",
+            "solape": 0.7273
+          },
+          {
+            "context_id": "P10-2067_P09-1105_0",
+            "cited_id": "P09-1105",
+            "chunk_id": "p00049-p00049",
+            "contexto_eval": "P09-1105_N06-1013_0",
+            "solape": 0.6905
+          },
+          {
+            "context_id": "D12-1084_E09-1025_0",
+            "cited_id": "E09-1025",
+            "chunk_id": "p00009-p00009",
+            "contexto_eval": "W09-3710_P07-1058_0",
+            "solape": 0.6111
+          },
+          {
+            "context_id": "S13-2040_P12-3012_0",
+            "cited_id": "P12-3012",
+            "chunk_id": "p00002-p00003",
+            "contexto_eval": "P12-3012_P11-1057_0",
+            "solape": 0.6061
+          },
+          {
+            "context_id": "E09-1074_W02-1029_0",
+            "cited_id": "W02-1029",
+            "chunk_id": "p00006-p00007",
+            "contexto_eval": "W02-0908_P98-2127_0",
+            "solape": 0.55
+          },
+          {
+            "context_id": "D09-1039_P03-2041_0",
+            "cited_id": "P03-2041",
+            "chunk_id": "p00058-p00059",
+            "contexto_eval": "P03-2041_A00-2023_0",
+            "solape": 0.5333
+          },
+          {
+            "context_id": "W06-2904_W05-1516_2",
+            "cited_id": "W05-1516",
+            "chunk_id": "p00041-p00042",
+            "contexto_eval": "W04-1216_P98-2127_0",
+            "solape": 0.5227
+          },
+          {
+            "context_id": "W11-2847_W11-2010_1",
+            "cited_id": "W11-2010",
+            "chunk_id": "p00002-p00002",
+            "contexto_eval": "W11-2849_W11-2010_0",
+            "solape": 0.5106
+          }
+        ]
+      },
+      "dev~V": {
+        "conjunto": "dev",
+        "objetivo": "V",
+        "chunks_unicos": 22873,
+        "contextos": 3379,
+        "max_solape": 0.6444,
+        "histograma": {
+          "(0,0.1]": 130,
+          "(0.1,0.2]": 20,
+          "(0.2,0.3]": 5,
+          "(0.3,0.4]": 2,
+          "(0.4,0.5]": 1,
+          "0": 22713,
+          ">0.5": 2
+        },
+        "violaciones": 3,
+        "detalle": [
+          {
+            "context_id": "D13-1057_D10-1048_0",
+            "cited_id": "D10-1048",
+            "chunk_id": "p00032-p00033",
+            "contexto_eval": "J13-4004_P10-2007_0",
+            "solape": 0.6444
+          },
+          {
+            "context_id": "D13-1057_D10-1048_0",
+            "cited_id": "D10-1048",
+            "chunk_id": "p00039-p00040",
+            "contexto_eval": "J13-4004_P06-1005_0",
+            "solape": 0.619
+          },
+          {
+            "context_id": "P12-1069_P11-2033_0",
+            "cited_id": "P11-2033",
+            "chunk_id": "p00033-p00033",
+            "contexto_eval": "P12-1023_D09-1060_0",
+            "solape": 0.5
+          }
+        ]
+      },
+      "dev~gold": {
+        "conjunto": "dev",
+        "objetivo": "gold",
+        "chunks_unicos": 22873,
+        "contextos": 3401,
+        "max_solape": 0.5,
+        "histograma": {
+          "(0,0.1]": 103,
+          "(0.1,0.2]": 3,
+          "(0.2,0.3]": 4,
+          "(0.3,0.4]": 1,
+          "(0.4,0.5]": 1,
+          "0": 22761
+        },
+        "violaciones": 1,
+        "detalle": [
+          {
+            "context_id": "D13-1161_S13-1045_0",
+            "cited_id": "S13-1045",
+            "chunk_id": "p00022-p00022",
+            "contexto_eval": "E14-1037_D12-1069_0",
+            "solape": 0.5
+          }
+        ]
+      },
+      "V~gold": {
+        "conjunto": "V",
+        "objetivo": "gold",
+        "chunks_unicos": 20991,
+        "contextos": 3401,
+        "max_solape": 0.3095,
+        "histograma": {
+          "(0,0.1]": 118,
+          "(0.1,0.2]": 4,
+          "(0.2,0.3]": 3,
+          "(0.3,0.4]": 1,
+          "0": 20865
+        },
+        "violaciones": 0,
+        "detalle": []
+      }
+    },
+    "total_violaciones": 104
+  },
+  "L4_descartes": {
+    "citados": [
+      "A00-1026",
+      "D09-1020",
+      "D10-1012",
+      "D10-1048",
+      "D11-1016",
+      "D13-1203",
+      "E09-1025",
+      "N04-1022",
+      "N06-1015",
+      "N09-3004",
+      "N10-1081",
+      "N12-1049",
+      "P02-1012",
+      "P02-1030",
+      "P03-2041",
+      "P05-1005",
+      "P05-1012",
+      "P05-3012",
+      "P07-1080",
+      "P09-1065",
+      "P09-1105",
+      "P09-2007",
+      "P10-1014",
+      "P10-1030",
+      "P10-2054",
+      "P11-1028",
+      "P11-1045",
+      "P11-2033",
+      "P11-2117",
+      "P12-1013",
+      "P12-2003",
+      "P12-3012",
+      "P87-1032",
+      "P97-1063",
+      "P98-2158",
+      "S13-1045",
+      "W02-0301",
+      "W02-1029",
+      "W03-1308",
+      "W04-0106",
+      "W04-1102",
+      "W04-3250",
+      "W05-0617",
+      "W05-0623",
+      "W05-1512",
+      "W05-1516",
+      "W06-1613",
+      "W06-1641",
+      "W06-3105",
+      "W07-0604",
+      "W08-1207",
+      "W08-2125",
+      "W09-2414",
+      "W09-3510",
+      "W10-0701",
+      "W10-1749",
+      "W11-2010",
+      "W12-1814"
+    ],
+    "citas_por_clase": {
+      "train:M": {
+        "Application": 32,
+        "Background": 43,
+        "Basis": 9,
+        "Comparison": 14,
+        "Evidence": 10,
+        "Further Reading": 2,
+        "Gap": 6,
+        "Improvement / Modification": 3
+      },
+      "dev:M": {
+        "Application": 23,
+        "Background": 15,
+        "Comparison": 4,
+        "Evidence": 4,
+        "Gap": 1,
+        "Identification of the Originator": 4,
+        "Improvement / Modification": 1
+      },
+      "V:M": {
+        "Application": 43,
+        "Background": 22,
+        "Basis": 3,
+        "Comparison": 11,
+        "Evidence": 7,
+        "Further Reading": 1,
+        "Gap": 5,
+        "Identification of the Originator": 2,
+        "Improvement / Modification": 3
+      },
+      "train:S": {
+        "Application": 58,
+        "Background": 75,
+        "Basis": 22,
+        "Comparison": 54,
+        "Evidence": 47,
+        "Further Reading": 4,
+        "Gap": 10,
+        "Identification of the Originator": 8,
+        "Improvement / Modification": 5
+      },
+      "dev:S": {
+        "Application": 8,
+        "Background": 10,
+        "Basis": 5,
+        "Comparison": 13,
+        "Evidence": 6,
+        "Further Reading": 2,
+        "Gap": 1,
+        "Identification of the Originator": 1
+      },
+      "V:S": {
+        "Application": 32,
+        "Background": 29,
+        "Basis": 8,
+        "Comparison": 11,
+        "Evidence": 9,
+        "Gap": 2,
+        "Identification of the Originator": 1,
+        "Improvement / Modification": 5
+      }
+    }
+  },
+  "L5_sha_ids": {
+    "M_train": "08673d6c90d63b513d6ddff2873902d50d2b0367c68a6506c4bb8febd653a1b0",
+    "M_dev": "14eae13480bfe7a2a4047e8579766e560ea3d2cc534658f7da43f477201a9c90",
+    "M_val": "5aea258566866a6775cad6d73c3f4584e650fc5b6c383085fbf6c5be5fd42081",
+    "S_train": "4dfb37a9b2af8e2dbf67a1940e6572ba00663991cbe792df626cbdc35a0559de",
+    "S_dev": "d2d747d28c11135d7530d3feb6e498a3edfd95c4970624a492e9bfe1a8bf8c85",
+    "S_val": "5aea258566866a6775cad6d73c3f4584e650fc5b6c383085fbf6c5be5fd42081"
+  },
+  "L6": {
+    "train_M": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 1144,
+      "coinciden": 1144,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "train_S": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 1144,
+      "coinciden": 1144,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "V": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 246,
+      "coinciden": 246,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    },
+    "gold_v2": {
+      "contextos_a1": 2585,
+      "contextos_comparados": 840,
+      "coinciden": 840,
+      "max_dif_similitud": 0.0,
+      "discrepancias": []
+    }
+  },
+  "L7": "El Test Gold anotado no se carga; del Gold v2 solo ids; las predicciones se escriben sin etiquetas",
+  "L8_solo_reporte": {
+    "v_con_citado_visto_en_train": {
+      "M": 1260,
+      "S": 1270
+    },
+    "v_n": {
+      "M": 1719,
+      "S": 1719
+    },
+    "gold_v2_cita_citante_de_v_o_train": 624
+  },
+  "L9": {
+    "AB": {
+      "casos": 11643,
+      "frac_prefijo_literal": 0.9822210770419995,
+      "perdida_max_abstract": 3,
+      "fallas": 0,
+      "ejemplos_fallas": []
+    },
+    "AB_aleatorio": {
+      "casos": 11643,
+      "frac_prefijo_literal": 0.9822210770419995,
+      "perdida_max_abstract": 3,
+      "fallas": 0,
+      "ejemplos_fallas": []
+    }
+  },
+  "L10": {
+    "M": {
+      "umbral": 0.5,
+      "k_shingle": 8,
+      "pares": {
+        "train~dev": {
+          "conjunto_a": "train",
+          "conjunto_b": "dev",
+          "pares": 0,
+          "detalle": []
+        },
+        "train~V": {
+          "conjunto_a": "train",
+          "conjunto_b": "V",
+          "pares": 0,
+          "detalle": []
+        },
+        "dev~V": {
+          "conjunto_a": "dev",
+          "conjunto_b": "V",
+          "pares": 0,
+          "detalle": []
+        }
+      },
+      "total_pares": 0
+    },
+    "S": {
+      "umbral": 0.5,
+      "k_shingle": 8,
+      "pares": {
+        "train~dev": {
+          "conjunto_a": "train",
+          "conjunto_b": "dev",
+          "pares": 0,
+          "detalle": []
+        },
+        "train~V": {
+          "conjunto_a": "train",
+          "conjunto_b": "V",
+          "pares": 0,
+          "detalle": []
+        },
+        "dev~V": {
+          "conjunto_a": "dev",
+          "conjunto_b": "V",
+          "pares": 0,
+          "detalle": []
+        }
+      },
+      "total_pares": 0
+    }
+  },
+  "L10_inicial": {
+    "M": {
+      "umbral": 0.5,
+      "k_shingle": 8,
+      "pares": {
+        "train~dev": {
+          "conjunto_a": "train",
+          "conjunto_b": "dev",
+          "pares": 4,
+          "detalle": [
+            {
+              "a": "D12-1120_P07-1034_0",
+              "b": "W11-0315_P07-1034_0",
+              "solape": 0.5526,
+              "citante_a": "D12-1120",
+              "citante_b": "W11-0315"
+            },
+            {
+              "a": "P09-1002_N09-4006_0",
+              "b": "W10-2803_S07-1016_1",
+              "solape": 0.525,
+              "citante_a": "P09-1002",
+              "citante_b": "W10-2803"
+            },
+            {
+              "a": "S13-2017_D10-1113_0",
+              "b": "N13-1134_D10-1113_0",
+              "solape": 0.5106,
+              "citante_a": "S13-2017",
+              "citante_b": "N13-1134"
+            },
+            {
+              "a": "N03-1012_P98-1013_0",
+              "b": "W03-0903_P98-1013_0",
+              "solape": 0.5,
+              "citante_a": "N03-1012",
+              "citante_b": "W03-0903"
+            }
+          ]
+        },
+        "train~V": {
+          "conjunto_a": "train",
+          "conjunto_b": "V",
+          "pares": 5,
+          "detalle": [
+            {
+              "a": "W09-2414_W04-2705_0",
+              "b": "S10-1005_W04-2705_0",
+              "solape": 0.8333,
+              "citante_a": "W09-2414",
+              "citante_b": "S10-1005"
+            },
+            {
+              "a": "P12-1080_P03-1004_0",
+              "b": "P12-1028_P03-1004_0",
+              "solape": 0.7333,
+              "citante_a": "P12-1080",
+              "citante_b": "P12-1028"
+            },
+            {
+              "a": "P12-1080_P03-1004_0",
+              "b": "P12-1028_P05-1024_0",
+              "solape": 0.6875,
+              "citante_a": "P12-1080",
+              "citante_b": "P12-1028"
+            },
+            {
+              "a": "P11-1028_P10-1083_0",
+              "b": "P12-1014_P09-1010_0",
+              "solape": 0.5,
+              "citante_a": "P11-1028",
+              "citante_b": "P12-1014"
+            },
+            {
+              "a": "P11-1028_P10-1083_0",
+              "b": "P12-1014_P10-1083_0",
+              "solape": 0.5,
+              "citante_a": "P11-1028",
+              "citante_b": "P12-1014"
+            }
+          ]
+        },
+        "dev~V": {
+          "conjunto_a": "dev",
+          "conjunto_b": "V",
+          "pares": 1,
+          "detalle": [
+            {
+              "a": "P09-2007_P08-2024_2",
+              "b": "W09-3412_P08-2024_4",
+              "solape": 0.5,
+              "citante_a": "P09-2007",
+              "citante_b": "W09-3412"
+            }
+          ]
+        }
+      },
+      "total_pares": 10
+    },
+    "S": {
+      "umbral": 0.5,
+      "k_shingle": 8,
+      "pares": {
+        "train~dev": {
+          "conjunto_a": "train",
+          "conjunto_b": "dev",
+          "pares": 24,
+          "detalle": [
+            {
+              "a": "E97-1019_E93-1013_0",
+              "b": "P97-1019_E93-1013_0",
+              "solape": 1.0,
+              "citante_a": "E97-1019",
+              "citante_b": "P97-1019"
+            },
+            {
+              "a": "E97-1030_W95-0108_0",
+              "b": "P97-1030_W95-0108_0",
+              "solape": 1.0,
+              "citante_a": "E97-1030",
+              "citante_b": "P97-1030"
+            },
+            {
+              "a": "W10-1732_E99-1010_0",
+              "b": "W11-2163_E99-1010_0",
+              "solape": 1.0,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "W10-1732_N03-1017_0",
+              "b": "W11-2163_N03-1017_0",
+              "solape": 1.0,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "W11-1514_W10-0201_0",
+              "b": "W11-1709_W10-0201_0",
+              "solape": 1.0,
+              "citante_a": "W11-1514",
+              "citante_b": "W11-1709"
+            },
+            {
+              "a": "W12-5902_W10-1749_0",
+              "b": "W12-5901_W10-1749_0",
+              "solape": 0.9,
+              "citante_a": "W12-5902",
+              "citante_b": "W12-5901"
+            },
+            {
+              "a": "W10-1732_E99-1010_0",
+              "b": "W11-2163_P07-2045_0",
+              "solape": 0.8947,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "W10-1732_P07-2045_0",
+              "b": "W11-2163_E99-1010_0",
+              "solape": 0.8947,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "J06-3002_W95-0103_0",
+              "b": "E03-1079_W95-0103_0",
+              "solape": 0.8837,
+              "citante_a": "J06-3002",
+              "citante_b": "E03-1079"
+            },
+            {
+              "a": "W10-1732_P07-2045_0",
+              "b": "W11-2163_P07-2045_0",
+              "solape": 0.8636,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "J06-3002_P91-1030_0",
+              "b": "E03-1079_W95-0103_0",
+              "solape": 0.8444,
+              "citante_a": "J06-3002",
+              "citante_b": "E03-1079"
+            },
+            {
+              "a": "E09-1025_W07-1409_0",
+              "b": "W09-3710_W07-1409_0",
+              "solape": 0.8148,
+              "citante_a": "E09-1025",
+              "citante_b": "W09-3710"
+            },
+            {
+              "a": "J06-3002_P91-1030_1",
+              "b": "E03-1079_P91-1030_0",
+              "solape": 0.8108,
+              "citante_a": "J06-3002",
+              "citante_b": "E03-1079"
+            },
+            {
+              "a": "E09-1025_P07-1058_0",
+              "b": "W09-3710_P07-1058_0",
+              "solape": 0.7551,
+              "citante_a": "E09-1025",
+              "citante_b": "W09-3710"
+            },
+            {
+              "a": "W10-4309_P02-1047_0",
+              "b": "D10-1039_P02-1047_0",
+              "solape": 0.6562,
+              "citante_a": "W10-4309",
+              "citante_b": "D10-1039"
+            },
+            {
+              "a": "W10-1732_E99-1010_0",
+              "b": "W11-2163_N03-1017_0",
+              "solape": 0.6364,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "W10-1732_N03-1017_0",
+              "b": "W11-2163_E99-1010_0",
+              "solape": 0.6364,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "W12-3140_P07-2045_0",
+              "b": "W11-2142_P07-2045_0",
+              "solape": 0.5946,
+              "citante_a": "W12-3140",
+              "citante_b": "W11-2142"
+            },
+            {
+              "a": "W06-2904_P98-2127_0",
+              "b": "W04-1216_P98-2127_0",
+              "solape": 0.5909,
+              "citante_a": "W06-2904",
+              "citante_b": "W04-1216"
+            },
+            {
+              "a": "P06-1013_W97-0201_0",
+              "b": "W02-0817_W97-0201_0",
+              "solape": 0.575,
+              "citante_a": "P06-1013",
+              "citante_b": "W02-0817"
+            },
+            {
+              "a": "W10-1732_N03-1017_0",
+              "b": "W11-2163_P07-2045_0",
+              "solape": 0.5455,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "W10-1732_P07-2045_0",
+              "b": "W11-2163_N03-1017_0",
+              "solape": 0.5455,
+              "citante_a": "W10-1732",
+              "citante_b": "W11-2163"
+            },
+            {
+              "a": "P09-1002_N09-4006_0",
+              "b": "W10-2803_S07-1016_1",
+              "solape": 0.525,
+              "citante_a": "P09-1002",
+              "citante_b": "W10-2803"
+            },
+            {
+              "a": "W05-1516_P98-2127_0",
+              "b": "W04-1216_P98-2127_0",
+              "solape": 0.5227,
+              "citante_a": "W05-1516",
+              "citante_b": "W04-1216"
+            }
+          ]
+        },
+        "train~V": {
+          "conjunto_a": "train",
+          "conjunto_b": "V",
+          "pares": 3,
+          "detalle": [
+            {
+              "a": "W06-2915_J04-3002_0",
+              "b": "N06-3005_J04-3002_0",
+              "solape": 0.9048,
+              "citante_a": "W06-2915",
+              "citante_b": "N06-3005"
+            },
+            {
+              "a": "S13-1006_S12-1051_0",
+              "b": "P13-2125_S12-1051_0",
+              "solape": 0.7818,
+              "citante_a": "S13-1006",
+              "citante_b": "P13-2125"
+            },
+            {
+              "a": "W11-0815_J98-4009_0",
+              "b": "W13-1001_J98-4009_0",
+              "solape": 0.6222,
+              "citante_a": "W11-0815",
+              "citante_b": "W13-1001"
+            }
+          ]
+        },
+        "dev~V": {
+          "conjunto_a": "dev",
+          "conjunto_b": "V",
+          "pares": 2,
+          "detalle": [
+            {
+              "a": "W11-2142_W06-3110_0",
+              "b": "W11-2149_W06-3108_2",
+              "solape": 0.8182,
+              "citante_a": "W11-2142",
+              "citante_b": "W11-2149"
+            },
+            {
+              "a": "W11-2142_W06-3110_0",
+              "b": "W11-2149_W06-3110_2",
+              "solape": 0.8182,
+              "citante_a": "W11-2142",
+              "citante_b": "W11-2149"
+            }
+          ]
+        }
+      },
+      "total_pares": 29
+    }
+  },
+  "L10_descartes": {
+    "M": {
+      "train": [
+        "D12-1120_P07-1034_0",
+        "N03-1012_P98-1013_0",
+        "P09-1002_N09-4006_0",
+        "P11-1028_P10-1083_0",
+        "P12-1080_P03-1004_0",
+        "S13-2017_D10-1113_0",
+        "W09-2414_W04-2705_0"
+      ],
+      "dev": [
+        "P09-2007_P08-2024_2"
+      ]
+    },
+    "S": {
+      "train": [
+        "E09-1025_P07-1058_0",
+        "E09-1025_W07-1409_0",
+        "E97-1019_E93-1013_0",
+        "E97-1030_W95-0108_0",
+        "J06-3002_P91-1030_0",
+        "J06-3002_P91-1030_1",
+        "J06-3002_W95-0103_0",
+        "P06-1013_W97-0201_0",
+        "P09-1002_N09-4006_0",
+        "S13-1006_S12-1051_0",
+        "W05-1516_P98-2127_0",
+        "W06-2904_P98-2127_0",
+        "W06-2915_J04-3002_0",
+        "W10-1732_E99-1010_0",
+        "W10-1732_N03-1017_0",
+        "W10-1732_P07-2045_0",
+        "W10-4309_P02-1047_0",
+        "W11-0815_J98-4009_0",
+        "W11-1514_W10-0201_0",
+        "W12-3140_P07-2045_0",
+        "W12-5902_W10-1749_0"
+      ],
+      "dev": [
+        "W11-2142_W06-3110_0"
+      ]
+    }
+  }
+}

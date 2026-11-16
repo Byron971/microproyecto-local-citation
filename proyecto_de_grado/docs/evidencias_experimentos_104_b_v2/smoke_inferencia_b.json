@@ -1,0 +1,74 @@
+[
+  {
+    "pista": "M",
+    "entrada": "B",
+    "run": "scibert-B-M-lr2e-05-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 10.451660937519591,
+    "checkpoint_sha256": "f51977779ced65703d630c33a5c8bdbefaa3f9c7e095c37713e8613bfa6f74b8"
+  },
+  {
+    "pista": "M",
+    "entrada": "B_barajada",
+    "run": "scibert-B_barajada-M-lr2e-05-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 9.436067656281466,
+    "checkpoint_sha256": "6fecb7b1c267ea217fcbadf49f97cdbfc417640330154d63f0205f7e9ea9afc9"
+  },
+  {
+    "pista": "M",
+    "entrada": "AB",
+    "run": "scibert-AB-M-lr2e-05-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 6.978695406246516,
+    "checkpoint_sha256": "071ff94fd201cb39e5741da54f9af03f002629ccb0316733dfd97d971c77f63a"
+  },
+  {
+    "pista": "S",
+    "entrada": "B",
+    "run": "scibert-B-S-lr5e-05-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 10.673721656303314,
+    "checkpoint_sha256": "5b9ab2b96b91b4dce313ed5e5a233a92b63882b1a7359c5d5354cb8d36a67637"
+  },
+  {
+    "pista": "S",
+    "entrada": "B_barajada",
+    "run": "scibert-B_barajada-S-lr5e-05-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 11.201682999967488,
+    "checkpoint_sha256": "141420a05c044f1ca6043aff52ca624c551a18db3049b1eeddb63db80ef3d571"
+  },
+  {
+    "pista": "S",
+    "entrada": "AB",
+    "run": "scibert-AB-S-lr3e-05-s42",
+    "encoder": "scibert",
+    "casos": 32,
+    "ok": true,
+    "predicciones_distintas": 0,
+    "max_dif_probabilidad": 0.0,
+    "latencia_ms": 11.965390687521449,
+    "checkpoint_sha256": "d7a68920447f822d388fcd30b5229bd8328c8f41b1c069690b1ed2c3ab5bc861"
+  }
+]

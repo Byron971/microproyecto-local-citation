@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P06-1098_P05-1033_4,Evaluable,Background,Media,"Describes the glue rules of the hierarchical model as prior work, contrasted with the authors' own method.",COMPLETO,28,1
+2,W13-4030_P09-1110_0,Evaluable,Background,Alta,One of several approaches listed for semantic parsing.,COMPLETO,28,1
+3,W11-0906_P00-1065_1,Evaluable,Evidence,Media,Supports the claim that verb clustering improves semantic role labeling.,COMPLETO,28,1
+4,W12-2032_N10-1018_0,Evaluable,Basis,Alta,The determiner system builds on the ideas of the cited work.,COMPLETO,28,1
+5,N13-1121_W12-2108_0,Evaluable,Background,Alta,"Examples of work classifying users in social media, in the introduction.",COMPLETO,28,1
+6,P10-1021_D09-1045_4,Evaluable,Comparison,Alta,The current results are explicitly said to mirror the cited findings.,COMPLETO,28,1
+7,W05-0634_N01-1025_0,Evaluable,Application,Alta,YamCha is used as is to implement the system.,COMPLETO,28,1
+8,W08-2231_N07-1025_0,Evaluable,Evidence,Media,"Shows that Wikipedia can serve as a sense inventory, which supports the authors' approach.",COMPLETO,28,1
+9,W09-0438_W03-0420_0,Evaluable,Application,Alta,The ME tagger is used directly.,COMPLETO,28,1
+10,D13-1196_P13-1045_0,Evaluable,Background,Alta,Describes recent related studies using distributional semantics for syntactic ambiguity.,COMPLETO,28,1
+11,E12-1017_E09-1070_0,Evaluable,Evidence,Media,Supports the claim that Wikipedia-trained NER models generalize to news corpora.,COMPLETO,28,1
+12,N12-3008_P98-2186_0,Evaluable,Application,Alta,The Illinois POS tagger is used as is.,COMPLETO,28,1
+13,D10-1013_D10-1041_1,Evaluable,Further Reading,Media,'cf.' points the reader to related work on lattice approaches.,COMPLETO,28,1
+14,W09-0437_P07-2045_0,Evaluable,Application,Alta,Moses is used as the phrase-based system.,COMPLETO,28,1
+15,E12-1002_N06-1003_0,Evaluable,Background,Alta,Summarizes previous work on paraphrases and pivot-based probabilities in SMT.,COMPLETO,28,1
+16,W13-3516_P05-1022_0,Evaluable,Application,Alta,The Charniak parser is used to produce parse trees.,COMPLETO,28,1
+17,W06-1409_E91-1028_2,Evaluable,Comparison,Alta,Explicitly compares the predictions of the authors' algorithms with those of the cited work.,COMPLETO,28,1
+18,W13-4006_P09-1077_1,Evaluable,Background,Media,Lists prior works that used word pairs as features.,COMPLETO,28,1
+19,W13-2902_W03-1004_4,Evaluable,Comparison,Alta,Contrasts the cited English/Simple English alignment with the authors' German data.,COMPLETO,28,1
+20,W10-2501_N04-1014_1,Evaluable,Background,Media,Cites tree transducer literature to relate STSGs to transducers.,COMPLETO,28,1
+21,P02-1042_P96-1025_2,Evaluable,Comparison,Media,Notes that a similar argument is used in the cited parsing model.,COMPLETO,28,1
+22,N10-1118_P06-2066_2,Evaluable,Background,Media,Cites well-nestedness as an example of a known constraint.,COMPLETO,28,1
+23,E03-1040_A97-1052_0,Evaluable,Background,Alta,Lists prior work on learning verb properties such as subcategorization.,COMPLETO,28,1
+24,N09-1046_E03-1076_1,Evaluable,Basis,Alta,The authors take the cited work as the starting point for their segmentation model.,COMPLETO,28,1
+25,P06-1050_A92-1021_0,Evaluable,Application,Alta,The Brill tagger is used for POS tagging.,COMPLETO,28,1
+26,W13-2254_W08-0309_0,Evaluable,Background,Alta,Lists previous work showing the metric correlates with human judgement.,COMPLETO,28,1
+27,P10-1055_E09-1053_1,Evaluable,Evidence,Baja,Uses the cited notion of first-order grammars to characterize G1.,COMPLETO,28,1
+28,D10-1069_W06-1615_0,Evaluable,Basis,Media,The authors follow the cited work in using automatically labeled target-domain data.,COMPLETO,28,1
+29,D10-1066_E93-1036_0,Evaluable,Background,Media,"Cites prior work on left-corner transforms, which the authors also use with differing details.",COMPLETO,28,1
+30,D13-1173_P03-1021_1,Evaluable,Application,Alta,MERT is used as is to tune feature weights.,COMPLETO,28,1
+31,P10-1016_P08-1012_0,Evaluable,Gap,Media,Notes that the cited approaches suffered from an intractable estimation problem.,COMPLETO,28,1
+32,W11-2120_N03-1017_0,Evaluable,Application,Media,The phrase table features are those of the cited work.,COMPLETO,28,1
+33,E12-1074_P07-2045_0,Evaluable,Background,Media,Describes limitations of reordering models in Moses to set up the problem.,COMPLETO,28,1
+34,W09-2307_N03-1017_0,Evaluable,Background,Alta,Describes basic reordering models in phrase-based systems.,COMPLETO,28,1
+35,D11-1016_D09-1017_0,Evaluable,Evidence,Media,Supports the claim that negators dampen rather than flip polarity.,COMPLETO,28,1
+36,P12-1042_P08-4003_0,Evaluable,Application,Alta,BART is used to resolve anaphora.,COMPLETO,28,1
+37,W12-1903_W11-0303_4,Evaluable,Comparison,Alta,Compares results with the cited system among the state-of-the-art ones.,COMPLETO,28,1
+38,E09-1068_P06-1100_0,Evaluable,Background,Alta,Lists related approaches in the related work section.,COMPLETO,28,1
+39,P11-2066_N03-1017_0,Evaluable,Application,Alta,Moses is used as the phrase-based system to validate the experiments.,COMPLETO,28,1
+40,E09-1025_W04-3206_0,Evaluable,Background,Alta,Background section listing available inference rule collections.,COMPLETO,28,1
+41,D12-1079_A92-1021_0,Evaluable,Identification of the Originator,Alta,TBL was originally introduced via the cited tagger.,COMPLETO,28,1
+42,P12-3022_J07-2003_0,Evaluable,Application,Alta,Cube pruning is incorporated in the decoder.,COMPLETO,28,1
+43,P11-1129_D09-1117_1,Evaluable,Comparison,Alta,Explicitly contrasts the authors' approach with the cited reverse decoding.,COMPLETO,28,1
+44,W13-3607_P07-2045_0,Evaluable,Application,Alta,All systems were built with Moses.,COMPLETO,28,1
+45,P85-1038_P84-1097_0,Evaluable,Evidence,Alta,The cited work confirms Deese's observation and supports the claim.,COMPLETO,28,1
+46,P10-1152_W10-2902_0,Evaluable,Background,Alta,Lists settings where Viterbi EM has been used.,COMPLETO,28,1
+47,D11-1106_W00-1401_0,Evaluable,Application,Media,The authors use the word-order recovery task from the cited work for evaluation.,COMPLETO,28,1
+48,W10-2406_N03-1017_1,Evaluable,Comparison,Media,States the in-house decoder works on the same principles as Moses.,COMPLETO,28,1
+49,W03-1010_N01-1006_0,Evaluable,Application,Alta,The fnTBL-based tagger is used to tag the BNC.,COMPLETO,28,1
+50,W07-1607_A00-2019_0,Evaluable,Comparison,Alta,Describes the cited work as the closest in spirit and compares its approach with the authors'.,COMPLETO,28,1
+51,Q13-1003_N10-1011_0,Evaluable,Background,Alta,Summarizes recent work on grounding meaning in visual information.,COMPLETO,28,1
+52,W10-1732_N03-1017_0,Evaluable,Application,Alta,The grow-diag-final-and heuristic is used as is for symmetrization.,COMPLETO,28,1
+53,D10-1042_P09-1098_0,Evaluable,Background,Alta,Lists corpus-based approaches to mining translation pairs.,COMPLETO,28,1
+54,D13-1038_W12-1621_3,Evaluable,Evidence,Media,The cited data supports the claim that different strategies are used for referential descriptions.,COMPLETO,28,1
+55,P11-2031_P03-1021_0,Evaluable,Background,Alta,Historical statement of the need for significance testing in MT.,COMPLETO,28,1
+56,P06-1129_P99-1004_0,Evaluable,Further Reading,Alta,Refers the reader to an investigation of similarity functions.,COMPLETO,28,1
+57,W07-0724_W06-3110_0,Evaluable,Further Reading,Alta,'For details' refers the reader to the cited works.,COMPLETO,28,1
+58,P12-2021_P03-1054_0,Evaluable,Comparison,Alta,The cited parser's F-scores are listed in a comparison table.,COMPLETO,28,1
+59,W10-3018_P07-1125_0,Evaluable,Background,Alta,Describes previous research on speculation detection.,COMPLETO,28,1
+60,P13-1150_P10-1107_0,Evaluable,Comparison,Alta,Notes similarity to the cited decipherment model.,COMPLETO,28,1
+61,P97-1030_W95-0108_0,Evaluable,Background,Alta,Related work describing a previous mixture approach.,COMPLETO,28,1
+62,Q13-1024_P07-1003_1,Evaluable,Evidence,Media,Supports the claim that sequence-based models perform comparably to fertility-based ones.,COMPLETO,28,1
+63,W10-2910_W05-0601_0,Evaluable,Further Reading,Baja,Points to examples of lexical similarity use as a future direction.,COMPLETO,28,1
+64,W13-2213_W13-2212_1,Evaluable,Background,Media,Reports a prior finding about alignment post-processing hurting Moses.,COMPLETO,28,1
+65,N10-1063_P09-2057_0,Evaluable,Background,Alta,Lists researchers who explored the related problem of document alignment.,COMPLETO,28,1
+66,W04-2327_N01-1002_0,Evaluable,Background,Alta,Lists uses of the GNOME corpus.,COMPLETO,28,1
+67,D11-1012_N10-1115_0,Evaluable,Application,Alta,Dependencies are taken directly from the cited parser.,COMPLETO,28,1
+68,P10-2039_P09-1057_0,Evaluable,Background,Alta,Describes recent related work that achieved the best accuracies on the task.,COMPLETO,28,1
+69,W12-2013_P11-2038_6,Evaluable,Comparison,Alta,Parameters are set for comparability with the cited work.,COMPLETO,28,1
+70,N10-1078_P07-2045_0,Evaluable,Application,Alta,Translation models are trained using Moses.,COMPLETO,28,1
+71,P08-1085_N03-1033_0,Evaluable,Further Reading,Alta,'See' refers the reader to the cited work for details on bidirectional conditioning.,COMPLETO,28,1
+72,J11-4007_P03-1054_0,Evaluable,Application,Alta,The Stanford Parser is used to obtain parse trees.,COMPLETO,28,1
+73,W09-3825_W05-1513_2,Evaluable,Comparison,Alta,Contrasts the new TERMINATE action with the earlier work using only three actions.,COMPLETO,28,1
+74,W03-0302_W02-1039_1,Evaluable,Identification of the Originator,Alta,The notions were 'originally introduced' in the cited work.,COMPLETO,28,1
+75,W13-3517_P10-2029_1,Evaluable,Background,Alta,Lists rule-based approaches in related work.,COMPLETO,28,1
+76,D09-1073_D08-1022_0,Evaluable,Background,Alta,Lists syntax-based SMT methods in the introduction.,COMPLETO,28,1
+77,S13-2024_N10-1045_0,Evaluable,Basis,Media,The task targets the scenario proposed in the cited work.,COMPLETO,28,1
+78,P09-1050_N04-1041_0,Evaluable,Background,Alta,Lists prior approaches to the set expansion task.,COMPLETO,28,1
+79,Q13-1014_W11-2103_1,Evaluable,Comparison,Alta,Compares the authors' BLEU implementation with the one reported in the cited work.,COMPLETO,28,1
+80,W07-2202_W06-1619_1,Evaluable,Evidence,Media,The cited result supports the claim that lexical entry probabilities are essential.,COMPLETO,28,1
+81,D13-1187_P11-1016_0,Evaluable,Background,Alta,Lists work in sentiment analysis in microblogs.,COMPLETO,28,1
+82,W11-1109_W10-2902_0,Evaluable,Background,Alta,Describes progress in unsupervised dependency parsing.,COMPLETO,28,1
+83,E97-1063_W97-0207_3,Evaluable,Comparison,Media,Compares the model's precision with the results reported by the cited work.,COMPLETO,28,1
+84,P13-1039_P10-1084_0,Evaluable,Background,Alta,Describes later work organizing topics in a hierarchy.,COMPLETO,28,1
+85,D09-1022_N09-2005_1,Evaluable,Further Reading,Media,'cf.' refers to the earlier finding on reranking.,COMPLETO,28,1
+86,D11-1066_J08-2003_0,Evaluable,Background,Alta,"Lists kernel applications in various NLP tasks, including SRL.",COMPLETO,28,1
+87,P12-1109_P11-1038_1,Evaluable,Background,Alta,Describes previous work on Twitter normalization.,COMPLETO,28,1
+88,W03-0401_P97-1003_0,Evaluable,Background,Alta,Lists existing disambiguation models that the authors then criticize.,COMPLETO,28,1
+89,W10-1617_A00-2023_0,Evaluable,Further Reading,Alta,'see for example' refers to the literature on input specification.,COMPLETO,28,1
+90,W04-3221_W02-0908_2,Evaluable,Comparison,Alta,Aims at a better comparison with the cited work.,COMPLETO,28,1
+91,E03-1080_A97-1014_0,Evaluable,Background,Alta,"Describes the Negra annotation scheme, which is then criticized as unsuited for extraction.",COMPLETO,28,1
+92,S13-1043_W11-0908_0,Evaluable,Comparison,Alta,Compares results with previously reported results on the task.,COMPLETO,28,1
+93,P13-2008_P00-1056_0,Evaluable,Application,Alta,GIZA++ is used as is to generate word alignments.,COMPLETO,28,1
+94,W13-4034_W10-4356_3,Evaluable,Evidence,Alta,Supports the claim that lexical features predict dialogue acts.,COMPLETO,28,1
+95,P10-1001_E06-1011_6,Evaluable,Comparison,Alta,Reported results are listed in a comparison table.,COMPLETO,28,1
+96,P12-2008_P08-1089_0,Evaluable,Background,Alta,Related work describing an extension of the SMT approach.,COMPLETO,28,1
+97,N06-1005_W04-3206_0,Evaluable,Comparison,Alta,States that the approach is most similar to TE/ASE and describes differences.,COMPLETO,28,1
+98,P10-1076_D09-1114_1,Evaluable,Background,Alta,Describes prior work on building diverse systems for combination.,COMPLETO,28,1
+99,D11-1030_P09-1009_0,Evaluable,Background,Alta,Lists tasks to which the idea has been applied.,COMPLETO,28,1
+100,W11-2136_W05-0908_0,Evaluable,Application,Alta,The approximate randomization test is used as is for significance testing.,COMPLETO,28,1

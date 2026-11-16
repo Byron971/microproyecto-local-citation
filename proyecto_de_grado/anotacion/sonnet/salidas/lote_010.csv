@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W12-3404_E12-1003_2,Evaluable,Comparison,Media,Se enumeran sistemas con los que se compara el trabajo actual (baselines de SRL no supervisado).,COMPLETO,10,1
+2,W08-0617_W02-1002_0,Evaluable,Background,Media,Describe la idea de entrenar modelos generativos con criterios discriminativos como antecedente.,COMPLETO,10,1
+3,W13-2254_W12-3104_0,Evaluable,Background,Media,Presenta AMBER como métrica existente antes de criticarla.,COMPLETO,10,1
+4,P13-1109_P08-1088_0,Evaluable,Background,Alta,Sección de trabajo relacionado con enumeración de literatura previa.,COMPLETO,10,1
+5,P03-1062_P00-1030_0,Evaluable,Background,Alta,Enumeración de estudios previos sobre colocación de acento tonal.,COMPLETO,10,1
+6,W10-1304_N07-2044_0,Evaluable,Background,Alta,Resume la investigación previa en modelado de lenguaje para AAC.,COMPLETO,10,1
+7,W04-1505_A97-1011_0,Evaluable,Gap,Media,"Señala que los parsers de dependencias previos carecen de base estadística, lo que motiva el modelo propuesto.",COMPLETO,10,1
+8,P12-1023_P05-1012_5,Evaluable,Application,Alta,Usa las características de primer orden definidas en la obra citada.,COMPLETO,10,1
+9,S12-1026_D11-1122_2,Evaluable,Comparison,Alta,Contrasta explícitamente el número de clusters restringido en el trabajo citado con el enfoque propio.,COMPLETO,10,1
+10,P03-1008_P02-1031_0,Evaluable,Comparison,Alta,Los resultados propios coinciden con los del trabajo citado.,COMPLETO,10,1
+11,W04-1505_P03-1013_2,Evaluable,Comparison,Alta,Compara explícitamente Pro3Gres con el modelo citado.,COMPLETO,10,1
+12,P12-1011_W06-0903_1,Evaluable,Comparison,Media,"Explica por qué no es posible comparar con el trabajo citado, contrastando configuraciones de evaluación.",COMPLETO,10,1
+13,W09-1109_P08-1028_2,Evaluable,Background,Media,Describe cómo modelos previos decidían la aceptación de paráfrasis.,COMPLETO,10,1
+14,P11-1126_P10-1146_0,Evaluable,Background,Alta,Cita trabajos previos de modelos de SMT en la introducción.,COMPLETO,10,1
+15,P09-1108_N09-1063_0,Evaluable,Application,Alta,Sigue el procedimiento de cálculo de heurísticas del trabajo citado.,COMPLETO,10,1
+16,W10-1814_W07-1513_0,Evaluable,Background,Alta,Describe trabajo previo que anotó oraciones holandesas con PropBank.,COMPLETO,10,1
+17,N10-1003_N07-1051_2,Evaluable,Background,Media,"Presenta la función objetivo propuesta en el trabajo citado, que luego se usa como contexto.",COMPLETO,10,1
+18,N09-1001_W08-1207_5,Evaluable,Comparison,Media,Compara los resultados con el clasificador Naive Bayes supervisado usado en el trabajo previo.,COMPLETO,10,1
+19,W09-3817_W04-3205_0,Evaluable,Background,Media,"Lista trabajos previos sobre adquisición de conocimiento entre cláusulas, que luego se contrastan.",COMPLETO,10,1
+20,P13-1043_D09-1060_0,Evaluable,Background,Alta,Indica que la idea fue explorada antes en análisis de dependencias.,COMPLETO,10,1
+21,J13-2004_N10-1118_1,Evaluable,Basis,Baja,La noción de complejidad de análisis se toma de la obra citada (cf.).,COMPLETO,10,1
+22,P04-1058_P96-1025_1,Evaluable,Application,Alta,Transforma el PTB siguiendo el procedimiento del trabajo citado.,COMPLETO,10,1
+23,W90-0118_J85-4010_1,Evaluable,Evidence,Baja,Respalda la afirmación sobre las restricciones de adecuación por metas informativas.,COMPLETO,10,1
+24,J08-2004_W04-3212_1,Evaluable,Evidence,Alta,Respalda la afirmación de que detección y clasificación de argumentos requieren distintas características.,COMPLETO,10,1
+25,D10-1013_P05-1074_0,Evaluable,Background,Media,Menciona el pivoteo de tablas de frases bilingües como técnica existente.,COMPLETO,10,1
+26,W11-1402_W06-1650_2,Evaluable,Basis,Media,Las características se motivan en trabajo previo sobre utilidad de reseñas.,COMPLETO,10,1
+27,N12-1090_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para entrenar el modelo de alineación.,COMPLETO,10,1
+28,W08-0407_W06-1600_0,Evaluable,Comparison,Alta,Contrasta el enfoque propio con trabajos que usan analizadores externos.,COMPLETO,10,1
+29,D09-1027_W04-3252_3,Evaluable,Comparison,Alta,Compara resultados con los mejores reportados en el mismo conjunto de datos.,COMPLETO,10,1
+30,W11-2031_P97-1035_0,Evaluable,Background,Media,Cita enfoques de evaluación de sistemas de diálogo de forma general.,COMPLETO,10,1
+31,D11-1135_D10-1099_0,Evaluable,Background,Alta,Indica el interés general en extracción de relaciones.,COMPLETO,10,1
+32,D11-1068_D08-1020_0,Evaluable,Background,Alta,"Enumera aplicaciones de las relaciones de discurso, incluida la legibilidad.",COMPLETO,10,1
+33,P08-1089_P05-1074_1,Evaluable,Background,Alta,Describe el trabajo previo que primero usó corpus bilingües para paráfrasis.,COMPLETO,10,1
+34,P09-1089_W08-0309_0,Evaluable,Application,Alta,Usa los datos de la tarea compartida WMT-2008.,COMPLETO,10,1
+35,N12-1087_P09-1057_0,Evaluable,Application,Media,Usa el subconjunto estándar del Penn Treebank de la obra citada.,COMPLETO,10,1
+36,W09-0715_W96-0213_0,Evaluable,Background,Alta,Reporta la precisión de un etiquetador de máxima entropía previo.,COMPLETO,10,1
+37,N07-1051_P06-1055_2,Evaluable,Application,Alta,Usa el analizador del trabajo citado para construir listas de las 10 mejores.,COMPLETO,10,1
+38,P11-1090_N06-2013_1,Evaluable,Evidence,Alta,Respalda el hallazgo propio con trabajo previo concordante.,COMPLETO,10,1
+39,P10-1112_P09-2012_2,Evaluable,Comparison,Alta,Compara la precisión obtenida con trabajos recientes de TSG.,COMPLETO,10,1
+40,D11-1108_P05-1033_1,Evaluable,Background,Media,Explica que el formalismo SCFG fue repopularizado para SMT por el trabajo citado.,COMPLETO,10,1
+41,P08-1082_P07-1059_1,Evaluable,Comparison,Media,Relaciona el trabajo propio con el citado que usa SMT para expansión de consultas.,COMPLETO,10,1
+42,P10-2048_P09-1027_1,Evaluable,Gap,Media,"Señala el mal desempeño reportado de las estrategias previas, lo que motiva la solución propia.",COMPLETO,10,1
+43,W13-5403_J91-4003_1,Evaluable,Background,Media,Cita la definición de coerción de tipo del Léxico Generativo para contextualizar.,COMPLETO,10,1
+44,P10-1147_N03-1017_2,Evaluable,Evidence,Media,Respalda que las estadísticas de frecuencia relativa de frases impulsan el rendimiento de la traducción.,COMPLETO,10,1
+45,D09-1093_P00-1037_1,Evaluable,Comparison,Alta,Contrasta explícitamente la observación propia con la del trabajo citado.,COMPLETO,10,1
+46,S12-1021_P09-2017_2,Evaluable,Evidence,Alta,Respalda la suposición de que compuestos con un constituyente común son semánticamente similares.,COMPLETO,10,1
+47,N09-2029_E09-1059_1,Evaluable,Evidence,Alta,Justifica la elección del modelo SAM por su evaluación en un estudio con usuarios.,COMPLETO,10,1
+48,P13-4002_P11-1096_0,Evaluable,Background,Alta,Describe la popularidad de la geolocalización de usuarios basada en tweets.,COMPLETO,10,1
+49,W13-4068_P13-1046_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los enfoques estadísticos son superiores.,COMPLETO,10,1
+50,W11-0704_W09-2010_0,Evaluable,Background,Alta,Describe trabajo previo que mejora un modelo de canal ruidoso.,COMPLETO,10,1
+51,P10-1031_D09-1001_3,Evaluable,Comparison,Alta,Compara OntoUSP con USP y otros sistemas evaluados en el trabajo citado.,COMPLETO,10,1
+52,J06-2003_J02-2001_2,Evaluable,Gap,Alta,"Señala que la construcción manual solo completó nueve representaciones, motivando la automatización.",COMPLETO,10,1
+53,N13-1048_N04-1023_0,Evaluable,Gap,Alta,Señala la limitación de trabajos previos que usan pocas características o conjuntos pequeños.,COMPLETO,10,1
+54,D12-1002_P04-1021_0,Evaluable,Background,Alta,Enumera enfoques generativos de transliteración en trabajo relacionado.,COMPLETO,10,1
+55,P10-1056_N07-1055_0,Evaluable,Application,Alta,Usa la herramienta Brown Coherence Toolkit para construir las cuadrículas.,COMPLETO,10,1
+56,W09-0420_N03-1017_0,Evaluable,Application,Alta,Usa la heurística de simetrización grow-diag-final-and.,COMPLETO,10,1
+57,E12-1046_D09-1092_0,Evaluable,Basis,Media,"El modelo BiLDA usado fue presentado en el trabajo citado, base del enfoque.",COMPLETO,10,1
+58,N01-1014_W97-1102_0,Evaluable,Further Reading,Alta,"Remite a un enfoque fonético distinto mediante una nota (""For a different approach, see"").",COMPLETO,10,1
+59,W09-0508_P04-1015_0,Evaluable,Evidence,Media,Respalda la afirmación de que el algoritmo es eficiente y preciso para selección de análisis.,COMPLETO,10,1
+60,P07-1039_E03-1026_3,Evaluable,Further Reading,Media,Remite a consideraciones relacionadas en otros trabajos (see also).,COMPLETO,10,1
+61,W09-0432_P07-2045_0,Evaluable,Application,Alta,Usa el toolkit Moses para los experimentos.,COMPLETO,10,1
+62,W08-0322_N07-2047_1,Evaluable,Further Reading,Alta,Remite a una explicación más detallada del algoritmo de decodificación.,COMPLETO,10,1
+63,N07-2015_N04-1021_1,Evaluable,Evidence,Alta,Los resultados propios respaldan el hallazgo previo citado.,COMPLETO,10,1
+64,N10-1080_P03-1021_2,Evaluable,Background,Media,Cita la suposición establecida de MERT que luego se cuestiona.,COMPLETO,10,1
+65,P11-1085_P10-1146_0,Evaluable,Gap,Media,Critica que trabajos previos no aprovechan suficientemente el contexto rico del árbol.,COMPLETO,10,1
+66,N13-1107_P11-1056_1,Evaluable,Basis,Alta,La intuición de las reglas heurísticas proviene del trabajo citado.,COMPLETO,10,1
+67,N13-1010_N01-1021_1,Evaluable,Identification of the Originator,Media,Atribuye el concepto de surprisal al trabajo que lo introdujo como predictor de complejidad.,COMPLETO,10,1
+68,W12-2014_E09-1065_0,Evaluable,Background,Alta,Describe enfoques previos de puntuación de contenido basados en similitud textual.,COMPLETO,10,1
+69,P07-1020_P06-1091_0,Evaluable,Gap,Alta,Señala que el entrenamiento discriminativo casi no se ha usado para entrenar directamente modelos de traducción.,COMPLETO,10,1
+70,N13-1030_A00-1043_0,Evaluable,Background,Alta,Define la tarea de compresión de oraciones citando trabajo previo.,COMPLETO,10,1
+71,J88-2004_P87-1001_0,Evaluable,Basis,Media,Adopta el componente preparatorio propuesto por el trabajo citado para extender el modelo.,COMPLETO,10,1
+72,P06-2087_P97-1013_0,Evaluable,Background,Alta,Describe modelos computacionales previos de estructura retórica.,COMPLETO,10,1
+73,W12-6003_J92-2007_1,Evaluable,Background,Baja,Cita general sobre resolución de ambigüedad semántica.,COMPLETO,10,1
+74,D11-1146_W04-3219_0,Evaluable,Background,Alta,Enumera tareas donde se ha abordado la brecha de vocabulario.,COMPLETO,10,1
+75,W94-0303_W90-0114_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la organización estructural es tan importante como el contenido.,COMPLETO,10,1
+76,P11-1139_P08-1101_0,Evaluable,Evidence,Alta,Respalda que los métodos integrados superan a los sistemas en cascada.,COMPLETO,10,1
+77,W11-4416_W98-1007_0,Evaluable,Background,Alta,Describe trabajos previos derivados del sistema Xerox para morfología árabe.,COMPLETO,10,1
+78,W10-4207_W05-1608_0,Evaluable,Background,Alta,Enumera extensiones previas para referencias multimodales.,COMPLETO,10,1
+79,J99-3001_P96-1036_3,Evaluable,Basis,Media,Se refiere a supuestos de trabajo propio previo sobre el que se construye la versión actual.,COMPLETO,10,1
+80,S13-2021_N10-1146_0,Evaluable,Identification of the Originator,Alta,Indica que el trabajo citado propuso por primera vez el problema (firstly proposed).,COMPLETO,10,1
+81,N13-2009_P08-1077_0,Evaluable,Background,Alta,Enumera métodos de similitud distribucional existentes.,COMPLETO,10,1
+82,W13-3106_W04-1013_0,Evaluable,Application,Alta,Usa ROUGE para evaluar los resúmenes.,COMPLETO,10,1
+83,W12-2009_D08-1021_2,Evaluable,Comparison,Alta,Compara el método propio con el método pivote con restricciones sintácticas.,COMPLETO,10,1
+84,W07-0706_P05-1034_3,Evaluable,Comparison,Alta,Contrasta DTSC con trabajos previos basados en gramáticas de dependencias.,COMPLETO,10,1
+85,P12-1084_D11-1099_1,Evaluable,Comparison,Alta,Describe trabajos previos y los contrasta con el enfoque propio que considera dependencias.,COMPLETO,10,1
+86,P10-2019_P03-1054_0,Evaluable,Basis,Media,"Se inspira en la división de símbolos de frase del trabajo citado, sin indicar adaptación explícita.",COMPLETO,10,1
+87,Q13-1024_W02-1039_3,Evaluable,Background,Alta,Resume hallazgos de trabajo previo sobre cohesión sintáctica.,COMPLETO,10,1
+88,W04-0407_J98-4009_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre el número de expresiones multipalabra con una estimación citada.,COMPLETO,10,1
+89,P12-1055_P11-1037_5,Evaluable,Application,Alta,Usa el conjunto de datos del trabajo citado.,COMPLETO,10,1
+90,P04-1001_P97-1040_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la Teoría de la Optimidad y sus restricciones.,COMPLETO,10,1
+91,W13-3733_S12-1042_0,Evaluable,Application,Alta,Usa el sistema de resolución de negación del trabajo citado.,COMPLETO,10,1
+92,D13-1057_N10-1061_0,Evaluable,Background,Alta,Describe esfuerzos previos en modelos de interacciones de orden superior.,COMPLETO,10,1
+93,W12-1504_P10-1159_0,Evaluable,Comparison,Media,Describe el trabajo citado y lo contrasta con el enfoque propio (entrega en una sola unidad).,COMPLETO,10,1
+94,N13-1121_P09-1116_1,Evaluable,Application,Media,Sigue el enfoque de k-means de la obra citada para agrupar frases.,COMPLETO,10,1
+95,N13-1068_D12-1091_0,Evaluable,Background,Media,Menciona el bootstrap pareado no paramétrico como prueba de significancia preferida.,COMPLETO,10,1
+96,W01-1408_P00-1056_1,Evaluable,Evidence,Alta,Justifica la elección del Modelo 4 por su buena calidad de alineación demostrada.,COMPLETO,10,1
+97,Q13-1007_W12-1909_0,Evaluable,Basis,Media,"El trabajo actual se construye sobre el modelo de probabilidad simple previo, reemplazándolo.",COMPLETO,10,1
+98,P11-1140_N09-1046_0,Evaluable,Background,Alta,Describe trabajo previo sobre división de compuestos.,COMPLETO,10,1
+99,W11-3714_D10-1006_0,Evaluable,Comparison,Alta,Compara explícitamente el trabajo citado con el propio señalando similitudes y diferencias.,COMPLETO,10,1
+100,J10-4006_W09-0202_0,Evaluable,Background,Alta,Enumera aplicaciones innovadoras de semántica basada en corpus.,COMPLETO,10,1

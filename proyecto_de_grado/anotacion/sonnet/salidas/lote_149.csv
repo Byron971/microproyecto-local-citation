@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P13-1152_W05-1601_0,Evaluable,Background,Media,Enumera trabajos previos sobre generación entrenable con datos anotados lingüísticamente.,COMPLETO,149,1
+2,Q13-1011_W11-2838_0,Evaluable,Background,Media,Presenta la tarea compartida HOO 2011 como parte del panorama previo.,COMPLETO,149,1
+3,D11-1001_P01-1030_0,Evaluable,Background,Media,Situa el uso de ILP en NLP como una línea larga de investigación.,COMPLETO,149,1
+4,P10-1147_P09-1104_3,Evaluable,Evidence,Media,Respalda que la poda con HMM intersectado es un enfoque probado.,COMPLETO,149,1
+5,P01-1007_E99-1008_1,Evaluable,Background,Media,Describe un algoritmo de análisis para RCG ya existente en el trabajo citado.,COMPLETO,149,1
+6,E09-1023_E06-1034_0,Evaluable,Gap,Alta,"Señala que el intento previo de corrección se limitó a POS, justificando el trabajo actual.",COMPLETO,149,1
+7,W08-0304_P03-1021_0,Evaluable,Identification of the Originator,Alta,Atribuye la introducción de MERT al trabajo citado.,COMPLETO,149,1
+8,W13-2809_P03-1021_1,Evaluable,Application,Alta,Usa MERT sin modificación para ajustar los sistemas.,COMPLETO,149,1
+9,E12-1013_D08-1088_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el problema es NP-difícil para BLEU.,COMPLETO,149,1
+10,P02-1039_P01-1067_2,Evaluable,Further Reading,Alta,Remite a ejemplos más detallados en el trabajo citado.,COMPLETO,149,1
+11,P10-1130_W10-2902_4,Evaluable,Comparison,Alta,Compara los resultados propios con el oráculo skyline del trabajo citado.,COMPLETO,149,1
+12,Q13-1034_W06-2920_0,Evaluable,Evidence,Media,Respalda la observación de menor precisión en lenguas ricas en flexión en CoNLL.,COMPLETO,149,1
+13,P13-1112_P11-1132_0,Evaluable,Background,Media,Resume trabajos relacionados que predicen la lengua fuente de textos traducidos.,COMPLETO,149,1
+14,W13-4301_D09-1085_0,Evaluable,Evidence,Media,Usa la evaluación citada para justificar la elección del analizador Stanford.,COMPLETO,149,1
+15,P06-1091_P03-1021_0,Evaluable,Comparison,Media,"Contrasta el enfoque actual, que no usa rasgos de probabilidad, con el trabajo citado.",COMPLETO,149,1
+16,W13-1101_W11-2929_0,Evaluable,Comparison,Alta,Compara el método de detección de anomalías con un revisor de aprendizaje automático.,COMPLETO,149,1
+17,W02-2008_W02-1030_0,Evaluable,Background,Media,Reseña investigación previa sobre usar conteos de buscadores web.,COMPLETO,149,1
+18,W12-4408_W10-2405_0,Evaluable,Application,Alta,Adopta DirecTL-p tal cual para la transliteración.,COMPLETO,149,1
+19,P12-2001_P08-1109_0,Evaluable,Background,Media,Clasifica trabajos previos como modelos de primer orden en la descripción del campo.,COMPLETO,149,1
+20,E12-1043_P03-1054_0,Evaluable,Application,Alta,Emplea el analizador de Stanford para obtener dependencias.,COMPLETO,149,1
+21,D13-1111_N04-1022_0,Evaluable,Background,Media,"Enumera usos de múltiples soluciones, incluida la decodificación MBR.",COMPLETO,149,1
+22,W13-2805_N06-2033_0,Evaluable,Background,Alta,Revisa trabajos previos sobre combinación de analizadores.,COMPLETO,149,1
+23,D13-1047_W13-3508_0,Evaluable,Gap,Media,Critica que trabajos previos dependen de compresión genérica no ideal para resumen.,COMPLETO,149,1
+24,W12-2039_W12-2022_0,Evaluable,Further Reading,Alta,Remite a una comparación de enfoques de evaluación de contenido.,COMPLETO,149,1
+25,W09-1120_P07-1049_1,Evaluable,Gap,Media,Usa los resultados del analizador citado para mostrar que la calidad sigue siendo baja.,COMPLETO,149,1
+26,W09-1702_P08-1088_0,Evaluable,Background,Media,Describe lo señalado en trabajo previo sobre la distancia de edición.,COMPLETO,149,1
+27,N13-1107_D11-1142_2,Evaluable,Background,Alta,Enumera trabajos relacionados sobre Open IE.,COMPLETO,149,1
+28,P12-2057_N03-1017_0,Evaluable,Background,Alta,Presenta modelos de SMT basados en frases como estado del arte.,COMPLETO,149,1
+29,P10-1096_D09-1136_1,Evaluable,Further Reading,Media,Remite a detalles adicionales sobre la inferencia variacional.,COMPLETO,149,1
+30,J09-1003_P05-1018_4,Evaluable,Background,Baja,Describe la medida de precisión de ranking introducida en trabajo previo.,COMPLETO,149,1
+31,W13-3504_N03-1028_0,Evaluable,Background,Alta,Enumera usos de CRF en tareas de segmentación.,COMPLETO,149,1
+32,W13-3513_P08-1028_7,Evaluable,Comparison,Alta,Compara el tamaño del conjunto de datos propio con el citado.,COMPLETO,149,1
+33,P12-1082_D11-1113_0,Evaluable,Comparison,Alta,Señala similitudes y diferencias con el trabajo citado.,COMPLETO,149,1
+34,W10-2401_W09-3504_0,Evaluable,Background,Alta,Resume enfoques de los participantes en el taller NEWS.,COMPLETO,149,1
+35,D12-1066_W03-1004_0,Evaluable,Background,Alta,Enumera enfoques de recolección de paráfrasis.,COMPLETO,149,1
+36,P13-1008_P08-1030_2,Evaluable,Comparison,Alta,Compara el rendimiento propio con la línea base citada.,COMPLETO,149,1
+37,P12-1066_D11-1006_3,Evaluable,Application,Alta,Usa la transferencia directa del analizador como sistema base.,COMPLETO,149,1
+38,N10-1082_N09-1062_1,Evaluable,Application,Media,Emplea la PTSG como modelo ejemplo en el marco propuesto.,COMPLETO,149,1
+39,D11-1125_P10-1146_0,Evaluable,Gap,Media,Muestra la escasa adopción de MIRA para justificar un enfoque más simple.,COMPLETO,149,1
+40,J92-4004_P86-1038_1,Evaluable,Basis,Alta,Se apoya en los autómatas definidos en el trabajo citado.,COMPLETO,149,1
+41,N13-1053_P11-1032_2,Evaluable,Basis,Alta,Extiende el conjunto de datos y el enfoque propuestos por el trabajo citado.,COMPLETO,149,1
+42,E12-1045_N04-4026_0,Evaluable,Application,Media,Usa el modelo de reordenamiento de frases citado en el sistema.,COMPLETO,149,1
+43,J08-1002_N04-1013_2,Evaluable,Background,Alta,Reseña estudios que usan modelos de bosque de rasgos.,COMPLETO,149,1
+44,P12-2002_W06-2920_1,Evaluable,Gap,Media,Señala limitaciones de métricas existentes ante segmentación morfológica incorrecta.,COMPLETO,149,1
+45,N07-1037_P05-1017_2,Evaluable,Application,Media,Adopta los criterios de selección de parámetros propuestos por el trabajo citado.,COMPLETO,149,1
+46,D11-1125_P07-2045_1,Evaluable,Application,Alta,Usa la implementación CMERT incluida en Moses.,COMPLETO,149,1
+47,W13-1715_D11-1148_0,Evaluable,Evidence,Media,Respalda que los rasgos sintácticos pueden ser útiles.,COMPLETO,149,1
+48,P13-1071_E12-1079_2,Evaluable,Evidence,Media,Respalda la importancia de las categorías elegidas en la comunidad Wikipedia.,COMPLETO,149,1
+49,P03-1055_P97-1003_2,Evaluable,Identification of the Originator,Alta,Atribuye la idea de enlazar elementos a sus antecedentes al trabajo citado.,COMPLETO,149,1
+50,W98-1502_P87-1022_0,Evaluable,Background,Media,Presenta la propuesta de ordenamiento de la teoría de centrado.,COMPLETO,149,1
+51,W11-1005_D09-1159_1,Evaluable,Comparison,Media,Contrasta el uso de MWU en la minería de opiniones con el enfoque actual.,COMPLETO,149,1
+52,D11-1038_P10-1013_0,Evaluable,Background,Alta,Enumera aplicaciones de Wikipedia en tareas de NLP.,COMPLETO,149,1
+53,P06-1098_P05-1033_0,Evaluable,Background,Media,Describe el modelo jerárquico basado en frases previamente propuesto.,COMPLETO,149,1
+54,P00-1059_W00-1401_0,Evaluable,Further Reading,Alta,Remite al lector a una discusión más detallada de métricas.,COMPLETO,149,1
+55,D11-1050_P10-1093_0,Evaluable,Background,Alta,Enumera trabajos sobre composicionalidad distribucional.,COMPLETO,149,1
+56,P06-1043_N06-1020_1,Evaluable,Background,Media,Resume trabajos recientes sobre autoentrenamiento en análisis sintáctico.,COMPLETO,149,1
+57,P10-1109_W09-3802_1,Evaluable,Basis,Media,Sigue la estrategia de cambio de modelo del trabajo citado.,COMPLETO,149,1
+58,W97-0317_P91-1030_0,Evaluable,Background,Media,Describe uno de los primeros intentos de resolver ambigüedad de adjunción PP.,COMPLETO,149,1
+59,D12-1037_N03-1017_0,Evaluable,Application,Alta,Aplica el procedimiento de alineación bidireccional citado.,COMPLETO,149,1
+60,W11-2906_N10-1004_0,Evaluable,Background,Alta,Enumera tareas donde se ha estudiado la adaptación de dominio.,COMPLETO,149,1
+61,D09-1120_D08-1068_2,Evaluable,Evidence,Alta,Respalda la decisión de usar núcleos sintácticos.,COMPLETO,149,1
+62,N10-1004_D08-1093_1,Evaluable,Comparison,Alta,Compara explícitamente el sistema propio con el citado.,COMPLETO,149,1
+63,W03-1006_P02-1031_2,Evaluable,Evidence,Media,Respalda la importancia de rasgos de sintaxis profunda.,COMPLETO,149,1
+64,W09-3815_N09-1026_0,Evaluable,Background,Media,Revisa estudios previos sobre esquemas de binarización.,COMPLETO,149,1
+65,W08-0409_W96-0213_0,Evaluable,Application,Alta,Utiliza el etiquetador MXPOST sin modificarlo.,COMPLETO,149,1
+66,D13-1163_P05-1018_0,Evaluable,Background,Alta,Enumera modelos de coherencia propuestos para resumen y generación.,COMPLETO,149,1
+67,N12-1052_P09-1116_1,Evaluable,Comparison,Alta,Compara los resultados propios con los mejores reportados.,COMPLETO,149,1
+68,J00-1004_J90-2002_0,Evaluable,Comparison,Alta,Contrasta ventajas del método propio frente al enfoque de IBM.,COMPLETO,149,1
+69,D13-1113_P11-1032_1,Evaluable,Evidence,Alta,Respalda la afirmación de que el etiquetado humano de reseñas falsas es deficiente.,COMPLETO,149,1
+70,P88-1010_P88-1012_0,Evaluable,Evidence,Media,Respalda la afirmación de que el contexto influye en el análisis sintáctico.,COMPLETO,149,1
+71,P11-3012_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford para generar árboles y etiquetas.,COMPLETO,149,1
+72,P10-1079_P06-2005_0,Evaluable,Background,Alta,Describe la metáfora de traducción automática como enfoque previo.,COMPLETO,149,1
+73,W06-3110_J90-2002_0,Evaluable,Comparison,Media,Presenta el enfoque como generalización del modelo de canal fuente.,COMPLETO,149,1
+74,W98-1218_W97-1011_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la ley de Zipf y la cantidad de texto necesaria.,COMPLETO,149,1
+75,E12-1017_W04-2405_0,Evaluable,Basis,Media,Adapta el autoentrenamiento como técnica base de la propuesta.,COMPLETO,149,1
+76,P09-1020_P07-1089_1,Evaluable,Background,Alta,Describe el modelo de secuencias de árboles propuesto previamente.,COMPLETO,149,1
+77,D13-1010_P09-1026_0,Evaluable,Background,Alta,Enumera técnicas previas para reconocer posturas en debates.,COMPLETO,149,1
+78,W09-3402_N03-1028_0,Evaluable,Evidence,Alta,Respalda la elección de modelos discriminativos de secuencia.,COMPLETO,149,1
+79,D11-1137_P09-1067_0,Evaluable,Basis,Media,Combina la decodificación variacional citada con el reranking generativo.,COMPLETO,149,1
+80,W09-1104_N06-1020_0,Evaluable,Background,Alta,Enumera enfoques de análisis débilmente supervisado.,COMPLETO,149,1
+81,W09-0609_W08-1109_1,Evaluable,Application,Media,Emplea el corpus recopilado en el experimento citado.,COMPLETO,149,1
+82,N09-1047_P07-1004_2,Evaluable,Application,Alta,Usa el sistema PORTAGE en los experimentos.,COMPLETO,149,1
+83,A00-2004_P98-2244_0,Evaluable,Background,Alta,Enumera métodos para encontrar límites temáticos.,COMPLETO,149,1
+84,W09-1127_P06-1117_0,Evaluable,Evidence,Media,Respalda que los recursos semánticos mejoran el análisis semántico superficial.,COMPLETO,149,1
+85,D13-1101_W06-0305_0,Evaluable,Basis,Media,Adopta la subcategorización de atribuciones del trabajo citado.,COMPLETO,149,1
+86,Q13-1003_P08-1028_0,Evaluable,Evidence,Media,Respalda el uso extendido de la correlación de Spearman.,COMPLETO,149,1
+87,Q13-1003_D09-1046_0,Evaluable,Evidence,Media,Respalda el uso extendido de la correlación de Spearman.,COMPLETO,149,1
+88,P09-1102_N03-1028_0,Evaluable,Identification of the Originator,Alta,Atribuye el concepto de restricciones de transición al trabajo citado.,COMPLETO,149,1
+89,P10-2030_W02-2016_0,Evaluable,Background,Media,Menciona analizadores japoneses como Cabocha y su precisión.,COMPLETO,149,1
+90,W10-2002_P07-1102_0,Evaluable,Evidence,Media,Respalda empíricamente que pares de agentes desarrollan sistemas especializados.,COMPLETO,149,1
+91,P07-2026_N04-1022_0,Evaluable,Identification of the Originator,Alta,Indica que la decodificación MBR se introdujo para MT en el trabajo citado.,COMPLETO,149,1
+92,P13-1052_P10-1134_0,Evaluable,Background,Alta,Reseña enfoques computacionales de extracción de definiciones.,COMPLETO,149,1
+93,P10-1029_W09-2201_0,Evaluable,Background,Alta,Enumera trabajos de extracción de términos semánticos desde la Web.,COMPLETO,149,1
+94,D11-1017_D10-1069_0,Evaluable,Comparison,Alta,Declara similitud y diferencias con el enfoque citado.,COMPLETO,149,1
+95,D10-1049_P09-1011_5,Evaluable,Application,Alta,Usa los parámetros aprendidos del modelo citado.,COMPLETO,149,1
+96,W05-0826_P03-1011_0,Evaluable,Background,Alta,Enumera trabajos que incorporan información sintáctica en alineamiento.,COMPLETO,149,1
+97,P06-2064_W04-2609_0,Evaluable,Background,Media,Menciona aplicaciones de la interpretación de compuestos nominales.,COMPLETO,149,1
+98,W13-2018_W11-1802_0,Evaluable,Further Reading,Alta,Remite a más detalles sobre la tarea Genia.,COMPLETO,149,1
+99,D13-1181_D08-1020_1,Evaluable,Background,Alta,Enumera trabajos previos sobre predicción de legibilidad.,COMPLETO,149,1
+100,P12-1046_P06-1055_2,Evaluable,Application,Alta,Sigue directamente el tratamiento de palabras desconocidas del trabajo citado.,COMPLETO,149,1

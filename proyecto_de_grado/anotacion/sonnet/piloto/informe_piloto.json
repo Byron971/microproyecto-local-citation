@@ -1,0 +1,29 @@
+{
+  "casos_anotados": 351,
+  "abstenciones": 0,
+  "acuerdo": {
+    "taller": {
+      "n": 41,
+      "acuerdo": 0.8780487804878049
+    },
+    "gpt": {
+      "n": 200,
+      "acuerdo": 0.785
+    },
+    "jurado_3de3": {
+      "n": 110,
+      "acuerdo": 0.8090909090909091
+    }
+  },
+  "lotes_ok": 4,
+  "lotes_error": 0,
+  "tokens_entrada_por_lote": 61288.5,
+  "tokens_salida_por_lote": 9551.75,
+  "segundos_por_lote": 52.794999999999995,
+  "extrapolacion": {
+    "lotes": 168,
+    "tokens_entrada": 10296468.0,
+    "tokens_salida": 1604694.0,
+    "horas_secuencial": 2.4637666666666664
+  }
+}

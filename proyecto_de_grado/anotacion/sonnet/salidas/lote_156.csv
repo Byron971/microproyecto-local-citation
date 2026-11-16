@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P12-1095_N09-2004_1,Evaluable,Evidence,Media,Cita respalda la afirmación de que integrar PAS del lado destino en la decodificación es costoso.,COMPLETO,156,1
+2,W06-1517_P06-2066_0,Evaluable,Evidence,Alta,Cita sustenta la cifra de estructuras no proyectivas vs. no bien anidadas.,COMPLETO,156,1
+3,W04-1108_J98-1004_0,Evaluable,Evidence,Media,Respalda la afirmación sobre la buena precisión del aprendizaje supervisado en WSD.,COMPLETO,156,1
+4,W11-2843_W11-2838_0,Evaluable,Background,Media,Presenta la tarea compartida HOO como contexto del trabajo.,COMPLETO,156,1
+5,D11-1020_W06-3601_0,Evaluable,Evidence,Media,Sustenta la afirmación de que los sistemas string-to-tree corren en tiempo cúbico.,COMPLETO,156,1
+6,J97-2002_A92-1018_1,Evaluable,Application,Alta,Usa el etiquetador de Xerox PARC tal cual para compilar el léxico.,COMPLETO,156,1
+7,W12-3150_P11-2072_1,Evaluable,Application,Alta,Elimina reglas unarias usando directamente el método citado.,COMPLETO,156,1
+8,P10-1135_P03-1054_0,Evaluable,Application,Alta,Usa el analizador Stanford para parsear el corpus.,COMPLETO,156,1
+9,D10-1026_P07-2045_0,Evaluable,Application,Alta,Usa Moses como sistema de traducción.,COMPLETO,156,1
+10,Q13-1034_P04-1015_0,Evaluable,Application,Media,Emplea la estrategia de early update propuesta/usada en el trabajo citado.,COMPLETO,156,1
+11,P13-3021_P11-2117_1,Evaluable,Application,Media,Sigue la configuración experimental del trabajo citado (SMT con Moses).,COMPLETO,156,1
+12,N09-1042_D08-1035_0,Evaluable,Comparison,Alta,Compara el modelo propio con BayesSeg como sistema base.,COMPLETO,156,1
+13,D08-1035_P01-1064_3,Evaluable,Comparison,Alta,U&I se usa como baseline de comparación.,COMPLETO,156,1
+14,E99-1007_P98-2184_0,Evaluable,Evidence,Media,Respalda la afirmación de que la extensión de sentido no modifica la distribución de subcategorización.,COMPLETO,156,1
+15,N07-1058_N04-1025_0,Evaluable,Evidence,Alta,Sustenta la afirmación sobre la mayor precisión del modelado de lenguaje en documentos web.,COMPLETO,156,1
+16,D11-1001_W09-1406_5,Evaluable,Application,Media,Usa directamente dos diccionarios tomados del trabajo citado como rasgos.,COMPLETO,156,1
+17,S10-1064_P97-1023_0,Evaluable,Background,Alta,Cita trabajos sobre análisis de sentimiento para contextualizar el área.,COMPLETO,156,1
+18,W13-3506_W08-2103_0,Evaluable,Comparison,Alta,Aparece en tabla comparando resultados de chunking con otros sistemas.,COMPLETO,156,1
+19,D11-1117_P10-1130_0,Evaluable,Evidence,Media,Respalda que ambos objetivos pueden ser demostrablemente erróneos.,COMPLETO,156,1
+20,N09-2022_J08-2003_1,Evaluable,Basis,Media,La estrategia del trabajo citado es el fundamento del diseño de cada etiquetador.,COMPLETO,156,1
+21,D10-1044_P05-1058_0,Evaluable,Background,Alta,Enumera trabajos previos sobre adaptación del modelo de alineamiento.,COMPLETO,156,1
+22,P10-3006_P07-2045_0,Evaluable,Application,Alta,Usa Moses con parámetros por defecto.,COMPLETO,156,1
+23,S10-1042_W96-0213_0,Evaluable,Application,Alta,Usa el etiquetador Maxent para el análisis morfosintáctico.,COMPLETO,156,1
+24,S10-1007_W04-2609_0,Evaluable,Background,Alta,Enumera enfoques previos basados en similitud semántica.,COMPLETO,156,1
+25,E12-1009_P10-1001_0,Evaluable,Improvement / Modification,Alta,Extiende el modelo con factores de tres aristas similares a los del trabajo citado.,COMPLETO,156,1
+26,W11-1109_D10-1120_1,Evaluable,Comparison,Alta,Nota que el trabajo citado obtiene resultados ligeramente mejores.,COMPLETO,156,1
+27,W13-3522_W07-0716_0,Evaluable,Background,Media,"Lista aplicaciones previas de paráfrasis, entre ellas la optimización de parámetros.",COMPLETO,156,1
+28,W12-3504_P03-1022_0,Evaluable,Evidence,Alta,Los autores citados respaldan la afirmación sobre pronombres sin antecedente NP.,COMPLETO,156,1
+29,D09-1134_J04-3004_0,Evaluable,Gap,Media,Señala una limitación (falta de garantía de optimalidad) del enfoque previo.,COMPLETO,156,1
+30,W12-3803_P99-1083_0,Evaluable,Background,Media,Reporta un hallazgo previo que contextualiza el tema de las disfluencias.,COMPLETO,156,1
+31,P98-2169_J93-3006_5,Evaluable,Background,Baja,Explica cómo se conciben las estructuras de rasgos según el trabajo citado.,COMPLETO,156,1
+32,P11-2045_P08-1030_1,Evaluable,Basis,Media,La observación del trabajo citado motiva la selección del corpus.,COMPLETO,156,1
+33,W10-4208_E06-2020_0,Evaluable,Application,Alta,Usa el sistema NLG de Turner tal cual en el experimento.,COMPLETO,156,1
+34,P10-1111_W97-0307_0,Evaluable,Background,Alta,Describe trabajo previo sobre etiquetado de funciones en alemán.,COMPLETO,156,1
+35,W03-1901_P01-1040_3,Evaluable,Further Reading,Alta,Remite a ejemplos de anotación en formato GMT.,COMPLETO,156,1
+36,W11-2503_N10-1011_0,Evaluable,Background,Alta,Describe el trabajo previo de Feng y Lapata.,COMPLETO,156,1
+37,W13-3524_D09-1159_0,Evaluable,Background,Alta,Enumera trabajos previos sobre extracción de aspectos.,COMPLETO,156,1
+38,D09-1140_A92-1021_0,Evaluable,Application,Alta,Ejecuta el etiquetador de Brill sobre los documentos.,COMPLETO,156,1
+39,S13-2045_W05-0202_0,Evaluable,Background,Alta,Enumera trabajos sobre evaluación de respuestas cortas.,COMPLETO,156,1
+40,W13-3203_D08-1094_0,Evaluable,Gap,Media,Señala que los intentos previos no modelan semántica léxica profunda.,COMPLETO,156,1
+41,P09-2075_W04-3247_2,Evaluable,Evidence,Alta,Sustenta la explicación de por qué LexPageRank supera a Centroid.,COMPLETO,156,1
+42,W12-1016_A00-2004_0,Evaluable,Background,Media,Describe brevemente un método previo de segmentación.,COMPLETO,156,1
+43,D12-1088_P03-1021_0,Evaluable,Application,Alta,Usa MERT tal cual para optimizar pesos.,COMPLETO,156,1
+44,P13-1008_P08-1030_3,Evaluable,Comparison,Alta,Aparece en tabla comparando resultados con otros sistemas.,COMPLETO,156,1
+45,W13-4813_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford para parsear el corpus.,COMPLETO,156,1
+46,W09-3825_P05-1012_0,Evaluable,Comparison,Media,"Compara los dos enfoques de análisis de dependencias, con resultados similares.",COMPLETO,156,1
+47,P98-2192_P94-1022_1,Evaluable,Comparison,Alta,Contrasta explícitamente la restricción propia con la del trabajo citado.,COMPLETO,156,1
+48,W10-4235_W05-1606_0,Evaluable,Background,Media,Indica trabajos previos que trataron la incertidumbre en generación de expresiones referenciales.,COMPLETO,156,1
+49,W04-2705_P00-1065_0,Evaluable,Comparison,Media,Contrasta programas previos basados en estadística con la herramienta basada en reglas.,COMPLETO,156,1
+50,W13-0806_P09-1088_1,Evaluable,Background,Alta,Enumera trabajos previos que usan muestreo de Gibbs.,COMPLETO,156,1
+51,D09-1143_P05-1052_0,Evaluable,Evidence,Media,Respalda la afirmación de que los métodos basados en rasgos obtienen mayor precisión.,COMPLETO,156,1
+52,W12-2032_N10-1018_6,Evaluable,Evidence,Alta,Respalda que patrones de error similares se observan en otros corpus ESL.,COMPLETO,156,1
+53,W12-4303_W06-1613_2,Evaluable,Background,Alta,Describe trabajo previo sobre clasificación de citas.,COMPLETO,156,1
+54,D13-1196_P03-1054_0,Evaluable,Background,Media,Menciona soluciones previas de agrupamiento duro.,COMPLETO,156,1
+55,W13-2417_P00-1065_1,Evaluable,Background,Alta,Describe el método influyente de Gildea y Jurafsky.,COMPLETO,156,1
+56,D11-1094_D09-1046_0,Evaluable,Background,Alta,Enumera enfoques previos para tratar la ambigüedad.,COMPLETO,156,1
+57,P04-1075_P02-1016_1,Evaluable,Gap,Media,Señala que pocos trabajos usan el criterio y son específicos de su tarea.,COMPLETO,156,1
+58,W12-2032_W10-1004_6,Evaluable,Evidence,Alta,Respalda que patrones de error similares se observan en otros corpus ESL.,COMPLETO,156,1
+59,N04-1016_W02-1005_1,Evaluable,Comparison,Alta,Aparece en tabla comparando el desempeño con la literatura.,COMPLETO,156,1
+60,P11-4008_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para el alineamiento.,COMPLETO,156,1
+61,D13-1202_W11-2503_0,Evaluable,Background,Media,Menciona modelos distribucionales basados en imágenes como contexto.,COMPLETO,156,1
+62,W09-3808_N03-1016_0,Evaluable,Identification of the Originator,Alta,Indica con 'first proposed in' quién propuso originalmente el filtro.,COMPLETO,156,1
+63,W07-1429_W02-1022_1,Evaluable,Comparison,Alta,Contrasta ('In contrast to') el enfoque descrito con el trabajo citado.,COMPLETO,156,1
+64,N01-1025_W95-0107_1,Evaluable,Identification of the Originator,Alta,Usa 'first introduced' para atribuir la representación Inside/Outside.,COMPLETO,156,1
+65,D10-1057_N09-1068_0,Evaluable,Background,Alta,Enumera trabajos previos sobre adaptación de dominio.,COMPLETO,156,1
+66,E12-1055_P10-2041_0,Evaluable,Background,Alta,Enumera trabajos previos sobre selección de datos.,COMPLETO,156,1
+67,J13-1006_W10-1409_0,Evaluable,Evidence,Media,Respalda la afirmación sobre dispersión de datos léxicos por riqueza morfológica.,COMPLETO,156,1
+68,D08-1021_P05-1034_0,Evaluable,Background,Alta,Enumera trabajos recientes que incorporan subárboles en reglas de traducción.,COMPLETO,156,1
+69,P06-4007_P05-1026_1,Evaluable,Further Reading,Alta,Remite al lector para más detalles sobre FERRET.,COMPLETO,156,1
+70,P08-1026_P05-3003_2,Evaluable,Background,Alta,Describe el método previo de cálculo de dominance chart.,COMPLETO,156,1
+71,W09-3928_P03-1070_0,Evaluable,Evidence,Media,Respalda la afirmación sobre las funciones de la mirada en la conversación.,COMPLETO,156,1
+72,D12-1047_P07-1066_0,Evaluable,Evidence,Media,Sustenta la limitación por la calidad de las hipótesis de traducción.,COMPLETO,156,1
+73,W09-3817_P98-2127_0,Evaluable,Application,Alta,Usa el tesauro distribucional basado en el trabajo citado.,COMPLETO,156,1
+74,D12-1066_P05-1074_1,Evaluable,Background,Alta,Enumera técnicas previas de adquisición de paráfrasis.,COMPLETO,156,1
+75,W10-0216_N09-3010_1,Evaluable,Background,Alta,Describe la representación de grafos de anotación propuesta en el trabajo citado.,COMPLETO,156,1
+76,P07-1052_W06-1604_5,Evaluable,Comparison,Alta,Compara SEPA con WOODWARD en el mismo conjunto de prueba.,COMPLETO,156,1
+77,W13-2216_W13-2208_0,Evaluable,Further Reading,Media,Remite a los envíos CU-BOJAR y CU-DEPFIX para más detalles.,COMPLETO,156,1
+78,D13-1205_D11-1006_1,Evaluable,Background,Media,"Describe una idea de trabajos previos, con atribución secundaria.",COMPLETO,156,1
+79,P12-2022_P10-2042_2,Evaluable,Basis,Media,Sigue el diseño del muestreador de trabajos previos.,COMPLETO,156,1
+80,D11-1045_N07-1008_0,Evaluable,Application,Alta,Entrena sistemas DTM2 tal como se describen en el trabajo citado.,COMPLETO,156,1
+81,P13-1106_D11-1022_0,Evaluable,Background,Alta,Describe el método DD previo y sus resultados.,COMPLETO,156,1
+82,J06-3003_P98-2127_2,Evaluable,Comparison,Alta,Aparece en tabla comparando algoritmos.,COMPLETO,156,1
+83,W09-3953_D08-1081_0,Evaluable,Comparison,Alta,Contrasta el trabajo citado con el propio (modalidades).,COMPLETO,156,1
+84,P03-2025_W02-0902_0,Evaluable,Background,Alta,Enumera trabajos previos sobre corpus comparables.,COMPLETO,156,1
+85,P13-1009_P00-1010_1,Evaluable,Comparison,Alta,GUTime es uno de los sistemas contra los que se compara.,COMPLETO,156,1
+86,D12-1125_D11-1006_4,Evaluable,Evidence,Media,Los resultados citados respaldan la utilidad de la técnica propia.,COMPLETO,156,1
+87,P12-1024_P06-1055_0,Evaluable,Background,Alta,Presenta los L-PCFG como modelo previo en el que se basa el trabajo.,COMPLETO,156,1
+88,D13-1185_N13-1104_7,Evaluable,Comparison,Alta,Contrasta el modelo propio con el requisito de cortes del trabajo citado.,COMPLETO,156,1
+89,P11-2100_P07-1055_3,Evaluable,Comparison,Alta,El modelo supervisado se usa como sistema de comparación.,COMPLETO,156,1
+90,W11-1916_N10-1061_2,Evaluable,Improvement / Modification,Alta,Modifica el sistema de correferencia citado para mejorar la detección de menciones.,COMPLETO,156,1
+91,P13-2020_N12-1015_0,Evaluable,Evidence,Alta,Respalda la afirmación sobre la convergencia del perceptrón.,COMPLETO,156,1
+92,N13-1125_D10-1062_0,Evaluable,Evidence,Media,Respalda la afirmación del impacto positivo de la detección de EC en SMT.,COMPLETO,156,1
+93,D09-1087_P08-1061_0,Evaluable,Background,Media,Menciona otros enfoques semisupervisados como trabajo relacionado.,COMPLETO,156,1
+94,P13-1079_W07-0403_0,Evaluable,Background,Alta,Enumera trabajos recientes sobre alineamiento de frases con ITG.,COMPLETO,156,1
+95,W06-2303_W05-1509_2,Evaluable,Further Reading,Alta,Remite a la fuente con 'for more information'.,COMPLETO,156,1
+96,W11-1602_W08-1911_0,Evaluable,Background,Alta,Ilustra con trabajo previo el uso de paráfrasis como ayuda a la escritura.,COMPLETO,156,1
+97,P09-1032_W08-1202_0,Evaluable,Background,Alta,Describe un estudio previo de anotación de metáforas.,COMPLETO,156,1
+98,W08-1402_A00-2038_0,Evaluable,Background,Alta,Describe investigación previa de alineamiento de fonemas.,COMPLETO,156,1
+99,N04-1034_J90-2002_0,Evaluable,Identification of the Originator,Alta,Atribuye la introducción de los alineamientos de palabras ('first introduced').,COMPLETO,156,1
+100,N12-1007_W07-0804_0,Evaluable,Background,Alta,Describe trabajo previo sobre coreferencia entre documentos en árabe.,COMPLETO,156,1

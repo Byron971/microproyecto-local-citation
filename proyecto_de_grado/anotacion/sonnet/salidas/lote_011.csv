@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,N07-1051_W01-0521_0,Evaluable,Further Reading,Alta,Remite al lector al trabajo citado para detalles y la configuración exacta del experimento.,COMPLETO,11,1
+2,J12-1001_W98-0319_1,Evaluable,Comparison,Alta,Los hallazgos propios se comparan con resultados previos y se señala su consistencia.,COMPLETO,11,1
+3,W03-0409_P01-1048_0,Evaluable,Further Reading,Alta,Remite a la fuente para más información sobre tareas y características.,COMPLETO,11,1
+4,W12-1513_N04-4027_0,Evaluable,Background,Alta,Enumera trabajos previos sobre resumen automático de correos.,COMPLETO,11,1
+5,P13-1037_W04-2705_0,Evaluable,Gap,Media,"Se cita NomBank para señalar que solo ofrece anotaciones parciales, lo que evidencia la falta de datasets.",COMPLETO,11,1
+6,D12-1131_J04-3001_0,Evaluable,Background,Alta,"Enumera técnicas útiles en el entorno ligeramente supervisado, como panorama del área.",COMPLETO,11,1
+7,W12-0704_W05-0908_0,Evaluable,Application,Alta,Se usa la prueba de aleatorización aproximada tal cual para la significancia.,COMPLETO,11,1
+8,W09-0203_P98-2127_0,Evaluable,Background,Media,Resume hallazgos previos sobre espacios semánticos basados en dependencias para motivar el trabajo.,COMPLETO,11,1
+9,W13-1713_N03-1033_0,Evaluable,Application,Alta,Se emplea directamente el etiquetador de Stanford con un modelo preentrenado.,COMPLETO,11,1
+10,W97-0106_P93-1024_1,Evaluable,Background,Baja,Reseña histórica del uso de la divergencia en PLN; no hay atribución explícita del origen en la cita marcada.,COMPLETO,11,1
+11,D10-1108_D09-1099_2,Evaluable,Background,Alta,Lista de trabajos previos que extraen hiperónimos.,COMPLETO,11,1
+12,Q13-1034_P10-1110_1,Evaluable,Application,Media,Se adopta la estrategia de actualización temprana usada en trabajos previos de parsing.,COMPLETO,11,1
+13,N09-1062_E03-1005_0,Evaluable,Gap,Alta,Se cita para señalar la inconsistencia de DOP1 como deficiencia que motiva el trabajo.,COMPLETO,11,1
+14,W03-1404_J91-4003_0,Evaluable,Basis,Media,Se adopta la visión del léxico generativo como marco conceptual del análisis.,COMPLETO,11,1
+15,D12-1022_P03-2041_1,Evaluable,Background,Media,Describe en general cómo las gramáticas de reescritura mapean árboles.,COMPLETO,11,1
+16,S10-1003_S07-1009_0,Evaluable,Basis,Media,El esquema de evaluación se inspira en la tarea de sustitución léxica de SemEval 2007.,COMPLETO,11,1
+17,P12-1018_P06-3003_0,Evaluable,Improvement / Modification,Alta,"Similar al método citado, pero usa las estadísticas como prior en un modelo estadístico en vez de heurística.",COMPLETO,11,1
+18,E99-1006_P98-2204_0,Evaluable,Improvement / Modification,Alta,El método extiende el algoritmo citado para cubrir anáfora deíctica del discurso.,COMPLETO,11,1
+19,P13-1147_P07-1034_1,Evaluable,Evidence,Media,La cita respalda la formulación de la pérdida ponderada por instancia.,COMPLETO,11,1
+20,W04-0902_P03-1054_0,Evaluable,Application,Alta,Se usa el parser estadístico de amplia cobertura directamente.,COMPLETO,11,1
+21,E03-1051_P90-1003_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los límites prosódicos dependen de la información sintáctica.,COMPLETO,11,1
+22,W06-3206_W05-0616_0,Evaluable,Comparison,Alta,Se planea comparar con el trabajo citado y se señala la diferencia principal.,COMPLETO,11,1
+23,P13-1174_N10-1119_0,Evaluable,Gap,Media,Contrasta el supuesto del trabajo previo con la menor fiabilidad esperada para connotación.,COMPLETO,11,1
+24,D09-1130_N06-1027_2,Evaluable,Comparison,Alta,Contrasta explícitamente el conjunto de etiquetas propio con los de trabajos previos.,COMPLETO,11,1
+25,W13-3522_D08-1021_0,Evaluable,Background,Media,Describe un trabajo previo que extiende otro con restricciones sintácticas.,COMPLETO,11,1
+26,E09-1018_P07-1107_1,Evaluable,Comparison,Media,Se señala que los resultados coinciden con lo observado por el trabajo citado.,COMPLETO,11,1
+27,W10-4305_D08-1031_1,Evaluable,Application,Alta,Se usa la división de datos del trabajo citado tal cual.,COMPLETO,11,1
+28,P13-1161_D11-1012_0,Evaluable,Background,Alta,Lista de trabajos que aplican inferencia conjunta a SRL.,COMPLETO,11,1
+29,N07-1051_P05-1022_0,Evaluable,Background,Media,Menciona parsers lexicalizados previos como contexto del resultado propio.,COMPLETO,11,1
+30,P10-1088_W09-0424_0,Evaluable,Application,Alta,Se usa el decodificador Joshua para los experimentos.,COMPLETO,11,1
+31,W05-0306_W03-1210_0,Evaluable,Background,Alta,Resume métodos previos de adquisición automática de conocimiento causal.,COMPLETO,11,1
+32,P06-1064_A97-1014_1,Evaluable,Background,Alta,Aporta contexto sobre el corpus Negra como antecesor de Tiger.,COMPLETO,11,1
+33,E12-1065_P10-1015_1,Evaluable,Basis,Media,La elección del dato (novela del siglo XIX) sigue en parte al trabajo citado.,COMPLETO,11,1
+34,P08-1007_W07-0738_2,Evaluable,Evidence,Alta,Respalda la afirmación de que el conocimiento lingüístico profundo es útil.,COMPLETO,11,1
+35,D09-1045_P08-1028_2,Evaluable,Basis,Media,Se parte del marco propio previo de composición de vectores.,COMPLETO,11,1
+36,W09-3109_E09-1003_0,Evaluable,Background,Alta,Enumera usos de corpus comparables en trabajos previos.,COMPLETO,11,1
+37,J05-4002_P99-1004_3,Evaluable,Background,Alta,Lista de trabajos que usan pseudo-desambiguación como evaluación estándar.,COMPLETO,11,1
+38,P13-1045_W04-3201_2,Evaluable,Basis,Media,El objetivo de margen máximo para predicción estructurada proviene del trabajo citado.,COMPLETO,11,1
+39,W12-5503_D12-1039_0,Evaluable,Application,Alta,Se aplica el método propuesto para normalizar tuits.,COMPLETO,11,1
+40,W04-3221_W02-0908_3,Evaluable,Further Reading,Alta,Usa see also para remitir a una comparación de métodos.,COMPLETO,11,1
+41,D10-1027_J07-2003_5,Evaluable,Comparison,Media,Contrasta el trabajo previo (sistema jerárquico) con el actual en diferencias de modelos.,COMPLETO,11,1
+42,W09-3103_N04-1025_0,Evaluable,Gap,Media,Describe el enfoque con datos etiquetados y señala que no se extiende a miles de idiomas.,COMPLETO,11,1
+43,P13-1041_D11-1116_0,Evaluable,Background,Alta,Enumera tareas donde las características de agrupamiento mejoran el rendimiento.,COMPLETO,11,1
+44,W00-0734_W99-0707_1,Evaluable,Comparison,Alta,Compara la exactitud propia con los puntajes NP del trabajo citado.,COMPLETO,11,1
+45,J13-4002_E06-1011_0,Evaluable,Background,Alta,Enumera trabajos recientes sobre búsqueda aproximada en parsing.,COMPLETO,11,1
+46,W93-0301_P91-1022_0,Evaluable,Background,Alta,Enumera trabajos previos de alineación de textos paralelos.,COMPLETO,11,1
+47,W13-0114_S12-1001_2,Evaluable,Evidence,Alta,Aporta el dato empírico (72% de DNIs en cadenas no singleton) que respalda la característica.,COMPLETO,11,1
+48,P12-1078_P11-1137_1,Evaluable,Background,Media,Reseña trabajo reciente sobre esparsidad en patrones sociolingüísticos.,COMPLETO,11,1
+49,D12-1133_D11-1109_2,Evaluable,Comparison,Alta,Aparece en tabla de resultados comparando parsers.,COMPLETO,11,1
+50,P12-2021_N07-1051_0,Evaluable,Comparison,Alta,Se compara el parser PTB citado con parsers CCG en la tabla.,COMPLETO,11,1
+51,W06-0204_P05-1047_1,Evaluable,Gap,Alta,Señala que los algoritmos iterativos citados no han usado patrones más complejos.,COMPLETO,11,1
+52,W03-0302_W02-1039_0,Evaluable,Application,Alta,Se emplea la restricción de cohesión tal como fue definida.,COMPLETO,11,1
+53,N04-1020_N03-1030_0,Evaluable,Comparison,Alta,Se señala que el resultado concuerda con el de los autores citados.,COMPLETO,11,1
+54,N10-1145_W07-1401_1,Evaluable,Further Reading,Alta,Remite al lector a más resultados de RTE-3.,COMPLETO,11,1
+55,D12-1058_P01-1008_0,Evaluable,Background,Alta,Describe el trabajo previo de paráfrasis basado en alineamiento.,COMPLETO,11,1
+56,W03-0410_E03-1040_2,Evaluable,Further Reading,Alta,Remite explícitamente al lector interesado para los detalles.,COMPLETO,11,1
+57,P06-2003_W05-0904_0,Evaluable,Basis,Alta,Los nuevos indicadores se inspiran en las métricas sintácticas del trabajo citado.,COMPLETO,11,1
+58,W12-2024_W11-2838_0,Evaluable,Basis,Baja,Se extiende el enfoque propio de HOO 2011; la cita marcada es el informe de la tarea compartida.,COMPLETO,11,1
+59,W13-4018_W12-1819_2,Evaluable,Background,Media,Describe resultados previos de reconocimiento de calidad de interacción.,COMPLETO,11,1
+60,P07-2030_P03-1069_0,Evaluable,Background,Media,Menciona el ordenamiento de oraciones como tarea donde el ranking es importante.,COMPLETO,11,1
+61,E09-1026_W04-3213_0,Evaluable,Background,Alta,Describe un método previo no supervisado de etiquetado de roles semánticos.,COMPLETO,11,1
+62,P11-1144_N10-1138_6,Evaluable,Application,Alta,Se sigue el preprocesamiento del trabajo citado.,COMPLETO,11,1
+63,W08-2001_W05-0616_1,Evaluable,Basis,Media,La definición de analogía formal mediante factorización proviene del trabajo citado.,COMPLETO,11,1
+64,P99-1024_P97-1034_0,Evaluable,Basis,Media,Se adopta la distinción entre iniciativa de tarea y de diálogo.,COMPLETO,11,1
+65,P10-1072_P09-1026_1,Evaluable,Gap,Alta,"Señala que el trabajo citado no diferencia etapas del debate, vacío que motiva la perspectiva dinámica.",COMPLETO,11,1
+66,D09-1038_D08-1018_0,Evaluable,Background,Media,Cita trabajos de binarización en parsing orientados a eficiencia.,COMPLETO,11,1
+67,P03-1054_P96-1025_0,Evaluable,Comparison,Alta,"Se compara el PCFG no lexicalizado con el modelo citado, al que supera.",COMPLETO,11,1
+68,D11-1018_P09-1088_0,Evaluable,Background,Media,"Trabajos previos de inducción gramatical bilingüe, contrastados luego con el actual.",COMPLETO,11,1
+69,N13-1019_A00-2004_0,Evaluable,Evidence,Media,c99 se cita entre sistemas que demuestran la eficacia de la cohesión léxica.,COMPLETO,11,1
+70,D11-1085_P08-1115_0,Evaluable,Further Reading,Media,Nota al pie que remite a un decodificador de retículas para la traducción de WFSA.,COMPLETO,11,1
+71,W13-0113_E06-1040_0,Evaluable,Evidence,Media,Respalda que los textos generados más cortos son una observación no inusual.,COMPLETO,11,1
+72,W04-1513_W02-1039_0,Evaluable,Evidence,Alta,Sustenta con sus resultados la afirmación sobre la cohesión de las dependencias.,COMPLETO,11,1
+73,P06-1003_P03-1071_5,Evaluable,Comparison,Alta,Compara el rendimiento con el del trabajo citado.,COMPLETO,11,1
+74,N03-1028_W02-2018_1,Evaluable,Evidence,Alta,Un estudio previo respalda que L-BFGS funciona bien en entrenamiento de máxima entropía.,COMPLETO,11,1
+75,P13-2057_P07-2045_0,Evaluable,Application,Alta,Se usa Moses como decodificador.,COMPLETO,11,1
+76,D09-1021_P05-1012_0,Evaluable,Basis,Media,Se inspira en el parsing discriminativo de dependencias para el modelo.,COMPLETO,11,1
+77,W12-1703_P10-1119_5,Evaluable,Background,Baja,Referencia al modelo de identificación de palabras desde entrada visual usado en trabajo previo.,COMPLETO,11,1
+78,W11-0328_W07-1033_1,Evaluable,Comparison,Alta,Resultado de la tabla comparado con el sistema de reranking.,COMPLETO,11,1
+79,D10-1091_N03-1010_0,Evaluable,Background,Alta,Menciona la búsqueda voraz como técnica heurística existente.,COMPLETO,11,1
+80,W10-2921_P08-1068_0,Evaluable,Background,Alta,"Enumera estrategias relacionadas, como características generales de texto sin etiquetar.",COMPLETO,11,1
+81,E09-1061_J07-2003_1,Evaluable,Background,Alta,Indica que existen lógicas de traducción basadas en sintaxis en la literatura.,COMPLETO,11,1
+82,W12-2032_P11-1092_0,Evaluable,Evidence,Alta,Respalda que incorporar conocimiento de errores típicos mejora el modelo.,COMPLETO,11,1
+83,E12-1038_P03-1054_0,Evaluable,Application,Alta,Se usa el parser de Stanford sin modificación.,COMPLETO,11,1
+84,J11-4007_N03-2024_0,Evaluable,Basis,Alta,El algoritmo nuevo integra resultados de dos estudios previos.,COMPLETO,11,1
+85,W12-4005_W02-1109_0,Evaluable,Background,Alta,Describe uno de los primeros métodos basados en conocimiento que usó WordNet.,COMPLETO,11,1
+86,D13-1064_N06-1003_0,Evaluable,Background,Alta,Reseña trabajos recientes sobre paráfrasis y traducción.,COMPLETO,11,1
+87,P09-1105_P06-1067_0,Evaluable,Application,Alta,Se emplea el sistema de traducción basado en frases descrito en el trabajo citado.,COMPLETO,11,1
+88,W13-3703_W06-2920_0,Evaluable,Background,Alta,Contexto del desempeño de MaltParser en las tareas compartidas de CoNLL.,COMPLETO,11,1
+89,W13-3301_P03-1054_0,Evaluable,Application,Alta,Se emplea el parser PCFG de Stanford para obtener análisis.,COMPLETO,11,1
+90,W13-3517_P11-1138_0,Evaluable,Background,Alta,Describe Wikifier como uno de los enfoques existentes de alineación a Wikipedia.,COMPLETO,11,1
+91,W09-1114_D08-1033_0,Evaluable,Background,Alta,Enumera trabajos que usan inferencia bayesiana en traducción.,COMPLETO,11,1
+92,N06-1008_P05-1014_0,Evaluable,Comparison,Alta,Se compara la idea propia con una similar basada en coocurrencia y se señala su simplicidad.,COMPLETO,11,1
+93,J12-2005_W01-0521_0,Evaluable,Evidence,Alta,Respalda que las diferencias de dominio y género afectan negativamente el análisis sintáctico.,COMPLETO,11,1
+94,N13-1055_P08-2035_0,Evaluable,Background,Alta,Enumera usos de datos de revisiones de Wikipedia.,COMPLETO,11,1
+95,D13-1165_P07-2045_1,Evaluable,Application,Alta,Se usa Moses como sistema base.,COMPLETO,11,1
+96,P11-2119_P11-1045_1,Evaluable,Application,Media,Se usa el parser BUBS como sistema de comparación en los experimentos.,COMPLETO,11,1
+97,E12-1017_P11-2016_0,Evaluable,Background,Media,Menciona el uso de funciones de costo en clasificación no estructurada.,COMPLETO,11,1
+98,N12-1006_W10-0701_0,Evaluable,Background,Alta,Resume el panorama del uso de MTurk y buenas prácticas.,COMPLETO,11,1
+99,D09-1112_J08-2003_0,Evaluable,Background,Alta,Lista de trabajos que usan métodos kernel para ingeniería de características.,COMPLETO,11,1
+100,J87-3002_P84-1095_0,Evaluable,Further Reading,Alta,Remite a la discusión de otro trabajo sobre decodificación y reestructuración.,COMPLETO,11,1

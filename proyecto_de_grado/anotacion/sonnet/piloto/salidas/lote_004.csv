@@ -1,0 +1,52 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,D15-1039_P11-2033_1,Evaluable,Application,Alta,"Usan el parser Yara, reimplementación del parser arc-eager de la obra citada, tal cual en sus experimentos.",COMPLETO,4,1
+2,Q14-1010_Q13-1033_3,Evaluable,Application,Media,Siguen el procedimiento de entrenamiento sugerido por la obra citada.,COMPLETO,4,1
+3,W02-2010_N01-1006_0,Evaluable,Comparison,Media,Se comparan el desempeño de los sistemas fnTBL y Snow con información de capitalización.,COMPLETO,4,1
+4,P14-3003_W04-2703_0,Evaluable,Evidence,Alta,La cita respalda el dato concreto de acuerdo entre anotadores (72%) para relaciones implícitas en inglés.,COMPLETO,4,1
+5,P15-1010_D14-1162_0,Evaluable,Comparison,Media,Se reportan resultados de los embeddings citados (junto con otros) como sistemas de comparación.,COMPLETO,4,1
+6,D11-1001_P05-1073_0,Evaluable,Evidence,Alta,Respalda la afirmación de que las compatibilidades entre argumentos son útiles en SRL.,COMPLETO,4,1
+7,P13-1157_P10-2041_1,Evaluable,Comparison,Alta,Comparan su método con el método Cross-Entropy citado.,COMPLETO,4,1
+8,W12-3709_P07-2045_0,Evaluable,Application,Alta,Emplean Moses como sistema de traducción para obtener datos de entrenamiento y prueba.,COMPLETO,4,1
+9,J08-3003_P03-1054_0,Evaluable,Background,Alta,Enumera trabajos previos sobre el debate de la lexicalización en parsing.,COMPLETO,4,1
+10,W02-1024_A97-1030_0,Evaluable,Application,Alta,Usan el reconocedor de entidades nombradas citado en su procesamiento.,COMPLETO,4,1
+11,W14-5506_N10-1093_1,Evaluable,Background,Alta,Describe un trabajo previo en la revisión de literatura sobre información de cláusulas.,COMPLETO,4,1
+12,P12-2010_E06-1015_0,Evaluable,Application,Alta,Usan las herramientas de tree kernel citadas para construir su modelo SVM.,COMPLETO,4,1
+13,W10-3018_P04-1014_0,Evaluable,Application,Alta,Usan el parser C&C como herramienta en su sistema.,COMPLETO,4,1
+14,W11-2128_N06-1003_1,Evaluable,Identification of the Originator,Alta,"Atribuye a la obra citada la introducción de la ampliación de tablas de frases con paráfrasis (""was introduced by"").",COMPLETO,4,1
+15,D15-1011_N06-2033_0,Evaluable,Background,Alta,"Lista de dominios donde la combinación de sistemas ha tenido éxito, en la sección de trabajo relacionado.",COMPLETO,4,1
+16,P14-1049_S12-1035_2,Evaluable,Application,Alta,Emplean el corpus del shared task *SEM'2012 en sus experimentos.,COMPLETO,4,1
+17,D14-1076_D13-1047_6,Evaluable,Comparison,Alta,"Compara sus resultados ROUGE-2 con los del sistema citado, con significancia estadística.",COMPLETO,4,1
+18,W15-5310_W13-2417_0,Evaluable,Basis,Media,La propuesta se apoya en (draws on) investigaciones que filtran relaciones morfosemánticas.,COMPLETO,4,1
+19,P15-1070_P10-1154_0,Evaluable,Application,Media,"Describe el algoritmo Lesk extendido simplificado que se usa como método en el trabajo, sin modificarlo.",COMPLETO,4,1
+20,P14-2039_N13-1020_6,Evaluable,Comparison,Media,Se compara la ventana de alineación deslizante propia con el algoritmo de ventana fija citado.,COMPLETO,4,1
+21,P14-1109_N09-1031_0,Evaluable,Background,Media,Cita en la introducción para contextualizar el interés general en predecir riesgos financieros.,COMPLETO,4,1
+22,P10-1076_W04-3250_0,Evaluable,Application,Alta,Usan el método de bootstrap resampling propuesto por la obra citada para pruebas de significancia.,COMPLETO,4,1
+23,P15-2053_P11-1081_0,Evaluable,Background,Alta,Enumeración de enfoques supervisados previos para resolver AZPs en varias lenguas.,COMPLETO,4,1
+24,N13-1070_S12-1042_0,Evaluable,Application,Alta,El sistema de resolución de negación citado es el usado en el trabajo.,COMPLETO,4,1
+25,P13-2019_P05-1012_2,Evaluable,Application,Media,"El parser de primer orden (dep1) usa partes head-modifier del método citado, tal cual.",COMPLETO,4,1
+26,W15-3012_N03-1017_0,Evaluable,Background,Media,Presenta el enfoque basado en frases como contexto para describir el modelo n-gram.,COMPLETO,4,1
+27,D09-1073_P07-1089_0,Evaluable,Background,Alta,Enumeración de métodos basados en sintaxis como estado del arte en SMT en la introducción.,COMPLETO,4,1
+28,S15-2049_P04-1036_1,Evaluable,Background,Media,"Describe el algoritmo de sentido predominante en el que se basa otro sistema participante, como contexto de resultados.",COMPLETO,4,1
+29,D15-1148_P11-2111_5,Evaluable,Comparison,Alta,"Compara su conjunto de características con las de la obra citada en exactitud, precisión y recall.",COMPLETO,4,1
+30,P12-1073_P00-1056_0,Evaluable,Application,Alta,Usan características de alineación HMM de la obra citada.,COMPLETO,4,1
+31,E03-1017_P02-1013_0,Evaluable,Evidence,Media,"La obra citada demuestra que las combinaciones simples pueden no excluir distractores, respaldando la afirmación.",COMPLETO,4,1
+32,D14-1109_D10-1125_1,Evaluable,Background,Alta,"Enumera enfoques previos de parsing, incluida la descomposición dual.",COMPLETO,4,1
+33,W14-0206_P11-4011_3,Evaluable,Application,Alta,Usan el algoritmo de selección tomado de la obra citada.,COMPLETO,4,1
+34,D09-1002_P06-4020_0,Evaluable,Application,Alta,Analizan las oraciones con el parser RASP.,COMPLETO,4,1
+35,P07-1096_P04-1015_0,Evaluable,Basis,Media,Proponen un algoritmo tipo Perceptron basado en el trabajo citado; es una dependencia conceptual con adaptación.,COMPLETO,4,1
+36,S15-1021_N13-1090_0,Evaluable,Background,Alta,Resume trabajos previos que usan embeddings para relaciones semánticas generales.,COMPLETO,4,1
+37,W12-5906_D11-1045_0,Evaluable,Background,Media,"Describe trabajo previo sobre reordenamiento (modelado como TSP); puede insinuar contraste con otro, pero es revisión de literatura.",COMPLETO,4,1
+38,W06-1322_P03-1070_0,Evaluable,Evidence,Alta,Respalda con estudios empíricos la afirmación sobre el uso de conductas no verbales como señales comunicativas.,COMPLETO,4,1
+39,W11-1012_W08-0510_1,Evaluable,Application,Alta,Usan MosesChart para ajuste y decodificación.,COMPLETO,4,1
+40,W12-3148_W04-3250_0,Evaluable,Application,Alta,Usan bootstrap resampling para estimar los límites de confianza.,COMPLETO,4,1
+41,Q14-1003_P12-1102_3,Evaluable,Comparison,Media,SEGLANG se presenta como benchmark contra el cual se compara el método propuesto.,COMPLETO,4,1
+42,W11-2120_W09-0401_0,Evaluable,Evidence,Alta,Respalda la afirmación de que los sistemas basados en reglas obtuvieron alta calidad en evaluaciones humanas (WMT 2009).,COMPLETO,4,1
+43,W14-3109_N12-1066_0,Evaluable,Background,Alta,Describe sistemas previos de aprendizaje activo interactivo en trabajo relacionado.,COMPLETO,4,1
+44,W13-2233_P13-1135_0,Evaluable,Background,Alta,Enumera trabajos previos que minan datos paralelos de corpus comparables.,COMPLETO,4,1
+45,P04-1064_W03-0301_1,Evaluable,Application,Alta,Usan los datos del shared task citado para el ejemplo de factorización.,COMPLETO,4,1
+46,D15-1187_D10-1036_0,Evaluable,Basis,Alta,El trabajo declara estar originalmente inspirado en la obra citada.,COMPLETO,4,1
+47,W15-0629_N09-1068_0,Evaluable,Background,Alta,"Menciona usos del aprendizaje multitarea en NLP, incluida adaptación de dominio.",COMPLETO,4,1
+48,W08-1122_W01-0521_1,Evaluable,Evidence,Alta,La obra citada sugiere que los datos WSJ son más fáciles de aprender; respalda una explicación del texto.,COMPLETO,4,1
+49,W07-1201_W06-1517_2,Evaluable,Background,Media,Presenta un resultado previo sobre MC-TAG y no-buen-anidamiento que el texto replica como ejemplo; podría ser Evidence.,COMPLETO,4,1
+50,P13-2089_P03-1054_0,Evaluable,Application,Alta,Usan el parser de Stanford para generar análisis de dependencias.,COMPLETO,4,1
+51,E09-1018_P07-1107_0,Evaluable,Basis,Alta,Trabajo que influyó significativamente y directamente inspiró el actual.,COMPLETO,4,1

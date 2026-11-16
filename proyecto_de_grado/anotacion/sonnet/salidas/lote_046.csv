@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,J94-2001_E85-1024_0,Evaluable,Background,Media,Cites probabilistic approaches to parsing as general context.,COMPLETO,46,1
+2,P13-1155_P00-1037_0,Evaluable,Identification of the Originator,Alta,Attributes the introduction of the noisy-channel string-edit spelling model to the cited work.,COMPLETO,46,1
+3,W09-0905_W00-0717_0,Evaluable,Comparison,Media,Contrasts merging contexts with word clustering done in cited work.,COMPLETO,46,1
+4,D13-1022_N03-1017_1,Evaluable,Background,Alta,Related-work summary of beam search and cube-pruning approaches.,COMPLETO,46,1
+5,P05-1038_A97-1014_0,Evaluable,Background,Media,Cites Negra treebank as the German dataset in a literature review.,COMPLETO,46,1
+6,W10-2923_P98-2188_0,Evaluable,Background,Alta,Enumerates supervised models applied to DA classification.,COMPLETO,46,1
+7,D12-1045_D10-1048_1,Evaluable,Basis,Media,Current model follows the cautious approach from the authors' prior work but changes it to learned regression.,COMPLETO,46,1
+8,Q13-1022_D12-1044_1,Evaluable,Comparison,Alta,Compares parsing time O(n5) to the cited algorithm for the 1-inherit class.,COMPLETO,46,1
+9,E12-1032_P02-1014_1,Evaluable,Background,Media,Describes the coreference tool used in prior work's best results.,COMPLETO,46,1
+10,P13-1156_D09-1021_0,Evaluable,Background,Alta,Related-work description of what the cited work did (applied TAG formalism).,COMPLETO,46,1
+11,P08-1050_E03-1040_5,Evaluable,Comparison,Alta,Reported accuracy of cited work is given for comparison with results.,COMPLETO,46,1
+12,D12-1012_P10-1014_4,Evaluable,Comparison,Alta,Contrasts the system's supported predicates with those in the cited work.,COMPLETO,46,1
+13,P06-1110_W05-1515_2,Evaluable,Comparison,Alta,Compares results with those reported for cited discriminative parsers.,COMPLETO,46,1
+14,N07-1021_E06-1040_1,Evaluable,Evidence,Alta,Supports the claim that NIST correlates better with human judgments than BLEU.,COMPLETO,46,1
+15,N10-1121_J08-2003_0,Evaluable,Background,Alta,Lists NLP tasks where convolution kernels have been applied.,COMPLETO,46,1
+16,P13-1028_D12-1063_2,Evaluable,Identification of the Originator,Alta,Credits the cited work with introducing the fringe idea in DMV.,COMPLETO,46,1
+17,N03-1013_P96-1004_0,Evaluable,Evidence,Media,Supports the claim that lexical semantic features can be induced from morphological cues.,COMPLETO,46,1
+18,P07-1078_N03-1031_4,Evaluable,Background,Media,Reports prior findings of no improvement in self-training/bootstrapping scenarios.,COMPLETO,46,1
+19,D08-1007_P98-2127_0,Evaluable,Background,Media,Describes a similarity metric reported as effective in prior comparison.,COMPLETO,46,1
+20,W04-0409_W02-2001_0,Evaluable,Evidence,Alta,Quoted finding supports the claim that frequencies of multi-word expressions are too low.,COMPLETO,46,1
+21,P93-1010_J88-2005_1,Evaluable,Further Reading,Alta,Footnote 'see ... for a partial model' directs reader to additional details.,COMPLETO,46,1
+22,J13-4004_N09-1065_1,Evaluable,Further Reading,Media,Points to work on anaphoricity detection as a direction for future improvement.,COMPLETO,46,1
+23,W13-1719_P10-2042_1,Evaluable,Application,Alta,Uses the cited blocked sampling algorithm directly to induce TSGs.,COMPLETO,46,1
+24,W10-0402_W06-1613_2,Evaluable,Comparison,Alta,Own observation about few negative citations coincides with the cited work's observations.,COMPLETO,46,1
+25,W07-1012_W03-1309_1,Evaluable,Background,Alta,Describes the cited approach in related work.,COMPLETO,46,1
+26,J04-1001_J98-1004_0,Evaluable,Further Reading,Alta,'For other related work ... see' directs reader to further literature.,COMPLETO,46,1
+27,W08-0334_W07-0717_0,Evaluable,Background,Alta,Summarizes recent MT experiments showing class-specific models are useful.,COMPLETO,46,1
+28,D11-1059_D10-1083_5,Evaluable,Comparison,Alta,Compares against best published results from cited works.,COMPLETO,46,1
+29,D12-1084_W04-3206_0,Evaluable,Background,Alta,Lists methods for generating paraphrase resources.,COMPLETO,46,1
+30,P13-1139_W12-3102_1,Evaluable,Evidence,Media,Official findings quoted to support the concern about reference translations.,COMPLETO,46,1
+31,W08-0334_W07-0717_1,Evaluable,Comparison,Alta,Explicitly states similarity and difference between own approach and cited one.,COMPLETO,46,1
+32,W10-1741_P07-2045_1,Evaluable,Application,Alta,Uses the Moses toolkit with default settings to build SMT models.,COMPLETO,46,1
+33,D10-1080_N04-1011_0,Evaluable,Background,Alta,Lists prior uses of ToBI in parsing.,COMPLETO,46,1
+34,W11-2136_W10-1715_0,Evaluable,Evidence,Alta,Supports the claim that hierarchical models have not outperformed phrase-based for English-German.,COMPLETO,46,1
+35,W11-2160_J07-2003_2,Evaluable,Basis,Media,Cited work provides the heuristic parameter choices the current grammar extraction relies on.,COMPLETO,46,1
+36,W09-2010_P00-1037_0,Evaluable,Improvement / Modification,Alta,Proposes probabilistic edit-probability inspired by and adapting the cited string-edit model.,COMPLETO,46,1
+37,P12-1051_P11-1060_0,Evaluable,Further Reading,Alta,Footnote 'See ... for work in representing lambda calculus with trees' refers reader elsewhere.,COMPLETO,46,1
+38,W05-1306_W04-3111_0,Evaluable,Background,Media,Mentions a corpus in production while surveying available biomedical corpora.,COMPLETO,46,1
+39,W11-2929_N07-1049_1,Evaluable,Comparison,Alta,Contrasts the proposed approach's applicability with methods relying on parser failure details.,COMPLETO,46,1
+40,D11-1148_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser as a tool in experiments.,COMPLETO,46,1
+41,W12-4411_W10-2405_0,Evaluable,Background,Media,"Describes the DIRECTL+ system, which the team then employs variants of.",COMPLETO,46,1
+42,D11-1097_D10-1113_2,Evaluable,Comparison,Alta,Contrasts the cited formulation with the current one (factorised over c).,COMPLETO,46,1
+43,P06-3014_W02-1007_0,Evaluable,Evidence,Alta,Reported result supports claim that punctuation helps parsing little.,COMPLETO,46,1
+44,W13-0907_P04-1054_1,Evaluable,Background,Alta,Notes tree kernels have been applied to many NLP tasks.,COMPLETO,46,1
+45,P96-1011_P94-1018_0,Evaluable,Comparison,Media,Contrasts prior similar normal-form attempts with the first full result for beyond-context-free power.,COMPLETO,46,1
+46,W12-4402_W06-1672_0,Evaluable,Background,Alta,Lists prior transliteration research.,COMPLETO,46,1
+47,W12-3705_W07-0812_0,Evaluable,Evidence,Alta,"Cited finding shows ERTS improves chunking, supporting the tag-set choice.",COMPLETO,46,1
+48,N13-2008_N13-1056_0,Evaluable,Identification of the Originator,Alta,Authors state they were first to propose supervised methods in the cited prior work.,COMPLETO,46,1
+49,J10-4007_P99-1004_0,Evaluable,Comparison,Media,Reviews and contrasts findings of previous similarity-measure comparisons.,COMPLETO,46,1
+50,W13-3508_W08-1105_3,Evaluable,Background,Alta,Lists prior applications of ILP to compression.,COMPLETO,46,1
+51,E09-1014_W00-1401_0,Evaluable,Background,Alta,Enumerates metrics applied in prior work.,COMPLETO,46,1
+52,P01-1064_P98-2244_0,Evaluable,Background,Media,Notes other researchers also used DP for text segmentation.,COMPLETO,46,1
+53,P13-1082_D09-1074_0,Evaluable,Background,Alta,Lists adaptation techniques in SMT as prior work.,COMPLETO,46,1
+54,W11-0906_W04-3212_0,Evaluable,Evidence,Media,Supports the claim of a general belief that each step requires different features.,COMPLETO,46,1
+55,N07-1023_P03-1054_3,Evaluable,Evidence,Alta,Cited discussion supports the claim that POS annotation helps back off sparse bilexical data.,COMPLETO,46,1
+56,D09-1073_N04-4026_0,Evaluable,Background,Alta,Enumerates prior reordering methods.,COMPLETO,46,1
+57,P05-1067_P03-2041_0,Evaluable,Background,Alta,Related-work history of synchronous grammars for MT.,COMPLETO,46,1
+58,N13-1019_N09-1040_1,Evaluable,Background,Alta,Describes prior hierarchical extension in related work.,COMPLETO,46,1
+59,P13-1078_P05-1033_1,Evaluable,Application,Media,Uses the same default feature set as Hiero.,COMPLETO,46,1
+60,E09-1061_P96-1021_0,Evaluable,Background,Media,"Notes CKY relevance as basis for ITG decoding, contextual information.",COMPLETO,46,1
+61,P95-1011_E93-1026_0,Evaluable,Background,Alta,Part of a list of prior works in the area.,COMPLETO,46,1
+62,P03-1059_W03-1010_0,Evaluable,Further Reading,Alta,Directs reader to the cited work for more detail on classifiers and training.,COMPLETO,46,1
+63,N10-1014_P03-1011_1,Evaluable,Improvement / Modification,Media,Suggests modifying the generative process by including the clone operator from cited work.,COMPLETO,46,1
+64,D10-1071_A00-2013_0,Evaluable,Background,Alta,Related work summarizing the cited finding.,COMPLETO,46,1
+65,W06-3119_P05-1033_0,Evaluable,Background,Alta,Introduction situating hierarchical phrase models in MT evolution.,COMPLETO,46,1
+66,P10-1061_P07-1123_1,Evaluable,Evidence,Media,Literature supports the claim that lexicon translation is less dependable.,COMPLETO,46,1
+67,W11-3708_P05-1017_0,Evaluable,Application,Alta,Uses the cited method to construct initial polarity dictionaries.,COMPLETO,46,1
+68,W13-3602_N10-1018_0,Evaluable,Evidence,Alta,Supports the factual claim about determiner error rates in ESL corpora.,COMPLETO,46,1
+69,P12-1028_W09-1106_1,Evaluable,Application,Alta,Applies the method of the cited work to extract fragments.,COMPLETO,46,1
+70,D13-1173_N13-1056_0,Evaluable,Background,Alta,Lists prior research building lexicons from non-parallel data.,COMPLETO,46,1
+71,P11-3003_D08-1078_0,Evaluable,Evidence,Alta,Supports the claim that word order and morphology explain SMT performance.,COMPLETO,46,1
+72,W10-1205_N07-1038_2,Evaluable,Comparison,Alta,States similarity to cited approach and improvement over its performance.,COMPLETO,46,1
+73,P07-1034_W06-1615_0,Evaluable,Basis,Media,Adopts terminology of source/target domain from the cited work.,COMPLETO,46,1
+74,W10-4309_P02-1047_0,Evaluable,Background,Alta,Describes the cited unsupervised method in related work.,COMPLETO,46,1
+75,D10-1035_P09-1045_1,Evaluable,Background,Media,Recaps authors' prior finding on semantic drift motivating the current section.,COMPLETO,46,1
+76,W10-3001_W09-1304_1,Evaluable,Background,Media,"Describes common labeling scheme of shared task systems, following cited work.",COMPLETO,46,1
+77,W99-0614_P91-1030_2,Evaluable,Evidence,Media,Supports claim that PP attachment with complements is easy for statistical methods.,COMPLETO,46,1
+78,P07-1006_J98-1004_0,Evaluable,Background,Alta,Categorizes corpus-based WSD approaches in a survey.,COMPLETO,46,1
+79,W11-0902_P03-1054_0,Evaluable,Application,Alta,Uses the Stanford parser for syntactic information.,COMPLETO,46,1
+80,N10-1080_P03-1021_0,Evaluable,Background,Alta,Cites MERT as a popular training method in context.,COMPLETO,46,1
+81,W04-2411_P94-1019_3,Evaluable,Background,Media,Describes the design of the cited node distance measure.,COMPLETO,46,1
+82,N10-1146_E06-1015_2,Evaluable,Basis,Alta,Builds on the kernel described in the cited work.,COMPLETO,46,1
+83,W06-2407_W04-0401_3,Evaluable,Evidence,Alta,Supports the observation that different light verbs have different properties.,COMPLETO,46,1
+84,N12-1054_P11-2033_0,Evaluable,Comparison,Alta,Compares speed to the cited state-of-the-art transition-based parser.,COMPLETO,46,1
+85,W06-1107_A00-2038_0,Evaluable,Background,Alta,Describes the ALINE algorithm being compared.,COMPLETO,46,1
+86,N03-1015_J98-1004_0,Evaluable,Comparison,Alta,"Contrasts the cited method, which does not produce sense definitions, with own approach.",COMPLETO,46,1
+87,P02-1014_N01-1008_0,Evaluable,Comparison,Alta,Footnote explains cited results are higher due to different assumptions.,COMPLETO,46,1
+88,D11-1046_N07-1051_1,Evaluable,Application,Alta,Uses the Berkeley parser to parse source data.,COMPLETO,46,1
+89,W12-0704_P02-1039_0,Evaluable,Background,Alta,Lists approaches to reordering in translation models.,COMPLETO,46,1
+90,E06-1038_P05-1012_0,Evaluable,Basis,Media,Algorithm is an extension of Viterbi-style decoding from cited work.,COMPLETO,46,1
+91,N13-1001_N03-1017_1,Evaluable,Background,Alta,Describes phrase-based SMT as general background.,COMPLETO,46,1
+92,W13-0807_N03-1017_0,Evaluable,Background,Media,Recalls the definition of translation equivalence unit from cited work.,COMPLETO,46,1
+93,P12-1108_W96-0213_0,Evaluable,Background,Alta,Reviews previous POS tagging studies.,COMPLETO,46,1
+94,S07-1062_W06-2607_0,Evaluable,Evidence,Alta,Justifies the design choice by prior study showing higher accuracy for lower nodes.,COMPLETO,46,1
+95,W12-3160_N03-1017_0,Evaluable,Application,Alta,Uses the grow-diag-final-and symmetrization method as is.,COMPLETO,46,1
+96,J94-1001_P86-1038_0,Evaluable,Background,Alta,Part of a list of works following an approach.,COMPLETO,46,1
+97,D11-1004_P05-1034_0,Evaluable,Background,Alta,Notes syntax-based systems commonly use MERT.,COMPLETO,46,1
+98,W11-1602_N07-1051_0,Evaluable,Application,Alta,Uses the Berkeley parser to build dependencies.,COMPLETO,46,1
+99,J13-4004_W11-1904_0,Evaluable,Comparison,Alta,Compares the cited system's metric scores with own model.,COMPLETO,46,1
+100,D13-1054_P13-1045_0,Evaluable,Background,Alta,Cites deep learning for NLP efforts as general context.,COMPLETO,46,1

@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,W11-4416_W05-0703_1,Evaluable,Basis,Media,El trabajo actual parte de MAGEAD (trabajo previo propio) y lo mejora convirtiéndolo a una implementación tabular; la cita es la base directa.,COMPLETO,51,1
+2,E99-1031_P98-2204_0,Evaluable,Background,Alta,Enumeración de técnicas de resolución de referencia en la literatura.,COMPLETO,51,1
+3,W11-0320_W09-1804_0,Evaluable,Background,Media,"Describe un trabajo previo que propuso el primer método no descomponible mediante ILP, en una revisión de enfoques previos.",COMPLETO,51,1
+4,W07-1607_P06-4020_0,Evaluable,Application,Media,Se usa la salida de relaciones gramaticales estilo RASP como característica; remite a la fuente del formalismo.,COMPLETO,51,1
+5,D10-1067_P07-1049_0,Evaluable,Application,Media,"El algoritmo propuesto se aplica sobre el parser no supervisado líder, usándolo tal cual como sistema base.",COMPLETO,51,1
+6,N10-1003_P06-1055_1,Evaluable,Further Reading,Alta,Remite al lector a las fuentes para una introducción más general.,COMPLETO,51,1
+7,P09-1010_P00-1013_0,Evaluable,Background,Alta,Lista de trabajos que han aplicado aprendizaje por refuerzo a la gestión del diálogo.,COMPLETO,51,1
+8,W12-5902_W10-1749_0,Evaluable,Background,Media,"Describe la métrica LRscore, introducida antes, como una de las métricas consideradas; podría ser Application, pero predomina la descripción.",COMPLETO,51,1
+9,P09-1114_P05-1052_0,Evaluable,Background,Alta,Trabajos relacionados que estudiaron características para extracción de relaciones.,COMPLETO,51,1
+10,W13-1716_D11-1148_2,Evaluable,Application,Alta,Usa directamente la lista de 398 palabras funcionales de la fuente citada.,COMPLETO,51,1
+11,P10-1049_W06-3105_4,Evaluable,Evidence,Media,La cita respalda la decisión metodológica de adoptar la interpolación de tablas de frases por mejoras reportadas.,COMPLETO,51,1
+12,N13-1008_P12-1075_0,Evaluable,Evidence,Media,"Respalda la afirmación de que las ontologías de tipos no son suficientemente finas para discriminar relaciones, justificando el modelo latente.",COMPLETO,51,1
+13,N09-3005_P04-1036_0,Evaluable,Background,Alta,Describe trabajo previo sobre identificación de sentido predominante dentro de una revisión de WSD no supervisada.,COMPLETO,51,1
+14,W12-5906_D11-1045_0,Evaluable,Background,Alta,Describe trabajos previos de reordenamiento independiente del idioma.,COMPLETO,51,1
+15,W12-2029_N03-1033_0,Evaluable,Application,Alta,Usa el etiquetador POS de Stanford tal cual para preprocesar.,COMPLETO,51,1
+16,D12-1020_P06-1124_2,Evaluable,Application,Media,Se emplea la representación Chinese Restaurant Franchise de los PYP jerárquicos para el muestreo.,COMPLETO,51,1
+17,P98-1045_A97-1030_0,Evaluable,Comparison,Media,"Contrasta el rendimiento reportado y el número de clases del trabajo citado con el propio, señalando que es la única excepción.",COMPLETO,51,1
+18,W09-1117_W02-0902_4,Evaluable,Comparison,Media,Indica que el criterio de evaluación es similar al usado en el trabajo citado.,COMPLETO,51,1
+19,P12-1041_P11-1079_2,Evaluable,Evidence,Alta,Respalda la afirmación conocida de que MUC y B3 tienen sesgos opuestos.,COMPLETO,51,1
+20,N06-1032_W99-0604_3,Evaluable,Comparison,Alta,El sistema se compara con IBM modelo 4 producido por GIZA++.,COMPLETO,51,1
+21,P10-2060_P03-1069_0,Evaluable,Background,Alta,Enumera trabajos previos sobre ordenamiento de oraciones en resumen.,COMPLETO,51,1
+22,J06-4001_W05-0307_0,Evaluable,Background,Media,Presenta el trabajo de anotación de corpus como empresa pionera en el campo.,COMPLETO,51,1
+23,D11-1123_D09-1019_0,Evaluable,Background,Alta,Revisión de investigaciones previas sobre distintos tipos de oraciones.,COMPLETO,51,1
+24,P12-1071_D09-1127_0,Evaluable,Background,Alta,Enumera trabajos que usan recursos adicionales para mejorar el análisis sintáctico.,COMPLETO,51,1
+25,S13-2057_P05-1022_0,Evaluable,Application,Alta,"Usa el parser Charniak-Johnson para tokenizar, etiquetar y analizar.",COMPLETO,51,1
+26,W11-0808_J91-4003_2,Evaluable,Identification of the Originator,Media,Atribuye al autor citado el concepto de coespecificación.,COMPLETO,51,1
+27,P13-2026_N04-1019_1,Evaluable,Background,Media,Describe el método pirámide y su inspiración dentro de la revisión de trabajos relacionados.,COMPLETO,51,1
+28,D11-1019_P06-1055_0,Evaluable,Application,Alta,Usa la herramienta/método citado para entrenar el sistema tal cual.,COMPLETO,51,1
+29,D10-1073_E09-1013_1,Evaluable,Comparison,Alta,Aparece en una tabla comparando el rendimiento del sistema propio con métodos recientes.,COMPLETO,51,1
+30,P13-2020_P07-1096_1,Evaluable,Comparison,Alta,Resultado en tabla comparado con el del trabajo actual.,COMPLETO,51,1
+31,N13-1115_D11-1138_0,Evaluable,Background,Alta,Trabajos relacionados que propusieron métodos multiobjetivo.,COMPLETO,51,1
+32,P06-1102_P93-1024_0,Evaluable,Background,Alta,Enumeración de métodos de similitud distribucional.,COMPLETO,51,1
+33,Q13-1005_D11-1140_1,Evaluable,Basis,Alta,Se introduce la representación de léxicos CCG factorizados sobre la cual se construye el trabajo.,COMPLETO,51,1
+34,E12-1055_D11-1033_2,Evaluable,Comparison,Alta,Contrasta la proporción de datos in-domain/out-of-domain con la de trabajos previos.,COMPLETO,51,1
+35,P12-2026_W01-1413_1,Evaluable,Evidence,Alta,Respalda la observación de que las traducciones aparecen cerca del término fuente.,COMPLETO,51,1
+36,J12-1003_W09-2504_0,Evaluable,Background,Alta,Describe usos previos de Nomlex para derivar reglas de implicación.,COMPLETO,51,1
+37,P12-1002_N06-1014_2,Evaluable,Application,Alta,Usa el alineador de Berkeley para alinear los datos.,COMPLETO,51,1
+38,P12-2031_P07-1058_0,Evaluable,Gap,Media,Señala una limitación del juicio directo de reglas (bajo acuerdo) que motiva la nueva metodología.,COMPLETO,51,1
+39,D09-1014_D08-1112_0,Evaluable,Background,Media,Presenta un trabajo previo de comparación de estrategias de aprendizaje activo como contexto.,COMPLETO,51,1
+40,D13-1014_J91-4003_2,Evaluable,Basis,Alta,La Teoría del Léxico Generativo es la inspiración conceptual del enfoque propuesto.,COMPLETO,51,1
+41,N09-1049_N07-1063_0,Evaluable,Background,Alta,Describe trabajo previo sobre variantes de Hiero en la revisión de literatura.,COMPLETO,51,1
+42,D12-1106_P03-1054_1,Evaluable,Application,Alta,Usa el Stanford Parser para analizar los datos.,COMPLETO,51,1
+43,S01-1029_W97-0209_0,Evaluable,Evidence,Alta,Respalda la decisión de usar relaciones sujeto y objeto por funcionar mejor.,COMPLETO,51,1
+44,Q13-1003_P09-1002_0,Evaluable,Application,Media,Se usa un conjunto de datos descrito en el trabajo citado; el contexto está truncado.,COMPLETO,51,1
+45,W13-2235_P03-1021_0,Evaluable,Application,Alta,Usa MERT para el ajuste de los pesos.,COMPLETO,51,1
+46,W09-0204_P04-1043_1,Evaluable,Improvement / Modification,Alta,SVM-Light-TK se modifica para la implementación.,COMPLETO,51,1
+47,P13-1121_A00-2024_0,Evaluable,Background,Alta,Describe un estudio previo sobre resúmenes escritos por humanos.,COMPLETO,51,1
+48,N13-1019_W08-2106_1,Evaluable,Evidence,Media,Respalda la afirmación de que segmentos coherentes tienen mayor log-verosimilitud.,COMPLETO,51,1
+49,P04-1043_P00-1065_1,Evaluable,Identification of the Originator,Alta,Indica que las características estándar fueron propuestas por primera vez en el trabajo citado.,COMPLETO,51,1
+50,W10-1405_W09-3819_0,Evaluable,Gap,Media,"Señala que trabajo previo obtuvo poca mejora con rasgos de concordancia, motivando la pregunta de investigación.",COMPLETO,51,1
+51,P12-1043_D09-1158_1,Evaluable,Background,Alta,Enumera algoritmos de bootstrapping propuestos previamente.,COMPLETO,51,1
+52,D11-1059_P10-2040_2,Evaluable,Comparison,Alta,Se usa como sistema base contra el cual comparar.,COMPLETO,51,1
+53,P13-1167_D11-1026_0,Evaluable,Background,Alta,Enumera segmentadores automáticos existentes.,COMPLETO,51,1
+54,P11-2127_W01-0521_0,Evaluable,Application,Media,Se siguió la configuración experimental de los trabajos citados.,COMPLETO,51,1
+55,D11-1123_P10-1041_0,Evaluable,Background,Alta,Revisa trabajos previos de análisis de sentimiento en distintos niveles.,COMPLETO,51,1
+56,P12-1050_N10-1129_1,Evaluable,Evidence,Alta,Respalda la afirmación de que eliminar datos UN no afecta el rendimiento base.,COMPLETO,51,1
+57,D11-1046_P10-1147_0,Evaluable,Background,Media,Describe técnicas previas (estimaciones de costo externo) usadas en modelos ITG para justificar la desviación.,COMPLETO,51,1
+58,D13-1056_P09-1053_0,Evaluable,Comparison,Alta,Aparece en tabla de resultados comparando sistemas.,COMPLETO,51,1
+59,P10-1021_N01-1021_1,Evaluable,Background,Media,"Presenta la surprisal como modelo conocido de dificultad de procesamiento; podría ser Originator, pero no hay atribución explícita.",COMPLETO,51,1
+60,P06-1117_P04-1043_1,Evaluable,Background,Media,Describe trabajo previo que usó clases de Levin para clasificar roles semánticos de FrameNet.,COMPLETO,51,1
+61,P06-1130_P96-1027_0,Evaluable,Basis,Media,El algoritmo de generación se basa en la generación por charts introducida por el trabajo citado.,COMPLETO,51,1
+62,W11-3216_P04-1021_2,Evaluable,Improvement / Modification,Alta,Se adopta el procedimiento con una variación en la inicialización.,COMPLETO,51,1
+63,P11-2011_P10-1092_3,Evaluable,Evidence,Media,Respalda la afirmación de que los patrones segmentales locales son SL.,COMPLETO,51,1
+64,W09-1118_P04-1075_0,Evaluable,Background,Alta,Ejemplos de uso de aprendizaje activo en ingeniería del lenguaje.,COMPLETO,51,1
+65,N13-1090_S12-1047_0,Evaluable,Application,Alta,Usa el conjunto de datos de SemEval-2012 Task 2 para evaluación.,COMPLETO,51,1
+66,P06-1002_P03-1021_0,Evaluable,Application,Alta,Usa MERT para optimizar parámetros.,COMPLETO,51,1
+67,P08-2010_N04-1023_0,Evaluable,Background,Media,"Enumera métodos previos para optimizar modelos log-lineales en reranking; hay un tono de limitación, pero predomina el contexto.",COMPLETO,51,1
+68,P12-3023_P10-1015_0,Evaluable,Background,Alta,Enumera sistemas que extraen redes sociales de discusiones.,COMPLETO,51,1
+69,W08-0407_P05-1034_0,Evaluable,Comparison,Alta,Clasifica y contrasta enfoques según el uso de parsers y distingue el propio.,COMPLETO,51,1
+70,D12-1120_N07-1070_0,Evaluable,Evidence,Alta,Respalda la afirmación de caída de rendimiento fuera de dominio.,COMPLETO,51,1
+71,P08-2015_W05-0712_0,Evaluable,Background,Alta,Referencia a trabajo extenso sobre transliteración de nombres.,COMPLETO,51,1
+72,P03-1051_P96-1019_0,Evaluable,Basis,Alta,El trabajo adopta componentes principales del algoritmo citado y luego diverge.,COMPLETO,51,1
+73,P13-1104_P11-2033_3,Evaluable,Comparison,Alta,Aparece en tabla comparando UAS/LAS y tiempo con el sistema propio.,COMPLETO,51,1
+74,W12-0208_P10-1080_0,Evaluable,Background,Alta,Resume hallazgos previos sobre la precisión de ALINE.,COMPLETO,51,1
+75,D09-1120_P08-2012_2,Evaluable,Comparison,Alta,Se afirma que el sistema supera al trabajo citado en medidas comparables.,COMPLETO,51,1
+76,J01-4003_P89-1031_1,Evaluable,Background,Alta,Resume una comparación previa entre Hobbs y BFP.,COMPLETO,51,1
+77,W05-0604_P99-1004_2,Evaluable,Further Reading,Alta,Remite a fuentes para comparaciones empíricas de medidas excluidas.,COMPLETO,51,1
+78,P13-1053_W11-0409_0,Evaluable,Background,Alta,Enumera trabajos que usan Mechanical Turk en anotación.,COMPLETO,51,1
+79,W13-2817_W07-0717_0,Evaluable,Background,Alta,Enumera enfoques de adaptación de dominio propuestos.,COMPLETO,51,1
+80,N07-1063_P05-1033_1,Evaluable,Comparison,Media,Contrasta distintos conjuntos de no terminales PSCFG entre trabajos.,COMPLETO,51,1
+81,N13-1013_P07-1122_0,Evaluable,Evidence,Alta,Respalda la afirmación de que este estilo de anotación de coordinación es difícil de analizar.,COMPLETO,51,1
+82,P08-1115_J90-2002_0,Evaluable,Identification of the Originator,Alta,Atribuye a los autores citados la idea del canal ruidoso y la descomposición estándar.,COMPLETO,51,1
+83,W09-3720_P98-1013_0,Evaluable,Background,Media,Cita FrameNet como recurso para describir cómo trata el verbo encourage.,COMPLETO,51,1
+84,N09-2069_W04-1102_0,Evaluable,Gap,Alta,Describe un método previo y señala su limitación (sin mapeo palabra-nulo).,COMPLETO,51,1
+85,D11-1082_P06-1065_0,Evaluable,Background,Alta,Enumera modelos similares entrenados con otros métodos.,COMPLETO,51,1
+86,P12-1110_P04-1015_0,Evaluable,Application,Alta,Usa el perceptrón promediado con actualización temprana tal cual.,COMPLETO,51,1
+87,P11-1071_N01-1016_1,Evaluable,Application,Alta,Sigue la división del corpus del trabajo citado.,COMPLETO,51,1
+88,D11-1096_E06-1015_2,Evaluable,Application,Media,Sigue la idea del trabajo citado para calcular eficientemente el SPTK.,COMPLETO,51,1
+89,W06-2918_N03-1028_1,Evaluable,Application,Alta,Usa la rutina LMVM para optimización numérica.,COMPLETO,51,1
+90,W07-2220_N06-2033_0,Evaluable,Identification of the Originator,Alta,Indica que la técnica fue propuesta por primera vez por el trabajo citado.,COMPLETO,51,1
+91,W07-1406_P03-1054_0,Evaluable,Application,Alta,Usa el Stanford Parser como preprocesador.,COMPLETO,51,1
+92,N12-1072_W10-0214_1,Evaluable,Gap,Media,Cita el mejor rendimiento previo (64%) para mostrar la dificultad del análisis computacional.,COMPLETO,51,1
+93,J95-1006_E93-1006_0,Evaluable,Background,Alta,Enumera trabajos recientes relevantes sobre parsing.,COMPLETO,51,1
+94,N13-1080_D12-1124_0,Evaluable,Application,Alta,Usa el conjunto de datos de reseñas de restaurantes para evaluar.,COMPLETO,51,1
+95,W09-0307_N07-1057_0,Evaluable,Further Reading,Alta,Remite a la fuente para los detalles del algoritmo y experimentos.,COMPLETO,51,1
+96,P09-1031_P93-1024_0,Evaluable,Background,Alta,Enumera tipos de características usadas en trabajos previos de agrupamiento.,COMPLETO,51,1
+97,W08-1102_P07-1043_0,Evaluable,Background,Media,El autor menciona su propio trabajo previo como contexto del progreso en el área.,COMPLETO,51,1
+98,W11-0902_N10-1123_0,Evaluable,Evidence,Alta,Respalda la afirmación de la importancia de buenas anotaciones sintácticas y correcciones heurísticas.,COMPLETO,51,1
+99,D10-1007_N09-1041_0,Evaluable,Background,Alta,"Indica que los modelos de contenido permiten añadir estructura, citando trabajo previo.",COMPLETO,51,1
+100,D08-1109_N06-1041_0,Evaluable,Background,Alta,Enumera enfoques discriminativos para etiquetado no/semisupervisado.,COMPLETO,51,1

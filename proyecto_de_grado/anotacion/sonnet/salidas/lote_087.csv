@@ -1,0 +1,101 @@
+N°,context_id,¿Evaluable?,Función principal,Confianza,Justificación / duda,Estado,lote,pasada
+1,P11-1145_D09-1001_2,Evaluable,Evidence,Media,"La cita respalda el dato concreto de que el modelo MLN induce 18,543 clusters en GENIA.",COMPLETO,87,1
+2,W13-0119_D10-1048_0,Evaluable,Application,Alta,Usa el sistema de correferencia de Stanford tal cual para expandir ubicaciones.,COMPLETO,87,1
+3,P07-1090_N03-1017_1,Evaluable,Comparison,Alta,Compara explícitamente sus hallazgos con los del trabajo citado ('similar to the findings in').,COMPLETO,87,1
+4,J08-4003_N07-1050_2,Evaluable,Background,Media,Enumera estudios previos que muestran la precisión de los algoritmos basados en pila y lista.,COMPLETO,87,1
+5,N04-1033_P03-1021_1,Evaluable,Application,Media,Optimiza los pesos del modelo con respecto a mWER siguiendo el procedimiento del trabajo citado (MERT).,COMPLETO,87,1
+6,J10-3008_D08-1065_2,Evaluable,Basis,Media,"La decodificación MBR bajo BLEU lineal es la base del método del trabajo citado, sobre la que se construye.",COMPLETO,87,1
+7,S12-1014_P06-2071_0,Evaluable,Background,Media,"Describe conjuntos de datos previos que emparejan imágenes con texto, contrastándolos luego, pero la cita en sí es descriptiva de literatura.",COMPLETO,87,1
+8,P09-1068_P08-1090_3,Evaluable,Gap,Alta,"Señala que el trabajo citado carece de conocimiento de roles semánticos, lo que motiva el modelo propuesto.",COMPLETO,87,1
+9,N03-1028_W96-0213_0,Evaluable,Evidence,Media,Respalda la afirmación de que los clasificadores secuenciales manejan muchas características correlacionadas.,COMPLETO,87,1
+10,W12-5007_N07-1020_0,Evaluable,Identification of the Originator,Baja,"La cita identifica la publicación donde se presenta el algoritmo UnDivide, nombrado por su programa.",COMPLETO,87,1
+11,W10-2927_D09-1127_0,Evaluable,Application,Alta,Usa su implementación de un analizador arc-standard tal como se describe en el trabajo citado.,COMPLETO,87,1
+12,D11-1135_D10-1099_1,Evaluable,Background,Alta,Describe trabajos previos de supervisión distante antes de señalar sus limitaciones.,COMPLETO,87,1
+13,Q13-1004_D11-1022_0,Evaluable,Gap,Media,"Señala que con características no locales el consenso tarda mucho, lo que motiva el algoritmo B&B propuesto.",COMPLETO,87,1
+14,P13-1039_N13-1104_2,Evaluable,Application,Alta,Adopta el procedimiento experimental del trabajo citado sin modificarlo.,COMPLETO,87,1
+15,P13-4032_W11-2503_1,Evaluable,Further Reading,Media,Remite con 'see e.g.' a un ejemplo de representaciones multimodales.,COMPLETO,87,1
+16,P08-1050_E03-1040_2,Evaluable,Evidence,Alta,Respalda la afirmación de que las preposiciones aportan información sintáctica relacionada con el significado verbal.,COMPLETO,87,1
+17,D09-1112_W06-2909_0,Evaluable,Background,Media,Describe trabajo previo que aplicó kernels de árbol para reordenar anotaciones SRL.,COMPLETO,87,1
+18,E06-1012_P03-1054_0,Evaluable,Evidence,Media,El éxito de los analizadores no lexicalizados respalda la decisión de diseño de usar unidades no lexicalizadas.,COMPLETO,87,1
+19,W11-2149_P10-1049_1,Evaluable,Application,Media,Entrena un sistema PBT con el método de alineación forzada del trabajo citado.,COMPLETO,87,1
+20,P13-2017_P03-1054_0,Evaluable,Application,Alta,Usa el analizador de Stanford para convertir el corpus a árboles de dependencias.,COMPLETO,87,1
+21,P12-2007_P07-1005_0,Evaluable,Comparison,Alta,Contrasta explícitamente su enfoque con el modelado de restricciones suaves de los trabajos citados.,COMPLETO,87,1
+22,D11-1001_W10-1905_2,Evaluable,Comparison,Alta,"Compara sus resultados F1 con los del trabajo citado, superándolos por 1.1.",COMPLETO,87,1
+23,D13-1065_D10-1106_0,Evaluable,Evidence,Media,Respalda la afirmación de que los patrones tipados reducen errores por ambigüedad.,COMPLETO,87,1
+24,D11-1127_J07-2003_3,Evaluable,Comparison,Media,Contrasta la complejidad de la construcción de Bar-Hillel modificada del trabajo citado con la representación PDA.,COMPLETO,87,1
+25,P13-1151_W11-1601_3,Evaluable,Evidence,Alta,Respalda la afirmación de que Simple English Wikipedia es más simple según medidas automáticas y humanas.,COMPLETO,87,1
+26,P09-1056_N03-1028_0,Evaluable,Application,Media,Su chunker sigue el sistema descrito en el trabajo citado.,COMPLETO,87,1
+27,W07-1425_P98-1116_0,Evaluable,Basis,Media,El método de generación de candidatos se basa en el trabajo citado.,COMPLETO,87,1
+28,P09-1114_P07-1034_2,Evaluable,Application,Media,Sigue su trabajo previo para extraer características de secuencia y árbol sintáctico.,COMPLETO,87,1
+29,P13-1010_P05-1018_2,Evaluable,Background,Media,"Describe la crítica del trabajo citado a la teoría del centrado y su propuesta del entity grid, en la revisión de literatura.",COMPLETO,87,1
+30,S13-2032_P00-1056_0,Evaluable,Application,Alta,Usa GIZA++ para alinear el corpus sin modificarlo.,COMPLETO,87,1
+31,Q13-1014_N06-1014_0,Evaluable,Evidence,Alta,Respalda la decisión de usar un conjunto de datos de ese tamaño citando resultados de precisión de alineación.,COMPLETO,87,1
+32,J97-4002_P92-1002_3,Evaluable,Basis,Media,"La restricción utilizada fue sugerida en el trabajo citado, que fundamenta el diseño.",COMPLETO,87,1
+33,Q13-1007_W12-1912_7,Evaluable,Comparison,Alta,"Compara con resultados previos del modelo generativo anterior, señalando que no son directamente comparables.",COMPLETO,87,1
+34,P02-1010_E95-1032_4,Evaluable,Comparison,Media,Contrasta su enfoque con trabajos previos ('In contrast to previous work').,COMPLETO,87,1
+35,J05-3004_W02-1040_0,Evaluable,Background,Alta,Resume la precisión reportada en trabajos previos de resolución de anáfora pronominal.,COMPLETO,87,1
+36,J10-4005_N04-1014_0,Evaluable,Background,Alta,Narra la historia de los modelos de traducción con transductores de árboles.,COMPLETO,87,1
+37,D12-1132_D11-1109_0,Evaluable,Gap,Alta,"Señala que todos los analizadores previos asumen entrada segmentada, lo que motiva el análisis unificado.",COMPLETO,87,1
+38,D11-1017_P06-1055_0,Evaluable,Background,Alta,Enumera trabajos de análisis sintáctico posteriores al Penn Treebank.,COMPLETO,87,1
+39,W13-5404_W11-0128_0,Evaluable,Gap,Media,"Presenta el trabajo previo y anuncia sus limitaciones ('However, both met...').",COMPLETO,87,1
+40,N13-1110_W11-1208_0,Evaluable,Comparison,Alta,Declara que su trabajo es muy similar al citado y señala diferencias.,COMPLETO,87,1
+41,P12-1084_N09-1065_0,Evaluable,Gap,Media,Indica que la determinación de anaforicidad no distingue entre menciones mediadas y nuevas.,COMPLETO,87,1
+42,J01-2002_P98-1029_2,Evaluable,Comparison,Alta,Tabla que compara explícitamente los resultados propios con los del trabajo citado.,COMPLETO,87,1
+43,W12-5702_D11-1035_0,Evaluable,Evidence,Alta,Respalda la decisión de ajustar con BLEU a nivel de caracteres citando que mejores métricas mejoran la traducción.,COMPLETO,87,1
+44,W05-0605_N04-1039_0,Evaluable,Application,Alta,Adopta el esquema de suavizado con prior exponencial en el entrenamiento.,COMPLETO,87,1
+45,W11-0135_P08-1118_0,Evaluable,Background,Media,Describe un corpus creado en trabajo previo como ejemplo de conjuntos de datos enfocados.,COMPLETO,87,1
+46,P11-1037_W02-1041_0,Evaluable,Background,Alta,Enumera categorías de soluciones previas a NER.,COMPLETO,87,1
+47,P11-1029_P98-2127_0,Evaluable,Background,Alta,Resume trabajos previos de análisis distribucional para tesauros.,COMPLETO,87,1
+48,P08-1097_P01-1016_0,Evaluable,Background,Alta,Resume hallazgos previos sobre correlación entre postura corporal y límites de tema.,COMPLETO,87,1
+49,P85-1013_J81-3002_0,Evaluable,Improvement / Modification,Alta,Los árboles de tipos generalizan las listas de tipos del trabajo citado.,COMPLETO,87,1
+50,W11-0704_W02-0109_0,Evaluable,Application,Alta,Usa el tokenizador de NLTK tal cual.,COMPLETO,87,1
+51,W12-3404_P11-1112_0,Evaluable,Background,Alta,Describe trabajo previo sobre inducción de roles como parte de la literatura.,COMPLETO,87,1
+52,D13-1115_P13-1056_0,Evaluable,Background,Alta,Presenta una línea de investigación previa sobre significado con información perceptual.,COMPLETO,87,1
+53,N13-1069_P11-1122_0,Evaluable,Evidence,Alta,Respalda la afirmación de que el crowdsourcing es una fuente barata y eficaz de anotación.,COMPLETO,87,1
+54,W01-1312_P00-1010_0,Evaluable,Evidence,Alta,Respalda con un estudio de corpus que dos tercios de las expresiones temporales son dependientes del contexto.,COMPLETO,87,1
+55,N06-1040_P97-1003_0,Evaluable,Background,Media,Describe una práctica común de suavizado con supuesto de Markov en trabajos previos.,COMPLETO,87,1
+56,P05-1040_E03-1068_0,Evaluable,Improvement / Modification,Alta,Extiende el método de n-gramas de variación a anotación estructural discontinua.,COMPLETO,87,1
+57,W12-4802_W11-3502_0,Evaluable,Gap,Alta,Señala que los modelos discriminativos son impracticables para n-gramas de orden superior.,COMPLETO,87,1
+58,D09-1159_P05-1017_1,Evaluable,Background,Alta,Resume trabajos previos de clasificación de sentimiento.,COMPLETO,87,1
+59,W11-3805_W10-1407_1,Evaluable,Basis,Alta,El trabajo actual continúa y se integra con el trabajo citado.,COMPLETO,87,1
+60,P06-2123_W03-1719_1,Evaluable,Further Reading,Alta,Remite al lector para la explicación detallada de las métricas.,COMPLETO,87,1
+61,E12-1067_W02-0603_1,Evaluable,Comparison,Media,Nota de tabla que identifica el sistema Morfessor Baseline comparado con el modelo propuesto.,COMPLETO,87,1
+62,D12-1125_D10-1120_0,Evaluable,Background,Alta,Enumera esquemas de mapeo propuestos previamente en la comunidad de análisis sintáctico.,COMPLETO,87,1
+63,N13-1134_D12-1050_0,Evaluable,Evidence,Alta,Respalda la afirmación de que la multiplicación vectorial suele dar los mejores resultados.,COMPLETO,87,1
+64,P10-1110_D09-1127_0,Evaluable,Application,Alta,Usa el analizador citado como analizador de referencia en los experimentos.,COMPLETO,87,1
+65,D13-1002_D11-1026_0,Evaluable,Application,Alta,Emplea el sistema de segmentación de texto citado sin modificaciones.,COMPLETO,87,1
+66,P13-1126_P98-2127_0,Evaluable,Background,Alta,Resume cómo trabajos previos calculan similitud de sentidos con VSM.,COMPLETO,87,1
+67,S10-1091_P05-1074_0,Evaluable,Application,Alta,Usa el método de paráfrasis por pivote definido en el trabajo citado.,COMPLETO,87,1
+68,N13-1075_D08-1047_0,Evaluable,Application,Alta,Usa el lematizador citado para extraer y reducir palabras de contenido.,COMPLETO,87,1
+69,J12-2005_P08-1108_1,Evaluable,Further Reading,Alta,Remite al lector para la descripción de características y subestructuras.,COMPLETO,87,1
+70,N09-1037_W05-0636_0,Evaluable,Gap,Alta,"Señala la dificultad de construir un modelo conjunto de análisis y SRL, que motiva el trabajo.",COMPLETO,87,1
+71,N03-4011_P98-2127_1,Evaluable,Application,Alta,Sigue la representación de características del trabajo citado.,COMPLETO,87,1
+72,E06-1051_P05-1050_0,Evaluable,Evidence,Alta,Respalda la decisión de combinar kernels citando demostraciones empíricas de su efectividad.,COMPLETO,87,1
+73,D12-1129_E09-1005_1,Evaluable,Application,Alta,"Emplea UKB, implementación de PPR del trabajo citado, sin modificarla.",COMPLETO,87,1
+74,P10-1058_W03-0501_0,Evaluable,Comparison,Alta,Señala parecido y diferencias con la generación de titulares.,COMPLETO,87,1
+75,W13-2117_P11-1062_3,Evaluable,Evidence,Media,Respalda la afirmación de que la relación de implicación es transitiva.,COMPLETO,87,1
+76,P08-1012_P05-1059_1,Evaluable,Comparison,Alta,Compara la velocidad de su algoritmo con el del trabajo citado.,COMPLETO,87,1
+77,J92-3003_P84-1008_0,Evaluable,Further Reading,Alta,Nota al pie que remite a la fuente para la definición de generalización de FS.,COMPLETO,87,1
+78,W07-0715_P06-1065_0,Evaluable,Application,Alta,Usa el método de alineación de palabras citado sin modificación.,COMPLETO,87,1
+79,D13-1169_N13-1090_1,Evaluable,Background,Media,Resume los hallazgos del trabajo citado sobre regularidades en representaciones continuas.,COMPLETO,87,1
+80,N09-1051_N09-1053_0,Evaluable,Basis,Media,El trabajo actual se apoya en la ecuación y los resultados previos del propio autor.,COMPLETO,87,1
+81,D11-1107_P10-2011_0,Evaluable,Evidence,Alta,El trabajo citado respalda la afirmación de que ocurre alineamiento subconsciente en la selección de contenido.,COMPLETO,87,1
+82,W13-0806_N10-1028_1,Evaluable,Background,Alta,Describe trabajos previos que usan muestreo de Gibbs.,COMPLETO,87,1
+83,P11-1063_D10-1027_0,Evaluable,Background,Alta,Enumera enfoques previos de traducción basada en sintaxis.,COMPLETO,87,1
+84,P11-1114_P06-2094_0,Evaluable,Background,Alta,Enumera sistemas previos de aprendizaje no supervisado de patrones.,COMPLETO,87,1
+85,D11-1067_N09-1062_0,Evaluable,Basis,Media,"Considera una variante del modelo PTSG del trabajo citado, que es su base.",COMPLETO,87,1
+86,W13-2605_P10-1121_0,Evaluable,Evidence,Alta,Respalda la afirmación de efectos de memoria significativos en corpus naturales.,COMPLETO,87,1
+87,N12-1059_W10-1748_3,Evaluable,Application,Media,Usa un decodificador de redes de confusión basado en el trabajo citado.,COMPLETO,87,1
+88,W13-2214_W11-2123_0,Evaluable,Application,Alta,Usa KenLM para binarizar el modelo de lenguaje.,COMPLETO,87,1
+89,P11-1004_P07-2045_0,Evaluable,Application,Alta,Entrena el sistema Moses sobre el texto segmentado.,COMPLETO,87,1
+90,D12-1132_P11-2033_1,Evaluable,Comparison,Alta,Compara su F-score con el resultado del trabajo citado.,COMPLETO,87,1
+91,P13-2140_D10-1012_0,Evaluable,Background,Alta,Enumera métodos basados en grafos previos.,COMPLETO,87,1
+92,Q13-1014_N06-1058_0,Evaluable,Background,Media,Describe la idea del mejor sistema previo basada en paráfrasis.,COMPLETO,87,1
+93,P09-2017_P99-1004_0,Evaluable,Evidence,Alta,Respalda la elección de Jaccard citando que supera a otras medidas.,COMPLETO,87,1
+94,N12-1080_W04-1017_0,Evaluable,Identification of the Originator,Alta,Atribuye al trabajo citado la introducción de los eventos atómicos ('introduced').,COMPLETO,87,1
+95,W13-4706_J90-2002_0,Evaluable,Background,Media,Cita trabajo sobre SMT como parte del progreso general en PLN.,COMPLETO,87,1
+96,W05-1510_P96-1027_0,Evaluable,Application,Media,Adopta la generación por chart del trabajo citado para obtener el bosque.,COMPLETO,87,1
+97,D13-1118_P06-1124_2,Evaluable,Comparison,Media,Contrasta su estructura de datos con las estructuras comunes descritas en el trabajo citado.,COMPLETO,87,1
+98,P10-1150_P06-1100_0,Evaluable,Gap,Media,Describe el trabajo citado y señala la limitación de cobertura de WordNet que motiva el estudio.,COMPLETO,87,1
+99,N12-1029_D10-1018_0,Evaluable,Comparison,Media,Contrasta el enfoque del trabajo citado con el propio y otros trabajos previos.,COMPLETO,87,1
+100,N10-1066_P07-1083_2,Evaluable,Background,Alta,Enumera enfoques de dos etapas previos en distintas tareas de PLN.,COMPLETO,87,1
