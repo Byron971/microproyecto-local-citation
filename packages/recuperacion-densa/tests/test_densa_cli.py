@@ -123,3 +123,41 @@ def test_cache_configurable(mundo):
     assert cli.main([*args, "--cache", str(cache), "--salida", str(tmp / "c")],
                     fabrica_codificador=lambda a: Falso()) == 0
     assert any(cache.glob("*.f64"))
+
+
+def test_v2_opt_in_recupera_articulo_con_parrafo_largo_y_separa_resultados(mundo):
+    base, tmp = mundo
+    origen = tmp / "ocl" / "A1.json"
+    datos = json.loads(origen.read_text(encoding="utf-8"))
+    datos["pdf_parse"]["body_text"][0]["text"] = " ".join(
+        f"evidence{i}" for i in range(325)
+    )
+    origen.write_text(json.dumps(datos), encoding="utf-8")
+
+    # V1 histórico sigue rechazando el artículo completo.
+    with pytest.raises(SystemExit) as error_v1:
+        cli.main([*base, "--solo-validar"])
+    assert error_v1.value.code == 2
+
+    exportado = tmp / "v2_casos.json"
+    assert cli.main([*base, "--fragmentador", "v2", "--solo-validar",
+                     "--exportar-casos", str(exportado)]) == 0
+    casos = json.loads(exportado.read_text(encoding="utf-8"))
+    assert casos["resumen"]["estrategia_fragmentacion"].startswith("v2_")
+    assert len(casos["casos"]) == 3
+    assert any("-s001" in c["chunk_id"] for c in casos["casos"][0]["chunks"])
+    assert all(c["palabras"] <= 300 for c in casos["casos"][0]["chunks"])
+
+    destino = tmp / "corrida-v2"
+    assert cli.main([*base, "--fragmentador", "v2", "--salida", str(destino)],
+                    fabrica_codificador=lambda a: Falso()) == 0
+    manifest = json.loads((destino / "manifiesto.json").read_text(encoding="utf-8"))
+    assert manifest["fragmentador"] == "v2"
+    assert (destino / "top3.csv").exists()
+
+
+def test_cli_no_confunde_entrada_fragmentada_con_solicitud_de_v2(tmp_path):
+    with pytest.raises(SystemExit) as e:
+        cli.main(["--entrada", str(tmp_path / "casos.json"), "--fragmentador", "v2",
+                  "--solo-validar"])
+    assert e.value.code == 2

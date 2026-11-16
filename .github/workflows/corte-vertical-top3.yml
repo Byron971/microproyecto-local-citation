@@ -3,11 +3,15 @@ name: Corte vertical Top3 de fragmentos
 on:
   workflow_dispatch:
   push:
-    branches: [feature/corte-vertical-top3-s2, feature/protocolo-evaluacion-top3-s2-3]
+    branches: [main, feature/corte-vertical-top3-s2, feature/protocolo-evaluacion-top3-s2-3]
     paths:
       - "src/app/**"
+      - "tests/test_api_modelos.py"
+      - "tests/test_references.py"
       - "tests/test_top3_corpus_real.py"
       - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
+      - "proyecto_de_grado/src/data/comparar_fragmentacion.py"
+      - "proyecto_de_grado/docs/fragmentacion_v2.md"
       - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
       - "tests/test_top3_fragmentos.py"
       - "proyecto_de_grado/src/evaluation/top3_humano.py"
@@ -17,8 +21,12 @@ on:
   pull_request:
     paths:
       - "src/app/**"
+      - "tests/test_api_modelos.py"
+      - "tests/test_references.py"
       - "tests/test_top3_corpus_real.py"
       - "proyecto_de_grado/src/data/exportar_corpus_top3.py"
+      - "proyecto_de_grado/src/data/comparar_fragmentacion.py"
+      - "proyecto_de_grado/docs/fragmentacion_v2.md"
       - "proyecto_de_grado/tests/test_exportar_corpus_top3.py"
       - "tests/test_top3_fragmentos.py"
       - "proyecto_de_grado/src/evaluation/top3_humano.py"
@@ -39,6 +47,6 @@ jobs:
       - name: Instalar dependencias de la API y pruebas
         run: uv sync --group dev
       - name: Probar corte vertical sin inferencias externas
-        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py
+        run: uv run pytest -q tests/test_top3_fragmentos.py proyecto_de_grado/tests/test_exportar_corpus_top3.py tests/test_top3_corpus_real.py proyecto_de_grado/tests/test_top3_humano.py tests/test_api_modelos.py tests/test_references.py
       - name: Verificar sintaxis JavaScript de la demo
         run: node --check src/app/static/top3.js

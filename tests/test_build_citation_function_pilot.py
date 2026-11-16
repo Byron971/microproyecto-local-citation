@@ -59,17 +59,14 @@ def test_build_pilot_cases_has_expected_shape(tmp_path):
 def test_build_pilot_cases_removes_fused_citation_markers(tmp_path):
     """Test that fused markers (e.g., McOTHERCIT) are also removed."""
     _write_fake_dataset(tmp_path)
-    # Get case with index 3 (ctx-4 with McOTHERCIT), need to sample more to ensure it's included
+    # Tomamos los cuatro casos para incluir ctx-4, que contiene McOTHERCIT.
     cases = build_pilot_cases(tmp_path, n_cases=4, seed=42)
-    # Find the case with ctx-4 (should have McOTHERCIT originally)
     ctx4_case = [c for c in cases if c["id"] == "ctx-4"]
     assert len(ctx4_case) == 1, "ctx-4 should be in the sample"
     case = ctx4_case[0]
-    # Verify no citation markers appear anywhere, including fused ones
     assert "TARGETCIT" not in case["input"], "TARGETCIT should not appear as substring"
     assert "OTHERCIT" not in case["input"], "OTHERCIT should not appear as substring"
-    # The original text had "McOTHERCIT" which should be cleaned to "Mc" and
-    # the leftover double space collapsed, not left visible in the prompt.
+    # Al quitar el marcador tampoco debe quedar un espacio doble.
     assert "McOTHERCIT" not in case["input"], "Fused marker McOTHERCIT should be removed"
     assert "  " not in case["input"], "no debe quedar doble espacio tras quitar el marcador"
 

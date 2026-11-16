@@ -1,5 +1,45 @@
 # Proyecto de grado — Recomendación local de citas y clasificación de su función
 
+
+## Corte técnico revisado: 15 de noviembre de 2026
+
+**Este es el estado de referencia actual.** La tabla «Estado al 7 de octubre»
+más abajo se conserva como **historial**, no describe las capacidades de hoy.
+
+- **Integrado en `main`:** el microproyecto TF-IDF/reordenador; BM25
+  Top-3 de fragmentos; interfaz React y E2E full-stack para baselines;
+  corpus de desarrollo TRAIN en modo opt-in de Docker; inventario de
+  checkpoints A4 con SHA; medición A7 de latencia HTTP y smoke de
+  aceptación baseline. Los PR #169, #170, #171, #172, #174 y #177
+  se fusionaron el 15 de noviembre. El estado exacto y los resultados
+  deben comprobarse en GitHub Actions, no inferirse de este texto.
+- **Desarrollo pendiente de integrar:** PR #173, endpoint SciBERT Top-3
+  opcional; PR #175, clasificador A4 provisional SciBERT-A de nueve
+  funciones (rama encadenada); PR #176, interfaz React científica
+  (rama encadenada). **No afirmar que SciBERT/A4 sirven inferencia real
+  en producción** hasta haber instalado pesos/snapshots y realizado
+  la prueba científica sin simulaciones.
+- **Modelo A4:** los cuatro manifiestos históricos de SciBERT-A/B y
+  SPECTER-A/B con semilla 42 tienen SHA-256 archivados, pero la auditoría
+  CI informó `verified=0, missing=4` para archivos de pesos. Restaurar
+  los checkpoints originales antes de afirmar que hay clasificador activo.
+- **Estudio V1/V2:** comparador offline existente para la misma caché
+  OCL. PR #178 agrega pruebas de regresión con textos sintéticos;
+  no se atribuye mejora real de cobertura ni Recall sin comparar
+  los documentos originales.
+- **Publicación AWS:** Terraform y scripts están preparados para
+  infraestructura de frontend; no se afirma despliegue científico
+  ni capacidad de cómputo suficiente para Torch sin un `plan`,
+  autorización de costos y smoke HTTPS externos.
+- **Gold:** anotación doble, adjudicación, acuerdo humano, cuota
+  mínima validada y relevancia Top-3 permanecen fuera de este
+  desarrollo autónomo. No presentar métricas Haiku como Gold.
+
+Se comenzó un [borrador del artículo con metodología verificable, sin
+resultados Gold](docs/articulo_metodologia_borrador_sin_gold_2026_11.md).
+La entrega final se rige por [issue #112](https://github.com/Byron971/microproyecto-local-citation/issues/112).
+
+
 > **Actualización de coordinación al 3-nov-2026:** el cuadro histórico de esta página corresponde al corte del 7 de octubre, no al estado del proyecto a noviembre. Para el cierre actual consultar [Auditoría y plan de trabajo 4–29 de noviembre](docs/cierre_integrado_2026_11.md), [evidencia jurado/calibración/Gold](docs/evidencia_jurado_calibracion_gold_2026_11.md) y los PR #89/#90/#91. Los experimentos comunicados por el equipo aún requieren auditoría de archivos de entrada/salida; los cambios de esta rama no están fusionados en main.\n\n
 Esta carpeta reúne los avances del **proyecto de grado** del Grupo 19 (Tema 1), que se desarrolla en el curso *Proyecto: Despliegue de Soluciones* con la profesora Haydemar Núñez. Está separada del microproyecto que ocupa el resto del repositorio, que ya fue entregado y calificado en el curso anterior. Lo que se reutiliza de ese trabajo, como los datos de ACL-200 versionados con DVC y el piloto de anotación, se lee desde su ubicación original y no se duplica.
 

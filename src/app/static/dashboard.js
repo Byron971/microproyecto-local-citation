@@ -1,10 +1,4 @@
-/* Lógica del tablero: consulta la API y dibuja tanto las recomendaciones del
- * modelo como la información del estudio de los datos.
- *
- * Ningún dato está escrito a mano en el frontend. Todo lo que se ve, incluidas
- * las cifras del panel de datos, llega desde el backend: si cambian los datos
- * o el modelo, el tablero cambia sin tocar este archivo.
- */
+/* El tablero obtiene del backend las recomendaciones y las cifras del estudio. */
 
 const { PALETA, barrasHorizontales, barrasVerticales, histograma, histogramasSuperpuestos, lineas, leyenda, formatearNumero } = window.Graficas;
 
@@ -181,8 +175,7 @@ function renderRecomendaciones(recomendaciones) {
     lista.appendChild(item);
   });
 
-  // El primer resultado se muestra de una vez: es el que el usuario quiere ver
-  // y ahorra un clic en el caso más frecuente.
+  // Abrimos el primer resultado para que se vea sin otro clic.
   mostrarDetalle(recomendaciones[0]);
   lista.querySelector(".resultado").classList.add("seleccionado");
 }
@@ -542,8 +535,7 @@ async function iniciar() {
   elemento("btn-recomendar").addEventListener("click", recomendar);
   elemento("btn-ejemplo").addEventListener("click", cargarEjemplo);
 
-  // Si el usuario edita el texto, deja de tener sentido resaltar la cita del
-  // ejemplo anterior: el contexto ya no es el mismo.
+  // Al editar el contexto, ya no corresponde resaltar la cita del ejemplo.
   elemento("contexto").addEventListener("input", () => {
     estadoTablero.citaCorrecta = null;
   });

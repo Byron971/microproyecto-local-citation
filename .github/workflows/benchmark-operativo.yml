@@ -1,0 +1,57 @@
+name: Benchmark operacional A7 sin Gold (CPU local)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/ci/benchmark_api.py"
+      - "tests/test_benchmark_api.py"
+      - ".github/workflows/benchmark-operativo.yml"
+      - "src/app/**"
+      - "pyproject.toml"
+  pull_request:
+    paths:
+      - "scripts/ci/benchmark_api.py"
+      - "tests/test_benchmark_api.py"
+      - ".github/workflows/benchmark-operativo.yml"
+      - "src/app/**"
+      - "pyproject.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Instalar paquete ligero
+        run: uv sync --locked --group dev
+      - name: Probar contratos y límites seguros
+        run: uv run pytest -q tests/test_benchmark_api.py
+      - name: Levantar la API real local
+        run: |
+          nohup uv run tablero >/tmp/benchmark-api.log 2>&1 &
+          for i in $(seq 1 50); do
+            curl -fsS http://127.0.0.1:8000/api/estado >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/benchmark-api.log
+          exit 1
+      - name: Medir modelo empaquetado y BM25 sin mocks ni Gold
+        run: |
+          mkdir -p artifacts/a7_tecnico
+          uv run python scripts/ci/benchmark_api.py --endpoint recommend --muestras 12 --warmup 2 --salida artifacts/a7_tecnico/recomendador.json
+          uv run python scripts/ci/benchmark_api.py --endpoint top3-bm25 --muestras 12 --warmup 2 --salida artifacts/a7_tecnico/top3_bm25.json
+      - name: Guardar evidencia sin entradas ni etiquetas Gold
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a7-latencia-local-sin-gold
+          path: artifacts/a7_tecnico/*.json
+          if-no-files-found: ignore

@@ -1,0 +1,25 @@
+# Scientific CPU image, separate from lightweight API; no models or Gold embedded.
+FROM python:3.14-slim
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_LINK_MODE=copy \
+    HF_HOME=/models/huggingface \
+    HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1
+WORKDIR /app
+RUN pip install --no-cache-dir uv
+COPY pyproject.toml uv.lock README.md ./
+RUN uv sync --frozen --no-dev --no-install-project
+COPY . .
+RUN uv sync --frozen --no-dev
+# Match historical A4/SCI versions; manually check Python 3.14 CPU-wheel availability.
+RUN uv pip install --python /app/.venv/bin/python --index-url https://download.pytorch.org/whl/cpu "torch==2.11.0"
+RUN uv pip install --python /app/.venv/bin/python "transformers==5.22.2" "huggingface-hub" "safetensors"
+RUN uv pip install --python /app/.venv/bin/python --no-deps \
+    -e packages/auditoria-corpus -e packages/recuperacion-densa -e packages/clasificacion-funcion
+RUN groupadd -g 10001 modelrunner && useradd -u 10001 -g modelrunner -m modelrunner \
+    && chown -R 10001:10001 /app
+USER 10001:10001
+EXPOSE 8000
+# No uv auto-sync at runtime: preserve scientific dependencies.
+CMD ["/app/.venv/bin/python", "-m", "uvicorn", "src.app.main:app", "--host", "0.0.0.0", "--port", "8000"]

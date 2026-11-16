@@ -51,10 +51,11 @@ else:
     def test_aws_mutations_require_manual_confirmation_on_main(self):
         """Un push o PR nunca debe hacer terraform apply ni publicar ECR."""
         expected = {
-            ".github/workflows/terraform.yml": ("apply", "confirm_apply"),
-            ".github/workflows/deploy-api.yml": ("deploy", "confirm_deploy"),
+            ".github/workflows/terraform.yml": ("apply", "confirm_apply", "DEPLOY"),
+            ".github/workflows/deploy-api.yml": ("deploy", "confirm_deploy", "DEPLOY"),
+            ".github/workflows/publicar-frontend.yml": ("publish", "confirm_publish", "PUBLISH"),
         }
-        for path, (job, input_name) in expected.items():
+        for path, (job, input_name, keyword) in expected.items():
             with self.subTest(workflow=path):
                 workflow = (ROOT / path).read_text(encoding="utf-8")
                 self.assertIn("workflow_dispatch:\n    inputs:", workflow)
@@ -64,7 +65,7 @@ else:
                 condition = next(line for line in section.splitlines() if line.strip().startswith("if:"))
                 self.assertIn("github.event_name == 'workflow_dispatch'", condition)
                 self.assertIn("github.ref == 'refs/heads/main'", condition)
-                self.assertIn(f"inputs.{input_name} == 'DEPLOY'", condition)
+                self.assertIn(f"inputs.{input_name} == '{keyword}'", condition)
 
     def test_push_and_pr_validate_without_aws_secrets(self):
         terraform = (ROOT / ".github/workflows/terraform.yml").read_text(encoding="utf-8")
@@ -72,6 +73,31 @@ else:
         self.assertIn("  validate:\n", terraform)
         self.assertIn("  build-validation:\n    if: github.event_name == 'pull_request' || github.event_name == 'push'", api)
         self.assertIn("push: false", api)
+
+    def test_frontend_hosting_uses_private_s3_and_cloudfront_oac(self):
+        hosting = (ROOT / "terraform/frontend.tf").read_text(encoding="utf-8")
+        gateway = (ROOT / "terraform/api_gateway.tf").read_text(encoding="utf-8")
+        outputs = (ROOT / "terraform/outputs.tf").read_text(encoding="utf-8")
+        makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
+        self.assertIn('resource "aws_s3_bucket_public_access_block" "web"', hosting)
+        self.assertIn("block_public_policy     = true", hosting)
+        self.assertIn('resource "aws_cloudfront_origin_access_control" "web"', hosting)
+        self.assertIn('"AWS:SourceArn"', hosting)
+        self.assertIn("cors_configuration", gateway)
+        self.assertIn('output "frontend_url"', outputs)
+        self.assertIn("publish-frontend: check-aws", makefile)
+        self.assertIn("npm --prefix frontend run build", makefile)
+
+    def test_top3_vertical_regression_runs_after_merge_on_main(self):
+        """La rama protegida debe ejecutar Top-3, no solo los PR individuales."""
+        workflow = (ROOT / ".github/workflows/corte-vertical-top3.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "    branches: [main, feature/corte-vertical-top3-s2,",
+            workflow,
+        )
+        self.assertIn("  pull_request:", workflow)
 
     def test_failed_plan_or_apply_restores_previous_tag(self):
         for failure in ("plan", "apply", "rollback"):

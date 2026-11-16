@@ -8,6 +8,9 @@ on:
       - "src/evaluation/commercial/provider_settings.py"
       - "src/evaluation/commercial/providers_*.py"
       - "tests/test_app_settings.py"
+      - "tests/test_app_capacidades.py"
+      - "tests/test_scibert_optional_api.py"
+      - "tests/test_science_pipeline_b.py"
       - "tests/test_provider_settings.py"
       - "Dockerfile"
       - ".dockerignore"
@@ -22,6 +25,9 @@ on:
       - "src/evaluation/commercial/provider_settings.py"
       - "src/evaluation/commercial/providers_*.py"
       - "tests/test_app_settings.py"
+      - "tests/test_app_capacidades.py"
+      - "tests/test_scibert_optional_api.py"
+      - "tests/test_science_pipeline_b.py"
       - "tests/test_provider_settings.py"
       - "Dockerfile"
       - ".dockerignore"
@@ -50,6 +56,9 @@ jobs:
           uv run python -m compileall -q src/app src/evaluation/commercial
           uv run pytest -q \
             tests/test_app_settings.py \
+            tests/test_app_capacidades.py \
+            tests/test_scibert_optional_api.py \
+            tests/test_science_pipeline_b.py \
             tests/test_provider_settings.py \
             tests/test_top3_fragmentos.py \
             tests/test_top3_corpus_real.py \

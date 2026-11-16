@@ -28,6 +28,7 @@ EXCLUSIONES = (
 )
 
 fragmentar = _exp.fragmentar
+fragmentar_v2 = _exp.fragmentar_v2  # experimental, activación explícita desde CLI
 integrar = integrar_contexto
 cargar_indice = load_split_index
 lexico = recuperar_top3

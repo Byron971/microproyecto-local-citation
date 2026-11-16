@@ -1,0 +1,77 @@
+name: Smoke fullstack real (sin mocks)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'src/app/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'data/processed/dashboard_insights.json'
+      - '.github/workflows/fullstack-e2e.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - 'src/app/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'data/processed/dashboard_insights.json'
+      - '.github/workflows/fullstack-e2e.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      LIVE_API_E2E: '1'
+      APP_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Instalar backend y frontend
+        run: |
+          uv sync --locked --group dev
+          npm --prefix frontend ci
+      - name: Arrancar API real con modelo empaquetado
+        run: |
+          nohup uv run tablero > /tmp/citation-api.log 2>&1 &
+          echo $! > /tmp/citation-api.pid
+          ready=0
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:8000/api/estado > /tmp/citation-api-status.json; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/citation-api.log
+            echo "::error::FastAPI no inició; comprobar modelo publicado y dashboard_insights."
+            exit 1
+          fi
+          cat /tmp/citation-api-status.json
+      - name: Instalar navegador
+        run: npx --prefix frontend playwright install --with-deps chromium
+      - name: Smoke navegador sin interceptar la API
+        run: npm --prefix frontend run test:e2e -- e2e/live-api.spec.ts
+      - name: Evidencia de errores
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullstack-e2e-diagnostics
+          path: |
+            /tmp/citation-api.log
+            frontend/test-results/
+          if-no-files-found: ignore

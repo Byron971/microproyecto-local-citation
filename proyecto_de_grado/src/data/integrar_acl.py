@@ -21,20 +21,17 @@ def cargar_json(ruta):
 def integrar_contexto(context_id, contextos, papers, cache_dir):
     """Integra un contexto ACL-200 con su artículo en ACL OCL."""
 
-    # PASO 1: Recuperar el contexto de cita.
     contexto = contextos[context_id]
 
     citado_id = contexto["refid"]
     citante_id = contexto["citing_id"]
     texto_contexto = contexto["masked_text"]
 
-    # PASO 2: Validar la cita objetivo.
     if texto_contexto.count("TARGETCIT") != 1:
         raise ValueError(
             f"El contexto {context_id} no tiene una cita objetivo única."
         )
 
-    # PASO 3: Buscar metadatos en ACL-200.
     if citado_id not in papers:
         raise ValueError(
             f"El artículo {citado_id} no existe en ACL-200."
@@ -42,7 +39,6 @@ def integrar_contexto(context_id, contextos, papers, cache_dir):
 
     paper = papers[citado_id]
 
-    # PASO 4: Localizar el artículo completo de ACL OCL.
     ruta_ocl = Path(cache_dir) / f"{citado_id}.json"
 
     if not ruta_ocl.exists():
@@ -52,7 +48,6 @@ def integrar_contexto(context_id, contextos, papers, cache_dir):
 
     documento = cargar_json(ruta_ocl)
 
-    # PASO 5: Validar la correspondencia de identificadores.
     ocl_id = documento.get("paper_id")
 
     if ocl_id != citado_id:
@@ -61,7 +56,6 @@ def integrar_contexto(context_id, contextos, papers, cache_dir):
             f"recibido {ocl_id}."
         )
 
-    # PASO 6: Recuperar texto completo y secciones.
     cuerpo = documento.get("pdf_parse", {}).get(
         "body_text", []
     )
@@ -87,7 +81,6 @@ def integrar_contexto(context_id, contextos, papers, cache_dir):
             f"El artículo {citado_id} no contiene párrafos."
         )
 
-    # PASO 7: Construir un registro integrado.
     registro = {
         "context_id": context_id,
         "citing_id": citante_id,
@@ -106,13 +99,10 @@ def integrar_contexto(context_id, contextos, papers, cache_dir):
 def main():
     """Prueba la integración de un artículo conocido."""
 
-    # Ubicación principal del repositorio.
     raiz = Path(__file__).resolve().parents[3]
 
-    # Datos originales ACL-200.
     datos = raiz / "data" / "raw"
 
-    # Carpeta con los artículos ACL OCL descargados.
     cache = (
         raiz
         / "proyecto_de_grado"
@@ -121,14 +111,12 @@ def main():
         / "cache_ocl"
     )
 
-    # Cargar dataset original.
     contextos = cargar_json(datos / "contexts.json")
     papers = cargar_json(datos / "papers.json")
 
     # Contexto cuya descarga ya verificamos.
     ejemplo_id = "P15-2138_N04-1019_0"
 
-    # Integrar ambos datasets.
     registro = integrar_contexto(
         ejemplo_id,
         contextos,
@@ -136,7 +124,6 @@ def main():
         cache
     )
 
-    # Mostrar resultados.
     print("\n=== REGISTRO INTEGRADO ===")
     print("Contexto:", registro["context_id"])
     print("Citante:", registro["citing_id"])
