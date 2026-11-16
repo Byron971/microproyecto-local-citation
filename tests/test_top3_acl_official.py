@@ -122,8 +122,8 @@ def test_ocl_chunk_universe_matches_original_document_and_rejects_forgery(tmp_pa
         cited = case["cited_id"]
         paragraphs = [
             {"numero": i, "texto": f"Academic evidence {cited} {i}.",
-             "seccion": ("Introduction", "Methods", "Results")[i]}
-            for i in range(3)
+             "seccion": ("Introduction", "Methods", "Results", "Discussion")[i]}
+            for i in range(4)
         ]
         (ocl / (cited + ".json")).write_text(json.dumps({
             "paper_id": cited,
@@ -146,7 +146,7 @@ def test_ocl_chunk_universe_matches_original_document_and_rejects_forgery(tmp_pa
     report = check_ocl_chunks(cases, ocl)
     assert report["documents_checked"] == 2
     assert len(report["source_registry_sha256"]) == 64
-    assert len(universe) == 6
+    assert len(universe) == 8
 
     tampered = json.loads(manifest.read_text())
     tampered["cases"][0]["chunks"][0]["text_sha256"] = sha("fake chunk")
