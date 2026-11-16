@@ -18,6 +18,7 @@ from typing import Any
 HEX = re.compile(r"^[0-9a-f]{64}$")
 RELEVANCE = {"0", "1", "abstain"}
 METHODOLOGIES = ("bm25", "scibert")
+ALLOWED_METHODS = frozenset(("bm25", "bm25_normalizado", "scibert"))
 
 
 class ProtocolError(ValueError):
@@ -174,6 +175,8 @@ def _round(n: float) -> float:
 def score_rankings(path: Path, cases: dict[str, dict[str, Any]],
                    labels: dict[tuple[str, str], int],
                    methods: tuple[str, ...] = METHODOLOGIES) -> dict:
+    if not methods or len(set(methods)) != len(methods) or not set(methods).issubset(ALLOWED_METHODS):
+        raise ProtocolError("Conjunto de métodos vacío, duplicado o desconocido")
     rows = _csv(path, ("context_id", "method", "rank", "chunk_id"))
     groups: dict[tuple[str, str], dict[int, str]] = defaultdict(dict)
     for row in rows:
@@ -221,12 +224,13 @@ def score_rankings(path: Path, cases: dict[str, dict[str, Any]],
 
 
 def audit(manifest: Path, exclusions: Path, judgments: Path,
-          adjudications: Path, rankings: Path) -> dict:
+          adjudications: Path, rankings: Path,
+          methods: tuple[str, ...] = METHODOLOGIES) -> dict:
     cases, universe = load_universe(manifest)
     check_exclusions(exclusions, cases)
     primary = load_judgments(judgments, universe)
     decisions = adjudicate(adjudications, primary)
-    summary = score_rankings(rankings, cases, decisions)
+    summary = score_rankings(rankings, cases, decisions, methods)
     return {
         "schema_version": 1, "status": "METRICAS_PROVISIONALES_HUMANIDAD_NO_CERTIFICADA",
         "human_gold_certified": False, "blindness_certified": False,
@@ -248,11 +252,13 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("manifest", "exclusions", "judgments", "adjudications", "rankings"):
         parser.add_argument("--" + name, required=True, type=Path)
+    parser.add_argument("--methods", nargs="+", choices=sorted(ALLOWED_METHODS),
+                        default=list(METHODOLOGIES), help="Métodos que DEBEN cubrir las mismas consultas")
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args(argv)
     try:
         report = audit(args.manifest, args.exclusions, args.judgments,
-                       args.adjudications, args.rankings)
+                       args.adjudications, args.rankings, tuple(args.methods))
         args.output.parent.mkdir(parents=True, exist_ok=True)
         with args.output.open("x", encoding="utf-8") as file:
             json.dump(report, file, indent=2, ensure_ascii=False)
