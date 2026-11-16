@@ -118,7 +118,7 @@ def test_depth_boundary_and_duplicate_roots(repository):
 
 def test_registry_tampering_or_missing_root_rejected(repository):
     repo, registry, root, files = repository
-    with pytest.raises(ValueError, match="raíz"):
+    with pytest.raises(ValueError, match="raíces"):
         locate([], registry=registry, repo=repo)
     doc = json.loads(registry.read_text(encoding="utf-8"))
     doc["models"][0]["expected_sha256"] = "0" * 64
