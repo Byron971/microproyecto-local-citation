@@ -48,6 +48,19 @@ Es un preflight **sin red** por defecto. Solo añadir `--download` cuando se aut
 
 ### D. Crear entradas ciegas del Test Gold (sin etiquetas)
 
+Para no fabricar el JSONL a mano, preparar primero un archivo privado `/PRIVADO/ids_test_seleccionados.txt` (un `context_id` por línea; admite comentarios con `#`). Debe congelarse **antes de inferir** y contener únicamente casos realmente elegibles de la partición ACL-200 test. El exportador rechaza los IDs de práctica/calibración/piloto históricos conocidos y falla si falta un citado o la fragmentación V1; **no selecciona arbitrariamente otros casos para reemplazarlos**.
+
+```bash
+uv run python -m src.evaluation.a4_export_unlabeled \
+  --ids-file /PRIVADO/ids_test_seleccionados.txt \
+  --raw-dir /PRIVADO/acl200/raw \
+  --ocl-cache /PRIVADO/cache_ocl \
+  --output artifacts/a4_privado/test_unlabeled_001.jsonl \
+  --manifest artifacts/a4_privado/manifiesto_export_001.json
+```
+
+El JSONL resultante carece de etiquetas y proviene de `contexts.json`, `papers.json`, particiones ACL oficiales y la fuente OCL con SHA de cada artículo. El reporte guarda procedencia agregada (no los textos) y advierte `heldout_independence_certified=false`: si existieron usos de esos IDs en tuning/prompts fuera de las listas históricas conocidas, debemos detectarlos y excluirlos antes de llamar al conjunto un verdadero held-out. Los dos archivos nuevos se crean en `artifacts/` y no deben publicarse en Git.
+
 Proporcionar un JSONL **privado** con un objeto por caso y estos campos: `context_id`, `citing_id`, `cited_id`, `split="test"`, `citation_context` con un solo `TARGETCIT`, `context_sha256`, `cited_title`, `cited_abstract` y `chunks`; cada chunk debe contener `chunk_id`, `texto`, `seccion`, `paragraph_indices` y `palabras` para el contraste con el fragmentador V1 histórico. `sha256_ocl_citado` es obligatorio para `--apply` y debe representar los bytes exactos del JSON ACL OCL citado. Se requieren 3 a 500 chunks del **mismo** artículo citado.
 
 `context_sha256` es SHA-256 de los bytes UTF-8 del `masked_text` oficial ACL-200; no de una reconstrucción improvisada. No agregar campos Gold, etiquetas, scores o anotadores: se rechazan. Los IDs/documentos/splits del contexto se cotejan con ACL-200; título y abstract se cotejan con `papers.json` oficial. Antes de inferir también se verifican los bytes SHA de cada artículo ACL OCL y **todos los chunks** se reconstruyen usando el fragmentador V1 histórico (sin sustituirlo por V2). El sistema bloquea cambios de textos, secciones, posiciones, longitud o fragmentos faltantes.
