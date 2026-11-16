@@ -13,6 +13,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import tempfile
 from pathlib import Path
 
@@ -39,6 +40,9 @@ ALLOWED_CASE = frozenset({
     "citation_context", "cited_title", "cited_abstract", "chunks",
     "sha256_ocl_citado",
 })
+OCL_ID = re.compile(r"^[A-Za-z0-9-]+$")
+HEX = re.compile(r"^[0-9a-f]{64}$")
+
 ALLOWED_CHUNK = frozenset({
     "chunk_id", "texto", "seccion", "paragraph_indices", "palabras",
 })
@@ -92,6 +96,11 @@ def read_unlabeled_inputs(path: Path) -> tuple[list[dict], dict[str, dict]]:
             digest = hashlib.sha256(context.encode("utf-8")).hexdigest()
             if item.get("context_sha256") != digest:
                 raise InputError(f"{cid}: hash del contexto no corresponde a los bytes")
+            source_sha = item.get("sha256_ocl_citado")
+            if source_sha is not None and (
+                not isinstance(source_sha, str) or not HEX.fullmatch(source_sha)
+            ):
+                raise InputError(f"{cid}: SHA OCL de 64 caracteres requerido")
             chunks = item.get("chunks")
             if not isinstance(chunks, list) or not 3 <= len(chunks) <= 500:
                 raise InputError(f"{cid}: el artículo debe contener 3..500 chunks")
@@ -108,9 +117,27 @@ def read_unlabeled_inputs(path: Path) -> tuple[list[dict], dict[str, dict]]:
                         or section is not None and not isinstance(section, str)):
                     raise InputError(f"{cid}: chunks repetidos, largos o sin sección válida")
                 local.add(chunk_id)
-                sanitized.append({
-                    "chunk_id": chunk_id, "texto": texto, "seccion": section,
-                })
+                paragraph_indices = chunk.get("paragraph_indices")
+                words = chunk.get("palabras")
+                if paragraph_indices is not None and (
+                    not isinstance(paragraph_indices, list)
+                    or not 1 <= len(paragraph_indices) <= 2
+                    or any(isinstance(n, bool) or not isinstance(n, int) or n < 0
+                           for n in paragraph_indices)
+                    or len(set(paragraph_indices)) != len(paragraph_indices)
+                ):
+                    raise InputError(f"{cid}: origen de párrafos inválido")
+                if words is not None and (
+                    isinstance(words, bool) or not isinstance(words, int)
+                    or words != len(texto.split())
+                ):
+                    raise InputError(f"{cid}: número de palabras incoherente")
+                candidate = {"chunk_id": chunk_id, "texto": texto, "seccion": section}
+                if paragraph_indices is not None:
+                    candidate["paragraph_indices"] = paragraph_indices
+                if words is not None:
+                    candidate["palabras"] = words
+                sanitized.append(candidate)
             indexed[cid] = {
                 "citing_id": citing, "cited_id": cited,
                 "context_sha256": digest, "chunks": local,
@@ -119,16 +146,19 @@ def read_unlabeled_inputs(path: Path) -> tuple[list[dict], dict[str, dict]]:
                 "context_id": cid, "citation_context": context,
                 "cited_title": title, "cited_abstract": abstract,
                 "citing_id": citing, "cited_id": cited,
-                "chunks": sanitized,
+                "chunks": sanitized, "sha256_ocl_citado": source_sha,
             })
     if not rows:
         raise InputError("Corpus held-out vacío")
     return rows, indexed
 
 
-def metadata_plan(inputs: Path, *, raw_dir: Path | None = None) -> dict:
+def metadata_plan(inputs: Path, *, raw_dir: Path | None = None,
+                  ocl_cache: Path | None = None) -> dict:
     rows, index = read_unlabeled_inputs(inputs)
     official = check_acl_official(index, raw_dir) if raw_dir is not None else None
+    paper_sha = verify_source_papers(rows, raw_dir) if raw_dir is not None else None
+    ocl = verify_ocl_sources(rows, ocl_cache) if ocl_cache is not None else None
     return {
         "status": ("INPUTS_ACL_OFICIAL_VERIFICADOS_SIN_INFERENCIA"
                    if official is not None else "SOLO_ESTRUCTURA_ACL_NO_VERIFICADO"),
@@ -136,10 +166,89 @@ def metadata_plan(inputs: Path, *, raw_dir: Path | None = None) -> dict:
         "n_inputs_unlabeled": len(rows),
         "n_four_arms_expected": 4,
         "acl_official_sha256": official,
+        "papers_sha256": paper_sha,
+        "ocl_validation": ocl,
         "gold_labels_read": False,
         "predictions_executed": False,
         "test_gold_certified": False,
     }
+
+
+def verify_source_papers(rows: list[dict], raw_dir: Path) -> str:
+    """A4-A usa título/abstract ACL originales, no metadatos inventados."""
+    source = Path(raw_dir) / "papers.json"
+    if not source.is_file() or source.is_symlink():
+        raise InputError("Falta papers.json oficial para autenticar entrada A.")
+    papers = json.loads(source.read_text(encoding="utf-8-sig"))
+    if not isinstance(papers, dict):
+        raise InputError("papers.json debe contener mapeo ACL de artículos.")
+    for row in rows:
+        paper = papers.get(row["cited_id"])
+        if not isinstance(paper, dict):
+            raise InputError("Artículo citado no existe en papers.json oficial.")
+        title = paper.get("title")
+        abstract = paper.get("abstract")
+        if (not isinstance(title, str) or not isinstance(abstract, str)
+                or title.strip() != row["cited_title"]
+                or abstract.strip() != row["cited_abstract"]):
+            raise InputError("Título/abstract contradicen ACL-200 oficial (entrada A).")
+    return hash_file(source)
+
+
+def verify_ocl_sources(rows: list[dict], cache: Path) -> dict:
+    """Regenera V1 en el artículo citado y coteja TODAS las unidades.
+
+    V2 solo es un experimento diferente: no se intercambia por V1 sin
+    reentrenar. Ni los IDs autocreados ni un SHA proporcionado por sí solo
+    acreditan fidelidad de chunks.
+    """
+    from proyecto_de_grado.src.data.exportar_corpus_top3 import fragmentar
+
+    seen: dict[str, str] = {}
+    for row in rows:
+        cited = row["cited_id"]
+        if not OCL_ID.fullmatch(cited):
+            raise InputError("Identificador del citado OCL no seguro.")
+        raw_path = Path(cache) / f"{cited}.json"
+        if not raw_path.is_file() or raw_path.is_symlink():
+            raise InputError("Falta artículo citado ACL OCL original.")
+        actual_sha = hash_file(raw_path)
+        if row.get("sha256_ocl_citado") != actual_sha:
+            raise InputError("SHA del artículo OCL no coincide con los bytes originales.")
+        if cited in seen and seen[cited] != actual_sha:
+            raise InputError("Dos versiones de un mismo artículo citado en un mismo lote.")
+        seen[cited] = actual_sha
+        paper = json.loads(raw_path.read_text(encoding="utf-8"))
+        if paper.get("paper_id") != cited:
+            raise InputError("paper_id ACL OCL no coincide con cited_id.")
+        body = (paper.get("pdf_parse") or {}).get("body_text")
+        if not isinstance(body, list):
+            raise InputError("El documento OCL carece de body_text.")
+        paragraphs = []
+        for idx, paragraph in enumerate(body):
+            if not isinstance(paragraph, dict):
+                raise InputError("Párrafo OCL mal formado.")
+            text = str(paragraph.get("text") or "").strip()
+            if text:
+                paragraphs.append({
+                    "numero": idx, "texto": text,
+                    "seccion": str(paragraph.get("section") or "").strip(),
+                })
+        try:
+            calculated = fragmentar(paragraphs)
+        except (KeyError, ValueError, TypeError) as exc:
+            raise InputError("El artículo OCL no admite el fragmentador V1 histórico.") from exc
+        supplied = row["chunks"]
+        if len(calculated) != len(supplied):
+            raise InputError("El universo no incluye todos los chunks V1 del citado.")
+        for expected, item in zip(calculated, supplied):
+            if any(expected[key] != item.get(key) for key in
+                   ("chunk_id", "texto", "seccion", "paragraph_indices", "palabras")):
+                raise InputError("Chunk no reproducible desde el documento OCL y V1.")
+    return {"n_cited_ocl": len(seen),
+            "sha256_registry": hashlib.sha256(
+                json.dumps(seen, sort_keys=True).encode("utf-8")
+            ).hexdigest()}
 
 
 def _verify_prediction(arm: tuple[str, str, str], prediction: dict) -> None:
@@ -206,7 +315,8 @@ def build_factorial_config(evidences: dict[str, dict]) -> dict:
 
 
 def run_four_arm(inputs: Path, *, raw_dir: Path, checkpoint_root: Path,
-                 output_dir: Path, scibert_manifest: Path = DEFAULT_SCIBERT,
+                 output_dir: Path, ocl_cache: Path,
+                 scibert_manifest: Path = DEFAULT_SCIBERT,
                  specter_manifest: Path = DEFAULT_SPECTER,
                  device: str = "cpu") -> dict:
     if device not in {"cpu", "cuda", "auto"}:
@@ -217,6 +327,8 @@ def run_four_arm(inputs: Path, *, raw_dir: Path, checkpoint_root: Path,
         raise InputError("Carpeta padre de salida no debe ser enlace simbólico.")
     rows, identities = read_unlabeled_inputs(inputs)
     raw_hashes = check_acl_official(identities, raw_dir)
+    paper_sha = verify_source_papers(rows, raw_dir)
+    ocl_evidence = verify_ocl_sources(rows, ocl_cache)
     audit = preflight(checkpoint_root, include_specter=True)
     if not audit.get("ready_four_a4"):
         raise RuntimeError("Faltan pesos originales A4 o snapshots pinned de SciBERT/SPECTER.")
@@ -292,6 +404,8 @@ def run_four_arm(inputs: Path, *, raw_dir: Path, checkpoint_root: Path,
             "status": "PREDICCIONES_A4_CIEGAS_NO_EVALUADAS",
             "input_sha256": hash_file(inputs),
             "raw_acl_sha256": raw_hashes,
+            "papers_sha256": paper_sha,
+            "ocl_evidence": ocl_evidence,
             "models": {name: {
                 "checkpoint_sha256": evidences[name]["checkpoint_sha256"],
                 "predictions_sha256": hash_file(temp / (name + ".jsonl")),
@@ -315,6 +429,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--inputs", required=True, type=Path,
                    help="JSONL privado SIN etiquetas, held-out ACL-200")
     p.add_argument("--raw-dir", type=Path, help="ACL oficial en DVC (obligatorio con --apply)")
+    p.add_argument("--ocl-cache", type=Path,
+                   help="ACL OCL cache original; obligatorio para inferencia --apply")
     p.add_argument("--checkpoint-root", type=Path,
                    default=ROOT / "proyecto_de_grado/artifacts/clasificacion_a4/corridas")
     p.add_argument("--scibert-manifest", type=Path, default=DEFAULT_SCIBERT)
@@ -326,16 +442,16 @@ def main(argv: list[str] | None = None) -> int:
     a = p.parse_args(argv)
     try:
         if a.apply:
-            if a.raw_dir is None or a.output_dir is None:
-                raise InputError("--apply requiere --raw-dir y --output-dir")
+            if a.raw_dir is None or a.output_dir is None or a.ocl_cache is None:
+                raise InputError("--apply requiere --raw-dir, --ocl-cache y --output-dir")
             report = run_four_arm(
                 a.inputs, raw_dir=a.raw_dir, checkpoint_root=a.checkpoint_root,
-                output_dir=a.output_dir,
+                output_dir=a.output_dir, ocl_cache=a.ocl_cache,
                 scibert_manifest=a.scibert_manifest,
                 specter_manifest=a.specter_manifest, device=a.device,
             )
         else:
-            report = metadata_plan(a.inputs, raw_dir=a.raw_dir)
+            report = metadata_plan(a.inputs, raw_dir=a.raw_dir, ocl_cache=a.ocl_cache)
     except (OSError, ValueError, TypeError, KeyError, RuntimeError,
             json.JSONDecodeError) as exc:
         p.exit(2, f"A4 offline bloqueado: {exc}\n")
