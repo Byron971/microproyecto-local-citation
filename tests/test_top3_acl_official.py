@@ -107,3 +107,65 @@ def test_acl_invalid_source_fails_not_silently_accepted(tmp_path):
     cases, _ = load_universe(manifest)
     with pytest.raises(ProtocolError, match="split test ACL-200"):
         check_acl_official(cases, raw)
+
+
+
+def test_ocl_chunk_universe_matches_original_document_and_rejects_forgery(tmp_path):
+    from proyecto_de_grado.src.evaluation.top3_gold_gate import check_ocl_chunks
+    from proyecto_de_grado.src.data.exportar_corpus_top3 import fragmentar
+
+    raw, manifest = make_acl(tmp_path)
+    source = json.loads(manifest.read_text(encoding="utf-8"))
+    ocl = tmp_path / "ocl-cache"
+    ocl.mkdir()
+    for case in source["cases"]:
+        cited = case["cited_id"]
+        paragraphs = [
+            {"numero": i, "texto": f"Academic evidence {cited} {i}.",
+             "seccion": ("Introduction", "Methods", "Results")[i]}
+            for i in range(3)
+        ]
+        (ocl / (cited + ".json")).write_text(json.dumps({
+            "paper_id": cited,
+            "pdf_parse": {"body_text": [
+                {"text": p["texto"], "section": p["seccion"]}
+                for p in paragraphs
+            ]},
+        }), encoding="utf-8")
+        chunks = fragmentar(paragraphs)
+        case["chunks"] = [
+            {
+                "chunk_id": chunk["chunk_id"],
+                "text_sha256": sha(chunk["texto"]),
+                "section": chunk["seccion"],
+            }
+            for chunk in chunks
+        ]
+    manifest.write_text(json.dumps(source), encoding="utf-8")
+    cases, universe = load_universe(manifest)
+    report = check_ocl_chunks(cases, ocl)
+    assert report["documents_checked"] == 2
+    assert len(report["source_registry_sha256"]) == 64
+    assert len(universe) == 6
+
+    tampered = json.loads(manifest.read_text())
+    tampered["cases"][0]["chunks"][0]["text_sha256"] = sha("fake chunk")
+    manifest.write_text(json.dumps(tampered))
+    cases, _ = load_universe(manifest)
+    with pytest.raises(ProtocolError, match="contradice el OCL V1"):
+        check_ocl_chunks(cases, ocl)
+
+    tampered["cases"][0]["chunks"][0]["text_sha256"] = source["cases"][0]["chunks"][0]["text_sha256"]
+    tampered["cases"][0]["chunks"].pop()
+    manifest.write_text(json.dumps(tampered))
+    cases, _ = load_universe(manifest)
+    with pytest.raises(ProtocolError, match="universo de chunks no es completo"):
+        check_ocl_chunks(cases, ocl)
+
+
+def test_gold_final_requires_ocl_cache_before_opening_private_judgments(tmp_path):
+    raw, manifest = make_acl(tmp_path)
+    with pytest.raises(ProtocolError, match="--ocl-cache"):
+        audit(manifest, tmp_path / "missing.csv", tmp_path / "missing.csv",
+              tmp_path / "missing.csv", tmp_path / "missing.csv",
+              require_ocl=True)
