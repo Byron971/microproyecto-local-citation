@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/ci/smoke_tesis.py'
       - 'tests/test_smoke_tesis.py'
+      - 'tests/test_four_arm_smoke.py'
       - '.github/workflows/smoke-tesis.yml'
       - 'src/app/**'
   push:
@@ -31,7 +32,7 @@ jobs:
       - name: Instalar API ligera
         run: uv sync --locked --group dev
       - name: Reglas de aceptación
-        run: uv run pytest -q tests/test_smoke_tesis.py
+        run: uv run pytest -q tests/test_smoke_tesis.py tests/test_four_arm_smoke.py
       - name: Iniciar API baseline real
         run: |
           nohup uv run tablero > /tmp/tesis-api.log 2>&1 &

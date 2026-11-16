@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 from importlib import import_module
 from pathlib import Path
@@ -52,6 +53,53 @@ def validate_evidence(run: Path, manifest: Path, *, entrada: str | None = None) 
     return evidence
 
 
+def verify_historical_identity(
+    run: Path, evidence_manifest: Path, *,
+    registry: Path | None = None, repo: Path | None = None,
+) -> dict:
+    """Ancla pesos y evidencias a los SHA del registro, no a JSON arbitrario.
+
+    Validar solamente contra un manifiesto suministrado por el solicitante
+    permitiría sustituir EN PAREJA los pesos y su SHA. Este gate impide que
+    una corrida ajena se presente como uno de los cuatro checkpoints A4.
+    """
+    from src.app.checkpoint_gate import REPO, REGISTRY, _relative
+
+    root = REPO if repo is None else Path(repo)
+    source = REGISTRY if registry is None else Path(registry)
+    evidence = validate_evidence(Path(run), Path(evidence_manifest))
+    if source.is_symlink() or not source.is_file():
+        raise RuntimeError("Registro histórico A4 no disponible.")
+    manifest_registry = json.loads(source.read_text(encoding="utf-8"))
+    if manifest_registry.get("version") != 1:
+        raise RuntimeError("Versión del registro histórico A4 incompatible.")
+    matches = [
+        row for row in manifest_registry.get("models", [])
+        if isinstance(row, dict) and row.get("id") == evidence["experiment_id"]
+    ]
+    if len(matches) != 1:
+        raise RuntimeError("Corrida A4 ausente o duplicada en el registro histórico.")
+    expected = matches[0]
+    for manifest_key, evidence_key in (
+        ("encoder", "encoder"), ("entrada", "entrada"),
+        ("semilla", "semilla"), ("expected_sha256", "checkpoint_sha256"),
+    ):
+        if expected.get(manifest_key) != evidence.get(evidence_key):
+            raise RuntimeError("Identidad/SHA A4 incompatible con registro histórico.")
+    if (expected.get("training_labels") != "Haiku" or
+            expected.get("validation") != "provisional_not_gold"):
+        raise RuntimeError("Procedencia científica histórica no verificable.")
+    expected_manifest = root / _relative(expected.get("source_manifest"))
+    actual_manifest = Path(evidence_manifest)
+    if (actual_manifest.is_symlink() or expected_manifest.is_symlink() or
+            actual_manifest.resolve() != expected_manifest.resolve()):
+        raise RuntimeError("Solo se acepta el manifiesto A4 histórico versionado.")
+    relative_weights = _relative(expected.get("checkpoint"))
+    if relative_weights.name != "model.safetensors" or relative_weights.parent.name != run.name:
+        raise RuntimeError("Ruta de checkpoint no coincide con el registro A4.")
+    return evidence
+
+
 class A4Classifier:
     """Representa una corrida A o B; nunca cambia pesos en peticiones."""
 
@@ -75,7 +123,9 @@ class A4Classifier:
              device: str = "cpu", *, entrada: str | None = None) -> "A4Classifier":
         if device not in ("cpu", "cuda", "auto"):
             raise ValueError("APP_A4_DEVICE: use cpu, cuda o auto.")
-        evidence = validate_evidence(run, evidence_manifest, entrada=entrada)
+        evidence = verify_historical_identity(run, evidence_manifest)
+        if entrada is not None and evidence["entrada"] != entrada:
+            raise RuntimeError("La entrada A/B solicitada no coincide con los pesos.")
         if not encoder_manifest.is_file() or encoder_manifest.is_symlink():
             raise RuntimeError("Falta manifiesto firmado del encoder SciBERT.")
         try:
@@ -136,9 +186,18 @@ class A4Classifier:
         probabilities, latencies = self.ct.predecir_probabilidades(
             self.model, rows, self.tokenizer.pad_id, self.device, batch_size=1
         )
+        if not probabilities or not latencies:
+            raise RuntimeError("El modelo A4 no devolvió salidas de inferencia.")
         scores = probabilities[0]
         if len(scores) != len(self.categories):
             raise RuntimeError("El modelo A4 devolvió un número incorrecto de categorías.")
+        if (any(not isinstance(s, (int, float)) or isinstance(s, bool)
+                or not math.isfinite(s) or s < 0 or s > 1 for s in scores)
+                or not math.isclose(sum(scores), 1.0, rel_tol=1e-3, abs_tol=1e-3)):
+            raise RuntimeError("Softmax A4 inválido: probabilidades no finitas o no normalizadas.")
+        if (not isinstance(latencies[0], (int, float)) or
+                not math.isfinite(latencies[0]) or latencies[0] < 0):
+            raise RuntimeError("Latencia A4 inválida.")
         pos = max(range(9), key=lambda i: (scores[i], -i))
         return {
             "modelo": self.model_id, "encoder": self.evidence.get("encoder", "scibert"),
