@@ -269,7 +269,7 @@ def test_exporter_blocks_previously_used_ids_and_train_cases(cases, tmp_path):
     with pytest.raises(InputError, match="utilizado previamente"):
         build_unlabeled(selection, raw, ocl_cache, blocked_ids={"q1"})
     selection.write_text("t1\n", encoding="utf-8")
-    with pytest.raises(InputError, match="split ACL-200"):
+    with pytest.raises(InputError, match="test ACL-200 oficial"):
         build_unlabeled(selection, raw, ocl_cache, blocked_ids=set())
 
 
