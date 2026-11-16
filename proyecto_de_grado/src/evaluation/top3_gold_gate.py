@@ -45,13 +45,13 @@ def _hash(value: Any, name: str) -> str:
     return token
 
 
-def _csv(path: Path, columns: tuple[str, ...]) -> list[dict[str, str]]:
+def _csv(path: Path, columns: tuple[str, ...], *, allow_empty: bool = False) -> list[dict[str, str]]:
     with path.open("r", encoding="utf-8-sig", newline="") as stream:
         reader = csv.DictReader(stream)
         if reader.fieldnames is None or set(reader.fieldnames) != set(columns):
             raise ProtocolError(f"{path.name}: encabezados incompatibles; esperados {columns}")
         rows = list(reader)
-    if not rows or any(None in row or any(v is None for v in row.values()) for row in rows):
+    if (not rows and not allow_empty) or any(None in row or any(v is None for v in row.values()) for row in rows):
         raise ProtocolError(f"{path.name}: datos ausentes o filas vacías")
     return rows
 
@@ -146,7 +146,7 @@ def load_judgments(path: Path, universe: set[tuple[str, str]]) -> dict[tuple[str
 
 
 def adjudicate(path: Path, judgments: dict[tuple[str, str], dict[str, str]]) -> dict[tuple[str, str], int]:
-    rows = _csv(path, ("context_id", "chunk_id", "adjudicator_id", "relevance", "reason"))
+    rows = _csv(path, ("context_id", "chunk_id", "adjudicator_id", "relevance", "reason"), allow_empty=True)
     decisions: dict[tuple[str, str], int] = {}
     needed = {key for key, labels in judgments.items() if len(set(labels.values())) != 1 or
               "abstain" in labels.values()}
