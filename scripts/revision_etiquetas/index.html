@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisión de etiquetas</title>
+<style>
+  :root {
+    --bg: #f6f6f4; --panel: #ffffff; --text: #1d1d1b; --muted: #6b6b66; --line: #e2e2dc;
+    --accent: #2f5fa8; --ok: #2e7d4f; --bad: #b3372e; --mark: #fff1a8; --sel: #eaf0fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161615; --panel: #20201e; --text: #ecebe6; --muted: #9a9992; --line: #34342f;
+      --accent: #7ea6e6; --ok: #6fc48f; --bad: #ec7b70; --mark: #5a4d12; --sel: #26324a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { display: flex; gap: 16px; align-items: center; padding: 12px 20px;
+           border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; }
+  header h1 { font-size: 16px; margin: 0; }
+  header .progreso { margin-left: auto; color: var(--muted); }
+  #estado { color: var(--muted); font-size: 13px; min-width: 80px; text-align: right; }
+  main { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 53px); }
+  nav { border-right: 1px solid var(--line); overflow-y: auto; max-height: calc(100vh - 53px);
+        position: sticky; top: 53px; background: var(--panel); }
+  nav button { display: flex; gap: 8px; width: 100%; text-align: left; border: 0;
+               border-bottom: 1px solid var(--line); background: none; color: var(--text);
+               padding: 8px 12px; cursor: pointer; font: inherit; font-size: 13px; }
+  nav button:hover { background: var(--sel); }
+  nav button.activo { background: var(--sel); font-weight: 600; }
+  nav .punto { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex: none;
+               border: 1px solid var(--muted); }
+  nav .punto.Correcta { background: var(--ok); border-color: var(--ok); }
+  nav .punto.Incorrecta { background: var(--bad); border-color: var(--bad); }
+  section { padding: 20px 28px; max-width: 960px; }
+  .tarjeta { background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+             padding: 16px 20px; margin-bottom: 16px; }
+  .etiqueta { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted);
+              margin: 0 0 4px; }
+  .contexto { font-family: Georgia, serif; font-size: 16px; }
+  mark { background: var(--mark); color: inherit; padding: 0 2px; border-radius: 3px; font-weight: 700; }
+  .modelo { border-left: 4px solid var(--accent); }
+  .funcion { font-size: 20px; font-weight: 700; margin: 0; }
+  .confianza { color: var(--muted); font-size: 13px; }
+  .justif { margin: 8px 0 0; font-style: italic; }
+  .resumen { color: var(--muted); font-size: 14px; }
+  form { display: grid; gap: 12px; }
+  label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; }
+  select, textarea { font: inherit; color: var(--text); background: var(--bg);
+                     border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; }
+  textarea { min-height: 110px; resize: vertical; font-weight: 400; }
+  .botones { display: flex; justify-content: space-between; }
+  .botones button { font: inherit; padding: 6px 14px; border-radius: 6px; cursor: pointer;
+                    border: 1px solid var(--line); background: var(--panel); color: var(--text); }
+  .oculto { display: none; }
+  @media (max-width: 760px) {
+    main { grid-template-columns: 1fr; }
+    nav { position: static; max-height: 200px; border-right: 0; border-bottom: 1px solid var(--line); }
+    section { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Revisión de etiquetas</h1>
+  <select id="archivo" aria-label="Archivo"></select>
+  <span class="progreso" id="progreso"></span>
+  <span id="estado"></span>
+</header>
+<main>
+  <nav id="lista"></nav>
+  <section id="detalle">
+    <div class="tarjeta">
+      <p class="etiqueta">Contexto de la cita <span id="cid"></span></p>
+      <div class="contexto" id="contexto"></div>
+    </div>
+    <div class="tarjeta modelo">
+      <p class="etiqueta">Etiqueta del modelo</p>
+      <p class="funcion" id="funcion"></p>
+      <span class="confianza" id="confianza"></span>
+      <p class="justif" id="justificacion"></p>
+    </div>
+    <div class="tarjeta">
+      <p class="etiqueta">Trabajo citado</p>
+      <strong id="titulo"></strong>
+      <p class="resumen" id="resumen"></p>
+    </div>
+    <div class="tarjeta">
+      <form id="formulario" onsubmit="return false">
+        <label>¿La etiqueta es correcta?
+          <select name="veredicto">
+            <option value="">— sin revisar —</option>
+            <option>Correcta</option>
+            <option>Incorrecta</option>
+          </select>
+        </label>
+        <label id="campo-correcta" class="oculto">¿Cuál debió ser?
+          <select name="etiqueta_correcta">
+            <option value="">— elegir —</option>
+            <option>Background</option>
+            <option>Gap</option>
+            <option>Basis</option>
+            <option>Comparison</option>
+            <option>Application</option>
+            <option>Improvement / Modification</option>
+            <option>Evidence</option>
+            <option>Identification of the Originator</option>
+            <option>Further Reading</option>
+            <option>Ambiguo</option>
+            <option>No evaluable</option>
+          </select>
+        </label>
+        <label>¿La justificación es coherente con la etiqueta?
+          <select name="justificacion_coherente">
+            <option value="">— sin revisar —</option>
+            <option>Sí</option>
+            <option>No</option>
+          </select>
+        </label>
+        <label>Comentarios humanos
+          <textarea name="comentarios humanos"
+            placeholder="Por qué es correcta o incorrecta; p. ej. la justificación describe Basis pero etiquetó Background"></textarea>
+        </label>
+      </form>
+      <div class="botones">
+        <button id="anterior">← Anterior</button>
+        <button id="siguiente">Siguiente →</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const form = $("formulario");
+let archivo = "", filas = [], actual = 0, temporizador = null;
+
+function escapar(t) {
+  return t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+async function cargarArchivos() {
+  const nombres = await (await fetch("/api/archivos")).json();
+  $("archivo").innerHTML = nombres.map((n) => `<option>${escapar(n)}</option>`).join("");
+  if (nombres.length) await cargarFilas(nombres[0]);
+}
+
+async function cargarFilas(nombre) {
+  archivo = nombre;
+  filas = await (await fetch("/api/filas?archivo=" + encodeURIComponent(nombre))).json();
+  actual = 0;
+  pintar();
+}
+
+function pintarLista() {
+  $("lista").innerHTML = filas.map((f, i) =>
+    `<button data-i="${i}" class="${i === actual ? "activo" : ""}">
+       <span class="punto ${escapar(f.veredicto || "")}"></span>
+       <span>${i + 1}. ${escapar(f["Función principal"])}</span>
+     </button>`).join("");
+  const hechas = filas.filter((f) => f.veredicto).length;
+  $("progreso").textContent = `${hechas} / ${filas.length} revisadas`;
+}
+
+function pintar() {
+  pintarLista();
+  const f = filas[actual];
+  if (!f) return;
+  $("cid").textContent = "· " + f.context_id;
+  $("contexto").innerHTML = escapar(f["Contexto TARGETCIT"]).replace(/TARGETCIT/g, "<mark>TARGETCIT</mark>");
+  $("funcion").textContent = f["Función principal"];
+  $("confianza").textContent = f["Confianza"] ? "Confianza: " + f["Confianza"] : "";
+  $("justificacion").textContent = f["Justificación / duda"] || "(sin justificación)";
+  $("titulo").textContent = f["Título citado"];
+  $("resumen").textContent = f["Resumen citado"];
+  for (const el of form.elements) el.value = f[el.name] || "";
+  $("campo-correcta").classList.toggle("oculto", f.veredicto !== "Incorrecta");
+  $("anterior").disabled = actual === 0;
+  $("siguiente").disabled = actual === filas.length - 1;
+}
+
+async function guardar() {
+  const f = filas[actual];
+  const campos = {};
+  for (const el of form.elements) { campos[el.name] = el.value; f[el.name] = el.value; }
+  $("estado").textContent = "Guardando…";
+  try {
+    const r = await fetch("/api/guardar", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ archivo, context_id: f.context_id, campos }),
+    });
+    $("estado").textContent = r.ok ? "Guardado" : "Error al guardar";
+  } catch { $("estado").textContent = "Error al guardar"; }
+  pintarLista();
+}
+
+form.addEventListener("change", (e) => {
+  if (e.target.name === "veredicto") {
+    $("campo-correcta").classList.toggle("oculto", e.target.value !== "Incorrecta");
+    if (e.target.value !== "Incorrecta") form.elements["etiqueta_correcta"].value = "";
+  }
+  guardar();
+});
+form.addEventListener("input", (e) => {
+  if (e.target.tagName !== "TEXTAREA") return;
+  $("estado").textContent = "Sin guardar…";
+  clearTimeout(temporizador);
+  temporizador = setTimeout(guardar, 600);
+});
+
+function ir(i) {
+  if (temporizador) { clearTimeout(temporizador); temporizador = null; guardar(); }
+  actual = Math.max(0, Math.min(filas.length - 1, i));
+  pintar();
+  window.scrollTo(0, 0);
+}
+$("anterior").onclick = () => ir(actual - 1);
+$("siguiente").onclick = () => ir(actual + 1);
+$("lista").onclick = (e) => { const b = e.target.closest("button"); if (b) ir(+b.dataset.i); };
+$("archivo").onchange = (e) => cargarFilas(e.target.value);
+
+cargarArchivos();
+</script>
+</body>
+</html>
