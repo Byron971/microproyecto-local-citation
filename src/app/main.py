@@ -40,7 +40,7 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 # El estado del proceso se guarda en un diccionario poblado durante el arranque.
 # El modelo y los insights se cargan una sola vez y se comparten entre
 # peticiones porque ambos son de solo lectura y su preparación es lo caro.
-state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None, "scibert": None, "a4": None, "a4_b": None}
+state: dict[str, Any] = {"recomendador": None, "insights": None, "config": None, "scibert": None, "a4": None, "a4_b": None, "specter_a": None, "specter_b": None}
 
 
 class ContextoConsulta(BaseModel):
@@ -143,6 +143,21 @@ async def lifespan(app: FastAPI):
             config.a4_device, entrada="B",
         )
 
+    # SPECTER es un encoder de clasificación A4 adicional, NO reemplaza
+    # al recuperador SciBERT de Top-3 ni a la fuente humana de etiquetas.
+    state["specter_a"] = None
+    state["specter_b"] = None
+    if config.specter_a_enabled:
+        state["specter_a"] = A4Classifier.load(
+            config.specter_a_run, config.specter_a_evidence,
+            config.specter_encoder_manifest, config.specter_device, entrada="A",
+        )
+    if config.specter_b_enabled:
+        state["specter_b"] = A4Classifier.load(
+            config.specter_b_run, config.specter_b_evidence,
+            config.specter_encoder_manifest, config.specter_device, entrada="B",
+        )
+
     print("Backend listo en http://127.0.0.1:8000")
 
     yield
@@ -231,6 +246,20 @@ def capacidades() -> dict[str, Any]:
                 "modelo": getattr(state.get("a4_b"), "model_id", None),
                 "entrada": "B",
                 "validacion": "provisional_no_gold_humano" if state.get("a4_b") is not None
+                              else "no_ejecutada",
+            },
+            "clasificacion_specter_a": {
+                "disponible": state.get("specter_a") is not None,
+                "modelo": getattr(state.get("specter_a"), "model_id", None),
+                "encoder": "specter", "entrada": "A",
+                "validacion": "provisional_no_gold_humano" if state.get("specter_a") is not None
+                              else "no_ejecutada",
+            },
+            "clasificacion_specter_b": {
+                "disponible": state.get("specter_b") is not None and state.get("scibert") is not None,
+                "modelo": getattr(state.get("specter_b"), "model_id", None),
+                "encoder": "specter", "entrada": "B",
+                "validacion": "provisional_no_gold_humano" if state.get("specter_b") is not None
                               else "no_ejecutada",
             },
         },
@@ -446,6 +475,16 @@ def _a4(kind: str) -> A4Classifier:
     return result
 
 
+def _specter(kind: str) -> A4Classifier:
+    model = state.get("specter_a" if kind == "A" else "specter_b")
+    if model is None:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Checkpoint SPECTER {kind} no disponible; sin predicción simulada.",
+        )
+    return model
+
+
 @app.post("/api/clasificar-cita")
 def clasificar_cita_provisional(consulta: ConsultaFuncionA) -> dict[str, Any]:
     """Únicamente SciBERT-A validado por SHA; etiquetas Haiku provisionales."""
@@ -457,9 +496,11 @@ def clasificar_cita_provisional(consulta: ConsultaFuncionA) -> dict[str, Any]:
 
 
 def _clasificar_b(contexto: str, chunks: list[dict], *, document_key: str | None = None,
-                  cited_id: str, context_id: str | None = None) -> dict[str, Any]:
+                  cited_id: str, context_id: str | None = None,
+                  encoder: str = "scibert") -> dict[str, Any]:
     """Top-3 del cited paper y la receta A4-B original; sin uso de Gold."""
-    model, dense = _a4("B"), _scibert()
+    model = _a4("B") if encoder == "scibert" else _specter("B")
+    dense = _scibert()
     if len(chunks) < 3:
         raise HTTPException(status_code=422, detail="La entrada B necesita al menos tres chunks únicos.")
     try:
@@ -502,6 +543,45 @@ def clasificar_cita_b_corpus(context_id: str) -> dict[str, Any]:
         caso["citation_context"], caso["chunks"],
         document_key=caso["cited_id"] + ":" + caso["sha256_ocl_citado"],
         cited_id=caso["cited_id"], context_id=context_id,
+    )
+
+
+@app.post("/api/clasificar-cita-specter-a")
+def clasificar_cita_specter_a(consulta: ConsultaFuncionA) -> dict[str, Any]:
+    """SPECTER-A (título+abstract), Haiku provisional, pesos originales obligatorios."""
+    model = _specter("A")
+    try:
+        return model.classify(consulta.contexto, consulta.cited_title, consulta.cited_abstract)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@app.post("/api/clasificar-cita-specter-b")
+def clasificar_cita_specter_b(consulta: ConsultaTop3) -> dict[str, Any]:
+    """SciBERT recupera Top-3 y SPECTER-B clasifica, sin Gold."""
+    chunks = [{"chunk_id": p.chunk_id.strip(), "texto": p.texto.strip(), "seccion": p.seccion}
+              for p in consulta.parrafos]
+    return _clasificar_b(consulta.contexto, chunks, cited_id=consulta.cited_id,
+                         encoder="specter")
+
+
+@app.get("/api/clasificar-cita-specter-b/corpus/{context_id}")
+def clasificar_cita_specter_b_corpus(context_id: str) -> dict[str, Any]:
+    """La variante B solo acepta corpus local TRAIN aprobado, no Gold."""
+    _specter("B")
+    _scibert()
+    try:
+        auditar_train(ruta_corpus())
+        doc = leer_corpus()
+    except CorpusError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    caso = next((c for c in doc["casos"] if c["context_id"] == context_id), None)
+    if caso is None:
+        raise HTTPException(status_code=404, detail="Contexto no disponible en TRAIN.")
+    return _clasificar_b(
+        caso["citation_context"], caso["chunks"],
+        document_key=caso["cited_id"] + ":" + caso["sha256_ocl_citado"],
+        cited_id=caso["cited_id"], context_id=context_id, encoder="specter",
     )
 
 

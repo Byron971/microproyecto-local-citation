@@ -6,6 +6,7 @@ export function CitationFunctionB() {
   const [context, setContext] = useState('');
   const [cited, setCited] = useState('');
   const [paragraphs, setParagraphs] = useState('');
+  const [encoder, setEncoder] = useState<'scibert' | 'specter'>('scibert');
   const [examples, setExamples] = useState<Top3CorpusExample[]>([]);
   const [chosen, setChosen] = useState('');
   const [result, setResult] = useState<FunctionBResponse>();
@@ -23,7 +24,9 @@ export function CitationFunctionB() {
       setError('Se requiere un TARGETCIT, ID del citado y entre 3 y 100 párrafos válidos.');
       return;
     }
-    await execute(signal => api.classifyCitationB(context.trim(), cited.trim(), chunks, signal));
+    await execute(signal => encoder === 'scibert'
+      ? api.classifyCitationB(context.trim(), cited.trim(), chunks, signal)
+      : api.classifyCitationSpecterB(context.trim(), cited.trim(), chunks, signal));
   }
 
   async function loadExamples() {
@@ -37,7 +40,9 @@ export function CitationFunctionB() {
 
   async function runCorpus() {
     if (!chosen) return;
-    await execute(signal => api.classifyCitationBCorpus(chosen, signal));
+    await execute(signal => encoder === 'scibert'
+      ? api.classifyCitationBCorpus(chosen, signal)
+      : api.classifyCitationSpecterBCorpus(chosen, signal));
   }
 
   async function execute(fn: (signal: AbortSignal) => Promise<FunctionBResponse | null>) {
@@ -51,6 +56,7 @@ export function CitationFunctionB() {
       if (answer.recuperacion.metodo !== 'scibert_base_mean_pooling_cosine'
           || answer.recuperacion.fragmentos.length !== 3
           || answer.clasificacion.entrada !== 'B'
+          || answer.clasificacion.encoder !== encoder
           || answer.clasificacion.puntuaciones_softmax.length !== 9
           || answer.clasificacion.validacion !== 'provisional_no_gold_humano'
           || answer.gold_certificado !== false) {
@@ -77,11 +83,18 @@ export function CitationFunctionB() {
         </div>
       </div>
       <p className="notice" role="note">
-        Los resultados son provisionales: etiquetas Haiku, softmax no calibrado y
-        ninguna validación con Test Gold humano. Los casos manuales requieren
-        aportar fragmentos del artículo citado; la API no verifica su identidad documental.
+        Recuperación Top-3 siempre con SciBERT; el clasificador puede ser SciBERT-B o
+        SPECTER-B, y requiere pesos SHA-verificados. Etiquetas Haiku, softmax no
+        calibrado y ninguna validación con Test Gold humano. Los casos manuales
+        requieren fragmentos del artículo citado sin identidad documental verificable.
       </p>
       <section className="workspace">
+        <label htmlFor="function-b-encoder">Encoder de clasificación B</label>
+        <select id="function-b-encoder" value={encoder} disabled={busy}
+          onChange={e => { setEncoder(e.target.value as 'scibert' | 'specter'); setResult(undefined); }}>
+          <option value="scibert">SciBERT-B (checkpoint requerido)</option>
+          <option value="specter">SPECTER-B (checkpoint requerido)</option>
+        </select>
         <div className="corpus-demo" aria-label="Ejemplos TRAIN sin Gold">
           <h2>Prueba con un artículo citado auténtico de TRAIN</h2>
           <button type="button" className="text-button" disabled={busy} onClick={loadExamples}>

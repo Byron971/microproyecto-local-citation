@@ -100,3 +100,20 @@ test('B autentica solo casos disponibles de TRAIN de la API', async () => {
   await user.click(screen.getByRole('button', { name: 'Clasificar cita B de TRAIN' }));
   expect(await screen.findByText('Graph models use citations.')).toBeVisible();
 });
+
+
+test('SPECTER-B usa su propia API y conserva el Top3 de SciBERT', async () => {
+  const scibert = vi.spyOn(api, 'classifyCitationB');
+  const specter = vi.spyOn(api, 'classifyCitationSpecterB').mockResolvedValue({
+    ...response,
+    clasificacion: {...response.clasificacion, modelo: 'specter_B_42', encoder: 'specter'},
+  });
+  const user = userEvent.setup();
+  render(<CitationFunctionB />);
+  await user.selectOptions(screen.getByLabelText('Encoder de clasificación B'), 'specter');
+  await fill(user);
+  await user.click(screen.getByRole('button', { name: 'Recuperar Top-3 y clasificar B' }));
+  expect(await screen.findByText('specter_B_42 · Entrada B')).toBeVisible();
+  expect(specter).toHaveBeenCalled();
+  expect(scibert).not.toHaveBeenCalled();
+});

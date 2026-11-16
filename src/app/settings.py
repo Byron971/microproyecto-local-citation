@@ -60,6 +60,14 @@ class AppSettings:
     a4_b_run: Path | None = None
     a4_b_evidence: Path | None = None
     a4_device: str = "cpu"
+    specter_a_enabled: bool = False
+    specter_b_enabled: bool = False
+    specter_a_run: Path | None = None
+    specter_b_run: Path | None = None
+    specter_a_evidence: Path | None = None
+    specter_b_evidence: Path | None = None
+    specter_encoder_manifest: Path | None = None
+    specter_device: str = "cpu"
     max_science_chunks: int = 500
     max_science_characters: int = 600_000
     max_cached_papers: int = 8
@@ -154,6 +162,17 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
         raise ValueError("APP_A4_RUN es obligatorio con APP_A4_ENABLED")
     if a4_b_enabled and not env.get("APP_A4_B_RUN"):
         raise ValueError("APP_A4_B_RUN es obligatorio con APP_A4_B_ENABLED")
+    specter_a_enabled = _enabled("APP_SPECTER_A_ENABLED")
+    specter_b_enabled = _enabled("APP_SPECTER_B_ENABLED")
+    specter_device = _value(env, "APP_SPECTER_DEVICE", "cpu").lower()
+    if specter_device not in {"cpu", "cuda", "auto"}:
+        raise ValueError("APP_SPECTER_DEVICE debe ser cpu, cuda o auto")
+    if specter_b_enabled and not dense_enabled:
+        raise ValueError("APP_SPECTER_B_ENABLED exige APP_SCIBERT_ENABLED=true para Top-3")
+    if specter_a_enabled and not env.get("APP_SPECTER_A_RUN"):
+        raise ValueError("APP_SPECTER_A_RUN es obligatorio al activar SPECTER A")
+    if specter_b_enabled and not env.get("APP_SPECTER_B_RUN"):
+        raise ValueError("APP_SPECTER_B_RUN es obligatorio al activar SPECTER B")
     root_a4 = ROOT / "proyecto_de_grado/docs/evidencias_clasificacion_a4"
     max_chunks = _positive("APP_SCIENCE_MAX_CHUNKS", 500, 3, 2000)
     max_chars = _positive("APP_SCIENCE_MAX_CHARACTERS", 600000, 1000, 2000000)
@@ -184,6 +203,22 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
         a4_encoder_manifest=_path(env, "APP_A4_ENCODER_MANIFEST", root_a4 / "manifiesto_modelo_scibert.json")
                             if (a4_enabled or a4_b_enabled) else None,
         a4_device=a4_device,
+        specter_a_enabled=specter_a_enabled,
+        specter_b_enabled=specter_b_enabled,
+        specter_a_run=_path(env, "APP_SPECTER_A_RUN", ROOT / "missing-specter-a")
+                     if specter_a_enabled else None,
+        specter_b_run=_path(env, "APP_SPECTER_B_RUN", ROOT / "missing-specter-b")
+                     if specter_b_enabled else None,
+        specter_a_evidence=_path(env, "APP_SPECTER_A_EVIDENCE",
+                                 root_a4 / "specter_A_42/manifiesto.json")
+                          if specter_a_enabled else None,
+        specter_b_evidence=_path(env, "APP_SPECTER_B_EVIDENCE",
+                                 root_a4 / "specter_B_42/manifiesto.json")
+                          if specter_b_enabled else None,
+        specter_encoder_manifest=_path(env, "APP_SPECTER_ENCODER_MANIFEST",
+                                       root_a4 / "manifiesto_modelo_specter.json")
+                                if (specter_a_enabled or specter_b_enabled) else None,
+        specter_device=specter_device,
         max_science_chunks=max_chunks,
         max_science_characters=max_chars,
         max_cached_papers=cache_papers,

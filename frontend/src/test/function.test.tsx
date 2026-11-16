@@ -63,3 +63,27 @@ test('sin TARGETCIT no consulta el backend', async () => {
   expect(screen.getByRole('alert')).toHaveTextContent('un único TARGETCIT');
   expect(fn).not.toHaveBeenCalled();
 });
+
+
+test('SPECTER-A usa su endpoint y rechaza sustitución silenciosa por SciBERT', async () => {
+  const scibert = vi.spyOn(api, 'classifyCitation');
+  const specter = vi.spyOn(api, 'classifyCitationSpecterA').mockResolvedValue({
+    modelo: 'specter_A_42', encoder: 'specter', entrada: 'A',
+    clase: 'Comparison', indice_clase: 3,
+    puntuaciones_softmax: [
+      'Background', 'Gap', 'Basis', 'Comparison', 'Application',
+      'Improvement / Modification', 'Evidence',
+      'Identification of the Originator', 'Further Reading',
+    ].map((categoria, i) => ({ categoria, score: i === 3 ? 0.68 : 0.04 })),
+    latencia_modelo_ms: 6.1, training_labels: 'Haiku',
+    validacion: 'provisional_no_gold_humano', advertencia: 'No Gold',
+  });
+  const user = userEvent.setup();
+  render(<CitationFunction />);
+  await user.selectOptions(screen.getByLabelText('Encoder de clasificación A'), 'specter');
+  await fill(user);
+  await user.click(screen.getByRole('button', {name: 'Clasificar función de cita'}));
+  expect(await screen.findByText('specter_A_42 · Entrada A')).toBeVisible();
+  expect(specter).toHaveBeenCalled();
+  expect(scibert).not.toHaveBeenCalled();
+});
