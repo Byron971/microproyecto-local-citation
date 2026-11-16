@@ -9,6 +9,7 @@ on:
       - "tests/test_top3_gold_gate.py"
       - "tests/test_top3_acl_official.py"
       - "src/evaluation/a4_infer_unlabeled.py"
+      - "src/evaluation/a4_export_unlabeled.py"
       - "tests/test_a4_unlabeled_pipeline.py"
       - "tests/test_release_readiness.py"
       - "docs/mega_pr_pre_gold_2026_11.md"
