@@ -365,12 +365,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--raw-dir", type=Path, help="ACL-200 oficial: contexts/train/val/test.json")
     parser.add_argument("--require-official-splits", action="store_true",
                         help="Bloquear reporte si no se verificó ACL-200 auténtico")
+    parser.add_argument("--ocl-cache", type=Path, help="Cache de artículos ACL OCL original")
+    parser.add_argument("--require-ocl", action="store_true",
+                        help="Rechazar Gold de chunks sin cotejo de universo completo y hashes OCL V1")
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args(argv)
     try:
         report = audit(args.manifest, args.exclusions, args.judgments,
                        args.adjudications, args.rankings, tuple(args.methods),
-                       raw_dir=args.raw_dir, require_official_splits=args.require_official_splits)
+                       raw_dir=args.raw_dir, require_official_splits=args.require_official_splits,
+                       ocl_cache=args.ocl_cache, require_ocl=args.require_ocl)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         with args.output.open("x", encoding="utf-8") as file:
             json.dump(report, file, indent=2, ensure_ascii=False)
