@@ -84,6 +84,7 @@ def load_universe(path: Path) -> tuple[dict[str, dict[str, Any]], set[tuple[str,
         if not isinstance(chunks, list) or len(chunks) < 3:
             raise ProtocolError(f"{cid}: debe incluir el universo de al menos 3 chunks")
         local: set[str] = set()
+        chunk_meta: dict[str, dict[str, Any]] = {}
         for chunk in chunks:
             if not isinstance(chunk, dict) or set(chunk) != {"chunk_id", "text_sha256", "section"}:
                 raise ProtocolError(f"{cid}: chunk solo con ID, hash y sección")
@@ -94,8 +95,10 @@ def load_universe(path: Path) -> tuple[dict[str, dict[str, Any]], set[tuple[str,
             if chunk_id in local:
                 raise ProtocolError(f"{cid}: chunk duplicado")
             local.add(chunk_id)
+            chunk_meta[chunk_id] = {"text_sha256": chunk["text_sha256"], "section": chunk["section"]}
             universe.add((cid, chunk_id))
         indexed[cid] = {"citing_id": citing, "cited_id": cited, "chunks": local,
+                        "chunk_meta": chunk_meta,
                         "context_sha256": row["context_sha256"]}
     return indexed, universe
 
@@ -159,6 +162,63 @@ def check_acl_official(cases: dict[str, dict[str, Any]], raw_dir: Path) -> dict[
     # de splits entre el momento de auditoría y la publicación del reporte.
     files = ("contexts.json", "train.json", "val.json", "test.json")
     return {name: digest(raw_dir / name) for name in files}
+
+
+def check_ocl_chunks(cases: dict[str, dict[str, Any]], ocl_cache: Path) -> dict:
+    """Asegura que el universo Gold incluye todos los chunks V1 del OCL citado.
+
+    Solo verifica procedencia textual/segmentación, jamás relevancia humana.
+    """
+    from proyecto_de_grado.src.data.exportar_corpus_top3 import fragmentar
+    safe_id = re.compile(r"^[A-Za-z0-9_-]+$")
+    cache = Path(ocl_cache)
+    seen: dict[str, str] = {}
+    for cid, item in cases.items():
+        cited = item["cited_id"]
+        if safe_id.fullmatch(cited) is None:
+            raise ProtocolError("cited_id OCL inseguro")
+        file = cache / (cited + ".json")
+        if not file.is_file() or file.is_symlink():
+            raise ProtocolError("Archivo original ACL OCL no disponible")
+        sha = digest(file)
+        if cited in seen and seen[cited] != sha:
+            raise ProtocolError("Documento OCL inconsistente en el mismo lote")
+        seen[cited] = sha
+        raw = json.loads(file.read_text(encoding="utf-8"))
+        if raw.get("paper_id") != cited:
+            raise ProtocolError("OCL paper_id no coincide con el artículo citado")
+        paragraphs = (raw.get("pdf_parse") or {}).get("body_text")
+        if not isinstance(paragraphs, list):
+            raise ProtocolError("OCL sin body_text")
+        source = []
+        for number, paragraph in enumerate(paragraphs):
+            if not isinstance(paragraph, dict):
+                raise ProtocolError("Párrafo OCL inválido")
+            text = str(paragraph.get("text") or "").strip()
+            if text:
+                source.append({
+                    "numero": number, "texto": text,
+                    "seccion": str(paragraph.get("section") or "").strip(),
+                })
+        try:
+            fragments = fragmentar(source)
+        except (ValueError, KeyError, TypeError) as exc:
+            raise ProtocolError("OCL no es compatible con fragmentación V1") from exc
+        meta = item["chunk_meta"]
+        if len(fragments) != len(meta):
+            raise ProtocolError(f"{cid}: universo de chunks no es completo frente al OCL V1")
+        for chunk in fragments:
+            info = meta.get(chunk["chunk_id"])
+            if (info is None
+                    or info["text_sha256"] != hashlib.sha256(chunk["texto"].encode("utf-8")).hexdigest()
+                    or info["section"] != chunk["seccion"]):
+                raise ProtocolError(f"{cid}: hash/ID/sección de chunk contradice el OCL V1")
+    return {
+        "documents_checked": len(seen),
+        "source_registry_sha256": hashlib.sha256(
+            json.dumps(seen, sort_keys=True).encode("utf-8")
+        ).hexdigest(),
+    }
 
 
 def load_judgments(path: Path, universe: set[tuple[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
@@ -258,12 +318,16 @@ def score_rankings(path: Path, cases: dict[str, dict[str, Any]],
 def audit(manifest: Path, exclusions: Path, judgments: Path,
           adjudications: Path, rankings: Path,
           methods: tuple[str, ...] = METHODOLOGIES,
-          raw_dir: Path | None = None, *, require_official_splits: bool = False) -> dict:
+          raw_dir: Path | None = None, *, require_official_splits: bool = False,
+          ocl_cache: Path | None = None, require_ocl: bool = False) -> dict:
     cases, universe = load_universe(manifest)
     if require_official_splits and raw_dir is None:
         raise ProtocolError("Para evaluar se exige --raw-dir con ACL-200 oficial.")
+    if require_ocl and ocl_cache is None:
+        raise ProtocolError("Para evaluar relevancia se exige --ocl-cache original.")
     check_exclusions(exclusions, cases)
     official = check_acl_official(cases, raw_dir) if raw_dir is not None else None
+    ocl = check_ocl_chunks(cases, ocl_cache) if ocl_cache is not None else None
     primary = load_judgments(judgments, universe)
     decisions = adjudicate(adjudications, primary)
     summary = score_rankings(rankings, cases, decisions, methods)
@@ -274,6 +338,8 @@ def audit(manifest: Path, exclusions: Path, judgments: Path,
                    "SOLO_FORMATO_SPLITS_ACL_NO_VERIFICADOS"),
         "acl_official_splits_verified": official is not None,
         "acl_official_sha256": official,
+        "ocl_full_universe_verified": ocl is not None,
+        "ocl_provenance": ocl,
         "human_gold_certified": False, "blindness_certified": False,
         "split_independence_certified": False,
         "universe_pairs": len(universe),
