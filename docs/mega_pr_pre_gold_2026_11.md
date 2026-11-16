@@ -20,6 +20,10 @@ Corte: 15-nov-2026 (Colombia); base `main` tras #180 (732db4d). Este documento n
 2. `tests/test_top3_gold_gate.py`: pruebas sintéticas de denominadores Hit@3, Recall@3 y MRR@3, exclusión de consultas sin relevantes, rechazando anotaciones solo de Top-3, decisiones no independientes y duplicados.
 3. `scripts/ci/release_readiness.py`: inventario de rutas de código, cuatro manifiestos A4 y disponibilidad SHA de pesos si se suministran. Por diseño, jamás marca Gold o servicios AWS como certificados por inspección estática.
 4. `.github/workflows/pre-gold-gates.yml`: CI sin credenciales, pesos, Gold humano o ejecución de AWS. Archivo JSON de estado contiene solo metadatos.
+5. `src/app/classifier_runtime.py`, `src/app/settings.py` y `src/app/main.py`: preparan SPECTER-A y SPECTER-B con checkpoints originales SHA, tokenizer y revisión pinned. La configuración es **opt-in** y las rutas devuelven 503 si faltan pesos, sin reemplazar SPECTER por SciBERT. La entrada B reutiliza los tres chunks reales recuperados con SciBERT.
+6. `tests/test_specter_optional_api.py`: pruebas de contratos HTTP sin pesos, y validación de SHA con bytes explícitamente sintéticos. Las tests no constituyen inferencia SPECTER auténtica.
+7. `.gitignore`: evita versiones nuevas de hojas privadas humanas y pesos en rutas usuales. **No elimina material histórico ya rastreado por Git**.
+
 
 No se modifican registros humanos, fuentes ACL-200, DVC, entrenamientos ni Terraform. No se publica infraestructura de pago.
 
@@ -33,7 +37,7 @@ Cinco archivos privados, con nombres ejemplares y formatos exactos:
 - `exclusions.json`: `schema_version=1` y ocho listas de cadenas: `train_context_ids`, `validation_context_ids`, `prompt_selection_context_ids`, `ranking_tuning_context_ids`, `train_citing_ids`, `validation_citing_ids`, `train_pairs`, `validation_pairs`. Los pares tienen formato `citante::citado`. Construir estas listas a partir de datos y manifests originales. Una lista vacía sin auditoría no constituye evidencia de independencia.
 - `judgments.csv`: encabezados `context_id,chunk_id,annotator_id,relevance`; exactamente dos anotadores primarios **distintos** por cada chunk. `relevance` admite `0`, `1` o `abstain`.
 - `adjudications.csv`: `context_id,chunk_id,adjudicator_id,relevance,reason`; una fila para cada desacuerdo/abstención; la relevancia final es binaria y el adjudicador es un tercero distinto.
-- `rankings.csv`: `context_id,method,rank,chunk_id`; Top-3 único por consulta y método `bm25` o `scibert`, todos dentro del mismo universo evaluado. El código no usa el ranking como etiqueta.
+- `rankings.csv`: `context_id,method,rank,chunk_id`; Top-3 único por consulta y método `bm25` o `scibert`, todos dentro del mismo universo evaluado. El código no usa el ranking como etiqueta. El método `bm25_normalizado` también está soportado mediante `--methods bm25 bm25_normalizado scibert`, pero requiere **rankings reales independientes** y un método de normalización documentado: el gate no inventa ese algoritmo.
 
 Comando de evaluación cuando existan archivos humanos reales (los paths son **ilustrativos**, no existentes):
 
@@ -44,6 +48,7 @@ uv run python -m proyecto_de_grado.src.evaluation.top3_gold_gate \
   --judgments /PRIVADO/judgments.csv \
   --adjudications /PRIVADO/adjudications.csv \
   --rankings /PRIVADO/rankings.csv \
+  --methods bm25 scibert \
   --output /PRIVADO/reportes/top3_agregado_001.json
 ```
 
@@ -128,3 +133,12 @@ uv run python scripts/ci/release_readiness.py
 uv run python scripts/ci/release_readiness.py --require-final
 # El último debe devolver 1: la certificación final sigue pendiente.
 ```
+
+## 8. Nuevos endpoints A4 SPECTER de solo opt-in (sin pesos públicos)
+
+- `POST /api/clasificar-cita-specter-a`: entrada A con contexto TARGETCIT, título y abstract auténticos; nunca inventa campos faltantes.
+- `POST /api/clasificar-cita-specter-b`: entrada B manual con Top-3 de SciBERT base; no implica que SciBERT sea el encoder del clasificador.
+- `GET /api/clasificar-cita-specter-b/corpus/{context_id}`: solo corpus TRAIN local validado, nunca Gold.
+- `GET /api/capacidades`: informa por separado el estado SciBERT-A/B y SPECTER-A/B. `gold_humano_certificado` permanece falso.
+
+Variables de entorno: `APP_SPECTER_A_ENABLED`, `APP_SPECTER_B_ENABLED`, `APP_SPECTER_A_RUN`, `APP_SPECTER_B_RUN`, `APP_SPECTER_A_EVIDENCE`, `APP_SPECTER_B_EVIDENCE`, `APP_SPECTER_ENCODER_MANIFEST`, `APP_SPECTER_DEVICE`. Consultar `config/runtime.env.example`. Para B es obligatorio configurar el recuperador real `APP_SCIBERT_ENABLED=true` y su manifiesto. Los manifests SPECTER están en el repositorio, pero **el archivo model.safetensors original no está disponible en Git**; no afirmar inferencia SPECTER ejecutada sin una corrida de hardware real.
