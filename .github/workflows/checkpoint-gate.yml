@@ -8,6 +8,8 @@ on:
       - "src/app/checkpoint_gate.py"
       - "config/checkpoint_registry.json"
       - "tests/test_checkpoint_gate.py"
+      - "scripts/locate_a4_weights.py"
+      - "tests/test_locate_a4_weights.py"
       - "proyecto_de_grado/docs/evidencias_clasificacion_a4/**/manifiesto.json"
       - ".github/workflows/checkpoint-gate.yml"
   pull_request:
@@ -15,6 +17,8 @@ on:
       - "src/app/checkpoint_gate.py"
       - "config/checkpoint_registry.json"
       - "tests/test_checkpoint_gate.py"
+      - "scripts/locate_a4_weights.py"
+      - "tests/test_locate_a4_weights.py"
       - "proyecto_de_grado/docs/evidencias_clasificacion_a4/**/manifiesto.json"
       - ".github/workflows/checkpoint-gate.yml"
 
@@ -32,6 +36,6 @@ jobs:
           python-version: "3.14"
       - run: uv sync --locked --group dev
       - name: Unit tests del gate A4
-        run: uv run pytest -q tests/test_checkpoint_gate.py
+        run: uv run pytest -q tests/test_checkpoint_gate.py tests/test_locate_a4_weights.py
       - name: Contrastar registro con manifiestos históricos
         run: uv run python -m src.app.checkpoint_gate --permitir-faltantes
