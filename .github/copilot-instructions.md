@@ -19,7 +19,7 @@ No confundir recomendación de artículos con recuperación de evidencia textual
 - Recuperación: packages/recuperacion-densa/. Pruebas: cd packages/recuperacion-densa && uv sync --locked && uv run pytest -q.
 - Auditoría: packages/auditoria-corpus/. Pruebas: cd packages/auditoria-corpus && uv sync --locked && uv run pytest -q.
 - Evaluación adicional: tests/ y proyecto_de_grado/tests/; workflow .github/workflows/evaluacion-citas.yml.
-- Interfaz React puede estar en ramas de desarrollo y NO existe en main actualmente. Al integrarla, usar Node >=22.12, npm ci, npm run build, npm test y E2E pertinentes.
+- Interfaz React SÍ está integrada en `frontend/` en main, con selección SciBERT/SPECTER A/B. Verificar Node >=22.12, npm ci, build, Vitest y Playwright; no afirmar inferencia A4 real por pasar pruebas frontend con fixtures.
 
 ## Reglas de ejecución obligatorias
 1. Partir de main actual, una rama y un PR pequeño por issue. Jamás modificar directamente main ni fusionar automáticamente.
@@ -31,6 +31,18 @@ No confundir recomendación de artículos con recuperación de evidencia textual
 7. La integración del producto requiere inferencia real y tests E2E de éxito/error. No presentar BM25 como SciBERT ni puntajes de similitud como probabilidades.
 8. Ejecutar pruebas locales y de CI pertinentes; añadir test de regresión. Si GPU/AWS/DVC no son accesibles, declarar exactamente lo omitido.
 9. Cada PR debe explicar problema, enfoque, archivos, comandos y resultados reales, comportamiento antes/después, riesgos y dependencias. No cerrar issues antes de verificar criterios de aceptación.
+
+## Equipo operativo y comandos de cierre pre-Gold
+
+El equipo operativo actual es el usuario responsable y un asistente IA. **No asignar ni esperar cambios de antiguos integrantes inactivos.** Los controles de calidad automatizados pueden ejecutarse sin ellos. Una IA NO equivale a un segundo anotador humano independiente: conservar las limitaciones científicas de la propuesta o solicitar formalmente una modificación metodológica al programa.
+
+- Cierre técnico: `docs/mega_pr_183_operacion_final_pre_gold.md`.
+- Reglas de los cuatro encoders científicos (sin pesos): `src/app/science_preflight.py --strict-all`.
+- Exportación ciega de entradas desde ACL-200 + OCL: `python -m src.evaluation.a4_export_unlabeled`.
+- Ejecutor offline 2x2 con fuentes verificadas: `python -m src.evaluation.a4_infer_unlabeled --apply`; requiere `--ocl-cache` y `--raw-dir`, más checkpoints auténticos.
+- Gold por fragmentos (independiente de nueve clases): `top3_gold_gate --require-official-splits --require-ocl`; aun con schemas correctos NO certifica humanos.
+- Smoke científico completo: `python scripts/ci/smoke_tesis.py --cientifico --cuatro-modelos`, no confundir con CI de contratos ni smoke baseline.
+- La cobertura B histórica inferior a 60% y el denominador de 15% humano siguen pendientes de aprobación; no renombrar como cumplidos.
 
 ## Tres niveles distintos de cumplimiento
 Separar: (a) código escrito, (b) experimento ejecutado/reproducible y (c) objetivo académico validado. Tests sintéticos y CI verde no certifican Gold humano ni resultados científicos.
