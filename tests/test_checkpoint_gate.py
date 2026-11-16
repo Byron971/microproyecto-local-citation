@@ -64,7 +64,7 @@ def test_manifiesto_original_prevalece_sobre_registro_modificado(tmp_path):
         verificar_registro(registry, base, tmp_path)
 
 
-@pytest.mark.parametrize("part", ["../../outside/model.safetensors", "/tmp/model.safetensors",
+@pytest.mark.parametrize("part", ["../../outside/model.safetensors", "/tmp/model.safetensors", "//server/share/model.safetensors",
                                   "c:\\tmp\\model.safetensors"])
 def test_no_admite_rutas_inseguras(tmp_path, part):
     base, _, registry, doc, _ = escenario(tmp_path)
@@ -91,7 +91,13 @@ def test_enlace_simbolico_no_se_acepta(tmp_path):
     base, file, registry, _, payload = escenario(tmp_path)
     real = tmp_path / "otro.safetensors"
     real.write_bytes(payload)
-    file.symlink_to(real)
+    try:
+        file.symlink_to(real)
+    except OSError as exc:
+        # Windows sin Developer Mode o privilegio SeCreateSymbolicLink.
+        if getattr(exc, "winerror", None) == 1314:
+            pytest.skip("Windows no autoriza crear symlinks sin privilegio.")
+        raise
     assert verificar_registro(registry, base, tmp_path)["unsafe_symlink"] == 1
 
 
