@@ -118,3 +118,31 @@ def test_four_arm_preflight_requires_specter_snapshot_not_just_weights(monkeypat
     monkeypatch.setattr(gate, "specter_snapshot_status",
                         lambda download=False: {"status": "sha_mismatch"})
     assert gate.preflight(include_specter=True)["ready_four_a4"] is False
+
+
+@pytest.mark.parametrize("bad_scores", [
+    [float("nan")] + [0.0] * 8,
+    [float("inf")] + [0.0] * 8,
+    [0.9] + [0.0] * 8,  # sin normalizar
+    [-0.1] + [0.1375] * 8,
+])
+def test_a4_api_rechaza_softmax_corrupto_sin_torch(bad_scores):
+    from src.app.classifier_runtime import A4Classifier
+    from types import SimpleNamespace
+
+    class FakeCT:
+        @staticmethod
+        def preparar_ejemplos(*args):
+            return [{"context_id": "synthetic"}]
+
+        @staticmethod
+        def predecir_probabilidades(*args, **kwargs):
+            return [bad_scores], [0.5]
+
+    fake_domain = SimpleNamespace(CATEGORIAS=tuple(f"Label_{i}" for i in range(9)))
+    model = A4Classifier(object(), object(), FakeCT(), fake_domain, "cpu", {
+        "experiment_id": "scibert_A_42", "entrada": "A",
+        "hiperparametros": {"max_len": 512},
+    })
+    with pytest.raises(RuntimeError, match="Softmax A4 inválido"):
+        model.classify("Graph TARGETCIT work", "Graph title", "Graph abstract.")
