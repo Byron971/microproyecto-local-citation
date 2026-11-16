@@ -260,9 +260,9 @@ def audit(manifest: Path, exclusions: Path, judgments: Path,
           methods: tuple[str, ...] = METHODOLOGIES,
           raw_dir: Path | None = None, *, require_official_splits: bool = False) -> dict:
     cases, universe = load_universe(manifest)
-    check_exclusions(exclusions, cases)
     if require_official_splits and raw_dir is None:
         raise ProtocolError("Para evaluar se exige --raw-dir con ACL-200 oficial.")
+    check_exclusions(exclusions, cases)
     official = check_acl_official(cases, raw_dir) if raw_dir is not None else None
     primary = load_judgments(judgments, universe)
     decisions = adjudicate(adjudications, primary)
