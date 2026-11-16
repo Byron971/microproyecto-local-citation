@@ -12,6 +12,7 @@ on:
       - "tests/test_four_arm_smoke.py"
       - "tests/test_a4_unlabeled_pipeline.py"
       - "src/evaluation/a4_infer_unlabeled.py"
+      - "src/evaluation/a4_export_unlabeled.py"
       - "tests/test_https_aws_audit.py"
       - "scripts/ci/audit_https_aws.py"
       - "tests/test_smoke_tesis.py"
