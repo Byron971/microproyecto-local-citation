@@ -1,0 +1,61 @@
+name: Gates pre-Gold y readiness (sin humanos ni AWS)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "proyecto_de_grado/src/evaluation/top3_gold_gate.py"
+      - "scripts/ci/release_readiness.py"
+      - "tests/test_top3_gold_gate.py"
+      - "tests/test_release_readiness.py"
+      - "docs/mega_pr_pre_gold_2026_11.md"
+      - ".github/workflows/pre-gold-gates.yml"
+  push:
+    branches: [main]
+    paths:
+      - "proyecto_de_grado/src/evaluation/top3_gold_gate.py"
+      - "scripts/ci/release_readiness.py"
+      - "tests/test_top3_gold_gate.py"
+      - "tests/test_release_readiness.py"
+      - ".github/workflows/pre-gold-gates.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pre-gold-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Instalar dependencias fijadas, sin Gold ni Torch
+        run: uv sync --locked --group dev
+      - name: Compilar y ejecutar controles sintéticos
+        run: |
+          uv run python -m compileall -q proyecto_de_grado/src/evaluation/top3_gold_gate.py scripts/ci/release_readiness.py
+          uv run pytest -q tests/test_top3_gold_gate.py tests/test_release_readiness.py \
+            tests/test_gold_freeze_audit.py tests/test_gold_manifest_reconcile.py \
+            tests/test_acl200_gold_split_gate.py tests/test_corpus_preflight.py \
+            tests/test_smoke_tesis.py
+      - name: Inventariar cuatro modelos sin inventar pesos
+        run: |
+          mkdir -p artifacts/ci-pre-gold
+          uv run python scripts/ci/release_readiness.py --output artifacts/ci-pre-gold/readiness.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("artifacts/ci-pre-gold/readiness.json").read_text())
+          assert d["gold_certified"] is False
+          assert d["release_ready"] is False
+          assert d["status"] == "TECHNICAL_INVENTORY_REVIEWED_NOT_FINAL"
+          assert len(d["a4_checkpoints"]) == 4
+          print("Inventario técnico OK. Evaluación humana/no-Gold sigue BLOQUEADA.")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pre-gold-readiness-metadata-only
+          path: artifacts/ci-pre-gold/readiness.json
+          retention-days: 7
