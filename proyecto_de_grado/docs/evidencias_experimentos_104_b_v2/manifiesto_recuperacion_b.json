@@ -1,28 +1,8 @@
 {
-  "encoder": {
-    "model_id": "allenai/scibert_scivocab_uncased",
-    "revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
-    "commit_resuelto": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
-    "device": "cuda",
-    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
-    "torch": "2.6.0+cu124",
-    "cuda": "12.4",
-    "transformers": "5.21.0",
-    "python": "3.12.11",
-    "batch_size": 16,
-    "max_length": 512,
-    "pooling": "mean",
-    "ventanas_procesadas": 16683,
-    "textos_procesados": 16683
-  },
+  "encoder": "reanudado: top3 ya calculado",
   "sha256_manifiesto_modelo": "d64d1ac222fa40fb65d148ab4b87ca24b5063d4d54dc2317f280e8c50d671e7a",
-  "huellas": {
-    "train_M": "6f51356b058e329c6555542d3d823939d72cdfbebe96d4e29b62170db9ee03d2",
-    "train_S": "b6ec1d8e53d3c3a6d44a41e1cf5c4a8e3253ef14f27c54316820d36e748efcf0",
-    "V": "3aa37cb3de365a64714df4290f9dbbc868dd9c18957bdf7474ac41002a5d7483",
-    "gold_v2": "477c024494b646edaad572c4f2733dcaed39ef28db9452b1364c8100b6b094af"
-  },
-  "segundos": 291.6,
+  "huellas": {},
+  "segundos": 0.0,
   "cobertura_chunks": {
     "train_M": [
       7003,
