@@ -48,16 +48,17 @@ Es un preflight **sin red** por defecto. Solo añadir `--download` cuando se aut
 
 ### D. Crear entradas ciegas del Test Gold (sin etiquetas)
 
-Proporcionar un JSONL **privado** con un objeto por caso y estos campos: `context_id`, `citing_id`, `cited_id`, `split="test"`, `citation_context` con un solo `TARGETCIT`, `context_sha256`, `cited_title`, `cited_abstract` y `chunks`; cada chunk debe contener `chunk_id`, `texto` y `seccion`. `paragraph_indices` y `palabras` son opcionales. Se requieren 3 a 500 chunks del **mismo** artículo citado.
+Proporcionar un JSONL **privado** con un objeto por caso y estos campos: `context_id`, `citing_id`, `cited_id`, `split="test"`, `citation_context` con un solo `TARGETCIT`, `context_sha256`, `cited_title`, `cited_abstract` y `chunks`; cada chunk debe contener `chunk_id`, `texto`, `seccion`, `paragraph_indices` y `palabras` para el contraste con el fragmentador V1 histórico. `sha256_ocl_citado` es obligatorio para `--apply` y debe representar los bytes exactos del JSON ACL OCL citado. Se requieren 3 a 500 chunks del **mismo** artículo citado.
 
-`context_sha256` es SHA-256 de los bytes UTF-8 del `masked_text` oficial ACL-200; no de una reconstrucción improvisada. No agregar campos Gold, etiquetas, scores o anotadores: se rechazan. Las identidades documentales y split se cotejan contra ACL-200. La fidelidad de los chunks al artículo OCL fuente requiere comprobar adicionalmente los archivos OCL y sus hashes de procedencia.
+`context_sha256` es SHA-256 de los bytes UTF-8 del `masked_text` oficial ACL-200; no de una reconstrucción improvisada. No agregar campos Gold, etiquetas, scores o anotadores: se rechazan. Los IDs/documentos/splits del contexto se cotejan con ACL-200; título y abstract se cotejan con `papers.json` oficial. Antes de inferir también se verifican los bytes SHA de cada artículo ACL OCL y **todos los chunks** se reconstruyen usando el fragmentador V1 histórico (sin sustituirlo por V2). El sistema bloquea cambios de textos, secciones, posiciones, longitud o fragmentos faltantes.
 
 Comando dry-run: **no escribe predicciones ni carga Torch**.
 
 ```bash
 uv run python -m src.evaluation.a4_infer_unlabeled \
   --inputs /PRIVADO/test_unlabeled.jsonl \
-  --raw-dir /PRIVADO/acl200/raw
+  --raw-dir /PRIVADO/acl200/raw \
+  --ocl-cache /PRIVADO/cache_ocl
 ```
 
 ### E. Ejecutar A4 2×2, todavía sin Gold
@@ -66,12 +67,13 @@ uv run python -m src.evaluation.a4_infer_unlabeled \
 uv run python -m src.evaluation.a4_infer_unlabeled \
   --inputs /PRIVADO/test_unlabeled.jsonl \
   --raw-dir /PRIVADO/acl200/raw \
+  --ocl-cache /PRIVADO/cache_ocl \
   --checkpoint-root /DESTINO/clasificacion_a4/corridas \
   --output-dir artifacts/a4_predicciones_2x2_001 \
   --apply
 ```
 
-La ejecución primero bloquea ACL falso/IDs o textos alterados y checkpoints ausentes. Luego SciBERT recupera Top-3 de TODOS los chunks candidatos del citado, sin cachear heldout; a continuación carga de uno en uno SciBERT-A, SciBERT-B, SPECTER-A y SPECTER-B. La salida privada se crea atómicamente **solo cuando se completan los cuatro**: cuatro archivos `*.jsonl`, `a4_factorial_config.json` y `run_manifest.json`.
+La ejecución primero bloquea ACL falso, IDs/textos alterados, metadatos `papers.json` inventados, hashes o chunks OCL inconsistentes y checkpoints ausentes. Luego SciBERT recupera Top-3 de TODOS los chunks candidatos del citado, sin cachear heldout; a continuación carga de uno en uno SciBERT-A, SciBERT-B, SPECTER-A y SPECTER-B. La salida privada se crea atómicamente **solo cuando se completan los cuatro**: cuatro archivos `*.jsonl`, `a4_factorial_config.json` y `run_manifest.json` (incluye SHA de `papers.json` y la procedencia OCL contrastada).
 
 Las predicciones llevan `case_id`, `status=ok`, `pred_label`, `pred_index`, ID modelo y latencia. Los reportes incluyen hashes; **no guardan la etiqueta humana ni calculan F1**. No sobrescribir un directorio existente. Todo queda en `artifacts/`, ignorado por Git.
 
