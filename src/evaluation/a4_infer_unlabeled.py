@@ -156,6 +156,9 @@ def _verify_prediction(arm: tuple[str, str, str], prediction: dict) -> None:
                              or not math.isfinite(x) or x < 0 or x > 1 for x in vals)
             or abs(sum(vals) - 1) > 0.001):
         raise RuntimeError("Probabilidades A4 inválidas/no calibradas o corruptas.")
+    from src.evaluation.commercial.metrics import CATEGORIES
+    if tuple(s["categoria"] for s in scores) != tuple(CATEGORIES):
+        raise RuntimeError("Taxonomía A4 no coincide con las nueve funciones canónicas.")
     if prediction.get("clase") not in [s["categoria"] for s in scores]:
         raise RuntimeError("Clase seleccionada no corresponde a la taxonomía de nueve.")
 
