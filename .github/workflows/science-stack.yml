@@ -8,6 +8,8 @@ on:
       - "tests/test_science_pipeline_b.py"
       - "tests/test_specter_optional_api.py"
       - "tests/test_restore_science.py"
+      - "tests/test_science_hardening.py"
+      - "tests/test_four_arm_smoke.py"
       - "tests/test_https_aws_audit.py"
       - "scripts/ci/audit_https_aws.py"
       - "tests/test_smoke_tesis.py"
@@ -44,7 +46,7 @@ jobs:
       - name: Contratos A4 A/B, recuperación de originales y smoke
         run: |
           uv run python -m compileall -q src/app
-          uv run pytest -q tests/test_science_pipeline_b.py tests/test_specter_optional_api.py tests/test_restore_science.py tests/test_smoke_tesis.py tests/test_https_aws_audit.py
+          uv run pytest -q tests/test_science_pipeline_b.py tests/test_specter_optional_api.py tests/test_restore_science.py tests/test_science_hardening.py tests/test_four_arm_smoke.py tests/test_smoke_tesis.py tests/test_https_aws_audit.py
       - name: Inventario científico offline (faltantes no se consideran disponibles)
         run: uv run python -m src.app.science_preflight > /tmp/preflight.json
       - name: Verificar override Docker read-only (sin AWS ni build pesado)
