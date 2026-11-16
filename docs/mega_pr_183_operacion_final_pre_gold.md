@@ -115,7 +115,7 @@ uv run python -m src.evaluation.commercial.a4_factorial_benchmark \
 
 El modo `--provisional` calcula métricas, contrastes pareados y matrices al contar con casos etiquetados, **sin declarar automáticamente Gold humano certificado**. La certificación requiere evidencia externa de autoría humana, cobertura, doble anotación y adjudicación; no basta con un CSV correcto.
 
-Para el **otro Gold**, relevancia de chunks de Top-3, es obligatorio evaluar TODOS los chunks del citado con dos juicios ciegos por par:
+Para el **otro Gold**, relevancia de chunks de Top-3, es obligatorio evaluar TODOS los chunks del citado con dos juicios ciegos por par: Se exige también cotejar el universo completo de fragmentos, sus hashes y secciones contra el artículo OCL fuente mediante `--require-ocl`. Este control verifica procedencia documental, no autenticidad de la revisión humana.
 
 ```bash
 uv run python -m proyecto_de_grado.src.evaluation.top3_gold_gate \
@@ -125,6 +125,7 @@ uv run python -m proyecto_de_grado.src.evaluation.top3_gold_gate \
   --adjudications /PRIVADO/adjudications.csv \
   --rankings /PRIVADO/rankings.csv \
   --raw-dir /PRIVADO/acl200/raw --require-official-splits \
+  --ocl-cache /PRIVADO/cache_ocl --require-ocl \
   --output /PRIVADO/resumen_top3_001.json
 ```
 
