@@ -62,3 +62,13 @@ reportes/**/*.blg
 terraform/*.tfvars
 terraform/*.tfvars.json
 terraform/crash.log
+
+# NUEVOS juicios privados/actas de revisión: nunca subir a Git público.
+# Esto NO borra los archivos históricos ya versionados; auditar sus permisos
+# y contenido por separado antes de cualquier publicación.
+private_annotations/
+private_gold/
+.private/
+proyecto_de_grado/anotacion/privado/
+proyecto_de_grado/anotacion/private/
+**/model.safetensors

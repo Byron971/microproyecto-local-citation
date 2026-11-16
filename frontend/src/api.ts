@@ -201,6 +201,29 @@ export const api = {
     body: JSON.stringify({ contexto, cited_title, cited_abstract }),
     signal,
   }),
+  classifyCitationSpecterA: (
+    contexto: string, cited_title: string, cited_abstract: string,
+    signal?: AbortSignal,
+  ) => request<ClassificationResponse>('/api/clasificar-cita-specter-a', {
+    method: 'POST',
+    body: JSON.stringify({ contexto, cited_title, cited_abstract }),
+    signal,
+  }),
+  classifyCitationSpecterB: (
+    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
+  ) => request<FunctionBResponse>('/api/clasificar-cita-specter-b', {
+    method: 'POST',
+    body: JSON.stringify({
+      contexto, cited_id,
+      parrafos: paragraphs.map((texto, i) => ({chunk_id: `p${i + 1}`, texto})),
+    }),
+    signal,
+  }),
+  classifyCitationSpecterBCorpus: (contextId: string, signal?: AbortSignal) =>
+    request<FunctionBResponse>(
+      `/api/clasificar-cita-specter-b/corpus/${encodeURIComponent(contextId)}`,
+      { signal },
+    ),
   top3SciBERT: (
     contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
   ) => request<DenseTop3Response>('/api/top3-scibert', {

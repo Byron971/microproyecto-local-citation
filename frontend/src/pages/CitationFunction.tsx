@@ -5,6 +5,7 @@ export function CitationFunction() {
   const [context, setContext] = useState('');
   const [title, setTitle] = useState('');
   const [abstract, setAbstract] = useState('');
+  const [encoder, setEncoder] = useState<'scibert' | 'specter'>('scibert');
   const [result, setResult] = useState<ClassificationResponse>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -27,11 +28,12 @@ export function CitationFunction() {
     setError('');
     setResult(undefined);
     try {
-      const answer = await api.classifyCitation(
-        context.trim(), title.trim(), abstract.trim(), controller.signal,
-      );
+      const answer = await (encoder === 'scibert'
+        ? api.classifyCitation(context.trim(), title.trim(), abstract.trim(), controller.signal)
+        : api.classifyCitationSpecterA(context.trim(), title.trim(), abstract.trim(), controller.signal));
       if (controller.signal.aborted) return;
-      if (answer.entrada !== 'A' || answer.training_labels !== 'Haiku'
+      if (answer.entrada !== 'A' || answer.encoder !== encoder
+          || answer.training_labels !== 'Haiku'
           || answer.validacion !== 'provisional_no_gold_humano'
           || answer.puntuaciones_softmax.length !== 9) {
         throw new Error('La respuesta no corresponde al clasificador A4 provisional esperado.');
@@ -59,12 +61,18 @@ export function CitationFunction() {
         </div>
       </div>
       <p className="notice" role="note">
-        Este módulo solo funciona con el checkpoint SciBERT-A previamente verificado.
-        Fue entrenado con etiquetas automáticas Haiku; sus resultados son provisionales,
+        Selecciona SciBERT-A o SPECTER-A, ambos requieren su checkpoint original
+        SHA-verificado. Entrenamiento con etiquetas automáticas Haiku: resultados provisionales,
         no están validados sobre Test Gold humano.
       </p>
       <section className="workspace" aria-label="Clasificador de función de cita">
         <form onSubmit={submit}>
+          <label htmlFor="function-encoder">Encoder de clasificación A</label>
+          <select id="function-encoder" value={encoder} disabled={loading}
+            onChange={(e) => { setEncoder(e.target.value as 'scibert' | 'specter'); setResult(undefined); }}>
+            <option value="scibert">SciBERT-A (checkpoint requerido)</option>
+            <option value="specter">SPECTER-A (checkpoint requerido)</option>
+          </select>
           <label htmlFor="function-context">Contexto de cita (en inglés)</label>
           <textarea
             id="function-context" lang="en" rows={4} maxLength={4000}

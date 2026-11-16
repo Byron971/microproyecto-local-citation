@@ -161,3 +161,28 @@ Para un ensayo completo se deben seguir
 verificados, ejecutar FastAPI en un entorno con las dependencias científicas
 y medir la memoria y latencia. No utilizar Gold en la demo ni afirmar que los
 scores son validados por personas.
+
+
+## Selección experimental de encoder de clasificación (pre-Gold)
+
+Las vistas `/funcion` (entrada A, contexto + título/abstract) y
+`/funcion-b` (entrada B, contexto + Top-3 de SciBERT y perfiles de sección)
+permiten seleccionar **SciBERT o SPECTER como encoder del clasificador**.
+El Top-3 de B sigue recuperándose con SciBERT; SPECTER-B clasifica sus
+resultados, no sustituye el recuperador.
+
+- Los cuatro brazos A4 requieren checkpoints originales y manifiestos SHA
+  correctos. No hay sustitución silenciosa por BM25, SciBERT-A ni datos
+  simulados cuando SPECTER no está disponible.
+- El selector solo cambia el endpoint backend; una respuesta que no indique
+  el encoder/entrada seleccionados se rechaza explícitamente.
+- Antes de restaurar pesos genuinos, los endpoints devuelven HTTP 503.
+  Las pruebas Vitest/Playwright con fixtures **no** constituyen inferencia
+  real ni evaluación con Gold humano.
+- Las etiquetas de entrenamiento existentes son **Haiku provisionales**,
+  no hay F1/P/R sobre un Test Gold humano adjudicado.
+
+Comandos de verificación de UI: `npm --prefix frontend ci`,
+`npm --prefix frontend test`, `npm --prefix frontend run build`.
+Para smoke de backend real consultar
+`docs/mega_pr_pre_gold_2026_11.md` y `scripts/ci/smoke_tesis.py`.
