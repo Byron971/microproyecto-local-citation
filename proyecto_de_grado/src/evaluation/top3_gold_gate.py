@@ -95,7 +95,8 @@ def load_universe(path: Path) -> tuple[dict[str, dict[str, Any]], set[tuple[str,
                 raise ProtocolError(f"{cid}: chunk duplicado")
             local.add(chunk_id)
             universe.add((cid, chunk_id))
-        indexed[cid] = {"citing_id": citing, "cited_id": cited, "chunks": local}
+        indexed[cid] = {"citing_id": citing, "cited_id": cited, "chunks": local,
+                        "context_sha256": row["context_sha256"]}
     return indexed, universe
 
 
@@ -127,6 +128,37 @@ def check_exclusions(path: Path, cases: dict[str, dict[str, Any]]) -> None:
         pair = row["citing_id"] + "::" + row["cited_id"]
         if pair in pairs:
             raise ProtocolError(f"{cid}: posible leakage por par citante-citado")
+
+
+def check_acl_official(cases: dict[str, dict[str, Any]], raw_dir: Path) -> dict[str, str]:
+    """Contrasta IDs/particiones/documentos/textos contra ACL-200 auténtico.
+
+    No se acepta un split='test' autodeterminado por quien creó el manifiesto.
+    La misma fuente oficial detecta fugas a train/val a nivel de citante y par.
+    """
+    from proyecto_de_grado.src.data.validar_splits import load_split_index
+
+    raw_dir = Path(raw_dir)
+    index = load_split_index(raw_dir)
+    for cid, row in cases.items():
+        if index.by_context.get(cid) != "test":
+            raise ProtocolError(f"{cid}: no pertenece al split test ACL-200 oficial")
+        source = index.contexts.get(cid)
+        if not isinstance(source, dict):
+            raise ProtocolError(f"{cid}: no existe en contexts.json oficial")
+        if source.get("citing_id") != row["citing_id"] or source.get("refid") != row["cited_id"]:
+            raise ProtocolError(f"{cid}: identidad de documentos contradictoria con ACL-200")
+        text = source.get("masked_text")
+        if not isinstance(text, str) or text.count("TARGETCIT") != 1:
+            raise ProtocolError(f"{cid}: contexto ACL oficial inválido")
+        expected_sha = hashlib.sha256(text.encode("utf-8")).hexdigest()
+        if row["context_sha256"] != expected_sha:
+            raise ProtocolError(f"{cid}: SHA de contexto distinto al texto ACL-200 original")
+
+    # El registro de las cuatro fuentes oficiales permite detectar sustituciones
+    # de splits entre el momento de auditoría y la publicación del reporte.
+    files = ("contexts.json", "train.json", "val.json", "test.json")
+    return {name: digest(raw_dir / name) for name in files}
 
 
 def load_judgments(path: Path, universe: set[tuple[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
@@ -225,14 +257,23 @@ def score_rankings(path: Path, cases: dict[str, dict[str, Any]],
 
 def audit(manifest: Path, exclusions: Path, judgments: Path,
           adjudications: Path, rankings: Path,
-          methods: tuple[str, ...] = METHODOLOGIES) -> dict:
+          methods: tuple[str, ...] = METHODOLOGIES,
+          raw_dir: Path | None = None, *, require_official_splits: bool = False) -> dict:
     cases, universe = load_universe(manifest)
     check_exclusions(exclusions, cases)
+    if require_official_splits and raw_dir is None:
+        raise ProtocolError("Para evaluar se exige --raw-dir con ACL-200 oficial.")
+    official = check_acl_official(cases, raw_dir) if raw_dir is not None else None
     primary = load_judgments(judgments, universe)
     decisions = adjudicate(adjudications, primary)
     summary = score_rankings(rankings, cases, decisions, methods)
     return {
-        "schema_version": 1, "status": "METRICAS_PROVISIONALES_HUMANIDAD_NO_CERTIFICADA",
+        "schema_version": 1,
+        "status": ("FORMATO_Y_SPLITS_ACL_VERIFICADOS_HUMANIDAD_NO_CERTIFICADA"
+                   if official is not None else
+                   "SOLO_FORMATO_SPLITS_ACL_NO_VERIFICADOS"),
+        "acl_official_splits_verified": official is not None,
+        "acl_official_sha256": official,
         "human_gold_certified": False, "blindness_certified": False,
         "split_independence_certified": False,
         "universe_pairs": len(universe),
@@ -243,7 +284,8 @@ def audit(manifest: Path, exclusions: Path, judgments: Path,
             "manifest": manifest, "exclusions": exclusions, "judgments": judgments,
             "adjudications": adjudications, "rankings": rankings}.items()},
         "warning": ("La integridad del formato NO certifica anotadores humanos, ceguera ni "
-                    "independencia: requieren evidencia privada y acta del equipo. "
+                    "independencia: se exige comparar ACL-200 con --raw-dir, más evidencia " 
+                    "privada y acta del equipo. "
                     "Nunca usar esto para tuning ni reportar como resultado final."),
     }
 
@@ -254,11 +296,15 @@ def main(argv: list[str] | None = None) -> int:
         parser.add_argument("--" + name, required=True, type=Path)
     parser.add_argument("--methods", nargs="+", choices=sorted(ALLOWED_METHODS),
                         default=list(METHODOLOGIES), help="Métodos que DEBEN cubrir las mismas consultas")
+    parser.add_argument("--raw-dir", type=Path, help="ACL-200 oficial: contexts/train/val/test.json")
+    parser.add_argument("--require-official-splits", action="store_true",
+                        help="Bloquear reporte si no se verificó ACL-200 auténtico")
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args(argv)
     try:
         report = audit(args.manifest, args.exclusions, args.judgments,
-                       args.adjudications, args.rankings, tuple(args.methods))
+                       args.adjudications, args.rankings, tuple(args.methods),
+                       raw_dir=args.raw_dir, require_official_splits=args.require_official_splits)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         with args.output.open("x", encoding="utf-8") as file:
             json.dump(report, file, indent=2, ensure_ascii=False)
