@@ -198,6 +198,30 @@ def test_rechaza_rankings_repetidos_y_citados_ajenos(data):
         score_rankings(data[4], cases, consensus)
 
 
+
+def test_bm25_normalizado_es_opcional_pero_exige_mismos_casos(data):
+    cases, universe = load_universe(data[0])
+    primary = load_judgments(data[2], universe)
+    consensus = adjudicate(data[3], primary)
+    with pytest.raises(ProtocolError, match="incompletos"):
+        score_rankings(data[4], cases, consensus,
+                       methods=("bm25", "bm25_normalizado", "scibert"))
+    with data[4].open(newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    for cid, ids in {"q1": ("p1", "p2", "p3"),
+                     "q2": ("k1", "k2", "k3")}.items():
+        rows.extend({"context_id": cid, "method": "bm25_normalizado",
+                     "rank": str(i), "chunk_id": key}
+                    for i, key in enumerate(ids, 1))
+    write_csv(data[4], ("context_id", "method", "rank", "chunk_id"), rows)
+    stats = score_rankings(data[4], cases, consensus,
+                           methods=("bm25", "bm25_normalizado", "scibert"))
+    assert stats["methods"]["bm25_normalizado"]["hit_at_3"] == 1
+    assert stats["methods"]["bm25_normalizado"]["recall_at_3"] == 1
+    assert stats["methods"]["bm25_normalizado"]["mrr_at_3"] == 1
+
+
+
 def test_no_reescribe_el_reporte_ni_publica_etiquetas(data, tmp_path):
     from proyecto_de_grado.src.evaluation.top3_gold_gate import main
     output = tmp_path / "resumen.json"
