@@ -37,8 +37,8 @@ def validate_evidence(run: Path, manifest: Path, *, entrada: str | None = None) 
         raise RuntimeError("El SHA-256 esperado del checkpoint es inválido.")
     if evidence.get("experiment_id") != run.name:
         raise RuntimeError("Nombre de corrida A4 diferente del manifiesto.")
-    if evidence.get("encoder") != "scibert" or evidence.get("entrada") not in ("A", "B"):
-        raise RuntimeError("El servicio solo admite SciBERT A/B del experimento original.")
+    if evidence.get("encoder") not in ("scibert", "specter") or evidence.get("entrada") not in ("A", "B"):
+        raise RuntimeError("El servicio solo admite SciBERT o SPECTER A/B históricos.")
     if entrada is not None and evidence["entrada"] != entrada:
         raise RuntimeError("La entrada A/B solicitada no coincide con los pesos.")
     if evidence.get("training_labels") != "Haiku" or evidence.get("data_use") != "provisional_only":
@@ -85,12 +85,12 @@ class A4Classifier:
             profile = import_module("auditoria_corpus.dominio").perfil_seccion
         except ImportError as exc:
             raise RuntimeError("Faltan dependencias científicas del servicio (torch y paquetes A4).") from exc
-        if rev.modelo("scibert")[1] != evidence.get("model_version"):
+        if rev.modelo(evidence["encoder"])[1] != evidence.get("model_version"):
             raise RuntimeError("Revisión del encoder no corresponde a la corrida histórica A4.")
         spec = domain.especificacion_entrada(evidence["entrada"], evidence["hiperparametros"]["max_len"])
         if domain.sha_especificacion(spec) != evidence.get("input_spec_sha256"):
             raise RuntimeError("El contrato de entrada no es el entrenado.")
-        encoder_path = ct.resolver_encoder("scibert", encoder_manifest)
+        encoder_path = ct.resolver_encoder(evidence["encoder"], encoder_manifest)
         tokenizer = ct.TokenizadorHF(encoder_path)
         if tokenizer.info() != evidence.get("tokenizer"):
             raise RuntimeError("Tokenizador distinto al del entrenamiento.")
@@ -141,7 +141,7 @@ class A4Classifier:
             raise RuntimeError("El modelo A4 devolvió un número incorrecto de categorías.")
         pos = max(range(9), key=lambda i: (scores[i], -i))
         return {
-            "modelo": self.model_id, "encoder": "scibert",
+            "modelo": self.model_id, "encoder": self.evidence.get("encoder", "scibert"),
             "entrada": self.entrada,
             "clase": self.categories[pos], "indice_clase": pos,
             "puntuaciones_softmax": [
