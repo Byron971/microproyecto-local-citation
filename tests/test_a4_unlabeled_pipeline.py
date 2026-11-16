@@ -234,3 +234,51 @@ def test_ocl_missing_source_blocks_even_before_checkpoints(cases, tmp_path, monk
         run_four_arm(source, raw_dir=raw, checkpoint_root=tmp_path,
                      output_dir=tmp_path / "out", ocl_cache=ocl_cache)
     assert called == []
+
+
+def test_exporter_generates_official_unlabeled_heldout_without_forged_gold(cases, tmp_path):
+    from src.evaluation.a4_export_unlabeled import export
+    source, raw, ocl_cache = cases
+    ids_file = tmp_path / "selected_test_ids.txt"
+    ids_file.write_text("# Selección humana pendiente de aprobación\nq1\n", encoding="utf-8")
+    output = tmp_path / "generated" / "input.jsonl"
+    provenance = tmp_path / "generated" / "export_manifest.json"
+    report = export(ids_file, raw, ocl_cache, output, provenance)
+    assert report["n_exported"] == 1
+    assert report["gold_human_certified"] is False
+    assert report["heldout_independence_certified"] is False
+    assert output.is_file()
+    assert provenance.is_file()
+    rows, ids = read_unlabeled_inputs(output)
+    assert rows[0]["cited_id"] == "paper-q1"
+    assert len(rows[0]["chunks"]) == 3
+    assert rows[0]["sha256_ocl_citado"] == hashlib.sha256(
+        (ocl_cache / "paper-q1.json").read_bytes()).hexdigest()
+    assert "gold" not in output.read_text().lower()
+    checked = metadata_plan(output, raw_dir=raw, ocl_cache=ocl_cache)
+    assert checked["ocl_validation"]["n_cited_ocl"] == 1
+    with pytest.raises(InputError, match="ya existe"):
+        export(ids_file, raw, ocl_cache, output, provenance)
+
+
+def test_exporter_blocks_previously_used_ids_and_train_cases(cases, tmp_path):
+    from src.evaluation.a4_export_unlabeled import build_unlabeled
+    source, raw, ocl_cache = cases
+    selection = tmp_path / "ids.txt"
+    selection.write_text("q1\n", encoding="utf-8")
+    with pytest.raises(InputError, match="utilizado previamente"):
+        build_unlabeled(selection, raw, ocl_cache, blocked_ids={"q1"})
+    selection.write_text("t1\n", encoding="utf-8")
+    with pytest.raises(InputError, match="split ACL-200"):
+        build_unlabeled(selection, raw, ocl_cache, blocked_ids=set())
+
+
+def test_exporter_blocks_selection_duplicates_before_writing(cases, tmp_path):
+    from src.evaluation.a4_export_unlabeled import export
+    source, raw, ocl_cache = cases
+    selection = tmp_path / "ids.txt"
+    selection.write_text("q1\nq1\n", encoding="utf-8")
+    destination = tmp_path / "not_created.jsonl"
+    with pytest.raises(InputError, match="únicos"):
+        export(selection, raw, ocl_cache, destination, tmp_path / "report.json")
+    assert not destination.exists()
