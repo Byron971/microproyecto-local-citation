@@ -140,7 +140,7 @@ def test_a4_api_rechaza_softmax_corrupto_sin_torch(bad_scores):
             return [bad_scores], [0.5]
 
     fake_domain = SimpleNamespace(CATEGORIAS=tuple(f"Label_{i}" for i in range(9)))
-    model = A4Classifier(object(), object(), FakeCT(), fake_domain, "cpu", {
+    model = A4Classifier(object(), SimpleNamespace(pad_id=0), FakeCT(), fake_domain, "cpu", {
         "experiment_id": "scibert_A_42", "entrada": "A",
         "hiperparametros": {"max_len": 512},
     })
