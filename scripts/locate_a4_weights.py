@@ -1,4 +1,4 @@
-"""Localiza los pesos A4 originales por bytes SHA-256, sin red ni Gold.
+r"""Localiza los pesos A4 originales por bytes SHA-256, sin red ni Gold.
 
 Uso (Windows PowerShell, desde el repo):
   uv run python -m scripts.locate_a4_weights --roots "$env:USERPROFILE\Documents" "D:\" --show-paths
