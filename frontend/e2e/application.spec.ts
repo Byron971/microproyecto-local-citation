@@ -51,6 +51,29 @@ test.beforeEach(async ({ page }) => {
         }],
         clasificacion: { estado: 'no_ejecutada' },
       },
+      '/api/clasificar-cita': {
+        modelo: 'scibert_A_42', encoder: 'scibert', entrada: 'A',
+        clase: 'Comparison', indice_clase: 3,
+        puntuaciones_softmax: [
+          'Background', 'Gap', 'Basis', 'Comparison', 'Application',
+          'Improvement / Modification', 'Evidence',
+          'Identification of the Originator', 'Further Reading',
+        ].map((categoria, idx) => ({ categoria, score: idx === 3 ? 0.6 : 0.05 })),
+        latencia_modelo_ms: 8.2, training_labels: 'Haiku',
+        validacion: 'provisional_no_gold_humano',
+        advertencia: 'Puntuaciones no calibradas y sin validación humana.',
+      },
+      '/api/top3-scibert': {
+        contexto: 'Graph TARGETCIT.', cited_id: 'P14-1001',
+        metodo: 'scibert_base_mean_pooling_cosine',
+        modelo: 'SciBERT_base_mean_pooling', revision: 'a'.repeat(40),
+        total_fragmentos_analizados: 2,
+        fragmentos: [
+          { posicion: 1, chunk_id: 'p1', texto: 'Graph embeddings.',
+            seccion: 'Methods', similitud_coseno: 0.903 },
+        ],
+        clasificacion: { estado: 'no_ejecutada' },
+      },
       '/api/estado': { listo: true, modelo: {} },
       '/api/modelos': { predeterminado: model.id, modelos: [model] },
       '/api/insights': insights,
@@ -174,4 +197,20 @@ test('Top-3 con un caso de desarrollo desde API del corpus (transporte simulado)
   await expect(page.getByText('Graph neural networks aggregate neighbor information.')).toBeVisible();
   await expect(page.getByText(/subconjunto TRAIN · BM25/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Clasificación aún no disponible' })).toBeVisible();
+});
+
+test('Clasificación A4 explica provisionalidad y nueve puntuaciones (transporte simulado)', async ({ page }) => {
+  await page.goto('/funcion');
+  await expect(page.getByRole('heading', { name: 'Clasificar la función de una cita' })).toBeVisible();
+  await page.getByLabel('Contexto de cita (en inglés)').fill(
+    'We compare earlier models TARGETCIT with the current method.',
+  );
+  await page.getByLabel('Título real del artículo citado').fill('Neural Graph Methods');
+  await page.getByLabel('Abstract real del artículo citado').fill(
+    'A comparative study of graph representations.',
+  );
+  await page.getByRole('button', { name: 'Clasificar función de cita' }).click();
+  await expect(page.getByRole('heading', { name: 'Función estimada: Comparison' })).toBeVisible();
+  await expect(page.getByText(/Resultado provisional de un modelo entrenado con Haiku/)).toBeVisible();
+  await expect(page.locator('.fragment-list li')).toHaveCount(9);
 });

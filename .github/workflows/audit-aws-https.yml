@@ -1,0 +1,75 @@
+name: Auditar HTTPS y costos reales AWS (solo lectura)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_audit:
+        description: "Escribir AUDIT para ejecutar consultas de solo lectura"
+        required: true
+        type: string
+      start:
+        description: "Fecha inicial UTC inclusive (YYYY-MM-DD)"
+        required: true
+        type: string
+      end:
+        description: "Fecha final UTC EXCLUSIVA (YYYY-MM-DD)"
+        required: true
+        type: string
+      api_url:
+        description: "HTTPS API Gateway publica; opcional si solo quieres costos"
+        required: false
+        type: string
+      frontend_url:
+        description: "HTTPS CloudFront publica; opcional si solo quieres costos"
+        required: false
+        type: string
+      project_tag:
+        description: "Cost Explorer: etiqueta Project ya activada"
+        default: citas-api
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/main' && inputs.confirm_audit == 'AUDIT'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: audit-read-only
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+      AWS_DEFAULT_REGION: us-east-1
+      AUDIT_START: ${{ inputs.start }}
+      AUDIT_END: ${{ inputs.end }}
+      AUDIT_API_URL: ${{ inputs.api_url }}
+      AUDIT_FRONTEND_URL: ${{ inputs.frontend_url }}
+      AUDIT_PROJECT_TAG: ${{ inputs.project_tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+      - run: uv sync --locked --group dev
+      - name: Read-only Cost Explorer and verified HTTPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/auditoria_aws
+          args=(--aws-cost --start "$AUDIT_START" --end "$AUDIT_END"
+                --project-tag "$AUDIT_PROJECT_TAG"
+                --output artifacts/auditoria_aws/costos_https.json)
+          if [[ -n "$AUDIT_API_URL" || -n "$AUDIT_FRONTEND_URL" ]]; then
+            args+=(--api-url "$AUDIT_API_URL" --frontend-url "$AUDIT_FRONTEND_URL")
+          fi
+          uv run python scripts/ci/audit_https_aws.py "${args[@]}"
+      - name: Adjuntar únicamente reporte de costos y estado, nunca credenciales
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aws-https-cost-explorer-read-only
+          path: artifacts/auditoria_aws/costos_https.json
+          retention-days: 7

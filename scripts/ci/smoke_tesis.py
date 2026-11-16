@@ -84,6 +84,8 @@ def validar_demo(base: str, scientific: bool = False, timeout: float = 20.0,
             raise RuntimeError("No hay SciBERT real cargado; smoke científico BLOQUEADO.")
         if not tasks.get("clasificacion_nueve_funciones", {}).get("disponible"):
             raise RuntimeError("No hay clasificador A4 real cargado; smoke científico BLOQUEADO.")
+        if not tasks.get("clasificacion_nueve_funciones_b", {}).get("disponible"):
+            raise RuntimeError("No hay clasificador A4-B real cargado; smoke científico BLOQUEADO.")
         dense = request(base, "/api/top3-scibert", MANUAL, timeout)
         if (dense.get("metodo") != "scibert_base_mean_pooling_cosine"
                 or not dense.get("fragmentos")
@@ -102,6 +104,19 @@ def validar_demo(base: str, scientific: bool = False, timeout: float = 20.0,
             raise RuntimeError("La clasificación científica no conserva el contrato A4.")
         if classification.get("modelo") != tasks["clasificacion_nueve_funciones"].get("modelo"):
             raise RuntimeError("Clasificador respondió con un modelo distinto del cargado.")
+        stage_b = request(base, "/api/clasificar-cita-b", MANUAL, timeout)
+        dense_b = stage_b.get("recuperacion") or {}
+        class_b = stage_b.get("clasificacion") or {}
+        if (dense_b.get("metodo") != "scibert_base_mean_pooling_cosine"
+                or len(dense_b.get("fragmentos") or []) != 3):
+            raise RuntimeError("Entrada B no recuperó tres fragmentos por SciBERT.")
+        if (class_b.get("modelo") != tasks["clasificacion_nueve_funciones_b"].get("modelo")
+                or class_b.get("entrada") != "B"
+                or class_b.get("validacion") != "provisional_no_gold_humano"
+                or len(class_b.get("puntuaciones_softmax") or []) != 9):
+            raise RuntimeError("La clasificación B real no respetó los nueve roles A4.")
+        if stage_b.get("gold_certificado") is not False:
+            raise RuntimeError("La salida B no puede presentarse como Gold certificado.")
         result["cientifico"] = {
             "scibert_revision": dense["revision"],
             "scibert_modelo": dense["modelo"],
@@ -109,6 +124,9 @@ def validar_demo(base: str, scientific: bool = False, timeout: float = 20.0,
             "clasificador": classification["modelo"],
             "clasificador_entrada": classification["entrada"],
             "num_funciones": len(scores),
+            "clasificador_b": class_b["modelo"],
+            "entrada_b": class_b["entrada"],
+            "fragmentos_b": len(dense_b["fragmentos"]),
             "training_labels": "Haiku",
             "validacion": "provisional_no_gold_humano",
         }

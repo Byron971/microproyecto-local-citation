@@ -52,6 +52,18 @@ class AppSettings:
     scibert_enabled: bool = False
     scibert_manifest: Path | None = None
     scibert_device: str = "cpu"
+    a4_enabled: bool = False
+    a4_run: Path | None = None
+    a4_evidence: Path | None = None
+    a4_encoder_manifest: Path | None = None
+    a4_b_enabled: bool = False
+    a4_b_run: Path | None = None
+    a4_b_evidence: Path | None = None
+    a4_device: str = "cpu"
+    max_science_chunks: int = 500
+    max_science_characters: int = 600_000
+    max_cached_papers: int = 8
+    max_scibert_cache_mb: int = 64
 
     def public_info(self) -> dict[str, str]:
         """Solo nombres de backends y entorno, sin rutas ni credenciales."""
@@ -118,6 +130,36 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
     manifest = (_path(env, "APP_SCIBERT_MANIFEST", ROOT / "missing-manifest.json")
                 if dense_enabled else None)
 
+    # Modelos científicos explícitamente opt-in; no alterar backends baseline.
+    def _enabled(name: str) -> bool:
+        raw = _value(env, name, "false").lower()
+        if raw not in {"true", "false"}:
+            raise ValueError(f"{name} debe ser true o false")
+        return raw == "true"
+
+    def _positive(name: str, default: int, lower: int, upper: int) -> int:
+        raw = _value(env, name, str(default))
+        if not raw.isdecimal() or not lower <= int(raw) <= upper:
+            raise ValueError(f"{name} debe estar entre {lower} y {upper}")
+        return int(raw)
+
+    a4_enabled = _enabled("APP_A4_ENABLED")
+    a4_b_enabled = _enabled("APP_A4_B_ENABLED")
+    a4_device = _value(env, "APP_A4_DEVICE", "cpu").lower()
+    if a4_device not in {"cpu", "cuda", "auto"}:
+        raise ValueError("APP_A4_DEVICE debe ser cpu, cuda o auto")
+    if a4_b_enabled and not dense_enabled:
+        raise ValueError("APP_A4_B_ENABLED exige APP_SCIBERT_ENABLED=true")
+    if a4_enabled and not env.get("APP_A4_RUN"):
+        raise ValueError("APP_A4_RUN es obligatorio con APP_A4_ENABLED")
+    if a4_b_enabled and not env.get("APP_A4_B_RUN"):
+        raise ValueError("APP_A4_B_RUN es obligatorio con APP_A4_B_ENABLED")
+    root_a4 = ROOT / "proyecto_de_grado/docs/evidencias_clasificacion_a4"
+    max_chunks = _positive("APP_SCIENCE_MAX_CHUNKS", 500, 3, 2000)
+    max_chars = _positive("APP_SCIENCE_MAX_CHARACTERS", 600000, 1000, 2000000)
+    cache_papers = _positive("APP_SCIBERT_CACHE_PAPERS", 8, 1, 64)
+    cache_mb = _positive("APP_SCIBERT_CACHE_MAX_MB", 64, 1, 512)
+
     return AppSettings(
         environment=stage,
         host=host,
@@ -131,4 +173,19 @@ def get_app_settings(environ: Mapping[str, str] | None = None) -> AppSettings:
         scibert_enabled=dense_enabled,
         scibert_manifest=manifest,
         scibert_device=dense_device,
+        a4_enabled=a4_enabled,
+        a4_run=_path(env, "APP_A4_RUN", ROOT / "missing-a4") if a4_enabled else None,
+        a4_evidence=_path(env, "APP_A4_EVIDENCE", root_a4 / "scibert_A_42/manifiesto.json")
+                    if a4_enabled else None,
+        a4_b_enabled=a4_b_enabled,
+        a4_b_run=_path(env, "APP_A4_B_RUN", ROOT / "missing-b") if a4_b_enabled else None,
+        a4_b_evidence=_path(env, "APP_A4_B_EVIDENCE", root_a4 / "scibert_B_42/manifiesto.json")
+                      if a4_b_enabled else None,
+        a4_encoder_manifest=_path(env, "APP_A4_ENCODER_MANIFEST", root_a4 / "manifiesto_modelo_scibert.json")
+                            if (a4_enabled or a4_b_enabled) else None,
+        a4_device=a4_device,
+        max_science_chunks=max_chunks,
+        max_science_characters=max_chars,
+        max_cached_papers=cache_papers,
+        max_scibert_cache_mb=cache_mb,
     )

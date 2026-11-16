@@ -65,3 +65,41 @@ test('sin artefacto local de TRAIN informa bloqueo y conserva modo manual', asyn
   );
   expect(screen.getByRole('button', { name: 'Usar ejemplo sintético' })).toBeEnabled();
 });
+
+
+test('SciBERT manual muestra coseno real del backend, no puntaje BM25', async () => {
+  const call = vi.spyOn(api, 'top3SciBERT').mockResolvedValue({
+    cited_id: 'ejemplo-sintetico',
+    metodo: 'scibert_base_mean_pooling_cosine',
+    modelo: 'SciBERT_base_mean_pooling',
+    revision: 'a'.repeat(40),
+    total_fragmentos_analizados: 3,
+    fragmentos: [{ chunk_id: 'p1', posicion: 1,
+      texto: 'Graph semantic evidence', seccion: 'Methods', similitud_coseno: 0.91 }],
+    clasificacion: { estado: 'no_ejecutada' },
+  });
+  const user = userEvent.setup();
+  render(<Top3 />);
+  await user.selectOptions(screen.getByRole('combobox', { name: 'Método de recuperación Top-3' }),
+    'scibert');
+  await user.click(screen.getByRole('button', { name: 'Usar ejemplo sintético' }));
+  await user.click(screen.getByRole('button', { name: 'Buscar evidencia Top-3' }));
+  expect(await screen.findByText('Graph semantic evidence')).toBeVisible();
+  expect(screen.getByText('Coseno 0.910')).toBeVisible();
+  expect(screen.queryByText('BM25 0.910')).not.toBeInTheDocument();
+  expect(call).toHaveBeenCalledWith(expect.any(String), 'ejemplo-sintetico',
+    expect.any(Array), expect.any(AbortSignal));
+});
+
+test('SciBERT desactivado nunca sustituye silenciosamente la inferencia por BM25', async () => {
+  vi.spyOn(api, 'top3SciBERT').mockRejectedValue(new ApiError('no instalado', 503));
+  const lexical = vi.spyOn(api, 'top3');
+  const user = userEvent.setup();
+  render(<Top3 />);
+  await user.selectOptions(screen.getByRole('combobox', { name: 'Método de recuperación Top-3' }),
+    'scibert');
+  await user.click(screen.getByRole('button', { name: 'Usar ejemplo sintético' }));
+  await user.click(screen.getByRole('button', { name: 'Buscar evidencia Top-3' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent('SciBERT no está disponible');
+  expect(lexical).not.toHaveBeenCalled();
+});

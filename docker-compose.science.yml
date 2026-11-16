@@ -1,0 +1,41 @@
+# Opt-in scientific profile; authentic A4 checkpoints and SciBERT snapshots required.
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.science
+    image: microproyecto-citas-science-cpu:0.1.0
+    environment:
+      APP_SCIBERT_ENABLED: "true"
+      APP_SCIBERT_MANIFEST: proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json
+      APP_SCIBERT_DEVICE: cpu
+      APP_A4_ENABLED: "true"
+      APP_A4_RUN: /models/a4/scibert_A_42
+      APP_A4_EVIDENCE: proyecto_de_grado/docs/evidencias_clasificacion_a4/scibert_A_42/manifiesto.json
+      APP_A4_B_ENABLED: "true"
+      APP_A4_B_RUN: /models/a4/scibert_B_42
+      APP_A4_B_EVIDENCE: proyecto_de_grado/docs/evidencias_clasificacion_a4/scibert_B_42/manifiesto.json
+      APP_A4_ENCODER_MANIFEST: proyecto_de_grado/docs/evidencias_clasificacion_a4/manifiesto_modelo_scibert.json
+      APP_A4_DEVICE: cpu
+      APP_SCIENCE_MAX_CHUNKS: "300"
+      APP_SCIENCE_MAX_CHARACTERS: "350000"
+      APP_SCIBERT_CACHE_PAPERS: "6"
+      APP_SCIBERT_CACHE_MAX_MB: "64"
+    volumes:
+      - type: bind
+        source: ${SCIENCE_HF_CACHE_HOST_PATH:?Provide HuggingFace cache absolute path}
+        target: /models/huggingface
+        read_only: true
+      - type: bind
+        source: ${SCIENCE_A4_RUNS_HOST_PATH:?Provide verified A4 runs absolute path}
+        target: /models/a4
+        read_only: true
+      - type: bind
+        source: ${TOP3_CORPUS_HOST_PATH:?Provide TRAIN-only corpus JSON absolute path}
+        target: /app/proyecto_de_grado/artifacts/top3_s2/casos_train.json
+        read_only: true
+    cpus: 4.0
+    mem_limit: 12g
+    pids_limit: 200
+    security_opt:
+      - no-new-privileges:true
