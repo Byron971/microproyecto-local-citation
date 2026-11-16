@@ -206,6 +206,7 @@ def test_ocl_chunks_must_be_full_v1_coverage_even_if_sha_valid(cases):
     source, raw, ocl_cache = cases
     item = json.loads(source.read_text())
     item["chunks"][1]["texto"] = "Invented text."
+    item["chunks"][1]["palabras"] = len(item["chunks"][1]["texto"].split())
     source.write_text(json.dumps(item) + "\n")
     rows, _ = read_unlabeled_inputs(source)
     with pytest.raises(InputError, match="Chunk no reproducible"):
