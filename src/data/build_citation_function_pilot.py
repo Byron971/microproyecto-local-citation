@@ -19,11 +19,9 @@ DEFAULT_OUTPUT_PATH = Path("tests/fixtures/citation_function_pilot.jsonl")
 
 
 def _remove_citation_markers_no_word_boundary(text: str) -> str:
-    """Remove TARGETCIT and OTHERCIT markers regardless of word boundaries.
+    """Quita TARGETCIT y OTHERCIT aunque aparezcan pegados a una palabra.
 
-    This is a supplementary cleanup step applied after clean_context_text()
-    to catch fused markers like "McOTHERCIT" that the word-boundary regex
-    in clean_context_text() does not catch.
+    `clean_context_text()` no detecta casos como "McOTHERCIT".
     """
     text = re.sub(r"TARGETCIT", " ", text)
     text = re.sub(r"OTHERCIT", " ", text)
@@ -52,7 +50,6 @@ def build_pilot_cases(
         context = contexts[context_id]
         paper = papers.get(positive_id, {"title": "", "abstract": ""})
         cleaned = clean_context_text(context.get("masked_text", ""))
-        # También quitamos marcadores pegados a palabras, como "McOTHERCIT".
         cleaned = _remove_citation_markers_no_word_boundary(cleaned)
         input_text = (
             f"Citation context: {cleaned}\n\n"
