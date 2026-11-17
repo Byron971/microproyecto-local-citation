@@ -44,6 +44,15 @@ print(json.dumps({{"result": texto, "is_error": False, "usage": {{"input_tokens"
 def claude_falso(tmp_path):
     ruta = tmp_path / "claude_falso"
     ruta.write_text(FAKE.format(py=sys.executable), encoding="utf-8")
+
+    if os.name == "nt":
+        lanzador = tmp_path / "claude_falso.cmd"
+        lanzador.write_text(
+            f'@echo off\n"{sys.executable}" "{ruta}" %*\n',
+            encoding="utf-8",
+        )
+        return str(lanzador)
+
     ruta.chmod(ruta.stat().st_mode | stat.S_IEXEC)
     return str(ruta)
 

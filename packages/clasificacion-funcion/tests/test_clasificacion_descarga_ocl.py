@@ -57,7 +57,7 @@ def test_main_escribe_manifiesto_y_no_sobrescribe(tmp_path, monkeypatch, capsys)
     assert d.main(argv) == 0
     m = json.loads((tmp_path / "m.json").read_text())
     assert m["estados"] == {"descargado": 2, "404": 1, "error": 0}
-    assert m["citados_requeridos_sha256"] == hashlib.sha256(b"A\nB\nC\n").hexdigest()
+    assert m["citados_requeridos_sha256"] == hashlib.sha256((tmp_path / "c.txt").read_bytes()).hexdigest()
     assert d.main(argv) == 2 and "No se sobrescribe" in capsys.readouterr().err
 
 
