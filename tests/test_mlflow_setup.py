@@ -114,6 +114,7 @@ def test_configure_mlflow_lets_remote_server_choose_artifact_location(
 
     configure_mlflow(experiment_name="prueba-remota")
 
+    # El servidor remoto no puede usar una carpeta que solo existe en nuestra máquina.
     assert llamadas["artifact_location"] is None
 
 
