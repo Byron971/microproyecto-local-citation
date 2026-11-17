@@ -1,0 +1,75 @@
+{
+  "pista": "S",
+  "modo_prueba": false,
+  "gold_sha256": "80e4d9a6a72bd36913548bef897ad8212178797e181bb7893f7be2aad66b83c7",
+  "ganador_V": {
+    "estrategia": "E3",
+    "lr": 2e-05,
+    "ph": false,
+    "f1_macro_v": 0.6767279129242103
+  },
+  "semillas": [
+    42,
+    1234,
+    2026
+  ],
+  "controles": {
+    "V": {
+      "L1": 0,
+      "L2": 0,
+      "L10": 0,
+      "L4": 50,
+      "cobertura_AB": 11
+    },
+    "dev": {
+      "L1": 0,
+      "L2": 215,
+      "L10": 2,
+      "L4": 32,
+      "cobertura_AB": 9
+    },
+    "train": {
+      "L1": 13,
+      "L2": 994,
+      "L10": 45,
+      "L4": 111,
+      "cobertura_AB": 52
+    }
+  },
+  "cobertura_gold": {
+    "v1": 839,
+    "v2": 1532,
+    "n": 1533
+  },
+  "paridad_top3": {
+    "comparados": 839,
+    "discrepancias": 0,
+    "casi_empates": 0,
+    "max_dif_coseno": 1.0000000000287557e-06
+  },
+  "sha_ids": {
+    "train": "d42cb0eb73a612d1a76b8292a3cdfe58602a95f710c139e0ae086470359f4812",
+    "dev": "44c25e37c30ef7e5331b8e898a0bd2d6150fc34a0b7e432f4dee7b3ec257b343",
+    "V": "406edbdc4999a8982bfc9a8c114e47dfc457437944a49dfae4b17ddd50d2cf6f"
+  },
+  "n": {
+    "train": 10038,
+    "dev": 1814,
+    "V": 3318,
+    "gold": 1533
+  },
+  "entorno": {
+    "pista": "S",
+    "modo_prueba": false,
+    "python": "3.12.11",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "transformers": "5.21.0",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scipy": "1.18.1",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "scibert_snapshot": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1"
+  }
+}
