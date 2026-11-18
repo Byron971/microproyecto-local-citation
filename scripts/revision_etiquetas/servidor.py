@@ -1,4 +1,4 @@
-"""Interfaz local para revisar las etiquetas de Haiku y Sonnet.
+"""Interfaz local para revisar las etiquetas de Haiku, Sonnet y Opus.
 
 Lee los CSV de proyecto_de_grado/anotacion/revision_etiquetas_llm/ (generados por
 scripts/muestrear_revision_etiquetas.py) y guarda cada revisión en el mismo CSV.

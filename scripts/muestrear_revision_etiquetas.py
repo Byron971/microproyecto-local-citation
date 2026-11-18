@@ -1,9 +1,15 @@
-"""Muestra aleatoria de 20 etiquetas de Haiku y 20 de Sonnet para revisión humana.
+"""Muestras aleatorias de etiquetas de Haiku, Sonnet y Opus para revisión humana.
 
-Cada muestra cubre las 9 funciones (2 por clase) y completa las 20 con citas al azar.
-Solo toma citas marcadas como Evaluable. Agrega la columna vacía «comentarios humanos».
+Haiku y Sonnet: 20 citas cada uno, cubriendo las 9 funciones (2 por clase) y completando
+al azar. Solo toma citas marcadas como Evaluable.
 
-    python scripts/muestrear_revision_etiquetas.py [--semilla 42]
+Opus: 100 citas. Incluye siempre las 11 discrepancias del test gold en que Opus no coincidió
+con ninguno de los dos anotadores humanos (origen «desacuerdo humano») y completa con citas
+al azar de anotado_opus.csv (origen «aleatoria»).
+
+Nunca sobrescribe un CSV existente (puede tener revisiones hechas) salvo con --sobrescribir.
+
+    python scripts/muestrear_revision_etiquetas.py [--semilla 42] [--sobrescribir]
 """
 import argparse
 import json
@@ -14,14 +20,21 @@ import pandas as pd
 REPO = Path(__file__).resolve().parents[1]
 HAIKU_CSV = REPO / "notebooks/qlora-training/ANOTACION_UNICA_2700_CITAS_REALES_ANOTADO.csv"
 SONNET_CSV = REPO / "proyecto_de_grado/anotacion/sonnet/etiquetas_sonnet.csv"
+OPUS_CSV = REPO / "proyecto_de_grado/anotacion/test_gold_final/anotado_opus.csv"
+OPUS_DISCREPANCIA_CSV = REPO / "proyecto_de_grado/anotacion/test_gold_final/discrepancia_opus.csv"
 CONTEXTS = REPO / "data/raw/contexts.json"
 PAPERS = REPO / "data/raw/papers.json"
 SALIDA = REPO / "proyecto_de_grado/anotacion/revision_etiquetas_llm"
 
 TOTAL = 20
 POR_CLASE = 2
+TOTAL_OPUS = 100
+DESACUERDO = "desacuerdo humano"
+ALEATORIA = "aleatoria"
 COLUMNAS = ["context_id", "Contexto TARGETCIT", "Título citado", "Resumen citado",
             "Función principal", "Confianza", "Justificación / duda", "comentarios humanos"]
+COLUMNAS_OPUS = COLUMNAS + ["origen", "¿Evaluable?", "anotador_A", "etiqueta_A",
+                            "anotador_B", "etiqueta_B"]
 
 
 def agregar_textos(df):
@@ -45,9 +58,41 @@ def muestrear(df, semilla):
     return muestra[COLUMNAS]
 
 
+def muestrear_opus(semilla):
+    """Las discrepancias sin acuerdo de Opus más citas al azar hasta completar TOTAL_OPUS."""
+    discrepancias = pd.read_csv(OPUS_DISCREPANCIA_CSV, dtype=str, keep_default_na=False,
+                                encoding="utf-8-sig")
+    sin_acuerdo = discrepancias[discrepancias["acuerdo_opus"] == "Ninguno"].rename(columns={
+        "etiqueta_opus": "Función principal", "opus_confianza": "Confianza",
+        "opus_justificacion": "Justificación / duda", "opus_evaluable": "¿Evaluable?"})
+    sin_acuerdo["origen"] = DESACUERDO
+
+    anotado = pd.read_csv(OPUS_CSV, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+    anotado = anotado[~anotado["context_id"].isin(sin_acuerdo["context_id"])]
+    aleatorias = anotado.sample(TOTAL_OPUS - len(sin_acuerdo), random_state=semilla).rename(
+        columns={"Función principal (una)": "Función principal"})
+    aleatorias["origen"] = ALEATORIA
+
+    muestra = pd.concat([sin_acuerdo, aleatorias], ignore_index=True).fillna("")
+    muestra = agregar_textos(muestra).sample(frac=1, random_state=semilla)
+    muestra["comentarios humanos"] = ""
+    return muestra[COLUMNAS_OPUS]
+
+
+def guardar(muestra, ruta, sobrescribir):
+    if ruta.exists() and not sobrescribir:
+        print(f"{ruta.relative_to(REPO)}: ya existe, se omite (usa --sobrescribir)")
+        return
+    muestra.to_csv(ruta, index=False, encoding="utf-8-sig")
+    print(f"{ruta.relative_to(REPO)}: {len(muestra)} citas, "
+          f"{muestra['Función principal'].nunique()} clases")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--semilla", type=int, default=42)
+    parser.add_argument("--sobrescribir", action="store_true",
+                        help="Reemplaza los CSV existentes (borra sus revisiones)")
     args = parser.parse_args()
 
     haiku = pd.read_csv(HAIKU_CSV, dtype=str, keep_default_na=False, encoding="utf-8-sig")
@@ -55,11 +100,10 @@ def main():
 
     SALIDA.mkdir(parents=True, exist_ok=True)
     for nombre, df in [("haiku", haiku), ("sonnet", agregar_textos(sonnet))]:
-        muestra = muestrear(df, args.semilla)
-        ruta = SALIDA / f"revision_{nombre}_20.csv"
-        muestra.to_csv(ruta, index=False, encoding="utf-8-sig")
-        print(f"{ruta.relative_to(REPO)}: {len(muestra)} citas, "
-              f"{muestra['Función principal'].nunique()} clases")
+        guardar(muestrear(df, args.semilla), SALIDA / f"revision_{nombre}_{TOTAL}.csv",
+                args.sobrescribir)
+    guardar(muestrear_opus(args.semilla), SALIDA / f"revision_opus_{TOTAL_OPUS}.csv",
+            args.sobrescribir)
 
 
 if __name__ == "__main__":
