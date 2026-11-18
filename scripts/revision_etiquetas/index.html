@@ -8,11 +8,13 @@
   :root {
     --bg: #f6f6f4; --panel: #ffffff; --text: #1d1d1b; --muted: #6b6b66; --line: #e2e2dc;
     --accent: #2f5fa8; --ok: #2e7d4f; --bad: #b3372e; --mark: #fff1a8; --sel: #eaf0fa;
+    --warn: #b86e00;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #161615; --panel: #20201e; --text: #ecebe6; --muted: #9a9992; --line: #34342f;
       --accent: #7ea6e6; --ok: #6fc48f; --bad: #ec7b70; --mark: #5a4d12; --sel: #26324a;
+      --warn: #f0a94a;
     }
   }
   * { box-sizing: border-box; }
@@ -35,6 +37,14 @@
                border: 1px solid var(--muted); }
   nav .punto.Correcta { background: var(--ok); border-color: var(--ok); }
   nav .punto.Incorrecta { background: var(--bad); border-color: var(--bad); }
+  nav button.desacuerdo { box-shadow: inset 4px 0 0 var(--warn); }
+  .insignia { margin-left: auto; flex: none; font-size: 11px; font-weight: 600; color: var(--warn);
+              border: 1px solid var(--warn); border-radius: 10px; padding: 0 6px; align-self: center; }
+  .tarjeta.desacuerdo { border-left: 4px solid var(--warn); }
+  .humanos { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 4px 0; }
+  .humanos strong { font-size: 17px; }
+  .nota { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+  #evaluable { color: var(--warn); font-weight: 600; font-size: 13px; margin-left: 8px; }
   section { padding: 20px 28px; max-width: 960px; }
   .tarjeta { background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
              padding: 16px 20px; margin-bottom: 16px; }
@@ -68,6 +78,7 @@
   <h1>Revisión de etiquetas</h1>
   <select id="archivo" aria-label="Archivo"></select>
   <span class="progreso" id="progreso"></span>
+  <span class="insignia oculto" id="progreso-desacuerdo"></span>
   <span id="estado"></span>
 </header>
 <main>
@@ -77,10 +88,19 @@
       <p class="etiqueta">Contexto de la cita <span id="cid"></span></p>
       <div class="contexto" id="contexto"></div>
     </div>
+    <div class="tarjeta desacuerdo oculto" id="tarjeta-desacuerdo">
+      <p class="etiqueta">⚑ Desacuerdo humano · Opus no coincidió con ninguno</p>
+      <div class="humanos">
+        <span id="humano-a"></span>
+        <span>vs</span>
+        <span id="humano-b"></span>
+      </div>
+      <p class="nota">Cita del test gold donde los dos anotadores discreparon y la etiqueta del modelo no coincide con ninguno de los dos.</p>
+    </div>
     <div class="tarjeta modelo">
       <p class="etiqueta">Etiqueta del modelo</p>
       <p class="funcion" id="funcion"></p>
-      <span class="confianza" id="confianza"></span>
+      <span class="confianza" id="confianza"></span><span id="evaluable"></span>
       <p class="justif" id="justificacion"></p>
     </div>
     <div class="tarjeta">
@@ -136,6 +156,7 @@
 const $ = (id) => document.getElementById(id);
 const form = $("formulario");
 let archivo = "", filas = [], actual = 0, temporizador = null;
+const esDesacuerdo = (f) => f.origen === "desacuerdo humano";
 
 function escapar(t) {
   return t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -156,12 +177,17 @@ async function cargarFilas(nombre) {
 
 function pintarLista() {
   $("lista").innerHTML = filas.map((f, i) =>
-    `<button data-i="${i}" class="${i === actual ? "activo" : ""}">
+    `<button data-i="${i}" class="${i === actual ? "activo" : ""} ${esDesacuerdo(f) ? "desacuerdo" : ""}">
        <span class="punto ${escapar(f.veredicto || "")}"></span>
        <span>${i + 1}. ${escapar(f["Función principal"])}</span>
+       ${esDesacuerdo(f) ? '<span class="insignia" title="Desacuerdo humano sin acuerdo de Opus">⚑ sin acuerdo</span>' : ""}
      </button>`).join("");
   const hechas = filas.filter((f) => f.veredicto).length;
   $("progreso").textContent = `${hechas} / ${filas.length} revisadas`;
+  const desacuerdos = filas.filter(esDesacuerdo);
+  $("progreso-desacuerdo").classList.toggle("oculto", !desacuerdos.length);
+  $("progreso-desacuerdo").textContent =
+    `⚑ ${desacuerdos.filter((f) => f.veredicto).length} / ${desacuerdos.length} sin acuerdo revisadas`;
 }
 
 function pintar() {
@@ -172,6 +198,13 @@ function pintar() {
   $("contexto").innerHTML = escapar(f["Contexto TARGETCIT"]).replace(/TARGETCIT/g, "<mark>TARGETCIT</mark>");
   $("funcion").textContent = f["Función principal"];
   $("confianza").textContent = f["Confianza"] ? "Confianza: " + f["Confianza"] : "";
+  const evaluable = f["¿Evaluable?"];
+  $("evaluable").textContent = evaluable && evaluable !== "Evaluable" ? "· " + evaluable : "";
+  $("tarjeta-desacuerdo").classList.toggle("oculto", !esDesacuerdo(f));
+  if (esDesacuerdo(f)) {
+    $("humano-a").innerHTML = `${escapar(f.anotador_A)}: <strong>${escapar(f.etiqueta_A)}</strong>`;
+    $("humano-b").innerHTML = `${escapar(f.anotador_B)}: <strong>${escapar(f.etiqueta_B)}</strong>`;
+  }
   $("justificacion").textContent = f["Justificación / duda"] || "(sin justificación)";
   $("titulo").textContent = f["Título citado"];
   $("resumen").textContent = f["Resumen citado"];
