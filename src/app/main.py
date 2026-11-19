@@ -674,3 +674,8 @@ def run_backend() -> None:
 
     config = get_app_settings()
     uvicorn.run(app, host=config.host, port=config.port, log_level=config.log_level)
+
+
+# Inferencia experimental de modelos finales M/S.
+from src.app.ms_router import router as router_ms
+app.include_router(router_ms)
