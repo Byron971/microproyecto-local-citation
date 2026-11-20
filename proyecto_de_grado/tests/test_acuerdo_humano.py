@@ -95,3 +95,21 @@ def test_cargar_desde_hojas_y_reporte(tmp_path):
     texto = reporte([("Tanda 1", medir(etiquetas, asignadas), perfil)])
     assert "| Ana y Beto | 2 | 1 | 0,0% |" in texto and "Basis / Gap: 1" in texto
     assert "pocas citas" in texto
+
+
+def test_conjunto_test_gold_v3_y_linea_de_comandos(tmp_path, monkeypatch):
+    # Las hojas v3 se reconocen por su nombre y no se mezclan con las de la tanda 1 v2
+    xlsx(tmp_path / "TestGold_v3_Ana.xlsx", libro([fila("c1", "Evaluable", "Gap", "Alta", "por el however"), fila("c2", "Evaluable", "Basis", "Media", "se apoya")]))
+    xlsx(tmp_path / "TestGold_v3_Beto.xlsx", libro([fila("c1", "Evaluable", "Gap", "Media", "limitación"), fila("c2", "Evaluable", "Basis")]))
+    xlsx(tmp_path / "TestGold_T1_v2_Ana.xlsx", libro([fila("c9", "Evaluable", "Gap", "Alta", "vieja")]))
+    etiquetas, _, _ = cargar(tmp_path, CONJUNTOS["testgold_v3"])
+    assert etiquetas == {"Ana": {"c1": "Gap", "c2": "Basis"}, "Beto": {"c1": "Gap"}}   # c2 de Beto no tiene justificación
+    # Con --conjuntos solo se mide lo pedido, y el reporte lleva el título de la v3
+    from proyecto_de_grado.src.data import acuerdo_humano
+    salida = tmp_path / "reporte.md"
+    monkeypatch.setattr("sys.argv", ["acuerdo_humano", "--hojas", str(tmp_path), "--reporte", str(salida),
+                                     "--conjuntos", "testgold_v3"])
+    acuerdo_humano.main()
+    texto = salida.read_text(encoding="utf-8")
+    assert "Test Gold v3 congelado" in texto and "Tanda 1 del Test Gold" not in texto
+    assert "| Ana y Beto | 2 | 1 | 100,0% |" in texto
