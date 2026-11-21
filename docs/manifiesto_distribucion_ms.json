@@ -1,0 +1,23 @@
+﻿{
+    "tipo":  "distribucion_modelos_cientificos_ms",
+    "version":  1,
+    "modelo_base":  "allenai/scibert_scivocab_uncased",
+    "revision_modelo_base":  "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+    "checkpoints":  [
+                        {
+                            "pista":  "M",
+                            "archivo":  "proyecto_de_grado/artifacts/experimentos_10/M/model.safetensors",
+                            "bytes":  439725612,
+                            "sha256":  "26e354d785964b3e8a3a9d9fa0b1857c3e1e542ff5ed4f174f063f48898e80a7",
+                            "almacenamiento":  "pendiente_de_asignar"
+                        },
+                        {
+                            "pista":  "S",
+                            "archivo":  "proyecto_de_grado/artifacts/experimentos_10/S/model.safetensors",
+                            "bytes":  439725612,
+                            "sha256":  "2369f52bee1b96576dddb1ef0f37a5043f552c73b3e836da31a53d956d271a69",
+                            "almacenamiento":  "pendiente_de_asignar"
+                        }
+                    ],
+    "observacion":  "Los pesos no estan incluidos en Git. Verificar hashes antes de inferencia."
+}
