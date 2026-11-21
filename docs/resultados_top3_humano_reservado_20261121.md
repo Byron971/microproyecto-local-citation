@@ -42,3 +42,28 @@ Las cantidades de Hit@3 concuerdan aritméticamente con 21/25 (BM25) y 13/25 (Sc
 El experimento de clasificación M/S **sí fue recalculado** con predicciones individuales sobre 1530 casos evaluables emparejados; macro-F1 M 0.551217 y S 0.604604 sobre etiquetas consolidadas provisionales. Este resultado es diferente de la evaluación de Top-3. Ninguno certifica por sí mismo el 15% de anotación humana de las funciones.
 
 **Estado final del informe:** análisis cuantitativo exploratorio con juicio humano revisado; evidencia prometedora para la sección de resultados, no validación ciega ni representatividad certificada.
+
+
+## Auditoría complementaria de estructura (salida local)
+
+La inspección de las propiedades del JSON aporta los siguientes agregados, reportados por el investigador:
+
+- `etiquetas.total`: **1005** pares `(context_id,chunk_id)` etiquetados.
+- `etiquetas.relevantes`: **99** (9.85 %).
+- `etiquetas.no_relevantes`: **906** (90.15 %).
+- `etiquetas.desacuerdos_post_revision`: **0**.
+- Las métricas `hit_at_3`, `recall_at_3` y `mrr_at_3` de
+  `comparacion_consulta_a_consulta` contienen conteos agregados
+  `SciBERT_mejor`, `empates`, `BM25_mejor`.
+- Los hashes `corpus`, `anotador_A_normalizado`, `anotador_B_normalizado`,
+  `anotador_A_original_vacio`, `anotador_B_original_vacio`, `BM25` y
+  `SciBERT` tienen valores no vacíos. **Presencia de hashes no equivale
+  a verificar su correspondencia con los archivos.**
+
+No se infiere, solo por contabilizar 1005 pares sobre 30 consultas, que
+se anotó exhaustivamente el conjunto de chunks de cada artículo citado.
+Para afirmar Recall@3 exhaustivo se debe comprobar la cobertura de los
+chunks del corpus por contexto; de lo contrario, la métrica depende del
+pool anotado. Los conteos de victorias/empates por consulta siguen
+pendientes de lectura. El resultado de κ posterior a revisión no sustituye
+κ de primera pasada.
