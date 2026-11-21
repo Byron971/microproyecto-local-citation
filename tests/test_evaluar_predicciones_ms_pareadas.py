@@ -46,3 +46,22 @@ def test_duplicado_y_clase_invalida(tmp_path):
     p.write_text(json.dumps({"context_id": "x", "pred_label": "Desconocido"}), encoding="utf-8")
     with pytest.raises(ValueError, match="clase válida"):
         cargar_predicciones(p)
+
+
+def test_notebook_10_pred_y_pred_ph(tmp_path):
+    p = tmp_path / "pred_gold.jsonl"
+    p.write_text(
+        json.dumps({"context_id": "a", "pred": 0, "pred_ph": 6, "probs": [0.0] * 9}) + "\\n"
+        + json.dumps({"context_id": "b", "pred": 3, "pred_ph": 3, "probs": [0.0] * 9}) + "\\n",
+        encoding="utf-8"
+    )
+    assert cargar_predicciones(p, "pred") == {"a": "Background", "b": "Comparison"}
+    assert cargar_predicciones(p, "pred_ph") == {"a": "Evidence", "b": "Comparison"}
+
+
+def test_notebook_10_indices_invalidos(tmp_path):
+    p = tmp_path / "pred_gold.jsonl"
+    for valor in (-1, 9, "6", None):
+        p.write_text(json.dumps({"context_id": "a", "pred_ph": valor}), encoding="utf-8")
+        with pytest.raises(ValueError, match="índice válido"):
+            cargar_predicciones(p, "pred_ph")
