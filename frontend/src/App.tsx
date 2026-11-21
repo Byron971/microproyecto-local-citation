@@ -5,6 +5,7 @@ import { Analytics } from './pages/Analytics';
 import { Top3 } from './pages/Top3';
 import { CitationFunction } from './pages/CitationFunction';
 import { CitationFunctionB } from './pages/CitationFunctionB';
+import { AnalisisMS } from './pages/AnalisisMS';
 export function App() {
   const { pathname } = useLocation();
   const explore = useRef<HTMLDetailsElement>(null);
@@ -18,6 +19,7 @@ export function App() {
       '/fragmentos': 'Top-3',
       '/funcion': 'Función de cita',
       '/funcion-b': 'Top-3 y función B',
+      '/analisis-ms': 'Análisis científico M/S',
     };
     document.title = `${names[pathname] || 'Página no encontrada'} · Recomendación local de citas académicas`;
   }, [pathname]);
@@ -67,6 +69,7 @@ export function App() {
                 <NavLink to="/fragmentos">Fragmentos Top-3 · experimental</NavLink>
                 <NavLink to="/funcion">Función de cita · provisional</NavLink>
                 <NavLink to="/funcion-b">Top-3 + función B · experimental</NavLink>
+                <NavLink to="/analisis-ms">SciBERT + M/S · científico</NavLink>
                 <NavLink to="/datos">Datos</NavLink>
                 <NavLink to="/modelo">Desempeño</NavLink>
                 <NavLink to="/negativos">Negativos</NavLink>
@@ -81,6 +84,7 @@ export function App() {
           <Route path="/fragmentos" element={<Top3 />} />
           <Route path="/funcion" element={<CitationFunction />} />
           <Route path="/funcion-b" element={<CitationFunctionB />} />
+          <Route path="/analisis-ms" element={<AnalisisMS />} />
           <Route path="/datos" element={<Analytics view="datos" />} />
           <Route path="/modelo" element={<Analytics view="modelo" />} />
           <Route path="/negativos" element={<Analytics view="negativos" />} />
