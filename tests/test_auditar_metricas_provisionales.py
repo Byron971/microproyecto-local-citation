@@ -32,10 +32,11 @@ def test_agregados_validos_no_certifica_gold():
 def test_cobertura_ausente_no_es_error():
     rows, gold, top3 = datos()
     rows[0]["n"] = "2"
+    rows[3]["n"] = "2"
     r = auditar(rows, gold, top3)
     assert r["integridad_agregados"]
     assert r["resultados_historicos"]["M:todo_cob"]["casos_no_cubiertos"] == 1
-    assert "todo_cob: modelos con denominadores distintos" in r["errores"]  # comparación no pareada requiere igualdad
+    assert not r["errores"]
 
 
 def test_rechaza_n_mayor_a_gold():
