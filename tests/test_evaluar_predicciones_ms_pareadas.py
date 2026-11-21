@@ -51,8 +51,8 @@ def test_duplicado_y_clase_invalida(tmp_path):
 def test_notebook_10_pred_y_pred_ph(tmp_path):
     p = tmp_path / "pred_gold.jsonl"
     p.write_text(
-        json.dumps({"context_id": "a", "pred": 0, "pred_ph": 6, "probs": [0.0] * 9}) + "\\n"
-        + json.dumps({"context_id": "b", "pred": 3, "pred_ph": 3, "probs": [0.0] * 9}) + "\\n",
+        json.dumps({"context_id": "a", "pred": 0, "pred_ph": 6, "probs": [0.0] * 9}) + "\n"
+        + json.dumps({"context_id": "b", "pred": 3, "pred_ph": 3, "probs": [0.0] * 9}) + "\n",
         encoding="utf-8"
     )
     assert cargar_predicciones(p, "pred") == {"a": "Background", "b": "Comparison"}
