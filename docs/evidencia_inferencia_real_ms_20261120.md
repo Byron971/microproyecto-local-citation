@@ -62,3 +62,38 @@ La rama de integración incluyó la corrección de la prueba de rutas vía OpenA
 5. Mantener las métricas sobre Gold humano certificado como una evaluación **posterior e independiente**.
 
 **Conclusión limitada:** existe una demostración funcional local documentada de SciBERT Top-3 + clasificación M/S sobre un caso académico identificado como TRAIN, con integridad local de pesos y coincidencia de salidas reportada. No se certifica calidad de recuperación ni F1 de las nueve clases.
+
+
+## 6. Reproducción desde clon independiente (verificación posterior)
+
+El ejecutor reportó la ejecución de `scripts/smoke_real_ms.py` en la ruta independiente
+`ms-clon-limpio`, usando Python 3.12.13 y la instalación recién creada del
+entorno científico. Se copiaron los artefactos M/S y los JSON de solicitud y
+referencia del entorno original; el snapshot SciBERT se obtuvo de la **cache
+local compartida de HuggingFace** (no se acredita aún instalación en equipo
+sin caché ni descarga/autorización de pesos).
+
+El reporte JSON producido en consola muestra:
+
+- `ok: true` y `errores: []`, tolerancia de comparación de softmax `0.005`.
+- Python `3.12.13`, PyTorch `2.6.0+cpu`, Transformers `5.21.0`,
+  huggingface_hub `2.4.0`; dispositivo `cpu`.
+- Entrada SHA-256 `19786b2b21c8be4ee24ed773f7d60d47ceefe239d40c0d23eff9f14d01b8f185`.
+- Referencia SHA-256 `0f0d78064d73309bb318bfe5116b01ccede20397a6f189cc1f803dda30067646`.
+- Método `scibert_base_mean_pooling_cosine`; revisión `24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1`;
+  entrada AB de 512 tokens.
+- Top-3 **en el mismo orden**: `p00011-p00012`,
+  `p00002-p00003`, `p00065-p00065`.
+- M = `Evidence`, `0.458719`; S = `Background`, `0.866312`;
+  ambas coincidencias numéricas fueron **exactas a seis decimales**, aunque el
+  criterio operativo permite tolerancia 0.005.
+- El cargador de `BertModel` reportó llaves `UNEXPECTED` de las cabezas de
+  preentrenamiento; son compatibles con cargar solamente el backbone BERT,
+  y la inferencia terminó satisfactoriamente.
+
+**Estado actualizado:** demostración de inferencia repetida exitosamente desde
+clon independiente de código y entorno Python nuevo, según el reporte local.
+La comparación la ejecutó el usuario; no se incorporaron ni auditaron los
+archivos privados originales desde GitHub Actions. Esta reproducción funcional
+**no equivale a validación externa, métrica Gold o aprovisionamiento end-to-end
+sin caché/modelos previamente provistos**.
