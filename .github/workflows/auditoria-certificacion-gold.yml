@@ -10,6 +10,8 @@ on:
       - "scripts/generar_cola_certificacion_gold.py"
       - "scripts/reconciliar_gold_xlsx.py"
       - "tests/test_reconciliar_gold_xlsx.py"
+      - "scripts/auditar_metricas_provisionales.py"
+      - "tests/test_auditar_metricas_provisionales.py"
       - "proyecto_de_grado/anotacion/test_gold_final/**"
       - ".github/workflows/auditoria-certificacion-gold.yml"
   push:
@@ -21,6 +23,8 @@ on:
       - "scripts/generar_cola_certificacion_gold.py"
       - "scripts/reconciliar_gold_xlsx.py"
       - "tests/test_reconciliar_gold_xlsx.py"
+      - "scripts/auditar_metricas_provisionales.py"
+      - "tests/test_auditar_metricas_provisionales.py"
       - "proyecto_de_grado/anotacion/test_gold_final/**"
       - ".github/workflows/auditoria-certificacion-gold.yml"
 
@@ -38,8 +42,10 @@ jobs:
       - name: Pruebas sinteticas del auditor
         run: |
           python -m pip install "pytest>=8,<10" "openpyxl==3.1.5"
-          python -m pytest -q tests/test_auditar_certificacion_gold.py tests/test_generar_cola_certificacion_gold.py tests/test_reconciliar_gold_xlsx.py
+          python -m pytest -q tests/test_auditar_certificacion_gold.py tests/test_generar_cola_certificacion_gold.py tests/test_reconciliar_gold_xlsx.py tests/test_auditar_metricas_provisionales.py
       - name: Revisar trazabilidad del Gold consolidado
         run: python scripts/auditar_certificacion_gold.py
       - name: Contabilizar tareas de revisión humana sin exportar textos
         run: python scripts/generar_cola_certificacion_gold.py --salida artifacts/cola_gold_privada.csv
+      - name: Auditar métricas históricas provisionales sin reentrenar
+        run: python scripts/auditar_metricas_provisionales.py
