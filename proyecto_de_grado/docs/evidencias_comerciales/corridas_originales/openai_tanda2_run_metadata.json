@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-11-21T07:29:54.367332+00:00",
+  "gold_path": "D:\\tmp\\costos\\completo_2.jsonl",
+  "provisional_gold": true,
+  "mode": "openai",
+  "n_cases": 266,
+  "n_prompts": 3,
+  "clients": [
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "warning": "Resultados preliminares: el conjunto usado es provisional y no debe presentarse como Test Gold definitivo."
+}

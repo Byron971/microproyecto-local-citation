@@ -1,0 +1,7 @@
+modelo,proveedor,prompt,citas,sin_parseo,f1_macro,precision_macro,recall_macro,f1_micro_accuracy,latencia_mediana_s,latencia_p95_s,tokens_entrada_media,tokens_salida_media,costo_total_usd,costo_por_llamada_usd,costo_por_1000_citas_usd,f1_macro_repo,diferencia_con_repo
+gemini-3.5-flash-lite,gemini,zero_shot_generic,1061,0,0.4124,0.5194,0.4944,0.5193,0.58,0.71,427,45,0.2553,0.000241,0.241,0.4124,0.0
+gemini-3.5-flash-lite,gemini,zero_shot_detailed,1061,0,0.4866,0.5623,0.5501,0.573,0.59,0.71,620,45,0.3168,0.000299,0.299,0.4866,0.0
+gemini-3.5-flash-lite,gemini,few_shot,1061,0,0.501,0.549,0.553,0.6324,0.59,0.72,856,45,0.3919,0.000369,0.369,0.501,0.0
+gpt-6.1-sol,openai,zero_shot_generic,1061,0,0.5505,0.664,0.6216,0.656,2.18,4.23,432,63.9,1.5941,0.001502,1.502,0.5505,0.0
+gpt-6.1-sol,openai,zero_shot_detailed,1061,0,0.6124,0.6737,0.6429,0.7182,2.26,4.54,618,70.5,2.0585,0.00194,1.94,0.6124,0.0
+gpt-6.1-sol,openai,few_shot,1061,0,0.6006,0.6443,0.6322,0.7238,2.02,4.44,849,73.9,2.5851,0.002436,2.436,0.6006,0.0
