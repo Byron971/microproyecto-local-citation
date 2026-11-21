@@ -14,6 +14,8 @@ on:
       - "tests/test_provider_settings.py"
       - "scripts/verificar_artefactos_ms.py"
       - "tests/test_verificar_artefactos_ms.py"
+      - "scripts/smoke_real_ms.py"
+      - "tests/test_smoke_real_ms.py"
       - "Dockerfile"
       - ".dockerignore"
       - "docker-compose.yml"
@@ -33,6 +35,8 @@ on:
       - "tests/test_provider_settings.py"
       - "scripts/verificar_artefactos_ms.py"
       - "tests/test_verificar_artefactos_ms.py"
+      - "scripts/smoke_real_ms.py"
+      - "tests/test_smoke_real_ms.py"
       - "Dockerfile"
       - ".dockerignore"
       - "docker-compose.yml"
@@ -65,6 +69,7 @@ jobs:
             tests/test_science_pipeline_b.py \
             tests/test_provider_settings.py \
             tests/test_verificar_artefactos_ms.py \
+            tests/test_smoke_real_ms.py \
             tests/test_top3_fragmentos.py \
             tests/test_top3_corpus_real.py \
             tests/test_providers_openai.py \
