@@ -2,9 +2,6 @@ data "aws_caller_identity" "current" {}
 data "aws_ecr_repository" "api" {
   name = var.ecr_repository
 }
-data "aws_iam_role" "ecs" {
-  name = var.ecs_role_name
-}
 data "aws_ssm_parameter" "image_tag" {
   name = "/${var.project_name}/api/image_tag"
 }
@@ -21,12 +18,16 @@ resource "aws_ecs_task_definition" "api" {
   network_mode             = "awsvpc"
   cpu                      = var.task_cpu
   memory                   = var.task_memory
-  execution_role_arn       = data.aws_iam_role.ecs.arn
-  task_role_arn            = data.aws_iam_role.ecs.arn
+  execution_role_arn       = local.execution_role_arn
+  task_role_arn            = local.task_role_arn
   runtime_platform {
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
+  depends_on = [
+    aws_iam_role_policy_attachment.execution,
+    aws_iam_role_policy.secrets,
+  ]
   container_definitions = jsonencode([{
     name         = "api"
     image        = "${data.aws_ecr_repository.api.repository_url}:${nonsensitive(data.aws_ssm_parameter.image_tag.value)}"

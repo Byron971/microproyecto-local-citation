@@ -18,3 +18,12 @@ provider "aws" {
     tags = { Project = var.project_name, ManagedBy = "Terraform" }
   }
 }
+
+# CloudFront requiere el certificado de los visitantes en us-east-1.
+provider "aws" {
+  alias  = "virginia"
+  region = "us-east-1"
+  default_tags {
+    tags = { Project = var.project_name, ManagedBy = "Terraform" }
+  }
+}

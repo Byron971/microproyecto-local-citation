@@ -18,8 +18,8 @@ output "custom_domain_target" {
 }
 
 output "frontend_url" {
-  description = "URL HTTPS del CDN de la aplicación React."
-  value       = "https://${aws_cloudfront_distribution.web.domain_name}"
+  description = "URL HTTPS de la aplicación React, con dominio propio cuando está habilitado."
+  value       = local.frontend_custom_domain ? "https://${var.frontend_domain_name}" : "https://${aws_cloudfront_distribution.web.domain_name}"
 }
 
 output "frontend_bucket" {
@@ -32,4 +32,11 @@ output "distribution_id" {
 
 output "api_base_url" {
   value = aws_apigatewayv2_api.main.api_endpoint
+}
+
+output "domain_hosted_zone_id" {
+  value = try(aws_route53domains_domain.app[0].hosted_zone_id, null)
+}
+output "domain_expiration_date" {
+  value = try(aws_route53domains_domain.app[0].expiration_date, null)
 }

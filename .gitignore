@@ -59,9 +59,9 @@ reportes/**/*.blg
 *.tfstate
 *.tfstate.*
 *.tfplan
-terraform/*.tfvars
-terraform/*.tfvars.json
-terraform/crash.log
+terraform/**/*.tfvars
+terraform/**/*.tfvars.json
+terraform/**/crash.log
 
 # NUEVOS juicios privados/actas de revisión: nunca subir a Git público.
 # Esto NO borra los archivos históricos ya versionados; auditar sus permisos
