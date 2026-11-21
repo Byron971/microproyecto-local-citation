@@ -9,6 +9,8 @@ desired_count  = 1
 # health_check_path = "/api/salud/lista" # Cuando la ruta esté integrada.
 # app_environment = {}
 # app_secrets = { API_KEY = "arn:aws:ssm:us-east-1:ACCOUNT:parameter/citas-api/key" }
+# Con frontend_domain_name se configura api.<dominio> y ACM automáticamente.
+# Para un dominio externo con certificado existente, usar las siguientes variables:
 # custom_domain_name = "api.example.com"
 # certificate_arn = "arn:aws:acm:us-east-1:ACCOUNT:certificate/ID"
 

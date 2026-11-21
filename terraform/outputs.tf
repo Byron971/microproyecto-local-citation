@@ -1,5 +1,5 @@
 output "api_url" {
-  value = aws_apigatewayv2_stage.main.invoke_url
+  value = local.api_public_url
 }
 output "ecr_repository_url" {
   value = data.aws_ecr_repository.api.repository_url
@@ -31,7 +31,7 @@ output "distribution_id" {
 }
 
 output "api_base_url" {
-  value = aws_apigatewayv2_api.main.api_endpoint
+  value = local.api_public_url
 }
 
 output "domain_hosted_zone_id" {
