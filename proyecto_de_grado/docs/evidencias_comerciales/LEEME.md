@@ -26,7 +26,7 @@ Ver `resumen.md` (tabla completa), `metricas/por_clase.csv` y `metricas/matrices
 | gemini-3.5-flash-lite | 0,30 | 2,50 | Varias páginas de precios coinciden; la página de Google lista 0,30 de entrada. Consultado el 21-nov-2026. Verificar en ai.google.dev/gemini-api/docs/pricing |
 | gpt-6.1-sol | 2,00 | 10,00 | Fuentes secundarias citan la lista de OpenAI del 17-oct-2026. Verificar en developers.openai.com/api/docs/pricing |
 
-**Los costos del resumen son estimaciones** (tokens medidos por la API × tarifa). En una prueba de 9 llamadas con Gemini el programa estimó US$0,0027 y la consola mostró unos 9 COP, que son del mismo orden. Falta contrastar el total con el cargo final de cada consola.
+**Los costos del resumen son estimaciones** (tokens medidos por la API × tarifa). En una prueba de 9 llamadas con Gemini el programa estimó US$0,0027 y la consola mostró unos 9 COP, que son del mismo orden. La comparación con el cobro de cada consola está en `costos_cobrados.md`: OpenAI cobró US$6,98 (estimado US$6,88) y Gemini COP 3.138, cerca de US$0,80 (estimado US$0,97).
 
 **Costo estimado total (3 prompts × 1.061 citas):** Gemini 3.5 Flash-Lite US$0,96; GPT-6.1 Sol US$6,24. A eso se suman las pruebas previas (unos US$0,64 de OpenAI y centavos de Gemini).
 
