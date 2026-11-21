@@ -31,7 +31,12 @@ CATEGORIAS = CLASES + [NO_EVALUABLE]
 TERMINADA = ("COMPLETO", "REGISTRADO")
 ALFA_CONFIABLE, ALFA_PROVISIONAL = 0.800, 0.667      # umbrales de Krippendorff (2004) para α
 PAREJA_MINIMA = 30                                   # con menos citas compartidas el κ de una pareja es muy inestable
-CONJUNTOS = {"tanda1": re.compile(r"^TestGold_T1_v2_(\w+)\.xlsx$"), "calibracion3": re.compile(r"^Calibracion3_(\w+)\.xlsx$")}
+CONJUNTOS = {"tanda1": re.compile(r"^TestGold_T1_v2_(\w+)\.xlsx$"), "calibracion3": re.compile(r"^Calibracion3_(\w+)\.xlsx$"),
+             "testgold_v3": re.compile(r"^TestGold_v3_(\w+)\.xlsx$")}   # hojas del Test Gold congelado el 16-nov (tres tandas)
+TITULOS = {"tanda1": "Tanda 1 del Test Gold (dos anotadores por cita)",
+           "calibracion3": "Calibración 3 (las cinco personas, mismas 20 citas)",
+           "testgold_v3": "Test Gold v3 congelado (tres tandas, dos anotadores por cita)"}
+CON_DESACUERDOS = ("tanda1", "testgold_v3")          # conjuntos de parejas: sus desacuerdos se pueden exportar
 
 
 def etiqueta(r: dict) -> str | None:
@@ -188,17 +193,18 @@ def reporte(secciones: list[tuple[str, dict, dict]]) -> str:
 
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    p.add_argument("--hojas", required=True, help="carpeta con TestGold_T1_v2_*.xlsx y Calibracion3_*.xlsx")
+    p.add_argument("--hojas", required=True, help="carpeta con las hojas (TestGold_T1_v2_*, Calibracion3_* o TestGold_v3_*)")
     p.add_argument("--reporte", required=True)
-    p.add_argument("--desacuerdos", help="CSV con las citas en desacuerdo de la tanda 1 (solo en la carpeta privada)")
+    p.add_argument("--conjuntos", nargs="+", choices=list(CONJUNTOS), default=["tanda1", "calibracion3"],
+                   help="qué hojas medir; por defecto las de la tanda 1 y la calibración 3, como antes")
+    p.add_argument("--desacuerdos", help="CSV con las citas en desacuerdo (solo en la carpeta privada)")
     a = p.parse_args()
     secciones = []
-    for nombre, titulo in (("tanda1", "Tanda 1 del Test Gold (dos anotadores por cita)"),
-                           ("calibracion3", "Calibración 3 (las cinco personas, mismas 20 citas)")):
+    for nombre in a.conjuntos:                       # cada conjunto es una sección del reporte
         etiquetas, perfil, asignadas = cargar(a.hojas, CONJUNTOS[nombre])
         res = medir(etiquetas, asignadas)
-        secciones.append((titulo, res, perfil))
-        if nombre == "tanda1" and a.desacuerdos:
+        secciones.append((TITULOS[nombre], res, perfil))
+        if nombre in CON_DESACUERDOS and a.desacuerdos:
             with open(a.desacuerdos, "w", encoding="utf-8", newline="") as f:
                 w = csv.DictWriter(f, fieldnames=["context_id", "anotador_1", "etiqueta_1", "anotador_2", "etiqueta_2"])
                 w.writeheader()
