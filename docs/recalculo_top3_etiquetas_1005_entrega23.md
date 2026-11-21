@@ -45,3 +45,28 @@ sin modificar resultados.
 
 Para la entrega del 23, priorizar reproducibilidad y límites
 transparentes sobre entrenamientos nuevos o expansión del muestreo.
+
+
+## Auditoría de exhaustividad del corpus de 30 consultas
+
+El corpus privado `lote_estricto_30_anotacion/corpus_test_estricto_30.json`
+contiene las propiedades superiores `version`, `tipo`,
+`fragmentador`, `casos`. El repositorio genera fragmentos por consulta
+con `chunks[].chunk_id`. Se incorporó
+`scripts/auditar_cobertura_top3_1005.py` con pruebas unitarias para
+contrastar **la totalidad** de pares corpus vs. anotación, además de
+verificar que los Top-3 recuperados pertenecen al corpus.
+
+```powershell
+git pull --ff-only
+$original = "C:\Users\juan sanz\Downloads\IAandes\microproyecto-local-citation-actualizado"
+$base = Join-Path $original "proyecto_de_grado\artifacts\top3_test_preparacion"
+$rank = Join-Path $base "evaluacion_modelos_reservada"
+.\.venv-ms\Scripts\python.exe scripts/auditar_cobertura_top3_1005.py --corpus "$base\lote_estricto_30_anotacion\corpus_test_estricto_30.json" --etiquetas "artifacts\top3_etiquetas_pareadas_1005.csv" --bm25 "$rank\ranking_bm25.json" --scibert "$rank\ranking_scibert.json" --salida "artifacts\auditoria_cobertura_top3_1005.json"
+```
+
+Estado `exhaustivo`, faltantes/sobrantes 0 y `rankings_validos=true`
+demuestran únicamente exhaustividad **respecto del corpus
+fragmentado de estos 30 casos**, no respecto a artículos fuera del
+archivo, ni doble anotación ciega. No cambiar ni sobreescribir el
+resultado Top-3 previo.
