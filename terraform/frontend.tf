@@ -59,6 +59,7 @@ resource "aws_cloudfront_cache_policy" "assets" {
   }
 }
 resource "aws_cloudfront_distribution" "web" {
+  aliases             = local.frontend_custom_domain ? [var.frontend_domain_name] : []
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
@@ -93,7 +94,12 @@ resource "aws_cloudfront_distribution" "web" {
   restrictions {
     geo_restriction { restriction_type = "none" }
   }
-  viewer_certificate { cloudfront_default_certificate = true }
+  viewer_certificate {
+    cloudfront_default_certificate = !local.frontend_custom_domain
+    acm_certificate_arn            = local.frontend_custom_domain ? aws_acm_certificate_validation.frontend[0].certificate_arn : null
+    ssl_support_method             = local.frontend_custom_domain ? "sni-only" : null
+    minimum_protocol_version       = local.frontend_custom_domain ? "TLSv1.2_2021" : "TLSv1"
+  }
 }
 resource "aws_s3_bucket_policy" "web" {
   bucket = aws_s3_bucket.web.id

@@ -2,7 +2,7 @@ resource "aws_apigatewayv2_api" "main" {
   name          = var.project_name
   protocol_type = "HTTP"
   cors_configuration {
-    allow_origins = distinct(concat(["https://${aws_cloudfront_distribution.web.domain_name}"], var.cors_allowed_origins))
+    allow_origins = distinct(concat(["https://${aws_cloudfront_distribution.web.domain_name}"], local.frontend_custom_domain ? ["https://${var.frontend_domain_name}"] : [], var.cors_allowed_origins))
     allow_methods = ["GET", "POST", "OPTIONS"]
     allow_headers = ["content-type"]
     max_age       = 300
@@ -54,22 +54,22 @@ resource "aws_apigatewayv2_stage" "main" {
   }
 }
 resource "aws_apigatewayv2_domain_name" "custom" {
-  count       = var.custom_domain_name != "" ? 1 : 0
-  domain_name = var.custom_domain_name
+  count       = local.api_custom_domain ? 1 : 0
+  domain_name = local.api_domain_name
   domain_name_configuration {
-    certificate_arn = var.certificate_arn
+    certificate_arn = local.managed_api_domain ? aws_acm_certificate_validation.api[0].certificate_arn : var.certificate_arn
     endpoint_type   = "REGIONAL"
     security_policy = "TLS_1_2"
   }
   lifecycle {
     precondition {
-      condition     = var.certificate_arn != ""
+      condition     = local.managed_api_domain || var.certificate_arn != ""
       error_message = "El dominio personalizado requiere un certificado ACM en la misma región."
     }
   }
 }
 resource "aws_apigatewayv2_api_mapping" "custom" {
-  count       = var.custom_domain_name != "" ? 1 : 0
+  count       = local.api_custom_domain ? 1 : 0
   api_id      = aws_apigatewayv2_api.main.id
   domain_name = aws_apigatewayv2_domain_name.custom[0].id
   stage       = aws_apigatewayv2_stage.main.id

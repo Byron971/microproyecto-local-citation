@@ -170,3 +170,6 @@ Bucket, historial del estado, imágenes ECR y tag SSM sobreviven al destroy.
 Su eliminación es independiente: borrar el bucket elimina el estado y borrar
 ECR elimina las imágenes necesarias para redeploy y rollback. No eliminarlos
 antes de terminar el destroy.
+
+Dominio del frontend: `proyectocitas-grupo19.click`.
+Dominio del API: `api.proyectocitas-grupo19.click`.
