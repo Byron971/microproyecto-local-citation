@@ -20,6 +20,16 @@ def test_ms_estado_disponible():
     assert "manifest_scibert_existe" in data
     assert "checkpoint_m_existe" in data
     assert "checkpoint_s_existe" in data
+    assert "manifiesto_m_existe" in data
+    assert "manifiesto_s_existe" in data
+    assert data["inferencia_verificada_por_estado"] is False
+    assert data["artefactos_locales_presentes"] is all((
+        data["manifest_scibert_existe"],
+        data["checkpoint_m_existe"],
+        data["checkpoint_s_existe"],
+        data["manifiesto_m_existe"],
+        data["manifiesto_s_existe"],
+    ))
 
 
 def test_ms_rechaza_entrada_vacia():
