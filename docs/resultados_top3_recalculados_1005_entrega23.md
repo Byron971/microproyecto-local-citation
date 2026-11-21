@@ -48,3 +48,41 @@ Estas cifras describen la muestra de 25 consultas elegibles, sin demostrar gener
 ## Estado de la entrega
 
 La **reproducción numérica** de Top-3 sobre la versión final de etiquetas está cerrada. Faltan la verificación de exhaustividad, independencia y consolidación del documento académico con metodología/limitaciones.
+
+
+## Cierre de auditoría de cobertura, ejecutado localmente el 21-nov-2026
+
+El investigador ejecutó `scripts/auditar_cobertura_top3_1005.py` en
+`ms-clon-limpio` sobre el corpus y rankings privados, sin publicar
+textos ni etiquetas:
+
+| Control | Resultado |
+| --- | ---: |
+| Estado | `exhaustivo` |
+| Consultas en corpus / etiquetas | 30 / 30 |
+| Pares en corpus / etiquetas | 1005 / 1005 |
+| Pares sin etiqueta | 0 |
+| Etiquetas fuera del corpus | 0 |
+| Mínimo/máximo chunks por consulta | 14 / 138 |
+| Consultas con / sin positivos | 25 / 5 |
+| Total relevantes | 96 |
+| Relevancia exhaustiva en corpus | `true` |
+| Rankings válidos | `true` |
+| BM25: consultas, Top-3 válidos, ajenos | 30, 90, 0 |
+| SciBERT: consultas, Top-3 válidos, ajenos | 30, 90, 0 |
+| Duplicados en rankings BM25 / SciBERT | 0 / 0 |
+
+Huellas SHA-256 registradas por esta auditoría:
+
+- Corpus: `383475458ecb1d124a8367199e2c66f367e99b480cde4fd9622c420147a427f1`
+- Etiquetas: `e695bd86f481b0784906b47a1de0baec40a9a5063597ea779f388df6dfd07064`
+- BM25: `25d32d3e560e62f5ee92a8b05a6e81cd99697f3f528fa92b4387f225723f9a0d`
+- SciBERT: `762b02d5f03d4a5e449edc48a49d85219731b145f0b7d75700598d054ac40222`
+
+**Conclusión acotada:** las etiquetas cubren **todos los chunks de este corpus
+fragmentado** y ambos rankings Top-3 son íntegros respecto de él. Esto
+resuelve la duda de completitud *interna* del conjunto de evaluación,
+pero no acredita cobertura total del artículo OCL externo, independencia
+ciega original de A/B, representatividad poblacional o calidad
+semántica de todas las etiquetas. El informe final debe distinguir
+claramente estos límites y preservar las evidencias privadas en local.
