@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-11-21T07:34:25.646075+00:00",
+  "gold_path": "D:\\tmp\\costos\\completo_3.jsonl",
+  "provisional_gold": true,
+  "mode": "gemini",
+  "n_cases": 266,
+  "n_prompts": 3,
+  "clients": [
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite"
+    }
+  ],
+  "warning": "Resultados preliminares: el conjunto usado es provisional y no debe presentarse como Test Gold definitivo."
+}
