@@ -84,7 +84,8 @@ def test_endpoint_rechaza_carga_excesiva():
 
 
 def test_api_original_conserva_sus_rutas():
-    paths = {route.path for route in app.routes}
+    # Verificar los endpoints publicados sin depender de tipos internos de Starlette.
+    paths = set(app.openapi()["paths"])
     assert "/api/recomendar" in paths
     assert "/api/estado" in paths
     assert "/api/insights" in paths
