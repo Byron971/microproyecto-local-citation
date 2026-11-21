@@ -58,6 +58,32 @@ revision 24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1
 La carga cientifica se realiza sin descargar automaticamente
 modelos en tiempo de inferencia.
 
+## Verificacion previa obligatoria de artefactos M/S
+
+Desde la raiz del repositorio, antes de iniciar la API cientifica:
+
+```powershell
+python scripts/verificar_artefactos_ms.py
+```
+
+El comando **no descarga checkpoints** ni importa Torch. Verifica para M y S:
+presencia, tamaño esperado, SHA-256 de los pesos y coherencia del manifiesto
+de entrenamiento (hash, revision SciBERT y entrada AB). Devuelve JSON y
+termina con codigo 1 si hay una falla. Para ejecutar solo las pruebas
+sinteticas de este control:
+
+```powershell
+uv run pytest -q tests/test_verificar_artefactos_ms.py
+```
+
+La prevalidacion **no garantiza** que el snapshot de HuggingFace este
+instalado, que el codigo cientifico funcione con Python 3.12 ni que
+la inferencia real sea exitosa. No sustituye la ejecucion POST con un
+caso TRAIN autorizado ni demuestra metricas cientificas sobre Gold.
+
+No subir pesos, anotaciones Gold ni credenciales a Git. El lugar autorizado
+para distribuir los pesos aun esta pendiente de decision del equipo.
+
 ## Arranque en el entorno Windows ya preparado
 
 Ejecutar desde la raiz del repositorio.
