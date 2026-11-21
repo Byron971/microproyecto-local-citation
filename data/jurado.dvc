@@ -1,0 +1,6 @@
+outs:
+- md5: 32fdadc5d4d6dff5674f775b7ccddf2b.dir
+  size: 19251507
+  nfiles: 19
+  hash: md5
+  path: jurado
