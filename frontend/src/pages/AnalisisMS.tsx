@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { errorMessage, request } from '../api';
 
 type Candidato = { chunk_id: string; texto: string; seccion: string };
@@ -49,6 +49,61 @@ export function AnalisisMS() {
   const controller = useRef<AbortController | null>(null);
   useEffect(() => () => controller.current?.abort(), []);
 
+  async function cargarCasoReal(e: ChangeEvent<HTMLInputElement>) {
+    const archivo = e.target.files?.[0];
+    if (!archivo) return;
+    try {
+      if (archivo.size > 1024 * 1024) {
+        throw new Error('El archivo supera 1 MB.');
+      }
+      const datos = JSON.parse(await archivo.text());
+      if (
+        typeof datos.contexto !== 'string' ||
+        datos.contexto.split('TARGETCIT').length !== 2 ||
+        typeof datos.titulo !== 'string' ||
+        typeof datos.abstract !== 'string' ||
+        !datos.titulo.trim() ||
+        !datos.abstract.trim() ||
+        !Array.isArray(datos.candidatos) ||
+        datos.candidatos.length < 3 ||
+        datos.candidatos.length > 100
+      ) {
+        throw new Error('El JSON no tiene el formato esperado.');
+      }
+
+      const nuevos = datos.candidatos.map((c: any) => {
+        if (
+          typeof c.chunk_id !== 'string' ||
+          typeof c.texto !== 'string' ||
+          !c.chunk_id.trim() ||
+          !c.texto.trim()
+        ) {
+          throw new Error('Hay fragmentos sin ID o texto válido.');
+        }
+        return {
+          chunk_id: c.chunk_id,
+          texto: c.texto,
+          seccion: String(c.seccion ?? ''),
+        };
+      });
+
+      if (new Set(nuevos.map((c: Candidato) => c.chunk_id)).size !== nuevos.length) {
+        throw new Error('Hay identificadores duplicados.');
+      }
+
+      controller.current?.abort();
+      setContexto(datos.contexto);
+      setTitulo(datos.titulo);
+      setAbstract(datos.abstract);
+      setCandidatos(nuevos);
+      setRespuesta(null);
+      setError('');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'No se pudo cargar el JSON.');
+    } finally {
+      e.target.value = '';
+    }
+  }
   function ejemplo() {
     controller.current?.abort();
     setContexto(DEMO.contexto);
@@ -109,6 +164,8 @@ export function AnalisisMS() {
       <form onSubmit={ejecutar}>
         <div className="form-actions">
           <button type="button" onClick={ejemplo} disabled={cargando}>Cargar ejemplo ilustrativo</button>
+          <label htmlFor="ms-json">Cargar caso real JSON</label>
+          <input id="ms-json" type="file" accept=".json,application/json" disabled={cargando} onChange={cargarCasoReal} />
         </div>
         <label htmlFor="ms-contexto">Contexto académico en inglés (TARGETCIT una vez)</label>
         <textarea id="ms-contexto" lang="en" rows={4} maxLength={4000} required value={contexto} onChange={(e) => setContexto(e.target.value)} placeholder="Earlier work TARGETCIT showed..." />

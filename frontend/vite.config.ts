@@ -6,7 +6,18 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@citation-js/core', '@citation-js/plugin-bibtex', '@citation-js/plugin-csl'],
   },
-  server: { proxy: { '/api': 'http://127.0.0.1:8000' } },
+  server: {
+  proxy: {
+    '/api/analisis-cita-ms': {
+      target: 'http://127.0.0.1:8001',
+      changeOrigin: true,
+    },
+    '/api': {
+      target: 'http://127.0.0.1:8000',
+      changeOrigin: true,
+    },
+  },
+},
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],

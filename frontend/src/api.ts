@@ -130,7 +130,10 @@ export class ApiError extends Error {
 const base = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
 export async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 32_000);
+  const timeoutMs = path.startsWith('/api/analisis-cita-ms')
+    ? 300_000
+    : 32_000;
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   const forwardAbort = () => controller.abort();
   options.signal?.addEventListener('abort', forwardAbort, { once: true });
   if (options.signal?.aborted) controller.abort();
