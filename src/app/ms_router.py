@@ -53,7 +53,7 @@ def estado_ms():
     return {
         "habilitado": True,  # La ruta HTTP esta publicada, no es un chequeo de inferencia.
         "artefactos_locales_presentes": artefactos_presentes,
-        "listo_para_inferencia": False,  # La carga se valida realmente en POST.
+        "inferencia_verificada_por_estado": False,  # Este GET no ejecuta modelos.
         "manifest_scibert_existe": manifest_scibert_existe,
         "checkpoint_m_existe": checkpoint_m_existe,
         "checkpoint_s_existe": checkpoint_s_existe,
