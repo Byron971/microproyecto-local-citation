@@ -30,7 +30,7 @@ def sha(path: Path) -> str:
     return h.hexdigest()
 
 
-def cargar_predicciones(path: Path) -> dict[str, str]:
+def cargar_predicciones(path: Path, campo: str = "pred_label") -> dict[str, str]:
     pred = {}
     with path.open("r", encoding="utf-8-sig") as f:
         for num, linea in enumerate(f, 1):
@@ -40,7 +40,15 @@ def cargar_predicciones(path: Path) -> dict[str, str]:
             if not isinstance(obj, dict):
                 raise ValueError(f"{path.name}: línea {num} no es objeto")
             cid = obj.get("context_id", obj.get("case_id"))
-            etiqueta = obj.get("pred_label", obj.get("clase"))
+            if campo in ("pred", "pred_ph"):
+                indice = obj.get(campo)
+                if type(indice) is not int or not 0 <= indice < len(CLASES):
+                    raise ValueError(f"{path.name}: línea {num} sin índice válido {campo}")
+                etiqueta = CLASES[indice]
+            else:
+                etiqueta = obj.get(campo)
+                if etiqueta is None and campo == "pred_label":
+                    etiqueta = obj.get("clase")
             if not isinstance(cid, str) or not cid:
                 raise ValueError(f"{path.name}: línea {num} sin context_id")
             if etiqueta not in CLASES:
@@ -135,13 +143,16 @@ def main() -> int:
     ap.add_argument("--gold", type=Path, default=Path("proyecto_de_grado/anotacion/test_gold_final/test_gold_final.csv"))
     ap.add_argument("--pred-m", type=Path, required=True)
     ap.add_argument("--pred-s", type=Path, required=True)
+    ap.add_argument("--campo-m", choices=("pred_label", "pred", "pred_ph"), default="pred_label", help="M del notebook 10 usa pred_ph por ajuste PH")
+    ap.add_argument("--campo-s", choices=("pred_label", "pred", "pred_ph"), default="pred_label", help="S del notebook 10 usa pred sin ajuste PH")
     ap.add_argument("--salida", type=Path)
     args = ap.parse_args()
     try:
         if args.pred_m.resolve() == args.pred_s.resolve():
             raise ValueError("M y S deben ser dos archivos diferentes")
-        gold, m, s = cargar_gold(args.gold), cargar_predicciones(args.pred_m), cargar_predicciones(args.pred_s)
+        gold, m, s = cargar_gold(args.gold), cargar_predicciones(args.pred_m, args.campo_m), cargar_predicciones(args.pred_s, args.campo_s)
         informe = comparar(gold, m, s)
+        informe["campos_prediccion"] = {"M": args.campo_m, "S": args.campo_s}
         informe["hashes"] = {"gold": sha(args.gold), "M": sha(args.pred_m), "S": sha(args.pred_s)}
         informe["advertencias"] = [
             "Verificar externamente que M y S provienen de los checkpoints declarados; el nombre del archivo no certifica procedencia.",
