@@ -84,6 +84,85 @@ caso TRAIN autorizado ni demuestra metricas cientificas sobre Gold.
 No subir pesos, anotaciones Gold ni credenciales a Git. El lugar autorizado
 para distribuir los pesos aun esta pendiente de decision del equipo.
 
+## Reproduccion en clon de codigo limpio (Windows, CPU)
+
+Este procedimiento crea una **segunda carpeta**: no cambia de rama, borra ni
+reorganiza el repositorio de trabajo original. Es una prueba de clon limpio
+**del codigo** con pesos y ejemplo TRAIN transferidos desde un entorno
+ya verificado; no es una prueba de aprovisionamiento autonomo de modelos
+en una maquina sin cache HuggingFace.
+
+1. En PowerShell, desde fuera de la carpeta del repositorio original:
+
+```powershell
+$original = "C:\ruta\absoluta\microproyecto-local-citation-actualizado"
+git clone --branch integration/cierre-cientifico-20261120 --single-branch https://github.com/Byron971/microproyecto-local-citation.git ms-clon-limpio
+cd ms-clon-limpio
+```
+
+2. Copiar **solo** los checkpoints y sus manifiestos de entrenamiento a las
+rutas esperadas. No copiar la carpeta `.venv-science`, todo `artifacts`
+ni los ficheros de Gold:
+
+```powershell
+foreach ($pista in @("M", "S")) {
+  $fuente = Join-Path $original "proyecto_de_grado/artifacts/experimentos_10/$pista"
+  $destino = Join-Path (Get-Location).Path "proyecto_de_grado/artifacts/experimentos_10/$pista"
+  New-Item -ItemType Directory -Force -Path $destino | Out-Null
+  Copy-Item (Join-Path $fuente "model.safetensors") $destino -ErrorAction Stop
+  Copy-Item (Join-Path $fuente "manifiesto_entrenamiento.json") $destino -ErrorAction Stop
+}
+New-Item -ItemType Directory -Force -Path ".\artifacts\ms_smoke_local" | Out-Null
+Copy-Item (Join-Path $original "proyecto_de_grado/artifacts/demo_real_ms/solicitud_real_ms.json") ".\artifacts\ms_smoke_local\solicitud.json" -ErrorAction Stop
+Copy-Item (Join-Path $original "proyecto_de_grado/artifacts/demo_real_ms/respuesta_real_ms.json") ".\artifacts\ms_smoke_local\referencia.json" -ErrorAction Stop
+python scripts/verificar_artefactos_ms.py
+```
+
+El script de verificacion debe terminar con `listo=true`. La solicitud
+contiene texto cientifico y **solo permanece local** (la carpeta
+`artifacts/` esta ignorada por Git).
+
+3. Instalar el entorno cientifico **aislado de Python 3.12**. No utilizar
+`uv sync` del proyecto principal ni del paquete `recuperacion-densa`
+porque ambos manifiestos exigen Python >=3.14 y esta prueba se basa
+en el entorno de ejecucion Python 3.12 documentado:
+
+```powershell
+uv python install 3.12
+uv venv --python 3.12 .venv-ms
+uv pip install --python .venv-ms\Scripts\python.exe "torch==2.6.0" --index-url https://download.pytorch.org/whl/cpu
+uv pip install --python .venv-ms\Scripts\python.exe "transformers==5.21.0" "huggingface-hub==2.4.0" "safetensors==0.8.0" "fastapi==0.165.0" "uvicorn==0.54.0"
+```
+
+Estas son las versiones **reportadas** en el entorno local exitoso.
+La resolucion de dependencias en una instalacion limpia aun debe ser
+comprobada y las versiones ajustadas solo con una justificacion
+registrada y una nueva ejecucion. El entorno necesita el snapshot
+SciBERT de la revision fijada, disponible en la cache HuggingFace local;
+el runtime no lo descarga al ejecutar.
+
+4. Ejecutar con el codigo de ese clon. La variable de entorno hace
+disponible el paquete de recuperacion sin instalarlo desde su
+`pyproject.toml` incompatible con Python 3.12:
+
+```powershell
+$env:PYTHONPATH = (Join-Path (Get-Location) "packages\recuperacion-densa\src") + [IO.Path]::PathSeparator + (Get-Location).Path
+$env:HF_HUB_OFFLINE = "1"
+$env:TRANSFORMERS_OFFLINE = "1"
+.\.venv-ms\Scripts\python.exe scripts/smoke_real_ms.py --solicitud .\artifacts\ms_smoke_local\solicitud.json --referencia .\artifacts\ms_smoke_local\referencia.json --tolerancia 0.005 --salida .\artifacts\ms_smoke_local\resumen.json
+```
+
+La comparación requiere igualdad de revisión SciBERT, método,
+longitud de entrada AB, IDs y orden de Top-3 y clases M/S. Permite
+una diferencia absoluta máxima de 0.005 en softmax de cada clase
+predicha, porque la representación numérica puede variar entre
+entornos y CPU/GPU. Es una **tolerancia operativa explícita**,
+no un intervalo estadístico ni una validación de calidad.
+
+Para certificar una ejecución se requiere salida `"ok": true`,
+código de retorno cero, hashes y versiones en `resumen.json`;
+si falla, preservar el error y no declarar reproducción.
+
 ## Arranque en el entorno Windows ya preparado
 
 Ejecutar desde la raiz del repositorio.
