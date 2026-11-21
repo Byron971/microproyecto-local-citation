@@ -29,8 +29,8 @@ Aun si las etiquetas Gold son internamente consistentes,
 la categoría de origen **no es garantía de validación humana independiente**.
 
 - `todo_cob`: 1530 de 1531 evaluables (1 no cubierto).
-- `humano_cob`: 1060 de 1063 evaluables de fuentes con participación
-  humana (3 no cubiertos; `concordancia` + `una_anotacion` +
+- `humano_cob`: 1060 de 1061 evaluables de fuentes con participación
+  humana (1 no cubierto; `concordancia` + `una_anotacion` +
   `discrepancia_opus`). La etiqueta puede seguir siendo provisional.
 - `concordancia_cob`: 186 de 186 filas etiquetadas por
   concordancia, pero las hojas XLSX reconciliadas muestran solo
@@ -38,7 +38,7 @@ la categoría de origen **no es garantía de validación humana independiente**.
   diligenciamiento de campos. Así que el F1 sobre 186 no debe
   titularse F1 de 186 casos completamente certificados.
 
-Falta auditar por `context_id` cuáles son los 1+3 casos excluidos
+Falta auditar por `context_id` cuáles son los casos excluidos (1 caso por subconjunto, que podría ser el mismo)
 y confirmar que M/S comparten los mismos IDs, no solamente el mismo n.
 Los archivos agregados actuales por sí solos no lo prueban.
 
