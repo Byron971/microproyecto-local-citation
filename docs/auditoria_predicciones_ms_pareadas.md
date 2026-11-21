@@ -66,3 +66,46 @@ provenga del checkpoint declarado; esa procedencia requiere
 manifiesto de ejecución separado. Las métricas calculadas sobre
 el consolidado se etiquetarán como provisionales mientras
 la certificación humana siga pendiente.
+
+
+## Hallazgo posterior: artefactos locales exactos del notebook 10
+
+La búsqueda local reportó dos ficheros de predicciones previamente
+no incluidos en el árbol versionado:
+
+- `proyecto_de_grado/artifacts/experimentos_10/M/pred_gold.jsonl`
+- `proyecto_de_grado/artifacts/experimentos_10/S/pred_gold.jsonl`
+
+El código fuente del notebook `notebooks/10_modelos_finales_M_S.ipynb`
+escribe filas con `context_id`, `pred` (índice sin PH),
+`pred_ph` (índice con PH) y `probs`. En el CSV histórico
+`gold_metricas.csv`, M tiene `ph=True` y S `ph=False`.
+Por ello, **si se confirma la procedencia de ambos ficheros**,
+la comparación debe leer índice `pred_ph` en M y `pred` en S.
+El script acepta ahora los selectores
+`--campo-m pred_ph --campo-s pred` y rechaza índices fuera
+de 0..8.
+
+Ejemplo local, desde `ms-clon-limpio`, usando el mismo Gold
+consolidado solo para puntuar la predicción ya emitida:
+
+```powershell
+$original = "C:\Users\juan sanz\Downloads\IAandes\microproyecto-local-citation-actualizado"
+$artefactos = Join-Path $original "proyecto_de_grado\artifacts\experimentos_10"
+.\.venv-ms\Scripts\python.exe scripts/evaluar_predicciones_ms_pareadas.py --pred-m "$artefactos\M\pred_gold.jsonl" --pred-s "$artefactos\S\pred_gold.jsonl" --campo-m pred_ph --campo-s pred --salida artifacts\resultados_ms_pareados_local.json
+```
+
+La salida guardada en `artifacts/` es local e ignorada por Git.
+Este análisis **no** vuelve a entrenar ni hacer inferencia: coteja
+predicciones históricas con etiquetas consolidadas. El Gold no debe
+emplearse para optimizar los checkpoints o escoger hiperparámetros.
+Antes de describir la comparación como reproducida deben comprobarse
+los `context_id` y SHA-256 de ambos archivos.
+
+También existe evidencia local de Top-3 bajo
+`proyecto_de_grado/artifacts/top3_test_preparacion/evaluacion_modelos_reservada/`,
+incluyendo `comparacion_rankings_sin_gold.csv` y
+`resultados_humanos_revision_independiente/evaluacion_top3_humana_revision_independiente.json`.
+Su contenido y esquema **aún no se han inspeccionado**; el nombre
+del archivo no prueba anotación humana certificada ni permite afirmar
+Recall@3.
