@@ -41,12 +41,29 @@ def estado_ms():
     root = Path(__file__).resolve().parents[2]
     ARTIFACTS = root / "proyecto_de_grado/artifacts/experimentos_10"
     MANIFEST_SCIBERT = root / "proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json"
+    manifest_scibert_existe = MANIFEST_SCIBERT.is_file()
+    checkpoint_m_existe = (ARTIFACTS / "M/model.safetensors").is_file()
+    checkpoint_s_existe = (ARTIFACTS / "S/model.safetensors").is_file()
+    manifiesto_m_existe = (ARTIFACTS / "M/manifiesto_entrenamiento.json").is_file()
+    manifiesto_s_existe = (ARTIFACTS / "S/manifiesto_entrenamiento.json").is_file()
+    artefactos_presentes = all((
+        manifest_scibert_existe, checkpoint_m_existe, checkpoint_s_existe,
+        manifiesto_m_existe, manifiesto_s_existe,
+    ))
     return {
-        "habilitado": True,
-        "manifest_scibert_existe": MANIFEST_SCIBERT.is_file(),
-        "checkpoint_m_existe": (ARTIFACTS / "M/model.safetensors").is_file(),
-        "checkpoint_s_existe": (ARTIFACTS / "S/model.safetensors").is_file(),
-        "nota": "Verifica existencia de archivos; no implica carga ni inferencia hasta POST.",
+        "habilitado": True,  # La ruta HTTP esta publicada, no es un chequeo de inferencia.
+        "artefactos_locales_presentes": artefactos_presentes,
+        "listo_para_inferencia": False,  # La carga se valida realmente en POST.
+        "manifest_scibert_existe": manifest_scibert_existe,
+        "checkpoint_m_existe": checkpoint_m_existe,
+        "checkpoint_s_existe": checkpoint_s_existe,
+        "manifiesto_m_existe": manifiesto_m_existe,
+        "manifiesto_s_existe": manifiesto_s_existe,
+        "nota": (
+            "La ruta esta habilitada, pero no se ha verificado carga ni inferencia en "
+            "esta consulta. Compruebe la carga real con POST; los archivos por si "
+            "solos no garantizan que los modelos funcionen."
+        ),
     }
 
 
