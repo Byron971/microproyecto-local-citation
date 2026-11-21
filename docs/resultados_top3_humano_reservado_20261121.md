@@ -67,3 +67,19 @@ chunks del corpus por contexto; de lo contrario, la métrica depende del
 pool anotado. Los conteos de victorias/empates por consulta siguen
 pendientes de lectura. El resultado de κ posterior a revisión no sustituye
 κ de primera pasada.
+
+## Comparación pareada por consulta y prueba exacta de signos
+
+Los agregados `comparacion_consulta_a_consulta` reportados por el investigador fueron:
+
+| Métrica | SciBERT mejor | Empates | BM25 mejor | n sin empate | p bilateral exacta |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Hit@3 | 0 | 17 | 8 | 8 | 0.0078125 |
+| Recall@3 | 0 | 10 | 15 | 15 | 0.0000610352 |
+| MRR@3 | 3 | 12 | 10 | 13 | 0.0922852 |
+
+Para cada métrica, la prueba de signos exacta bilateral elimina empates y supone bajo la hipótesis nula la misma probabilidad de mejora para ambos recuperadores. Con `b` victorias BM25 y `s` victorias SciBERT, `n=b+s`, se calcula `p = min(1, 2*sum(comb(n,k) for k in range(min(b,s)+1))/2**n)`. Estos conteos son compatibles con las 25 consultas elegibles en cada métrica.
+
+Ajuste Holm para las tres pruebas exploratorias: Recall@3 **0.0001831**, Hit@3 **0.0156250**, MRR@3 **0.0922852**. Se rechaza la hipótesis de simetría de signos al 5% en las dos primeras, no en MRR@3. La prueba contrasta direcciones de diferencias, **no** estima el tamaño de una mejora en la población, ni demuestra representatividad o generalización; además, la dependencia entre consultas del mismo artículo puede afectar la inferencia. Los datos individuales por consulta no se han examinado para controlar dependencia documental o calcular intervalos de confianza sobre las magnitudes.
+
+**Precaución imprescindible:** las etiquetas son posteriores a revisión, sin κ original; se requiere verificar cobertura exhaustiva de chunks y comparabilidad del universo de candidatos BM25/SciBERT antes de presentar Recall@3 como exhaustivo o causalizar las diferencias.
