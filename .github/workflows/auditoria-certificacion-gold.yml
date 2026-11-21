@@ -1,0 +1,35 @@
+name: Auditoria trazabilidad Test Gold (sin adjudicar)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/auditar_certificacion_gold.py"
+      - "tests/test_auditar_certificacion_gold.py"
+      - "proyecto_de_grado/anotacion/test_gold_final/**"
+      - ".github/workflows/auditoria-certificacion-gold.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/auditar_certificacion_gold.py"
+      - "tests/test_auditar_certificacion_gold.py"
+      - "proyecto_de_grado/anotacion/test_gold_final/**"
+      - ".github/workflows/auditoria-certificacion-gold.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  auditoria:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pruebas sinteticas del auditor
+        run: |
+          python -m pip install "pytest>=8,<10"
+          python -m pytest -q tests/test_auditar_certificacion_gold.py
+      - name: Revisar trazabilidad del Gold consolidado
+        run: python scripts/auditar_certificacion_gold.py
