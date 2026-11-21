@@ -65,3 +65,33 @@ forma separada antes de dar cualquier pendiente por definitivo.
 etiqueta/evaluabilidad y hashes; no implica evaluación de validez
 semántica, acuerdo interanotador, fragmentos relevantes, partición
 sin leakage o F1 definitivo.
+
+
+## Cola operativa de revisión humana (CI)
+
+En la ejecución [44865211152](https://github.com/Byron971/microproyecto-local-citation/actions/runs/44865211152)
+se ejecutaron **5 pruebas sintéticas correctas**, el auditor estructural
+y el generador privado `scripts/generar_cola_certificacion_gold.py`.
+La cola contiene **1484 contextos** en este corte del GitHub,
+sin duplicados esperados y distribuidos en:
+
+| Tarea pendiente o de comprobación | Contextos |
+| --- | ---: |
+| Segunda anotación humana independiente | 820 |
+| Anotación humana independiente de los casos solo Opus | 470 |
+| Adjudicación humana de discrepancias | 57 |
+| Revisar completitud de formularios en concordancias | 137 |
+| **Total de filas en la cola** | **1484** |
+
+De las 186 concordancias, únicamente **49** muestran ambos
+`Estado_A=COMPLETO` y `Estado_B=COMPLETO` según los campos que
+evalúa este generador. **Esto tampoco certifica por sí mismo
+independencia, pertinencia semántica o ausencia de sesgos.**
+
+La cola es un inventario **de tareas** y no equivale a 1484
+etiquetas incorrectas. Puede sobreestimar trabajo si existen avances
+humanos posteriores guardados únicamente en hojas locales,
+o requerir más pasos por caso (por ejemplo, doble anotación para
+casos solo Opus). Debe cotejarse contra los XLSX locales más recientes.
+El CSV de tareas no se publica en GitHub; en CI se crea temporalmente
+bajo la ruta ignorada `artifacts/` y solo se imprimen totales.
