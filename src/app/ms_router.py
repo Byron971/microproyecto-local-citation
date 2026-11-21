@@ -1,6 +1,8 @@
 """Endpoints opt-in de la demostración científica M/S (sin modificar A4)."""
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field, model_validator
 
@@ -36,7 +38,9 @@ class ConsultaMS(BaseModel):
 
 @router.get("/api/analisis-cita-ms/estado")
 def estado_ms():
-    from src.app.ms_runtime import ARTIFACTS, MANIFEST_SCIBERT
+    root = Path(__file__).resolve().parents[2]
+    ARTIFACTS = root / "proyecto_de_grado/artifacts/experimentos_10"
+    MANIFEST_SCIBERT = root / "proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json"
     return {
         "habilitado": True,
         "manifest_scibert_existe": MANIFEST_SCIBERT.is_file(),
