@@ -1,0 +1,32 @@
+BUILDER_DIR := terraform/image_builder
+BUILDER_WORK := $(abspath artifacts/image_builder)
+BUILDER_TF := AWS_PROFILE=josezambrana $(TERRAFORM) -chdir=$(BUILDER_DIR)
+.PHONY: builder-key builder-init builder-plan builder-apply builder-status builder-session builder-ready
+builder-key:
+	mkdir -p private artifacts/image_builder
+	@test -e private/maiag19.pem || ssh-keygen -t rsa -b 4096 -m PEM -N '' -C maiag19-builder -f private/maiag19.pem
+	chmod 600 private/maiag19.pem
+	python3 -c 'import json,pathlib; pathlib.Path("artifacts/image_builder/vars.json").write_text(json.dumps({"public_key":pathlib.Path("private/maiag19.pem.pub").read_text().strip()}))'
+builder-init:
+	$(BUILDER_TF) init -input=false -plugin-dir=../.terraform/providers
+builder-plan:
+	$(BUILDER_TF) plan -input=false -var-file="$(BUILDER_WORK)/vars.json" -out="$(BUILDER_WORK)/builder.tfplan"
+	$(BUILDER_TF) show -json "$(BUILDER_WORK)/builder.tfplan" > "$(BUILDER_WORK)/plan.json"
+builder-apply:
+	python3 -c 'import json; p=json.load(open("$(BUILDER_WORK)/plan.json")); r=[x for x in p["resource_changes"] if x["mode"]=="managed"]; assert len(r)==7 and all(x["change"]["actions"]==["create"] for x in r), "Plan inesperado"'
+	$(BUILDER_TF) apply -input=false "$(BUILDER_WORK)/builder.tfplan"
+	$(BUILDER_TF) output -json > "$(BUILDER_WORK)/outputs.json"
+builder-status:
+	AWS_PROFILE=josezambrana aws ssm describe-instance-information --region us-east-1 --filters Key=tag:Project,Values=citas-image-builder --query 'InstanceInformationList[].{Id:InstanceId,Status:PingStatus,OS:PlatformName}'
+builder-session:
+	AWS_PROFILE=josezambrana aws ssm start-session --region us-east-1 --target $$($(BUILDER_TF) output -raw instance_id)
+builder-ready:
+	AWS_PROFILE=josezambrana aws ssm send-command --region us-east-1 --instance-ids $$($(BUILDER_TF) output -raw instance_id) --document-name AWS-RunShellScript --parameters 'commands=["cloud-init status --wait >/dev/null 2>&1; test -f /opt/citas/READY && docker --version && git --version && rclone version | head -1"]' --query 'Command.CommandId' --output text > "$(BUILDER_WORK)/ready-command.txt"
+
+.PHONY: builder-ready-result builder-destroy-plan builder-destroy
+builder-ready-result:
+	AWS_PROFILE=josezambrana aws ssm get-command-invocation --region us-east-1 --instance-id $$($(BUILDER_TF) output -raw instance_id) --command-id "$$(cat "$(BUILDER_WORK)/ready-command.txt")" --query '{Status:Status,Output:StandardOutputContent,Error:StandardErrorContent}'
+builder-destroy-plan:
+	$(BUILDER_TF) plan -destroy -input=false -var-file="$(BUILDER_WORK)/vars.json" -out="$(BUILDER_WORK)/destroy.tfplan"
+builder-destroy:
+	$(BUILDER_TF) apply -input=false "$(BUILDER_WORK)/destroy.tfplan"

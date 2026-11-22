@@ -72,3 +72,20 @@ private_gold/
 proyecto_de_grado/anotacion/privado/
 proyecto_de_grado/anotacion/private/
 **/model.safetensors
+
+# Credenciales y configuración privada del constructor
+/private/
+
+# Dependencias, compilaciones y datos privados locales
+.venv-ms/
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+frontend/*.tsbuildinfo
+/tmp/
+/notebooks/anotaciones/
+/docs/anotaciones/
+/notebooks/toloka/
+/notebooks/v3_Jueces/*.jsonl
+/notebooks/v3_Jueces/*.csv

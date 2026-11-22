@@ -139,3 +139,8 @@ deploy: ## Construye, publica y despliega (requiere make init previo)
 	$(MAKE) build
 	$(MAKE) push
 	$(TERRAFORM) -chdir=terraform apply $(TF_ARGS)
+
+# Prueba científica aislada; no usa init/deploy ni el estado de producción.
+include make/serverless-ms.mk
+
+include make/image-builder.mk

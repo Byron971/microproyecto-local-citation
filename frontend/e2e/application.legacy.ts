@@ -2,18 +2,18 @@ import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 const referenceBibtex = fs.readFileSync('src/test/fixtures/acl-P14-1062.bib', 'utf8');
 const insights = JSON.parse(fs.readFileSync('../data/processed/dashboard_insights.json', 'utf8'));
-// Transporte de prueba; las aserciones cubren la app real y no fabrican modelos nuevos.
+// Mock HTTP para probar la interfaz; no constituye una evaluación del modelo.
 const model = {
-  id: 'tfidf_reranker_v1',
-  nombre: 'TF-IDF + reordenador lineal',
-  descripcion: 'Recupera 100 candidatos del corpus ACL-200 y los reordena con regresión logística.',
+  id: 'scibert-articulos-v1',
+  nombre: 'SciBERT · búsqueda semántica de artículos',
+  descripcion: 'Compara contexto con títulos y resúmenes del catálogo mediante SciBERT.',
   disponible: true,
   motivo: null,
   puntaje: {
-    etiqueta: 'Puntaje del reordenador',
+    etiqueta: 'Similitud SciBERT',
     descripcion: 'Puntaje estimado para ordenar candidatos; no garantiza que la cita sea correcta.',
   },
-  devuelve_tfidf: true,
+  devuelve_tfidf: false,
 };
 test.beforeEach(async ({ page }) => {
   await page.route('**/api/**', async (route) => {
@@ -26,12 +26,14 @@ test.beforeEach(async ({ page }) => {
       },
       '/api/top3-corpus/ejemplos': {
         total: 1,
-        ejemplos: [{
-          context_id: 'P15-1001_P14-1001_0',
-          cited_id: 'P14-1001',
-          cited_title: 'Neural Graph Model',
-          total_chunks: 3,
-        }],
+        ejemplos: [
+          {
+            context_id: 'P15-1001_P14-1001_0',
+            cited_id: 'P14-1001',
+            cited_title: 'Neural Graph Model',
+            total_chunks: 3,
+          },
+        ],
       },
       '/api/top3-corpus/P15-1001_P14-1001_0': {
         context_id: 'P15-1001_P14-1001_0',
@@ -44,38 +46,65 @@ test.beforeEach(async ({ page }) => {
         sha256_ocl_citado: 'a'.repeat(64),
         aviso: 'Demo TRAIN de recuperación, no Gold.',
         total_fragmentos_analizados: 3,
-        fragmentos: [{
-          posicion: 1, chunk_id: 'p00000-p00000', seccion: 'Methods',
-          texto: 'Graph neural networks aggregate neighbor information.',
-          puntaje_bm25: 2.456,
-        }],
+        fragmentos: [
+          {
+            posicion: 1,
+            chunk_id: 'p00000-p00000',
+            seccion: 'Methods',
+            texto: 'Graph neural networks aggregate neighbor information.',
+            puntaje_bm25: 2.456,
+          },
+        ],
         clasificacion: { estado: 'no_ejecutada' },
       },
       '/api/clasificar-cita': {
-        modelo: 'scibert_A_42', encoder: 'scibert', entrada: 'A',
-        clase: 'Comparison', indice_clase: 3,
+        modelo: 'scibert_A_42',
+        encoder: 'scibert',
+        entrada: 'A',
+        clase: 'Comparison',
+        indice_clase: 3,
         puntuaciones_softmax: [
-          'Background', 'Gap', 'Basis', 'Comparison', 'Application',
-          'Improvement / Modification', 'Evidence',
-          'Identification of the Originator', 'Further Reading',
+          'Background',
+          'Gap',
+          'Basis',
+          'Comparison',
+          'Application',
+          'Improvement / Modification',
+          'Evidence',
+          'Identification of the Originator',
+          'Further Reading',
         ].map((categoria, idx) => ({ categoria, score: idx === 3 ? 0.6 : 0.05 })),
-        latencia_modelo_ms: 8.2, training_labels: 'Haiku',
+        latencia_modelo_ms: 8.2,
+        training_labels: 'Haiku',
         validacion: 'provisional_no_gold_humano',
         advertencia: 'Puntuaciones no calibradas y sin validación humana.',
       },
       '/api/top3-scibert': {
-        contexto: 'Graph TARGETCIT.', cited_id: 'P14-1001',
+        contexto: 'Graph TARGETCIT.',
+        cited_id: 'P14-1001',
         metodo: 'scibert_base_mean_pooling_cosine',
-        modelo: 'SciBERT_base_mean_pooling', revision: 'a'.repeat(40),
+        modelo: 'SciBERT_base_mean_pooling',
+        revision: 'a'.repeat(40),
         total_fragmentos_analizados: 2,
         fragmentos: [
-          { posicion: 1, chunk_id: 'p1', texto: 'Graph embeddings.',
-            seccion: 'Methods', similitud_coseno: 0.903 },
+          {
+            posicion: 1,
+            chunk_id: 'p1',
+            texto: 'Graph embeddings.',
+            seccion: 'Methods',
+            similitud_coseno: 0.903,
+          },
         ],
         clasificacion: { estado: 'no_ejecutada' },
       },
       '/api/estado': { listo: true, modelo: {} },
-      '/api/modelos': { predeterminado: model.id, modelos: [model] },
+      '/api/analisis-cita-ms/modelos': { predeterminado: model.id, modelos: [model] },
+      '/api/analisis-cita-ms/disponibilidad': {
+        articulos: [
+          { paper_id: 'P14-1062', disponible: false },
+          { paper_id: 'P13-1045', disponible: false },
+        ],
+      },
       '/api/insights': insights,
       '/api/ejemplos': {
         total: 2,
@@ -96,7 +125,8 @@ test.beforeEach(async ({ page }) => {
           },
         ],
       },
-      '/api/recomendar': {
+      '/api/analisis-cita-ms/recomendar': {
+        consulta: 'Neural networks learn distributed representations of natural language.',
         modelo: model.id,
         total: 2,
         recomendaciones: [
@@ -107,7 +137,6 @@ test.beforeEach(async ({ page }) => {
             resumen:
               'We propose an unsupervised algorithm that learns fixed-length feature representations from variable-length pieces of texts, such as sentences, paragraphs, and documents.',
             similitud: 0.9123,
-            similitud_tfidf: 0.3412,
           },
           {
             posicion: 2,
@@ -117,7 +146,6 @@ test.beforeEach(async ({ page }) => {
             resumen:
               'Distributed representations of language offer a way to learn useful features for prediction tasks.',
             similitud: 0.8214,
-            similitud_tfidf: 0.282,
           },
         ],
       },
@@ -189,28 +217,40 @@ test('ejemplo, resultados accesibles, navegación directa y ancho móvil', async
   ).toBeVisible();
 });
 
-test('Top-3 con un caso de desarrollo desde API del corpus (transporte simulado)', async ({ page }) => {
+test('Top-3 con un caso de desarrollo desde API del corpus (transporte simulado)', async ({
+  page,
+}) => {
   await page.goto('/fragmentos');
   await page.getByRole('button', { name: 'Cargar casos reales de desarrollo' }).click();
   await expect(page.getByRole('combobox', { name: 'Caso del corpus' })).toBeVisible();
   await page.getByRole('button', { name: 'Ejecutar Top-3 de desarrollo' }).click();
-  await expect(page.getByText('Graph neural networks aggregate neighbor information.')).toBeVisible();
+  await expect(
+    page.getByText('Graph neural networks aggregate neighbor information.'),
+  ).toBeVisible();
   await expect(page.getByText(/subconjunto TRAIN · BM25/)).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Clasificación aún no disponible' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Clasificación aún no disponible' }),
+  ).toBeVisible();
 });
 
-test('Clasificación A4 explica provisionalidad y nueve puntuaciones (transporte simulado)', async ({ page }) => {
+test('Clasificación A4 explica provisionalidad y nueve puntuaciones (transporte simulado)', async ({
+  page,
+}) => {
   await page.goto('/funcion');
-  await expect(page.getByRole('heading', { name: 'Clasificar la función de una cita' })).toBeVisible();
-  await page.getByLabel('Contexto de cita (en inglés)').fill(
-    'We compare earlier models TARGETCIT with the current method.',
-  );
+  await expect(
+    page.getByRole('heading', { name: 'Clasificar la función de una cita' }),
+  ).toBeVisible();
+  await page
+    .getByLabel('Contexto de cita (en inglés)')
+    .fill('We compare earlier models TARGETCIT with the current method.');
   await page.getByLabel('Título real del artículo citado').fill('Neural Graph Methods');
-  await page.getByLabel('Abstract real del artículo citado').fill(
-    'A comparative study of graph representations.',
-  );
+  await page
+    .getByLabel('Abstract real del artículo citado')
+    .fill('A comparative study of graph representations.');
   await page.getByRole('button', { name: 'Clasificar función de cita' }).click();
   await expect(page.getByRole('heading', { name: 'Función estimada: Comparison' })).toBeVisible();
-  await expect(page.getByText(/Resultado provisional de un modelo entrenado con Haiku/)).toBeVisible();
+  await expect(
+    page.getByText(/Resultado provisional de un modelo entrenado con Haiku/),
+  ).toBeVisible();
   await expect(page.locator('.fragment-list li')).toHaveCount(9);
 });

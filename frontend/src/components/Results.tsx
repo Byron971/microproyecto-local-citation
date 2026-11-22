@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { api, type Recommendation } from '../api';
+import { api, request, type Recommendation } from '../api';
+import { ArticleAnalysis } from './ArticleAnalysis';
 import type { ApaReference } from '../apa';
 import { Icon } from './Icon';
 
@@ -9,11 +10,38 @@ export function Results({
   rows,
   label,
   scoreDescription,
+  context,
 }: {
   rows: Recommendation[];
   label: string;
   scoreDescription: string;
+  context?: string;
 }) {
+  const [availability, setAvailability] = useState<Record<string, boolean>>({});
+  const [availabilityError, setAvailabilityError] = useState(false);
+  const [analyzing, setAnalyzing] = useState('');
+  useEffect(() => {
+    if (!context || !rows.length) return;
+    const controller = new AbortController();
+    request<{ articulos: { paper_id: string; disponible: boolean }[] }>(
+      '/api/analisis-cita-ms/disponibilidad',
+      {
+        method: 'POST',
+        body: JSON.stringify({ paper_ids: rows.map((r) => r.paper_id) }),
+        signal: controller.signal,
+      },
+    )
+      .then((data) => {
+        if (!controller.signal.aborted)
+          setAvailability(
+            Object.fromEntries(data.articulos.map((a) => [a.paper_id, a.disponible])),
+          );
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setAvailabilityError(true);
+      });
+    return () => controller.abort();
+  }, [rows, context]);
   const [expanded, setExpanded] = useState(() => new Set(rows.slice(0, 1).map((r) => r.paper_id)));
   const [sort, setSort] = useState<{
     key: 'posicion' | 'similitud' | 'similitud_tfidf';
@@ -172,6 +200,17 @@ export function Results({
                       </span>
                       {r.titulo || '(sin título)'}
                     </button>
+                    {context && (
+                      <p className="field-help">
+                        {availability[r.paper_id]
+                          ? 'Texto disponible para Top-3 y M/S'
+                          : availabilityError
+                            ? 'Disponibilidad científica sin confirmar'
+                            : availability[r.paper_id] === false
+                              ? 'Sin texto completo preparado'
+                              : 'Consultando texto…'}
+                      </p>
+                    )}
                   </td>
                   <td className="paper-id" id={`id-${r.paper_id}`}>
                     {r.paper_id}
@@ -208,6 +247,38 @@ export function Results({
                     <div className="abstract-content">
                       <span className="eyebrow">Resumen</span>
                       <p lang="en">{r.resumen || 'Este artículo no tiene resumen.'}</p>
+                      {context && (
+                        <>
+                          {availability[r.paper_id] ? (
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setAnalyzing(analyzing === r.paper_id ? '' : r.paper_id)
+                              }
+                              aria-expanded={analyzing === r.paper_id}
+                            >
+                              {analyzing === r.paper_id
+                                ? 'Cerrar análisis'
+                                : 'Analizar cita · Top-3 y M/S'}
+                            </button>
+                          ) : (
+                            <p className="field-help">
+                              {availabilityError
+                                ? 'No se pudo consultar la disponibilidad del análisis científico.'
+                                : availability[r.paper_id] === false
+                                  ? 'Sin texto completo preparado para análisis científico.'
+                                  : 'Consultando texto disponible…'}
+                            </p>
+                          )}
+                          {analyzing === r.paper_id && availability[r.paper_id] && (
+                            <ArticleAnalysis
+                              key={r.paper_id}
+                              paperId={r.paper_id}
+                              context={context}
+                            />
+                          )}
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>

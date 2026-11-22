@@ -366,11 +366,19 @@ export function Recommend() {
                 </p>
               )}
               <p className="score-explanation">{result.description}</p>
+              {result.data.total_catalogo !== undefined && (
+                <p className="field-help">
+                  Búsqueda semántica en {result.data.total_catalogo.toLocaleString('es')} artículos
+                  por título y resumen. El análisis Top-3 y M/S está disponible cuando hay texto
+                  completo preparado.
+                </p>
+              )}
               <Results
                 key={result.key}
                 rows={result.data.recomendaciones}
                 label={result.label}
                 scoreDescription={result.description}
+                context={result.key === currentKey ? result.data.consulta : undefined}
               />
             </>
           )}

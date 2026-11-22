@@ -557,6 +557,25 @@ select {
   margin: 0;
   line-height: 1.8;
 }
+.article-analysis {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  white-space: normal;
+}
+.article-analysis p {
+  margin: 12px 0;
+}
+.article-analysis textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.article-analysis .fragment-list {
+  padding-left: 20px;
+}
+.article-analysis .fragment-list li > div {
+  flex-wrap: wrap;
+}
 .copy-status {
   font-size: 12px;
   color: var(--secondary);
@@ -1502,4 +1521,111 @@ summary {
   border: 1px solid var(--border);
   font-size: 13px;
   line-height: 1.7;
+}
+
+/* Scientific workflow: the three numbered sections follow the citation process. */
+.scientific-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.scientific-page .page-intro {
+  display: block;
+}
+.analysis-step {
+  border: 0;
+  padding: 0 0 24px;
+  margin: 0 0 24px;
+  border-bottom: 1px solid var(--border, #d6dded);
+  min-width: 0;
+}
+.analysis-step legend {
+  font-family: var(--font-title);
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.analysis-step label {
+  display: block;
+  margin-bottom: 8px;
+}
+.analysis-step textarea,
+.analysis-step select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border, #d6dded);
+  background: var(--surface, #fff);
+}
+.analysis-step textarea {
+  resize: vertical;
+}
+.analysis-step .field-help {
+  margin-top: 10px;
+}
+.selected-article {
+  margin-top: 16px;
+  overflow-wrap: anywhere;
+}
+.analysis-help {
+  margin: 28px 0;
+}
+.analysis-help summary {
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.coverage-status {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--surface);
+  border-left: 3px solid var(--primary);
+}
+.coverage-status p:last-child {
+  margin-bottom: 0;
+}
+.classifier-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 16px;
+}
+.classifier-result {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.function-score {
+  margin-bottom: 12px;
+}
+.function-score-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.function-score-label span:last-child {
+  white-space: nowrap;
+}
+.function-score-track {
+  height: 7px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.function-score-track > div {
+  height: 100%;
+  background: var(--primary);
+}
+.analysis-help dd {
+  margin: 0 0 12px;
+}
+.analysis-help p,
+.analysis-help li {
+  overflow-wrap: anywhere;
+}
+
+.context-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
 }

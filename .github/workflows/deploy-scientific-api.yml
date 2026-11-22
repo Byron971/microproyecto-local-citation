@@ -1,0 +1,101 @@
+name: API científica M-S
+on:
+  pull_request:
+    paths:
+      - 'Dockerfile.ms'
+      - '.dockerignore'
+      - 'tests/test_bootstrap_ciencia.py'
+      - 'tests/test_concurrencia_ms.py'
+      - 'tests/fixtures/ms_sintetico*'
+      - 'requirements/science*.txt'
+      - 'src/app/ms_*.py'
+      - 'src/app/article_corpus.py'
+      - 'src/app/scientific_search.py'
+      - 'src/app/ms_lock.py'
+      - 'config/search_release.json'
+      - 'scripts/construir_indice_scibert.py'
+      - 'scripts/publicar_indice_scibert.py'
+      - 'tests/test_publicar_indice_scibert.py'
+      - 'scripts/preparar_corpus_ms.py'
+      - 'tests/test_scientific_search.py'
+      - 'tests/test_ms_chunks_notebook.py'
+      - 'config/corpus_ms.json'
+      - 'tests/test_article_corpus.py'
+      - 'src/app/science_main.py'
+      - 'src/app/scibert_runtime.py'
+      - 'packages/recuperacion-densa/src/**'
+      - 'scripts/iniciar_ciencia.py'
+      - 'scripts/ci/deploy-science.sh'
+      - 'scripts/probar_flujo_integrado_ms.py'
+      - 'config/ms_release.json'
+      - 'terraform/scientific_api.tf'
+      - '.github/workflows/deploy-scientific-api.yml'
+  workflow_dispatch:
+    inputs:
+      confirm_deploy:
+        description: 'Escribe DEPLOY para publicar la API científica en AWS'
+        required: true
+        type: string
+permissions:
+  contents: read
+env:
+  AWS_REGION: us-east-1
+  TF_IN_AUTOMATION: 'true'
+  TF_INPUT: 'false'
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+      - name: Contratos de búsqueda y equivalencia de fragmentación, sin pesos
+        run: |
+          uv sync --locked --group dev
+          uv run pytest -q tests/test_scientific_search.py tests/test_ms_chunks_notebook.py tests/test_article_corpus.py tests/test_ms_api.py tests/test_publicar_indice_scibert.py
+      - run: docker build --platform linux/amd64 -f Dockerfile.ms -t citas-ms:ci .
+      - name: Aprovisionamiento y rechazo de concurrencia, sin pesos ni AWS
+        run: |
+          docker run --rm --entrypoint python \
+            -v "$PWD/tests:/app/tests:ro" citas-ms:ci \
+            -m unittest tests/test_bootstrap_ciencia.py tests/test_concurrencia_ms.py tests/test_article_corpus.py
+  deploy:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.confirm_deploy == 'DEPLOY'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: deploy-aws
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.8
+          terraform_wrapper: false
+      - uses: ./.github/actions/aws-session
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      - run: terraform -chdir=terraform init -input=false -backend-config="bucket=maia2026-grupo19" -backend-config="region=us-east-1"
+      - uses: aws-actions/amazon-ecr-login@v2
+      - uses: docker/setup-buildx-action@v3
+      - name: Publicar imagen científica
+        id: image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.ms
+          platforms: linux/amd64
+          push: true
+          build-args: MS_CODE_SHA=${{ github.sha }}
+          tags: 646941583111.dkr.ecr.us-east-1.amazonaws.com/citas-api:ms-${{ github.sha }}
+          cache-from: type=gha,scope=citas-ms
+          cache-to: type=gha,mode=max,scope=citas-ms
+      - name: Desplegar solo servicio científico y comprobar POST público
+        env:
+          SCIENCE_IMAGE_URI: 646941583111.dkr.ecr.us-east-1.amazonaws.com/citas-api@${{ steps.image.outputs.digest }}
+        run: bash scripts/ci/deploy-science.sh

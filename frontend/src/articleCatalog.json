@@ -1,0 +1,190 @@
+{
+  "version_contenido": "56fbf67a8407cbef9068fc1a10c1e1d6b5b714ebac08752d81016698d5b0bea7",
+  "articulos": [
+    {
+      "paper_id": "D09-1059",
+      "titulo": "Statistical Bistratal Dependency Parsing",
+      "publicacion": "https://aclanthology.org/D09-1059/"
+    },
+    {
+      "paper_id": "D13-1140",
+      "titulo": "Decoding with Large-Scale Neural Language Models\nImproves Translation",
+      "publicacion": "https://aclanthology.org/D13-1140/"
+    },
+    {
+      "paper_id": "D13-1141",
+      "titulo": "Bilingual Word Embeddings for Phrase-Based Machine Translation",
+      "publicacion": "https://aclanthology.org/D13-1141/"
+    },
+    {
+      "paper_id": "D14-1003",
+      "titulo": "Translation Modeling with Bidirectional Recurrent Neural Networks",
+      "publicacion": "https://aclanthology.org/D14-1003/"
+    },
+    {
+      "paper_id": "D15-1045",
+      "titulo": "Scientific Article Summarization Using Citation-Context\nand Article’s Discourse Structure",
+      "publicacion": "https://aclanthology.org/D15-1045/"
+    },
+    {
+      "paper_id": "D15-1159",
+      "titulo": "Improved Transition-Based Parsing and Tagging with Neural Networks",
+      "publicacion": "https://aclanthology.org/D15-1159/"
+    },
+    {
+      "paper_id": "D15-1166",
+      "titulo": "Effective Approaches to Attention-based Neural Machine Translation",
+      "publicacion": "https://aclanthology.org/D15-1166/"
+    },
+    {
+      "paper_id": "D15-1167",
+      "titulo": "Document Modeling with Gated Recurrent Neural Network\nfor Sentiment Classification",
+      "publicacion": "https://aclanthology.org/D15-1167/"
+    },
+    {
+      "paper_id": "D15-1246",
+      "titulo": "What’s in an Embedding?\nAnalyzing Word Embeddings through Multilingual Evaluation",
+      "publicacion": "https://aclanthology.org/D15-1246/"
+    },
+    {
+      "paper_id": "E14-1051",
+      "titulo": "Word Embeddings through Hellinger PCA",
+      "publicacion": "https://aclanthology.org/E14-1051/"
+    },
+    {
+      "paper_id": "K15-1027",
+      "titulo": "Task-Oriented Learning of Word Embeddings\nfor Semantic Relation Classification",
+      "publicacion": "https://aclanthology.org/K15-1027/"
+    },
+    {
+      "paper_id": "P07-2052",
+      "titulo": "Minimally Lexicalized Dependency Parsing",
+      "publicacion": "https://aclanthology.org/P07-2052/"
+    },
+    {
+      "paper_id": "P13-1078",
+      "titulo": "Additive Neural Networks for Statistical Machine Translation",
+      "publicacion": "https://aclanthology.org/P13-1078/"
+    },
+    {
+      "paper_id": "P13-3005",
+      "titulo": "Survey on parsing three dependency representations for English",
+      "publicacion": "https://aclanthology.org/P13-3005/"
+    },
+    {
+      "paper_id": "P14-1003",
+      "titulo": "Text-level Discourse Dependency Parsing",
+      "publicacion": "https://aclanthology.org/P14-1003/"
+    },
+    {
+      "paper_id": "P14-1125",
+      "titulo": "Character-Level Chinese Dependency Parsing",
+      "publicacion": "https://aclanthology.org/P14-1125/"
+    },
+    {
+      "paper_id": "P14-1140",
+      "titulo": "A Recursive Recurrent Neural Network\nfor Statistical Machine Translation",
+      "publicacion": "https://aclanthology.org/P14-1140/"
+    },
+    {
+      "paper_id": "P14-2008",
+      "titulo": "Improving Citation Polarity Classification with Product Reviews",
+      "publicacion": "https://aclanthology.org/P14-2008/"
+    },
+    {
+      "paper_id": "P14-2050",
+      "titulo": "Dependency-Based Word Embeddings",
+      "publicacion": "https://aclanthology.org/P14-2050/"
+    },
+    {
+      "paper_id": "P14-2089",
+      "titulo": "Improving Lexical Embeddings with Semantic Knowledge",
+      "publicacion": "https://aclanthology.org/P14-2089/"
+    },
+    {
+      "paper_id": "P14-3006",
+      "titulo": "An Exploration of Embeddings for Generalized Phrases",
+      "publicacion": "https://aclanthology.org/P14-3006/"
+    },
+    {
+      "paper_id": "P15-1001",
+      "titulo": "On Using Very Large Target Vocabulary for\nNeural Machine Translation",
+      "publicacion": "https://aclanthology.org/P15-1001/"
+    },
+    {
+      "paper_id": "P15-1004",
+      "titulo": "Statistical Machine Translation Features with Multitask Tensor Networks",
+      "publicacion": "https://aclanthology.org/P15-1004/"
+    },
+    {
+      "paper_id": "P15-1010",
+      "titulo": "SENSEMBED: Learning Sense Embeddings\nfor Word and Relational Similarity",
+      "publicacion": "https://aclanthology.org/P15-1010/"
+    },
+    {
+      "paper_id": "P15-1078",
+      "titulo": "Pairwise Neural Machine Translation Evaluation",
+      "publicacion": "https://aclanthology.org/P15-1078/"
+    },
+    {
+      "paper_id": "P15-1117",
+      "titulo": "A Neural Probabilistic Structured-Prediction Model for Transition-Based\nDependency Parsing",
+      "publicacion": "https://aclanthology.org/P15-1117/"
+    },
+    {
+      "paper_id": "P15-1173",
+      "titulo": "AutoExtend: Extending Word Embeddings to Embeddings for Synsets\nand Lexemes",
+      "publicacion": "https://aclanthology.org/P15-1173/"
+    },
+    {
+      "paper_id": "S15-1012",
+      "titulo": "Collective Document Classification with Implicit Inter-document Semantic\nRelationships",
+      "publicacion": "https://aclanthology.org/S15-1012/"
+    },
+    {
+      "paper_id": "W04-0311",
+      "titulo": "Dynamic Dependency Parsing",
+      "publicacion": "https://aclanthology.org/W04-0311/"
+    },
+    {
+      "paper_id": "W05-0821",
+      "titulo": "Improved Language Modeling for Statistical Machine Translation",
+      "publicacion": "https://aclanthology.org/W05-0821/"
+    },
+    {
+      "paper_id": "W11-3801",
+      "titulo": "Statistical Dependency Parsing in Korean:\nFrom Corpus Generation To Automatic Parsing",
+      "publicacion": "https://aclanthology.org/W11-3801/"
+    },
+    {
+      "paper_id": "W14-4012",
+      "titulo": "On the Properties of Neural Machine Translation: Encoder–Decoder\nApproaches",
+      "publicacion": "https://aclanthology.org/W14-4012/"
+    },
+    {
+      "paper_id": "W15-0607",
+      "titulo": "Automated Evaluation of Scientific Writing:\nAESW Shared Task Proposal",
+      "publicacion": "https://aclanthology.org/W15-0607/"
+    },
+    {
+      "paper_id": "W15-1523",
+      "titulo": "Semantic Information Extraction for Improved Word Embeddings",
+      "publicacion": "https://aclanthology.org/W15-1523/"
+    },
+    {
+      "paper_id": "W15-1525",
+      "titulo": "Vector Space and Language Models for Scientific Document Summarization",
+      "publicacion": "https://aclanthology.org/W15-1525/"
+    },
+    {
+      "paper_id": "W15-2102",
+      "titulo": "Lexicon Embedded Syntax",
+      "publicacion": "https://aclanthology.org/W15-2102/"
+    },
+    {
+      "paper_id": "W98-0511",
+      "titulo": "Parsing with Dependency Relations\nand Robust Parsing",
+      "publicacion": "https://aclanthology.org/W98-0511/"
+    }
+  ]
+}

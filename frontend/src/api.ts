@@ -24,6 +24,10 @@ export interface RecommendationResponse {
   modelo?: string;
   total: number;
   recomendaciones: Recommendation[];
+  total_catalogo?: number;
+  version_indice?: string;
+  revision_scibert?: string;
+  aviso?: string;
 }
 export interface Example {
   texto: string;
@@ -130,9 +134,8 @@ export class ApiError extends Error {
 const base = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
 export async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const controller = new AbortController();
-  const timeoutMs = path.startsWith('/api/analisis-cita-ms')
-    ? 300_000
-    : 32_000;
+  // API Gateway responde o vence a los 30 s; dejar margen de transporte.
+  const timeoutMs = 32_000;
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   const forwardAbort = () => controller.abort();
   options.signal?.addEventListener('abort', forwardAbort, { once: true });
@@ -174,73 +177,89 @@ export const api = {
   examples: (signal?: AbortSignal) => request<ExamplesCatalog>('/api/ejemplos', { signal }),
   status: (signal?: AbortSignal) =>
     request<{ listo: boolean; modelo: Record<string, unknown> }>('/api/estado', { signal }),
-  models: (signal?: AbortSignal) => request<Catalog>('/api/modelos', { signal }),
+  models: (signal?: AbortSignal) => request<Catalog>('/api/analisis-cita-ms/modelos', { signal }),
   example: (signal?: AbortSignal) => request<Example>('/api/ejemplo', { signal }),
   recommend: (contexto: string, top_k: number, modelo?: string, signal?: AbortSignal) =>
-    request<RecommendationResponse>('/api/recomendar', {
+    request<RecommendationResponse>('/api/analisis-cita-ms/recomendar', {
       method: 'POST',
       body: JSON.stringify({ contexto, top_k, ...(modelo ? { modelo } : {}) }),
       signal,
     }),
   classifyCitationB: (
-    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
-  ) => request<FunctionBResponse>('/api/clasificar-cita-b', {
-    method: 'POST',
-    body: JSON.stringify({
-      contexto, cited_id,
-      parrafos: paragraphs.map((texto, i) => ({chunk_id: `p${i + 1}`, texto})),
+    contexto: string,
+    cited_id: string,
+    paragraphs: string[],
+    signal?: AbortSignal,
+  ) =>
+    request<FunctionBResponse>('/api/clasificar-cita-b', {
+      method: 'POST',
+      body: JSON.stringify({
+        contexto,
+        cited_id,
+        parrafos: paragraphs.map((texto, i) => ({ chunk_id: `p${i + 1}`, texto })),
+      }),
+      signal,
     }),
-    signal,
-  }),
   classifyCitationBCorpus: (contextId: string, signal?: AbortSignal) =>
-    request<FunctionBResponse>(
-      `/api/clasificar-cita-b/corpus/${encodeURIComponent(contextId)}`, { signal },
-    ),
-  classifyCitation: (
-    contexto: string, cited_title: string, cited_abstract: string,
-    signal?: AbortSignal,
-  ) => request<ClassificationResponse>('/api/clasificar-cita', {
-    method: 'POST',
-    body: JSON.stringify({ contexto, cited_title, cited_abstract }),
-    signal,
-  }),
-  classifyCitationSpecterA: (
-    contexto: string, cited_title: string, cited_abstract: string,
-    signal?: AbortSignal,
-  ) => request<ClassificationResponse>('/api/clasificar-cita-specter-a', {
-    method: 'POST',
-    body: JSON.stringify({ contexto, cited_title, cited_abstract }),
-    signal,
-  }),
-  classifyCitationSpecterB: (
-    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
-  ) => request<FunctionBResponse>('/api/clasificar-cita-specter-b', {
-    method: 'POST',
-    body: JSON.stringify({
-      contexto, cited_id,
-      parrafos: paragraphs.map((texto, i) => ({chunk_id: `p${i + 1}`, texto})),
+    request<FunctionBResponse>(`/api/clasificar-cita-b/corpus/${encodeURIComponent(contextId)}`, {
+      signal,
     }),
-    signal,
-  }),
+  classifyCitation: (
+    contexto: string,
+    cited_title: string,
+    cited_abstract: string,
+    signal?: AbortSignal,
+  ) =>
+    request<ClassificationResponse>('/api/clasificar-cita', {
+      method: 'POST',
+      body: JSON.stringify({ contexto, cited_title, cited_abstract }),
+      signal,
+    }),
+  classifyCitationSpecterA: (
+    contexto: string,
+    cited_title: string,
+    cited_abstract: string,
+    signal?: AbortSignal,
+  ) =>
+    request<ClassificationResponse>('/api/clasificar-cita-specter-a', {
+      method: 'POST',
+      body: JSON.stringify({ contexto, cited_title, cited_abstract }),
+      signal,
+    }),
+  classifyCitationSpecterB: (
+    contexto: string,
+    cited_id: string,
+    paragraphs: string[],
+    signal?: AbortSignal,
+  ) =>
+    request<FunctionBResponse>('/api/clasificar-cita-specter-b', {
+      method: 'POST',
+      body: JSON.stringify({
+        contexto,
+        cited_id,
+        parrafos: paragraphs.map((texto, i) => ({ chunk_id: `p${i + 1}`, texto })),
+      }),
+      signal,
+    }),
   classifyCitationSpecterBCorpus: (contextId: string, signal?: AbortSignal) =>
     request<FunctionBResponse>(
       `/api/clasificar-cita-specter-b/corpus/${encodeURIComponent(contextId)}`,
       { signal },
     ),
-  top3SciBERT: (
-    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
-  ) => request<DenseTop3Response>('/api/top3-scibert', {
-    method: 'POST',
-    body: JSON.stringify({
-      contexto, cited_id,
-      parrafos: paragraphs.map((texto, i) => ({ chunk_id: `p${i + 1}`, texto })),
+  top3SciBERT: (contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal) =>
+    request<DenseTop3Response>('/api/top3-scibert', {
+      method: 'POST',
+      body: JSON.stringify({
+        contexto,
+        cited_id,
+        parrafos: paragraphs.map((texto, i) => ({ chunk_id: `p${i + 1}`, texto })),
+      }),
+      signal,
     }),
-    signal,
-  }),
   top3SciBERTCorpus: (contextId: string, signal?: AbortSignal) =>
-    request<DenseCorpusResponse>(
-      `/api/top3-scibert/corpus/${encodeURIComponent(contextId)}`, { signal },
-    ),
+    request<DenseCorpusResponse>(`/api/top3-scibert/corpus/${encodeURIComponent(contextId)}`, {
+      signal,
+    }),
   top3CorpusExamples: (signal?: AbortSignal) =>
     request<Top3CorpusCatalog>('/api/top3-corpus/ejemplos', { signal }),
   top3Corpus: (contextId: string, signal?: AbortSignal) =>

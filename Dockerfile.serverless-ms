@@ -1,0 +1,11 @@
+# Build Dockerfile.ms for linux/amd64 first. In AWS use an ECR image pinned by digest.
+ARG MS_BASE_IMAGE=citas-science:t04-amd64
+FROM ${MS_BASE_IMAGE}
+USER root
+COPY src/app/serverless_main.py /app/src/app/serverless_main.py
+COPY scripts/iniciar_serverless_ms.py /app/scripts/iniciar_serverless_ms.py
+ENV MS_MODEL_ROOT=/opt/ml/model MS_ENABLE_GLOBAL_SEARCH=0
+EXPOSE 8080
+HEALTHCHECK NONE
+ENTRYPOINT ["python", "/app/scripts/iniciar_serverless_ms.py"]
+CMD ["serve"]

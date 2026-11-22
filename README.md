@@ -1424,3 +1424,21 @@ Operación completa, comandos y tablas sin valores inventados:
 `docs/mega_pr_183_operacion_final_pre_gold.md`. Para CI sin Gold,
 `tests/test_a4_unlabeled_pipeline.py`, `tests/test_science_hardening.py`,
 `tests/test_four_arm_smoke.py` y `tests/test_top3_acl_official.py`.
+
+### Flujo integrado SciBERT + M/S (21 de noviembre de 2026)
+
+La [web pública](https://proyectocitas-grupo19.click/) permite recomendar un
+artículo, abrir uno con texto disponible, marcar la posición de cita y obtener
+Top-3 y las nueve puntuaciones de M y S sin copiar metadatos ni fragmentos.
+La búsqueda semántica SciBERT preparada cubre **los 19.776 artículos** por título
+y resumen; el corpus V2 para Top-3 y M/S cubre **37 artículos**. El resto indica
+que no tiene texto completo preparado. Esto corresponde a M/S del notebook 10,
+separado del factorial A4 y de su evaluación Gold descritos arriba.
+
+Véase [flujo integrado, corpus y pruebas](docs/notas/flujo_integrado_ms.md),
+[despliegue y rollback](docs/notas/despliegue_cientifico_aws.md) y
+[lista de seguimiento](docs/notas/plan_integracion_cientifica_ms.md).
+
+La búsqueda semántica sustituye TF-IDF en la portada y en las rutas públicas de
+recomendación. Es una extensión experimental; los checkpoints M/S clasifican la
+función de cita después. Véase [diseño y verificación de SciBERT](docs/notas/busqueda_semantica_scibert.md).

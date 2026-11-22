@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import threading
 import unicodedata
 from pathlib import Path
 from typing import Any
@@ -20,9 +19,8 @@ from safetensors.torch import load_file
 
 from src.app.scibert_runtime import SciBERTRuntime
 
-ROOT = Path(__file__).resolve().parents[2]
-ARTIFACTS = ROOT / "proyecto_de_grado/artifacts/experimentos_10"
-MANIFEST_SCIBERT = ROOT / "proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json"
+from src.app.ms_config import ARTIFACTS, MANIFEST_SCIBERT
+from src.app.ms_lock import LOCK as _LOCK
 REVISION = "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1"
 CLASES = (
     "Background", "Gap", "Basis", "Comparison", "Application",
@@ -209,7 +207,6 @@ class ServicioMS:
 
 
 _INSTANCIA: ServicioMS | None = None
-_LOCK = threading.RLock()
 
 
 def obtener_servicio() -> ServicioMS:
@@ -220,7 +217,14 @@ def obtener_servicio() -> ServicioMS:
         return _INSTANCIA
 
 
+class ServicioOcupado(RuntimeError):
+    """La inferencia anterior sigue activa; no encolar trabajo que expirará en HTTP."""
+
+
 def analizar_seguro(contexto: str, titulo: str, abstract: str, candidatos: list[dict]) -> dict:
-    """Serializa peticiones para no solapar inferencias grandes sobre VRAM 8 GB."""
-    with _LOCK:
+    if not _LOCK.acquire(blocking=False):
+        raise ServicioOcupado("El servicio científico está ocupado")
+    try:
         return obtener_servicio().analizar(contexto, titulo, abstract, candidatos)
+    finally:
+        _LOCK.release()

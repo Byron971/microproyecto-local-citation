@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mesa de revisión · Citas</title><link rel="stylesheet" href="/static/style.css"><script src="/static/app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/">C / <span>Mesa de revisión</span></a><span class="local">Archivo local · sin llamadas a modelos</span></header>
+<div id="startup" role="status">Cargando las citas pendientes…</div>
+<div id="workspace" hidden>
+<aside class="rail"><div class="rail-title">Tu revisión <strong id="progress-label"></strong></div><progress id="progress" max="28" value="0"></progress><p id="remaining" class="muted"></p><nav id="case-list" aria-label="Seleccionar cita"></nav><div class="downloads"><p class="eyebrow">Descargar avance</p><a href="/api/export/resultado.xlsx">Excel de resultado · 179 aceptadas ↗</a><a href="/api/export/revisiones.csv">CSV para completar las pendientes ↗</a><p class="muted">El CSV incluye las revisiones guardadas, en el orden del Excel original.</p></div></aside>
+<main>
+<div class="topline"><div><p class="eyebrow">Función de la cita</p><h1 id="case-title"></h1><p id="case-id" class="identifier"></p></div><div class="navigation"><button id="previous" type="button" class="quiet">← Anterior</button><button id="next" type="button" class="quiet">Siguiente →</button></div></div>
+<div id="completed-banner" class="banner" hidden>Terminaste todas las citas pendientes. Puedes revisar tus decisiones o descargar el dataset.</div>
+<div class="columns"><section class="reading"><article class="context-card"><div class="section-label">01 / Lee el contexto original <span>Inglés</span></div><p class="hint">Clasifica <mark>TARGETCIT</mark>. OTHERCIT identifica otras referencias.</p><div id="context" class="context-text"></div></article>
+<details class="paper" open><summary>Artículo citado</summary><h2 id="paper-title"></h2><p id="abstract"></p></details>
+<details id="models-panel" class="models-panel"><summary>Consultar las seis respuestas de los modelos <span id="vote-summary"></span></summary><p class="hint">Puedes decidir primero y consultar las propuestas después. El acuerdo entre modelos no acredita una etiqueta humana.</p><div id="models"></div></details>
+</section>
+<section class="decision-card" aria-labelledby="decision-title"><p class="eyebrow">02 / Registra tu decisión</p><h2 id="decision-title">¿Qué función cumple?</h2><form id="decision-form">
+
+<label for="evaluability">¿Se puede evaluar?</label><select id="evaluability"><option>Evaluable</option><option>Ambiguo</option><option>No evaluable</option></select>
+<fieldset id="function-field"><legend>Función principal</legend><div id="functions"></div></fieldset>
+<label for="confidence">Confianza en tu decisión</label><select id="confidence"><option>Media</option><option>Alta</option><option>Baja</option></select>
+<label for="justification">Justificación o duda</label><textarea id="justification" required maxlength="4000" rows="4" placeholder="Explica qué hace TARGETCIT en este contexto."></textarea>
+<p id="save-state" class="save-state" role="status">Sin decisión guardada</p><button id="save" class="primary" type="submit">Guardar y continuar →</button><p class="hint shortcut">Ctrl / ⌘ + Enter para guardar</p>
+</form></section></div>
+<footer>Las 179 decisiones por consenso se conservan. Aquí solo se revisan las citas pendientes. <span id="source"></span></footer>
+</main></div><div id="toast" role="status" hidden></div>
+</body></html>
