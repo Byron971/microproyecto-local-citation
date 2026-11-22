@@ -14,7 +14,11 @@ variable "region" { default = "us-east-1" }
 variable "account_id" { default = "646941583111" }
 variable "name" { default = "citas-ms-serverless-t04" }
 variable "model_bucket" { default = "citas-api-models-646941583111-us-east-1" }
-variable "bundle_path" { type = string }
+# Compatibilidad con variables locales anteriores; el paquete se publica en EC2.
+variable "bundle_path" {
+  type    = string
+  default = ""
+}
 variable "bundle_sha256" {
   default = "b75e3075c4bf630d1b5aaf9c0ce7a2e43265446231ed550869e6df38b35def7f"
 }

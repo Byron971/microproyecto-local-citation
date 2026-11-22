@@ -98,3 +98,19 @@ No se creó aún un endpoint ni se realizaron inferencias en SageMaker. T04 sigu
 en curso: publicar los artefactos no acredita latencia, memoria ni arranque en
 Serverless. La siguiente validación debe usar el digest Serverless ya publicado,
 el objeto verificado y un plan que conserve ECS.
+
+## Intento real en SageMaker: pendiente de cuota de memoria
+
+AWS rechazó inicialmente el manifiesto OCI. Se publicó una variante Docker V2
+usando la traducción de ECR, con idénticos hashes de configuración y capas.
+Digest compatible: sha256:f2c7c71692f3e3063dda146a4a0692f338c32eb5ee507399a3b8520207bbf72c.
+SageMaker registró correctamente el modelo y la configuración de 6144 MB.
+CreateEndpoint fue rechazado con ResourceLimitExceeded: cuota de memoria
+3072 MB, solicitud 6144 MB en us-east-1. No se creó el endpoint ni se ejecutaron
+inferencias. Esta cuota no figura en la lista de Service Quotas. La API de
+Support devolvió SubscriptionRequiredException; el usuario abrirá el caso manual.
+
+T04 sigue pendiente: no hay medidas de carga, memoria o latencia en SageMaker
+y no se ha decidido la viabilidad técnica. ECS se conserva. Imágenes, bundle,
+modelo, configuración, rol y logs de prueba quedan preparados para reintentar
+tras la aprobación; no hay endpoint activo de esta prueba.

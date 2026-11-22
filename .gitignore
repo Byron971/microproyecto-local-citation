@@ -89,3 +89,7 @@ frontend/*.tsbuildinfo
 /notebooks/toloka/
 /notebooks/v3_Jueces/*.jsonl
 /notebooks/v3_Jueces/*.csv
+
+# Pesos de adaptadores privados
+**/adapter_model.safetensors
+**/adapter_model.bin

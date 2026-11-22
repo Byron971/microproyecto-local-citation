@@ -153,7 +153,21 @@ def main():
         print('Imagen publicada y digest ECR registrado: ' + digest)
     elif args.action == 'enable':
         config = json.loads((work / 'probe.tfvars.json').read_text())
-        config.update(deploy_endpoint=True, image_digest=json.loads((work / 'published_image.json').read_text())['image_digest'])
+        builder = Path('artifacts/image_builder')
+        image = json.loads((builder / 'published-images.json').read_text())['images']['serverless']
+        model = json.loads((builder / 'published-models.json').read_text())
+        digest = image['uri'].split('@')[1]
+        if image['architecture'] != 'amd64' or not model['remote_bytes_verified'] or model['sha256'] != BUNDLE_HASH:
+            raise ValueError('Artefactos EC2 sin validación suficiente')
+        published = aws('ecr', 'describe-images', '--repository-name', NAME, '--image-ids', 'imageTag=' + image['tag'])['imageDetails'][0]
+        manifest = aws('ecr', 'batch-get-image', '--repository-name', NAME, '--image-ids', 'imageDigest=' + digest)['images'][0]
+        if json.loads(manifest['imageManifest'])['mediaType'] != 'application/vnd.docker.distribution.manifest.v2+json':
+            raise ValueError('SageMaker exige manifiesto Docker V2; ejecutar builder-compatible')
+        head = aws('s3api', 'head-object', '--bucket', BUCKET, '--key', KEY)
+        if published['imageDigest'] != digest or head['ContentLength'] != model['bytes'] or head.get('VersionId') != model['version_id'] or head.get('Metadata', {}).get('sha256') != BUNDLE_HASH:
+            raise ValueError('Los artefactos AWS cambiaron desde la validación')
+        save(work / 'published_image.json', {'image_digest': digest, 'repository': image['uri'].split('@')[0], 'tag': image['tag']})
+        config.update(deploy_endpoint=True, image_digest=digest)
         save(work / 'probe.tfvars.json', config)
         print('Variables locales actualizadas; aún se requiere plan/apply Terraform.')
     elif args.action == 'check-current':
@@ -165,14 +179,14 @@ def main():
         print('ECS conserva task definitions y capacidad anteriores.')
     else:
         now = datetime.now(timezone.utc)
-        report = {'timestamp_utc': now.isoformat(), 'endpoint': aws('sagemaker', 'describe-endpoint', '--endpoint-name', NAME, optional=True)}
+        report = {'timestamp_utc': now.isoformat(), 'model': aws('sagemaker', 'describe-model', '--model-name', NAME, optional=True), 'endpoint': aws('sagemaker', 'describe-endpoint', '--endpoint-name', NAME, optional=True)}
         if 'error' not in report['endpoint']:
             report['endpoint_config'] = aws('sagemaker', 'describe-endpoint-config', '--endpoint-config-name', NAME, optional=True)
         report['logs'] = aws('logs', 'filter-log-events', '--log-group-name', '/aws/sagemaker/Endpoints/' + NAME,
                              '--start-time', str(int((now-timedelta(hours=2)).timestamp()*1000)), '--limit', '100', optional=True)
         report['metrics'] = {}
         for metric in ('OverheadLatency', 'ModelLatency', 'ModelSetupTime', 'MemoryUtilization', 'Invocations', 'Invocations4XXErrors', 'Invocations5XXErrors'):
-            report['metrics'][metric] = aws('cloudwatch', 'get-metric-statistics', '--namespace', 'AWS/SageMaker',
+            report['metrics'][metric] = aws('cloudwatch', 'get-metric-statistics', '--namespace', '/aws/sagemaker/Endpoints' if metric == 'MemoryUtilization' else 'AWS/SageMaker',
                 '--metric-name', metric, '--dimensions', 'Name=EndpointName,Value=' + NAME, 'Name=VariantName,Value=AllTraffic',
                 '--start-time', (now-timedelta(hours=2)).isoformat(), '--end-time', now.isoformat(), '--period', '60',
                 '--statistics', 'Average', 'Maximum', 'Sum', 'SampleCount', optional=True)

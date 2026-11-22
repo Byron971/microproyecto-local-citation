@@ -144,3 +144,5 @@ deploy: ## Construye, publica y despliega (requiere make init previo)
 include make/serverless-ms.mk
 
 include make/image-builder.mk
+
+include make/qlora.mk

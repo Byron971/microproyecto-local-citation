@@ -76,3 +76,9 @@ builder-publish-models-result:
 .PHONY: builder-artifact-lock
 builder-artifact-lock:
 	$(TERRAFORM) -chdir=terraform/model_artifact providers lock -platform=linux_amd64 -platform=darwin_arm64
+
+.PHONY: builder-compatible builder-compatible-result
+builder-compatible:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py compatible --work "$(BUILDER_WORK)"
+builder-compatible-result:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py compatible-result --work "$(BUILDER_WORK)"

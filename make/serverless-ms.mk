@@ -41,3 +41,14 @@ ms-serverless-check-current: ## Comprueba que ECS conserva la tarea y capacidad 
 .PHONY: ms-serverless-cancel-upload
 ms-serverless-cancel-upload: ## Interrumpe gradualmente SOLO el apply local de esta prueba
 	$(MS_OPS) cancel-upload --pid "$(MS_UPLOAD_PID)"
+
+.PHONY: ms-serverless-quotas
+ms-serverless-quotas:
+	AWS_PROFILE="$(MS_PROFILE)" aws service-quotas list-service-quotas --service-code sagemaker --region "$(AWS_REGION)" --output json > "$(MS_PROBE_WORK)/quotas.json"
+	python3 -c 'import json; q=json.load(open("$(MS_PROBE_WORK)/quotas.json"))["Quotas"]; print(json.dumps([x for x in q if "serverless" in x["QuotaName"].lower()],indent=2))'
+
+.PHONY: ms-serverless-validate ms-serverless-support-options
+ms-serverless-validate:
+	$(MS_TF) validate
+ms-serverless-support-options:
+	AWS_PROFILE="$(MS_PROFILE)" AWS_MAX_ATTEMPTS=1 aws support describe-services --language en --region us-east-1 --cli-connect-timeout 8 --cli-read-timeout 20 --output json > "$(MS_PROBE_WORK)/support_services.json" 2> "$(MS_PROBE_WORK)/support_services_error.txt"

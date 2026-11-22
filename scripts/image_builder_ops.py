@@ -13,12 +13,45 @@ def aws(*args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result", "models", "models-result", "publish-models", "publish-models-result"])
+    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result", "models", "models-result", "publish-models", "publish-models-result", "compatible", "compatible-result", "qlora-auth", "qlora-auth-result", "qlora-check", "qlora-check-result", "qlora-browser", "qlora-browser-result"])
     parser.add_argument("--work", required=True, type=Path)
     parser.add_argument("--commit")
     args = parser.parse_args()
     instance = json.loads((args.work / "outputs.json").read_text())["instance_id"]["value"]
-    if args.action == "publish-models":
+    if args.action == "qlora-browser":
+        command = "bash <<'QLORA_BROWSER_SCRIPT'\n" + Path("scripts/qlora_browser_ec2.sh").read_text() + "\nQLORA_BROWSER_SCRIPT"
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command],"executionTimeout":["1200"]}))
+        (args.work / "qlora-browser-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
+        print("Preparación del navegador EC2 enviada")
+    elif args.action == "qlora-check":
+        command = """sudo -u ubuntu python3 - <<'QLORA_CHECK'
+import configparser,json
+from pathlib import Path
+p=Path('/home/ubuntu/.config/rclone/uniandes.conf')
+c=configparser.ConfigParser(interpolation=None)
+if p.exists():c.read(p)
+configured=c.has_section('uniandes')
+token=json.loads(c.get('uniandes','token',fallback='{}')) if configured else {}
+print(json.dumps({'authorized':bool(token.get('access_token')), 'drive_configured':bool(c.get('uniandes','drive_id',fallback='')) if configured else False, 'private_config_permissions':oct(p.stat().st_mode & 0o777) if p.exists() else None}))
+QLORA_CHECK"""
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
+        (args.work / "qlora-check-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
+        print("Comprobación privada enviada")
+    elif args.action == "qlora-auth":
+        command = "bash <<'QLORA_AUTH_SCRIPT'\n" + Path("scripts/qlora_auth_ec2.sh").read_text() + "\nQLORA_AUTH_SCRIPT"
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
+        (args.work / "qlora-auth-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
+        print("Autorización remota preparada; consultar resultado")
+    elif args.action == "compatible":
+        command = "sudo -u ubuntu /opt/citas/tools/bin/python - <<'COMPAT_SCRIPT'\n" + Path("scripts/compatible_image_ec2.py").read_text() + "\nCOMPAT_SCRIPT"
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
+        (args.work / "compatible-command.json").write_text(json.dumps({"command_id": result["Command"]["CommandId"]}))
+        print("Publicación Docker V2 enviada")
+    elif args.action == "publish-models":
         command = "sudo -u ubuntu bash <<'PUBLISH_MODELS_SCRIPT'\n" + Path("scripts/publish_models_ec2.sh").read_text() + "\nPUBLISH_MODELS_SCRIPT"
         result = aws("ssm", "send-command", "--instance-ids", instance,
                      "--document-name", "AWS-RunShellScript", "--parameters",
@@ -94,6 +127,11 @@ BUILDER
                      "--command-id", saved["command_id"])
         report = {key: result[key] for key in ("Status", "ResponseCode", "StandardOutputContent", "StandardErrorContent")}
         (args.work / f"{name}-result.json").write_text(json.dumps(report, indent=2))
+        if name == "compatible" and result["Status"] == "Success":
+            images = json.loads(result["StandardOutputContent"])
+            if not images["images"]["serverless"]["unchanged_layers_and_config"]:
+                raise ValueError("Conversión no verificada")
+            (args.work / "published-images.json").write_text(json.dumps(images, indent=2))
         print(json.dumps(report, indent=2))
         if result["Status"] in ("Failed", "Cancelled", "TimedOut"):
             raise SystemExit(1)
