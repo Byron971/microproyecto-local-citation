@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ApiError, errorMessage, request } from '../api';
 import { ScientificResults, type Respuesta } from '../components/ScientificResults';
 import catalog from '../articleCatalog.json';
+import datasetExamples from '../scientificExamples.json';
+import { ExampleDialog } from '../components/ExampleDialog';
 import type { CommercialClassification } from '../components/CommercialResults';
 
 export const PUBLIC_EXAMPLE = {
@@ -37,6 +39,8 @@ export function ScientificAnalysis() {
   const [coverage, setCoverage] = useState<Coverage>();
   const [coverageRetry, setCoverageRetry] = useState(0);
   const [usingExample, setUsingExample] = useState(false);
+  const [selectedExample, setSelectedExample] = useState('');
+  const [examplesOpen, setExamplesOpen] = useState(false);
   const [result, setResult] = useState<Analysis>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -96,6 +100,20 @@ export function ScientificAnalysis() {
     setTarget(PUBLIC_EXAMPLE.target);
     setPaperId(PUBLIC_EXAMPLE.paperId);
     setUsingExample(true);
+    setSelectedExample('');
+    setCoverageRetry((count) => count + 1);
+  }
+
+  function selectDatasetExample(id: string) {
+    const item = datasetExamples.ejemplos.find((entry) => entry.context_id === id);
+    if (!item) return;
+    invalidate();
+    setContext(item.contexto);
+    setPaperId(item.paper_id);
+    setTarget('');
+    setUsingExample(false);
+    setSelectedExample(id);
+    setExamplesOpen(false);
     setCoverageRetry((count) => count + 1);
   }
 
@@ -126,6 +144,8 @@ export function ScientificAnalysis() {
       return;
     }
     invalidate();
+    setUsingExample(false);
+    setSelectedExample('');
     setTarget(selected);
     setContext(marked);
     field.focus();
@@ -244,6 +264,7 @@ export function ScientificAnalysis() {
                 invalidate();
                 setContext(e.target.value);
                 setUsingExample(false);
+                setSelectedExample('');
                 if (!e.target.value.includes('TARGETCIT')) setTarget('');
               }}
             />
@@ -257,11 +278,20 @@ export function ScientificAnalysis() {
               <button type="button" className="text-button" onClick={example}>
                 Usar ejemplo público
               </button>
+              <button type="button" className="text-button" onClick={() => setExamplesOpen(true)}>
+                Explorar ejemplos del dataset
+              </button>
             </div>
             {usingExample && (
               <p className="field-help">
                 Contexto de demostración redactado para esta aplicación sobre una publicación
                 pública. No procede de TRAIN ni Gold.
+              </p>
+            )}
+            {selectedExample && (
+              <p className="field-help">
+                Ejemplo de ACL-200 · validación · {selectedExample}. La función se calculará al
+                analizar.
               </p>
             )}
             {context.includes('TARGETCIT') && (
@@ -280,6 +310,7 @@ export function ScientificAnalysis() {
                 invalidate();
                 setPaperId(e.target.value);
                 setUsingExample(false);
+                setSelectedExample('');
               }}
             >
               <option value="">Selecciona la referencia citada</option>
@@ -407,6 +438,22 @@ export function ScientificAnalysis() {
             </p>
           )}
         </section>
+      )}
+      {examplesOpen && (
+        <ExampleDialog
+          examples={datasetExamples.ejemplos.map((item) => ({
+            context_id: item.context_id,
+            texto: item.contexto,
+            titulo_correcto: item.titulo,
+            cita_correcta: item.paper_id,
+            detalle: `${item.paper_id} · Citado desde ${item.citing_id} · Validación`,
+          }))}
+          selected={selectedExample}
+          searchable
+          description="Citas de ACL-200 con artículo preparado. Elige una para cargar el contexto y la referencia."
+          onSelect={selectDatasetExample}
+          onClose={() => setExamplesOpen(false)}
+        />
       )}
       <details id="ayuda" className="analysis-help">
         <summary>Cómo analizar una cita</summary>

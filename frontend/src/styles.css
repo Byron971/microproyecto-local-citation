@@ -1643,3 +1643,36 @@ summary {
   margin: 2px 0 0;
   padding: 0;
 }
+
+/* Búsqueda de citas con la misma tipografía y paleta del formulario. */
+.example-search {
+  padding: 16px 24px 8px;
+}
+.example-search label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.example-search input {
+  width: 100%;
+  min-width: 0;
+}
+.example-search p,
+.example-metadata {
+  color: var(--secondary);
+  font-size: 12px;
+}
+.example-search p {
+  margin: 8px 0 0;
+}
+.example-metadata {
+  display: block;
+  margin-top: 6px;
+}
+.example-empty {
+  padding: 0 24px 20px;
+  color: var(--secondary);
+}
+.example-card-heading strong {
+  overflow-wrap: anywhere;
+}
