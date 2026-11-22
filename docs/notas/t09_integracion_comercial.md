@@ -1,4 +1,4 @@
-# T09: integración comercial preparada
+# T09: integración comercial y publicación
 
 Decisión del usuario: GPT-6.1 Sol. Reutilizar el cliente OpenAI, el parser de nueve
 puntajes y el prompt zero_shot_detailed de la evaluación comercial existente.
@@ -26,7 +26,7 @@ No cambiar modelos ni entrenar. QLoRA sigue suspendido y oculto.
   softmax. Máximos empatados o todos en cero producen abstención explícita.
 - La identidad efectiva debe corresponder al modelo pedido; si falta o cambia
   a otro modelo, la respuesta se rechaza. La disponibilidad del alias para la
-  cuenta se comprobará en una llamada real; nunca se asume por documentación.
+  cuenta se comprobó con llamadas reales; no se asumió por documentación.
 
 Contrato de referencia: https://developers.openai.com/api/docs/models/gpt-6.1-sol
 API: https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create
@@ -42,27 +42,18 @@ consume cuota. Por defecto son diez intentos globales por día UTC, compartidos
 entre tareas y conservados tras reinicios. El contador expira a los dos días.
 No es un límite de facturación de la cuenta ni una garantía sobre tarifas.
 
-Creación o rotación privada desde la raíz del repositorio, en una terminal:
-
-```sh
-make commercial-secret AWS_PROFILE=josezambrana
-```
-
-Pide la clave sin mostrarla. El módulo terraform/commercial_secret usa variable
-efímera y value_wo: el valor no se escribe al plan ni al estado. Se desactivan
-trazas Terraform al ejecutar esa operación. El helper revisa que el plan solo
-cree o actualice el parámetro autorizado. El valor nunca se pasa como argumento
-CLI ni se guarda en archivos. No pegarlo en el chat, Git o tfvars. El estado del
-módulo contiene metadatos y versión de rotación, queda fuera de Git y debe
-conservarse para volver a rotar con el mismo comando.
+El 22 de noviembre de 2026 se creó el parámetro SecureString versión 1 desde
+OPENAI_API_KEY de .env mediante AWS CLI, como excepción puntual solicitada por
+el usuario. No se imprimió la clave ni se guardó en Git, argumentos o archivos
+intermedios. El parámetro está fuera del estado de terraform/commercial_secret;
+no ejecutar make commercial-secret sobre él sin resolver antes esa propiedad.
 
 Parámetro: /citas-api/commercial/openai_api_key.
 ARN: arn:aws:ssm:us-east-1:646941583111:parameter/citas-api/commercial/openai_api_key.
 
-Crear el secreto NO activa el proveedor en la web. Los valores predeterminados
-commercial_enabled y commercial_visible son false. Primero se desplegará la
-imagen nueva, el límite y el secreto referenciado con visible=false; después de
-una llamada sintética real se mostrará mediante Terraform y se comprobará la web.
+La infraestructura de servicio, permisos, tabla y visibilidad se aplicó mediante
+Terraform. Los tfvars de producción permanecen ignorados y habilitan el comercial,
+referencian solo el ARN y fijan diez intentos globales por día UTC.
 
 ## Estado comprobado y pendientes
 
@@ -76,19 +67,41 @@ Comprobado localmente, sin llamadas pagadas:
 - El plan de preparación solo añade tabla y dos políticas IAM y actualiza el
   servicio/API ligero; no modifica M/S, red, dominio, QLoRA ni GPU.
 
-No se ha creado el secreto, aplicado este plan, desplegado esta integración ni
-realizado una inferencia comercial real. T09 permanece en curso. El plan guardado
-es preparatorio y referencia la imagen vigente: regenerarlo después de publicar
-la imagen nueva, no aplicarlo directamente.
+## Publicación del 22 de noviembre de 2026
 
-Seguimiento: T01–T03 publicadas; T04 pendiente; T05–T06 suspendidas; T07–T08 con
-contrato/selector comercial preparados y el resto pendiente; T09 en curso;
-T10 con mínimos comerciales preparados, pendiente de aplicación y aceptación;
-T11 comercial real pendiente; T12 y cierre final T13 pendientes.
+- Imagen del API construida y publicada en ECR desde la EC2 existente, sin subir
+  capas desde el equipo local. Código: 43f405236f07fb0e320f1aa377c5622f014d7d39.
+- Digest API: sha256:108ffd091a16912d7d0f3352d9bdafc561bc8b9e9935fe33402d66138076309a.
+- M/S conserva citas-api-science:4 y su digest
+  sha256:36b2c122407da337ade64f73448ede02553a2b793484c18f0e1d9e41f26ba21c.
+- EC2 detenida mediante Terraform después del build; disco y archivos conservados.
+- Primera aceptación real con el proveedor aún oculto: gpt-6.1-sol,
+  zero_shot_detailed, clase Application, nueve puntajes válidos y 7,271 segundos
+  totales. Una llamada con contexto inventado y artículo público W05-0821.
+- Evidencia local ignorada: artifacts/t09-aceptacion-real.json.
+- Frontend publicado en https://proyectocitas-grupo19.click.
+- Recorrido comercial público aceptado en escritorio y móvil: consentimiento
+  obligatorio, tres fragmentos contrastados con el corpus y función Application.
+  Dos pruebas aprobadas; capturas revisadas sin desbordamiento horizontal.
+- Tres llamadas comerciales en total durante esta aceptación: una directa y una
+  por navegador. No se ejecutó una evaluación del modelo ni se modificaron pesos.
+- API citas-api:4 y M/S citas-api-science:4 estables. Salud pública y HTML de
+  CloudFront iguales al build local, confirmado por make release-confirm.
+- Evidencia adicional ignorada: artifacts/release-confirmation.json y
+  frontend/test-results/commercial-real-*/aceptacion-comercial.json.
+- make commercial-smoke está diseñado para la fase previa con proveedor oculto;
+  no repetirlo ahora que es visible. make commercial-web-check hace dos llamadas
+  reales y consume la cuota del día.
+
+Seguimiento: T01–T03 publicadas; T04 pendiente por cuota; T05–T06 suspendidas;
+T07–T08 con catálogo y selector M/S y comercial aceptados, parte QLoRA suspendida;
+T09 completada; T10 con secreto, IAM y límite comercial aplicados, resto pendiente;
+T11 con recorridos públicos M/S y comercial aceptados, parte QLoRA suspendida;
+T12 y cierre T13 pendientes. No se cambiaron pesos ni se entrenaron modelos.
 
 Resultados de esta preparación: 120 pruebas de backend y seis subpruebas, 32
 pruebas unitarias frontend y 38 recorridos de navegador aprobados. Las cuatro
 pruebas que requieren servicios reales permanecieron omitidas; no se presentan
 como aceptación del proveedor. Los seis casos comerciales afectados por los
 ajustes finales de texto y presentación volvieron a pasar y sus capturas de
-escritorio y móvil se revisaron. No se crearon recursos ni se modificó producción.
+escritorio y móvil se revisaron. Esos resultados locales preceden al despliegue descrito arriba.
