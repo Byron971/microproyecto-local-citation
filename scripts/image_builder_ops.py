@@ -13,12 +13,20 @@ def aws(*args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["clone", "clone-result"])
+    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result"])
     parser.add_argument("--work", required=True, type=Path)
     parser.add_argument("--commit")
     args = parser.parse_args()
     instance = json.loads((args.work / "outputs.json").read_text())["instance_id"]["value"]
-    if args.action == "clone":
+    if args.action == "build":
+        command = "sudo -u ubuntu bash /opt/citas/microproyecto-local-citation/scripts/build_publish_ec2.sh"
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters",
+                     json.dumps({"commands": [command], "executionTimeout": ["3600"]}))
+        command_id = result["Command"]["CommandId"]
+        (args.work / "build-command.json").write_text(json.dumps({"command_id": command_id}))
+        print("Construcción y publicación enviadas:", command_id)
+    elif args.action == "clone":
         if not re.fullmatch(r"[a-f0-9]{40}", args.commit or ""):
             raise ValueError("Se requiere un commit completo")
         command = """set -eu
@@ -50,11 +58,12 @@ BUILDER
         (args.work / "clone-command.json").write_text(json.dumps({"command_id": command_id, "commit": args.commit}))
         print("Clonación enviada:", command_id)
     else:
-        saved = json.loads((args.work / "clone-command.json").read_text())
+        name = "build" if args.action == "build-result" else "clone"
+        saved = json.loads((args.work / f"{name}-command.json").read_text())
         result = aws("ssm", "get-command-invocation", "--instance-id", instance,
                      "--command-id", saved["command_id"])
         report = {key: result[key] for key in ("Status", "ResponseCode", "StandardOutputContent", "StandardErrorContent")}
-        (args.work / "clone-result.json").write_text(json.dumps(report, indent=2))
+        (args.work / f"{name}-result.json").write_text(json.dumps(report, indent=2))
         print(json.dumps(report, indent=2))
         if result["Status"] in ("Failed", "Cancelled", "TimedOut"):
             raise SystemExit(1)

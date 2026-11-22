@@ -37,3 +37,9 @@ builder-clone:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py clone --work "$(BUILDER_WORK)" --commit "$(BUILDER_COMMIT)"
 builder-clone-result:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py clone-result --work "$(BUILDER_WORK)"
+
+.PHONY: builder-build builder-build-result
+builder-build:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py build --work "$(BUILDER_WORK)"
+builder-build-result:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py build-result --work "$(BUILDER_WORK)"
