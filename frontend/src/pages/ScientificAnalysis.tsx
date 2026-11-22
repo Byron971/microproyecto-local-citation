@@ -33,6 +33,8 @@ export function ScientificAnalysis() {
   const [paperId, setPaperId] = useState('');
   const [variant, setVariant] = useState<'M' | 'S' | 'commercial'>('M');
   const [commercialAvailable, setCommercialAvailable] = useState(false);
+  const [catalogStatus, setCatalogStatus] = useState<'checking' | 'ready' | 'error'>('checking');
+  const [catalogRetry, setCatalogRetry] = useState(0);
   const [consent, setConsent] = useState(false);
   const [commercialResult, setCommercialResult] = useState<CommercialClassification>();
   const [target, setTarget] = useState('');
@@ -44,22 +46,32 @@ export function ScientificAnalysis() {
   const [result, setResult] = useState<Analysis>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [errorField, setErrorField] = useState('');
+  const [articleQuery, setArticleQuery] = useState('');
+  const [phase, setPhase] = useState<'retrieving' | 'classifying'>('retrieving');
+  const [duration, setDuration] = useState<number>();
   const input = useRef<HTMLTextAreaElement>(null);
   const active = useRef<AbortController | null>(null);
   const article = catalog.articulos.find((item) => item.paper_id === paperId);
   useEffect(() => () => active.current?.abort(), []);
   useEffect(() => {
     const controller = new AbortController();
+    setCatalogStatus('checking');
     request<{ clasificadores: { id: string }[] }>('/api/clasificadores', {
       signal: controller.signal,
     })
       .then((data) => {
-        if (!controller.signal.aborted)
-          setCommercialAvailable(data.clasificadores?.some((m) => m.id === 'commercial') === true);
+        if (!controller.signal.aborted) {
+          if (!Array.isArray(data.clasificadores)) throw new Error('Invalid classifier catalog');
+          setCommercialAvailable(data.clasificadores.some((m) => m.id === 'commercial'));
+          setCatalogStatus('ready');
+        }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (!controller.signal.aborted) setCatalogStatus('error');
+      });
     return () => controller.abort();
-  }, []);
+  }, [catalogRetry]);
   useEffect(() => {
     if (!paperId) {
       setCoverage(undefined);
@@ -94,6 +106,44 @@ export function ScientificAnalysis() {
   }, [paperId, coverageRetry]);
   const coverageStatus = coverage?.paperId === paperId ? coverage.status : 'checking';
 
+  const markerCount = context.split('TARGETCIT').length - 1;
+  const contextReady =
+    markerCount === 1 &&
+    context.length <= 4000 &&
+    context.replace('TARGETCIT', '').trim().length > 0;
+  const normalize = (text: string) =>
+    text
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+  const filteredArticles = catalog.articulos.filter((item) =>
+    normalize(`${item.titulo} ${item.paper_id}`).includes(normalize(articleQuery).trim()),
+  );
+  const articleOptions =
+    article && !filteredArticles.includes(article)
+      ? [article, ...filteredArticles]
+      : filteredArticles;
+  const readiness = !contextReady
+    ? 'Añade el contexto y marca una sola cita.'
+    : !article
+      ? 'Selecciona el artículo citado.'
+      : coverageStatus !== 'available'
+        ? 'Comprueba el texto preparado del artículo.'
+        : variant === 'commercial' && !consent
+          ? 'Confirma el envío a OpenAI para continuar.'
+          : 'Todo listo para analizar esta cita.';
+  function reportError(message: string, field: string) {
+    setError(message);
+    setErrorField(field);
+    document.getElementById(field)?.focus();
+  }
+  useEffect(() => {
+    if (loading) return;
+    if (error && errorField === 'analysis-error')
+      document.getElementById('analysis-error')?.focus();
+    else if (result && !error) document.getElementById('analysis-results')?.focus();
+  }, [loading, result, error, errorField]);
+
   function example() {
     invalidate();
     setContext(PUBLIC_EXAMPLE.context);
@@ -124,23 +174,31 @@ export function ScientificAnalysis() {
     setCommercialResult(undefined);
     setConsent(false);
     setError('');
+    setErrorField('');
+    setDuration(undefined);
   }
   function mark() {
     const field = input.current;
     if (!field || field.selectionStart === field.selectionEnd) {
-      setError('Selecciona la referencia dentro del contexto y pulsa «Marcar cita».');
+      reportError(
+        'Selecciona la referencia dentro del contexto y pulsa «Marcar cita».',
+        'citation-context',
+      );
       return;
     }
     const selected = context.slice(field.selectionStart, field.selectionEnd);
     if (selected.includes('TARGETCIT')) {
-      setError('Selecciona la referencia original, no la marca TARGETCIT.');
+      reportError('Selecciona la referencia original, no la marca TARGETCIT.', 'citation-context');
       return;
     }
     const before = context.slice(0, field.selectionStart).replaceAll('TARGETCIT', target);
     const after = context.slice(field.selectionEnd).replaceAll('TARGETCIT', target);
     const marked = `${before}TARGETCIT${after}`;
     if (marked.length > 4000) {
-      setError('El contexto marcado debe tener como máximo 4000 caracteres.');
+      reportError(
+        'El contexto marcado debe tener como máximo 4000 caracteres.',
+        'citation-context',
+      );
       return;
     }
     invalidate();
@@ -154,15 +212,18 @@ export function ScientificAnalysis() {
     event.preventDefault();
     if (loading) return;
     if (!context.trim() || context.replaceAll('TARGETCIT', '').trim() === '') {
-      setError('Escribe un contexto académico en inglés.');
+      reportError('Escribe un contexto académico en inglés.', 'citation-context');
       return;
     }
     if (context.split('TARGETCIT').length !== 2 || context.length > 4000) {
-      setError('Marca una sola cita en un contexto de hasta 4000 caracteres.');
+      reportError(
+        'Marca una sola cita en un contexto de hasta 4000 caracteres.',
+        'citation-context',
+      );
       return;
     }
     if (!article) {
-      setError('Selecciona el artículo citado por su título e ID.');
+      reportError('Selecciona el artículo citado por su título e ID.', 'cited-article');
       return;
     }
     if (coverageStatus !== 'available') {
@@ -174,7 +235,7 @@ export function ScientificAnalysis() {
       return;
     }
     if (variant === 'commercial' && (!commercialAvailable || !consent)) {
-      setError('Confirma el envío del texto a OpenAI antes de analizar.');
+      reportError('Confirma el envío del texto a OpenAI antes de analizar.', 'commercial-consent');
       return;
     }
     active.current?.abort();
@@ -184,6 +245,10 @@ export function ScientificAnalysis() {
     const controller = new AbortController();
     active.current = controller;
     setLoading(true);
+    setErrorField('');
+    setPhase('retrieving');
+    setDuration(undefined);
+    const started = performance.now();
     try {
       const data = await request<Analysis>('/api/analisis-cita-ms/articulo', {
         method: 'POST',
@@ -206,6 +271,7 @@ export function ScientificAnalysis() {
       }
       setResult(data);
       if (variant === 'commercial') {
+        setPhase('classifying');
         const commercial = await request<CommercialClassification>('/api/comercial/clasificar', {
           method: 'POST',
           signal: controller.signal,
@@ -236,10 +302,14 @@ export function ScientificAnalysis() {
       if (!controller.signal.aborted) {
         if (err instanceof ApiError && err.status === 404)
           setCoverage({ paperId, status: 'missing' });
+        setErrorField('analysis-error');
         setError(errorMessage(err));
       }
     } finally {
-      if (!controller.signal.aborted) setLoading(false);
+      if (!controller.signal.aborted) {
+        setDuration((performance.now() - started) / 1000);
+        setLoading(false);
+      }
     }
   }
   return (
@@ -248,9 +318,37 @@ export function ScientificAnalysis() {
         <h1>Analizar una cita</h1>
         <p>Identifica fragmentos relacionados del artículo citado y la función de tu referencia.</p>
       </div>
+      <nav className="workflow-progress" aria-label="Pasos del análisis">
+        <ol>
+          {[
+            ['citation-step', 'Contexto', contextReady],
+            ['article-step', 'Artículo', coverageStatus === 'available' && !!article],
+            ['classifier-step', 'Clasificador', variant !== 'commercial' || consent],
+            ['analysis-results', 'Resultados', !!result && !loading && !error],
+          ].map(([id, name, done], index) => (
+            <li key={String(id)} className={done ? 'step-complete' : ''}>
+              {id === 'analysis-results' && !result ? (
+                <span>
+                  <b>{index + 1}</b>
+                  {name}
+                </span>
+              ) : (
+                <a href={`#${id}`}>
+                  <b>{done ? '✓' : index + 1}</b>
+                  {name}
+                  <span className="sr-only">{done ? ': listo' : ': pendiente'}</span>
+                </a>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <p className="workflow-scope">
+        Analiza citas en inglés dentro de los artículos preparados del catálogo.
+      </p>
       <section className="workspace" aria-label="Análisis de cita">
         <form onSubmit={run}>
-          <fieldset className="analysis-step">
+          <fieldset className="analysis-step" id="citation-step">
             <legend>1. Contexto de la cita</legend>
             <label htmlFor="citation-context">Contexto en inglés</label>
             <textarea
@@ -259,7 +357,9 @@ export function ScientificAnalysis() {
               lang="en"
               rows={6}
               value={context}
-              aria-describedby="context-help"
+              placeholder="Previous research [Smith, 2020] introduced…"
+              aria-describedby={`context-help context-state${errorField === 'citation-context' ? ' analysis-error' : ''}`}
+              aria-invalid={errorField === 'citation-context' || undefined}
               onChange={(e) => {
                 invalidate();
                 setContext(e.target.value);
@@ -271,6 +371,18 @@ export function ScientificAnalysis() {
             <p id="context-help" className="field-help">
               Selecciona la referencia en el texto y pulsa «Marcar cita». Máximo 4000 caracteres.
             </p>
+            <div className="context-feedback" id="context-state" aria-live="polite">
+              <span className={context.length > 4000 || markerCount > 1 ? 'invalid-text' : ''}>
+                {context.length.toLocaleString('es')} / 4.000 caracteres
+              </span>
+              <span>
+                {markerCount === 1
+                  ? 'Una cita marcada'
+                  : markerCount > 1
+                    ? 'Hay varias marcas: deja solo una'
+                    : 'Cita sin marcar'}
+              </span>
+            </div>
             <div className="context-actions">
               <button type="button" className="text-button" onClick={mark}>
                 Marcar cita
@@ -300,11 +412,31 @@ export function ScientificAnalysis() {
               </p>
             )}
           </fieldset>
-          <fieldset className="analysis-step">
+          <fieldset className="analysis-step" id="article-step">
             <legend>2. Artículo citado</legend>
+            <div className="article-filter">
+              <label htmlFor="article-filter">Filtrar artículos por título o ID</label>
+              <input
+                id="article-filter"
+                type="search"
+                value={articleQuery}
+                placeholder="Por ejemplo: translation o W05-0821"
+                onChange={(event) => setArticleQuery(event.target.value)}
+                aria-describedby="article-filter-count"
+              />
+              <p id="article-filter-count" className="field-help" aria-live="polite">
+                {filteredArticles.length} coincidencias en {catalog.articulos.length} artículos del
+                catálogo.
+                {articleQuery && article && !filteredArticles.includes(article)
+                  ? ' Conservamos tu artículo seleccionado.'
+                  : ''}
+              </p>
+            </div>
             <label htmlFor="cited-article">Artículo preparado por título e ID</label>
             <select
               id="cited-article"
+              aria-invalid={errorField === 'cited-article' || undefined}
+              aria-describedby={`article-help${errorField === 'cited-article' ? ' analysis-error' : ''}`}
               value={paperId}
               onChange={(e) => {
                 invalidate();
@@ -314,7 +446,7 @@ export function ScientificAnalysis() {
               }}
             >
               <option value="">Selecciona la referencia citada</option>
-              {catalog.articulos.map((item) => (
+              {articleOptions.map((item) => (
                 <option key={item.paper_id} value={item.paper_id}>
                   {item.titulo} · {item.paper_id}
                 </option>
@@ -361,16 +493,17 @@ export function ScientificAnalysis() {
                 )}
               </div>
             )}
-            <p className="field-help">
+            <p className="field-help" id="article-help">
               Elige la referencia que ya conoces. Los fragmentos se recuperan únicamente dentro de
               ese artículo.
             </p>
           </fieldset>
-          <fieldset className="analysis-step">
+          <fieldset className="analysis-step" id="classifier-step">
             <legend>3. Clasificador</legend>
             <label htmlFor="classifier">Familia y modelo</label>
             <select
               id="classifier"
+              aria-describedby="classifier-help"
               value={variant}
               onChange={(e) => {
                 invalidate();
@@ -383,15 +516,37 @@ export function ScientificAnalysis() {
               </optgroup>
               {commercialAvailable && <option value="commercial">Comercial — GPT-6.1 Sol</option>}
             </select>
-            <p className="field-help">
+            {catalogStatus === 'checking' && (
+              <p className="field-help" role="status">
+                Consultando clasificadores disponibles…
+              </p>
+            )}
+            {catalogStatus === 'error' && (
+              <div className="catalog-notice">
+                <p>No se pudo consultar el catálogo de clasificadores. Puedes usar M/S.</p>
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => setCatalogRetry((count) => count + 1)}
+                >
+                  Reintentar catálogo
+                </button>
+              </div>
+            )}
+            <p className="field-help" id="classifier-help">
               {variant === 'commercial'
-                ? 'SciBERT recupera los fragmentos. OpenAI clasifica la función usando contexto, título y resumen.'
-                : 'Usa el contexto y la entrada AB con fragmentos del artículo. El servicio calcula M y S; se muestra la variante elegida.'}
+                ? 'SciBERT recupera los fragmentos. OpenAI recibe el contexto, el título y el resumen para clasificar la función.'
+                : 'Usa el contexto de la cita y fragmentos del artículo. Se calculan M y S; verás la variante elegida.'}
             </p>
           </fieldset>
           {variant === 'commercial' && (
             <label className="field-help commercial-consent">
               <input
+                id="commercial-consent"
+                aria-invalid={errorField === 'commercial-consent' || undefined}
+                aria-describedby={
+                  errorField === 'commercial-consent' ? 'analysis-error' : undefined
+                }
                 type="checkbox"
                 disabled={loading}
                 checked={consent}
@@ -401,32 +556,65 @@ export function ScientificAnalysis() {
             </label>
           )}
           {error && (
-            <p role="alert" className="error-message">
+            <p id="analysis-error" tabIndex={-1} role="alert" className="error-message">
               {error}
             </p>
           )}
-          <button
-            type="submit"
-            className="primary"
-            disabled={loading || (!!paperId && coverageStatus !== 'available')}
-          >
-            {loading ? 'Analizando cita…' : 'Analizar cita'}
-          </button>
-          {loading && <p role="status">Recuperando fragmentos y clasificando la cita…</p>}
+          <div className="analysis-submit">
+            <p className="readiness-message">
+              {loading
+                ? phase === 'retrieving'
+                  ? 'Recuperando tres fragmentos con SciBERT…'
+                  : 'Top-3 listo. Clasificando la función con OpenAI…'
+                : readiness}
+            </p>
+            <button
+              type="submit"
+              className="primary"
+              disabled={loading || (!!paperId && coverageStatus !== 'available')}
+            >
+              {loading ? 'Analizando cita…' : 'Analizar cita'}
+            </button>
+          </div>
+          {loading && (
+            <p className="analysis-loading" role="status">
+              {phase === 'retrieving'
+                ? 'Recuperando fragmentos y clasificando la cita…'
+                : 'Esperando la función predicha de OpenAI. Puedes consultar el Top-3.'}
+            </p>
+          )}
         </form>
       </section>
       {result && (
-        <section aria-label="Resultado del análisis">
-          <p>
-            <strong>{result.articulo.titulo}</strong> · {paperId} ·{' '}
-            {variant === 'commercial' ? 'Comercial — GPT-6.1 Sol' : `Encoder SciBERT — ${variant}`}
-          </p>
-          <p>Cita objetivo: {target || 'posición marcada con TARGETCIT'}</p>
+        <section
+          id="analysis-results"
+          tabIndex={-1}
+          className="analysis-output"
+          aria-label="Resultado del análisis"
+        >
+          <div className="analysis-summary">
+            <p className="result-kicker">
+              {loading
+                ? 'Resultado parcial'
+                : error
+                  ? 'Fragmentos disponibles · clasificación incompleta'
+                  : 'Análisis completado'}
+              {duration !== undefined && <span> · {duration.toFixed(1)} s en total</span>}
+            </p>
+            <p>
+              <strong>{result.articulo.titulo}</strong> · {paperId} ·{' '}
+              {variant === 'commercial'
+                ? 'Comercial — GPT-6.1 Sol'
+                : `Encoder SciBERT — ${variant}`}
+            </p>
+            <p>Cita objetivo: {target || 'posición marcada con TARGETCIT'}</p>
+          </div>
           <ScientificResults
             respuesta={result}
             variante={variant === 'commercial' ? undefined : variant}
             commercialSelected={variant === 'commercial'}
             commercial={commercialResult}
+            commercialPending={loading && phase === 'classifying'}
             fuente={result.articulo.publicacion}
           />
           {result.articulo.fuente && (

@@ -16,6 +16,10 @@ for (const status of [200, 429, 502]) {
     page,
   }, testInfo) => {
     const calls: string[] = [];
+    let finishCommercial!: () => void;
+    const heldCommercial = new Promise<void>((resolve) => {
+      finishCommercial = resolve;
+    });
     await page.route('**/api/**', async (route) => {
       const path = new URL(route.request().url()).pathname;
       if (path === '/api/clasificadores') {
@@ -55,6 +59,7 @@ for (const status of [200, 429, 502]) {
         });
       } else if (path === '/api/comercial/clasificar') {
         calls.push('commercial');
+        if (status === 200) await heldCommercial;
         expect(route.request().postDataJSON()).toMatchObject({
           paper_id: 'W05-0821',
           consentimiento: true,
@@ -95,8 +100,18 @@ for (const status of [200, 429, 502]) {
     await expect(page.getByText('Fragmento recuperado 1', { exact: true })).toBeVisible();
     const panel = page.getByRole('region', { name: 'Clasificación comercial' });
     if (status === 200) {
+      await expect(
+        panel.getByText('Top-3 listo. Esperando la clasificación de OpenAI…'),
+      ).toBeVisible();
+      await expect(page.getByRole('button', { name: 'Analizando cita…' })).toBeDisabled();
+      finishCommercial();
       await expect(panel.getByText('Application', { exact: true }).first()).toBeVisible();
       await expect(panel.getByText('0.800')).toBeVisible();
+      await expect(
+        panel.getByText('Utiliza un método, técnica o herramienta sin modificarlo.'),
+      ).toBeVisible();
+      await expect(panel.locator('.function-score-track')).toHaveCount(9);
+      await expect(page.getByRole('region', { name: 'Resultado del análisis' })).toBeFocused();
       await expect(panel.getByText(/no son probabilidades calibradas/)).toBeVisible();
     } else {
       await expect(page.getByRole('alert')).toContainText('Comercial no disponible');

@@ -1,3 +1,4 @@
+import { meanings } from '../citationFunctions';
 export type CommercialClassification = {
   paper_id: string;
   version_contenido: string;
@@ -10,27 +11,48 @@ export type CommercialClassification = {
   abstencion: string | null;
   puntuaciones: { clase: string; valor: number }[];
 };
-export function CommercialResults({ result }: { result?: CommercialClassification }) {
+export function CommercialResults({
+  result,
+  pending,
+}: {
+  result?: CommercialClassification;
+  pending?: boolean;
+}) {
   return (
-    <section aria-label="Clasificación comercial">
+    <section className="commercial-results classifier-result" aria-label="Clasificación comercial">
       <h3>Función predicha de la cita</h3>
-      <h3>GPT-6.1 Sol</h3>
+      <p className="model-identity">GPT-6.1 Sol · OpenAI</p>
       {!result ? (
-        <p>Sin clasificación comercial todavía. Los fragmentos recuperados se conservan.</p>
+        <p role="status">
+          {pending
+            ? 'Top-3 listo. Esperando la clasificación de OpenAI…'
+            : 'Sin clasificación comercial todavía. Los fragmentos recuperados se conservan.'}
+        </p>
       ) : (
         <>
+          <p className="prediction-summary">
+            <strong>{result.clase || result.abstencion || 'Sin función definida'}</strong>
+          </p>
           <p>
-            <strong>{result.clase || result.abstencion}</strong>
+            {result.clase
+              ? meanings[result.clase] || 'Consulta la guía de funciones.'
+              : 'El modelo no distingue una función única para esta cita.'}
           </p>
           <p>
             Estos puntajes los genera el modelo; no son probabilidades calibradas ni porcentajes de
             acierto.
           </p>
           {result.puntuaciones.map((score) => (
-            <div className="function-score" key={score.clase}>
+            <div
+              className={`function-score ${score.clase === result.clase ? 'predicted-score' : ''}`}
+              key={score.clase}
+            >
               <div className="function-score-label">
                 <span>{score.clase}</span>
                 <span>{score.valor.toFixed(3)}</span>
+              </div>
+              <div className="function-score-track" aria-hidden="true">
+                <div style={{ width: `${Math.min(1, Math.max(0, score.valor)) * 100}%` }} />
               </div>
             </div>
           ))}

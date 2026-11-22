@@ -1676,3 +1676,224 @@ summary {
 .example-card-heading strong {
   overflow-wrap: anywhere;
 }
+
+/* Orientación por etapas, resultados trazables y detalle progresivo. */
+.workflow-progress {
+  margin: 26px 0 12px;
+}
+.workflow-progress ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.workflow-progress a,
+.workflow-progress li > span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px;
+  color: var(--secondary);
+  text-decoration: none;
+  border-bottom: 2px solid var(--border);
+  font-size: 13px;
+}
+.workflow-progress b {
+  display: grid;
+  place-items: center;
+  flex: 0 0 25px;
+  height: 25px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 12px;
+}
+.workflow-progress .step-complete a {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.workflow-progress .step-complete b {
+  background: var(--soft-primary);
+  border-color: var(--primary);
+}
+.workflow-scope {
+  color: var(--secondary);
+  font-size: 13px;
+  margin: 0 0 24px;
+}
+.analysis-step,
+.analysis-output,
+.fragment-list li {
+  scroll-margin-top: 24px;
+}
+.context-feedback {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  color: var(--secondary);
+  font-size: 12px;
+  margin: 12px 0 16px;
+}
+.invalid-text {
+  color: var(--error);
+  font-weight: 600;
+}
+.scientific-page [aria-invalid='true'] {
+  border-color: var(--error);
+}
+.article-filter {
+  padding: 16px;
+  margin-bottom: 20px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.article-filter input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.article-filter .field-help {
+  margin-bottom: 0;
+}
+.analysis-submit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 8px;
+}
+.readiness-message {
+  color: var(--secondary);
+  font-size: 13px;
+  margin: 0;
+}
+.analysis-submit .primary {
+  flex-shrink: 0;
+}
+.analysis-loading {
+  color: var(--primary);
+  padding: 12px 0;
+}
+.analysis-output {
+  margin-top: 32px;
+}
+.analysis-summary {
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.analysis-summary p:last-child {
+  margin-bottom: 0;
+}
+.result-kicker {
+  color: var(--secondary);
+  font-size: 12px;
+  margin-top: 0;
+}
+.fragment-overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+.fragment-overview a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.fragment-overview a:hover {
+  border-color: var(--primary);
+}
+.fragment-overview span {
+  color: var(--primary);
+  font-weight: 700;
+}
+.prediction-summary {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--primary);
+}
+.model-identity {
+  color: var(--secondary);
+  font-size: 13px;
+}
+.predicted-score .function-score-label {
+  font-weight: 700;
+}
+.function-score-label {
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.commercial-results {
+  margin-top: 28px;
+  background: var(--surface);
+}
+.commercial-results .analysis-help {
+  margin-bottom: 0;
+}
+.scientific-page :focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+#analysis-error:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 6px;
+}
+@media (max-width: 600px) {
+  .workflow-progress ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .analysis-submit {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .analysis-submit .primary {
+    width: 100%;
+  }
+  .analysis-summary {
+    padding: 16px;
+  }
+  .article-filter {
+    padding: 12px;
+  }
+  .scientific-page input,
+  .scientific-page textarea,
+  .scientific-page select {
+    font-size: 16px;
+  }
+  .example-search input {
+    font-size: 16px;
+  }
+}
+
+.analysis-output:focus {
+  outline: none;
+}
+.analysis-output:focus .analysis-summary {
+  border-color: var(--primary);
+}
+.catalog-notice {
+  padding: 12px;
+  border-left: 3px solid var(--primary);
+  background: var(--background);
+  font-size: 13px;
+}
+.catalog-notice p {
+  margin-top: 0;
+}
