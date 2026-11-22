@@ -1,3 +1,4 @@
+import { CommercialResults, type CommercialClassification } from './CommercialResults';
 type Candidato = { chunk_id: string; texto: string; seccion: string };
 type Puntuacion = { clase: string; probabilidad: number };
 type Clasificador = {
@@ -32,10 +33,14 @@ export function ScientificResults({
   respuesta,
   variante,
   fuente,
+  commercialSelected,
+  commercial,
 }: {
   respuesta: Respuesta;
   variante?: 'M' | 'S';
   fuente?: string;
+  commercialSelected?: boolean;
+  commercial?: CommercialClassification;
 }) {
   return (
     <section className="results-section" aria-live="polite">
@@ -65,41 +70,50 @@ export function ScientificResults({
           </li>
         ))}
       </ol>
-      <h3>Función predicha de la cita</h3>
-      <p className="field-help">
-        Las puntuaciones softmax indican cómo el modelo reparte su salida entre funciones. No son
-        porcentajes de acierto.
-      </p>
-      <div className="classifier-results">
-        {(variante ? [variante] : (['M', 'S'] as const)).map((track) => {
-          const classifier = respuesta.clasificadores[track];
-          return (
-            <article key={track} className="classifier-result">
-              <h3>Modelo {track}</h3>
-              <p>
-                <strong>{classifier.clase}</strong> · puntuación softmax{' '}
-                {percent(classifier.probabilidad)}
-              </p>
-              <p>
-                {meanings[classifier.clase] || 'Consulta la definición de esta función en la guía.'}
-              </p>
-              {classifier.probabilidades.map((score) => (
-                <div key={score.clase} className="function-score">
-                  <div className="function-score-label">
-                    <span>{score.clase}</span>
-                    <span>{percent(score.probabilidad)}</span>
-                  </div>
-                  <div className="function-score-track">
-                    <div
-                      style={{ width: `${Math.min(Math.max(score.probabilidad * 100, 0), 100)}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </article>
-          );
-        })}
-      </div>
+      {commercialSelected ? (
+        <CommercialResults result={commercial} />
+      ) : (
+        <>
+          <h3>Función predicha de la cita</h3>
+          <p className="field-help">
+            Las puntuaciones softmax indican cómo el modelo reparte su salida entre funciones. No
+            son porcentajes de acierto.
+          </p>
+          <div className="classifier-results">
+            {(variante ? [variante] : (['M', 'S'] as const)).map((track) => {
+              const classifier = respuesta.clasificadores[track];
+              return (
+                <article key={track} className="classifier-result">
+                  <h3>Modelo {track}</h3>
+                  <p>
+                    <strong>{classifier.clase}</strong> · puntuación softmax{' '}
+                    {percent(classifier.probabilidad)}
+                  </p>
+                  <p>
+                    {meanings[classifier.clase] ||
+                      'Consulta la definición de esta función en la guía.'}
+                  </p>
+                  {classifier.probabilidades.map((score) => (
+                    <div key={score.clase} className="function-score">
+                      <div className="function-score-label">
+                        <span>{score.clase}</span>
+                        <span>{percent(score.probabilidad)}</span>
+                      </div>
+                      <div className="function-score-track">
+                        <div
+                          style={{
+                            width: `${Math.min(Math.max(score.probabilidad * 100, 0), 100)}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </article>
+              );
+            })}
+          </div>
+        </>
+      )}
       <details className="analysis-help">
         <summary>Qué significan las nueve funciones</summary>
         <dl>
@@ -131,14 +145,21 @@ export function ScientificResults({
             </li>
           ))}
         </ul>
-        <p>
-          El servicio calcula M y S; se muestra{' '}
-          {variante ? `la variante ${variante}` : 'ambas variantes'}. Ajuste PH:{' '}
-          {(['M', 'S'] as const)
-            .map((track) => `${track} ${respuesta.clasificadores[track].ajuste_ph ? 'sí' : 'no'}`)
-            .join(', ')}
-          .
-        </p>
+        {commercialSelected ? (
+          <p>
+            Se muestran los fragmentos recuperados con SciBERT y la clasificación comercial
+            seleccionada.
+          </p>
+        ) : (
+          <p>
+            El servicio calcula M y S; se muestra{' '}
+            {variante ? `la variante ${variante}` : 'ambas variantes'}. Ajuste PH:{' '}
+            {(['M', 'S'] as const)
+              .map((track) => `${track} ${respuesta.clasificadores[track].ajuste_ph ? 'sí' : 'no'}`)
+              .join(', ')}
+            .
+          </p>
+        )}
       </details>
     </section>
   );

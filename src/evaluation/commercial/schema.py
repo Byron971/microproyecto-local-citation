@@ -40,6 +40,7 @@ class ProviderResponse:
     text: str
     input_tokens: int | None = None
     output_tokens: int | None = None
+    model: str | None = None
 
 
 @dataclass(frozen=True)

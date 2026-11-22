@@ -38,8 +38,10 @@ class OpenAIProviderNotConfiguredError(RuntimeError):
 class OpenAIClient:
     provider = "openai"
 
-    def __init__(self, model: str | None = None) -> None:
+    def __init__(self, model: str | None = None, *, timeout_seconds: float | None = None, max_completion_tokens: int | None = None) -> None:
         self.model = model or os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)
+        self.timeout_seconds = timeout_seconds
+        self.max_completion_tokens = max_completion_tokens
         self._client: OpenAI | None = None
 
     def _get_client(self) -> OpenAI:
@@ -53,7 +55,7 @@ class OpenAIClient:
             self._client = OpenAI(
                 api_key=api_key,
                 max_retries=0,
-                timeout=request_timeout_seconds(),
+                timeout=self.timeout_seconds if self.timeout_seconds is not None else request_timeout_seconds(),
             )
         return self._client
 
@@ -63,6 +65,7 @@ class OpenAIClient:
             response = client.chat.completions.create(
                 model=self.model,
                 messages=[{"role": "user", "content": prompt}],
+                **({"max_completion_tokens": self.max_completion_tokens} if self.max_completion_tokens is not None else {}),
             )
         except _TRANSIENT_ERRORS as exc:
             raise ProviderCallError(str(exc), transient=True) from exc
@@ -79,6 +82,7 @@ class OpenAIClient:
         usage = response.usage
         return ProviderResponse(
             text=text,
+            model=getattr(response, "model", None),
             input_tokens=usage.prompt_tokens if usage else None,
             output_tokens=usage.completion_tokens if usage else None,
         )

@@ -1,10 +1,20 @@
 import { test, expect } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  await page.route('**/api/clasificadores', (route) =>
+    route.fulfill({ json: { clasificadores: [] } }),
+  );
+});
+
 for (const mode of ['missing', 'error', 'invalid'] as const) {
   test(`cobertura ${mode}: conserva contexto y referencia sin inferencia`, async ({ page }) => {
     let analyses = 0;
     let retry = false;
     await page.route('**/api/**', async (route) => {
+      if (route.request().url().endsWith('/clasificadores')) {
+        await route.fulfill({ json: { clasificadores: [] } });
+        return;
+      }
       const request = route.request();
       if (!request.url().endsWith('/disponibilidad')) {
         analyses++;
@@ -79,6 +89,10 @@ for (const status of [404, 429, 200]) {
     page,
   }) => {
     await page.route('**/api/**', async (route) => {
+      if (route.request().url().endsWith('/clasificadores')) {
+        await route.fulfill({ json: { clasificadores: [] } });
+        return;
+      }
       if (route.request().url().endsWith('/disponibilidad')) {
         await route.fulfill({
           json: {

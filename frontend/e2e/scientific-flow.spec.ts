@@ -1,10 +1,20 @@
 import { test, expect } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  await page.route('**/api/clasificadores', (route) =>
+    route.fulfill({ json: { clasificadores: [] } }),
+  );
+});
+
 test('recorrido por artículo, selección de cita y resultados sin ranking ni JSON', async ({
   page,
 }, testInfo) => {
   const calls: string[] = [];
   await page.route('**/api/**', async (route) => {
+    if (route.request().url().endsWith('/clasificadores')) {
+      await route.fulfill({ json: { clasificadores: [] } });
+      return;
+    }
     const path = new URL(route.request().url()).pathname;
     if (path.endsWith('/disponibilidad')) {
       await route.fulfill({
@@ -105,6 +115,10 @@ for (const path of [
 test('rechaza marcas múltiples y exceso de longitud antes de inferir', async ({ page }) => {
   const calls: string[] = [];
   await page.route('**/api/**', async (route) => {
+    if (route.request().url().endsWith('/clasificadores')) {
+      await route.fulfill({ json: { clasificadores: [] } });
+      return;
+    }
     if (route.request().url().endsWith('/disponibilidad')) {
       await route.fulfill({
         json: {

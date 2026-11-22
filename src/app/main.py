@@ -679,3 +679,7 @@ def run_backend() -> None:
 # Inferencia experimental de modelos finales M/S.
 from src.app.ms_router import router as router_ms
 app.include_router(router_ms)
+
+# El proveedor se inicializa solo al solicitar una clasificación comercial.
+from src.app.commercial_router import router as router_commercial
+app.include_router(router_commercial)

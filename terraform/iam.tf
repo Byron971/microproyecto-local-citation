@@ -45,7 +45,7 @@ resource "aws_iam_role" "task" {
 }
 
 resource "aws_iam_role_policy" "secrets" {
-  count = local.create_ecs_roles && length(var.app_secrets) > 0 ? 1 : 0
+  count = local.create_ecs_roles && length(local.runtime_secrets) > 0 ? 1 : 0
   name  = "read-configured-secrets"
   role  = aws_iam_role.execution[0].id
   policy = jsonencode({
@@ -53,7 +53,7 @@ resource "aws_iam_role_policy" "secrets" {
     Statement = concat([{
       Effect   = "Allow"
       Action   = ["ssm:GetParameters"]
-      Resource = distinct(values(var.app_secrets))
+      Resource = distinct(values(local.runtime_secrets))
       }], length(var.secrets_kms_key_arns) == 0 ? [] : [{
       Effect   = "Allow"
       Action   = ["kms:Decrypt"]

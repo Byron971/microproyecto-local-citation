@@ -28,16 +28,17 @@ resource "aws_ecs_task_definition" "api" {
   depends_on = [
     aws_iam_role_policy_attachment.execution,
     aws_iam_role_policy.secrets,
+    aws_iam_role_policy.commercial_limits,
   ]
   container_definitions = jsonencode([{
     name         = "api"
     image        = "${data.aws_ecr_repository.api.repository_url}:${nonsensitive(aws_ssm_parameter.release_api.value)}"
     essential    = true
     portMappings = [{ containerPort = 8000, hostPort = 8000, protocol = "tcp" }]
-    environment = [for name, value in merge(var.app_environment, {
+    environment = [for name, value in merge(var.app_environment, local.commercial_environment, {
       APP_ENV = "production", APP_HOST = "0.0.0.0"
     }) : { name = name, value = value }]
-    secrets = [for name, arn in var.app_secrets : { name = name, valueFrom = arn }]
+    secrets = [for name, arn in local.runtime_secrets : { name = name, valueFrom = arn }]
     healthCheck = {
       command     = ["CMD", "/app/.venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000${var.health_check_path}', timeout=4)"]
       interval    = 30
@@ -65,7 +66,7 @@ resource "aws_ecs_task_definition" "api" {
       error_message = "La combinación CPU/memoria no es válida para Fargate Linux."
     }
     precondition {
-      condition     = length(setintersection(toset(keys(var.app_environment)), toset(keys(var.app_secrets)))) == 0
+      condition     = length(setintersection(toset(keys(var.app_environment)), toset(keys(local.runtime_secrets)))) == 0
       error_message = "Una variable no puede estar a la vez en environment y secrets."
     }
   }

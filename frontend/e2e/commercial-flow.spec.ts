@@ -1,0 +1,118 @@
+import { test, expect } from '@playwright/test';
+
+const labels = [
+  'Background',
+  'Gap',
+  'Basis',
+  'Comparison',
+  'Application',
+  'Improvement / Modification',
+  'Evidence',
+  'Identification of the Originator',
+  'Further Reading',
+];
+for (const status of [200, 429, 502]) {
+  test(`comercial ${status}: consentimiento y fragmentos conservados`, async ({
+    page,
+  }, testInfo) => {
+    const calls: string[] = [];
+    await page.route('**/api/**', async (route) => {
+      const path = new URL(route.request().url()).pathname;
+      if (path === '/api/clasificadores') {
+        await route.fulfill({
+          json: { clasificadores: [{ id: 'M' }, { id: 'S' }, { id: 'commercial' }] },
+        });
+      } else if (path.endsWith('/disponibilidad')) {
+        await route.fulfill({
+          json: {
+            version_contenido: 'v1',
+            articulos: [{ paper_id: 'W05-0821', disponible: true }],
+          },
+        });
+      } else if (path.endsWith('/articulo')) {
+        calls.push('ms');
+        const classifier = {
+          clase: 'Background',
+          probabilidad: 0.8,
+          probabilidades: labels.map((clase) => ({ clase, probabilidad: 0.1 })),
+        };
+        await route.fulfill({
+          json: {
+            articulo: {
+              paper_id: 'W05-0821',
+              titulo: 'Public article',
+              publicacion: 'https://aclanthology.org/W05-0821/',
+              version_contenido: 'v1',
+            },
+            top3: [1, 2, 3].map((i) => ({
+              chunk_id: `p${i}`,
+              texto: `Fragmento recuperado ${i}`,
+              seccion: 'Methods',
+              similitud_coseno: 0.5,
+            })),
+            clasificadores: { M: classifier, S: classifier },
+          },
+        });
+      } else if (path === '/api/comercial/clasificar') {
+        calls.push('commercial');
+        expect(route.request().postDataJSON()).toMatchObject({
+          paper_id: 'W05-0821',
+          consentimiento: true,
+        });
+        await route.fulfill({
+          status,
+          json:
+            status !== 200
+              ? { detail: 'Comercial no disponible para esta solicitud.' }
+              : {
+                  paper_id: 'W05-0821',
+                  version_contenido: 'v1',
+                  proveedor: 'OpenAI',
+                  modelo_solicitado: 'gpt-6.1-sol',
+                  modelo_efectivo: 'gpt-6.1-sol',
+                  perfil: 'zero_shot_detailed',
+                  sha256_prompts: 'test',
+                  clase: 'Application',
+                  abstencion: null,
+                  puntuaciones: labels.map((clase) => ({
+                    clase,
+                    valor: clase === 'Application' ? 0.8 : 0.1,
+                  })),
+                },
+        });
+      } else await route.abort();
+    });
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
+    await expect(page.locator('#classifier option[value="commercial"]')).toHaveCount(1);
+    await page.getByLabel('Familia y modelo').selectOption('commercial');
+    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await expect(page.getByRole('alert')).toContainText('Confirma el envío');
+    expect(calls).toEqual([]);
+    await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
+    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await expect(page.getByText('Fragmento recuperado 1', { exact: true })).toBeVisible();
+    const panel = page.getByRole('region', { name: 'Clasificación comercial' });
+    if (status === 200) {
+      await expect(panel.getByText('Application', { exact: true }).first()).toBeVisible();
+      await expect(panel.getByText('0.800')).toBeVisible();
+      await expect(panel.getByText(/no son probabilidades calibradas/)).toBeVisible();
+    } else {
+      await expect(page.getByRole('alert')).toContainText('Comercial no disponible');
+      await expect(panel.getByText(/Sin clasificación comercial/)).toBeVisible();
+    }
+    await expect(page.locator('body')).toHaveJSProperty(
+      'scrollWidth',
+      await page.locator('body').evaluate((e) => e.clientWidth),
+    );
+    if (status === 200)
+      await page.screenshot({ path: testInfo.outputPath('commercial-ready.png'), fullPage: true });
+    expect(calls).toEqual(['ms', 'commercial']);
+    await expect(page.getByRole('heading', { name: 'Modelo M', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Modelo S', exact: true })).toHaveCount(0);
+    await page.getByLabel('Contexto en inglés').fill('Contexto editado TARGETCIT.');
+    await expect(page.getByText('Fragmento recuperado 1', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('checkbox', { name: /Acepto enviar/ })).not.toBeChecked();
+  });
+}

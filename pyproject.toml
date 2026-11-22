@@ -10,6 +10,7 @@ dependencies = [
     "pydantic>=2,<3",
     "modelo-citas",
     "openai>=3.16.2",
+    "boto3==1.43.56",
 ]
 
 [project.scripts]

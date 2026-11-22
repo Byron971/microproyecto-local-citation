@@ -1629,3 +1629,17 @@ summary {
   gap: 12px 24px;
   align-items: center;
 }
+
+.commercial-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.commercial-consent input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 2px 0 0;
+  padding: 0;
+}

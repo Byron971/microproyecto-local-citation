@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ApiError, errorMessage, request } from '../api';
 import { ScientificResults, type Respuesta } from '../components/ScientificResults';
 import catalog from '../articleCatalog.json';
+import type { CommercialClassification } from '../components/CommercialResults';
 
 export const PUBLIC_EXAMPLE = {
   paperId: 'W05-0821',
@@ -28,7 +29,10 @@ type Coverage = {
 export function ScientificAnalysis() {
   const [context, setContext] = useState('');
   const [paperId, setPaperId] = useState('');
-  const [variant, setVariant] = useState<'M' | 'S'>('M');
+  const [variant, setVariant] = useState<'M' | 'S' | 'commercial'>('M');
+  const [commercialAvailable, setCommercialAvailable] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [commercialResult, setCommercialResult] = useState<CommercialClassification>();
   const [target, setTarget] = useState('');
   const [coverage, setCoverage] = useState<Coverage>();
   const [coverageRetry, setCoverageRetry] = useState(0);
@@ -40,6 +44,18 @@ export function ScientificAnalysis() {
   const active = useRef<AbortController | null>(null);
   const article = catalog.articulos.find((item) => item.paper_id === paperId);
   useEffect(() => () => active.current?.abort(), []);
+  useEffect(() => {
+    const controller = new AbortController();
+    request<{ clasificadores: { id: string }[] }>('/api/clasificadores', {
+      signal: controller.signal,
+    })
+      .then((data) => {
+        if (!controller.signal.aborted)
+          setCommercialAvailable(data.clasificadores?.some((m) => m.id === 'commercial') === true);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
   useEffect(() => {
     if (!paperId) {
       setCoverage(undefined);
@@ -87,6 +103,8 @@ export function ScientificAnalysis() {
     active.current?.abort();
     setLoading(false);
     setResult(undefined);
+    setCommercialResult(undefined);
+    setConsent(false);
     setError('');
   }
   function mark() {
@@ -135,7 +153,14 @@ export function ScientificAnalysis() {
       );
       return;
     }
-    invalidate();
+    if (variant === 'commercial' && (!commercialAvailable || !consent)) {
+      setError('Confirma el envío del texto a OpenAI antes de analizar.');
+      return;
+    }
+    active.current?.abort();
+    setResult(undefined);
+    setCommercialResult(undefined);
+    setError('');
     const controller = new AbortController();
     active.current = controller;
     setLoading(true);
@@ -160,6 +185,33 @@ export function ScientificAnalysis() {
         );
       }
       setResult(data);
+      if (variant === 'commercial') {
+        const commercial = await request<CommercialClassification>('/api/comercial/clasificar', {
+          method: 'POST',
+          signal: controller.signal,
+          body: JSON.stringify({ contexto: context, paper_id: paperId, consentimiento: consent }),
+        });
+        if (controller.signal.aborted) return;
+        if (
+          commercial.paper_id !== paperId ||
+          commercial.version_contenido !== data.articulo.version_contenido ||
+          commercial.modelo_solicitado !== 'gpt-6.1-sol' ||
+          !commercial.modelo_efectivo ||
+          commercial.puntuaciones?.length !== 9 ||
+          new Set(commercial.puntuaciones.map((p) => p.clase)).size !== 9 ||
+          commercial.puntuaciones.some(
+            (p) => !Number.isFinite(p.valor) || p.valor < 0 || p.valor > 1,
+          ) ||
+          (commercial.clase !== null &&
+            !commercial.puntuaciones.some((p) => p.clase === commercial.clase))
+        ) {
+          throw new ApiError(
+            'La clasificación comercial está incompleta. Los fragmentos se conservan.',
+            502,
+          );
+        }
+        setCommercialResult(commercial);
+      }
     } catch (err) {
       if (!controller.signal.aborted) {
         if (err instanceof ApiError && err.status === 404)
@@ -291,22 +343,32 @@ export function ScientificAnalysis() {
               value={variant}
               onChange={(e) => {
                 invalidate();
-                setVariant(e.target.value as 'M' | 'S');
+                setVariant(e.target.value as 'M' | 'S' | 'commercial');
               }}
             >
               <optgroup label="Encoder SciBERT ajustado">
                 <option value="M">Encoder SciBERT — M</option>
                 <option value="S">Encoder SciBERT — S</option>
               </optgroup>
-              <option disabled value="commercial">
-                Modelo comercial — pendiente de integración
-              </option>
+              {commercialAvailable && <option value="commercial">Comercial — GPT-6.1 Sol</option>}
             </select>
             <p className="field-help">
-              Usa el contexto y la entrada AB con fragmentos del artículo. El servicio calcula M y
-              S; se muestra la variante elegida.
+              {variant === 'commercial'
+                ? 'SciBERT recupera los fragmentos. OpenAI clasifica la función usando contexto, título y resumen.'
+                : 'Usa el contexto y la entrada AB con fragmentos del artículo. El servicio calcula M y S; se muestra la variante elegida.'}
             </p>
           </fieldset>
+          {variant === 'commercial' && (
+            <label className="field-help commercial-consent">
+              <input
+                type="checkbox"
+                disabled={loading}
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+              />
+              Acepto enviar el contexto de cita, título y resumen a OpenAI para este análisis.
+            </label>
+          )}
           {error && (
             <p role="alert" className="error-message">
               {error}
@@ -325,12 +387,15 @@ export function ScientificAnalysis() {
       {result && (
         <section aria-label="Resultado del análisis">
           <p>
-            <strong>{result.articulo.titulo}</strong> · {paperId} · Encoder SciBERT — {variant}
+            <strong>{result.articulo.titulo}</strong> · {paperId} ·{' '}
+            {variant === 'commercial' ? 'Comercial — GPT-6.1 Sol' : `Encoder SciBERT — ${variant}`}
           </p>
           <p>Cita objetivo: {target || 'posición marcada con TARGETCIT'}</p>
           <ScientificResults
             respuesta={result}
-            variante={variant}
+            variante={variant === 'commercial' ? undefined : variant}
+            commercialSelected={variant === 'commercial'}
+            commercial={commercialResult}
             fuente={result.articulo.publicacion}
           />
           {result.articulo.fuente && (
@@ -347,7 +412,7 @@ export function ScientificAnalysis() {
         <summary>Cómo analizar una cita</summary>
         <p>
           Pega el contexto en inglés, selecciona la referencia y marca la cita. Confirma el artículo
-          citado, elige M o S y pulsa «Analizar cita».
+          citado, elige el clasificador y pulsa «Analizar cita».
         </p>
         <p>
           Los fragmentos son candidatos relacionados; no prueban por sí solos la afirmación. Las
