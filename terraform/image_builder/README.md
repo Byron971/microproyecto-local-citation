@@ -38,3 +38,20 @@ make builder-clone-result AWS_PROFILE=josezambrana
 El comando fija el commit local actual, exige un repositorio remoto limpio y
 comprueba ambos Dockerfiles. No construye ni publica imágenes. La copia está en
 `/opt/citas/microproyecto-local-citation`, propiedad de ubuntu.
+
+Construcción y publicación desde EC2:
+
+```sh
+make builder-build AWS_PROFILE=josezambrana
+make builder-build-result AWS_PROFILE=josezambrana
+make builder-build-log AWS_PROFILE=josezambrana
+make builder-build-log-result AWS_PROFILE=josezambrana
+```
+
+Usa el commit ya clonado (actualizar con builder-clone antes de otra versión).
+Publica las familias ms y serverless en citas-ms-serverless-t04 con tags
+inmutables t04-<familia>-<commit>. Comprueba AMD64, importaciones CPU y que el
+digest de configuración en ECR coincide con el ID local de cada imagen.
+La instancia utiliza su rol IAM; no recibe credenciales locales. Autenticación
+Docker temporal y borrada al finalizar. El log queda en /opt/citas/build-images.log
+y el inventario final en /opt/citas/published-images.json. No despliega endpoints.

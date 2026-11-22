@@ -43,3 +43,9 @@ builder-build:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py build --work "$(BUILDER_WORK)"
 builder-build-result:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py build-result --work "$(BUILDER_WORK)"
+
+.PHONY: builder-build-log builder-build-log-result
+builder-build-log:
+	AWS_PROFILE=josezambrana aws ssm send-command --region us-east-1 --instance-ids $$($(BUILDER_TF) output -raw instance_id) --document-name AWS-RunShellScript --parameters 'commands=["tail -n 12 /opt/citas/build-images.log"]' --query 'Command.CommandId' --output text > "$(BUILDER_WORK)/log-command.txt"
+builder-build-log-result:
+	AWS_PROFILE=josezambrana aws ssm get-command-invocation --region us-east-1 --instance-id $$($(BUILDER_TF) output -raw instance_id) --command-id "$$(cat "$(BUILDER_WORK)/log-command.txt")" --query '{Status:Status,Output:StandardOutputContent}'
