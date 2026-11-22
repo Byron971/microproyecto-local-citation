@@ -13,6 +13,7 @@ resource "aws_ecs_cluster" "main" {
   name = var.project_name
 }
 resource "aws_ecs_task_definition" "api" {
+  skip_destroy             = true # Conservar revisiones anteriores para reversión.
   family                   = var.project_name
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -30,7 +31,7 @@ resource "aws_ecs_task_definition" "api" {
   ]
   container_definitions = jsonencode([{
     name         = "api"
-    image        = "${data.aws_ecr_repository.api.repository_url}:${nonsensitive(data.aws_ssm_parameter.image_tag.value)}"
+    image        = "${data.aws_ecr_repository.api.repository_url}:${nonsensitive(aws_ssm_parameter.release_api.value)}"
     essential    = true
     portMappings = [{ containerPort = 8000, hostPort = 8000, protocol = "tcp" }]
     environment = [for name, value in merge(var.app_environment, {

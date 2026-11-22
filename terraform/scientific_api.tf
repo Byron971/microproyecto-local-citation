@@ -89,7 +89,7 @@ resource "aws_ecs_task_definition" "scientific" {
   }
   container_definitions = jsonencode([{
     name         = "science"
-    image        = nonsensitive(data.aws_ssm_parameter.scientific_image[0].value)
+    image        = nonsensitive(aws_ssm_parameter.release_science[0].value)
     essential    = true
     portMappings = [{ containerPort = 8000, hostPort = 8000, protocol = "tcp" }]
     environment = [for name, value in {
@@ -124,7 +124,7 @@ resource "aws_ecs_task_definition" "scientific" {
       error_message = "Combinación CPU/memoria científica no válida para Fargate."
     }
     precondition {
-      condition     = can(regex("@sha256:[a-f0-9]{64}$", nonsensitive(data.aws_ssm_parameter.scientific_image[0].value)))
+      condition     = can(regex("@sha256:[a-f0-9]{64}$", nonsensitive(aws_ssm_parameter.release_science[0].value)))
       error_message = "La imagen científica debe fijarse mediante digest SHA256."
     }
   }

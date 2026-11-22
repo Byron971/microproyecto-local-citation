@@ -3,7 +3,7 @@ set -euo pipefail
 : "${RELEASE_COMMIT:?Falta revisión}"
 [[ "$RELEASE_COMMIT" =~ ^[0-9a-f]{40}$ ]]
 cd /opt/citas/microproyecto-local-citation
-git diff --quiet && git diff --cached --quiet
+git diff --exit-code HEAD -- Dockerfile Dockerfile.ms src packages requirements config scripts/iniciar_ciencia.py >/dev/null
 git fetch origin feat/flujo-cientifico-ec2
 git checkout --detach "$RELEASE_COMMIT"
 registry=646941583111.dkr.ecr.us-east-1.amazonaws.com
