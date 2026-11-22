@@ -73,3 +73,7 @@ determinista existente. Salidas privadas fuera del repositorio:
 
 El bundle debe coincidir con el SHA256 del paquete local ya validado. No sube
 archivos a S3, no modifica la release original y no ejecuta inferencias.
+
+Publicación del bundle: véase ../model_artifact/README.md. Los permisos S3 de
+escritura se limitan al objeto T04 y a su estado/bloqueo. El backend requiere
+listar el bucket existente. La release original permanece con acceso de lectura.

@@ -61,3 +61,18 @@ builder-models:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py models --work "$(BUILDER_WORK)"
 builder-models-result:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py models-result --work "$(BUILDER_WORK)"
+
+.PHONY: builder-permissions-apply
+builder-permissions-apply:
+	python3 -c 'import json; p=json.load(open("$(BUILDER_WORK)/plan.json")); r=[x for x in p["resource_changes"] if x["mode"]=="managed" and x["change"]["actions"]!=["no-op"]]; assert len(r)==1 and r[0]["address"]=="aws_iam_role_policy.artifacts" and r[0]["change"]["actions"]==["update"], "Plan inesperado"'
+	$(BUILDER_TF) apply -input=false "$(BUILDER_WORK)/builder.tfplan"
+
+.PHONY: builder-publish-models builder-publish-models-result
+builder-publish-models:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py publish-models --work "$(BUILDER_WORK)"
+builder-publish-models-result:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py publish-models-result --work "$(BUILDER_WORK)"
+
+.PHONY: builder-artifact-lock
+builder-artifact-lock:
+	$(TERRAFORM) -chdir=terraform/model_artifact providers lock -platform=linux_amd64 -platform=darwin_arm64

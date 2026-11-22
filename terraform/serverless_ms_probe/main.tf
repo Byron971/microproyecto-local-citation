@@ -37,15 +37,11 @@ resource "aws_ecr_repository" "probe" {
   encryption_configuration { encryption_type = "AES256" }
   tags = local.tags
 }
-resource "aws_s3_object" "probe" {
-  bucket                 = var.model_bucket
-  key                    = local.model_key
-  source                 = var.bundle_path
-  source_hash            = var.bundle_sha256
-  server_side_encryption = "AES256"
-  content_type           = "application/gzip"
-  metadata               = { sha256 = var.bundle_sha256 }
-  tags                   = local.tags
+# El objeto pertenece al estado aislado terraform/model_artifact, ejecutado en EC2.
+data "aws_s3_object" "probe" {
+  count  = var.deploy_endpoint ? 1 : 0
+  bucket = var.model_bucket
+  key    = local.model_key
 }
 resource "aws_cloudwatch_log_group" "probe" {
   count             = var.deploy_endpoint ? 1 : 0
@@ -81,7 +77,7 @@ resource "aws_sagemaker_model" "probe" {
   execution_role_arn = aws_iam_role.probe[0].arn
   primary_container {
     image          = "${aws_ecr_repository.probe.repository_url}@${var.image_digest}"
-    model_data_url = "s3://${aws_s3_object.probe.bucket}/${aws_s3_object.probe.key}"
+    model_data_url = "s3://${data.aws_s3_object.probe[0].bucket}/${data.aws_s3_object.probe[0].key}"
   }
   lifecycle {
     precondition {
@@ -114,4 +110,4 @@ resource "aws_sagemaker_endpoint" "probe" {
 }
 output "repository_url" { value = aws_ecr_repository.probe.repository_url }
 output "endpoint_name" { value = var.deploy_endpoint ? aws_sagemaker_endpoint.probe[0].name : null }
-output "model_version_id" { value = aws_s3_object.probe.version_id }
+output "model_version_id" { value = var.deploy_endpoint ? data.aws_s3_object.probe[0].version_id : null }

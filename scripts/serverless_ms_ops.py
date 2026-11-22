@@ -14,7 +14,7 @@ ACCOUNT, REGION, NAME = '646941583111', 'us-east-1', 'citas-ms-serverless-t04'
 BUNDLE_HASH = 'b75e3075c4bf630d1b5aaf9c0ce7a2e43265446231ed550869e6df38b35def7f'
 BUCKET = 'citas-api-models-646941583111-us-east-1'
 KEY = f'experiments/t04-ms-serverless/{BUNDLE_HASH}/model.tar.gz'
-ALLOWED = {'aws_ecr_repository.probe', 'aws_s3_object.probe', 'aws_cloudwatch_log_group.probe[0]',
+ALLOWED = {'aws_ecr_repository.probe', 'aws_cloudwatch_log_group.probe[0]',
            'aws_iam_role.probe[0]', 'aws_iam_role_policy.probe[0]', 'aws_sagemaker_model.probe[0]',
            'aws_sagemaker_endpoint_configuration.probe[0]', 'aws_sagemaker_endpoint.probe[0]'}
 
