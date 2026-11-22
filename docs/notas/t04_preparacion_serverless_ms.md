@@ -80,3 +80,21 @@ Fuentes oficiales consultadas:
 - https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html
 - https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints-monitoring.html
 - https://aws.amazon.com/sagemaker/ai/pricing/
+
+## Publicación desde EC2 verificada el 22 de noviembre de 2026
+
+Se publicaron las imágenes M/S y Serverless AMD64 en el ECR aislado de T04.
+Los diez archivos originales se recuperaron directamente de S3 en EC2, con
+tamaños y SHA256 comprobados. El paquete de 1.640.458.673 bytes coincide con
+el local: b75e3075c4bf630d1b5aaf9c0ce7a2e43265446231ed550869e6df38b35def7f.
+
+Terraform ejecutado en EC2 publicó el paquete en experiments/t04-ms-serverless/
+<sha256>/model.tar.gz del bucket privado de modelos. Se verificó el SHA256
+leyendo de nuevo todos los bytes desde S3. El estado propio del objeto está en
+terraform/t04-ms-artifact/terraform.tfstate del mismo bucket; el módulo del
+endpoint solo consulta el objeto como dato. Ver terraform/model_artifact/README.md.
+
+No se creó aún un endpoint ni se realizaron inferencias en SageMaker. T04 sigue
+en curso: publicar los artefactos no acredita latencia, memoria ni arranque en
+Serverless. La siguiente validación debe usar el digest Serverless ya publicado,
+el objeto verificado y un plan que conserve ECS.
