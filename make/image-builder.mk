@@ -82,3 +82,17 @@ builder-compatible:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py compatible --work "$(BUILDER_WORK)"
 builder-compatible-result:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py compatible-result --work "$(BUILDER_WORK)"
+
+BUILDER_POWER_STATE ?= stopped
+.PHONY: builder-power-plan builder-power-apply builder-power-status builder-ttl
+builder-power-plan:
+	$(BUILDER_TF) plan -input=false -var-file="$(BUILDER_WORK)/vars.json" -var='builder_power_state=$(BUILDER_POWER_STATE)' -out="$(BUILDER_WORK)/power.tfplan"
+	$(BUILDER_TF) show -json "$(BUILDER_WORK)/power.tfplan" > "$(BUILDER_WORK)/power-plan.json"
+builder-power-apply:
+	python3 -c 'import json; p=json.load(open("$(BUILDER_WORK)/power-plan.json")); r=[x for x in p["resource_changes"] if x["mode"]=="managed" and x["change"]["actions"]!=["no-op"]]; assert all(x["address"]=="aws_ec2_instance_state.builder" and x["change"]["actions"] in [["create"],["update"]] for x in r), "Cambio ajeno al encendido/apagado"'
+	$(BUILDER_TF) apply -input=false "$(BUILDER_WORK)/power.tfplan"
+	$(BUILDER_TF) output -json > "$(BUILDER_WORK)/outputs.json"
+builder-power-status:
+	$(AWS) ec2 describe-instances --instance-ids i-03c35e1f2d0597f9f --query 'Reservations[].Instances[].{Id:InstanceId,State:State.Name}'
+builder-ttl:
+	$(AWS) ssm send-command --instance-ids i-03c35e1f2d0597f9f --document-name AWS-RunShellScript --parameters 'commands=["shutdown -h +90"]' --query Command.CommandId --output text

@@ -66,6 +66,11 @@ resource "aws_iam_instance_profile" "builder" {
   role = aws_iam_role.builder.name
 }
 resource "aws_instance" "builder" {
+  lifecycle {
+    prevent_destroy = true
+    # La IP efímera desaparece al apagar; eso no debe recrear el disco/modelos.
+    ignore_changes = [associate_public_ip_address]
+  }
   ami                         = nonsensitive(data.aws_ssm_parameter.ubuntu.value)
   instance_type               = "t3.large"
   subnet_id                   = data.aws_subnet.existing.id
@@ -86,3 +91,16 @@ resource "aws_instance" "builder" {
 }
 output "instance_id" { value = aws_instance.builder.id }
 output "public_ip" { value = aws_instance.builder.public_ip }
+
+variable "builder_power_state" {
+  type    = string
+  default = "stopped"
+  validation {
+    condition     = contains(["running", "stopped"], var.builder_power_state)
+    error_message = "El constructor solo admite running o stopped."
+  }
+}
+resource "aws_ec2_instance_state" "builder" {
+  instance_id = aws_instance.builder.id
+  state       = var.builder_power_state
+}

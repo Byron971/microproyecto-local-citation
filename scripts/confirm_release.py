@@ -28,7 +28,7 @@ def read(url):
 api='https://api.proyectocitas-grupo19.click'
 assert json.loads(read(api+'/api/estado'))['listo'] is True
 state=json.loads(read(api+'/api/analisis-cita-ms/estado'))
-assert state['modelos_cargados'] is True and state['revision_codigo']==images['commit']
+assert state['modelos_cargados'] is True and state['revision_codigo']==images['images']['ms'].get('commit',images['commit'])
 assert state['release']==json.loads(Path('config/ms_release.json').read_text())['release_id']
 index=Path('frontend/dist/index.html').read_bytes()
 assert read(report['web']+'/')==index, 'CloudFront aún sirve otro index'

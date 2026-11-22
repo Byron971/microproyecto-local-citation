@@ -48,3 +48,7 @@ release-web-storage:
 .PHONY: release-confirm
 release-confirm: release-status
 	AWS_PROFILE=$(AWS_PROFILE) python3 scripts/confirm_release.py
+
+.PHONY: release-build-api
+release-build-api:
+	AWS_PROFILE=$(AWS_PROFILE) python3 scripts/release_build_ops.py send --kind api --commit "$(shell git rev-parse HEAD)"
