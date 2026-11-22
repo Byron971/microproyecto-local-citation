@@ -2,13 +2,14 @@ import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
 
-test.skip(!process.env.LIVE_SCIENCE_E2E, 'Requiere el servicio M/S local con pesos reales.');
+test.skip(!process.env.LIVE_SCIENCE_E2E, 'Requiere un servicio M/S disponible.');
 test('ejemplo público completa el flujo con M/S real y textos del artículo', async ({
   page,
 }, testInfo) => {
   test.setTimeout(90000);
   const corpus = JSON.parse(fs.readFileSync('../config/corpus_ms.json', 'utf8'));
   await page.goto('/');
+  await expect(page.locator('#classifier option[value="open"]')).toHaveCount(0);
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('W05-0821');
@@ -59,7 +60,7 @@ test('ejemplo público completa el flujo con M/S real y textos del artículo', a
           clases: { M: data.clasificadores.M.clase, S: data.clasificadores.S.clase },
           textos_verificados_con_corpus: true,
           contexto_sintetico_sin_train_gold: true,
-          servicio: 'contenedor local ARM64; no despliegue AWS',
+          servicio: process.env.E2E_BASE_URL || 'contenedor local ARM64; no despliegue AWS',
         },
         null,
         2,

@@ -31,3 +31,20 @@ release-apply:
 	$(TERRAFORM) -chdir=terraform apply -input=false "$(abspath artifacts/release.tfplan)"
 release-wait:
 	$(AWS) ecs wait services-stable --cluster citas-api --services citas-api citas-api-science
+
+.PHONY: release-web-check
+release-web-check:
+	mkdir -p artifacts/release-web
+	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_SCIENCE_E2E=1 T03_OUTPUT_DIR="$(abspath artifacts/release-web)" npm --prefix frontend run test:e2e -- scientific-real.spec.ts --workers=1
+.PHONY: release-events
+release-events:
+	$(AWS) ecs describe-services --cluster citas-api --services citas-api citas-api-science --query 'services[].{service:serviceName,events:events[:4].message}'
+	$(AWS) logs tail /ecs/citas-api-science --since 8m --format short
+.PHONY: release-web-storage
+release-web-storage:
+	$(AWS) s3api head-bucket --bucket citas-api-web-646941583111-us-east-1
+	$(AWS) s3api get-bucket-location --bucket citas-api-web-646941583111-us-east-1
+	$(AWS) s3api list-objects-v2 --bucket citas-api-web-646941583111-us-east-1 --max-keys 1 --query '{Count:KeyCount,Names:Contents[].Key}'
+.PHONY: release-confirm
+release-confirm: release-status
+	AWS_PROFILE=$(AWS_PROFILE) python3 scripts/confirm_release.py

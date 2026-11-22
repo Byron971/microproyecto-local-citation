@@ -17,5 +17,9 @@ rollback={
 }
 (root/'release.tfvars.json').write_text(json.dumps(values,indent=2))
 backup=root/'release-rollback.tfvars.json'
-if not backup.exists():backup.write_text(json.dumps(rollback,indent=2))
+context=root/'release-context.json'
+previous=json.loads(context.read_text()) if context.exists() else {}
+if not backup.exists() or (previous and previous.get('commit')!=images['commit']):
+ backup.write_text(json.dumps(rollback,indent=2))
+context.write_text(json.dumps({'commit':images['commit']},indent=2))
 print(json.dumps(values,indent=2))

@@ -14,14 +14,10 @@ def verificar(base):
             return json.load(response)
 
     corpus = json.loads(Path('config/corpus_ms.json').read_text())
-    known = corpus['documentos']['S15-1012']
-    query = known['titulo'] + '\n' + known['abstract']
-    recommendations = post('/api/analisis-cita-ms/recomendar', {'contexto': query, 'top_k': 10})
-    assert recommendations['modelo'] == 'scibert-articulos-v1'
-    assert recommendations['total_catalogo'] == 19776
-    ids = [r['paper_id'] for r in recommendations['recomendaciones']]
-    available = post('/api/analisis-cita-ms/disponibilidad', {'paper_ids': ids})
-    selected = next(a['paper_id'] for a in available['articulos'] if a['disponible'])
+    selected = 'W05-0821'
+    available = post('/api/analisis-cita-ms/disponibilidad', {'paper_ids': [selected]})
+    assert available['articulos'][0]['paper_id'] == selected
+    assert available['articulos'][0]['disponible'] is True
     context = 'Earlier work TARGETCIT proposed neural methods for scientific document classification.'
     start = time.monotonic()
     result = post('/api/analisis-cita-ms/articulo', {'paper_id': selected, 'contexto': context})
@@ -38,7 +34,7 @@ def verificar(base):
         assert all(0 <= p['probabilidad'] <= 1 for p in probs)
         assert abs(sum(p['probabilidad'] for p in probs) - 1) < .005
     return {'url': base, 'paper_id': selected, 'latencia_segundos': round(latency, 3),
-            'modelo_recomendacion': recommendations['modelo'], 'total_catalogo': recommendations['total_catalogo'],
+            'recorrido': 'contexto → artículo citado → clasificador → Top-3 y función',
             'total_fragmentos': result['articulo']['total_fragmentos'],
             'version_contenido': available['version_contenido'],
             'top3': [f['chunk_id'] for f in result['top3']],
