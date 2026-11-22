@@ -49,7 +49,8 @@ with tempfile.TemporaryDirectory(prefix='citas-docker-') as config:
   digest=published['imageDigest']
   remote=ecr.batch_get_image(repositoryName=repo,imageIds=[{'imageDigest':digest}])
   manifest=json.loads(remote['images'][0]['imageManifest'])
-  assert manifest['config']['digest']==info['Id'], 'Imagen publicada distinta del build local'
+  # Docker puede identificar la imagen por el manifiesto OCI o por su configuración.
+  assert info['Id'] in (digest, manifest['config']['digest']), 'Imagen publicada distinta del build local'
   result['images'][family]={'uri':f'{registry}/{repo}@{digest}','tag':tag,'architecture':info['Architecture'],'local_bytes':info['Size'],'registry_bytes':published['imageSizeInBytes']}
 Path('/opt/citas/published-images.json').write_text(json.dumps(result,indent=2))
 PY

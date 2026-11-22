@@ -13,13 +13,29 @@ def aws(*args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result"])
+    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result"])
     parser.add_argument("--work", required=True, type=Path)
     parser.add_argument("--commit")
     args = parser.parse_args()
     instance = json.loads((args.work / "outputs.json").read_text())["instance_id"]["value"]
-    if args.action == "build":
-        command = "sudo -u ubuntu bash /opt/citas/microproyecto-local-citation/scripts/build_publish_ec2.sh"
+    if args.action == "inspect":
+        command = """sudo -u ubuntu /opt/citas/tools/bin/python - <<'PYREMOTE'
+import boto3,json,subprocess
+repo='citas-ms-serverless-t04'
+e=boto3.client('ecr',region_name='us-east-1')
+for family,local in [('ms','citas-science'),('serverless','citas-serverless-ms')]:
+ commit=subprocess.check_output(['git','-C','/opt/citas/microproyecto-local-citation','rev-parse','HEAD'],text=True).strip()
+ info=json.loads(subprocess.check_output(['docker','image','inspect',local+':'+commit]))[0]
+ tag='t04-'+family+'-'+commit
+ remote=e.batch_get_image(repositoryName=repo,imageIds=[{'imageTag':tag}])
+ print(json.dumps({'family':family,'Id':info['Id'],'RepoDigests':info.get('RepoDigests'),'remote':remote}))
+PYREMOTE"""
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
+        (args.work / "inspect-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
+        print("Diagnóstico enviado")
+    elif args.action == "build":
+        command = "sudo -u ubuntu bash <<'BUILD_SCRIPT'\n" + Path("scripts/build_publish_ec2.sh").read_text() + "\nBUILD_SCRIPT"
         result = aws("ssm", "send-command", "--instance-ids", instance,
                      "--document-name", "AWS-RunShellScript", "--parameters",
                      json.dumps({"commands": [command], "executionTimeout": ["3600"]}))
@@ -58,7 +74,7 @@ BUILDER
         (args.work / "clone-command.json").write_text(json.dumps({"command_id": command_id, "commit": args.commit}))
         print("Clonación enviada:", command_id)
     else:
-        name = "build" if args.action == "build-result" else "clone"
+        name = args.action.removesuffix("-result")
         saved = json.loads((args.work / f"{name}-command.json").read_text())
         result = aws("ssm", "get-command-invocation", "--instance-id", instance,
                      "--command-id", saved["command_id"])
