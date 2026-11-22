@@ -146,3 +146,5 @@ include make/serverless-ms.mk
 include make/image-builder.mk
 
 include make/qlora.mk
+
+include make/release.mk

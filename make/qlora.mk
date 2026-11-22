@@ -55,3 +55,9 @@ qlora-metadata:
 	AWS_PROFILE=josezambrana python3 scripts/qlora_metadata_ops.py send --work "$(BUILDER_WORK)"
 qlora-metadata-result:
 	AWS_PROFILE=josezambrana python3 scripts/qlora_metadata_ops.py result --work "$(BUILDER_WORK)"
+
+.PHONY: qlora-base qlora-base-result
+qlora-base:
+	AWS_PROFILE=josezambrana python3 scripts/qlora_base_ops.py send --work "$(BUILDER_WORK)"
+qlora-base-result:
+	AWS_PROFILE=josezambrana python3 scripts/qlora_base_ops.py result --work "$(BUILDER_WORK)"

@@ -99,3 +99,15 @@ No hay tokenizador en el paquete; la revisión de base declarada es null.
 Esto acredita recuperación e inventario, no carga ni inferencia. T05 continúa
 pendiente de base/tokenizador compatibles, revisión fijada y salida sintética real.
 Los pesos y el inventario detallado permanecen fuera de Git.
+
+## Suspensión solicitada el 22 de noviembre de 2026
+
+QLoRA queda fuera de esta publicación por decisión del usuario. T05 y T06 se
+suspenden; las partes QLoRA de T07 y T08 quedan pendientes. No se modifican pesos,
+no se entrena y no se continúa con cargas ni inferencias de QLoRA. Se conservan
+los archivos recuperados en EC2. La descarga de base terminó antes de la pausa;
+esto no equivale a tener un endpoint desplegado.
+
+La opción abierta se oculta en el selector. Se conserva el recorrido existente
+y la separación entre interfaz y servicio para conectarla cuando esté desplegada.
+Las tareas comerciales y las demás exigencias del PRD no se dan por terminadas.

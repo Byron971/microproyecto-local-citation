@@ -58,7 +58,7 @@ resource "aws_iam_role_policy" "artifacts" {
     { Effect = "Allow", Action = ["s3:GetBucketLocation", "s3:ListBucket"], Resource = "arn:aws:s3:::citas-api-models-646941583111-us-east-1" },
     { Effect = "Allow", Action = ["s3:ListBucketVersions"], Resource = "arn:aws:s3:::citas-api-models-646941583111-us-east-1", Condition = { StringLike = { "s3:prefix" = ["experiments/t04-ms-serverless/b75e3075c4bf630d1b5aaf9c0ce7a2e43265446231ed550869e6df38b35def7f/model.tar.gz", "terraform/t04-ms-artifact/terraform.tfstate*", "env:/"] } } },
     { Effect = "Allow", Action = ["ecr:GetAuthorizationToken"], Resource = "*" },
-    { Effect = "Allow", Action = ["ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage", "ecr:BatchGetImage", "ecr:GetDownloadUrlForLayer", "ecr:DescribeImages"], Resource = "arn:aws:ecr:us-east-1:646941583111:repository/citas-ms-serverless-t04" }
+    { Effect = "Allow", Action = ["ecr:BatchCheckLayerAvailability", "ecr:InitiateLayerUpload", "ecr:UploadLayerPart", "ecr:CompleteLayerUpload", "ecr:PutImage", "ecr:BatchGetImage", "ecr:GetDownloadUrlForLayer", "ecr:DescribeImages"], Resource = ["arn:aws:ecr:us-east-1:646941583111:repository/citas-ms-serverless-t04", "arn:aws:ecr:us-east-1:646941583111:repository/citas-api"] }
   ] })
 }
 resource "aws_iam_instance_profile" "builder" {

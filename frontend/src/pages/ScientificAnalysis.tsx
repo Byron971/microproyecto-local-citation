@@ -298,9 +298,6 @@ export function ScientificAnalysis() {
                 <option value="M">Encoder SciBERT — M</option>
                 <option value="S">Encoder SciBERT — S</option>
               </optgroup>
-              <option disabled value="open">
-                Modelo abierto — pendiente de integración
-              </option>
               <option disabled value="commercial">
                 Modelo comercial — pendiente de integración
               </option>
