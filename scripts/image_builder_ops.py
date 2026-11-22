@@ -13,12 +13,19 @@ def aws(*args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result"])
+    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result", "models", "models-result"])
     parser.add_argument("--work", required=True, type=Path)
     parser.add_argument("--commit")
     args = parser.parse_args()
     instance = json.loads((args.work / "outputs.json").read_text())["instance_id"]["value"]
-    if args.action == "inspect":
+    if args.action == "models":
+        command = "sudo -u ubuntu env -u AWS_PROFILE -u AWS_ACCESS_KEY_ID -u AWS_SECRET_ACCESS_KEY -u AWS_SESSION_TOKEN /opt/citas/tools/bin/python - <<'MODELS_SCRIPT'\n" + Path("scripts/prepare_models_ec2.py").read_text() + "\nMODELS_SCRIPT"
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters",
+                     json.dumps({"commands": [command], "executionTimeout": ["1800"]}))
+        (args.work / "models-command.json").write_text(json.dumps({"command_id": result["Command"]["CommandId"]}))
+        print("Preparación de modelos enviada:", result["Command"]["CommandId"])
+    elif args.action == "inspect":
         command = """sudo -u ubuntu /opt/citas/tools/bin/python - <<'PYREMOTE'
 import boto3,json,subprocess
 repo='citas-ms-serverless-t04'

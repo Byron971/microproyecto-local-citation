@@ -55,3 +55,21 @@ digest de configuración en ECR coincide con el ID local de cada imagen.
 La instancia utiliza su rol IAM; no recibe credenciales locales. Autenticación
 Docker temporal y borrada al finalizar. El log queda en /opt/citas/build-images.log
 y el inventario final en /opt/citas/published-images.json. No despliega endpoints.
+
+Preparar los modelos desde S3, sin transferirlos desde el equipo local:
+
+```sh
+make builder-models AWS_PROFILE=josezambrana
+make builder-models-result AWS_PROFILE=josezambrana
+```
+
+Recupera únicamente los diez archivos de la release ms-scibert-b8ee47317c29afbc,
+comprueba el manifiesto remoto y cada tamaño/SHA256, y reutiliza el empaquetador
+determinista existente. Salidas privadas fuera del repositorio:
+
+- /opt/citas/models/ms-scibert-b8ee47317c29afbc/
+- /opt/citas/models/ms-scibert-b8ee47317c29afbc.tar.gz
+- /opt/citas/models/prepared-models.json
+
+El bundle debe coincidir con el SHA256 del paquete local ya validado. No sube
+archivos a S3, no modifica la release original y no ejecuta inferencias.

@@ -55,3 +55,9 @@ builder-inspect:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py inspect --work "$(BUILDER_WORK)"
 builder-inspect-result:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py inspect-result --work "$(BUILDER_WORK)"
+
+.PHONY: builder-models builder-models-result
+builder-models:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py models --work "$(BUILDER_WORK)"
+builder-models-result:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py models-result --work "$(BUILDER_WORK)"
