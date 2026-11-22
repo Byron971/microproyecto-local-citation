@@ -27,3 +27,14 @@ make builder-destroy AWS_PROFILE=josezambrana
 Pendiente: publicar rama revisada, clonar commit, construir/publicar imagen,
 recuperar M/S desde S3, autorizar rclone y comprobar el adaptador QLoRA.
 No guardar tokens Microsoft en Git ni en parámetros SSM registrados.
+
+Clonación por SSM, sin credenciales GitHub (repositorio público):
+
+```sh
+make builder-clone AWS_PROFILE=josezambrana
+make builder-clone-result AWS_PROFILE=josezambrana
+```
+
+El comando fija el commit local actual, exige un repositorio remoto limpio y
+comprueba ambos Dockerfiles. No construye ni publica imágenes. La copia está en
+`/opt/citas/microproyecto-local-citation`, propiedad de ubuntu.

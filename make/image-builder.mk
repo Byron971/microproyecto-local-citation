@@ -30,3 +30,10 @@ builder-destroy-plan:
 	$(BUILDER_TF) plan -destroy -input=false -var-file="$(BUILDER_WORK)/vars.json" -out="$(BUILDER_WORK)/destroy.tfplan"
 builder-destroy:
 	$(BUILDER_TF) apply -input=false "$(BUILDER_WORK)/destroy.tfplan"
+
+BUILDER_COMMIT ?= $(shell git rev-parse HEAD)
+.PHONY: builder-clone builder-clone-result
+builder-clone:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py clone --work "$(BUILDER_WORK)" --commit "$(BUILDER_COMMIT)"
+builder-clone-result:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py clone-result --work "$(BUILDER_WORK)"
