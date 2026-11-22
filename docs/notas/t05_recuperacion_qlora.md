@@ -69,3 +69,16 @@ python3 scripts/auditar_adapter_qlora.py --root RUTA_ADAPTADOR --output RUTA_EXT
 El informe distingue base/revisión declaradas de revisión confirmada, y no
 acredita inferencia. Si falta adapter_config.json o adapter_model.safetensors,
 se detiene; no sustituye por Qwen base ni por resultados precalculados.
+
+Comprobación adicional del navegador:
+
+```sh
+make qlora-browser-verify AWS_PROFILE=josezambrana
+make qlora-browser-verify-result AWS_PROFILE=josezambrana
+```
+
+Se corrigió Firefox Snap, que no podía iniciarse desde SSM: el navegador utiliza
+el DEB oficial de Mozilla, con clave de firma verificada y sin desactivar el
+sandbox. Se comprobó FIREFOX_RUNNING y que 5900/6080 escuchan solo en 127.0.0.1.
+El error ethereum de una extensión Chrome pertenece al navegador local; abrir
+el visor en incógnito o Safari evita esa interferencia sin cambiar extensiones.

@@ -31,3 +31,10 @@ qlora-browser-status:
 	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py qlora-browser-result --work "$(BUILDER_WORK)"
 qlora-browser-tunnel:
 	PATH="$(QLORA_PLUGIN):$$PATH" AWS_PROFILE=josezambrana aws ssm start-session --region us-east-1 --target $$($(BUILDER_TF) output -raw instance_id) --document-name AWS-StartPortForwardingSession --parameters '{"portNumber":["6080"],"localPortNumber":["6080"]}'
+
+.PHONY: qlora-browser-verify qlora-browser-verify-result
+qlora-browser-verify:
+	AWS_PROFILE=josezambrana aws ssm send-command --region us-east-1 --instance-ids $$($(BUILDER_TF) output -raw instance_id) --document-name AWS-RunShellScript --parameters 'commands=["pgrep -u ubuntu -f firefox >/dev/null && echo FIREFOX_RUNNING; ss -lnt | awk '\''NR==1 || /127.0.0.1:6080|127.0.0.1:5900/'\''"]' --query 'Command.CommandId' --output text > "$(BUILDER_WORK)/browser-verify-command.txt"
+qlora-browser-verify-result:
+	AWS_PROFILE=josezambrana aws ssm get-command-invocation --region us-east-1 --instance-id $$($(BUILDER_TF) output -raw instance_id) --command-id "$$(cat "$(BUILDER_WORK)/browser-verify-command.txt")" --query '{Status:Status,Output:StandardOutputContent}'
+

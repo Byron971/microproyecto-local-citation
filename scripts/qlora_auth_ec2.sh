@@ -11,7 +11,7 @@ if [ ! -x /opt/citas/bin/rclone ]; then
    install -m 0755 rclone-v1.75.0-linux-amd64/rclone /opt/citas/bin/rclone)
   rm -rf "$TEMP"
 fi
-sudo -u ubuntu bash <<'AUTH' 
+sudo -u ubuntu bash <<'AUTH'
 set -euo pipefail
 umask 077
 mkdir -p /home/ubuntu/.config/rclone /opt/citas/qlora
