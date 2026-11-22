@@ -82,3 +82,20 @@ el DEB oficial de Mozilla, con clave de firma verificada y sin desactivar el
 sandbox. Se comprobó FIREFOX_RUNNING y que 5900/6080 escuchan solo en 127.0.0.1.
 El error ethereum de una extensión Chrome pertenece al navegador local; abrir
 el visor en incógnito o Safari evita esa interferencia sin cambiar extensiones.
+
+## Adaptador recuperado y comprobado en EC2
+
+La descarga real contiene un ZIP interior drive-download-20261104T025709Z-1-001.zip
+y LEEME.txt. Se extrajeron ambos niveles con comprobación CRC, sin sobrescribir
+archivos y rechazando rutas inseguras. El ZIP interior contiene README.md,
+adapter_config.json, adapter_model.safetensors y .gitignore.
+
+Configuración real: Qwen/Qwen2.5-7B-Instruct, LORA, r=16, alpha=32 y siete
+módulos objetivo. Se comprobaron 392 tensores F32. Pesos: 161.533.192 bytes;
+SHA256 94c164927dab7758ee5ba68fedbe36d7e4b69db36c8a2b4a919e8c11f258d56f.
+El notebook descargado confirma el nombre de la base, pero tampoco fija revisión.
+No hay tokenizador en el paquete; la revisión de base declarada es null.
+
+Esto acredita recuperación e inventario, no carga ni inferencia. T05 continúa
+pendiente de base/tokenizador compatibles, revisión fijada y salida sintética real.
+Los pesos y el inventario detallado permanecen fuera de Git.

@@ -13,12 +13,30 @@ def aws(*args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result", "models", "models-result", "publish-models", "publish-models-result", "compatible", "compatible-result", "qlora-auth", "qlora-auth-result", "qlora-check", "qlora-check-result", "qlora-browser", "qlora-browser-result"])
+    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result", "models", "models-result", "publish-models", "publish-models-result", "compatible", "compatible-result", "qlora-auth", "qlora-auth-result", "qlora-check", "qlora-check-result", "qlora-browser", "qlora-browser-result", "qlora-files", "qlora-files-result", "qlora-audit", "qlora-audit-result"])
     parser.add_argument("--work", required=True, type=Path)
     parser.add_argument("--commit")
     args = parser.parse_args()
     instance = json.loads((args.work / "outputs.json").read_text())["instance_id"]["value"]
-    if args.action == "qlora-browser":
+    if args.action == "qlora-audit":
+        code = "AUDITOR_SOURCE = " + repr(Path("scripts/auditar_adapter_qlora.py").read_text()) + "\n" + Path("scripts/recover_adapter_ec2.py").read_text()
+        command = "sudo -u ubuntu python3 - <<'QLORA_AUDIT_SCRIPT'\n" + code + "\nQLORA_AUDIT_SCRIPT"
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command],"executionTimeout":["600"]}))
+        (args.work / "qlora-audit-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
+        print("Recuperación y auditoría del adaptador enviadas")
+    elif args.action == "qlora-files":
+        command = """sudo -u ubuntu python3 - <<'QLORA_FILES'
+import json
+from pathlib import Path
+root=Path('/home/ubuntu/Downloads/qlora')
+print(json.dumps({'files':[{'path':str(p.relative_to(root)), 'bytes':p.stat().st_size} for p in sorted(root.rglob('*')) if p.is_file()][:100]},indent=2))
+QLORA_FILES"""
+        result = aws("ssm", "send-command", "--instance-ids", instance,
+                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
+        (args.work / "qlora-files-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
+        print("Consulta de descargas enviada")
+    elif args.action == "qlora-browser":
         command = "bash <<'QLORA_BROWSER_SCRIPT'\n" + Path("scripts/qlora_browser_ec2.sh").read_text() + "\nQLORA_BROWSER_SCRIPT"
         result = aws("ssm", "send-command", "--instance-ids", instance,
                      "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command],"executionTimeout":["1200"]}))

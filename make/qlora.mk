@@ -38,3 +38,20 @@ qlora-browser-verify:
 qlora-browser-verify-result:
 	AWS_PROFILE=josezambrana aws ssm get-command-invocation --region us-east-1 --instance-id $$($(BUILDER_TF) output -raw instance_id) --command-id "$$(cat "$(BUILDER_WORK)/browser-verify-command.txt")" --query '{Status:Status,Output:StandardOutputContent}'
 
+.PHONY: qlora-files qlora-files-result
+qlora-files:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py qlora-files --work "$(BUILDER_WORK)"
+qlora-files-result:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py qlora-files-result --work "$(BUILDER_WORK)"
+
+.PHONY: qlora-audit qlora-audit-result
+qlora-audit:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py qlora-audit --work "$(BUILDER_WORK)"
+qlora-audit-result:
+	AWS_PROFILE=josezambrana python3 scripts/image_builder_ops.py qlora-audit-result --work "$(BUILDER_WORK)"
+
+.PHONY: qlora-metadata qlora-metadata-result
+qlora-metadata:
+	AWS_PROFILE=josezambrana python3 scripts/qlora_metadata_ops.py send --work "$(BUILDER_WORK)"
+qlora-metadata-result:
+	AWS_PROFILE=josezambrana python3 scripts/qlora_metadata_ops.py result --work "$(BUILDER_WORK)"
