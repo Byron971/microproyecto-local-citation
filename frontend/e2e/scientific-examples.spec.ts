@@ -38,6 +38,7 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   const search = dialog.getByRole('searchbox', { name: 'Buscar ejemplos' });
   await expect(search).toBeFocused();
   await expect(dialog.getByRole('status')).toHaveText('33 de 33 ejemplos');
+  await expect(dialog.locator('.example-card')).toHaveCount(10);
   await search.fill('no-existe-esta-cita');
   await expect(dialog.getByText(/No hay ejemplos/)).toBeVisible();
   const chosen = examples.ejemplos[0];
@@ -52,6 +53,8 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
+  await expect(page.getByLabel('Familia y modelo')).toHaveValue('M');
+  await page.getByLabel('Familia y modelo').selectOption('commercial');
   await expect(page.getByRole('checkbox', { name: /Acepto enviar/ })).not.toBeChecked();
   await page.getByRole('button', { name: 'Anterior', exact: true }).click();
   await page.getByRole('button', { name: 'Anterior', exact: true }).click();
@@ -66,4 +69,41 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   await expect(dialog).toHaveCount(0);
   await expect(opener).toBeFocused();
   await expect(page.getByLabel('Contexto en inglés')).toHaveValue(chosen.contexto);
+});
+
+test('pagina diez ejemplos y reinicia la página al buscar', async ({ page }, info) => {
+  await page.route('**/api/**', (route) => route.fulfill({ json: { clasificadores: [] } }));
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Explorar ejemplos del dataset' }).click();
+  const dialog = page.getByRole('dialog', { name: 'Elige un ejemplo' });
+  const nav = dialog.getByRole('navigation', { name: 'Páginas de ejemplos' });
+  await expect(dialog.locator('.example-card')).toHaveCount(10);
+  await expect(nav.getByRole('button', { name: 'Anterior', exact: true })).toBeDisabled();
+  for (const [index, count] of [
+    [1, 10],
+    [2, 10],
+    [3, 3],
+  ]) {
+    await nav.getByRole('button', { name: 'Siguiente', exact: true }).click();
+    await expect(nav).toContainText(`Página ${index + 1} de 4`);
+    await expect(dialog.locator('.example-card')).toHaveCount(count);
+    await expect(dialog.locator('.example-card').first()).toContainText(
+      examples.ejemplos[index * 10].contexto,
+    );
+  }
+  await expect(nav.getByRole('button', { name: 'Siguiente', exact: true })).toBeDisabled();
+  await page.screenshot({ path: info.outputPath('ejemplos-pagina-4.png'), fullPage: true });
+  const search = dialog.getByRole('searchbox', { name: 'Buscar ejemplos' });
+  await search.fill(examples.ejemplos[0].context_id);
+  await expect(dialog.locator('.example-card')).toHaveCount(1);
+  await expect(nav).toHaveCount(0);
+  await search.fill('');
+  await expect(nav).toContainText('Página 1 de 4');
+  await expect(dialog.locator('.example-card')).toHaveCount(10);
+  await expect(nav.getByRole('button', { name: 'Anterior', exact: true })).toBeDisabled();
+  await page.screenshot({ path: info.outputPath('ejemplos-pagina-1.png'), fullPage: true });
+  await expect(page.locator('body')).toHaveJSProperty(
+    'scrollWidth',
+    await page.locator('body').evaluate((e) => e.clientWidth),
+  );
 });

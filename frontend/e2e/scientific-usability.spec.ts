@@ -22,14 +22,18 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
   });
   await page.goto('/');
   await expect(page.getByRole('navigation', { name: 'Pasos del análisis' })).toBeVisible();
-  await expect(page.getByText('Añade el contexto y marca una sola cita.')).toBeVisible();
+  await expect(
+    page.getByText('Selecciona la referencia en el texto y pulsa «Marcar cita».'),
+  ).toBeVisible();
   await page.getByRole('button', { name: 'Marcar cita', exact: true }).click();
   await expect(page.getByLabel('Contexto en inglés')).toBeFocused();
   await expect(page.getByLabel('Contexto en inglés')).toHaveAttribute('aria-invalid', 'true');
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
-  await expect(page.getByText('Artículo disponible. Continúa con el clasificador.')).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
+  ).toBeEnabled();
   const context = await page.getByLabel('Contexto en inglés').inputValue();
   const filter = page.getByRole('searchbox', { name: 'Filtrar artículos por título o ID' });
   const article = page.getByLabel('Artículo preparado por título e ID');

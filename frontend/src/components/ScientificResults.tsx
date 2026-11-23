@@ -42,14 +42,6 @@ export function ScientificResults({
         Son candidatos relacionados; no prueban por sí solos la afirmación ni verifican que la cita
         sea correcta.
       </p>
-      <nav className="fragment-overview" aria-label="Secciones del Top-3">
-        {respuesta.top3.map((fragment, index) => (
-          <a key={fragment.chunk_id} href={`#fragment-${index + 1}`}>
-            <span>{index + 1}</span>
-            {fragment.seccion || 'Sin sección identificada'}
-          </a>
-        ))}
-      </nav>
       <ol className="fragment-list">
         {respuesta.top3.map((fragment, index) => (
           <li key={fragment.chunk_id} id={`fragment-${index + 1}`} tabIndex={-1}>

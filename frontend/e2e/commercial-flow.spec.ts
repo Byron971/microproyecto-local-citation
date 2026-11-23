@@ -129,10 +129,19 @@ for (const status of [200, 429, 502]) {
     await expect(page.getByRole('heading', { name: 'Modelo M', exact: true })).toHaveCount(0);
     await expect(page.getByRole('heading', { name: 'Modelo S', exact: true })).toHaveCount(0);
     await page.getByRole('button', { name: 'Editar contexto', exact: true }).click();
+    if (status === 200) await expect(page.locator('#workflow-step-3')).toBeEnabled();
+    else {
+      for (const i of [1, 2, 3]) await expect(page.locator(`#workflow-step-${i}`)).toBeDisabled();
+    }
     await page.getByLabel('Contexto en inglés').fill('Contexto editado TARGETCIT.');
+    for (const i of [1, 2, 3]) await expect(page.locator(`#workflow-step-${i}`)).toBeDisabled();
     await expect(page.getByText('Fragmento recuperado 1', { exact: true })).toHaveCount(0);
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+    await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('');
+    await page.getByLabel('Artículo preparado por título e ID').selectOption('W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
+    await expect(page.getByLabel('Familia y modelo')).toHaveValue('M');
+    await page.getByLabel('Familia y modelo').selectOption('commercial');
     await expect(page.getByRole('checkbox', { name: /Acepto enviar/ })).not.toBeChecked();
   });
 }

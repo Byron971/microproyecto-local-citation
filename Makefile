@@ -17,6 +17,8 @@ ECR_KEEP_IMAGES ?= 5
 PROJECT_NAME   ?= citas-api
 TF_STATE_KEY   ?= $(PROJECT_NAME)/terraform.tfstate
 TERRAFORM      ?= terraform
+# Opcional: outputs JSON del estado actual ya verificado; no usar una copia obsoleta.
+FRONTEND_OUTPUTS_FILE ?=
 TF_ARGS        ?=
 IMAGE_TAG      ?= $(shell git rev-parse --short HEAD)
 
@@ -122,10 +124,15 @@ tf-apply: ## Aplica los cambios de infraestructura sin reconstruir la imagen
 # Publicar assets antes que index.html; conservar hashes de versiones abiertas.
 publish-frontend: check-aws ## Compila React, publica en S3 y actualiza CloudFront
 	@set -eu; \
-	bucket=$$($(TERRAFORM) -chdir=terraform output -raw frontend_bucket); \
-	distribution=$$($(TERRAFORM) -chdir=terraform output -raw distribution_id); \
-	api_url=$$($(TERRAFORM) -chdir=terraform output -raw api_base_url); \
-	frontend_url=$$($(TERRAFORM) -chdir=terraform output -raw frontend_url); \
+	if [ -n "$(FRONTEND_OUTPUTS_FILE)" ]; then \
+	  outputs=$$(cat "$(FRONTEND_OUTPUTS_FILE)"); \
+	else \
+	  outputs=$$($(TERRAFORM) -chdir=terraform output -json); \
+	fi; \
+	bucket=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["frontend_bucket"]["value"])'); \
+	distribution=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["distribution_id"]["value"])'); \
+	api_url=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["api_base_url"]["value"])'); \
+	frontend_url=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["frontend_url"]["value"])'); \
 	npm --prefix frontend ci; \
 	VITE_API_BASE_URL="$$api_url" npm --prefix frontend run build; \
 	$(AWS) s3 sync frontend/dist/assets/ "s3://$$bucket/assets/" --cache-control 'public,max-age=31536000,immutable'; \

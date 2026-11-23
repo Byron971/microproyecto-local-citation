@@ -43,3 +43,11 @@ Checklist: T01–T03 completas con navegación secuencial; T04 pendiente de cuot
 T05–T06 suspendidas; T07–T08 disponibles para M/S y comercial, QLoRA suspendido;
 T09 completa; T10 parcial; T11 M/S y comercial aceptados, QLoRA suspendido;
 T12 y cierre de T13 pendientes.
+
+## Actualización de navegación y simplificación
+
+La petición posterior del usuario sustituye el aspecto de pestañas por checks y
+permite navegar libremente entre las cuatro etapas después de completar todo
+el análisis. Un nuevo contexto o ejemplo reinicia el recorrido; los ejemplos
+precargan contexto y artículo. Decisiones por etapa, paginación y evidencia en
+[simplificacion_ui_2026_11_22.md](simplificacion_ui_2026_11_22.md).

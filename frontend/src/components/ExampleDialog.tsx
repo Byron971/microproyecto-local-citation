@@ -17,6 +17,15 @@ export function ExampleDialog({
   onClose: () => void;
 }) {
   const [query, setQuery] = useState('');
+  const [page, setPage] = useState(() =>
+    Math.floor(
+      Math.max(
+        0,
+        examples.findIndex((item) => item.context_id === selected),
+      ) / 10,
+    ),
+  );
+  const pageSize = 10;
   const normalize = (text: string) =>
     text
       .normalize('NFD')
@@ -30,6 +39,13 @@ export function ExampleDialog({
       ).includes(term),
     ),
   );
+  const pageCount = Math.ceil(filtered.length / pageSize);
+  const currentPage = Math.min(page, Math.max(0, pageCount - 1));
+  const visible = filtered.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+  function changePage(next: number) {
+    setPage(next);
+    dialog.current?.querySelector('.example-list')?.scrollTo({ top: 0 });
+  }
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const element = dialog.current!;
@@ -92,7 +108,10 @@ export function ExampleDialog({
             type="search"
             value={query}
             placeholder="Texto de la cita, título o ID"
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setPage(0);
+            }}
           />
           <p role="status">
             {filtered.length} de {examples.length} ejemplos
@@ -103,7 +122,7 @@ export function ExampleDialog({
         <p className="example-empty">No hay ejemplos con esa búsqueda. Prueba otras palabras.</p>
       )}
       <ul className="example-list">
-        {filtered.map((item) => (
+        {visible.map((item) => (
           <li key={item.context_id}>
             <button
               type="button"
@@ -125,6 +144,29 @@ export function ExampleDialog({
           </li>
         ))}
       </ul>
+      {pageCount > 1 && (
+        <nav className="example-pagination" aria-label="Páginas de ejemplos">
+          <button
+            type="button"
+            className="text-button"
+            disabled={currentPage === 0}
+            onClick={() => changePage(currentPage - 1)}
+          >
+            Anterior
+          </button>
+          <span aria-live="polite">
+            Página {currentPage + 1} de {pageCount}
+          </span>
+          <button
+            type="button"
+            className="text-button"
+            disabled={currentPage + 1 === pageCount}
+            onClick={() => changePage(currentPage + 1)}
+          >
+            Siguiente
+          </button>
+        </nav>
+      )}
     </dialog>
   );
 }

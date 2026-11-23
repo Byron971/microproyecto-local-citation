@@ -51,6 +51,8 @@ export function ScientificAnalysis() {
   const [phase, setPhase] = useState<'retrieving' | 'classifying'>('retrieving');
   const [duration, setDuration] = useState<number>();
   const [step, setStep] = useState(0);
+  const [completed, setCompleted] = useState(false);
+  const [completedSteps, setCompletedSteps] = useState(0);
   const input = useRef<HTMLTextAreaElement>(null);
   const active = useRef<AbortController | null>(null);
   const article = catalog.articulos.find((item) => item.paper_id === paperId);
@@ -124,24 +126,14 @@ export function ScientificAnalysis() {
     article && !filteredArticles.includes(article)
       ? [article, ...filteredArticles]
       : filteredArticles;
-  const readiness =
-    step === 0
-      ? contextReady
-        ? 'Contexto listo. Continúa con el artículo citado.'
-        : 'Añade el contexto y marca una sola cita.'
-      : step === 1
-        ? coverageStatus === 'available' && article
-          ? 'Artículo disponible. Continúa con el clasificador.'
-          : 'Selecciona el artículo y comprueba su texto preparado.'
-        : coverageStatus !== 'available'
-          ? 'Vuelve al artículo citado para comprobar su disponibilidad.'
-          : variant === 'commercial' && !consent
-            ? 'Confirma el envío a OpenAI para continuar.'
-            : 'Todo listo para analizar esta cita.';
+  const guidance =
+    step === 2 && coverageStatus !== 'available'
+      ? 'Vuelve al artículo citado para comprobar su disponibilidad.'
+      : '';
   function goToStep(next: number) {
     if (
       loading ||
-      next > step + 1 ||
+      (!completed && next > step + 1) ||
       (next >= 1 && !contextReady) ||
       (next >= 2 && (!article || coverageStatus !== 'available')) ||
       (next === 3 && !result)
@@ -150,15 +142,19 @@ export function ScientificAnalysis() {
     setError('');
     setErrorField('');
     setStep(next);
+    setCompletedSteps((count) => Math.max(count, next));
   }
   useEffect(() => {
-    document.getElementById(`workflow-step-${step}`)?.focus();
+    document.getElementById(`workflow-title-${step}`)?.focus();
   }, [step]);
   function submitStep(event: FormEvent) {
     event.preventDefault();
     if (step === 0 && contextReady) goToStep(1);
     else if (step === 1 && article && coverageStatus === 'available') goToStep(2);
-    else if (step === 2) void run(event);
+    else if (step === 2) {
+      if (completed) goToStep(3);
+      else void run(event);
+    }
   }
   function reportError(message: string, field: string) {
     setError(message);
@@ -173,7 +169,7 @@ export function ScientificAnalysis() {
   }, [loading, result, error, errorField, step]);
 
   function example() {
-    invalidate();
+    resetWorkflow();
     setContext(PUBLIC_EXAMPLE.context);
     setTarget(PUBLIC_EXAMPLE.target);
     setPaperId(PUBLIC_EXAMPLE.paperId);
@@ -185,7 +181,7 @@ export function ScientificAnalysis() {
   function selectDatasetExample(id: string) {
     const item = datasetExamples.ejemplos.find((entry) => entry.context_id === id);
     if (!item) return;
-    invalidate();
+    resetWorkflow();
     setContext(item.contexto);
     setPaperId(item.paper_id);
     setTarget('');
@@ -195,7 +191,22 @@ export function ScientificAnalysis() {
     setCoverageRetry((count) => count + 1);
   }
 
+  function resetWorkflow() {
+    invalidate();
+    setStep(0);
+    setCompletedSteps(0);
+    setPaperId('');
+    setCoverage(undefined);
+    setArticleQuery('');
+    setVariant('M');
+    setTarget('');
+    setUsingExample(false);
+    setSelectedExample('');
+  }
+
   function invalidate() {
+    setCompleted(false);
+    setCompletedSteps(Math.min(step, 2));
     active.current?.abort();
     setLoading(false);
     setResult(undefined);
@@ -229,9 +240,7 @@ export function ScientificAnalysis() {
       );
       return;
     }
-    invalidate();
-    setUsingExample(false);
-    setSelectedExample('');
+    resetWorkflow();
     setTarget(selected);
     setContext(marked);
     field.focus();
@@ -273,6 +282,8 @@ export function ScientificAnalysis() {
     const controller = new AbortController();
     active.current = controller;
     setLoading(true);
+    setCompleted(false);
+    setCompletedSteps(2);
     setErrorField('');
     setPhase('retrieving');
     setDuration(undefined);
@@ -299,6 +310,7 @@ export function ScientificAnalysis() {
       }
       setResult(data);
       setStep(3);
+      setCompletedSteps(3);
       if (variant === 'commercial') {
         setPhase('classifying');
         const commercial = await request<CommercialClassification>('/api/comercial/clasificar', {
@@ -327,6 +339,8 @@ export function ScientificAnalysis() {
         }
         setCommercialResult(commercial);
       }
+      setCompleted(true);
+      setCompletedSteps(4);
     } catch (err) {
       if (!controller.signal.aborted) {
         if (err instanceof ApiError && err.status === 404)
@@ -345,29 +359,31 @@ export function ScientificAnalysis() {
     <div className="scientific-page">
       <div className="page-intro">
         <h1>Analizar una cita</h1>
-        <p>Identifica fragmentos relacionados del artículo citado y la función de tu referencia.</p>
+        <p>
+          Recupera tres fragmentos del artículo citado y clasifica la función de una cita en inglés.
+        </p>
       </div>
       <nav className="workflow-progress" aria-label="Pasos del análisis">
         <ol>
           {['Contexto', 'Artículo', 'Clasificador', 'Resultados'].map((name, index) => (
             <li
               key={name}
-              className={index === step ? 'step-active' : index < step ? 'step-complete' : ''}
+              className={`${index === step ? 'step-active' : ''} ${index < completedSteps ? 'step-complete' : ''}`}
             >
               <button
                 id={`workflow-step-${index}`}
                 type="button"
-                disabled={loading || index > step}
+                disabled={loading || (!completed && index > step)}
                 aria-current={index === step ? 'step' : undefined}
                 onClick={() => goToStep(index)}
               >
-                <b aria-hidden="true">{index < step ? '✓' : index + 1}</b>
+                <b aria-hidden="true">{index < completedSteps ? '✓' : index + 1}</b>
                 <span>
                   {name}
                   <span className="sr-only">
                     {index === step
                       ? ': etapa actual'
-                      : index < step
+                      : index < completedSteps
                         ? ': completada'
                         : ': pendiente'}
                   </span>
@@ -377,20 +393,20 @@ export function ScientificAnalysis() {
           ))}
         </ol>
       </nav>
-      <p className="workflow-scope">
-        Analiza citas en inglés dentro de los artículos preparados del catálogo.
-      </p>
       <section className="workspace" aria-label="Análisis de cita" hidden={step === 3}>
         <form onSubmit={submitStep}>
-          <p className="step-caption">Paso {step + 1} de 4</p>
           <fieldset
             className="analysis-step"
             id="citation-step"
             hidden={step !== 0}
             disabled={step !== 0}
           >
-            <legend>1. Contexto de la cita</legend>
-            <label htmlFor="citation-context">Contexto en inglés</label>
+            <legend id="workflow-title-0" tabIndex={-1}>
+              Contexto en inglés
+            </legend>
+            <label className="sr-only" htmlFor="citation-context">
+              Contexto en inglés
+            </label>
             <textarea
               id="citation-context"
               ref={input}
@@ -401,15 +417,12 @@ export function ScientificAnalysis() {
               aria-describedby={`context-help context-state${errorField === 'citation-context' ? ' analysis-error' : ''}`}
               aria-invalid={errorField === 'citation-context' || undefined}
               onChange={(e) => {
-                invalidate();
+                resetWorkflow();
                 setContext(e.target.value);
-                setUsingExample(false);
-                setSelectedExample('');
-                if (!e.target.value.includes('TARGETCIT')) setTarget('');
               }}
             />
             <p id="context-help" className="field-help">
-              Selecciona la referencia en el texto y pulsa «Marcar cita». Máximo 4000 caracteres.
+              Selecciona la referencia en el texto y pulsa «Marcar cita».
             </p>
             <div className="context-feedback" id="context-state" aria-live="polite">
               <span className={context.length > 4000 || markerCount > 1 ? 'invalid-text' : ''}>
@@ -417,7 +430,9 @@ export function ScientificAnalysis() {
               </span>
               <span>
                 {markerCount === 1
-                  ? 'Una cita marcada'
+                  ? target
+                    ? `Cita objetivo: ${target}`
+                    : 'Una cita marcada'
                   : markerCount > 1
                     ? 'Hay varias marcas: deja solo una'
                     : 'Cita sin marcar'}
@@ -434,23 +449,8 @@ export function ScientificAnalysis() {
                 Explorar ejemplos del dataset
               </button>
             </div>
-            {usingExample && (
-              <p className="field-help">
-                Contexto de demostración redactado para esta aplicación sobre una publicación
-                pública. No procede de TRAIN ni Gold.
-              </p>
-            )}
-            {selectedExample && (
-              <p className="field-help">
-                Ejemplo de ACL-200 · validación · {selectedExample}. La función se calculará al
-                analizar.
-              </p>
-            )}
-            {context.includes('TARGETCIT') && (
-              <p className="field-help">
-                Cita objetivo: {target || 'posición marcada con TARGETCIT'}
-              </p>
-            )}
+            {usingExample && <p className="field-help">Ejemplo público sintético.</p>}
+            {selectedExample && <p className="field-help">Ejemplo de ACL-200 · validación.</p>}
           </fieldset>
           <fieldset
             className="analysis-step"
@@ -458,7 +458,9 @@ export function ScientificAnalysis() {
             hidden={step !== 1}
             disabled={step !== 1}
           >
-            <legend>2. Artículo citado</legend>
+            <legend id="workflow-title-1" tabIndex={-1}>
+              Artículo citado
+            </legend>
             <div className="article-filter">
               <label htmlFor="article-filter">Filtrar artículos por título o ID</label>
               <input
@@ -549,7 +551,9 @@ export function ScientificAnalysis() {
             hidden={step !== 2}
             disabled={step !== 2}
           >
-            <legend>3. Clasificador</legend>
+            <legend id="workflow-title-2" tabIndex={-1}>
+              Clasificador
+            </legend>
             <label htmlFor="classifier">Familia y modelo</label>
             <select
               id="classifier"
@@ -611,13 +615,7 @@ export function ScientificAnalysis() {
             </p>
           )}
           <div className="analysis-submit">
-            <p className="readiness-message">
-              {loading
-                ? phase === 'retrieving'
-                  ? 'Recuperando tres fragmentos con SciBERT…'
-                  : 'Top-3 listo. Clasificando la función con OpenAI…'
-                : readiness}
-            </p>
+            {guidance && <p className="readiness-message">{guidance}</p>}
             <div className="step-actions">
               {step > 0 && (
                 <button
@@ -636,6 +634,10 @@ export function ScientificAnalysis() {
                   disabled={step === 0 ? !contextReady : !article || coverageStatus !== 'available'}
                 >
                   {step === 0 ? 'Siguiente: artículo' : 'Siguiente: clasificador'}
+                </button>
+              ) : completed ? (
+                <button type="button" className="primary" onClick={() => goToStep(3)}>
+                  Ver resultados
                 </button>
               ) : (
                 <button
@@ -664,7 +666,6 @@ export function ScientificAnalysis() {
           className="analysis-output"
           aria-label="Resultado del análisis"
         >
-          <p className="step-caption">Paso 4 de 4 · Resultados</p>
           {error && (
             <p id="analysis-error" tabIndex={-1} role="alert" className="error-message">
               {error}
@@ -685,7 +686,6 @@ export function ScientificAnalysis() {
                 ? 'Comercial — GPT-6.1 Sol'
                 : `Encoder SciBERT — ${variant}`}
             </p>
-            <p>Cita objetivo: {target || 'posición marcada con TARGETCIT'}</p>
           </div>
           <div className="result-actions">
             <button
