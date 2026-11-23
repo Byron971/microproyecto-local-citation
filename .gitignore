@@ -93,3 +93,7 @@ frontend/*.tsbuildinfo
 # Pesos de adaptadores privados
 **/adapter_model.safetensors
 **/adapter_model.bin
+
+# Planes y documentación locales; no incorporar nuevos archivos al repositorio.
+/.superpowers/
+/docs/

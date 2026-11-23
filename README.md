@@ -1433,14 +1433,9 @@ Top-3 y las nueve puntuaciones de M y S sin copiar metadatos ni fragmentos.
 La búsqueda semántica SciBERT preparada cubre **los 19.776 artículos** por título
 y resumen; la ampliación del corpus V2 prepara **19.243 artículos**, con **508 recortados**
 a los límites existentes. Los 533 restantes no tienen contenido suficiente en el snapshot.
-La publicación y aceptación de esta ampliación se registran en
-[la nota de cobertura](docs/notas/ampliacion_cobertura_corpus.md). Esto corresponde a M/S del notebook 10,
+Esto corresponde a M/S del notebook 10,
 separado del factorial A4 y de su evaluación Gold descritos arriba.
-
-Véase [flujo integrado, corpus y pruebas](docs/notas/flujo_integrado_ms.md),
-[despliegue y rollback](docs/notas/despliegue_cientifico_aws.md) y
-[lista de seguimiento](docs/notas/plan_integracion_cientifica_ms.md).
 
 La búsqueda semántica sustituye TF-IDF en la portada y en las rutas públicas de
 recomendación. Es una extensión experimental; los checkpoints M/S clasifican la
-función de cita después. Véase [diseño y verificación de SciBERT](docs/notas/busqueda_semantica_scibert.md).
+función de cita después.
