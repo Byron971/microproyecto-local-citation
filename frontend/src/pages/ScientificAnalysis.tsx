@@ -1,5 +1,16 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { ApiError, errorMessage, request, analyzeArticle } from '../api';
+import {
+  ApiError,
+  errorMessage,
+  request,
+  startAnalysisJob,
+  followAnalysisJob,
+  readAnalysisJob,
+  cancelAnalysisJob,
+  newIdempotencyKey,
+  type AnalysisJob,
+  type JobState,
+} from '../api';
 import { ScientificResults, type Respuesta } from '../components/ScientificResults';
 import catalog from '../articleCatalog.json';
 import fullCatalogUrl from '../fullArticleCatalog.json?url';
@@ -32,6 +43,50 @@ type Coverage = {
   truncation?: TruncationInfo;
 };
 
+type Variant = 'M' | 'S' | 'commercial';
+// Seguimiento recuperable tras recargar: solo en esta pestaña (sessionStorage).
+const STORAGE_KEY = 'citas.analisisMS';
+type StoredJob = {
+  trabajo_id: string;
+  texto: string;
+  span?: CitationSpan;
+  paper_id: string;
+  variante: Variant;
+  version?: string;
+};
+function saveJob(job: StoredJob) {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(job));
+  } catch {
+    /* Sin almacenamiento: el análisis sigue, pero no se recupera al recargar. */
+  }
+}
+function loadJob(): StoredJob | undefined {
+  try {
+    const job = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
+    if (
+      job &&
+      /^[a-f0-9]{32}$/.test(job.trabajo_id) &&
+      typeof job.texto === 'string' &&
+      typeof job.paper_id === 'string' &&
+      ['M', 'S', 'commercial'].includes(job.variante)
+    )
+      return job;
+  } catch {
+    /* Entrada dañada: se ignora. */
+  }
+  clearJob();
+  return undefined;
+}
+function clearJob() {
+  try {
+    sessionStorage.removeItem(STORAGE_KEY);
+  } catch {
+    /* Nada que borrar. */
+  }
+}
+type Tracking = { id: string; estado: JobState; reintentando?: boolean };
+
 export function ScientificAnalysis() {
   const [articles, setArticles] = useState<PreparedArticle[]>(catalog.articulos);
   const [articleCatalogVersion, setArticleCatalogVersion] = useState<string>();
@@ -40,7 +95,7 @@ export function ScientificAnalysis() {
   const [text, setText] = useState('');
   const [chosenSpan, setChosenSpan] = useState<CitationSpan>();
   const [paperId, setPaperId] = useState('');
-  const [variant, setVariant] = useState<'M' | 'S' | 'commercial'>('M');
+  const [variant, setVariant] = useState<Variant>('M');
   const [commercialAvailable, setCommercialAvailable] = useState(false);
   const [catalogStatus, setCatalogStatus] = useState<'checking' | 'ready' | 'error'>('checking');
   const [catalogRetry, setCatalogRetry] = useState(0);
@@ -57,6 +112,10 @@ export function ScientificAnalysis() {
   const [articleReset, setArticleReset] = useState(0);
   const [searchingArticles, setSearchingArticles] = useState(false);
   const [phase, setPhase] = useState<'retrieving' | 'classifying'>('retrieving');
+  const [tracking, setTracking] = useState<Tracking>();
+  const [cancelling, setCancelling] = useState(false);
+  const [cancelNotice, setCancelNotice] = useState('');
+  const starting = useRef(false);
   const [duration, setDuration] = useState<number>();
   const [step, setStep] = useState(0);
   const [completed, setCompleted] = useState(false);
@@ -235,6 +294,9 @@ export function ScientificAnalysis() {
     setCompleted(false);
     setCompletedSteps(Math.min(step, 2));
     active.current?.abort();
+    clearJob();
+    setTracking(undefined);
+    setCancelNotice('');
     setLoading(false);
     setResult(undefined);
     setCommercialResult(undefined);
@@ -271,9 +333,9 @@ export function ScientificAnalysis() {
     resetWorkflow();
     setChosenSpan({ start, end, label });
   }
-  async function run(event: FormEvent) {
-    event.preventDefault();
-    if (loading || step !== 2) return;
+  async function run(event?: FormEvent) {
+    event?.preventDefault();
+    if (loading || step < 2) return;
     if (!context.trim() || context.replaceAll('TARGETCIT', '').trim() === '') {
       reportError('Escribe un contexto académico en inglés.', 'citation-context');
       return;
@@ -301,10 +363,14 @@ export function ScientificAnalysis() {
       reportError('Confirma el envío del texto a OpenAI antes de analizar.', 'commercial-consent');
       return;
     }
+    if (starting.current) return; // Doble clic: un único POST.
+    starting.current = true;
     active.current?.abort();
     setResult(undefined);
     setCommercialResult(undefined);
     setError('');
+    setCancelNotice('');
+    setTracking(undefined);
     const controller = new AbortController();
     active.current = controller;
     setLoading(true);
@@ -315,69 +381,195 @@ export function ScientificAnalysis() {
     setPhase('retrieving');
     setDuration(undefined);
     const started = performance.now();
+    const options = { paperId, version: coverage?.version, variant, context, restored: false };
+    let admitted = false;
     try {
-      const data = await analyzeArticle<Analysis>(context, paperId, controller.signal);
+      const job = await startAnalysisJob<Analysis>(
+        context,
+        paperId,
+        newIdempotencyKey(),
+        controller.signal,
+      );
+      admitted = true;
       if (controller.signal.aborted) return;
-      if (
-        data.articulo?.paper_id !== paperId ||
-        data.articulo?.version_contenido !== coverage?.version ||
-        data.top3?.length !== 3 ||
-        new Set(data.top3.map((chunk) => chunk.chunk_id)).size !== 3 ||
-        data.clasificadores?.M?.probabilidades?.length !== 9 ||
-        data.clasificadores?.S?.probabilidades?.length !== 9
-      ) {
-        throw new ApiError(
-          'El análisis está incompleto o corresponde a otro artículo. Vuelve a intentarlo.',
-          502,
-        );
-      }
-      setResult(data);
-      setStep(3);
-      setCompletedSteps(3);
-      if (variant === 'commercial') {
-        setPhase('classifying');
-        const commercial = await request<CommercialClassification>('/api/comercial/clasificar', {
-          method: 'POST',
-          signal: controller.signal,
-          body: JSON.stringify({ contexto: context, paper_id: paperId, consentimiento: consent }),
-        });
-        if (controller.signal.aborted) return;
-        if (
-          commercial.paper_id !== paperId ||
-          commercial.version_contenido !== data.articulo.version_contenido ||
-          commercial.modelo_solicitado !== 'gpt-6.1-sol' ||
-          !commercial.modelo_efectivo ||
-          commercial.puntuaciones?.length !== 9 ||
-          new Set(commercial.puntuaciones.map((p) => p.clase)).size !== 9 ||
-          commercial.puntuaciones.some(
-            (p) => !Number.isFinite(p.valor) || p.valor < 0 || p.valor > 1,
-          ) ||
-          (commercial.clase !== null &&
-            !commercial.puntuaciones.some((p) => p.clase === commercial.clase))
-        ) {
-          throw new ApiError(
-            'La clasificación comercial está incompleta. Los fragmentos se conservan.',
-            502,
-          );
-        }
-        setCommercialResult(commercial);
-      }
-      setCompleted(true);
-      setCompletedSteps(4);
+      saveJob({
+        trabajo_id: job.trabajo_id,
+        texto: text,
+        span: chosenSpan,
+        paper_id: paperId,
+        variante: variant,
+        version: coverage?.version,
+      });
+      await finish(job, controller, options);
     } catch (err) {
-      if (!controller.signal.aborted) {
-        if (err instanceof ApiError && err.status === 404)
-          setCoverage({ paperId, status: 'missing' });
-        setErrorField('analysis-error');
-        setError(errorMessage(err));
-      }
+      // Un 404 de la admisión indica que el artículo ya no tiene texto preparado.
+      if (!admitted && err instanceof ApiError && err.status === 404 && !controller.signal.aborted)
+        setCoverage({ paperId, status: 'missing' });
+      fail(err, controller);
     } finally {
+      starting.current = false;
       if (!controller.signal.aborted) {
         setDuration((performance.now() - started) / 1000);
         setLoading(false);
       }
     }
   }
+  function fail(err: unknown, controller: AbortController) {
+    if (controller.signal.aborted) return;
+    setErrorField('analysis-error');
+    setError(errorMessage(err));
+  }
+  async function finish(
+    job: AnalysisJob<Analysis>,
+    controller: AbortController,
+    options: {
+      paperId: string;
+      version?: string;
+      variant: Variant;
+      context: string;
+      restored: boolean;
+    },
+  ) {
+    const track = (next: AnalysisJob<Analysis>) =>
+      setTracking({ id: next.trabajo_id, estado: next.estado, reintentando: next.reintentando });
+    track(job);
+    const final = await followAnalysisJob(job, controller.signal, track);
+    if (controller.signal.aborted) return;
+    if (final.estado !== 'completado')
+      throw new ApiError(
+        final.estado === 'cancelado'
+          ? 'Cancelaste el análisis antes de que empezara. Tu contexto y la selección se conservan.'
+          : (final.error?.mensaje ?? 'No se pudo completar el análisis científico.'),
+        409,
+      );
+    const data = final.resultado!;
+    if (
+      data.articulo?.paper_id !== options.paperId ||
+      (options.version !== undefined && data.articulo?.version_contenido !== options.version) ||
+      data.top3?.length !== 3 ||
+      new Set(data.top3.map((chunk) => chunk.chunk_id)).size !== 3 ||
+      data.clasificadores?.M?.probabilidades?.length !== 9 ||
+      data.clasificadores?.S?.probabilidades?.length !== 9
+    ) {
+      throw new ApiError(
+        'El análisis está incompleto o corresponde a otro artículo. Vuelve a intentarlo.',
+        502,
+      );
+    }
+    setResult(data);
+    setStep(3);
+    setCompletedSteps(3);
+    if (options.variant === 'commercial') {
+      if (options.restored) {
+        // Nunca reenviar al proveedor comercial por una recarga: evita cobros duplicados.
+        setErrorField('analysis-error');
+        setError(
+          'Recuperamos los fragmentos. La clasificación comercial no se repitió al recargar la página; vuelve al clasificador para solicitarla.',
+        );
+        return;
+      }
+      setPhase('classifying');
+      const commercial = await request<CommercialClassification>('/api/comercial/clasificar', {
+        method: 'POST',
+        signal: controller.signal,
+        body: JSON.stringify({
+          contexto: options.context,
+          paper_id: options.paperId,
+          consentimiento: consent,
+        }),
+      });
+      if (controller.signal.aborted) return;
+      if (
+        commercial.paper_id !== options.paperId ||
+        commercial.version_contenido !== data.articulo.version_contenido ||
+        commercial.modelo_solicitado !== 'gpt-6.1-sol' ||
+        !commercial.modelo_efectivo ||
+        commercial.puntuaciones?.length !== 9 ||
+        new Set(commercial.puntuaciones.map((p) => p.clase)).size !== 9 ||
+        commercial.puntuaciones.some(
+          (p) => !Number.isFinite(p.valor) || p.valor < 0 || p.valor > 1,
+        ) ||
+        (commercial.clase !== null &&
+          !commercial.puntuaciones.some((p) => p.clase === commercial.clase))
+      ) {
+        throw new ApiError(
+          'La clasificación comercial está incompleta. Los fragmentos se conservan.',
+          502,
+        );
+      }
+      setCommercialResult(commercial);
+    }
+    setCompleted(true);
+    setCompletedSteps(4);
+  }
+  async function cancel() {
+    if (!tracking || cancelling) return;
+    setCancelling(true);
+    setCancelNotice('');
+    try {
+      await cancelAnalysisJob(tracking.id);
+      setCancelNotice('Cancelación registrada. Se confirmará en unos segundos.');
+    } catch (err) {
+      setCancelNotice(errorMessage(err));
+    } finally {
+      setCancelling(false);
+    }
+  }
+  // Retomar un análisis de esta pestaña tras recargar: solo consulta, nunca otro POST.
+  useEffect(() => {
+    const stored = loadJob();
+    if (!stored) return;
+    setText(stored.texto);
+    setChosenSpan(stored.span);
+    setPaperId(stored.paper_id);
+    setVariant(stored.variante);
+    setCompletedSteps(3);
+    setStep(3);
+    setLoading(true);
+    setPhase('retrieving');
+    const controller = new AbortController();
+    active.current = controller;
+    readAnalysisJob<Analysis>(stored.trabajo_id, controller.signal)
+      .then((job) =>
+        finish(job, controller, {
+          paperId: stored.paper_id,
+          version: stored.version,
+          variant: stored.variante,
+          context: '',
+          restored: true,
+        }),
+      )
+      .catch((err) => {
+        if (err instanceof ApiError && err.status === 404) clearJob();
+        fail(err, controller);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
+    // Solo al montar: retoma el trabajo guardado una vez.
+  }, []);
+  const queued = tracking?.estado === 'en_cola' && !tracking.reintentando;
+  const loadingTitle =
+    phase === 'classifying'
+      ? 'Clasificando la función de la cita…'
+      : tracking?.reintentando
+        ? 'Reanudando el análisis…'
+        : queued
+          ? 'En cola'
+          : tracking?.estado === 'procesando'
+            ? 'Calculando los resultados…'
+            : 'Enviando el análisis…';
+  const loadingDetail =
+    phase === 'classifying'
+      ? 'Los tres fragmentos ya están disponibles. Esperando la clasificación de OpenAI.'
+      : tracking?.reintentando
+        ? 'El servicio se reinició durante el cálculo. Se volverá a calcular automáticamente una vez.'
+        : queued
+          ? 'Hay otro análisis en curso. El tuyo empezará cuando termine.'
+          : tracking?.estado === 'procesando'
+            ? 'Buscamos los tres fragmentos del artículo y calculamos la clasificación.'
+            : 'Registrando la solicitud en el servicio científico.';
   return (
     <div className="scientific-page">
       <div className="page-intro">
@@ -690,24 +882,40 @@ export function ScientificAnalysis() {
             Resultados
           </h2>
           {loading && (
-            <div className="results-loading" role="status" aria-atomic="true">
-              <span className="analysis-spinner" aria-hidden="true" />
-              <div>
-                <h3>
-                  {phase === 'retrieving'
-                    ? 'Calculando los resultados…'
-                    : 'Clasificando la función de la cita…'}
-                </h3>
-                <p>
-                  {phase === 'retrieving'
-                    ? 'Buscamos los tres fragmentos del artículo y calculamos la clasificación.'
-                    : 'Los tres fragmentos ya están disponibles. Esperando la clasificación de OpenAI.'}
-                </p>
-                <p className="field-help">
-                  Mantén esta página abierta mientras termina el análisis.
-                </p>
+            <>
+              {/* Solo cambia el texto al cambiar de estado: el polling no genera anuncios. */}
+              <div className="results-loading" role="status" aria-atomic="true">
+                <span className="analysis-spinner" aria-hidden="true" />
+                <div>
+                  <h3>{loadingTitle}</h3>
+                  <p>{loadingDetail}</p>
+                  <p className="field-help">
+                    Si recargas esta página, el seguimiento continúa; no hace falta reenviar el
+                    análisis.
+                  </p>
+                </div>
               </div>
-            </div>
+              {queued && (
+                <div className="result-actions">
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    disabled={cancelling}
+                    onClick={() => void cancel()}
+                  >
+                    {cancelling ? 'Cancelando…' : 'Cancelar análisis'}
+                  </button>
+                  <p className="field-help" aria-live="polite">
+                    {cancelNotice || 'Solo puede cancelarse mientras espera en la cola.'}
+                  </p>
+                </div>
+              )}
+              {!queued && cancelNotice && (
+                <p className="field-help" aria-live="polite">
+                  {cancelNotice}
+                </p>
+              )}
+            </>
           )}
           {error && (
             <p id="analysis-error" tabIndex={-1} role="alert" className="error-message">
@@ -716,6 +924,11 @@ export function ScientificAnalysis() {
           )}
           {!result && !loading && error && (
             <div className="result-actions">
+              {coverageStatus === 'available' && (
+                <button type="button" className="primary" onClick={() => void run()}>
+                  Volver a intentar
+                </button>
+              )}
               <button
                 type="button"
                 className="secondary-button"
@@ -724,7 +937,8 @@ export function ScientificAnalysis() {
                 {coverageStatus === 'available' ? 'Volver al clasificador' : 'Revisar artículo'}
               </button>
               <p className="field-help">
-                Tu contexto y la selección se conservan. No se reintentó el análisis.
+                Tu contexto y la selección se conservan. El análisis solo se repite si pulsas
+                «Volver a intentar».
               </p>
             </div>
           )}

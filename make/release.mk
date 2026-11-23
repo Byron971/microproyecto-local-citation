@@ -80,3 +80,8 @@ corpus-catalog:
 .PHONY: corpus-extract
 corpus-extract:
 	$(or $(PYTHON),python3) scripts/descargar_corpus_git.py --source "$(CORPUS_SOURCE_DIR)"
+
+# Cola duradera M/S: comprobación real sin inferencia (ver scripts/comprobar_cola_ms.py).
+.PHONY: ms-queue-check
+ms-queue-check:
+	AWS_PROFILE=$(AWS_PROFILE) PYTHONPATH=. .venv/bin/python scripts/comprobar_cola_ms.py

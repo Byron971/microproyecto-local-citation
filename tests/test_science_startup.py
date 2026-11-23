@@ -18,6 +18,7 @@ def test_startup_without_global_index(monkeypatch):
             state = client.get('/api/analisis-cita-ms/estado').json()
             assert state['modelos_cargados'] is True
             assert state['busqueda_cientifica_disponible'] is False
+            assert state['cola_trabajos'] == 'memoria'  # Sin MS_JOBS_TABLE/MS_JOBS_QUEUE_URL.
             assert client.post('/api/analisis-cita-ms/recomendar',
                                json={'contexto': 'Earlier scientific work'}).status_code == 503
     assert app.state.modelos_cargados is False

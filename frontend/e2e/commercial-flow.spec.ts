@@ -1,6 +1,7 @@
 import { enterContext } from './context.helpers';
 import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
+import { completedJob, isAnalysisStart } from './analysis-job.helpers';
 
 const labels = [
   'Background',
@@ -37,7 +38,7 @@ for (const status of [200, 429, 502]) {
             articulos: [{ paper_id: 'W05-0821', disponible: true }],
           },
         });
-      } else if (path.endsWith('/articulo')) {
+      } else if (isAnalysisStart(path)) {
         calls.push('ms');
         const classifier = {
           clase: 'Background',
@@ -45,7 +46,7 @@ for (const status of [200, 429, 502]) {
           probabilidades: labels.map((clase) => ({ clase, probabilidad: 0.1 })),
         };
         await route.fulfill({
-          json: {
+          json: completedJob({
             articulo: {
               paper_id: 'W05-0821',
               titulo: 'Public article',
@@ -59,7 +60,7 @@ for (const status of [200, 429, 502]) {
               similitud_coseno: 0.5,
             })),
             clasificadores: { M: classifier, S: classifier },
-          },
+          }),
         });
       } else if (path === '/api/comercial/clasificar') {
         calls.push('commercial');

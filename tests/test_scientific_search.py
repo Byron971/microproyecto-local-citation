@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 import threading
+import time
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -68,7 +69,8 @@ def test_api_science_catalog_and_no_silent_fallback(tmp_path):
         assert client.post('/api/analisis-cita-ms/recomendar', json=payload).status_code == status
 
 
-def test_search_rejects_concurrent_inference(tmp_path):
+def test_search_waits_briefly_then_rejects_concurrent_inference(tmp_path, monkeypatch):
+    monkeypatch.setenv('MS_SUGERENCIAS_ESPERA_S', '0.2')
     app = FastAPI(); app.include_router(router); app.state.article_search = make_index(tmp_path)
     started, release = threading.Event(), threading.Event()
     def hold():
@@ -79,8 +81,25 @@ def test_search_rejects_concurrent_inference(tmp_path):
         assert started.wait(2)
         response = TestClient(app).post('/api/analisis-cita-ms/recomendar', json={'contexto': 'scientific query'})
         assert response.status_code == 429 and response.headers['Retry-After'] == '5'
+        assert 'elige el artículo manualmente' in response.json()['detail']
     finally:
         release.set(); thread.join(2)
+
+
+def test_search_runs_when_inference_stage_ends_within_wait(tmp_path, monkeypatch):
+    monkeypatch.setenv('MS_SUGERENCIAS_ESPERA_S', '3')
+    app = FastAPI(); app.include_router(router); app.state.article_search = make_index(tmp_path)
+    started = threading.Event()
+    def stage():
+        with LOCK:
+            started.set(); time.sleep(.3)  # Una etapa M/S breve.
+    thread = threading.Thread(target=stage); thread.start()
+    try:
+        assert started.wait(2)
+        response = TestClient(app).post('/api/analisis-cita-ms/recomendar', json={'contexto': 'scientific query'})
+        assert response.status_code == 200
+    finally:
+        thread.join(2)
 
 
 def test_public_default_routes_use_scibert(tmp_path, monkeypatch):

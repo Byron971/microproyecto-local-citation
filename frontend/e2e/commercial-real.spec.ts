@@ -20,8 +20,11 @@ test('contexto sintético con GPT real, consentimiento y Top-3', async ({ page }
   await expect(page.getByRole('alert')).toContainText('Confirma el envío');
   await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
   const fragmentsPromise = page.waitForResponse(
-    (r) => r.url().endsWith('/api/analisis-cita-ms/articulo'),
-    { timeout: 60000 },
+    async (r) =>
+      /\/api\/analisis-cita-ms\/trabajos\/[a-f0-9]{32}$/.test(new URL(r.url()).pathname) &&
+      r.status() === 200 &&
+      (await r.json()).estado === 'completado',
+    { timeout: 300000 },
   );
   const commercialPromise = page.waitForResponse(
     (r) => r.url().endsWith('/api/comercial/clasificar'),
@@ -30,7 +33,7 @@ test('contexto sintético con GPT real, consentimiento y Top-3', async ({ page }
   await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
   const fragmentsResponse = await fragmentsPromise;
   expect(fragmentsResponse.status()).toBe(200);
-  const fragments = await fragmentsResponse.json();
+  const fragments = (await fragmentsResponse.json()).resultado;
   expect(fragments.top3).toHaveLength(3);
   for (const chunk of fragments.top3) {
     expect(

@@ -14,7 +14,7 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
   page.on('request', (request) => {
     if (request.url().endsWith('/api/analisis-cita-ms/recomendar')) suggestions++;
     if (
-      request.url().endsWith('/api/analisis-cita-ms/articulo') ||
+      request.url().includes('/api/analisis-cita-ms/trabajos') ||
       request.url().endsWith('/api/comercial/clasificar')
     )
       analyses++;

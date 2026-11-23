@@ -1,6 +1,7 @@
 import { enterContext } from './context.helpers';
 import { test, expect } from '@playwright/test';
 import { chooseArticle, suggestionResponse } from './article-picker.helpers';
+import { completedJob, isAnalysisStart } from './analysis-job.helpers';
 
 for (const variant of ['M', 'S']) {
   test(`resultados muestran espera inmediata y conservan numeración: ${variant}`, async ({
@@ -30,11 +31,11 @@ for (const variant of ['M', 'S']) {
             articulos: [{ paper_id: 'W05-0821', disponible: true }],
           },
         });
-      if (path.endsWith('/articulo')) {
+      if (isAnalysisStart(path)) {
         calls++;
         await pending;
         return route.fulfill({
-          json: {
+          json: completedJob({
             articulo: { paper_id: 'W05-0821', titulo: 'Public article', version_contenido: 'v1' },
             top3: [1, 2, 3].map((i) => ({
               chunk_id: `p${i}`,
@@ -43,7 +44,7 @@ for (const variant of ['M', 'S']) {
               similitud_coseno: 0.5,
             })),
             clasificadores: { M: classifier, S: classifier },
-          },
+          }),
         });
       }
       return route.abort();
@@ -65,7 +66,8 @@ for (const variant of ['M', 'S']) {
     await expect(page.locator('#classifier-step')).toBeHidden();
     await expect(page.locator('#workflow-title-3')).toBeFocused();
     await expect(
-      page.getByRole('status').filter({ hasText: 'Calculando los resultados' }),
+      // Antes de que el servidor confirme la admisión no se afirma cola ni cálculo.
+      page.getByRole('status').filter({ hasText: 'Enviando el análisis' }),
     ).toBeVisible();
     await expect(page.locator('.workflow-progress .step-complete')).toHaveCount(3);
     await expect(page.getByText('Análisis completado', { exact: true })).toHaveCount(0);

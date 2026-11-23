@@ -73,48 +73,127 @@ export function errorMessage(error: unknown): string {
   return 'No se pudo conectar con el servidor. Comprueba la conexión e inténtalo de nuevo.';
 }
 
-// One POST starts one analysis. GETs only observe that execution, never retry it.
-export async function analyzeArticle<T>(
+export type JobState =
+  'en_cola' | 'procesando' | 'completado' | 'fallido' | 'expirado' | 'cancelado';
+export interface AnalysisJob<T> {
+  trabajo_id: string;
+  estado: JobState;
+  creado_en: number;
+  espera_maxima_s: number;
+  retencion_s: number;
+  reintentando?: boolean;
+  resultado?: T;
+  error?: { codigo: string; mensaje: string };
+}
+const STATES: JobState[] = [
+  'en_cola',
+  'procesando',
+  'completado',
+  'fallido',
+  'expirado',
+  'cancelado',
+];
+const JOB_ID = /^[a-f0-9]{32}$/;
+export const isTerminal = (state: JobState) => !['en_cola', 'procesando'].includes(state);
+
+export function newIdempotencyKey(): string {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+function checkJob<T>(job: AnalysisJob<T>, id?: string): AnalysisJob<T> {
+  if (
+    !job ||
+    !JOB_ID.test(job.trabajo_id) ||
+    (id !== undefined && job.trabajo_id !== id) ||
+    !STATES.includes(job.estado) ||
+    (job.estado === 'completado' && !job.resultado)
+  )
+    throw new ApiError('El servidor devolvió un estado de análisis inválido.', 502);
+  return job;
+}
+
+// One POST admits one analysis; the same key never starts a second one.
+export async function startAnalysisJob<T>(
   contexto: string,
   paper_id: string,
+  clave_idempotencia: string,
   signal: AbortSignal,
-): Promise<T> {
-  type Pending = { estado: 'procesando'; trabajo_id: string };
-  let result = await request<T | Pending>('/api/analisis-cita-ms/articulo', {
+): Promise<AnalysisJob<T>> {
+  const job = await request<AnalysisJob<T>>('/api/analisis-cita-ms/trabajos', {
     method: 'POST',
     signal,
-    body: JSON.stringify({ contexto, paper_id, asincrono: true }),
+    body: JSON.stringify({ contexto, paper_id, clave_idempotencia }),
   });
+  return checkJob(job);
+}
+
+export async function readAnalysisJob<T>(id: string, signal: AbortSignal): Promise<AnalysisJob<T>> {
+  if (!JOB_ID.test(id)) throw new ApiError('Identificador de análisis inválido.', 400);
+  return checkJob(
+    await request<AnalysisJob<T>>(`/api/analisis-cita-ms/trabajos/${id}`, { signal }),
+    id,
+  );
+}
+
+export async function cancelAnalysisJob(id: string): Promise<AnalysisJob<unknown>> {
+  const job = await request<AnalysisJob<unknown>>(`/api/analisis-cita-ms/trabajos/${id}/cancelar`, {
+    method: 'POST',
+  });
+  return checkJob(job, id);
+}
+
+function wait(ms: number, signal: AbortSignal) {
+  return new Promise<void>((resolve, reject) => {
+    const abort = () => {
+      clearTimeout(timer);
+      reject(new DOMException('Cancelado', 'AbortError'));
+    };
+    const timer = setTimeout(() => {
+      signal.removeEventListener('abort', abort);
+      resolve();
+    }, ms);
+    signal.addEventListener('abort', abort, { once: true });
+    if (signal.aborted) abort();
+  });
+}
+
+// A request timeout is transient; only the caller's own cancellation stops following.
+const transient = (error: unknown, signal: AbortSignal) =>
+  !signal.aborted && (!(error instanceof ApiError) || [429, 502, 503, 504].includes(error.status));
+
+// GETs only observe the job; transient read failures are retried, never the POST.
+export async function followAnalysisJob<T>(
+  initial: AnalysisJob<T>,
+  signal: AbortSignal,
+  onUpdate: (job: AnalysisJob<T>) => void,
+): Promise<AnalysisJob<T>> {
+  let job = checkJob(initial);
   const started = Date.now();
-  let id: string | undefined;
-  while (result && typeof result === 'object' && 'trabajo_id' in result) {
-    const pending = result as Pending;
-    if (
-      pending.estado !== 'procesando' ||
-      !/^[a-f0-9]{32}$/.test(pending.trabajo_id) ||
-      (id && id !== pending.trabajo_id)
-    )
-      throw new ApiError('El servidor devolvió un análisis pendiente inválido.', 502);
-    id = pending.trabajo_id;
-    if (Date.now() - started >= 180000)
+  // Server-side expiry is authoritative; this only bounds a client that cannot reach it.
+  const deadline = started + (job.espera_maxima_s + 600) * 1000;
+  let failures = 0;
+  while (!isTerminal(job.estado)) {
+    if (Date.now() >= deadline)
       throw new ApiError(
-        'El análisis tardó demasiado. Tu contexto se conserva; no se repitió la inferencia.',
+        'El análisis sigue pendiente. Tu contexto se conserva; recarga la página para consultarlo de nuevo.',
         504,
       );
-    await new Promise<void>((resolve, reject) => {
-      const abort = () => {
-        clearTimeout(timer);
-        signal.removeEventListener('abort', abort);
-        reject(new DOMException('Cancelado', 'AbortError'));
-      };
-      const timer = setTimeout(() => {
-        signal.removeEventListener('abort', abort);
-        resolve();
-      }, 1000);
-      signal.addEventListener('abort', abort, { once: true });
-      if (signal.aborted) abort();
-    });
-    result = await request<T | Pending>(`/api/analisis-cita-ms/articulo/${id}`, { signal });
+    await wait(Date.now() - started < 30000 ? 2000 : 5000, signal);
+    try {
+      const next = checkJob(
+        await request<AnalysisJob<T>>(`/api/analisis-cita-ms/trabajos/${job.trabajo_id}`, {
+          signal,
+        }),
+        job.trabajo_id,
+      );
+      failures = 0;
+      if (next.estado !== job.estado || next.reintentando !== job.reintentando) onUpdate(next);
+      job = next;
+    } catch (error) {
+      if (!transient(error, signal) || ++failures >= 5) throw error;
+    }
   }
-  return result as T;
+  return job;
 }

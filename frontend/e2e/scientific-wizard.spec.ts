@@ -1,6 +1,7 @@
 import { enterContext } from './context.helpers';
 import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
+import { completedJob, isAnalysisStart } from './analysis-job.helpers';
 
 test('bloquea etapas futuras, resalta la actual y conserva los datos al volver', async ({
   page,
@@ -77,7 +78,7 @@ for (const reset of ['context', 'dataset-example']) {
               .paper_ids.map((paper_id: string) => ({ paper_id, disponible: true })),
           },
         });
-      else if (path.endsWith('/articulo')) {
+      else if (isAnalysisStart(path)) {
         inferences++;
         const classifier = {
           clase: 'Application',
@@ -88,7 +89,7 @@ for (const reset of ['context', 'dataset-example']) {
           })),
         };
         await route.fulfill({
-          json: {
+          json: completedJob({
             articulo: {
               paper_id: 'W05-0821',
               titulo: 'Public article',
@@ -102,7 +103,7 @@ for (const reset of ['context', 'dataset-example']) {
               similitud_coseno: 0.5,
             })),
             clasificadores: { M: classifier, S: classifier },
-          },
+          }),
         });
       } else throw new Error('Inferencia inesperada');
     });
