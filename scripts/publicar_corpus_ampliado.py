@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import sqlite3
+import tempfile
 
 from src.app.corpus_store import IndexedCorpus
 from scripts.ampliar_cobertura_corpus import preparar_documento
@@ -33,6 +34,8 @@ def manifest_for(root, bucket):
             raise ValueError('Metadatos de catálogo distintos: '+pid)
     for number, pid in enumerate(store, 1):
         doc = store[pid]  # Validar también cada cuerpo, no solo metadatos.
+        if any(c.get('recortado') for c in doc['candidatos'][:-1]):
+            raise ValueError('El recorte no es un prefijo continuo: '+pid)
         raw_source = (root/'cache'/report['revision_ocl']/(pid+'.json')).read_bytes()
         if hashlib.sha256(raw_source).hexdigest() != doc['sha256_ocl'] or preparar_documento(pid, papers[pid], raw_source) != doc:
             raise ValueError('El artículo no coincide con sus párrafos/secciones de origen: '+pid)
@@ -52,20 +55,26 @@ def manifest_for(root, bucket):
 
 
 def publish(root, manifest, client):
+    from botocore.exceptions import ClientError
     bucket = manifest['bucket']; prefix=manifest['prefix']
     for item in manifest['files']:
         key=prefix+item['path']
         try:
-            remote=client.get_object(Bucket=bucket,Key=key)
-        except client.exceptions.NoSuchKey:
+            client.head_object(Bucket=bucket, Key=key)
+        except ClientError as exc:
+            if exc.response['Error']['Code'] not in ('404', 'NoSuchKey', 'NotFound'):
+                raise
+            print('Subiendo corpus...', flush=True)
             client.upload_file(str(root/Path(item['path']).name),bucket,key,ExtraArgs={'ServerSideEncryption':'AES256'})
-            remote=client.get_object(Bucket=bucket,Key=key)
-        digest=hashlib.sha256(); size=0
-        for chunk in remote['Body'].iter_chunks(1024*1024):
-            digest.update(chunk);size+=len(chunk)
-        remote['Body'].close()
-        if digest.hexdigest()!=item['sha256'] or size!=item['bytes']:
-            raise ValueError('El artefacto remoto no coincide con el inventario')
+        # SDK multipart download keeps the complete byte/hash check without a slow
+        # single stream; the temporary copy is removed on every outcome.
+        with tempfile.TemporaryDirectory(prefix='citas-corpus-verify-') as directory:
+            copy = Path(directory)/'corpus.sqlite'
+            print('Descargando copia remota para verificar todos sus bytes...', flush=True)
+            client.download_file(bucket,key,str(copy))
+            if sha256(copy)!=item['sha256'] or copy.stat().st_size!=item['bytes']:
+                raise ValueError('El artefacto remoto no coincide con el inventario')
+            print('SHA256 y tamaño remotos verificados.', flush=True)
     inventory={k:v for k,v in manifest.items() if k not in ['bucket','prefix']}
     key=prefix+'release.json'
     try:

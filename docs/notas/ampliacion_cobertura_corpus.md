@@ -42,6 +42,12 @@ make corpus-catalog PYTHON=.venv/bin/python
 
 La publicación del corpus usa el bucket y permisos existentes. La infraestructura y el despliegue de imágenes se mantienen bajo Terraform/Make; no crear ni sustituir recursos fuera de ese flujo. API y científico necesitan nuevas imágenes para leer el corpus indexado. Conservar punteros de reversión y detener la constructora al terminar.
 
+## Corrección del límite de caracteres
+
+La primera publicación operativa (`73aacdf`, corpus `corpus-ms-c2985eac4e952d4b`, API 6 / científico 7) superó salud, hashes y sincronización del HTML, pero todavía no constituía la aceptación pública final. La revisión posterior detectó 270 cuerpos en los que el espacio sobrante tras cortar una palabra podía incorporar caracteres de fragmentos siguientes. Se corrigió la preparación para detenerse al primer fragmento parcial. Una prueba reproduce el defecto sobre el código anterior y pasa con la corrección; el publicador comprueba de forma independiente que no existan fragmentos parciales intermedios. Se conservan la primera base, informe y confirmación en `artifacts/coverage_expansion/*73aacdf*`, y la release S3 anterior permanece inmutable.
+
+La nueva preparación mantiene 19.243 artículos y 508 recortados. Release corregida `corpus-ms-276bc4320e8e8411` (211.255.296 bytes), publicada y contrastada con descarga multipart completa y SHA256. La nueva auditoría reconstruye todos los cuerpos desde la fuente y conserva los 37 originales. Las pruebas comerciales con mocks usan explícitamente el corpus inicial versionado para no depender de una descarga externa ni del estado transitorio entre regeneración e inventario.
+
 ## Comprobaciones locales
 
 57 pruebas de API, corpus indexado, recorte, contratos y comercial con mocks; 14 de búsqueda científica, concurrencia y arranque. 38 pruebas unitarias frontend y 78 recorridos UI de escritorio/móvil aprobados; capturas revisadas en `artifacts/coverage-final-mocks/`. Comprobación local adicional con SciBERT/M/S en caché sobre `C80-1027`, recortado de 110 a 100 fragmentos: 7,235 s con dos hilos CPU y Top-3 contrastado con los textos retenidos. No es validación científica ni benchmark estadístico. No se hicieron llamadas comerciales reales.
@@ -52,7 +58,7 @@ La publicación del corpus usa el bucket y permisos existentes. La infraestructu
 - [x] Pruebas de contratos e integridad; dos inferencias locales acotadas con pesos en caché, textos contrastados y dos hilos CPU (1,157 s para 3 fragmentos; 11,846 s para 92). Son observaciones operativas, no un benchmark estadístico.
 - [x] Completar extracción de 19.599 JSON y preparación de los 19.776 IDs: 19.243 preparados, 508 con algún recorte; 177 sin archivo, 130 sin párrafos de texto completo y 226 con menos de tres fragmentos distintos. La auditoría exhaustiva previa a publicación reconstruye cada cuerpo desde su fuente.
 - [x] Publicar corpus privado `corpus-ms-c2985eac4e952d4b` (211.222.528 bytes), SHA256 remoto contrastado.
-- [ ] Actualizar las dos imágenes y el frontend.
+- [ ] Completar la publicación corregida y su aceptación pública.
 - [ ] Verificar recorridos públicos, capturas de escritorio/móvil, salud y constructora detenida.
 
 T04 sigue pendiente por cuota; T05–T06 suspendidas; T07–T09 disponibles para M/S/comercial con familia abierta suspendida; T10 parcial; T11 requiere la aceptación pública de esta ampliación; T12 y cierre final de T13 pendientes. No se declara completo el proyecto de tres familias.

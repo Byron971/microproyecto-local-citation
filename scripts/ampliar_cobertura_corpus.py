@@ -75,6 +75,8 @@ def preparar_documento(pid, meta, raw, recortar=True):
             if text != original['texto']:
                 chunk['recortado'] = True
             chunks.append(chunk); budget -= len(text)
+            if chunk.get('recortado'):
+                break  # Never skip the remainder to append letters from later paragraphs.
     if len(chunks) < 3:
         raise ValueError('El presupuesto no permite tres fragmentos')
     result = dict(paper_id=pid, titulo=title, abstract=abstract, candidatos=chunks,

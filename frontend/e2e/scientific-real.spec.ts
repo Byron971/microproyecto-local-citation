@@ -7,21 +7,23 @@ import fullCatalog from '../src/fullArticleCatalog.json' with { type: 'json' };
 import initialCatalog from '../src/articleCatalog.json' with { type: 'json' };
 
 test.skip(!process.env.LIVE_SCIENCE_E2E, 'Requiere un servicio M/S disponible.');
-for (const scenario of ['initial', 'expanded', 'truncated'] as const) {
+for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_characters'] as const) {
   test(`${scenario}: completa el flujo con M/S real y textos del artículo`, async ({
     page,
   }, testInfo) => {
     test.setTimeout(90000);
     const manifest = JSON.parse(fs.readFileSync('../config/corpus_release.json', 'utf8'));
     const paperId =
-      scenario === 'truncated'
-        ? manifest.ejemplos_recortados[0]
-        : scenario === 'initial'
-          ? 'W05-0821'
-          : fullCatalog.articulos.find(
-              (a) =>
-                a.preparado && !initialCatalog.articulos.some((p) => p.paper_id === a.paper_id),
-            )!.paper_id;
+      scenario === 'truncated_characters'
+        ? manifest.ejemplos_recortados[4]
+        : scenario === 'truncated'
+          ? manifest.ejemplos_recortados[0]
+          : scenario === 'initial'
+            ? 'W05-0821'
+            : fullCatalog.articulos.find(
+                (a) =>
+                  a.preparado && !initialCatalog.articulos.some((p) => p.paper_id === a.paper_id),
+              )!.paper_id;
     const repo = path.resolve('..');
     const article = JSON.parse(
       execFileSync(
@@ -64,8 +66,18 @@ for (const scenario of ['initial', 'expanded', 'truncated'] as const) {
     expect(response.status()).toBe(200);
     const data = await response.json();
     expect(data.articulo.paper_id).toBe(paperId);
-    if (scenario === 'truncated') {
+    if (scenario.startsWith('truncated')) {
       expect(data.articulo.truncamiento.aplicado).toBe(true);
+      expect(data.articulo.total_fragmentos).toBeLessThanOrEqual(100);
+      expect(data.articulo.truncamiento.caracteres_analizados).toBeLessThanOrEqual(56000);
+      if (scenario === 'truncated_characters') {
+        expect(data.articulo.truncamiento.caracteres_originales).toBeGreaterThan(56000);
+        expect(data.articulo.truncamiento.caracteres_analizados).toBeGreaterThan(55000);
+        expect(article.candidatos.filter((c: { recortado?: boolean }) => c.recortado)).toHaveLength(
+          1,
+        );
+        expect(article.candidatos.at(-1).recortado).toBe(true);
+      }
       await expect(page.getByText(/Análisis limitado a/)).toBeVisible();
     }
     expect(data.top3).toHaveLength(3);
@@ -102,6 +114,7 @@ for (const scenario of ['initial', 'expanded', 'truncated'] as const) {
             ok: true,
             paper_id: data.articulo.paper_id,
             version_contenido: data.articulo.version_contenido,
+            truncamiento: data.articulo.truncamiento,
             top3_ids: data.top3.map((chunk: { chunk_id: string }) => chunk.chunk_id),
             clases: { M: data.clasificadores.M.clase, S: data.clasificadores.S.clase },
             textos_verificados_con_corpus: true,

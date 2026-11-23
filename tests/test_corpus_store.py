@@ -105,6 +105,7 @@ def test_character_budget_includes_metadata_and_retains_source_prefix():
     assert 55000 < size <= 56000 and cut['caracteres_analizados'] == size
     assert cut['caracteres_originales'] > 56000
     assert doc['candidatos'][-1]['recortado'] is True
+    assert [i for i,c in enumerate(doc['candidatos']) if c.get('recortado')] == [len(doc['candidatos'])-1]
     for i, chunk in enumerate(doc['candidatos']):
         assert source['pdf_parse']['body_text'][i]['text'].startswith(chunk['texto'])
 

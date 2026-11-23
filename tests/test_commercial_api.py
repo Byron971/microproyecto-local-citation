@@ -1,5 +1,6 @@
 import json
 from contextlib import nullcontext
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock
 
@@ -15,6 +16,8 @@ from src.evaluation.commercial.schema import ProviderResponse
 def client(monkeypatch):
     app = FastAPI()
     app.include_router(commercial.router)
+    # Contract tests use the committed bootstrap corpus, never a downloaded release.
+    monkeypatch.setenv('MS_CORPUS_PATH', str(Path(__file__).resolve().parents[1] / 'config/corpus_ms.json'))
     monkeypatch.setenv('CITAS_COMMERCIAL_ENABLED', '1')
     monkeypatch.setenv('CITAS_COMMERCIAL_VISIBLE', '1')
     monkeypatch.setenv('OPENAI_API_KEY', 'fake-unit-key')

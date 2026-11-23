@@ -1,7 +1,7 @@
 {
   "fuente": "ACL-200",
   "particion": "val",
-  "version_contenido": "a69bd67a9892433e3b4d1c81099a4d768abeff7032a0a087f314a2a7a01aac5a",
+  "version_contenido": "1f496d7b681b0852d927462f7b24a854189f37535e58d598cc131f435146b55d",
   "sha256_fuentes": {
     "contexts": "4725714f53cd6e1f2efca883761dc252ac19be1489b699f4d14d1e7b9dcc3a73",
     "train": "62d670079b8ea1d4654d45d18c3a3e028a94732189acb54bc1b2350984ad9dae",

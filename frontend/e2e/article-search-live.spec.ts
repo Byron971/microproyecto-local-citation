@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import { test, expect } from '@playwright/test';
 import fullCatalog from '../src/fullArticleCatalog.json' with { type: 'json' };
 import prepared from '../src/articleCatalog.json' with { type: 'json' };
@@ -8,6 +9,16 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
   page,
 }, info) => {
   test.setTimeout(90000);
+  let suggestions = 0;
+  let analyses = 0;
+  page.on('request', (request) => {
+    if (request.url().endsWith('/api/analisis-cita-ms/recomendar')) suggestions++;
+    if (
+      request.url().endsWith('/api/analisis-cita-ms/articulo') ||
+      request.url().endsWith('/api/comercial/clasificar')
+    )
+      analyses++;
+  });
   await page.goto('/');
   await page
     .getByLabel('Contexto en inglés')
@@ -31,6 +42,27 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
   expect(data.recomendaciones.every((a: { paper_id: string }) => known.has(a.paper_id))).toBe(true);
   await expect(page.getByRole('heading', { name: 'Sugeridos según tu contexto' })).toBeVisible();
   await expect(selectedArticle(page)).toHaveCount(0);
+  expect(suggestions).toBe(1);
+  await expect(page.getByRole('button', { name: 'Sugerir según mi contexto' })).toHaveCount(0);
+  const source = JSON.parse(fs.readFileSync('../artifacts/scientific_search/papers.json', 'utf8'));
+  for (const candidate of data.recomendaciones) {
+    const original = source.find((a: { paper_id: string }) => a.paper_id === candidate.paper_id);
+    expect(candidate.titulo).toBe(original.titulo);
+    expect(candidate.resumen).toBe(original.resumen);
+  }
+  fs.writeFileSync(
+    info.outputPath('sugerencias-reales.json'),
+    JSON.stringify(
+      {
+        ...data,
+        metadatos_contrastados: true,
+        sugerencia_automatica: true,
+        seleccion_manual_requerida: true,
+      },
+      null,
+      2,
+    ),
+  );
   await page.screenshot({ path: info.outputPath('sugerencias-reales.png'), fullPage: true });
   await page
     .getByRole('button', { name: /Seleccionar artículo:/ })
@@ -47,6 +79,8 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: clasificador' }).click();
   await expect(page.getByLabel('Familia y modelo', { exact: true })).toBeVisible();
+  expect(suggestions).toBe(1);
+  expect(analyses).toBe(0);
   await expect(page.locator('body')).toHaveJSProperty(
     'scrollWidth',
     await page.locator('body').evaluate((e) => e.clientWidth),
