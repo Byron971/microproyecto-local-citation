@@ -18,7 +18,9 @@ Los seis casos específicos M/S/comercial verifican resumen, tabla, enlace/foco 
 
 ## Publicación
 
-Pendiente de comprobar y registrar tras publicar exclusivamente el frontend. Las comprobaciones locales no prueban el estado público ni la calidad científica.
+Publicado únicamente el frontend del commit `d8ac7d6` mediante `make publish-frontend`, con outputs actualizados y verificados desde `make release-status`. `make release-confirm` comprobó servicios estables, imágenes previstas, salud HTTP, identidad del corpus y HTML público idéntico al build. SHA256 de `index.html`: `9ecbe806e575de98508b0e6ddc6e9fb08de21735293e3e55cb90fa09c4349563`. API conservada en `citas-api:7`; científico en `citas-api-science:9`. No se construyeron imágenes backend ni se encendió la constructora.
+
+Los seis recorridos M/S/comercial de escritorio/móvil aprobaron sobre la web publicada, con respuestas API simuladas. Se revisaron capturas públicas del panel en escritorio/móvil; se conservan las capturas de puntuación, ayuda y detalles técnicos abiertos. Esto comprueba UI e interacción del bundle público; no es una nueva ejecución ni aceptación científica o comercial real. No se consumió cuota de inferencia. Evidencia: `artifacts/friendly-details-public-mocks/`, incluida copia de la confirmación de despliegue.
 
 ## Checklist
 
@@ -26,7 +28,7 @@ Pendiente de comprobar y registrar tras publicar exclusivamente el frontend. Las
 - [x] Tabla de fragmentos, secciones y similitudes con enlaces internos.
 - [x] Recorte y datos del proveedor conservados; metadatos avanzados plegados.
 - [x] Teclado, capturas escritorio/móvil y regresión local con mocks.
-- [ ] Publicación frontend y comprobación del HTML y servicios actuales.
-- [ ] Recorridos de la UI publicada con mocks y capturas revisadas.
+- [x] Publicación frontend y comprobación del HTML y servicios actuales.
+- [x] Recorridos de la UI publicada con mocks y capturas revisadas.
 
 El estado general continúa parcial: T01–T03 disponibles; T04 pendiente de cuota; T05–T06 suspendidas por QLoRA; T07–T09 disponibles para M/S y comercial, familia abierta suspendida; T10 parcial; T11 conserva la aceptación real anterior; T12 migración/retirada pendiente, sin retirar ECS; T13 notas actualizadas y cierre final pendiente. Esta mejora no acredita validación científica adicional.
