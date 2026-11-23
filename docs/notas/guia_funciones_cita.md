@@ -20,13 +20,15 @@ Los seis recorridos M/S/comercial aprobaron en escritorio/móvil. Capturas del g
 
 ## Publicación y checklist
 
-Pendiente de publicación y comprobación pública. Las pruebas locales no sustituyen el estado real publicado.
+Publicado únicamente el frontend del commit `c0ead12` mediante `make publish-frontend`, con outputs recién actualizados y verificados desde `make release-status`. El build final aprobó. `make release-confirm` comprobó servicios estables, imágenes conservadas, salud HTTP, identidad del corpus y HTML público idéntico al build. SHA256 de `index.html`: `9e54df4e33e6f6df70f06444a26d4a481648dc0e3b9b2fb70c11084f61ab3887`. Se conservan API `citas-api:7` y científico `citas-api-science:9`. No se construyeron imágenes backend ni se encendió la constructora.
+
+Los seis casos de pestañas M/S/comercial aprobaron sobre la web publicada en escritorio/móvil con respuestas API simuladas. Se revisaron las capturas públicas del glosario en ambos tamaños. Verifican etiquetas, definiciones, estilo compartido, teclado y cambio sin inferencia extra; no representan una nueva ejecución científica o comercial real. No se consumió cuota de inferencia. Evidencia separada en `artifacts/citation-guide-public-mocks/`, incluida copia de la confirmación de despliegue.
 
 - [x] Pestaña renombrada a «Funciones de cita».
 - [x] Misma superficie, jerarquía y separación que Detalles del análisis.
 - [x] Nueve definiciones y etiquetas originales conservadas; nombres españoles orientativos.
 - [x] Seis recorridos de pestañas M/S/comercial y capturas locales revisadas.
-- [ ] Publicación frontend y confirmación de HTML, salud y servicios actuales.
-- [ ] UI publicada con mocks y capturas de escritorio/móvil verificadas.
+- [x] Publicación frontend y confirmación de HTML, salud y servicios actuales.
+- [x] UI publicada con mocks y capturas de escritorio/móvil verificadas.
 
 Estado general: T01–T03 disponibles; T04 pendiente por cuota; T05–T06 suspendidas por QLoRA; T07–T09 disponibles para M/S y comercial con familia abierta suspendida; T10 parcial; T11 conserva aceptación real anterior; T12 migración/retirada pendiente sin retirar ECS; T13 notas actualizadas y cierre documental final pendiente. El proyecto continúa parcialmente cumplido.
