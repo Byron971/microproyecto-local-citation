@@ -98,11 +98,11 @@ for (const status of [200, 429, 502]) {
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await expect(page.locator('#classifier option[value="commercial"]')).toHaveCount(1);
     await page.getByLabel('Familia y modelo').selectOption('commercial');
-    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     await expect(page.getByRole('alert')).toContainText('Confirma el envío');
     expect(calls).toEqual([]);
     await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
-    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     await expect(page.getByText('Fragmento recuperado 1', { exact: true })).toBeVisible();
     const panel = page.getByRole('region', { name: 'Clasificación comercial' });
     if (status === 200) {
@@ -110,6 +110,14 @@ for (const status of [200, 429, 502]) {
         panel.getByText('Top-3 listo. Esperando la clasificación de OpenAI…'),
       ).toBeVisible();
       await expect(page.getByRole('button', { name: 'Volver al clasificador' })).toBeDisabled();
+      await expect(page.locator('#workflow-step-3')).toHaveAttribute('aria-current', 'step');
+      await expect(
+        page.getByRole('status').filter({ hasText: 'Clasificando la función de la cita' }),
+      ).toBeVisible();
+      await page.screenshot({
+        path: testInfo.outputPath('commercial-loading.png'),
+        fullPage: true,
+      });
       finishCommercial();
       await expect(panel.getByText('Application', { exact: true }).first()).toBeVisible();
       await expect(panel.getByText('0.800')).toBeVisible();

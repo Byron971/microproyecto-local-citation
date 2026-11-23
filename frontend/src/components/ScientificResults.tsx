@@ -30,6 +30,7 @@ export function ScientificResults({
   commercialSelected,
   commercial,
   commercialPending,
+  hideHeading,
 }: {
   respuesta: Respuesta;
   truncation?: TruncationInfo;
@@ -38,6 +39,7 @@ export function ScientificResults({
   commercialSelected?: boolean;
   commercial?: CommercialClassification;
   commercialPending?: boolean;
+  hideHeading?: boolean;
 }) {
   const id = useId();
   const [activeTab, setActiveTab] = useState(0);
@@ -61,7 +63,7 @@ export function ScientificResults({
   }
   return (
     <section className="results-section" aria-live="polite">
-      <h2>Resultados del análisis</h2>
+      {!hideHeading && <h2>Resultados del análisis</h2>}
       <h3>Fragmentos relacionados del artículo citado</h3>
       <p className="field-help">
         Son candidatos relacionados; no prueban por sí solos la afirmación ni verifican que la cita

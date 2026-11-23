@@ -325,7 +325,8 @@ export function ScientificAnalysis() {
     active.current = controller;
     setLoading(true);
     setCompleted(false);
-    setCompletedSteps(2);
+    setCompletedSteps(3);
+    setStep(3);
     setErrorField('');
     setPhase('retrieving');
     setDuration(undefined);
@@ -415,9 +416,15 @@ export function ScientificAnalysis() {
                 aria-current={index === step ? 'step' : undefined}
                 onClick={() => goToStep(index)}
               >
-                <b aria-hidden="true">{index < completedSteps ? '✓' : index + 1}</b>
+                <b>{index + 1}</b>
                 <span>
                   {name}
+                  {index < completedSteps && (
+                    <span className="workflow-check" aria-hidden="true">
+                      {' '}
+                      ✓
+                    </span>
+                  )}
                   <span className="sr-only">
                     {index === step
                       ? ': etapa actual'
@@ -680,85 +687,120 @@ export function ScientificAnalysis() {
                   className="primary"
                   disabled={loading || !contextReady || !article || coverageStatus !== 'available'}
                 >
-                  {loading ? 'Analizando cita…' : 'Analizar cita'}
+                  Ver resultados
                 </button>
               )}
             </div>
           </div>
-          {loading && (
-            <p className="analysis-loading" role="status">
-              {phase === 'retrieving'
-                ? 'Recuperando fragmentos y clasificando la cita…'
-                : 'Esperando la función predicha de OpenAI. Puedes consultar el Top-3.'}
-            </p>
-          )}
         </form>
       </section>
-      {step === 3 && result && (
+      {step === 3 && (
         <section
           id="analysis-results"
           tabIndex={-1}
           className="analysis-output"
           aria-label="Resultado del análisis"
         >
+          <h2 id="workflow-title-3" tabIndex={-1}>
+            Resultados
+          </h2>
+          {loading && (
+            <div className="results-loading" role="status" aria-atomic="true">
+              <span className="analysis-spinner" aria-hidden="true" />
+              <div>
+                <h3>
+                  {phase === 'retrieving'
+                    ? 'Calculando los resultados…'
+                    : 'Clasificando la función de la cita…'}
+                </h3>
+                <p>
+                  {phase === 'retrieving'
+                    ? 'Buscamos los tres fragmentos del artículo y calculamos la clasificación.'
+                    : 'Los tres fragmentos ya están disponibles. Esperando la clasificación de OpenAI.'}
+                </p>
+                <p className="field-help">
+                  Mantén esta página abierta mientras termina el análisis.
+                </p>
+              </div>
+            </div>
+          )}
           {error && (
             <p id="analysis-error" tabIndex={-1} role="alert" className="error-message">
               {error}
             </p>
           )}
-          <div className="analysis-summary">
-            <p className="result-kicker">
-              {loading
-                ? 'Resultado parcial'
-                : error
-                  ? 'Fragmentos disponibles · clasificación incompleta'
-                  : 'Análisis completado'}
-              {duration !== undefined && <span> · {duration.toFixed(1)} s en total</span>}
-            </p>
-            <p>
-              <strong>{result.articulo.titulo}</strong> · {paperId} ·{' '}
-              {variant === 'commercial'
-                ? 'Comercial — GPT-6.1 Sol'
-                : `Encoder SciBERT — ${variant}`}
-            </p>
-          </div>
-          {result.articulo.truncamiento?.aplicado && (
-            <p className="field-help">{truncationNotice(result.articulo.truncamiento)}</p>
+          {!result && !loading && error && (
+            <div className="result-actions">
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={() => goToStep(coverageStatus === 'available' ? 2 : 1)}
+              >
+                {coverageStatus === 'available' ? 'Volver al clasificador' : 'Revisar artículo'}
+              </button>
+              <p className="field-help">
+                Tu contexto y la selección se conservan. No se reintentó el análisis.
+              </p>
+            </div>
           )}
-          <div className="result-actions">
-            <button
-              type="button"
-              className="secondary-button"
-              disabled={loading}
-              onClick={() => goToStep(2)}
-            >
-              Volver al clasificador
-            </button>
-            <button
-              type="button"
-              className="text-button"
-              disabled={loading}
-              onClick={() => goToStep(0)}
-            >
-              Editar contexto
-            </button>
-          </div>
-          <ScientificResults
-            respuesta={result}
-            truncation={result.articulo.truncamiento}
-            variante={variant === 'commercial' ? undefined : variant}
-            commercialSelected={variant === 'commercial'}
-            commercial={commercialResult}
-            commercialPending={loading && phase === 'classifying'}
-            fuente={result.articulo.publicacion}
-          />
-          {result.articulo.fuente && (
-            <p className="field-help">
-              <a href={result.articulo.fuente} target="_blank" rel="noreferrer">
-                Texto fuente del artículo
-              </a>{' '}
-              · {result.articulo.licencia}
-            </p>
+          {result && (
+            <>
+              <div className="analysis-summary">
+                <p className="result-kicker">
+                  {loading
+                    ? 'Resultado parcial'
+                    : error
+                      ? 'Fragmentos disponibles · clasificación incompleta'
+                      : 'Análisis completado'}
+                  {duration !== undefined && <span> · {duration.toFixed(1)} s en total</span>}
+                </p>
+                <p>
+                  <strong>{result.articulo.titulo}</strong> · {paperId} ·{' '}
+                  {variant === 'commercial'
+                    ? 'Comercial — GPT-6.1 Sol'
+                    : `Encoder SciBERT — ${variant}`}
+                </p>
+              </div>
+              {result.articulo.truncamiento?.aplicado && (
+                <p className="field-help">{truncationNotice(result.articulo.truncamiento)}</p>
+              )}
+              <div className="result-actions">
+                <button
+                  type="button"
+                  className="secondary-button"
+                  disabled={loading}
+                  onClick={() => goToStep(2)}
+                >
+                  Volver al clasificador
+                </button>
+                <button
+                  type="button"
+                  className="text-button"
+                  disabled={loading}
+                  onClick={() => goToStep(0)}
+                >
+                  Editar contexto
+                </button>
+              </div>
+              <ScientificResults
+                hideHeading
+                respuesta={result}
+                truncation={result.articulo.truncamiento}
+                variante={variant === 'commercial' ? undefined : variant}
+                commercialSelected={variant === 'commercial'}
+                commercial={commercialResult}
+                commercialPending={loading && phase === 'classifying'}
+                fuente={result.articulo.publicacion}
+              />
+              {result.articulo.fuente && (
+                <p className="field-help">
+                  <a href={result.articulo.fuente} target="_blank" rel="noreferrer">
+                    Texto fuente del artículo
+                  </a>{' '}
+                  · {result.articulo.licencia}
+                </p>
+              )}
+            </>
           )}
         </section>
       )}
@@ -782,7 +824,7 @@ export function ScientificAnalysis() {
         <summary>Cómo analizar una cita</summary>
         <p>
           Pega el contexto en inglés y elige la cita que quieres analizar. Confirma el artículo
-          citado, elige el clasificador y pulsa «Analizar cita».
+          citado, elige el clasificador y pulsa «Ver resultados».
         </p>
         <p>
           Los fragmentos son candidatos relacionados; no prueban por sí solos la afirmación. Las

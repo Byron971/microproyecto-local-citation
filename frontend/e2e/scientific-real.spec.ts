@@ -69,7 +69,7 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
       (r) => r.url().includes('/api/analisis-cita-ms/articulo/') && r.status() !== 202,
       { timeout: 100000 },
     );
-    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     const started = await responsePromise;
     expect(started.status()).toBe(202);
     const response = await resultPromise;

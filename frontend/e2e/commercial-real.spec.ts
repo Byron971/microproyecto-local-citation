@@ -13,7 +13,7 @@ test('ejemplo público con GPT real, consentimiento y Top-3', async ({ page }, i
   await expect(page.locator('#classifier option[value="commercial"]')).toHaveCount(1);
   await expect(page.locator('#classifier option[value="open"]')).toHaveCount(0);
   await page.getByLabel('Familia y modelo').selectOption('commercial');
-  await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Confirma el envío');
   await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
   const fragmentsPromise = page.waitForResponse(
@@ -24,7 +24,7 @@ test('ejemplo público con GPT real, consentimiento y Top-3', async ({ page }, i
     (r) => r.url().endsWith('/api/comercial/clasificar'),
     { timeout: 80000 },
   );
-  await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
   const fragmentsResponse = await fragmentsPromise;
   expect(fragmentsResponse.status()).toBe(200);
   const fragments = await fragmentsResponse.json();

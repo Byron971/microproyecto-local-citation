@@ -140,17 +140,24 @@ for (const status of [404, 429, 200]) {
     const context = await page.getByLabel('Contexto en inglés').inputValue();
     await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
-    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     await expect(page.getByRole('alert')).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Resultados del análisis' })).toHaveCount(0);
+    await expect(page.locator('#fragment-1')).toHaveCount(0);
     await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context);
     await expect(selectedArticle(page)).toContainText('W05-0821');
+    await expect(page.locator('#workflow-step-3')).toHaveAttribute('aria-current', 'step');
+    await expect(page.locator('.results-loading')).toHaveCount(0);
     if (status === 404) {
+      await page.getByRole('button', { name: 'Revisar artículo', exact: true }).click();
+      await expect(page.locator('#article-step')).toBeVisible();
       await expect(
-        page.getByText('Vuelve al artículo citado para comprobar su disponibilidad.'),
+        page.getByText(
+          'Este artículo no tiene texto preparado para recuperar los tres fragmentos.',
+        ),
       ).toBeVisible();
-      await expect(page.getByRole('button', { name: 'Analizar cita', exact: true })).toBeDisabled();
-    } else
-      await expect(page.getByRole('button', { name: 'Analizar cita', exact: true })).toBeEnabled();
+    } else {
+      await page.getByRole('button', { name: 'Volver al clasificador', exact: true }).click();
+      await expect(page.getByRole('button', { name: 'Ver resultados', exact: true })).toBeEnabled();
+    }
   });
 }

@@ -1,5 +1,7 @@
 # Flujo de UI por etapas
 
+> Refinamiento posterior: la numeración permanece visible y la carga comienza en el paso 4 al pulsar «Ver resultados». Véase [pasos numerados y espera](pasos_numerados_carga_resultados.md); la evidencia descrita abajo corresponde a la entrega histórica.
+
 > Actualización posterior: por petición explícita del usuario, el paso 2 admite sugerencias SciBERT limitadas a los artículos preparados, con confirmación manual. Véase [selector de artículos relacionados](selector_articulos_relacionados.md); las restricciones anteriores de filtro exclusivamente literal quedan como historial.
 
 Cambio solicitado por el usuario tras la revisión del PRD. Conserva la secuencia

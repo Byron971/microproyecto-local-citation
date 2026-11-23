@@ -65,9 +65,11 @@ for (const failure of [false, true]) {
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     await chooseArticle(page, 'W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
-    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     if (failure) {
       await expect(page.getByRole('alert')).toContainText('El análisis expiró.');
+      await expect(page.locator('#workflow-step-3')).toHaveAttribute('aria-current', 'step');
+      await page.getByRole('button', { name: 'Volver al clasificador', exact: true }).click();
       await page.getByRole('button', { name: 'Anterior', exact: true }).click();
       await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
       await expect(

@@ -96,7 +96,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
   );
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await page.getByLabel('Familia y modelo').selectOption('S');
-  await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+  await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
   await expect(page.getByText('Fragmento científico 1')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Modelo S', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Modelo M', exact: true })).toHaveCount(0);

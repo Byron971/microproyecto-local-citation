@@ -99,7 +99,7 @@ for (const mode of ['M', 'S', 'commercial']) {
       await page.getByLabel('Familia y modelo').selectOption('commercial');
       await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
     }
-    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     const result = page.locator('#analysis-results');
     const tabs = result.getByRole('tablist', { name: 'Función predicha de la cita' });
     await expect(tabs.getByRole('tab')).toHaveCount(3);

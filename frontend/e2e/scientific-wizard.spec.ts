@@ -111,7 +111,7 @@ for (const reset of ['context', 'public-example', 'dataset-example']) {
     await chooseArticle(page, 'W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await page.getByLabel('Familia y modelo').selectOption('S');
-    await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
+    await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     await expect(page.getByRole('region', { name: 'Resultado del análisis' })).toBeVisible();
     for (const i of [0, 1, 2, 3]) await expect(page.locator(`#workflow-step-${i}`)).toBeEnabled();
     await expect(page.locator('.workflow-progress .step-complete')).toHaveCount(4);
