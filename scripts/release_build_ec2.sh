@@ -4,7 +4,8 @@ set -euo pipefail
 [[ "$RELEASE_COMMIT" =~ ^[0-9a-f]{40}$ ]]
 cd /opt/citas/microproyecto-local-citation
 git diff --exit-code HEAD -- Dockerfile Dockerfile.ms src packages requirements config scripts/iniciar_ciencia.py >/dev/null
-git fetch origin feat/flujo-cientifico-ec2
+# Traer exactamente la revisión pedida, sin depender de una rama remota concreta.
+git fetch origin "$RELEASE_COMMIT"
 git checkout --detach "$RELEASE_COMMIT"
 registry=646941583111.dkr.ecr.us-east-1.amazonaws.com
 export DOCKER_CONFIG=$(mktemp -d)
