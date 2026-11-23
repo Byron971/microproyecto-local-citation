@@ -1,5 +1,8 @@
 # Selector de artículos relacionados — 22/11/2026
 
+> Registro histórico de esta entrega. La ampliación de texto preparado, el recorte autorizado y las sugerencias automáticas posteriores se siguen en [ampliación de cobertura](ampliacion_cobertura_corpus.md); las restricciones anteriores de 37 artículos y botón manual quedan sustituidas por esa decisión.
+
+
 ## Decisión y relación con el problema
 
 La petición actual sustituye la decisión de utilizar exclusivamente un filtro literal. El problema sigue requiriendo recuperar tres fragmentos del artículo citado y clasificar la función de la cita (propuesta, sección 5). Encontrar candidatos ayuda a identificar ese artículo; no sustituye su confirmación ni demuestra calidad científica del recomendador.

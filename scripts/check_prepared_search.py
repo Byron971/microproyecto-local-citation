@@ -23,4 +23,4 @@ for article in data['recomendaciones']:
     assert article['titulo'] == ' '.join(by_id[article['paper_id']]['titulo'].split())
     assert article['resumen'] == by_id[article['paper_id']]['resumen']
 Path('artifacts/full-catalog-public.json').write_text(json.dumps(data, indent=2))
-print(json.dumps({'ok': True, 'articulos_catalogo': len(full['articulos']), 'articulos_preparados': len(catalog['articulos']), 'ids': [a['paper_id'] for a in data['recomendaciones']]}))
+print(json.dumps({'ok': True, 'articulos_catalogo': len(full['articulos']), 'articulos_preparados': catalog.get('total_preparados', len(catalog['articulos'])), 'ids': [a['paper_id'] for a in data['recomendaciones']]}))

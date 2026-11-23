@@ -1,13 +1,15 @@
-import { selectedArticle } from './article-picker.helpers';
+import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 const examples = JSON.parse(fs.readFileSync('src/scientificExamples.json', 'utf8'));
 
-test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async ({
+test('busca ejemplos y carga contexto sin confirmar artículo ni clasificar', async ({
   page,
 }, info) => {
   let inferences = 0;
   await page.route('**/api/**', async (route) => {
+    if (route.request().url().endsWith('/recomendar'))
+      return route.fulfill({ json: suggestionResponse });
     if (route.request().url().endsWith('/clasificadores')) {
       await route.fulfill({ json: { clasificadores: [{ id: 'commercial' }] } });
     } else if (route.request().url().endsWith('/disponibilidad')) {
@@ -28,6 +30,7 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   await page.goto('/');
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await chooseArticle(page, 'W05-0821');
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await page.getByLabel('Familia y modelo').selectOption('commercial');
   await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
@@ -50,8 +53,9 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   await dialog.locator('.example-card').click();
   await expect(dialog).toHaveCount(0);
   await expect(page.getByLabel('Contexto en inglés')).toHaveValue(chosen.contexto);
-  await expect(selectedArticle(page)).toContainText(chosen.paper_id);
+  await expect(selectedArticle(page)).toHaveCount(0);
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await chooseArticle(page, chosen.paper_id);
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await expect(page.getByLabel('Familia y modelo')).toHaveValue('M');

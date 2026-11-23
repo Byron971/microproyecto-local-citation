@@ -1,4 +1,4 @@
-import { chooseArticle, selectedArticle } from './article-picker.helpers';
+import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 const labels = [
@@ -22,6 +22,8 @@ for (const status of [200, 429, 502]) {
       finishCommercial = resolve;
     });
     await page.route('**/api/**', async (route) => {
+      if (route.request().url().endsWith('/recomendar'))
+        return route.fulfill({ json: suggestionResponse });
       const path = new URL(route.request().url()).pathname;
       if (path === '/api/clasificadores') {
         await route.fulfill({
@@ -91,6 +93,7 @@ for (const status of [200, 429, 502]) {
     await page.goto('/');
     await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+    await chooseArticle(page, 'W05-0821');
     await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await expect(page.locator('#classifier option[value="commercial"]')).toHaveCount(1);

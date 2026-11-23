@@ -1,4 +1,4 @@
-import { chooseArticle, selectedArticle } from './article-picker.helpers';
+import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
@@ -12,6 +12,8 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
 }, testInfo) => {
   const calls: string[] = [];
   await page.route('**/api/**', async (route) => {
+    if (route.request().url().endsWith('/recomendar'))
+      return route.fulfill({ json: suggestionResponse });
     if (route.request().url().endsWith('/clasificadores')) {
       await route.fulfill({ json: { clasificadores: [] } });
       return;
@@ -128,6 +130,8 @@ for (const path of [
 test('rechaza marcas múltiples y exceso de longitud antes de inferir', async ({ page }) => {
   const calls: string[] = [];
   await page.route('**/api/**', async (route) => {
+    if (route.request().url().endsWith('/recomendar'))
+      return route.fulfill({ json: suggestionResponse });
     if (route.request().url().endsWith('/clasificadores')) {
       await route.fulfill({ json: { clasificadores: [] } });
       return;

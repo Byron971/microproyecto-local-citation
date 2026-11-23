@@ -1,4 +1,4 @@
-import { chooseArticle, selectedArticle } from './article-picker.helpers';
+import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test('bloquea etapas futuras, resalta la actual y conserva los datos al volver', async ({
@@ -6,6 +6,8 @@ test('bloquea etapas futuras, resalta la actual y conserva los datos al volver',
 }, info) => {
   let inferenceCalls = 0;
   await page.route('**/api/**', async (route) => {
+    if (route.request().url().endsWith('/recomendar'))
+      return route.fulfill({ json: suggestionResponse });
     const path = new URL(route.request().url()).pathname;
     if (path.endsWith('/clasificadores')) await route.fulfill({ json: { clasificadores: [] } });
     else if (path.endsWith('/disponibilidad'))
@@ -32,6 +34,7 @@ test('bloquea etapas futuras, resalta la actual y conserva los datos al volver',
   const context = await page.getByLabel('Contexto en inglés').inputValue();
   await expect(page.locator('#workflow-step-1')).toBeDisabled();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await chooseArticle(page, 'W05-0821');
   await expect(page.locator('#workflow-step-1')).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('#citation-step')).toBeHidden();
   await expect(page.getByLabel('Contexto en inglés')).toBeDisabled();
@@ -59,6 +62,8 @@ for (const reset of ['context', 'public-example', 'dataset-example']) {
   test(`navegación libre al completar y reinicio por ${reset}`, async ({ page }, info) => {
     let inferences = 0;
     await page.route('**/api/**', async (route) => {
+      if (route.request().url().endsWith('/recomendar'))
+        return route.fulfill({ json: suggestionResponse });
       const path = new URL(route.request().url()).pathname;
       if (path.endsWith('/clasificadores')) await route.fulfill({ json: { clasificadores: [] } });
       else if (path.endsWith('/disponibilidad'))
@@ -103,6 +108,7 @@ for (const reset of ['context', 'public-example', 'dataset-example']) {
     await page.goto('/');
     await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+    await chooseArticle(page, 'W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await page.getByLabel('Familia y modelo').selectOption('S');
     await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
@@ -132,7 +138,7 @@ for (const reset of ['context', 'public-example', 'dataset-example']) {
       const context = await dialog.locator('.example-preview').first().textContent();
       await dialog.locator('.example-card').first().click();
       await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context!);
-      await expect(selectedArticle(page)).toHaveCount(1);
+      await expect(selectedArticle(page)).toHaveCount(0);
     }
     await expect(page.locator('#workflow-step-0')).toHaveAttribute('aria-current', 'step');
     await expect(page.locator('.workflow-progress .step-complete')).toHaveCount(0);

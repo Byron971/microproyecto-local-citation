@@ -1,4 +1,12 @@
 import { expect, type Page } from '@playwright/test';
+import catalog from '../src/articleCatalog.json' with { type: 'json' };
+import fullCatalog from '../src/fullArticleCatalog.json' with { type: 'json' };
+
+export const suggestionResponse = {
+  version_contenido: catalog.version_contenido,
+  version_catalogo: fullCatalog.source_sha256,
+  recomendaciones: catalog.articulos.slice(0, 5).map((a) => ({ ...a, similitud: 0.7 })),
+};
 
 export const selectedArticle = (page: Page) =>
   page.locator('#article-step [aria-label="Artículo seleccionado"]');

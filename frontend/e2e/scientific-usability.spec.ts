@@ -1,4 +1,4 @@
-import { chooseArticle, selectedArticle } from './article-picker.helpers';
+import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test('orientación, errores con foco y filtro local sin perder la referencia', async ({
@@ -6,6 +6,8 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
 }, info) => {
   const calls: string[] = [];
   await page.route('**/api/**', async (route) => {
+    if (route.request().url().endsWith('/recomendar'))
+      return route.fulfill({ json: suggestionResponse });
     const path = new URL(route.request().url()).pathname;
     calls.push(path);
     if (path.endsWith('/clasificadores')) await route.fulfill({ json: { clasificadores: [] } });
@@ -40,6 +42,7 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
   ).toBeEnabled();
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await chooseArticle(page, 'W05-0821');
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
@@ -69,6 +72,9 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
 });
 
 test('fallo del catálogo permite reintentar sin borrar el contexto', async ({ page }) => {
+  await page.route('**/api/analisis-cita-ms/recomendar', (r) =>
+    r.fulfill({ json: suggestionResponse }),
+  );
   await page.route('**/api/analisis-cita-ms/disponibilidad', (route) =>
     route.fulfill({
       json: { version_contenido: 'v1', articulos: [{ paper_id: 'W05-0821', disponible: true }] },
@@ -89,6 +95,7 @@ test('fallo del catálogo permite reintentar sin borrar el contexto', async ({ p
     .getByLabel('Contexto en inglés')
     .fill('Earlier research TARGETCIT provides the method.');
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await chooseArticle(page, 'W05-0821');
   await chooseArticle(page, 'W05-0821');
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await expect(

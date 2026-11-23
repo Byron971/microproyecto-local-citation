@@ -113,6 +113,9 @@ async def lifespan(app: FastAPI):
     """
     config = get_app_settings()  # Validación fail-closed antes de cargar el modelo.
     state["config"] = config
+    from src.app.article_corpus import preparar_corpus_release, corpus
+    preparar_corpus_release()
+    corpus()
 
     print("Cargando el modelo empaquetado (TF-IDF + reordenador lineal)...")
     state["recomendador"] = Recommender().load()

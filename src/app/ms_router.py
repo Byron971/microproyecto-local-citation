@@ -95,18 +95,27 @@ def _corpus_articulos():
 @router.post('/api/analisis-cita-ms/disponibilidad')
 def disponibilidad_articulos(consulta: DisponibilidadArticulos):
     data, version = _corpus_articulos()
-    return {'version_contenido': version, 'articulos': [
-        {'paper_id': pid, 'disponible': pid in data['documentos'],
-         'motivo': None if pid in data['documentos'] else 'Sin texto completo preparado para M/S.',
-         'total_fragmentos': len(data['documentos'][pid]['candidatos']) if pid in data['documentos'] else 0}
-        for pid in consulta.paper_ids
-    ]}
+    try:
+        articles = []
+        for pid in consulta.paper_ids:
+            doc = data['documentos'].get(pid)
+            articles.append(dict(paper_id=pid, disponible=doc is not None,
+                motivo=None if doc else 'Sin texto completo preparado para M/S.',
+                total_fragmentos=len(doc['candidatos']) if doc else 0,
+                truncamiento=doc.get('truncamiento') if doc else None))
+        return {'version_contenido': version, 'articulos': articles}
+    except ValueError:
+        raise HTTPException(status_code=503, detail='El artículo preparado no supera la validación.') from None
+
 
 
 @router.post('/api/analisis-cita-ms/articulo')
 def analizar_articulo(consulta: ConsultaArticulo):
     data, version = _corpus_articulos()
-    doc = data['documentos'].get(consulta.paper_id)
+    try:
+        doc = data['documentos'].get(consulta.paper_id)
+    except ValueError:
+        raise HTTPException(status_code=503, detail='El artículo preparado no supera la validación.') from None
     if doc is None:
         raise HTTPException(status_code=404, detail='Artículo sin texto completo preparado para M/S.')
     try:
@@ -118,7 +127,7 @@ def analizar_articulo(consulta: ConsultaArticulo):
     return {**resultado, 'articulo': {'paper_id': consulta.paper_id, 'titulo': doc['titulo'],
             'fuente': doc['fuente'], 'publicacion': doc['publicacion'], 'sha256_ocl': doc['sha256_ocl'],
             'version_contenido': version, 'total_fragmentos': len(doc['candidatos']),
-            'licencia': data['licencia'], 'fragmentacion': data['fragmentacion']}}
+            'licencia': data['licencia'], 'fragmentacion': data['fragmentacion'], 'truncamiento': doc.get('truncamiento')}}
 
 
 @router.get("/api/analisis-cita-ms/estado")
@@ -137,6 +146,8 @@ def estado_ms(request: Request):
     return {
         "modelos_cargados": getattr(request.app.state, "modelos_cargados", False),
         'busqueda_cientifica_disponible': hasattr(request.app.state, 'article_search'),
+        'total_articulos_preparados': getattr(request.app.state, 'total_articulos_preparados', None),
+        'version_corpus': getattr(request.app.state, 'version_corpus', None),
         'total_catalogo_cientifico': len(request.app.state.article_search.papers) if hasattr(request.app.state, 'article_search') else 0,
         'version_indice_cientifico': request.app.state.article_search.version if hasattr(request.app.state, 'article_search') else None,
         "release": os.environ.get("MS_RELEASE_ID"),

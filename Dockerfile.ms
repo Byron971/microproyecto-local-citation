@@ -17,9 +17,10 @@ COPY packages/recuperacion-densa/src/recuperacion_densa /app/packages/recuperaci
 COPY proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json /app/proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json
 COPY config/ms_release.json /app/config/ms_release.json
 COPY config/catalog_search_release.json /app/config/catalog_search_release.json
+COPY config/corpus_release.json /app/config/corpus_release.json
 COPY config/corpus_ms.json /app/config/corpus_ms.json
 COPY config/prepared_article_search /app/config/prepared_article_search
-COPY src/app/article_corpus.py /app/src/app/article_corpus.py
+COPY src/app/article_corpus.py src/app/corpus_store.py /app/src/app/
 COPY src/app/scientific_search.py src/app/ms_lock.py /app/src/app/
 # Experimental search artifacts are supplied separately when explicitly enabled.
 COPY scripts/iniciar_ciencia.py /app/scripts/iniciar_ciencia.py

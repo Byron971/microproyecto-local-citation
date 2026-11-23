@@ -14,12 +14,11 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
     .fill(
       'We use the language modeling approach described in TARGETCIT to improve a statistical machine translation system.',
     );
-  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   const responsePromise = page.waitForResponse(
     (r) => r.url().endsWith('/api/analisis-cita-ms/recomendar'),
     { timeout: 60000 },
   );
-  await page.getByRole('button', { name: 'Sugerir según mi contexto' }).click();
+  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   const response = await responsePromise;
   expect(response.status()).toBe(200);
   const data = await response.json();
@@ -38,7 +37,9 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
     .first()
     .click();
   await expect(selectedArticle(page)).toContainText(data.recomendaciones[0].paper_id);
-  if (!prepared.articulos.some((a) => a.paper_id === data.recomendaciones[0].paper_id)) {
+  if (
+    !fullCatalog.articulos.find((a) => a.paper_id === data.recomendaciones[0].paper_id)?.preparado
+  ) {
     await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
     await expect(page.getByRole('button', { name: 'Siguiente: clasificador' })).toBeDisabled();
     await chooseArticle(page, 'W05-0821');
@@ -52,18 +53,19 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
   );
 });
 
-test('buscar un artículo fuera del corpus preparado muestra su disponibilidad real', async ({
-  page,
-}, info) => {
+test('buscar un artículo sin cobertura muestra su disponibilidad real', async ({ page }, info) => {
   const article = fullCatalog.articulos.find(
-    (a) => !prepared.articulos.some((p) => p.paper_id === a.paper_id),
+    (a) => !a.preparado && /^[A-Z][0-9]{2}-[0-9]{4}$/.test(a.paper_id),
   )!;
   await page.goto('/');
   await page
     .getByLabel('Contexto en inglés')
     .fill('Prior work TARGETCIT improves scientific methods.');
+  const suggestions = page.waitForResponse((r) =>
+    r.url().endsWith('/api/analisis-cita-ms/recomendar'),
+  );
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
-  await expect(page.getByText('19776 artículos', { exact: true })).toBeVisible({ timeout: 15000 });
+  expect((await suggestions).status()).toBe(200);
   await chooseArticle(page, article.paper_id);
   await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
   await expect(page.getByRole('button', { name: 'Siguiente: clasificador' })).toBeDisabled();

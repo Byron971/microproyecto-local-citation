@@ -1,5 +1,8 @@
 # Búsqueda del catálogo completo en el paso 2
 
+> Registro histórico de esta entrega. La ampliación de texto preparado, el recorte autorizado y las sugerencias automáticas posteriores se siguen en [ampliación de cobertura](ampliacion_cobertura_corpus.md); las restricciones anteriores de 37 artículos y botón manual quedan sustituidas por esa decisión.
+
+
 ## Decisión y alcance
 
 El usuario solicita ampliar la búsqueda a todos los artículos disponibles, dentro del paso 2. Esta decisión sustituye el límite de 37 documentos del selector anterior; no crea una pantalla independiente ni recupera fragmentos de otro artículo.

@@ -1,3 +1,4 @@
+import type { TruncationInfo } from './ArticlePicker';
 import { meanings } from '../citationFunctions';
 import { CommercialResults, type CommercialClassification } from './CommercialResults';
 type Candidato = { chunk_id: string; texto: string; seccion: string };
@@ -21,6 +22,7 @@ export type Respuesta = {
 const percent = (x: number) => `${(x * 100).toFixed(2)} %`;
 export function ScientificResults({
   respuesta,
+  truncation,
   variante,
   fuente,
   commercialSelected,
@@ -28,6 +30,7 @@ export function ScientificResults({
   commercialPending,
 }: {
   respuesta: Respuesta;
+  truncation?: TruncationInfo;
   variante?: 'M' | 'S';
   fuente?: string;
   commercialSelected?: boolean;
@@ -132,6 +135,15 @@ export function ScientificResults({
           Dispositivo: {respuesta.dispositivo} · entrada AB: {respuesta.tokens_ab} tokens.
         </p>
         <p>{respuesta.aviso}</p>
+        {truncation?.aplicado && (
+          <p>
+            Se usaron {truncation.fragmentos_analizados} de {truncation.fragmentos_originales}{' '}
+            fragmentos y {truncation.caracteres_analizados.toLocaleString('es')} de{' '}
+            {truncation.caracteres_originales.toLocaleString('es')} caracteres del artículo y sus
+            metadatos. El recorte conserva el inicio en su orden original; el último fragmento puede
+            ser parcial.
+          </p>
+        )}
         <ul>
           {respuesta.top3.map((fragment) => (
             <li key={fragment.chunk_id}>

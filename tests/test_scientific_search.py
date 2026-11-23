@@ -93,11 +93,11 @@ def test_public_default_routes_use_scibert(tmp_path, monkeypatch):
 
 
 def test_prepared_index_matches_corpus_without_loading_models():
-    from src.app.article_corpus import corpus
+    from src.app.article_corpus import load_corpus
     from src.app.scientific_search import prepared_article_search
     metadata = json.loads(Path('config/prepared_article_search/indice.json').read_text())
     search = prepared_article_search(SimpleNamespace(revision=metadata['revision_scibert']))
-    data, version = corpus()
+    data, version = load_corpus(str(Path('config/corpus_ms.json').resolve()))
     assert set(search.ids) == set(data['documentos'])
     assert search.metadata['version_contenido'] == version
     assert len(search.papers) == 37
@@ -132,7 +132,10 @@ def test_export_preserves_existing_vectors_and_checks_source(tmp_path):
     source_meta = json.loads(Path('config/prepared_article_search/indice.json').read_text())
     source_meta['files'] = {name: hashlib.sha256((source / name).read_bytes()).hexdigest() for name in ['papers.json','embeddings.npy']}
     (source / 'indice.json').write_text(json.dumps(source_meta))
-    catalog = tmp_path / 'catalog.json'; catalog.write_bytes(Path('frontend/src/articleCatalog.json').read_bytes())
+    catalog = tmp_path / 'catalog.json'
+    catalog_data = json.loads(Path('frontend/src/articleCatalog.json').read_text())
+    catalog_data['version_contenido'] = hashlib.sha256(Path('config/corpus_ms.json').read_bytes()).hexdigest()
+    catalog.write_text(json.dumps(catalog_data))
     destination = tmp_path / 'export'
     export(source, destination, catalog)
     rows = json.loads((destination / 'papers.json').read_text())

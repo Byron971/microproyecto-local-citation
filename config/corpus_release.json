@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "corpus_schema": 2,
+  "total_articulos": 19243,
+  "total_catalogo": 19776,
+  "total_recortados": 508,
+  "ejemplos_recortados": [
+    "C80-1027",
+    "J00-1003",
+    "J00-2001",
+    "J00-2004",
+    "J00-3003"
+  ],
+  "revision_ocl": "300ee6c5e5629d042bfc07cbc406e2f330b53659",
+  "licencia": "CC-BY-NC-4.0",
+  "fragmentacion": "notebook 10: v2, 300 palabras, deduplicaci\u00f3n; recorte posterior del prefijo a 100 fragmentos y 56000 caracteres incluyendo metadatos",
+  "source_papers_sha256": "999d6b77fed44d6bb6ed1c49c532c02aaa19f21b9e6d65e569201c2a2c7ee749",
+  "preparation_sha256": "7ec52d862ac48cdb940a89b05d2d106a3696a9c10de57d7ef78015524fdbccd6",
+  "fragmentation_sha256": "0afdd475b993edb4af691922e2c0aa037e87d2fdb7900b71f5bb67c13b1dccdc",
+  "files": [
+    {
+      "path": "artifacts/coverage_expansion/corpus.sqlite",
+      "bytes": 211222528,
+      "sha256": "47a46aff61951105d1e44293d70501c53bfd19ab5777e57db3b32591381dbd41"
+    }
+  ],
+  "release_id": "corpus-ms-c2985eac4e952d4b",
+  "bucket": "citas-api-models-646941583111-us-east-1",
+  "prefix": "releases/corpus-ms-c2985eac4e952d4b/"
+}

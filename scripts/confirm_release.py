@@ -29,6 +29,13 @@ api='https://api.proyectocitas-grupo19.click'
 assert json.loads(read(api+'/api/estado'))['listo'] is True
 state=json.loads(read(api+'/api/analisis-cita-ms/estado'))
 assert state['modelos_cargados'] is True and state['revision_codigo']==images['images']['ms'].get('commit',images['commit'])
+corpus_release=Path('config/corpus_release.json')
+if corpus_release.exists():
+ corpus_manifest=json.loads(corpus_release.read_text())
+ assert state['total_articulos_preparados']==corpus_manifest['total_articulos']
+ assert state['version_corpus']==hashlib.sha256(corpus_release.read_bytes()).hexdigest()
+ report['articulos_preparados']=state['total_articulos_preparados']
+ report['version_corpus']=state['version_corpus']
 assert state['release']==json.loads(Path('config/ms_release.json').read_text())['release_id']
 index=Path('frontend/dist/index.html').read_bytes()
 assert read(report['web']+'/')==index, 'CloudFront aún sirve otro index'

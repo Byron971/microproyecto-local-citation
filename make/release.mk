@@ -68,3 +68,15 @@ article-search-web-check:
 .PHONY: catalog-index-release
 catalog-index-release:
 	AWS_PROFILE=$(AWS_PROFILE) $(or $(PYTHON),python3) scripts/publicar_indice_scibert.py --salida config/catalog_search_release.json
+
+.PHONY: corpus-prepare corpus-release corpus-catalog
+corpus-prepare:
+	PYTHONPATH=. $(or $(PYTHON),python3) scripts/ampliar_cobertura_corpus.py --source-directory "$(CORPUS_SOURCE_DIR)"
+corpus-release:
+	PYTHONPATH=. AWS_PROFILE=$(AWS_PROFILE) $(or $(PYTHON),python3) scripts/publicar_corpus_ampliado.py
+corpus-catalog:
+	PYTHONPATH=. $(or $(PYTHON),python3) scripts/exportar_catalogo_completo.py
+
+.PHONY: corpus-extract
+corpus-extract:
+	$(or $(PYTHON),python3) scripts/descargar_corpus_git.py --source "$(CORPUS_SOURCE_DIR)"

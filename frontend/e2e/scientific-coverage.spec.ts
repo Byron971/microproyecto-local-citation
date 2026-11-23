@@ -1,7 +1,10 @@
-import { chooseArticle, selectedArticle } from './article-picker.helpers';
+import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
+  await page.route('**/api/analisis-cita-ms/recomendar', (r) =>
+    r.fulfill({ json: suggestionResponse }),
+  );
   await page.route('**/api/clasificadores', (route) =>
     route.fulfill({ json: { clasificadores: [] } }),
   );
@@ -12,6 +15,8 @@ for (const mode of ['missing', 'error', 'invalid'] as const) {
     let analyses = 0;
     let retry = false;
     await page.route('**/api/**', async (route) => {
+      if (route.request().url().endsWith('/recomendar'))
+        return route.fulfill({ json: suggestionResponse });
       if (route.request().url().endsWith('/clasificadores')) {
         await route.fulfill({ json: { clasificadores: [] } });
         return;
@@ -42,6 +47,7 @@ for (const mode of ['missing', 'error', 'invalid'] as const) {
     await page.goto('/');
     await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+    await chooseArticle(page, 'W05-0821');
     const context = await page.getByLabel('Contexto en inglés').inputValue();
     if (mode === 'missing')
       await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
@@ -83,6 +89,7 @@ test('ignora una consulta antigua de disponibilidad al cambiar de artículo', as
   await page.goto('/');
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await chooseArticle(page, 'W05-0821');
   await expect(page.getByText('Consultando texto preparado…')).toBeVisible();
   await chooseArticle(page, 'D09-1059');
   await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
@@ -98,6 +105,8 @@ for (const status of [404, 429, 200]) {
     page,
   }) => {
     await page.route('**/api/**', async (route) => {
+      if (route.request().url().endsWith('/recomendar'))
+        return route.fulfill({ json: suggestionResponse });
       if (route.request().url().endsWith('/clasificadores')) {
         await route.fulfill({ json: { clasificadores: [] } });
         return;
@@ -127,6 +136,7 @@ for (const status of [404, 429, 200]) {
     await page.goto('/');
     await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+    await chooseArticle(page, 'W05-0821');
     const context = await page.getByLabel('Contexto en inglés').inputValue();
     await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();

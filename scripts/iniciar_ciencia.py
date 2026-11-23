@@ -49,6 +49,8 @@ def main():
     client = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-1"),
                           config=Config(retries={"mode": "standard", "max_attempts": 10}))
     preparar(client, manifest, root)
+    from src.app.article_corpus import preparar_corpus_release
+    preparar_corpus_release(client=client, root=root)
     if os.environ.get('MS_ENABLE_GLOBAL_SEARCH') == '1':
         search_manifest = json.loads(Path(os.environ.get(
             'MS_SEARCH_MANIFEST', '/app/config/search_release.json')).read_text())

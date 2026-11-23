@@ -51,8 +51,8 @@ class ArticleSearch:
 
 
 def prepared_article_search(encoder):
-    from src.app.article_corpus import corpus
-    data, version = corpus()
+    from src.app.article_corpus import load_corpus
+    data, version = load_corpus(str(Path(__file__).resolve().parents[2] / 'config/corpus_ms.json'))
     search = ArticleSearch(Path(__file__).resolve().parents[2] / 'config/prepared_article_search', encoder)
     if search.metadata.get('version_contenido') != version or set(search.ids) != set(data['documentos']):
         raise ValueError('El índice de sugerencias no corresponde al corpus preparado')
@@ -61,11 +61,11 @@ def prepared_article_search(encoder):
 
 def catalog_article_search(encoder):
     import os
-    from src.app.article_corpus import corpus
+    from src.app.article_corpus import corpus, corpus_metadata
     data, version = corpus()
     search = ArticleSearch(os.environ.get('MS_SEARCH_DIR', 'artifacts/scientific_search'), encoder)
     by_id = {p['paper_id']: p for p in search.papers}
-    for pid, doc in data['documentos'].items():
+    for pid, doc in corpus_metadata(data):
         row = by_id.get(pid)
         if not row or row['titulo'] != ' '.join(doc['titulo'].split()) or row['resumen'] != ' '.join(doc['abstract'].split()):
             raise ValueError('El catálogo completo no corresponde al corpus preparado')

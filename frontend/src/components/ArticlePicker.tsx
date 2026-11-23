@@ -1,5 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { errorMessage, request } from '../api';
+
+export type TruncationInfo = {
+  aplicado: boolean;
+  texto_recortado: boolean;
+  fragmentos_originales: number;
+  fragmentos_analizados: number;
+  caracteres_originales: number;
+  caracteres_analizados: number;
+};
+export function truncationNotice(info: TruncationInfo) {
+  return info.texto_recortado
+    ? `Análisis limitado a los primeros ${info.fragmentos_analizados} fragmentos del artículo.`
+    : 'Metadatos recortados a los límites del análisis.';
+}
 
 export type PreparedArticle = {
   paper_id: string;
@@ -14,8 +28,10 @@ export function ArticlePicker({
   version,
   context,
   catalogVersion,
+  isActive,
   selected,
   coverage,
+  truncation,
   onSelect,
   onRetry,
   onBusyChange,
@@ -24,8 +40,10 @@ export function ArticlePicker({
   version: string;
   context: string;
   catalogVersion?: string;
+  isActive: boolean;
   selected: string;
   coverage: 'checking' | 'available' | 'missing' | 'error';
+  truncation?: TruncationInfo;
   onSelect: (id: string) => void;
   onRetry: () => void;
   onBusyChange: (busy: boolean) => void;
@@ -36,6 +54,8 @@ export function ArticlePicker({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [page, setPage] = useState(0);
+  const requestedFor = useRef('');
+  const busyRef = useRef(false);
   const active = useRef<AbortController | null>(null);
   const selectedHeading = useRef<HTMLHeadingElement>(null);
   const focusSelection = useRef(false);
@@ -49,6 +69,7 @@ export function ArticlePicker({
   useEffect(
     () => () => {
       active.current?.abort();
+      busyRef.current = false;
       onBusyChange(false);
     },
     [onBusyChange],
@@ -69,6 +90,7 @@ export function ArticlePicker({
   function cancel() {
     active.current?.abort();
     setBusy(false);
+    busyRef.current = false;
     onBusyChange(false);
   }
   function filter(text: string) {
@@ -78,14 +100,12 @@ export function ArticlePicker({
     setError('');
     setPage(0);
   }
-  async function suggest() {
-    if (busy) {
-      cancel();
-      return;
-    }
+  const suggest = useCallback(async () => {
+    if (busyRef.current || !catalogVersion) return;
     const controller = new AbortController();
     active.current = controller;
     setBusy(true);
+    busyRef.current = true;
     onBusyChange(true);
     setError('');
     try {
@@ -132,10 +152,23 @@ export function ArticlePicker({
     } finally {
       if (!controller.signal.aborted) {
         setBusy(false);
+        busyRef.current = false;
         onBusyChange(false);
       }
     }
-  }
+  }, [articles, catalogVersion, context, version, onBusyChange]);
+  useEffect(() => {
+    if (!isActive || !catalogVersion || selected || query.trim() || !context.trim()) return;
+    const key = JSON.stringify([context, version, catalogVersion]);
+    if (requestedFor.current === key) return;
+    // Defer until after StrictMode's setup/cleanup, preventing duplicate requests.
+    const timer = window.setTimeout(() => {
+      if (requestedFor.current === key) return;
+      requestedFor.current = key;
+      void suggest();
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [isActive, catalogVersion, selected, context, version, suggest, query]);
   function choose(id: string) {
     cancel();
     focusSelection.current = true;
@@ -171,7 +204,12 @@ export function ArticlePicker({
           </p>
           <div className="article-coverage" aria-live="polite">
             {coverage === 'checking' && <p role="status">Consultando texto preparado…</p>}
-            {coverage === 'available' && <p role="status">Texto preparado: disponible.</p>}
+            {coverage === 'available' && (
+              <p role="status">
+                Texto preparado: disponible.
+                {truncation?.aplicado && <> {truncationNotice(truncation)}</>}
+              </p>
+            )}
             {coverage === 'missing' && (
               <p role="status">
                 Este artículo no tiene texto preparado para recuperar los tres fragmentos.
@@ -203,25 +241,22 @@ export function ArticlePicker({
             onChange={(e) => filter(e.target.value)}
             aria-describedby="article-search-count"
           />
-          <div className="article-suggest-action">
-            <span>¿No tienes el título a mano?</span>
-            <button
-              type="button"
-              className="secondary-button"
-              disabled={!catalogVersion}
-              onClick={() => void suggest()}
-            >
-              {busy ? 'Cancelar búsqueda' : 'Sugerir según mi contexto'}
-            </button>
-          </div>
           {busy && (
-            <p role="status" className="field-help">
-              Buscando artículos relacionados con SciBERT…
-            </p>
+            <div className="article-suggest-action">
+              <p role="status" className="field-help">
+                Buscando artículos relacionados con SciBERT…
+              </p>
+              <button type="button" className="text-button" onClick={cancel}>
+                Cancelar búsqueda
+              </button>
+            </div>
           )}
           {error && (
             <p role="alert" className="error-message">
-              {error} Puedes seguir buscando por título o ID.
+              {error} Puedes seguir buscando por título o ID.{' '}
+              <button type="button" className="text-button" onClick={() => void suggest()}>
+                Reintentar sugerencias
+              </button>
             </p>
           )}
           <p className="field-help">
@@ -249,8 +284,7 @@ export function ArticlePicker({
           )}
           {candidates.length === 0 && (
             <p className="field-help">
-              No hay artículos con esa búsqueda. Prueba otro título o ID, o pide sugerencias con tu
-              contexto.
+              No hay artículos con esa búsqueda. Prueba otro título o ID.
             </p>
           )}
           <ul className="article-options" aria-label="Artículos encontrados">

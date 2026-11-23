@@ -1431,8 +1431,10 @@ La [web pública](https://proyectocitas-grupo19.click/) permite recomendar un
 artículo, abrir uno con texto disponible, marcar la posición de cita y obtener
 Top-3 y las nueve puntuaciones de M y S sin copiar metadatos ni fragmentos.
 La búsqueda semántica SciBERT preparada cubre **los 19.776 artículos** por título
-y resumen; el corpus V2 para Top-3 y M/S cubre **37 artículos**. El resto indica
-que no tiene texto completo preparado. Esto corresponde a M/S del notebook 10,
+y resumen; la ampliación del corpus V2 prepara **19.243 artículos**, con **508 recortados**
+a los límites existentes. Los 533 restantes no tienen contenido suficiente en el snapshot.
+La publicación y aceptación de esta ampliación se registran en
+[la nota de cobertura](docs/notas/ampliacion_cobertura_corpus.md). Esto corresponde a M/S del notebook 10,
 separado del factorial A4 y de su evaluación Gold descritos arriba.
 
 Véase [flujo integrado, corpus y pruebas](docs/notas/flujo_integrado_ms.md),

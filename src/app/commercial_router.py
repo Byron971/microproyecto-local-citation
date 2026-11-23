@@ -82,9 +82,9 @@ def classify(query: CommercialQuery):
     from src.app.article_corpus import corpus, CorpusUnavailable
     try:
         data, version = corpus()
+        article = data['documentos'].get(query.paper_id)
     except CorpusUnavailable:
         raise HTTPException(503, 'El artículo preparado no está disponible.') from None
-    article = data['documentos'].get(query.paper_id)
     if article is None:
         raise HTTPException(404, 'Artículo sin texto preparado.')
     raw = PROMPTS.read_bytes()

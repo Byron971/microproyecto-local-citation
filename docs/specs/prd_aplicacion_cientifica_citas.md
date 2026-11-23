@@ -8,7 +8,9 @@
 
 **Actualización solicitada por el usuario, 22/11/2026:** el paso «Artículo» incorpora sugerencias relacionadas con el contexto, limitadas al corpus preparado y con selección explícita. Esta decisión sustituye la restricción anterior de filtro exclusivamente literal; no habilita otra página de búsqueda global. Véase [decisión y comprobaciones](../notas/selector_articulos_relacionados.md).
 
-**Ampliación posterior solicitada por el usuario:** la búsqueda del paso 2 abarca los 19.776 artículos del índice existente. La selección sigue siendo manual; el análisis Top-3 requiere texto preparado (37 artículos actualmente). Esta decisión sustituye la restricción de búsqueda limitada al corpus preparado. Estado y evidencia: [ampliación del catálogo](../notas/busqueda_catalogo_completo_paso2.md).
+**Ampliación posterior solicitada por el usuario:** la búsqueda del paso 2 abarca los 19.776 artículos del índice existente. La selección sigue siendo manual; el análisis Top-3 requiere texto preparado (19.243 artículos en la ampliación local; publicación y aceptación se registran por separado). Esta decisión sustituye la restricción de búsqueda limitada al corpus preparado. Estado y evidencia: [ampliación del catálogo](../notas/busqueda_catalogo_completo_paso2.md).
+
+**Cobertura y simplificación posteriores:** se recortan documentos al límite existente (100 fragmentos y 56.000 caracteres de artículo/metadatos), indicando el alcance retenido. Sin artículo por defecto; sugerencias automáticas al entrar al paso 2 y confirmación manual. Implementación, preparación y aceptación: [ampliación de cobertura](../notas/ampliacion_cobertura_corpus.md).
 
 ## Plan de ejecución acordado
 
@@ -84,7 +86,7 @@ Quitar significa eliminar del recorrido y de las rutas de producto; no basta con
 
 1. Abrir la aplicación; la página principal es «Analizar una cita».
 2. Pegar contexto en inglés y marcar la cita objetivo con una acción sencilla. Internamente se utiliza TARGETCIT exactamente una vez.
-3. Identificar explícitamente el artículo citado por ID de ACL o seleccionarlo del catálogo completo por título e ID. Puede filtrarse la lista por título/ID o solicitar sugerencias según el contexto usando SciBERT existente. Las sugerencias abarcan el catálogo completo; no identifican automáticamente la referencia ni garantizan texto preparado para Top-3. Un ejemplo público comprobado precarga contexto y artículo. Mostrar título y enlace para confirmar la selección.
+3. Identificar explícitamente el artículo citado por ID de ACL o seleccionarlo del catálogo completo por título e ID. Puede filtrarse la lista por título/ID; al entrar a la etapa se solicitan sugerencias según el contexto usando SciBERT existente. Las sugerencias abarcan el catálogo completo; no identifican automáticamente la referencia ni garantizan texto preparado para Top-3. Los ejemplos precargan únicamente el contexto; ningún artículo queda confirmado por defecto. Mostrar título y enlace para confirmar la selección.
 4. Consultar si existe texto preparado. Si no existe, explicar la limitación y mantener lo ingresado; permitir corregir el identificador o seleccionar otro artículo preparado. No sustituir silenciosamente la referencia ni ofrecer JSON como salida normal.
 5. Elegir «Encoder SciBERT — M», «Encoder SciBERT — S», «Modelo abierto — [identidad verificada]» o «Modelo comercial — [identidad verificada]». Agrupar M/S en la misma familia. Mostrar opciones no configuradas como no disponibles con motivo.
 6. Ejecutar el análisis con un botón. Mostrar progreso y evitar duplicados.

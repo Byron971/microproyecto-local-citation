@@ -5,7 +5,12 @@ import catalog from '../articleCatalog.json';
 import fullCatalogUrl from '../fullArticleCatalog.json?url';
 import datasetExamples from '../scientificExamples.json';
 import { ExampleDialog } from '../components/ExampleDialog';
-import { ArticlePicker, type PreparedArticle } from '../components/ArticlePicker';
+import {
+  ArticlePicker,
+  type PreparedArticle,
+  type TruncationInfo,
+  truncationNotice,
+} from '../components/ArticlePicker';
 import type { CommercialClassification } from '../components/CommercialResults';
 import { detectCitations, markCitation, type CitationSpan } from '../citationDetection';
 
@@ -22,12 +27,14 @@ type Analysis = Respuesta & {
     fuente?: string;
     licencia?: string;
     version_contenido?: string;
+    truncamiento?: TruncationInfo;
   };
 };
 type Coverage = {
   paperId: string;
   status: 'checking' | 'available' | 'missing' | 'error';
   version?: string;
+  truncation?: TruncationInfo;
 };
 
 export function ScientificAnalysis() {
@@ -71,15 +78,25 @@ export function ScientificAnalysis() {
         if (!response.ok) throw new Error('Catalog unavailable');
         return response.json();
       })
-      .then((full: { source_sha256: string; articulos: PreparedArticle[] }) => {
-        if (!Array.isArray(full.articulos) || !/^[a-f0-9]{64}$/.test(full.source_sha256))
-          throw new Error('Invalid catalog');
-        if (!controller.signal.aborted) {
-          setArticles(full.articulos);
-          setArticleCatalogVersion(full.source_sha256);
-          setArticleCatalogError(false);
-        }
-      })
+      .then(
+        (full: {
+          source_sha256: string;
+          version_contenido: string;
+          articulos: PreparedArticle[];
+        }) => {
+          if (
+            !Array.isArray(full.articulos) ||
+            !/^[a-f0-9]{64}$/.test(full.source_sha256) ||
+            full.version_contenido !== catalog.version_contenido
+          )
+            throw new Error('Invalid catalog');
+          if (!controller.signal.aborted) {
+            setArticles(full.articulos);
+            setArticleCatalogVersion(full.source_sha256);
+            setArticleCatalogError(false);
+          }
+        },
+      )
       .catch(() => {
         if (!controller.signal.aborted) setArticleCatalogError(true);
       });
@@ -111,14 +128,14 @@ export function ScientificAnalysis() {
     }
     const controller = new AbortController();
     setCoverage({ paperId, status: 'checking' });
-    request<{ version_contenido: string; articulos: { paper_id: string; disponible: boolean }[] }>(
-      '/api/analisis-cita-ms/disponibilidad',
-      {
-        method: 'POST',
-        signal: controller.signal,
-        body: JSON.stringify({ paper_ids: [paperId] }),
-      },
-    )
+    request<{
+      version_contenido: string;
+      articulos: { paper_id: string; disponible: boolean; truncamiento?: TruncationInfo }[];
+    }>('/api/analisis-cita-ms/disponibilidad', {
+      method: 'POST',
+      signal: controller.signal,
+      body: JSON.stringify({ paper_ids: [paperId] }),
+    })
       .then((data) => {
         if (controller.signal.aborted) return;
         const entry = data.articulos?.find((item) => item.paper_id === paperId);
@@ -129,6 +146,7 @@ export function ScientificAnalysis() {
           paperId,
           status: entry.disponible ? 'available' : 'missing',
           version: data.version_contenido,
+          truncation: entry.truncamiento,
         });
       })
       .catch(() => {
@@ -199,7 +217,6 @@ export function ScientificAnalysis() {
   function example() {
     resetWorkflow();
     setText(PUBLIC_EXAMPLE.context);
-    setPaperId(PUBLIC_EXAMPLE.paperId);
     setUsingExample(true);
     setSelectedExample('');
     setCoverageRetry((count) => count + 1);
@@ -210,7 +227,6 @@ export function ScientificAnalysis() {
     if (!item) return;
     resetWorkflow();
     setText(item.contexto);
-    setPaperId(item.paper_id);
     setUsingExample(false);
     setSelectedExample(id);
     setExamplesOpen(false);
@@ -530,7 +546,7 @@ export function ScientificAnalysis() {
             )}
             {articleCatalogError && (
               <p role="alert" className="error-message">
-                No se pudo cargar el catálogo completo. Puedes usar los artículos preparados.{' '}
+                No se pudo cargar el catálogo completo. Puedes usar el catálogo inicial.{' '}
                 <button
                   type="button"
                   className="text-button"
@@ -549,15 +565,15 @@ export function ScientificAnalysis() {
               version={catalog.version_contenido}
               catalogVersion={articleCatalogVersion}
               context={context}
+              isActive={step === 1 && contextReady}
               selected={paperId}
               coverage={coverageStatus}
+              truncation={coverage?.truncation}
               onBusyChange={setSearchingArticles}
               onSelect={(id) => {
                 if (id === paperId) return;
                 invalidate();
                 setPaperId(id);
-                setUsingExample(false);
-                setSelectedExample('');
               }}
               onRetry={() => {
                 setCoverage({ paperId, status: 'checking' });
@@ -710,6 +726,9 @@ export function ScientificAnalysis() {
                 : `Encoder SciBERT — ${variant}`}
             </p>
           </div>
+          {result.articulo.truncamiento?.aplicado && (
+            <p className="field-help">{truncationNotice(result.articulo.truncamiento)}</p>
+          )}
           <div className="result-actions">
             <button
               type="button"
@@ -730,6 +749,7 @@ export function ScientificAnalysis() {
           </div>
           <ScientificResults
             respuesta={result}
+            truncation={result.articulo.truncamiento}
             variante={variant === 'commercial' ? undefined : variant}
             commercialSelected={variant === 'commercial'}
             commercial={commercialResult}
@@ -757,7 +777,7 @@ export function ScientificAnalysis() {
           }))}
           selected={selectedExample}
           searchable
-          description="Citas de ACL-200 con artículo preparado. Elige una para cargar el contexto y la referencia."
+          description="Citas de ACL-200 con artículo preparado. Elige una para cargar el contexto; confirma el artículo en el siguiente paso."
           onSelect={selectDatasetExample}
           onClose={() => setExamplesOpen(false)}
         />

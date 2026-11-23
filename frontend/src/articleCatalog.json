@@ -1,5 +1,5 @@
 {
-  "version_contenido": "56fbf67a8407cbef9068fc1a10c1e1d6b5b714ebac08752d81016698d5b0bea7",
+  "version_contenido": "a69bd67a9892433e3b4d1c81099a4d768abeff7032a0a087f314a2a7a01aac5a",
   "articulos": [
     {
       "paper_id": "D09-1059",
@@ -223,5 +223,6 @@
       "publicacion": "https://aclanthology.org/W98-0511/",
       "resumen": "After a short recall of our view of dependency grammars, we present two dependency parsers. The first uses dependency relations to have a more concise expression of dependency rules and to get efficiency in parsing. The second uses typed feature structures to add some semantic knowledge on dependency trees and parses in a more robust left to right manner."
     }
-  ]
+  ],
+  "total_preparados": 19243
 }

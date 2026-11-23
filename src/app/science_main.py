@@ -11,7 +11,9 @@ from src.app.ms_router import router, recomendar_cientifico, modelos_cientificos
 async def lifespan(app):
     from src.app.ms_runtime import obtener_servicio
     from src.app.article_corpus import corpus
-    corpus()  # Validate identity and the complete M/S input budget before readiness.
+    data, version = corpus()  # Validate identity and the complete M/S input budget before readiness.
+    app.state.total_articulos_preparados = len(data['documentos'])
+    app.state.version_corpus = version
     servicio = obtener_servicio()
     # Experimental global search is opt-in; it must not block article analysis.
     if os.environ.get('MS_ENABLE_GLOBAL_SEARCH') == '1':
