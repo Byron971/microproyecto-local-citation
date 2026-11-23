@@ -5,6 +5,7 @@ export type PreparedArticle = {
   paper_id: string;
   titulo: string;
   resumen: string;
+  preparado?: boolean;
   publicacion: string;
 };
 
@@ -12,6 +13,7 @@ export function ArticlePicker({
   articles,
   version,
   context,
+  catalogVersion,
   selected,
   coverage,
   onSelect,
@@ -21,6 +23,7 @@ export function ArticlePicker({
   articles: PreparedArticle[];
   version: string;
   context: string;
+  catalogVersion?: string;
   selected: string;
   coverage: 'checking' | 'available' | 'missing' | 'error';
   onSelect: (id: string) => void;
@@ -88,7 +91,13 @@ export function ArticlePicker({
     try {
       const response = await request<{
         version_contenido: string;
-        recomendaciones: { paper_id: string; similitud: number }[];
+        version_catalogo?: string;
+        recomendaciones: {
+          paper_id: string;
+          similitud: number;
+          titulo?: string;
+          resumen?: string;
+        }[];
       }>('/api/analisis-cita-ms/recomendar', {
         method: 'POST',
         signal: controller.signal,
@@ -97,6 +106,7 @@ export function ArticlePicker({
       if (controller.signal.aborted) return;
       if (
         response?.version_contenido !== version ||
+        (catalogVersion !== undefined && response.version_catalogo !== catalogVersion) ||
         !Array.isArray(response.recomendaciones) ||
         response.recomendaciones.length > 5 ||
         new Set(response.recomendaciones.map((r) => r.paper_id)).size !==
@@ -110,7 +120,10 @@ export function ArticlePicker({
         return;
       }
       setSuggestions(
-        response.recomendaciones.map((r) => articles.find((a) => a.paper_id === r.paper_id)!),
+        response.recomendaciones.map((r) => ({
+          ...articles.find((a) => a.paper_id === r.paper_id)!,
+          ...(r.resumen ? { resumen: r.resumen } : {}),
+        })),
       );
       setQuery('');
       setPage(0);
@@ -161,8 +174,8 @@ export function ArticlePicker({
             {coverage === 'available' && <p role="status">Texto preparado: disponible.</p>}
             {coverage === 'missing' && (
               <p role="status">
-                Este artículo no tiene texto preparado en el servicio. Conservamos tu contexto;
-                selecciona otro artículo.
+                Este artículo no tiene texto preparado para recuperar los tres fragmentos.
+                Conservamos tu contexto; selecciona otro artículo para continuar.
               </p>
             )}
             {coverage === 'error' && (
@@ -192,7 +205,12 @@ export function ArticlePicker({
           />
           <div className="article-suggest-action">
             <span>¿No tienes el título a mano?</span>
-            <button type="button" className="secondary-button" onClick={() => void suggest()}>
+            <button
+              type="button"
+              className="secondary-button"
+              disabled={!catalogVersion}
+              onClick={() => void suggest()}
+            >
               {busy ? 'Cancelar búsqueda' : 'Sugerir según mi contexto'}
             </button>
           </div>
@@ -206,6 +224,9 @@ export function ArticlePicker({
               {error} Puedes seguir buscando por título o ID.
             </p>
           )}
+          <p className="field-help">
+            La búsqueda incluye todo el catálogo. El análisis requiere texto preparado.
+          </p>
           <div className="article-list-heading">
             <h3>
               {suggestions
@@ -215,7 +236,9 @@ export function ArticlePicker({
                   : 'Artículos del catálogo'}
             </h3>
             <span id="article-search-count" aria-live="polite">
-              {query ? `${candidates.length} coincidencias` : `${candidates.length} artículos`}
+              {query
+                ? `${candidates.length} ${candidates.length === 1 ? 'coincidencia' : 'coincidencias'}`
+                : `${candidates.length} artículos`}
             </span>
           </div>
           {suggestions && (
@@ -245,10 +268,15 @@ export function ArticlePicker({
                   onClick={() => choose(item.paper_id)}
                 >
                   <strong>{item.titulo}</strong>
-                  <span className="article-id">{item.paper_id}</span>
-                  <span className="article-abstract" lang="en">
-                    {item.resumen}
+                  <span className="article-id">
+                    {item.paper_id} ·{' '}
+                    {item.preparado === false ? 'Texto pendiente' : 'Texto preparado'}
                   </span>
+                  {item.resumen && (
+                    <span className="article-abstract" lang="en">
+                      {item.resumen}
+                    </span>
+                  )}
                   <span className="article-select-label" aria-hidden="true">
                     Seleccionar artículo →
                   </span>

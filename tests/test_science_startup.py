@@ -1,5 +1,6 @@
 """M/S readiness must not depend on the experimental global index."""
 from unittest.mock import patch
+from types import SimpleNamespace
 
 import pytest
 from fastapi.testclient import TestClient
@@ -10,7 +11,7 @@ from src.app.science_main import app
 def test_startup_without_global_index(monkeypatch):
     monkeypatch.delenv('MS_ENABLE_GLOBAL_SEARCH', raising=False)
     monkeypatch.setenv('MS_SEARCH_DIR', '/nonexistent/search-index')
-    with patch('src.app.ms_runtime.obtener_servicio', return_value=object()), \
+    with patch('src.app.ms_runtime.obtener_servicio', return_value=SimpleNamespace(recuperador=SimpleNamespace(encoder=SimpleNamespace(revision='a' * 40)))), \
          patch('src.app.article_corpus.corpus'):
         with TestClient(app) as client:
             assert client.get('/health/ready').status_code == 200
@@ -31,7 +32,7 @@ def test_model_failure_never_becomes_ready(monkeypatch):
                 pass
 
 
-def test_bootstrap_only_downloads_ms_by_default(monkeypatch):
+def test_bootstrap_downloads_optional_catalog_without_global_flag(monkeypatch):
     import json
     import sys
     from types import SimpleNamespace
@@ -44,6 +45,22 @@ def test_bootstrap_only_downloads_ms_by_default(monkeypatch):
          patch('scripts.iniciar_ciencia.preparar') as prepare, \
          patch('os.execvp') as execute:
         main()
-    assert read.call_count == 1  # No search manifest is read or required.
-    assert prepare.call_count == 1
+    assert read.call_count == 2  # M/S plus the optional step-2 index.
+    assert prepare.call_count == 2
+    execute.assert_called_once()
+
+
+def test_catalog_download_failure_does_not_stop_ms(monkeypatch):
+    import json
+    import sys
+    from types import SimpleNamespace
+    from scripts.iniciar_ciencia import main
+    monkeypatch.setitem(sys.modules, 'boto3', SimpleNamespace(client=lambda *a, **kw: object()))
+    monkeypatch.setitem(sys.modules, 'botocore', SimpleNamespace())
+    monkeypatch.setitem(sys.modules, 'botocore.config', SimpleNamespace(Config=lambda **kw: None))
+    monkeypatch.delenv('MS_ENABLE_GLOBAL_SEARCH', raising=False)
+    with patch('pathlib.Path.read_text', return_value=json.dumps({'release_id': 'test'})), \
+         patch('scripts.iniciar_ciencia.preparar', side_effect=[None, RuntimeError('Offline')]), \
+         patch('os.execvp') as execute:
+        main()
     execute.assert_called_once()

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "scibert_revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+  "perfil": "scibert-title-abstract-windows-mean-cosine-v1",
+  "total_articulos": 19776,
+  "files": [
+    {
+      "path": "artifacts/scientific_search/papers.json",
+      "bytes": 24690700,
+      "sha256": "c23eeeb02ce7cad761043f72f4d6c75dbfe4bdfa3eba7f1cb4c350adf1be2890"
+    },
+    {
+      "path": "artifacts/scientific_search/embeddings.npy",
+      "bytes": 60752000,
+      "sha256": "cf15d4a11a21a069fb9e0d7fe00351406a49123f82a2c4fa5bc019a8fc8f0b41"
+    },
+    {
+      "path": "artifacts/scientific_search/indice.json",
+      "bytes": 504,
+      "sha256": "09be13a7a8e41de380b796b7cdf47390f0c2289700fda304a273ed4eefc719b6"
+    }
+  ],
+  "release_id": "search-scibert-994412ffe3a831d3",
+  "bucket": "citas-api-models-646941583111-us-east-1",
+  "prefix": "releases/search-scibert-994412ffe3a831d3/"
+}

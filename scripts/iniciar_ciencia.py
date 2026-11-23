@@ -53,6 +53,13 @@ def main():
         search_manifest = json.loads(Path(os.environ.get(
             'MS_SEARCH_MANIFEST', '/app/config/search_release.json')).read_text())
         preparar(client, search_manifest, root)
+    # Step-2 catalog index is optional: failure must not prevent M/S readiness.
+    if os.environ.get('MS_ENABLE_GLOBAL_SEARCH') != '1':
+        try:
+            catalog_manifest = json.loads(Path('/app/config/catalog_search_release.json').read_text())
+            preparar(client, catalog_manifest, root)
+        except Exception:
+            print('Índice del catálogo no disponible; M/S y búsqueda manual continúan.', flush=True)
     os.environ["HF_HOME"] = str(root / "artifacts/huggingface")
     os.environ["MS_ARTIFACTS_DIR"] = str(root / "proyecto_de_grado/artifacts/experimentos_10")
     os.environ["MS_RELEASE_ID"] = manifest["release_id"]

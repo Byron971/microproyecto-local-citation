@@ -45,6 +45,7 @@ class ArticleSearch:
         return {'consulta': context, 'modelo': MODEL_ID, 'total': len(rows),
                 'recomendaciones': rows, 'revision_scibert': self.encoder.revision,
                 'version_indice': self.version, 'total_catalogo': len(self.papers),
+                'version_catalogo': self.metadata['files']['papers.json'],
                 'metodo': PROFILE, 'version_contenido': self.metadata.get('version_contenido'),
                 'aviso': 'Búsqueda semántica experimental por título y resumen; no evaluada como recomendador en el notebook 10. M/S clasifican la función de cita por separado.'}
 
@@ -55,4 +56,18 @@ def prepared_article_search(encoder):
     search = ArticleSearch(Path(__file__).resolve().parents[2] / 'config/prepared_article_search', encoder)
     if search.metadata.get('version_contenido') != version or set(search.ids) != set(data['documentos']):
         raise ValueError('El índice de sugerencias no corresponde al corpus preparado')
+    return search
+
+
+def catalog_article_search(encoder):
+    import os
+    from src.app.article_corpus import corpus
+    data, version = corpus()
+    search = ArticleSearch(os.environ.get('MS_SEARCH_DIR', 'artifacts/scientific_search'), encoder)
+    by_id = {p['paper_id']: p for p in search.papers}
+    for pid, doc in data['documentos'].items():
+        row = by_id.get(pid)
+        if not row or row['titulo'] != ' '.join(doc['titulo'].split()) or row['resumen'] != ' '.join(doc['abstract'].split()):
+            raise ValueError('El catálogo completo no corresponde al corpus preparado')
+    search.metadata['version_contenido'] = version
     return search

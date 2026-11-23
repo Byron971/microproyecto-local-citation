@@ -62,3 +62,7 @@ article-search-check:
 	python3 scripts/check_prepared_search.py
 article-search-web-check:
 	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_ARTICLE_SEARCH=1 npm --prefix frontend run test:e2e -- article-search-live.spec.ts --workers=1 --output=../artifacts/article-search-live
+
+.PHONY: catalog-index-release
+catalog-index-release:
+	AWS_PROFILE=$(AWS_PROFILE) $(or $(PYTHON),python3) scripts/publicar_indice_scibert.py --salida config/catalog_search_release.json

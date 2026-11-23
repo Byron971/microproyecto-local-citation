@@ -112,7 +112,7 @@ def test_search_startup_failure_does_not_break_ms(monkeypatch):
         obtener_servicio=lambda: SimpleNamespace(recuperador=SimpleNamespace(encoder=Encoder()))))
     def unavailable(encoder):
         raise ValueError('Corrupt suggestion index')
-    monkeypatch.setattr(scientific_search, 'prepared_article_search', unavailable)
+    monkeypatch.setattr(scientific_search, 'catalog_article_search', unavailable)
     app = FastAPI(lifespan=science_main.lifespan)
     app.include_router(router)
     with TestClient(app) as client:
@@ -142,3 +142,26 @@ def test_export_preserves_existing_vectors_and_checks_source(tmp_path):
     (source / 'papers.json').write_text('[]')
     with pytest.raises(ValueError, match='hash incorrecto'):
         export(source, destination, catalog)
+
+
+def test_full_catalog_preserves_corpus_and_existing_embeddings(monkeypatch):
+    from src.app.article_corpus import corpus
+    from src.app.scientific_search import catalog_article_search
+    root = Path('artifacts/scientific_search')
+    if not root.exists():
+        pytest.skip('Full offline index is supplied separately')
+    metadata = json.loads((root / 'indice.json').read_text())
+    monkeypatch.setenv('MS_SEARCH_DIR', str(root))
+    search = catalog_article_search(SimpleNamespace(revision=metadata['revision_scibert']))
+    data, version = corpus()
+    assert len(search.papers) == 19776
+    assert set(data['documentos']) < set(search.ids)
+    assert search.metadata['version_contenido'] == version
+    assert search.metadata['files'] == metadata['files']
+    foreign = next(p for p in search.papers if p['paper_id'] not in data['documentos'])
+    vector = search.vectors[list(search.ids).index(foreign['paper_id'])]
+    search.encoder = SimpleNamespace(encode=lambda texts: [vector.copy()], revision=metadata['revision_scibert'])
+    result = search.recommend('synthetic TARGETCIT context', 5)
+    assert result['recomendaciones'][0]['paper_id'] == foreign['paper_id']
+    assert result['version_catalogo'] == metadata['files']['papers.json']
+    assert result['version_contenido'] == version

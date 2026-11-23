@@ -16,6 +16,7 @@ COPY src/app/__init__.py src/app/ms_config.py src/app/ms_runtime.py src/app/ms_r
 COPY packages/recuperacion-densa/src/recuperacion_densa /app/packages/recuperacion-densa/src/recuperacion_densa
 COPY proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json /app/proyecto_de_grado/docs/evidencias_recuperacion_densa_a1/manifiesto_modelo.json
 COPY config/ms_release.json /app/config/ms_release.json
+COPY config/catalog_search_release.json /app/config/catalog_search_release.json
 COPY config/corpus_ms.json /app/config/corpus_ms.json
 COPY config/prepared_article_search /app/config/prepared_article_search
 COPY src/app/article_corpus.py /app/src/app/article_corpus.py

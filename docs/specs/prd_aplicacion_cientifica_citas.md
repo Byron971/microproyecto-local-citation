@@ -8,6 +8,8 @@
 
 **Actualización solicitada por el usuario, 22/11/2026:** el paso «Artículo» incorpora sugerencias relacionadas con el contexto, limitadas al corpus preparado y con selección explícita. Esta decisión sustituye la restricción anterior de filtro exclusivamente literal; no habilita otra página de búsqueda global. Véase [decisión y comprobaciones](../notas/selector_articulos_relacionados.md).
 
+**Ampliación posterior solicitada por el usuario:** la búsqueda del paso 2 abarca los 19.776 artículos del índice existente. La selección sigue siendo manual; el análisis Top-3 requiere texto preparado (37 artículos actualmente). Esta decisión sustituye la restricción de búsqueda limitada al corpus preparado. Estado y evidencia: [ampliación del catálogo](../notas/busqueda_catalogo_completo_paso2.md).
+
 ## Plan de ejecución acordado
 
 1. **Rediseñar la página principal** con un único recorrido: contexto de cita → artículo citado → clasificador → Top-3 y función predicha. El mockup ASCII de §13 define la organización.

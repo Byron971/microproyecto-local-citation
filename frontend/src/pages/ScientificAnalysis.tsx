@@ -2,9 +2,10 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ApiError, errorMessage, request } from '../api';
 import { ScientificResults, type Respuesta } from '../components/ScientificResults';
 import catalog from '../articleCatalog.json';
+import fullCatalogUrl from '../fullArticleCatalog.json?url';
 import datasetExamples from '../scientificExamples.json';
 import { ExampleDialog } from '../components/ExampleDialog';
-import { ArticlePicker } from '../components/ArticlePicker';
+import { ArticlePicker, type PreparedArticle } from '../components/ArticlePicker';
 import type { CommercialClassification } from '../components/CommercialResults';
 import { detectCitations, markCitation, type CitationSpan } from '../citationDetection';
 
@@ -30,6 +31,10 @@ type Coverage = {
 };
 
 export function ScientificAnalysis() {
+  const [articles, setArticles] = useState<PreparedArticle[]>(catalog.articulos);
+  const [articleCatalogVersion, setArticleCatalogVersion] = useState<string>();
+  const [articleCatalogError, setArticleCatalogError] = useState(false);
+  const [articleCatalogRetry, setArticleCatalogRetry] = useState(0);
   const [text, setText] = useState('');
   const [chosenSpan, setChosenSpan] = useState<CitationSpan>();
   const [paperId, setPaperId] = useState('');
@@ -57,7 +62,29 @@ export function ScientificAnalysis() {
   const [completedSteps, setCompletedSteps] = useState(0);
   const input = useRef<HTMLTextAreaElement>(null);
   const active = useRef<AbortController | null>(null);
-  const article = catalog.articulos.find((item) => item.paper_id === paperId);
+  const article = articles.find((item) => item.paper_id === paperId);
+  useEffect(() => {
+    if (step !== 1 || articleCatalogVersion) return;
+    const controller = new AbortController();
+    fetch(fullCatalogUrl, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error('Catalog unavailable');
+        return response.json();
+      })
+      .then((full: { source_sha256: string; articulos: PreparedArticle[] }) => {
+        if (!Array.isArray(full.articulos) || !/^[a-f0-9]{64}$/.test(full.source_sha256))
+          throw new Error('Invalid catalog');
+        if (!controller.signal.aborted) {
+          setArticles(full.articulos);
+          setArticleCatalogVersion(full.source_sha256);
+          setArticleCatalogError(false);
+        }
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setArticleCatalogError(true);
+      });
+    return () => controller.abort();
+  }, [step, articleCatalogRetry, articleCatalogVersion]);
   useEffect(() => () => active.current?.abort(), []);
   useEffect(() => {
     const controller = new AbortController();
@@ -496,10 +523,31 @@ export function ScientificAnalysis() {
             <legend id="workflow-title-1" tabIndex={-1}>
               Artículo citado
             </legend>
+            {!articleCatalogVersion && !articleCatalogError && (
+              <p role="status" className="field-help">
+                Cargando catálogo completo…
+              </p>
+            )}
+            {articleCatalogError && (
+              <p role="alert" className="error-message">
+                No se pudo cargar el catálogo completo. Puedes usar los artículos preparados.{' '}
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => {
+                    setArticleCatalogError(false);
+                    setArticleCatalogRetry((n) => n + 1);
+                  }}
+                >
+                  Reintentar catálogo
+                </button>
+              </p>
+            )}
             <ArticlePicker
               key={articleReset}
-              articles={catalog.articulos}
+              articles={articles}
               version={catalog.version_contenido}
+              catalogVersion={articleCatalogVersion}
               context={context}
               selected={paperId}
               coverage={coverageStatus}
