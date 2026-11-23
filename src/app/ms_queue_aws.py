@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import random
 import time
 
 from src.app.ms_queue import (
@@ -67,6 +68,27 @@ def _motivos(exc):
     return [m.get('Code') for m in getattr(exc, 'response', {}).get('CancellationReasons', [])]
 
 
+MAX_CONFLICTOS = 5
+
+
+def _es_conflicto(exc):
+    """Escrituras simultáneas sobre el mismo elemento (p. ej. el contador): reintentables."""
+    codigo, motivos = _codigo(exc), _motivos(exc)
+    return codigo == 'TransactionConflictException' or (
+        codigo == 'TransactionCanceledException' and 'TransactionConflict' in motivos
+        and 'ConditionalCheckFailed' not in motivos)
+
+
+def _con_reintentos(operacion):
+    for intento in range(MAX_CONFLICTOS):
+        try:
+            return operacion()
+        except Exception as exc:
+            if not _es_conflicto(exc) or intento == MAX_CONFLICTOS - 1:
+                raise
+            time.sleep(random.uniform(0.02, 0.08) * 2 ** intento)
+
+
 class DynamoJobStore:
     def __init__(self, client, tabla):
         self.client, self.tabla = client, tabla
@@ -80,7 +102,8 @@ class DynamoJobStore:
     def crear(self, trabajo, max_activos):
         item = {'pk': _pk(trabajo['trabajo_id']), **_a_dynamo(trabajo)}
         try:
-            self.client.transact_write_items(TransactItems=[
+            # Sin ClientRequestToken: la condición de unicidad ya hace idempotente el alta.
+            _con_reintentos(lambda: self.client.transact_write_items(TransactItems=[
                 {'Put': {'TableName': self.tabla, 'Item': item,
                          'ConditionExpression': 'attribute_not_exists(pk)',
                          'ReturnValuesOnConditionCheckFailure': 'ALL_OLD'}},
@@ -89,7 +112,7 @@ class DynamoJobStore:
                             'ConditionExpression': 'attribute_not_exists(activos) OR activos < :max',
                             'ExpressionAttributeValues': {':cero': {'N': '0'}, ':uno': {'N': '1'},
                                                           ':max': {'N': str(max_activos)}}}},
-            ], ClientRequestToken=trabajo['trabajo_id'])
+            ]))
             return None
         except Exception as exc:
             if _codigo(exc) != 'TransactionCanceledException':
@@ -105,7 +128,7 @@ class DynamoJobStore:
 
     def reclamar(self, trabajo_id, worker_id, ahora, lease_hasta, max_intentos):
         try:
-            respuesta = self.client.update_item(
+            respuesta = _con_reintentos(lambda: self.client.update_item(
                 TableName=self.tabla, Key={'pk': _pk(trabajo_id)},
                 UpdateExpression=('SET estado = :proc, intentos = intentos + :uno, worker_id = :w, '
                                   'lease_hasta = :lease, iniciado_en = if_not_exists(iniciado_en, :ahora)'),
@@ -116,7 +139,7 @@ class DynamoJobStore:
                     ':proc': {'S': 'procesando'}, ':cola': {'S': 'en_cola'}, ':uno': {'N': '1'},
                     ':w': {'S': worker_id}, ':lease': _numero(lease_hasta), ':ahora': _numero(ahora),
                     ':max': {'N': str(max_intentos)}},
-                ReturnValues='ALL_NEW')
+                ReturnValues='ALL_NEW'))
         except Exception as exc:
             if _codigo(exc) == 'ConditionalCheckFailedException':
                 return None
@@ -125,12 +148,12 @@ class DynamoJobStore:
 
     def renovar(self, trabajo_id, worker_id, lease_hasta):
         try:
-            self.client.update_item(
+            _con_reintentos(lambda: self.client.update_item(
                 TableName=self.tabla, Key={'pk': _pk(trabajo_id)},
                 UpdateExpression='SET lease_hasta = :lease',
                 ConditionExpression='estado = :proc AND worker_id = :w',
                 ExpressionAttributeValues={':lease': _numero(lease_hasta), ':proc': {'S': 'procesando'},
-                                           ':w': {'S': worker_id}})
+                                           ':w': {'S': worker_id}}))
             return True
         except Exception as exc:
             if _codigo(exc) == 'ConditionalCheckFailedException':
@@ -162,13 +185,13 @@ class DynamoJobStore:
         if nombres:
             actualizacion['ExpressionAttributeNames'] = nombres
         try:
-            self.client.transact_write_items(TransactItems=[
+            _con_reintentos(lambda: self.client.transact_write_items(TransactItems=[
                 {'Update': actualizacion},
                 # Sin condición: un desajuste del contador nunca impide terminar un trabajo.
                 {'Update': {'TableName': self.tabla, 'Key': {'pk': {'S': CONTADOR}},
                             'UpdateExpression': 'ADD activos :menos',
                             'ExpressionAttributeValues': {':menos': {'N': '-1'}}}},
-            ])
+            ]))
             return True
         except Exception as exc:
             if _codigo(exc) == 'TransactionCanceledException' and _motivos(exc)[:1] == ['ConditionalCheckFailed']:

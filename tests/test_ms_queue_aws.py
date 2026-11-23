@@ -47,7 +47,7 @@ def test_crear_nuevo_duplicado_y_cola_llena():
     client = cliente('dynamodb')
     store = DynamoJobStore(client, TABLA)
     with Stubber(client) as stub:
-        stub.add_response('transact_write_items', {}, {'TransactItems': ANY, 'ClientRequestToken': TID})
+        stub.add_response('transact_write_items', {}, {'TransactItems': ANY})
         assert store.crear(TRABAJO, 10) is None
         cancelada(stub, ['ConditionalCheckFailed', 'None'])
         stub.add_response('get_item', {'Item': item_dynamo(estado='procesando')})
@@ -155,3 +155,53 @@ def test_crear_cola_segun_configuracion():
         'MS_COLA_MAX_ACTIVOS': '5'})
     assert backend == 'dynamodb_sqs' and servicio.limites.max_activos == 5
     assert isinstance(servicio.store, DynamoJobStore) and worker.espera_recepcion_s == 20
+
+
+def sin_espera(monkeypatch):
+    import src.app.ms_queue_aws as aws_mod
+    monkeypatch.setattr(aws_mod.time, 'sleep', lambda s: None)
+
+
+def test_conflicto_de_transaccion_en_alta_se_reintenta(monkeypatch):
+    # Dos altas simultáneas tocan el contador compartido: DynamoDB cancela una con
+    # TransactionConflict. Debe reintentarse, no responder 503.
+    sin_espera(monkeypatch)
+    client = cliente('dynamodb')
+    with Stubber(client) as stub:
+        cancelada(stub, ['None', 'TransactionConflict'])
+        cancelada(stub, ['TransactionConflict', 'None'])
+        stub.add_response('transact_write_items', {})
+        assert DynamoJobStore(client, TABLA).crear(TRABAJO, 10) is None
+        stub.assert_no_pending_responses()
+
+
+def test_conflicto_de_transaccion_al_finalizar_se_reintenta(monkeypatch):
+    sin_espera(monkeypatch)
+    client = cliente('dynamodb')
+    with Stubber(client) as stub:
+        cancelada(stub, ['None', 'TransactionConflict'])
+        stub.add_response('transact_write_items', {})
+        assert DynamoJobStore(client, TABLA).finalizar(TID, 'completado', {'terminado_en': 1.0},
+                                                       desde={'procesando'}, worker_id='w1')
+        stub.assert_no_pending_responses()
+
+
+def test_conflicto_persistente_se_propaga_tras_reintentos_acotados(monkeypatch):
+    sin_espera(monkeypatch)
+    client = cliente('dynamodb')
+    with Stubber(client) as stub:
+        for _ in range(5):
+            cancelada(stub, ['None', 'TransactionConflict'])
+        with pytest.raises(Exception, match='TransactionCanceled'):
+            DynamoJobStore(client, TABLA).crear(TRABAJO, 10)
+        stub.assert_no_pending_responses()
+
+
+def test_conflicto_en_actualizacion_simple_se_reintenta(monkeypatch):
+    sin_espera(monkeypatch)
+    client = cliente('dynamodb')
+    with Stubber(client) as stub:
+        stub.add_client_error('update_item', service_error_code='TransactionConflictException')
+        stub.add_response('update_item', {'Attributes': item_dynamo(estado='procesando', intentos=1,
+                                                                    worker_id='w1', lease_hasta=1121.0)})
+        assert DynamoJobStore(client, TABLA).reclamar(TID, 'w1', 1001.0, 1121.0, 2)['worker_id'] == 'w1'
