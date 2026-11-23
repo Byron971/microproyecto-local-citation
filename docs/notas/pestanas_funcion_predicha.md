@@ -18,7 +18,11 @@ Build correcto y 41 pruebas unitarias aprobadas. 86 recorridos de regresión de 
 
 ## Publicación
 
-Pendiente de publicar exclusivamente frontend con `make publish-frontend`, outputs actuales de `make release-status` y confirmar HTML/bundle y controles publicados. La verificación visual de la web usará respuestas simuladas: no se requieren nuevas inferencias para este cambio de presentación. La aceptación científica real anterior se conserva como evidencia histórica, sin repetirla ni atribuirla a esta tarea.
+Publicación exclusivamente frontend mediante `make publish-frontend`, utilizando los outputs recién obtenidos y contrastados desde `make release-status`. `make release-confirm` comprobó servicios estables, imágenes conservadas, salud, versión del corpus y HTML público idéntico al build. La aceptación científica real anterior se conserva como evidencia histórica, sin repetirla ni atribuirla a esta tarea.
+
+Los seis casos de pestañas M/S/comercial aprobaron sobre la web publicada en escritorio/móvil, con respuestas API simuladas. Se revisaron capturas de esos paneles, foco y ajuste móvil; no hubo solicitudes reales a los modelos. Esto comprueba presentación e interacción del bundle público, no una nueva aceptación de inferencia científica o comercial. Evidencia: `artifacts/result-tabs-public-mocks/`, incluida una copia de la confirmación de despliegue.
+
+Código frontend: `f3d3e72`. SHA256 de `index.html`: `16ef5fb25a6215c292394ecf510573bbc58831aa086b7b86e0cf84528ec39afa`. API conservada en `citas-api:7` (`eb0d14e`), científico en `citas-api-science:9` (`e84fd3a`); no se construyeron imágenes backend ni se encendió la constructora. Los archivos del equipo permanecen sin seguimiento.
 
 ## Checklist
 
@@ -26,6 +30,6 @@ Pendiente de publicar exclusivamente frontend con `make publish-frontend`, outpu
 - [x] Ayuda y detalles completos; proveedor integrado y Top-3 conservado.
 - [x] Teclado, panel único y cambio sin inferencia comprobados con mocks.
 - [x] Capturas locales de escritorio y móvil revisadas.
-- [ ] Publicación frontend, HTML público y UI publicada con mocks verificados.
+- [x] Publicación frontend, HTML público y UI publicada con mocks verificados.
 
 T01–T03 conservan el recorrido publicado; T04 pendiente; T05–T06 suspendidas; T07–T09 M/S/comercial disponibles con familia abierta suspendida; T10 parcial; T11 conserva aceptación real anterior; T12 pendiente; T13 notas actualizadas con cierre final pendiente. El proyecto global sigue parcialmente cumplido.

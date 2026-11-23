@@ -98,6 +98,10 @@ for (const mode of ['M', 'S', 'commercial']) {
     await expect(result.getByRole('tabpanel')).toHaveCount(1);
     const scorePanel = result.getByRole('tabpanel', { name: 'Puntuación', exact: true });
     await expect(scorePanel.locator('.function-score')).toHaveCount(9);
+    if (mode !== 'commercial')
+      await expect(
+        scorePanel.getByRole('heading', { name: `Modelo ${mode}`, exact: true }),
+      ).toBeVisible();
     await expect(result.getByText('Fragmento verificado 1', { exact: true })).toBeVisible();
     const capture = async (name: string) => {
       await expect(page.locator('body')).toHaveJSProperty(
