@@ -21,3 +21,11 @@ commercial-public-catalog:
 .PHONY: commercial-web-check
 commercial-web-check:
 	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_COMMERCIAL_E2E=1 npm --prefix frontend run test:e2e -- commercial-real.spec.ts --workers=1
+
+.PHONY: commercial-concurrency-check
+commercial-concurrency-check:
+	AWS_PROFILE=$(AWS_PROFILE) CITAS_COMMERCIAL_LIMIT_TABLE=citas-api-commercial-limits PYTHONPATH=. .venv/bin/python scripts/check_commercial_concurrency.py
+
+.PHONY: commercial-concurrency-public-check
+commercial-concurrency-public-check:
+	AWS_PROFILE=$(AWS_PROFILE) CITAS_COMMERCIAL_LIMIT_TABLE=citas-api-commercial-limits PYTHONPATH=. .venv/bin/python scripts/check_commercial_concurrency.py --public

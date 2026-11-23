@@ -1,4 +1,5 @@
 import json
+from contextlib import nullcontext
 from types import SimpleNamespace
 from unittest.mock import Mock
 
@@ -19,6 +20,7 @@ def client(monkeypatch):
     monkeypatch.setenv('OPENAI_API_KEY', 'fake-unit-key')
     monkeypatch.setenv('CITAS_COMMERCIAL_LIMIT_TABLE', 'unit-table')
     monkeypatch.setattr(commercial, 'reserve_call', Mock())
+    monkeypatch.setattr(commercial, 'commercial_slot', Mock(side_effect=lambda: nullcontext()))
     from src.evaluation.commercial import providers_openai
     response = ProviderResponse('[0.1,0,0,0,0.8,0,0,0,0]', 100, 20, 'gpt-6.1-sol')
     fake = Mock(return_value=SimpleNamespace(generate=Mock(return_value=response)))
@@ -121,3 +123,38 @@ def test_atomic_limit_and_fail_closed(monkeypatch):
         with pytest.raises(HTTPException) as error:
             commercial.reserve_call()
         assert error.value.status_code == status
+
+
+def test_busy_request_does_not_consume_quota_or_call_provider(client):
+    http, provider = client
+    commercial.commercial_slot.side_effect = HTTPException(429, 'Ocupado', headers={'Retry-After': '5'})
+    response = http.post('/api/comercial/clasificar', json=payload())
+    assert response.status_code == 429
+    assert response.headers['retry-after'] == '5'
+    commercial.reserve_call.assert_not_called()
+    provider.assert_not_called()
+
+
+@pytest.mark.parametrize('failure', ['quota', 'provider', 'parser', None])
+def test_slot_is_released_for_every_outcome(client, failure):
+    from contextlib import contextmanager
+    http, provider = client
+    released = []
+
+    @contextmanager
+    def slot():
+        try:
+            yield
+        finally:
+            released.append(True)
+
+    commercial.commercial_slot.side_effect = slot
+    if failure == 'quota':
+        commercial.reserve_call.side_effect = HTTPException(429, 'Límite diario')
+    elif failure == 'provider':
+        provider.return_value.generate.side_effect = TimeoutError('private error')
+    elif failure == 'parser':
+        provider.return_value.generate.return_value = ProviderResponse('invalid', model='gpt-6.1-sol')
+    response = http.post('/api/comercial/clasificar', json=payload())
+    assert response.status_code == (429 if failure == 'quota' else 502 if failure else 200)
+    assert released == [True]

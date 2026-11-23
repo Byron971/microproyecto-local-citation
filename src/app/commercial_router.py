@@ -9,6 +9,8 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field, model_validator
 
+from src.app.commercial_limits import commercial_slot, dynamodb_client
+
 router = APIRouter(tags=['Clasificadores'])
 MODEL = 'gpt-6.1-sol'
 PROFILE = 'zero_shot_detailed'
@@ -46,7 +48,6 @@ class CommercialQuery(BaseModel):
 
 def reserve_call():
     """Contador diario global y persistente; cada intento consume una unidad."""
-    import boto3
     from botocore.exceptions import ClientError
     now = datetime.now(timezone.utc)
     try:
@@ -56,7 +57,7 @@ def reserve_call():
     if not 1 <= limit <= 100:
         raise HTTPException(503, 'Límite comercial no configurado correctamente.')
     try:
-        boto3.client('dynamodb', region_name=os.environ.get('AWS_REGION', 'us-east-1')).update_item(
+        dynamodb_client().update_item(
             TableName=os.environ['CITAS_COMMERCIAL_LIMIT_TABLE'],
             Key={'id': {'S': 'openai:' + now.strftime('%Y-%m-%d')}},
             UpdateExpression='SET expires_at = :ttl ADD #calls :one',
@@ -92,18 +93,19 @@ def classify(query: CommercialQuery):
     prompt = template.replace('{input}', text)
     if len(prompt) > 25000:
         raise HTTPException(422, 'La entrada supera el límite del perfil comercial.')
-    reserve_call()
-    from src.evaluation.commercial.providers_openai import OpenAIClient
-    from src.evaluation.commercial.stability import parse_score_array
-    start = time.monotonic()
-    try:
-        response = OpenAIClient(MODEL, timeout_seconds=20, max_completion_tokens=1024).generate(prompt)
-        scores = parse_score_array(response.text)
-        if not response.model or not (response.model == MODEL or response.model.startswith(MODEL + '-')):
-            raise ValueError('Identidad del modelo no confirmada')
-    except Exception:
-        # No exponer excepciones del SDK: pueden incluir detalles del proveedor.
-        raise HTTPException(502, 'OpenAI no devolvió una clasificación válida. Los fragmentos se conservan.') from None
+    with commercial_slot():
+        reserve_call()
+        from src.evaluation.commercial.providers_openai import OpenAIClient
+        from src.evaluation.commercial.stability import parse_score_array
+        start = time.monotonic()
+        try:
+            response = OpenAIClient(MODEL, timeout_seconds=20, max_completion_tokens=1024).generate(prompt)
+            scores = parse_score_array(response.text)
+            if not response.model or not (response.model == MODEL or response.model.startswith(MODEL + '-')):
+                raise ValueError('Identidad del modelo no confirmada')
+        except Exception:
+            # No exponer excepciones del SDK: pueden incluir detalles del proveedor.
+            raise HTTPException(502, 'OpenAI no devolvió una clasificación válida. Los fragmentos se conservan.') from None
     highest = max(scores)
     winner = scores.index(highest) if highest > 0 and scores.count(highest) == 1 else None
     return {'paper_id': query.paper_id, 'version_contenido': version,
