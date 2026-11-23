@@ -228,8 +228,10 @@ test('el catálogo completo puede reintentarse y conserva los preparados ante fa
   page,
 }) => {
   let failed = true;
-  await page.route('**/fullArticleCatalog.json*', (r) =>
-    failed && r.request().resourceType() === 'fetch' ? r.fulfill({ status: 503, body: 'Unavailable' }) : r.continue(),
+  await page.route('**/fullArticleCatalog*.json*', (r) =>
+    failed && r.request().resourceType() === 'fetch'
+      ? r.fulfill({ status: 503, body: 'Unavailable' })
+      : r.continue(),
   );
   await page.route('**/api/clasificadores', (r) => r.fulfill({ json: { clasificadores: [] } }));
   await page.goto('/');

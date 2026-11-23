@@ -30,15 +30,29 @@ El índice completo se distribuye mediante el publicador existente y el nuevo ta
 
 ## Publicación
 
-Pendiente de completar y comprobar públicamente. La evidencia local no se presenta como aceptación del despliegue.
+Publicada y aceptada en https://proyectocitas-grupo19.click.
+
+- Código científico/frontend: `3d055edeb407560c07e34817cb2f91fb83c2f508`.
+- Imagen científica: `sha256:5b1520a91ac3be8db5d783488cb9fe23812f48759362792575cb99809984879d`; ECS `citas-api-science:6` estable.
+- API conservada en `citas-api:5`, código `c01b43f04f52806bf5f2948f7b1bd2c56c89dde7`. Pesos y corpus sin cambios.
+- Índice `search-scibert-994412ffe3a831d3`: 85.443.204 bytes publicados y contrastados desde S3 mediante `make catalog-index-release`, sin recalcular embeddings. No se habilitó `MS_ENABLE_GLOBAL_SEARCH`.
+- Plan Terraform revisado: solo puntero de imagen científica, definición de tarea y servicio científico. En el contenedor solo cambió la imagen; ECS normalizó listas vacías. Punteros previos guardados para reversión.
+- `make article-search-check`: una consulta real devolvió cinco candidatos del catálogo de 19.776; IDs, títulos, resúmenes y versiones contrastados con el índice existente. Evidencia nueva: `artifacts/full-catalog-public.json`.
+- `make article-search-web-check`: cuatro recorridos públicos reales aprobados, escritorio/móvil; sugerencias sin selección automática y búsqueda/selección fuera de los 37, con disponibilidad real y bloqueo del clasificador sin texto. Capturas revisadas en `artifacts/full-catalog-live/`.
+- Dos casos públicos adicionales con API simulada comprobaron fallo/reintento de carga del catálogo y conservación de los preparados. Evidencia: `artifacts/full-catalog-retry-public/`; no son inferencias reales.
+- `make release-web-check`: dos recorridos M/S reales aprobados, escritorio/móvil; textos Top-3 contrastados con el corpus del artículo confirmado. Evidencia nueva: `artifacts/full-catalog-ms-web/`.
+- `make release-confirm`: API y científico estables, salud HTTP correcta y HTML público idéntico al build. SHA-256 de index: `ae25c08fee87b4f7d06495e6b933e1302c09f93a097f92330cc4bc42b1f6e65a`. Copia de la confirmación: `artifacts/full-catalog-release-confirmation.json`.
+- Frontend publicado mediante Make usando outputs actuales de `make release-status`. Los targets permiten elegir nuevas carpetas de evidencia para conservar las anteriores.
+- EC2 `i-03c35e1f2d0597f9f` encendida y detenida mediante Terraform/targets `builder-power-*`; estado final `stopped` comprobado. Instancia y disco conservados.
+- No se ejecutaron llamadas comerciales reales. Esta aceptación acredita integración y funcionamiento, no relevancia científica de las sugerencias.
 
 ## Checklist del proyecto
 
 - [x] Implementación y comprobación local del catálogo completo en el paso 2.
-- [ ] Publicación y aceptación pública de esta ampliación.
-- T01–T03: entregas anteriores publicadas; ampliación actual pendiente de aceptación pública.
+- [x] Publicación y aceptación pública de esta ampliación.
+- T01–T03: publicadas y aceptadas, incluida esta ampliación del paso 2.
 - T04: pendiente por cuota Serverless. T05–T06: suspendidas por QLoRA.
 - T07–T08: M/S y comercial; familia abierta suspendida. T09: publicada y aceptada.
 - T10: parcial; no se amplía ni se cierra en esta tarea.
-- T11: aceptación histórica M/S y comercial; nueva comprobación pública pendiente.
+- T11: M/S y comercial aceptados; selector completo y regresión M/S comprobados públicamente. Familia abierta suspendida.
 - T12: migración/retirada pendientes; ECS se conserva. T13: cierre final pendiente.

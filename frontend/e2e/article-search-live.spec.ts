@@ -51,3 +51,22 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
     await page.locator('body').evaluate((e) => e.clientWidth),
   );
 });
+
+test('buscar un artículo fuera del corpus preparado muestra su disponibilidad real', async ({
+  page,
+}, info) => {
+  const article = fullCatalog.articulos.find(
+    (a) => !prepared.articulos.some((p) => p.paper_id === a.paper_id),
+  )!;
+  await page.goto('/');
+  await page
+    .getByLabel('Contexto en inglés')
+    .fill('Prior work TARGETCIT improves scientific methods.');
+  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await expect(page.getByText('19776 artículos', { exact: true })).toBeVisible({ timeout: 15000 });
+  await chooseArticle(page, article.paper_id);
+  await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Siguiente: clasificador' })).toBeDisabled();
+  await expect(selectedArticle(page).getByRole('heading')).toBeFocused();
+  await page.screenshot({ path: info.outputPath('catalogo-completo-publico.png'), fullPage: true });
+});

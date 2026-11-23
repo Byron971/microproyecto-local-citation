@@ -32,10 +32,11 @@ release-apply:
 release-wait:
 	$(AWS) ecs wait services-stable --cluster citas-api --services citas-api citas-api-science
 
+RELEASE_WEB_OUTPUT_DIR ?= artifacts/release-web
 .PHONY: release-web-check
 release-web-check:
-	mkdir -p artifacts/release-web
-	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_SCIENCE_E2E=1 T03_OUTPUT_DIR="$(abspath artifacts/release-web)" npm --prefix frontend run test:e2e -- scientific-real.spec.ts --workers=1
+	mkdir -p "$(RELEASE_WEB_OUTPUT_DIR)"
+	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_SCIENCE_E2E=1 T03_OUTPUT_DIR="$(abspath $(RELEASE_WEB_OUTPUT_DIR))" npm --prefix frontend run test:e2e -- scientific-real.spec.ts --workers=1
 .PHONY: release-events
 release-events:
 	$(AWS) ecs describe-services --cluster citas-api --services citas-api citas-api-science --query 'services[].{service:serviceName,events:events[:4].message}'
@@ -57,11 +58,12 @@ release-build-api:
 release-build-ms:
 	AWS_PROFILE=$(AWS_PROFILE) python3 scripts/release_build_ops.py send --kind ms --commit "$(shell git rev-parse HEAD)"
 
+ARTICLE_SEARCH_OUTPUT_DIR ?= ../artifacts/article-search-live
 .PHONY: article-search-check article-search-web-check
 article-search-check:
 	python3 scripts/check_prepared_search.py
 article-search-web-check:
-	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_ARTICLE_SEARCH=1 npm --prefix frontend run test:e2e -- article-search-live.spec.ts --workers=1 --output=../artifacts/article-search-live
+	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_ARTICLE_SEARCH=1 npm --prefix frontend run test:e2e -- article-search-live.spec.ts --workers=1 --output="$(ARTICLE_SEARCH_OUTPUT_DIR)"
 
 .PHONY: catalog-index-release
 catalog-index-release:
