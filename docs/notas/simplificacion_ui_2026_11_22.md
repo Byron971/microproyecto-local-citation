@@ -1,5 +1,7 @@
 # Simplificación de la experiencia de análisis de citas
 
+> Actualización posterior: por petición explícita del usuario, el paso 2 admite sugerencias SciBERT limitadas a los artículos preparados, con confirmación manual. Véase [selector de artículos relacionados](selector_articulos_relacionados.md); las restricciones anteriores de filtro exclusivamente literal quedan como historial.
+
 ## Alineación con el problema, etapa por etapa
 
 Fuentes: docs/propuesta/0102_propuesta_proyecto_pln.md, descripción y sección 5;

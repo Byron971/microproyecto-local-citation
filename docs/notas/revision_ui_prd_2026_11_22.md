@@ -1,5 +1,7 @@
 # Revisión del flujo y la UI — 22 de noviembre de 2026
 
+> Actualización posterior: por petición explícita del usuario, el paso 2 admite sugerencias SciBERT limitadas a los artículos preparados, con confirmación manual. Véase [selector de artículos relacionados](selector_articulos_relacionados.md); las restricciones anteriores de filtro exclusivamente literal quedan como historial.
+
 ## Fuentes y alcance
 
 - docs/propuesta/0102_propuesta_proyecto_pln.md:14: descripción del problema.

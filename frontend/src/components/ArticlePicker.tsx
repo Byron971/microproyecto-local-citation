@@ -96,18 +96,18 @@ export function ArticlePicker({
       });
       if (controller.signal.aborted) return;
       if (
-        response.version_contenido !== version ||
+        response?.version_contenido !== version ||
         !Array.isArray(response.recomendaciones) ||
         response.recomendaciones.length > 5 ||
         new Set(response.recomendaciones.map((r) => r.paper_id)).size !==
           response.recomendaciones.length ||
         response.recomendaciones.some(
-          (r) => !articles.some((a) => a.paper_id === r.paper_id) || !Number.isFinite(r.similitud),
+          (r) =>
+            !r || !articles.some((a) => a.paper_id === r.paper_id) || !Number.isFinite(r.similitud),
         )
       ) {
-        throw new Error(
-          'Las sugerencias no corresponden al catálogo actual. Busca por título o ID.',
-        );
+        setError('Las sugerencias no corresponden al catálogo actual.');
+        return;
       }
       setSuggestions(
         response.recomendaciones.map((r) => articles.find((a) => a.paper_id === r.paper_id)!),

@@ -1,5 +1,7 @@
 # Flujo de UI por etapas
 
+> Actualización posterior: por petición explícita del usuario, el paso 2 admite sugerencias SciBERT limitadas a los artículos preparados, con confirmación manual. Véase [selector de artículos relacionados](selector_articulos_relacionados.md); las restricciones anteriores de filtro exclusivamente literal quedan como historial.
+
 Cambio solicitado por el usuario tras la revisión del PRD. Conserva la secuencia
 contexto → artículo → clasificador → Top-3 y función, pero muestra una etapa a la vez.
 

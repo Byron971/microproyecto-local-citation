@@ -99,6 +99,10 @@ for (const failure of ['unavailable', 'version', 'foreign', 'busy']) {
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     await page.getByRole('button', { name: 'Sugerir según mi contexto' }).click();
     await expect(page.getByRole('alert')).toContainText('Puedes seguir buscando por título o ID.');
+    if (failure === 'version' || failure === 'foreign')
+      await expect(page.getByRole('alert')).toContainText(
+        'Las sugerencias no corresponden al catálogo actual.',
+      );
     await page.getByRole('searchbox', { name: 'Buscar por título o ID' }).fill('W05-0821');
     await expect(page.getByRole('button', { name: /Seleccionar artículo:/ })).toHaveCount(1);
     await expect(selectedArticle(page)).toHaveCount(0);

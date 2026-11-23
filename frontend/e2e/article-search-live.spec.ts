@@ -32,7 +32,7 @@ test('sugerir artículos reales y confirmar uno sin ejecutar clasificación', as
   await expect(selectedArticle(page)).toContainText(data.recomendaciones[0].paper_id);
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: clasificador' }).click();
-  await expect(page.getByLabel('Clasificador', { exact: true })).toBeVisible();
+  await expect(page.getByLabel('Familia y modelo', { exact: true })).toBeVisible();
   await expect(page.locator('body')).toHaveJSProperty(
     'scrollWidth',
     await page.locator('body').evaluate((e) => e.clientWidth),

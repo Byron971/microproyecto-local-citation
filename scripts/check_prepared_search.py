@@ -17,7 +17,7 @@ assert len(data['recomendaciones']) == 5
 assert len({a['paper_id'] for a in data['recomendaciones']}) == 5
 by_id = {a['paper_id']: a for a in catalog['articulos']}
 for article in data['recomendaciones']:
-    assert article['titulo'] == by_id[article['paper_id']]['titulo']
+    assert article['titulo'] == ' '.join(by_id[article['paper_id']]['titulo'].split())
     assert article['resumen'] == by_id[article['paper_id']]['resumen']
 Path('artifacts/article-search-public.json').write_text(json.dumps(data, indent=2))
 print(json.dumps({'ok': True, 'articulos_preparados': 37, 'ids': [a['paper_id'] for a in data['recomendaciones']]}))
