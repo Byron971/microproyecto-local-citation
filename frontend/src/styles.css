@@ -1630,6 +1630,79 @@ summary {
   align-items: center;
 }
 
+/* Elección de la cita objetivo entre las referencias detectadas. */
+.citation-choice {
+  border: 0;
+  padding: 0;
+  margin: 0 0 12px;
+  min-width: 0;
+}
+.analysis-step .citation-choice legend {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding: 0;
+}
+.citation-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.analysis-step label.citation-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.citation-option input {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--primary);
+}
+.citation-option input:focus-visible {
+  outline: none;
+}
+.citation-option:has(input:focus-visible) {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+.citation-option:has(input:checked) {
+  border-color: var(--primary);
+  background: var(--soft-primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+.citation-repeat {
+  font-weight: 400;
+  color: var(--secondary);
+}
+.analysis-step .citation-manual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 6px;
+  margin: 8px 0 0;
+}
+.citation-manual .text-button {
+  min-height: 32px;
+  padding: 4px 0;
+}
+
 .commercial-consent {
   display: flex;
   align-items: flex-start;

@@ -24,11 +24,20 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
   await page.goto('/');
   await expect(page.getByRole('navigation', { name: 'Pasos del análisis' })).toBeVisible();
   await expect(
-    page.getByText('Selecciona la referencia en el texto y pulsa «Marcar cita».'),
+    page.getByText('Incluye la referencia que quieres analizar, por ejemplo [1] o (Smith, 2020).'),
   ).toBeVisible();
-  await page.getByRole('button', { name: 'Marcar cita', exact: true }).click();
-  await expect(page.getByLabel('Contexto en inglés')).toBeFocused();
-  await expect(page.getByLabel('Contexto en inglés')).toHaveAttribute('aria-invalid', 'true');
+  const input = page.getByLabel('Contexto en inglés');
+  await input.fill('As shown by the IBM models, alignment helps translation.');
+  await expect(page.getByText(/No se detectó ninguna referencia/)).toBeVisible();
+  await page.getByRole('button', { name: 'Usar selección', exact: true }).click();
+  await expect(input).toBeFocused();
+  await expect(input).toHaveAttribute('aria-invalid', 'true');
+  await input.evaluate((field: HTMLTextAreaElement) => field.setSelectionRange(16, 26));
+  await page.getByRole('button', { name: 'Usar selección', exact: true }).click();
+  await expect(page.getByRole('radio', { name: 'IBM models' })).toBeChecked();
+  await expect(
+    page.getByRole('button', { name: 'Siguiente: artículo', exact: true }),
+  ).toBeEnabled();
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();

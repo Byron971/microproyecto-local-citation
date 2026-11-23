@@ -31,7 +31,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
     const body = route.request().postDataJSON();
     expect(body).toEqual({
       paper_id: 'D15-1167',
-      contexto: 'Earlier work TARGETCIT introduced this method.',
+      contexto: 'Earlier work TARGETCIT and (Lee, 2019) introduced this method.',
     });
     const classifier = {
       clase: 'Application',
@@ -73,10 +73,18 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
   expect(calls).toEqual([]);
   const input = page.getByLabel('Contexto en inglés');
   await input.fill('Earlier work [Smith, 2020] introduced this method.');
-  await input.evaluate((field: HTMLTextAreaElement) => field.setSelectionRange(13, 26));
-  await page.getByRole('button', { name: 'Marcar cita', exact: true }).click();
-  await expect(input).toHaveValue('Earlier work TARGETCIT introduced this method.');
-  await expect(page.getByText('Cita objetivo: [Smith, 2020]')).toBeVisible();
+  const choice = page.getByRole('group', { name: 'Cita a analizar' });
+  await expect(choice.getByRole('radio', { name: '[Smith, 2020]' })).toBeChecked();
+  await input.fill('Earlier work [Smith, 2020] and (Lee, 2019) introduced this method.');
+  await expect(choice.getByRole('radio')).toHaveCount(2);
+  await expect(page.getByText('Elige la cita que quieres analizar', { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Siguiente: artículo', exact: true }),
+  ).toBeDisabled();
+  await choice.getByRole('radio', { name: '[Smith, 2020]' }).check();
+  await expect(input).toHaveValue(
+    'Earlier work [Smith, 2020] and (Lee, 2019) introduced this method.',
+  );
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await chooseArticle(page, 'D15-1167');
   await expect(page.getByRole('link', { name: 'Abrir publicación' })).toHaveAttribute(

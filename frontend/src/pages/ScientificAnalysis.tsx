@@ -6,12 +6,12 @@ import datasetExamples from '../scientificExamples.json';
 import { ExampleDialog } from '../components/ExampleDialog';
 import { ArticlePicker } from '../components/ArticlePicker';
 import type { CommercialClassification } from '../components/CommercialResults';
+import { detectCitations, markCitation, type CitationSpan } from '../citationDetection';
 
 export const PUBLIC_EXAMPLE = {
   paperId: 'W05-0821',
-  target: '[1]',
   context:
-    'We use the language modeling approach described in TARGETCIT to improve a statistical machine translation system.',
+    'We use the language modeling approach described in [1] to improve a statistical machine translation system.',
 };
 type Analysis = Respuesta & {
   articulo: {
@@ -30,7 +30,8 @@ type Coverage = {
 };
 
 export function ScientificAnalysis() {
-  const [context, setContext] = useState('');
+  const [text, setText] = useState('');
+  const [chosenSpan, setChosenSpan] = useState<CitationSpan>();
   const [paperId, setPaperId] = useState('');
   const [variant, setVariant] = useState<'M' | 'S' | 'commercial'>('M');
   const [commercialAvailable, setCommercialAvailable] = useState(false);
@@ -38,7 +39,6 @@ export function ScientificAnalysis() {
   const [catalogRetry, setCatalogRetry] = useState(0);
   const [consent, setConsent] = useState(false);
   const [commercialResult, setCommercialResult] = useState<CommercialClassification>();
-  const [target, setTarget] = useState('');
   const [coverage, setCoverage] = useState<Coverage>();
   const [coverageRetry, setCoverageRetry] = useState(0);
   const [usingExample, setUsingExample] = useState(false);
@@ -111,9 +111,19 @@ export function ScientificAnalysis() {
   }, [paperId, coverageRetry]);
   const coverageStatus = coverage?.paperId === paperId ? coverage.status : 'checking';
 
-  const markerCount = context.split('TARGETCIT').length - 1;
+  const markerCount = text.split('TARGETCIT').length - 1;
+  const candidates = markerCount === 0 ? detectCitations(text) : [];
+  const options =
+    chosenSpan && !candidates.some((c) => c.start === chosenSpan.start && c.end === chosenSpan.end)
+      ? [...candidates, chosenSpan].sort((a, b) => a.start - b.start)
+      : candidates;
+  const targetSpan =
+    markerCount === 0
+      ? (chosenSpan ?? (candidates.length === 1 ? candidates[0] : undefined))
+      : undefined;
+  const context = targetSpan ? markCitation(text, targetSpan) : text;
   const contextReady =
-    markerCount === 1 &&
+    context.split('TARGETCIT').length === 2 &&
     context.length <= 4000 &&
     context.replace('TARGETCIT', '').trim().length > 0;
   const guidance =
@@ -161,8 +171,7 @@ export function ScientificAnalysis() {
 
   function example() {
     resetWorkflow();
-    setContext(PUBLIC_EXAMPLE.context);
-    setTarget(PUBLIC_EXAMPLE.target);
+    setText(PUBLIC_EXAMPLE.context);
     setPaperId(PUBLIC_EXAMPLE.paperId);
     setUsingExample(true);
     setSelectedExample('');
@@ -173,9 +182,8 @@ export function ScientificAnalysis() {
     const item = datasetExamples.ejemplos.find((entry) => entry.context_id === id);
     if (!item) return;
     resetWorkflow();
-    setContext(item.contexto);
+    setText(item.contexto);
     setPaperId(item.paper_id);
-    setTarget('');
     setUsingExample(false);
     setSelectedExample(id);
     setExamplesOpen(false);
@@ -191,7 +199,7 @@ export function ScientificAnalysis() {
     setArticleReset((count) => count + 1);
     setSearchingArticles(false);
     setVariant('M');
-    setTarget('');
+    setChosenSpan(undefined);
     setUsingExample(false);
     setSelectedExample('');
   }
@@ -208,34 +216,33 @@ export function ScientificAnalysis() {
     setErrorField('');
     setDuration(undefined);
   }
-  function mark() {
+  function chooseCitation(span: CitationSpan) {
+    if (targetSpan?.start === span.start && targetSpan.end === span.end) return;
+    resetWorkflow();
+    setChosenSpan(span);
+  }
+  function applySelection() {
     const field = input.current;
     if (!field || field.selectionStart === field.selectionEnd) {
       reportError(
-        'Selecciona la referencia dentro del contexto y pulsa «Marcar cita».',
+        'Selecciona la referencia dentro del texto y pulsa «Usar selección».',
         'citation-context',
       );
       return;
     }
-    const selected = context.slice(field.selectionStart, field.selectionEnd);
-    if (selected.includes('TARGETCIT')) {
-      reportError('Selecciona la referencia original, no la marca TARGETCIT.', 'citation-context');
+    const start = field.selectionStart;
+    const end = field.selectionEnd;
+    const label = text.slice(start, end);
+    if (!label.trim()) {
+      reportError('La selección está vacía. Selecciona la referencia.', 'citation-context');
       return;
     }
-    const before = context.slice(0, field.selectionStart).replaceAll('TARGETCIT', target);
-    const after = context.slice(field.selectionEnd).replaceAll('TARGETCIT', target);
-    const marked = `${before}TARGETCIT${after}`;
-    if (marked.length > 4000) {
-      reportError(
-        'El contexto marcado debe tener como máximo 4000 caracteres.',
-        'citation-context',
-      );
+    if (text.length - label.length + 'TARGETCIT'.length > 4000) {
+      reportError('El contexto debe tener como máximo 4000 caracteres.', 'citation-context');
       return;
     }
     resetWorkflow();
-    setTarget(selected);
-    setContext(marked);
-    field.focus();
+    setChosenSpan({ start, end, label });
   }
   async function run(event: FormEvent) {
     event.preventDefault();
@@ -404,36 +411,72 @@ export function ScientificAnalysis() {
               ref={input}
               lang="en"
               rows={6}
-              value={context}
+              value={text}
               placeholder="Previous research [Smith, 2020] introduced…"
               aria-describedby={`context-help context-state${errorField === 'citation-context' ? ' analysis-error' : ''}`}
               aria-invalid={errorField === 'citation-context' || undefined}
               onChange={(e) => {
                 resetWorkflow();
-                setContext(e.target.value);
+                setText(e.target.value);
               }}
             />
             <p id="context-help" className="field-help">
-              Selecciona la referencia en el texto y pulsa «Marcar cita».
+              Incluye la referencia que quieres analizar, por ejemplo [1] o (Smith, 2020).
             </p>
             <div className="context-feedback" id="context-state" aria-live="polite">
               <span className={context.length > 4000 || markerCount > 1 ? 'invalid-text' : ''}>
                 {context.length.toLocaleString('es')} / 4.000 caracteres
               </span>
-              <span>
-                {markerCount === 1
-                  ? target
-                    ? `Cita objetivo: ${target}`
-                    : 'Una cita marcada'
-                  : markerCount > 1
-                    ? 'Hay varias marcas: deja solo una'
-                    : 'Cita sin marcar'}
-              </span>
+              {markerCount > 1 && (
+                <span className="invalid-text">Hay varias marcas: deja solo una</span>
+              )}
+              {markerCount === 1 && <span>Cita marcada en el texto como TARGETCIT</span>}
+              {markerCount === 0 && options.length > 1 && !targetSpan && (
+                <span>Elige la cita que quieres analizar</span>
+              )}
+              {targetSpan && <span className="sr-only">Cita a analizar: {targetSpan.label}</span>}
             </div>
+            {markerCount === 0 && text.trim() && (
+              <fieldset className="citation-choice">
+                <legend>Cita a analizar</legend>
+                {options.length > 0 && (
+                  <div className="citation-options">
+                    {options.map((option, index) => {
+                      const repeated = options
+                        .slice(0, index)
+                        .filter((other) => other.label === option.label).length;
+                      return (
+                        <label key={`${option.start}-${option.end}`} className="citation-option">
+                          <input
+                            type="radio"
+                            name="target-citation"
+                            checked={
+                              targetSpan?.start === option.start && targetSpan.end === option.end
+                            }
+                            onChange={() => chooseCitation(option)}
+                          />
+                          <span>
+                            {option.label}
+                            {repeated > 0 && (
+                              <span className="citation-repeat"> · aparición {repeated + 1}</span>
+                            )}
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                )}
+                <p className="field-help citation-manual">
+                  {options.length > 0
+                    ? '¿No aparece? Selecciónala en el texto y pulsa'
+                    : 'No se detectó ninguna referencia. Selecciónala en el texto y pulsa'}{' '}
+                  <button type="button" className="text-button" onClick={applySelection}>
+                    Usar selección
+                  </button>
+                </p>
+              </fieldset>
+            )}
             <div className="context-actions">
-              <button type="button" className="text-button" onClick={mark}>
-                Marcar cita
-              </button>
               <button type="button" className="text-button" onClick={example}>
                 Usar ejemplo público
               </button>
@@ -674,7 +717,7 @@ export function ScientificAnalysis() {
       <details id="ayuda" className="analysis-help">
         <summary>Cómo analizar una cita</summary>
         <p>
-          Pega el contexto en inglés, selecciona la referencia y marca la cita. Confirma el artículo
+          Pega el contexto en inglés y elige la cita que quieres analizar. Confirma el artículo
           citado, elige el clasificador y pulsa «Analizar cita».
         </p>
         <p>
