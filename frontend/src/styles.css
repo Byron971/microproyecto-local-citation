@@ -1897,3 +1897,87 @@ summary {
 .catalog-notice p {
   margin-top: 0;
 }
+
+/* Navegación secuencial: solo se presenta el contenido de la etapa actual. */
+.scientific-page [hidden] {
+  display: none !important;
+}
+.workflow-progress button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  min-height: 50px;
+  color: var(--secondary);
+  border: 1px solid transparent;
+  border-bottom: 2px solid var(--border);
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  font-size: 13px;
+}
+.workflow-progress button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.workflow-progress .step-active button {
+  background: var(--soft-primary);
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+}
+.workflow-progress .step-active b {
+  color: white;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.workflow-progress .step-complete button {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+.step-caption {
+  margin: 0 0 20px;
+  color: var(--secondary);
+  font-size: 12px;
+}
+.step-actions,
+.result-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.step-actions {
+  flex-shrink: 0;
+}
+.result-actions {
+  margin: 20px 0;
+}
+.secondary-button {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  background: var(--surface);
+}
+.secondary-button:hover {
+  border-color: var(--primary);
+}
+.secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+@media (max-width: 600px) {
+  .step-actions {
+    width: 100%;
+  }
+  .step-actions > button {
+    flex: 1;
+  }
+  .workflow-progress button {
+    padding: 10px 8px;
+    gap: 6px;
+  }
+}

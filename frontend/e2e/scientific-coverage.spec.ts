@@ -40,11 +40,14 @@ for (const mode of ['missing', 'error', 'invalid'] as const) {
     });
     await page.goto('/');
     await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     const context = await page.getByLabel('Contexto en inglés').inputValue();
     if (mode === 'missing')
       await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
     else await expect(page.getByText(/Esto no significa que falte el texto/)).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Analizar cita', exact: true })).toBeDisabled();
+    await expect(
+      page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
+    ).toBeDisabled();
     await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context);
     await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('W05-0821');
     expect(analyses).toBe(0);
@@ -52,7 +55,9 @@ for (const mode of ['missing', 'error', 'invalid'] as const) {
       retry = true;
       await page.getByRole('button', { name: 'Reintentar disponibilidad' }).click();
       await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
-      await expect(page.getByRole('button', { name: 'Analizar cita', exact: true })).toBeEnabled();
+      await expect(
+        page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
+      ).toBeEnabled();
     }
   });
 }
@@ -76,11 +81,14 @@ test('ignora una consulta antigua de disponibilidad al cambiar de artículo', as
   });
   await page.goto('/');
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Consultando texto preparado…')).toBeVisible();
   await page.getByLabel('Artículo preparado por título e ID').selectOption('D09-1059');
   await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
   release();
-  await expect(page.getByRole('button', { name: 'Analizar cita', exact: true })).toBeDisabled();
+  await expect(
+    page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
+  ).toBeDisabled();
   await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('D09-1059');
 });
 
@@ -117,16 +125,21 @@ for (const status of [404, 429, 200]) {
     });
     await page.goto('/');
     await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     const context = await page.getByLabel('Contexto en inglés').inputValue();
     await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
+    await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
     await expect(page.getByRole('alert')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Resultados del análisis' })).toHaveCount(0);
     await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context);
     await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('W05-0821');
-    if (status === 404)
+    if (status === 404) {
+      await expect(
+        page.getByText('Vuelve al artículo citado para comprobar su disponibilidad.'),
+      ).toBeVisible();
       await expect(page.getByRole('button', { name: 'Analizar cita', exact: true })).toBeDisabled();
-    else
+    } else
       await expect(page.getByRole('button', { name: 'Analizar cita', exact: true })).toBeEnabled();
   });
 }

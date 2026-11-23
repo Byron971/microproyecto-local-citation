@@ -50,6 +50,7 @@ export function ScientificAnalysis() {
   const [articleQuery, setArticleQuery] = useState('');
   const [phase, setPhase] = useState<'retrieving' | 'classifying'>('retrieving');
   const [duration, setDuration] = useState<number>();
+  const [step, setStep] = useState(0);
   const input = useRef<HTMLTextAreaElement>(null);
   const active = useRef<AbortController | null>(null);
   const article = catalog.articulos.find((item) => item.paper_id === paperId);
@@ -123,15 +124,42 @@ export function ScientificAnalysis() {
     article && !filteredArticles.includes(article)
       ? [article, ...filteredArticles]
       : filteredArticles;
-  const readiness = !contextReady
-    ? 'Añade el contexto y marca una sola cita.'
-    : !article
-      ? 'Selecciona el artículo citado.'
-      : coverageStatus !== 'available'
-        ? 'Comprueba el texto preparado del artículo.'
-        : variant === 'commercial' && !consent
-          ? 'Confirma el envío a OpenAI para continuar.'
-          : 'Todo listo para analizar esta cita.';
+  const readiness =
+    step === 0
+      ? contextReady
+        ? 'Contexto listo. Continúa con el artículo citado.'
+        : 'Añade el contexto y marca una sola cita.'
+      : step === 1
+        ? coverageStatus === 'available' && article
+          ? 'Artículo disponible. Continúa con el clasificador.'
+          : 'Selecciona el artículo y comprueba su texto preparado.'
+        : coverageStatus !== 'available'
+          ? 'Vuelve al artículo citado para comprobar su disponibilidad.'
+          : variant === 'commercial' && !consent
+            ? 'Confirma el envío a OpenAI para continuar.'
+            : 'Todo listo para analizar esta cita.';
+  function goToStep(next: number) {
+    if (
+      loading ||
+      next > step + 1 ||
+      (next >= 1 && !contextReady) ||
+      (next >= 2 && (!article || coverageStatus !== 'available')) ||
+      (next === 3 && !result)
+    )
+      return;
+    setError('');
+    setErrorField('');
+    setStep(next);
+  }
+  useEffect(() => {
+    document.getElementById(`workflow-step-${step}`)?.focus();
+  }, [step]);
+  function submitStep(event: FormEvent) {
+    event.preventDefault();
+    if (step === 0 && contextReady) goToStep(1);
+    else if (step === 1 && article && coverageStatus === 'available') goToStep(2);
+    else if (step === 2) void run(event);
+  }
   function reportError(message: string, field: string) {
     setError(message);
     setErrorField(field);
@@ -141,8 +169,8 @@ export function ScientificAnalysis() {
     if (loading) return;
     if (error && errorField === 'analysis-error')
       document.getElementById('analysis-error')?.focus();
-    else if (result && !error) document.getElementById('analysis-results')?.focus();
-  }, [loading, result, error, errorField]);
+    else if (step === 3 && result && !error) document.getElementById('analysis-results')?.focus();
+  }, [loading, result, error, errorField, step]);
 
   function example() {
     invalidate();
@@ -210,7 +238,7 @@ export function ScientificAnalysis() {
   }
   async function run(event: FormEvent) {
     event.preventDefault();
-    if (loading) return;
+    if (loading || step !== 2) return;
     if (!context.trim() || context.replaceAll('TARGETCIT', '').trim() === '') {
       reportError('Escribe un contexto académico en inglés.', 'citation-context');
       return;
@@ -270,6 +298,7 @@ export function ScientificAnalysis() {
         );
       }
       setResult(data);
+      setStep(3);
       if (variant === 'commercial') {
         setPhase('classifying');
         const commercial = await request<CommercialClassification>('/api/comercial/clasificar', {
@@ -320,25 +349,30 @@ export function ScientificAnalysis() {
       </div>
       <nav className="workflow-progress" aria-label="Pasos del análisis">
         <ol>
-          {[
-            ['citation-step', 'Contexto', contextReady],
-            ['article-step', 'Artículo', coverageStatus === 'available' && !!article],
-            ['classifier-step', 'Clasificador', variant !== 'commercial' || consent],
-            ['analysis-results', 'Resultados', !!result && !loading && !error],
-          ].map(([id, name, done], index) => (
-            <li key={String(id)} className={done ? 'step-complete' : ''}>
-              {id === 'analysis-results' && !result ? (
+          {['Contexto', 'Artículo', 'Clasificador', 'Resultados'].map((name, index) => (
+            <li
+              key={name}
+              className={index === step ? 'step-active' : index < step ? 'step-complete' : ''}
+            >
+              <button
+                id={`workflow-step-${index}`}
+                type="button"
+                disabled={loading || index > step}
+                aria-current={index === step ? 'step' : undefined}
+                onClick={() => goToStep(index)}
+              >
+                <b aria-hidden="true">{index < step ? '✓' : index + 1}</b>
                 <span>
-                  <b>{index + 1}</b>
                   {name}
+                  <span className="sr-only">
+                    {index === step
+                      ? ': etapa actual'
+                      : index < step
+                        ? ': completada'
+                        : ': pendiente'}
+                  </span>
                 </span>
-              ) : (
-                <a href={`#${id}`}>
-                  <b>{done ? '✓' : index + 1}</b>
-                  {name}
-                  <span className="sr-only">{done ? ': listo' : ': pendiente'}</span>
-                </a>
-              )}
+              </button>
             </li>
           ))}
         </ol>
@@ -346,9 +380,15 @@ export function ScientificAnalysis() {
       <p className="workflow-scope">
         Analiza citas en inglés dentro de los artículos preparados del catálogo.
       </p>
-      <section className="workspace" aria-label="Análisis de cita">
-        <form onSubmit={run}>
-          <fieldset className="analysis-step" id="citation-step">
+      <section className="workspace" aria-label="Análisis de cita" hidden={step === 3}>
+        <form onSubmit={submitStep}>
+          <p className="step-caption">Paso {step + 1} de 4</p>
+          <fieldset
+            className="analysis-step"
+            id="citation-step"
+            hidden={step !== 0}
+            disabled={step !== 0}
+          >
             <legend>1. Contexto de la cita</legend>
             <label htmlFor="citation-context">Contexto en inglés</label>
             <textarea
@@ -412,7 +452,12 @@ export function ScientificAnalysis() {
               </p>
             )}
           </fieldset>
-          <fieldset className="analysis-step" id="article-step">
+          <fieldset
+            className="analysis-step"
+            id="article-step"
+            hidden={step !== 1}
+            disabled={step !== 1}
+          >
             <legend>2. Artículo citado</legend>
             <div className="article-filter">
               <label htmlFor="article-filter">Filtrar artículos por título o ID</label>
@@ -498,7 +543,12 @@ export function ScientificAnalysis() {
               ese artículo.
             </p>
           </fieldset>
-          <fieldset className="analysis-step" id="classifier-step">
+          <fieldset
+            className="analysis-step"
+            id="classifier-step"
+            hidden={step !== 2}
+            disabled={step !== 2}
+          >
             <legend>3. Clasificador</legend>
             <label htmlFor="classifier">Familia y modelo</label>
             <select
@@ -539,7 +589,7 @@ export function ScientificAnalysis() {
                 : 'Usa el contexto de la cita y fragmentos del artículo. Se calculan M y S; verás la variante elegida.'}
             </p>
           </fieldset>
-          {variant === 'commercial' && (
+          {step === 2 && variant === 'commercial' && (
             <label className="field-help commercial-consent">
               <input
                 id="commercial-consent"
@@ -555,7 +605,7 @@ export function ScientificAnalysis() {
               Acepto enviar el contexto de cita, título y resumen a OpenAI para este análisis.
             </label>
           )}
-          {error && (
+          {error && step !== 3 && (
             <p id="analysis-error" tabIndex={-1} role="alert" className="error-message">
               {error}
             </p>
@@ -568,13 +618,35 @@ export function ScientificAnalysis() {
                   : 'Top-3 listo. Clasificando la función con OpenAI…'
                 : readiness}
             </p>
-            <button
-              type="submit"
-              className="primary"
-              disabled={loading || (!!paperId && coverageStatus !== 'available')}
-            >
-              {loading ? 'Analizando cita…' : 'Analizar cita'}
-            </button>
+            <div className="step-actions">
+              {step > 0 && (
+                <button
+                  type="button"
+                  className="secondary-button"
+                  disabled={loading}
+                  onClick={() => goToStep(step - 1)}
+                >
+                  Anterior
+                </button>
+              )}
+              {step < 2 ? (
+                <button
+                  type="submit"
+                  className="primary"
+                  disabled={step === 0 ? !contextReady : !article || coverageStatus !== 'available'}
+                >
+                  {step === 0 ? 'Siguiente: artículo' : 'Siguiente: clasificador'}
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="primary"
+                  disabled={loading || !contextReady || !article || coverageStatus !== 'available'}
+                >
+                  {loading ? 'Analizando cita…' : 'Analizar cita'}
+                </button>
+              )}
+            </div>
           </div>
           {loading && (
             <p className="analysis-loading" role="status">
@@ -585,13 +657,19 @@ export function ScientificAnalysis() {
           )}
         </form>
       </section>
-      {result && (
+      {step === 3 && result && (
         <section
           id="analysis-results"
           tabIndex={-1}
           className="analysis-output"
           aria-label="Resultado del análisis"
         >
+          <p className="step-caption">Paso 4 de 4 · Resultados</p>
+          {error && (
+            <p id="analysis-error" tabIndex={-1} role="alert" className="error-message">
+              {error}
+            </p>
+          )}
           <div className="analysis-summary">
             <p className="result-kicker">
               {loading
@@ -608,6 +686,24 @@ export function ScientificAnalysis() {
                 : `Encoder SciBERT — ${variant}`}
             </p>
             <p>Cita objetivo: {target || 'posición marcada con TARGETCIT'}</p>
+          </div>
+          <div className="result-actions">
+            <button
+              type="button"
+              className="secondary-button"
+              disabled={loading}
+              onClick={() => goToStep(2)}
+            >
+              Volver al clasificador
+            </button>
+            <button
+              type="button"
+              className="text-button"
+              disabled={loading}
+              onClick={() => goToStep(0)}
+            >
+              Editar contexto
+            </button>
           </div>
           <ScientificResults
             respuesta={result}

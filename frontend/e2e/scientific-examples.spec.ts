@@ -26,8 +26,12 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   });
   await page.goto('/');
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await page.getByLabel('Familia y modelo').selectOption('commercial');
   await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
+  await page.getByRole('button', { name: 'Anterior', exact: true }).click();
+  await page.getByRole('button', { name: 'Anterior', exact: true }).click();
   const opener = page.getByRole('button', { name: 'Explorar ejemplos del dataset' });
   await opener.click();
   const dialog = page.getByRole('dialog', { name: 'Elige un ejemplo' });
@@ -45,8 +49,12 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   await expect(dialog).toHaveCount(0);
   await expect(page.getByLabel('Contexto en inglés')).toHaveValue(chosen.contexto);
   await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue(chosen.paper_id);
+  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
+  await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await expect(page.getByRole('checkbox', { name: /Acepto enviar/ })).not.toBeChecked();
+  await page.getByRole('button', { name: 'Anterior', exact: true }).click();
+  await page.getByRole('button', { name: 'Anterior', exact: true }).click();
   expect(inferences).toBe(0);
   await opener.click();
   await expect(dialog.getByText('En uso', { exact: true })).toHaveCount(1);

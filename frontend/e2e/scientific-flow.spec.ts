@@ -66,8 +66,9 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
   await expect(page.getByRole('heading', { name: 'Analizar una cita' })).toBeVisible();
   await expect(page.getByText('Explorar', { exact: true })).toHaveCount(0);
   await expect(page.getByLabel('Resultados', { exact: true })).toHaveCount(0);
-  await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('Escribe un contexto');
+  await expect(
+    page.getByRole('button', { name: 'Siguiente: artículo', exact: true }),
+  ).toBeDisabled();
   expect(calls).toEqual([]);
   const input = page.getByLabel('Contexto en inglés');
   await input.fill('Earlier work [Smith, 2020] introduced this method.');
@@ -75,11 +76,13 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
   await page.getByRole('button', { name: 'Marcar cita', exact: true }).click();
   await expect(input).toHaveValue('Earlier work TARGETCIT introduced this method.');
   await expect(page.getByText('Cita objetivo: [Smith, 2020]')).toBeVisible();
+  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await page.getByLabel('Artículo preparado por título e ID').selectOption('D15-1167');
   await expect(page.getByRole('link', { name: 'Abrir publicación' })).toHaveAttribute(
     'href',
     'https://aclanthology.org/D15-1167/',
   );
+  await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await page.getByLabel('Familia y modelo').selectOption('S');
   await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
   await expect(page.getByText('Fragmento científico 1')).toBeVisible();
@@ -91,6 +94,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
     await page.locator('body').evaluate((e) => e.clientWidth),
   );
   await page.screenshot({ path: testInfo.outputPath('scientific-flow.png'), fullPage: true });
+  await page.getByRole('button', { name: 'Editar contexto', exact: true }).click();
   await input.fill('A changed context.');
   await expect(page.getByText('Fragmento científico 1')).toHaveCount(0);
 });
@@ -133,12 +137,15 @@ test('rechaza marcas múltiples y exceso de longitud antes de inferir', async ({
   });
   await page.goto('/');
   const input = page.getByLabel('Contexto en inglés');
-  await page.getByLabel('Artículo preparado por título e ID').selectOption('D15-1167');
   await input.fill('Earlier work TARGETCIT and TARGETCIT.');
-  await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('Marca una sola cita');
+  await expect(
+    page.getByRole('button', { name: 'Siguiente: artículo', exact: true }),
+  ).toBeDisabled();
+  await expect(page.getByText('Hay varias marcas: deja solo una')).toBeVisible();
   await input.fill('x'.repeat(4000) + ' TARGETCIT');
-  await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('hasta 4000 caracteres');
+  await expect(
+    page.getByRole('button', { name: 'Siguiente: artículo', exact: true }),
+  ).toBeDisabled();
+  await expect(page.locator('#context-state')).toContainText((4010).toLocaleString('es'));
   expect(calls).toEqual([]);
 });

@@ -89,7 +89,9 @@ for (const status of [200, 429, 502]) {
     });
     await page.goto('/');
     await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
+    await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await expect(page.locator('#classifier option[value="commercial"]')).toHaveCount(1);
     await page.getByLabel('Familia y modelo').selectOption('commercial');
     await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
@@ -103,7 +105,7 @@ for (const status of [200, 429, 502]) {
       await expect(
         panel.getByText('Top-3 listo. Esperando la clasificación de OpenAI…'),
       ).toBeVisible();
-      await expect(page.getByRole('button', { name: 'Analizando cita…' })).toBeDisabled();
+      await expect(page.getByRole('button', { name: 'Volver al clasificador' })).toBeDisabled();
       finishCommercial();
       await expect(panel.getByText('Application', { exact: true }).first()).toBeVisible();
       await expect(panel.getByText('0.800')).toBeVisible();
@@ -126,8 +128,11 @@ for (const status of [200, 429, 502]) {
     expect(calls).toEqual(['ms', 'commercial']);
     await expect(page.getByRole('heading', { name: 'Modelo M', exact: true })).toHaveCount(0);
     await expect(page.getByRole('heading', { name: 'Modelo S', exact: true })).toHaveCount(0);
+    await page.getByRole('button', { name: 'Editar contexto', exact: true }).click();
     await page.getByLabel('Contexto en inglés').fill('Contexto editado TARGETCIT.');
     await expect(page.getByText('Fragmento recuperado 1', { exact: true })).toHaveCount(0);
+    await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+    await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await expect(page.getByRole('checkbox', { name: /Acepto enviar/ })).not.toBeChecked();
   });
 }

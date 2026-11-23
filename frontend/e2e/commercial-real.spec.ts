@@ -7,7 +7,9 @@ test('ejemplo público con GPT real, consentimiento y Top-3', async ({ page }, i
   const corpus = JSON.parse(fs.readFileSync('../config/corpus_ms.json', 'utf8'));
   await page.goto('/');
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
+  await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await expect(page.locator('#classifier option[value="commercial"]')).toHaveCount(1);
   await expect(page.locator('#classifier option[value="open"]')).toHaveCount(0);
   await page.getByLabel('Familia y modelo').selectOption('commercial');
