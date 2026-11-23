@@ -22,15 +22,17 @@ Los 56 recorridos adicionales de catálogo, ejemplos, usabilidad, recorrido y pe
 
 ## Publicación y checklist
 
-La publicación y comprobación pública están pendientes; la evidencia local no las sustituye.
+Publicado exclusivamente el frontend del commit `54b0910` con `make publish-frontend`, usando outputs recién actualizados y contrastados desde `make release-status`. El build final TypeScript/Vite aprobó. `make release-confirm` comprobó servicios estables, imágenes conservadas, salud HTTP, corpus y HTML público idéntico al build. SHA256 de `index.html`: `624d4156b0312488a74c0d41637dfcaf1e2a3904ed9682949bf1917ad3ae916b`. API conservada en `citas-api:7`; científico en `citas-api-science:9`. No se construyeron imágenes backend ni se encendió la constructora.
+
+Los 14 recorridos públicos con respuestas API simuladas aprobaron en escritorio/móvil: carga inicial M/S y número persistente, resultados vigentes sin otra solicitud, espera asíncrona y expiración, consentimiento, espera comercial con Top-3, éxito y errores 429/502. Las capturas públicas de carga se revisaron en ambos tamaños. Evidencia separada en `artifacts/numbered-results-public-mocks/`, incluida copia de la confirmación. Estas pruebas aceptan presentación e interacción del bundle público; no son inferencias reales ni acreditan calidad científica. No se repitieron llamadas reales a modelos.
 
 - [x] Números 1–4 conservados junto a sus nombres.
 - [x] Validación y consentimiento antes de iniciar el paso 4.
 - [x] Espera inmediata, accesible y sin porcentajes inventados.
 - [x] Resultados existentes sin nueva inferencia; errores con recuperación.
 - [x] Capturas locales de escritorio y móvil revisadas.
-- [ ] Regresión adicional y build final.
-- [ ] Publicación frontend y confirmación de HTML, salud y servicios actuales.
-- [ ] UI pública comprobada con mocks y capturas revisadas.
+- [x] Regresión adicional y build final.
+- [x] Publicación frontend y confirmación de HTML, salud y servicios actuales.
+- [x] UI pública comprobada con mocks y capturas revisadas.
 
 Estado general: T01–T03 disponibles; T04 pendiente por cuota; T05–T06 suspendidas por QLoRA; T07–T09 disponibles para M/S y comercial, familia abierta suspendida; T10 parcial; T11 conserva aceptación real anterior; T12 migración/retirada pendiente, sin retirar ECS; T13 notas actualizadas y cierre documental final pendiente. El proyecto sigue parcialmente cumplido.
