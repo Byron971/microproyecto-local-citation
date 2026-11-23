@@ -105,3 +105,10 @@ pruebas que requieren servicios reales permanecieron omitidas; no se presentan
 como aceptación del proveedor. Los seis casos comerciales afectados por los
 ajustes finales de texto y presentación volvieron a pasar y sus capturas de
 escritorio y móvil se revisaron. Esos resultados locales preceden al despliegue descrito arriba.
+
+## Continuación de T10
+
+Se publicó el control de concurrencia comercial global en citas-api:5, con
+rechazo público 429 y cuota diaria inalterada comprobados sin llamar a OpenAI.
+M/S permanece en citas-api-science:4. Evidencia, límites y checklist vigente en
+[t10_concurrencia_comercial.md](t10_concurrencia_comercial.md). T10 sigue parcial.

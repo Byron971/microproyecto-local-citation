@@ -40,13 +40,35 @@ que no conoce esta reserva: el control se considera publicado al estabilizar ECS
   estabilizar la nueva imagen: retiene brevemente la reserva real y exige 429
   de la API pública con cuota diaria inalterada. Usa GetItem para comprobar
   el contador con las credenciales del operador; no amplía permisos de la app.
-- Publicación pendiente de confirmar; no confundir pruebas locales con despliegue.
+
+## Publicación y aceptación comprobadas
+
+- Código publicado: c01b43f04f52806bf5f2948f7b1bd2c56c89dde7.
+- API construido desde EC2 mediante make release-build-api; digest:
+  sha256:5a21c97f625e22f88913dd9c7f8f3359dedf19190051a6c7c39e53b2bf86d16b.
+- Plan revisado y aplicado con make release-prepare/plan/apply: solo referencia
+  SSM de imagen, revisión de tarea API y servicio API. La revisión anterior se
+  conserva con skip_destroy. No cambian recursos, permisos ni secreto comercial.
+- API citas-api:5 estable, una tarea; M/S permanece en citas-api-science:4 con
+  digest sha256:36b2c122407da337ade64f73448ede02553a2b793484c18f0e1d9e41f26ba21c.
+- make commercial-concurrency-public-check pasó: API pública devuelve 429 y
+  Retry-After: 5 al retener la reserva; contador diario idéntico antes/después.
+  No se efectuaron llamadas a OpenAI. Evidencia ignorada:
+  artifacts/t10-concurrency-public-check.json.
+- make release-confirm pasó: servicios estables, salud HTTP y HTML público igual
+  al build. Evidencia ignorada: artifacts/release-confirmation.json.
+- Constructora i-03c35e1f2d0597f9f encendida y detenida mediante Terraform y targets
+  builder-power-*. make builder-power-status confirmó stopped; disco conservado.
+- Archivos del equipo en docs/proyecto_final/otros/ conservados sin seguimiento.
+- No se modifican modelos ni pesos, ni se retoma QLoRA.
+
+La concurrencia comercial queda publicada y aceptada. Esto no cierra T10 completa.
 
 ## Checklist
 
 T01–T03 publicadas; T04 pendiente por cuota; T05–T06 suspendidas por QLoRA;
 T07–T08 y T11 aceptadas para M/S y comercial, parte abierta suspendida;
-T09 aceptada; T10 parcial, con concurrencia comercial en preparación;
+T09 aceptada; T10 parcial, con concurrencia comercial publicada y aceptada;
 T12 pendiente sin retirar servicio actual; T13 pendiente de cierre.
 
 T10 aún requiere revisar aislamiento de roles, protección de imágenes de reversión,
