@@ -66,3 +66,34 @@ class ArticleCorpusTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+def test_sin_credenciales_aws_usa_el_corpus_incluido(monkeypatch):
+    """CI y desarrollo local no tienen credenciales: arrancar con el corpus del repo."""
+    import boto3
+    from src.app import article_corpus
+    monkeypatch.delenv('MS_CORPUS_PATH', raising=False)
+    monkeypatch.setattr(boto3.Session, 'get_credentials', lambda self: None)
+    article_corpus.preparar_corpus_release()
+    import os
+    assert os.environ['MS_CORPUS_PATH'].endswith('config/corpus_ms.json')
+    data, version = article_corpus.corpus()
+    assert data['documentos'] and len(version) == 64
+
+
+def test_con_cliente_explicito_no_hay_alternativa(monkeypatch, tmp_path):
+    """El servicio científico pasa su cliente S3: sin descarga válida debe fallar."""
+    import boto3
+    from src.app import article_corpus
+    monkeypatch.delenv('MS_CORPUS_PATH', raising=False)
+    monkeypatch.setattr(boto3.Session, 'get_credentials', lambda self: None)
+
+    class Roto:
+        def get_object(self, **kwargs):
+            raise OSError('sin acceso')
+
+    import pytest
+    with pytest.raises(OSError):
+        article_corpus.preparar_corpus_release(client=Roto(), root=tmp_path)
+    import os
+    assert 'MS_CORPUS_PATH' not in os.environ

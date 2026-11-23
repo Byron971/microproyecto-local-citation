@@ -59,6 +59,14 @@ def preparar_corpus_release(client=None, root=None):
     import boto3
     from botocore.config import Config
     from scripts.iniciar_ciencia import preparar
+    if client is None and boto3.Session().get_credentials() is None:
+        # CI y desarrollo local no tienen credenciales AWS: usar el corpus incluido en el
+        # repositorio. En AWS la tarea siempre tiene rol y descarga el corpus completo.
+        import logging
+        logging.getLogger(__name__).warning(
+            'Sin credenciales AWS: se usa el corpus incluido (config/corpus_ms.json).')
+        os.environ['MS_CORPUS_PATH'] = str(manifest_path.with_name('corpus_ms.json'))
+        return
     manifest = json.loads(manifest_path.read_text())
     client = client or boto3.client('s3', region_name=os.environ.get('AWS_REGION', 'us-east-1'),
                                    config=Config(connect_timeout=5, read_timeout=30, retries={'max_attempts': 2}))
