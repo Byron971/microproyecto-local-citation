@@ -1,8 +1,10 @@
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { HelpDialog } from './components/HelpDialog';
 import { ScientificAnalysis } from './pages/ScientificAnalysis';
 
 export function App() {
+  const [helpOpen, setHelpOpen] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => {
     document.title = `${pathname === '/' ? 'Analizar una cita' : 'Página no encontrada'} · Citas académicas`;
@@ -27,7 +29,14 @@ export function App() {
             <span>Análisis de citas académicas</span>
           </Link>
           <nav className="compact-nav" aria-label="Navegación principal">
-            <a href="#ayuda">Ayuda</a>
+            <button
+              type="button"
+              className="header-help"
+              aria-haspopup="dialog"
+              onClick={() => setHelpOpen(true)}
+            >
+              Ayuda
+            </button>
           </nav>
         </div>
       </header>
@@ -57,6 +66,7 @@ export function App() {
           />
         </Routes>
       </main>
+      {helpOpen && <HelpDialog onClose={() => setHelpOpen(false)} />}
       <footer className="app-footer">
         <span>Recomendación local de citas académicas</span>
         <span>Corpus ACL-200 · Textos en inglés</span>

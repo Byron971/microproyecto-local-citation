@@ -1,0 +1,37 @@
+{
+  "descripcion": "Selección editorial de artículos para demostrar el flujo. Los temas orientan la navegación; no son etiquetas científicas ni acreditan balance del dataset.",
+  "temas": [
+    {
+      "nombre": "Análisis de sentimientos",
+      "paper_ids": ["P12-2018", "P11-1015", "P10-1141", "S14-2004", "N10-1122"]
+    },
+    {
+      "nombre": "Resumen automático",
+      "paper_ids": ["W04-1013", "N04-1019", "P11-1052", "P14-2052", "D13-1158"]
+    },
+    {
+      "nombre": "Preguntas y diálogo",
+      "paper_ids": ["P13-1158", "D14-1067", "P03-1003", "P13-1046", "P97-1035"]
+    },
+    {
+      "nombre": "Sintaxis y morfología",
+      "paper_ids": ["Q13-1034", "N13-1044", "P08-1084", "P07-2052", "P14-1125"]
+    },
+    {
+      "nombre": "Semántica",
+      "paper_ids": ["P10-1154", "Q14-1019", "P00-1065", "Q13-1015", "P13-2078"]
+    },
+    {
+      "nombre": "Extracción de información",
+      "paper_ids": ["P09-1113", "N13-1008", "D12-1042", "W03-0434", "W09-3302"]
+    },
+    {
+      "nombre": "Recursos y evaluación",
+      "paper_ids": ["W10-0701", "N13-1014", "D12-1127", "N12-1067", "P13-2131"]
+    },
+    {
+      "nombre": "Traducción automática",
+      "paper_ids": ["W05-0821", "P13-1078", "D13-1141", "P02-1040", "E12-1014"]
+    }
+  ]
+}

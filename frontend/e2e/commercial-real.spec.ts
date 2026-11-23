@@ -1,13 +1,16 @@
+import { chooseArticle } from './article-picker.helpers';
+import { enterContext } from './context.helpers';
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 
 test.skip(!process.env.LIVE_COMMERCIAL_E2E, 'Requiere el comercial publicado y cuota disponible.');
-test('ejemplo público con GPT real, consentimiento y Top-3', async ({ page }, info) => {
+test('contexto sintético con GPT real, consentimiento y Top-3', async ({ page }, info) => {
   test.setTimeout(100000);
   const corpus = JSON.parse(fs.readFileSync('../config/corpus_ms.json', 'utf8'));
   await page.goto('/');
-  await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await enterContext(page);
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
+  await chooseArticle(page, 'W05-0821');
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await expect(page.locator('#classifier option[value="commercial"]')).toHaveCount(1);

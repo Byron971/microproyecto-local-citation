@@ -85,7 +85,7 @@ Quitar significa eliminar del recorrido y de las rutas de producto; no basta con
 ## 5. Recorrido de usuario
 
 1. Abrir la aplicación; la página principal es «Analizar una cita».
-2. Pegar contexto en inglés y marcar la cita objetivo con una acción sencilla. Internamente se utiliza TARGETCIT exactamente una vez.
+2. Pegar el párrafo de contexto en inglés o usar la única acción «Explorar ejemplos», junto a «Siguiente: artículo». El selector ofrece 40 contextos de validación de 40 artículos en ocho subtemas de PLN, diez por página y con búsqueda. Seleccionar uno solo carga contexto; no confirma artículo ni infiere. Marcar la cita objetivo con una acción sencilla; internamente se utiliza TARGETCIT exactamente una vez.
 3. Identificar explícitamente el artículo citado por ID de ACL o seleccionarlo del catálogo completo por título e ID. Puede filtrarse la lista por título/ID; al entrar a la etapa se solicitan sugerencias según el contexto usando SciBERT existente. Las sugerencias abarcan el catálogo completo; no identifican automáticamente la referencia ni garantizan texto preparado para Top-3. Los ejemplos precargan únicamente el contexto; ningún artículo queda confirmado por defecto. Mostrar título y enlace para confirmar la selección.
 4. Consultar si existe texto preparado. Si no existe, explicar la limitación y mantener lo ingresado; permitir corregir el identificador o seleccionar otro artículo preparado. No sustituir silenciosamente la referencia ni ofrecer JSON como salida normal.
 5. Elegir «Encoder SciBERT — M», «Encoder SciBERT — S», «Modelo abierto — [identidad verificada]» o «Modelo comercial — [identidad verificada]». Agrupar M/S en la misma familia. Mostrar opciones no configuradas como no disponibles con motivo.
@@ -313,3 +313,5 @@ La espera de análisis largos conserva un solo inicio de inferencia y consulta s
 **Numeración y espera en resultados:** los números de las cuatro etapas se conservan al completarlas; la espera se presenta dentro de Resultados desde el inicio del cálculo. Véase [decisión y comprobaciones](../notas/pasos_numerados_carga_resultados.md).
 
 **Guía de funciones:** «Funciones de cita» comparte superficie y jerarquía con Detalles del análisis. Glosario con nombre orientativo español, etiqueta inglesa original y definición existente; sin nuevos controles. Véase [decisión y comprobaciones](../notas/guia_funciones_cita.md).
+
+**Ayuda y entrada de contexto:** instrucción breve orientada al párrafo. «Ayuda» en la cabecera abre un modal con los cuatro pasos, marcado de cita e interpretación; sustituye el desplegable inferior y conserva entradas, modelo y consentimiento. Véase [decisión y aceptación](../notas/ejemplos_variados_ayuda_modal.md).

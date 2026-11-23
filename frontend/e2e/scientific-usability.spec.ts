@@ -1,3 +1,4 @@
+import { enterContext } from './context.helpers';
 import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
@@ -25,9 +26,7 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
   });
   await page.goto('/');
   await expect(page.getByRole('navigation', { name: 'Pasos del análisis' })).toBeVisible();
-  await expect(
-    page.getByText('Incluye la referencia que quieres analizar, por ejemplo [1] o (Smith, 2020).'),
-  ).toBeVisible();
+  await expect(page.getByText('Pega el párrafo que contiene la cita.')).toBeVisible();
   const input = page.getByLabel('Contexto en inglés');
   await input.fill('As shown by the IBM models, alignment helps translation.');
   await expect(page.getByText(/No se detectó ninguna referencia/)).toBeVisible();
@@ -40,7 +39,7 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
   await expect(
     page.getByRole('button', { name: 'Siguiente: artículo', exact: true }),
   ).toBeEnabled();
-  await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await enterContext(page);
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await chooseArticle(page, 'W05-0821');
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();

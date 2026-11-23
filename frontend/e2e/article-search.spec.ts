@@ -1,3 +1,4 @@
+import { enterContext, chooseExample } from './context.helpers';
 import { test, expect } from '@playwright/test';
 import catalog from '../src/articleCatalog.json' with { type: 'json' };
 import fullCatalog from '../src/fullArticleCatalog.json' with { type: 'json' };
@@ -232,7 +233,7 @@ test('cargar un ejemplo no confirma artículo ni clasifica', async ({ page }) =>
     return r.abort();
   });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await chooseExample(page);
   await expect(selectedArticle(page)).toHaveCount(0);
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Sugeridos según tu contexto' })).toBeVisible();
@@ -268,7 +269,7 @@ test('avisa del recorte antes de habilitar el análisis', async ({ page }, info)
     }),
   );
   await page.goto('/');
-  await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await enterContext(page);
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(selectedArticle(page)).toHaveCount(0);
   await page.getByRole('searchbox', { name: 'Buscar por título o ID' }).fill('W05-0821');

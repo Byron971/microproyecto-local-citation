@@ -1,3 +1,4 @@
+import { enterContext } from './context.helpers';
 import { test, expect } from '@playwright/test';
 import catalog from '../src/articleCatalog.json' with { type: 'json' };
 import { meanings } from '../src/citationFunctions';
@@ -90,7 +91,7 @@ for (const mode of ['M', 'S', 'commercial']) {
       return route.abort();
     });
     await page.goto('/');
-    await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await enterContext(page);
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     await chooseArticle(page, 'W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();

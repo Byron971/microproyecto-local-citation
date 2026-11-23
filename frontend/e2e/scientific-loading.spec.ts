@@ -1,3 +1,4 @@
+import { enterContext } from './context.helpers';
 import { test, expect } from '@playwright/test';
 import { chooseArticle, suggestionResponse } from './article-picker.helpers';
 
@@ -53,7 +54,7 @@ for (const variant of ['M', 'S']) {
     };
     await page.goto('/');
     await numbers();
-    await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await enterContext(page);
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     await chooseArticle(page, 'W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();

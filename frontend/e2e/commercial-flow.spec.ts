@@ -1,3 +1,4 @@
+import { enterContext } from './context.helpers';
 import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
@@ -91,7 +92,7 @@ for (const status of [200, 429, 502]) {
       } else await route.abort();
     });
     await page.goto('/');
-    await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await enterContext(page);
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     await chooseArticle(page, 'W05-0821');
     await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();

@@ -1,5 +1,7 @@
 # Selector de ejemplos del dataset — 22 de noviembre de 2026
 
+> Decisión posterior: se unifican las acciones en «Explorar ejemplos», con 40 artículos distintos de ocho subtemas y ayuda global en modal. Véase [ejemplos variados y ayuda](ejemplos_variados_ayuda_modal.md). Los 33 ejemplos y las dos acciones descritas abajo son estado histórico.
+
 Ampliación de T03 solicitada por el usuario después de publicar T09.
 
 Se conserva «Usar ejemplo público» y se añade «Explorar ejemplos del dataset».

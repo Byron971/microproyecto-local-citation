@@ -1,3 +1,4 @@
+import { enterContext } from './context.helpers';
 import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
@@ -30,7 +31,7 @@ test('bloquea etapas futuras, resalta la actual y conserva los datos al volver',
   await expect(page.locator('#classifier-step')).toBeHidden();
   await expect(page.locator('#classifier')).toBeDisabled();
   await page.screenshot({ path: info.outputPath('paso-1.png'), fullPage: true });
-  await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await enterContext(page);
   const context = await page.getByLabel('Contexto en inglés').inputValue();
   await expect(page.locator('#workflow-step-1')).toBeDisabled();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
@@ -58,7 +59,7 @@ test('bloquea etapas futuras, resalta la actual y conserva los datos al volver',
   expect(inferenceCalls).toBe(0);
 });
 
-for (const reset of ['context', 'public-example', 'dataset-example']) {
+for (const reset of ['context', 'dataset-example']) {
   test(`navegación libre al completar y reinicio por ${reset}`, async ({ page }, info) => {
     let inferences = 0;
     await page.route('**/api/**', async (route) => {
@@ -106,7 +107,7 @@ for (const reset of ['context', 'public-example', 'dataset-example']) {
       } else throw new Error('Inferencia inesperada');
     });
     await page.goto('/');
-    await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+    await enterContext(page);
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
     await chooseArticle(page, 'W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
@@ -129,10 +130,8 @@ for (const reset of ['context', 'public-example', 'dataset-example']) {
     await page.screenshot({ path: info.outputPath('checklist-completo.png'), fullPage: true });
     if (reset === 'context')
       await page.getByLabel('Contexto en inglés').fill('New context TARGETCIT.');
-    else if (reset === 'public-example')
-      await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
     else {
-      await page.getByRole('button', { name: 'Explorar ejemplos del dataset' }).click();
+      await page.getByRole('button', { name: 'Explorar ejemplos', exact: true }).click();
       const dialog = page.getByRole('dialog', { name: 'Elige un ejemplo' });
       await dialog.getByRole('button', { name: 'Siguiente', exact: true }).click();
       const context = await dialog.locator('.example-preview').first().textContent();

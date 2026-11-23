@@ -14,11 +14,6 @@ import {
 import type { CommercialClassification } from '../components/CommercialResults';
 import { detectCitations, markCitation, type CitationSpan } from '../citationDetection';
 
-export const PUBLIC_EXAMPLE = {
-  paperId: 'W05-0821',
-  context:
-    'We use the language modeling approach described in [1] to improve a statistical machine translation system.',
-};
 type Analysis = Respuesta & {
   articulo: {
     paper_id: string;
@@ -53,7 +48,6 @@ export function ScientificAnalysis() {
   const [commercialResult, setCommercialResult] = useState<CommercialClassification>();
   const [coverage, setCoverage] = useState<Coverage>();
   const [coverageRetry, setCoverageRetry] = useState(0);
-  const [usingExample, setUsingExample] = useState(false);
   const [selectedExample, setSelectedExample] = useState('');
   const [examplesOpen, setExamplesOpen] = useState(false);
   const [result, setResult] = useState<Analysis>();
@@ -214,20 +208,11 @@ export function ScientificAnalysis() {
     else if (step === 3 && result && !error) document.getElementById('analysis-results')?.focus();
   }, [loading, result, error, errorField, step]);
 
-  function example() {
-    resetWorkflow();
-    setText(PUBLIC_EXAMPLE.context);
-    setUsingExample(true);
-    setSelectedExample('');
-    setCoverageRetry((count) => count + 1);
-  }
-
   function selectDatasetExample(id: string) {
     const item = datasetExamples.ejemplos.find((entry) => entry.context_id === id);
     if (!item) return;
     resetWorkflow();
     setText(item.contexto);
-    setUsingExample(false);
     setSelectedExample(id);
     setExamplesOpen(false);
     setCoverageRetry((count) => count + 1);
@@ -243,7 +228,6 @@ export function ScientificAnalysis() {
     setSearchingArticles(false);
     setVariant('M');
     setChosenSpan(undefined);
-    setUsingExample(false);
     setSelectedExample('');
   }
 
@@ -467,7 +451,7 @@ export function ScientificAnalysis() {
               }}
             />
             <p id="context-help" className="field-help">
-              Incluye la referencia que quieres analizar, por ejemplo [1] o (Smith, 2020).
+              Pega el párrafo que contiene la cita.
             </p>
             <div className="context-feedback" id="context-state" aria-live="polite">
               <span className={context.length > 4000 || markerCount > 1 ? 'invalid-text' : ''}>
@@ -522,15 +506,6 @@ export function ScientificAnalysis() {
                 </p>
               </fieldset>
             )}
-            <div className="context-actions">
-              <button type="button" className="text-button" onClick={example}>
-                Usar ejemplo público
-              </button>
-              <button type="button" className="text-button" onClick={() => setExamplesOpen(true)}>
-                Explorar ejemplos del dataset
-              </button>
-            </div>
-            {usingExample && <p className="field-help">Ejemplo público sintético.</p>}
             {selectedExample && <p className="field-help">Ejemplo de ACL-200 · validación.</p>}
           </fieldset>
           <fieldset
@@ -656,6 +631,16 @@ export function ScientificAnalysis() {
           <div className="analysis-submit">
             {guidance && <p className="readiness-message">{guidance}</p>}
             <div className="step-actions">
+              {step === 0 && (
+                <button
+                  type="button"
+                  className="secondary-button"
+                  aria-haspopup="dialog"
+                  onClick={() => setExamplesOpen(true)}
+                >
+                  Explorar ejemplos
+                </button>
+              )}
               {step > 0 && (
                 <button
                   type="button"
@@ -811,26 +796,15 @@ export function ScientificAnalysis() {
             texto: item.contexto,
             titulo_correcto: item.titulo,
             cita_correcta: item.paper_id,
-            detalle: `${item.paper_id} · Citado desde ${item.citing_id} · Validación`,
+            detalle: `${item.tema} · ${item.paper_id} · ACL-200 (validación)`,
           }))}
           selected={selectedExample}
           searchable
-          description="Citas de ACL-200 con artículo preparado. Elige una para cargar el contexto; confirma el artículo en el siguiente paso."
+          description="Citas en inglés de distintas áreas de PLN. Elige una para cargar su contexto; confirma el artículo después."
           onSelect={selectDatasetExample}
           onClose={() => setExamplesOpen(false)}
         />
       )}
-      <details id="ayuda" className="analysis-help">
-        <summary>Cómo analizar una cita</summary>
-        <p>
-          Pega el contexto en inglés y elige la cita que quieres analizar. Confirma el artículo
-          citado, elige el clasificador y pulsa «Ver resultados».
-        </p>
-        <p>
-          Los fragmentos son candidatos relacionados; no prueban por sí solos la afirmación. Las
-          puntuaciones del clasificador no son porcentajes de acierto.
-        </p>
-      </details>
     </div>
   );
 }

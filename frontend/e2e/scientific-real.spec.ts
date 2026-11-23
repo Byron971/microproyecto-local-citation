@@ -1,3 +1,4 @@
+import { enterContext } from './context.helpers';
 import { chooseArticle, selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
@@ -39,7 +40,7 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
     await page.goto('/');
     await expect(page.locator('#classifier option[value="open"]')).toHaveCount(0);
     if (scenario === 'initial') {
-      await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+      await enterContext(page);
     } else {
       await page
         .getByLabel('Contexto en inglés')

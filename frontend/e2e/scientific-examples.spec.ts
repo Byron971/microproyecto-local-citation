@@ -1,3 +1,4 @@
+import { enterContext } from './context.helpers';
 import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
@@ -28,7 +29,7 @@ test('busca ejemplos y carga contexto sin confirmar artículo ni clasificar', as
     }
   });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
+  await enterContext(page);
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await chooseArticle(page, 'W05-0821');
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
@@ -36,13 +37,15 @@ test('busca ejemplos y carga contexto sin confirmar artículo ni clasificar', as
   await page.getByRole('checkbox', { name: /Acepto enviar/ }).check();
   await page.getByRole('button', { name: 'Anterior', exact: true }).click();
   await page.getByRole('button', { name: 'Anterior', exact: true }).click();
-  const opener = page.getByRole('button', { name: 'Explorar ejemplos del dataset' });
+  const opener = page.getByRole('button', { name: 'Explorar ejemplos', exact: true });
   await opener.click();
   const dialog = page.getByRole('dialog', { name: 'Elige un ejemplo' });
   const search = dialog.getByRole('searchbox', { name: 'Buscar ejemplos' });
   await expect(search).toBeFocused();
-  await expect(dialog.getByRole('status')).toHaveText('33 de 33 ejemplos');
+  await expect(dialog.getByRole('status')).toHaveText('40 de 40 ejemplos');
   await expect(dialog.locator('.example-card')).toHaveCount(10);
+  await expect(page.getByRole('button', { name: 'Usar ejemplo público' })).toHaveCount(0);
+  expect(new Set(examples.ejemplos.slice(0, 10).map((e: { tema: string }) => e.tema)).size).toBe(8);
   await search.fill('no-existe-esta-cita');
   await expect(dialog.getByText(/No hay ejemplos/)).toBeVisible();
   const chosen = examples.ejemplos[0];
@@ -79,7 +82,7 @@ test('busca ejemplos y carga contexto sin confirmar artículo ni clasificar', as
 test('pagina diez ejemplos y reinicia la página al buscar', async ({ page }, info) => {
   await page.route('**/api/**', (route) => route.fulfill({ json: { clasificadores: [] } }));
   await page.goto('/');
-  await page.getByRole('button', { name: 'Explorar ejemplos del dataset' }).click();
+  await page.getByRole('button', { name: 'Explorar ejemplos', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Elige un ejemplo' });
   const nav = dialog.getByRole('navigation', { name: 'Páginas de ejemplos' });
   await expect(dialog.locator('.example-card')).toHaveCount(10);
@@ -87,7 +90,7 @@ test('pagina diez ejemplos y reinicia la página al buscar', async ({ page }, in
   for (const [index, count] of [
     [1, 10],
     [2, 10],
-    [3, 3],
+    [3, 10],
   ]) {
     await nav.getByRole('button', { name: 'Siguiente', exact: true }).click();
     await expect(nav).toContainText(`Página ${index + 1} de 4`);

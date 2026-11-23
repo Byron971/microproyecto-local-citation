@@ -1423,8 +1423,8 @@ summary {
 }
 .example-dialog-close {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 6px;
   font-size: 26px;
   color: var(--secondary);
@@ -1621,13 +1621,6 @@ summary {
 .analysis-help p,
 .analysis-help li {
   overflow-wrap: anywhere;
-}
-
-.context-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
-  align-items: center;
 }
 
 /* Elección de la cita objetivo entre las referencias detectadas. */
@@ -2462,4 +2455,84 @@ summary {
     grid-template-columns: 1fr;
     gap: 8px;
   }
+}
+
+/* Ayuda contextual: una entrada estable en la cabecera y modal accesible. */
+.header-help {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--secondary);
+  font: inherit;
+}
+.header-help:hover {
+  background: var(--background);
+}
+.help-dialog-content {
+  padding: 24px;
+  overflow-y: auto;
+  min-height: 0;
+}
+.help-workflow {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: help-step;
+}
+.help-workflow li {
+  counter-increment: help-step;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 4px 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.help-workflow li:first-child {
+  padding-top: 0;
+}
+.help-workflow li::before {
+  content: counter(help-step);
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--soft-primary);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  grid-row: 1 / span 2;
+}
+.help-dialog h3 {
+  margin: 2px 0 4px;
+  font-size: 15px;
+}
+.help-dialog-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary);
+}
+.help-context-note {
+  margin-top: 24px;
+}
+.help-context-note p + p {
+  margin-top: 8px;
+}
+.help-dialog-content .help-interpretation {
+  margin-top: 24px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--primary);
+  background: var(--background);
+  font-size: 13px;
+}
+@media (max-width: 600px) {
+  .help-dialog-content,
+  .help-dialog .example-dialog-header {
+    padding: 20px 16px;
+  }
+}
+
+.help-dialog {
+  max-height: min(840px, calc(100dvh - 48px));
 }
