@@ -32,6 +32,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
     expect(path).toBe('/api/analisis-cita-ms/articulo');
     const body = route.request().postDataJSON();
     expect(body).toEqual({
+      asincrono: true,
       paper_id: 'D15-1167',
       contexto: 'Earlier work TARGETCIT and (Lee, 2019) introduced this method.',
     });

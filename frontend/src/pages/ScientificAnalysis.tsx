@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { ApiError, errorMessage, request } from '../api';
+import { ApiError, errorMessage, request, analyzeArticle } from '../api';
 import { ScientificResults, type Respuesta } from '../components/ScientificResults';
 import catalog from '../articleCatalog.json';
 import fullCatalogUrl from '../fullArticleCatalog.json?url';
@@ -331,11 +331,7 @@ export function ScientificAnalysis() {
     setDuration(undefined);
     const started = performance.now();
     try {
-      const data = await request<Analysis>('/api/analisis-cita-ms/articulo', {
-        method: 'POST',
-        signal: controller.signal,
-        body: JSON.stringify({ contexto: context, paper_id: paperId }),
-      });
+      const data = await analyzeArticle<Analysis>(context, paperId, controller.signal);
       if (controller.signal.aborted) return;
       if (
         data.articulo?.paper_id !== paperId ||

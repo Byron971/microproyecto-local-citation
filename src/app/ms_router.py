@@ -39,6 +39,7 @@ class DisponibilidadArticulos(BaseModel):
 
 
 class ConsultaArticulo(BaseModel):
+    asincrono: bool = False
     contexto: str = Field(min_length=1, max_length=4000)
     paper_id: str = Field(pattern=r'^[A-Z][0-9]{2}-[0-9]{4}$')
 
@@ -123,11 +124,24 @@ def analizar_articulo(consulta: ConsultaArticulo):
                              abstract=doc['abstract'], candidatos=doc['candidatos'])
     except ValueError as exc:
         raise HTTPException(status_code=422, detail='Selecciona una única posición de cita en el contexto.') from exc
+    if consulta.asincrono:
+        from src.app.ms_jobs import JOBS
+        return JOBS.submit(lambda: _resultado_articulo(consulta, entrada, doc, data, version))
+    return _resultado_articulo(consulta, entrada, doc, data, version)
+
+
+def _resultado_articulo(consulta, entrada, doc, data, version):
     resultado = analisis_cita_ms(entrada)
     return {**resultado, 'articulo': {'paper_id': consulta.paper_id, 'titulo': doc['titulo'],
             'fuente': doc['fuente'], 'publicacion': doc['publicacion'], 'sha256_ocl': doc['sha256_ocl'],
             'version_contenido': version, 'total_fragmentos': len(doc['candidatos']),
             'licencia': data['licencia'], 'fragmentacion': data['fragmentacion'], 'truncamiento': doc.get('truncamiento')}}
+
+
+@router.get('/api/analisis-cita-ms/articulo/{trabajo_id}')
+def consultar_analisis_articulo(trabajo_id: str):
+    from src.app.ms_jobs import JOBS
+    return JOBS.read(trabajo_id)
 
 
 @router.get("/api/analisis-cita-ms/estado")

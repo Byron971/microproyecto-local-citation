@@ -11,7 +11,7 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
   test(`${scenario}: completa el flujo con M/S real y textos del artículo`, async ({
     page,
   }, testInfo) => {
-    test.setTimeout(90000);
+    test.setTimeout(120000);
     const manifest = JSON.parse(fs.readFileSync('../config/corpus_release.json', 'utf8'));
     const paperId =
       scenario === 'truncated_characters'
@@ -61,10 +61,20 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
       (response) => response.url().endsWith('/api/analisis-cita-ms/articulo'),
       { timeout: 60000 },
     );
+    let starts = 0;
+    page.on('request', (r) => {
+      if (r.url().endsWith('/api/analisis-cita-ms/articulo') && r.method() === 'POST') starts++;
+    });
+    const resultPromise = page.waitForResponse(
+      (r) => r.url().includes('/api/analisis-cita-ms/articulo/') && r.status() === 200,
+      { timeout: 100000 },
+    );
     await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
-    const response = await responsePromise;
-    expect(response.status()).toBe(200);
+    const started = await responsePromise;
+    expect(started.status()).toBe(202);
+    const response = await resultPromise;
     const data = await response.json();
+    expect(starts).toBe(1);
     expect(data.articulo.paper_id).toBe(paperId);
     if (scenario.startsWith('truncated')) {
       expect(data.articulo.truncamiento.aplicado).toBe(true);

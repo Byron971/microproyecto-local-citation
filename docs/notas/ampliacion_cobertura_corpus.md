@@ -62,3 +62,16 @@ La nueva preparación mantiene 19.243 artículos y 508 recortados. Release corre
 - [ ] Verificar recorridos públicos, capturas de escritorio/móvil, salud y constructora detenida.
 
 T04 sigue pendiente por cuota; T05–T06 suspendidas; T07–T09 disponibles para M/S/comercial con familia abierta suspendida; T10 parcial; T11 requiere la aceptación pública de esta ampliación; T12 y cierre final de T13 pendientes. No se declara completo el proyecto de tres familias.
+
+
+## Límite público de espera y corrección de integración
+
+La publicación `eb0d14e` verificó servicios, corpus y HTML. El selector público aprobó cuatro recorridos. En la aceptación M/S, tres recorridos pasaron y cinco fallaron: los documentos de 100 fragmentos y 56K caracteres superaban los 30 segundos de API Gateway; el servidor registraba finalmente 200, mientras el navegador recibía 503. Una sugerencia posterior recibió 429 porque el cálculo anterior seguía activo. Esta ejecución no acredita aceptación completa; trazas preservadas en `artifacts/coverage-public-ms-eb0d14e/limite_gateway_30s/`. No se repite una prueba sobre caché para ocultar este límite.
+
+Se conserva `POST /api/analisis-cita-ms/articulo`, con modo opcional `asincrono: true` para la web: devuelve 202 e identificador aleatorio. `GET /api/analisis-cita-ms/articulo/{trabajo_id}` consulta exclusivamente ese cálculo y entrega el mismo resultado final. El contrato síncrono anterior se conserva. Hay un solo cálculo activo, sin cola, con el mismo RLock compartido con sugerencias y M/S; ocupado sigue devolviendo 429. El comercial conserva su solicitud única posterior al Top-3 y su consentimiento.
+
+Los resultados son transitorios, solo en memoria del proceso, con máximo ocho y caducidad de 120 segundos después de terminar, eliminados mediante temporizador. No se ofrece historial ni listado; los IDs son aleatorios de 128 bits. Reiniciar el servicio o expirar el resultado devuelve 410, conservando los datos del formulario. El navegador consulta cada segundo, deja de consultar al abandonar la página y limita la espera total a tres minutos; no reintenta automáticamente POST ni un GET fallido. Abandonar la espera no detiene el cálculo ya iniciado. No se añade almacenamiento AWS ni se aumenta CPU/memoria; no se modifican modelos ni el corpus corregido. Estos límites operativos no cierran T10.
+
+La comprobación pública de esta corrección sigue pendiente hasta publicar la imagen científica y el frontend y repetir los ocho recorridos con un proceso recién iniciado.
+
+Validación local de la espera: 65 pruebas de contratos/corpus/publicación/trabajos/comercial, 14 científicas/arranque/concurrencia, 41 unitarias frontend y 82 recorridos UI aprobados. El build es correcto. Esta corrección requiere solo imagen científica y frontend; la API comercial se conserva en `eb0d14e`.
