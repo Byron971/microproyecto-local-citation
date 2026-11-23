@@ -1,18 +1,5 @@
-import { request, ApiError, api } from '../api';
+import { request, ApiError } from '../api';
 
-test('Recomendar y catálogo utilizan SciBERT sin recurrir al recomendador anterior', async () => {
-  const fetch = vi.fn().mockResolvedValue({ ok: true, json: async () => ({}) });
-  vi.stubGlobal('fetch', fetch);
-  await api.models();
-  await api.recommend('scientific context', 5);
-  expect(fetch.mock.calls[0][0]).toContain('/api/analisis-cita-ms/modelos');
-  expect(fetch.mock.calls[1][0]).toContain('/api/analisis-cita-ms/recomendar');
-  expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({
-    contexto: 'scientific context',
-    top_k: 5,
-  });
-  vi.unstubAllGlobals();
-});
 test('convierte los errores de validación 422 en un mensaje legible', async () => {
   vi.stubGlobal(
     'fetch',

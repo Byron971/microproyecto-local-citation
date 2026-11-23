@@ -13,57 +13,12 @@ def aws(*args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result", "models", "models-result", "publish-models", "publish-models-result", "compatible", "compatible-result", "qlora-auth", "qlora-auth-result", "qlora-check", "qlora-check-result", "qlora-browser", "qlora-browser-result", "qlora-files", "qlora-files-result", "qlora-audit", "qlora-audit-result"])
+    parser.add_argument("action", choices=["clone", "clone-result", "build", "build-result", "inspect", "inspect-result", "models", "models-result", "publish-models", "publish-models-result", "compatible", "compatible-result"])
     parser.add_argument("--work", required=True, type=Path)
     parser.add_argument("--commit")
     args = parser.parse_args()
     instance = json.loads((args.work / "outputs.json").read_text())["instance_id"]["value"]
-    if args.action == "qlora-audit":
-        code = "AUDITOR_SOURCE = " + repr(Path("scripts/auditar_adapter_qlora.py").read_text()) + "\n" + Path("scripts/recover_adapter_ec2.py").read_text()
-        command = "sudo -u ubuntu python3 - <<'QLORA_AUDIT_SCRIPT'\n" + code + "\nQLORA_AUDIT_SCRIPT"
-        result = aws("ssm", "send-command", "--instance-ids", instance,
-                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command],"executionTimeout":["600"]}))
-        (args.work / "qlora-audit-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
-        print("Recuperación y auditoría del adaptador enviadas")
-    elif args.action == "qlora-files":
-        command = """sudo -u ubuntu python3 - <<'QLORA_FILES'
-import json
-from pathlib import Path
-root=Path('/home/ubuntu/Downloads/qlora')
-print(json.dumps({'files':[{'path':str(p.relative_to(root)), 'bytes':p.stat().st_size} for p in sorted(root.rglob('*')) if p.is_file()][:100]},indent=2))
-QLORA_FILES"""
-        result = aws("ssm", "send-command", "--instance-ids", instance,
-                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
-        (args.work / "qlora-files-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
-        print("Consulta de descargas enviada")
-    elif args.action == "qlora-browser":
-        command = "bash <<'QLORA_BROWSER_SCRIPT'\n" + Path("scripts/qlora_browser_ec2.sh").read_text() + "\nQLORA_BROWSER_SCRIPT"
-        result = aws("ssm", "send-command", "--instance-ids", instance,
-                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command],"executionTimeout":["1200"]}))
-        (args.work / "qlora-browser-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
-        print("Preparación del navegador EC2 enviada")
-    elif args.action == "qlora-check":
-        command = """sudo -u ubuntu python3 - <<'QLORA_CHECK'
-import configparser,json
-from pathlib import Path
-p=Path('/home/ubuntu/.config/rclone/uniandes.conf')
-c=configparser.ConfigParser(interpolation=None)
-if p.exists():c.read(p)
-configured=c.has_section('uniandes')
-token=json.loads(c.get('uniandes','token',fallback='{}')) if configured else {}
-print(json.dumps({'authorized':bool(token.get('access_token')), 'drive_configured':bool(c.get('uniandes','drive_id',fallback='')) if configured else False, 'private_config_permissions':oct(p.stat().st_mode & 0o777) if p.exists() else None}))
-QLORA_CHECK"""
-        result = aws("ssm", "send-command", "--instance-ids", instance,
-                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
-        (args.work / "qlora-check-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
-        print("Comprobación privada enviada")
-    elif args.action == "qlora-auth":
-        command = "bash <<'QLORA_AUTH_SCRIPT'\n" + Path("scripts/qlora_auth_ec2.sh").read_text() + "\nQLORA_AUTH_SCRIPT"
-        result = aws("ssm", "send-command", "--instance-ids", instance,
-                     "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
-        (args.work / "qlora-auth-command.json").write_text(json.dumps({"command_id":result["Command"]["CommandId"]}))
-        print("Autorización remota preparada; consultar resultado")
-    elif args.action == "compatible":
+    if args.action == "compatible":
         command = "sudo -u ubuntu /opt/citas/tools/bin/python - <<'COMPAT_SCRIPT'\n" + Path("scripts/compatible_image_ec2.py").read_text() + "\nCOMPAT_SCRIPT"
         result = aws("ssm", "send-command", "--instance-ids", instance,
                      "--document-name", "AWS-RunShellScript", "--parameters", json.dumps({"commands": [command]}))
