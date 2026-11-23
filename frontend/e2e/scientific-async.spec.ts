@@ -75,7 +75,9 @@ for (const failure of [false, true]) {
       ).toBeEnabled();
     } else {
       await expect(page.getByRole('heading', { name: 'Modelo M', exact: true })).toBeVisible();
-      await expect(page.getByText('Fragmento 3', { exact: true })).toBeVisible();
+      await expect(
+        page.locator('#fragment-3').getByText('Fragmento 3', { exact: true }),
+      ).toBeVisible();
     }
     expect(starts).toBe(1);
     expect(polls).toBe(2);

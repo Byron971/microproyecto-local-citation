@@ -63,15 +63,41 @@ export function CommercialResults({
 
 export function CommercialDetails({ result }: { result: CommercialClassification }) {
   return (
-    <section aria-label="Detalles del proveedor">
-      <h4>Detalles del proveedor</h4>
-      <p>
-        Proveedor: {result.proveedor} · Modelo efectivo: {result.modelo_efectivo}
-      </p>
-      <p>Entrada: contexto, título y resumen. Los fragmentos Top-3 se recuperan con SciBERT.</p>
-      <p>
-        Perfil: {result.perfil} · SHA-256 de instrucciones: {result.sha256_prompts}
-      </p>
+    <section className="analysis-detail-section" aria-label="Detalles del proveedor">
+      <h4>Clasificación comercial</h4>
+      <dl className="analysis-facts">
+        <div>
+          <dt>Proveedor</dt>
+          <dd>{result.proveedor}</dd>
+        </div>
+        <div>
+          <dt>Modelo efectivo</dt>
+          <dd>{result.modelo_efectivo}</dd>
+        </div>
+        <div className="analysis-fact-wide">
+          <dt>Información enviada</dt>
+          <dd>Contexto de la cita, título y resumen del artículo.</dd>
+        </div>
+      </dl>
     </section>
+  );
+}
+
+export function CommercialTechnicalDetails({ result }: { result: CommercialClassification }) {
+  return (
+    <dl className="technical-facts">
+      <div>
+        <dt>Perfil comercial</dt>
+        <dd>
+          <code>{result.perfil}</code>
+        </dd>
+      </div>
+      <div>
+        <dt>SHA-256 de instrucciones</dt>
+        <dd>
+          <code>{result.sha256_prompts}</code>
+        </dd>
+      </div>
+    </dl>
   );
 }

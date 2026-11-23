@@ -1,11 +1,8 @@
+import { AnalysisDetails } from './AnalysisDetails';
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import type { TruncationInfo } from './ArticlePicker';
 import { meanings } from '../citationFunctions';
-import {
-  CommercialResults,
-  CommercialDetails,
-  type CommercialClassification,
-} from './CommercialResults';
+import { CommercialResults, type CommercialClassification } from './CommercialResults';
 type Candidato = { chunk_id: string; texto: string; seccion: string };
 type Puntuacion = { clase: string; probabilidad: number };
 type Clasificador = {
@@ -174,47 +171,13 @@ export function ScientificResults({
         hidden={activeTab !== 1}
         tabIndex={0}
       >
-        <p>
-          Recuperador: {respuesta.modelo_recuperacion} · revisión SciBERT:{' '}
-          {respuesta.revision_scibert}
-        </p>
-        <p>
-          Dispositivo: {respuesta.dispositivo} · entrada AB: {respuesta.tokens_ab} tokens.
-        </p>
-        <p>{respuesta.aviso}</p>
-        {truncation?.aplicado && (
-          <p>
-            Se usaron {truncation.fragmentos_analizados} de {truncation.fragmentos_originales}{' '}
-            fragmentos y {truncation.caracteres_analizados.toLocaleString('es')} de{' '}
-            {truncation.caracteres_originales.toLocaleString('es')} caracteres del artículo y sus
-            metadatos. El recorte conserva el inicio en su orden original; el último fragmento puede
-            ser parcial.
-          </p>
-        )}
-        <ul>
-          {respuesta.top3.map((fragment) => (
-            <li key={fragment.chunk_id}>
-              {fragment.chunk_id} · similitud coseno {fragment.similitud_coseno.toFixed(4)} · perfil{' '}
-              {fragment.perfil || 'no indicado'}
-            </li>
-          ))}
-        </ul>
-        {commercialSelected ? (
-          <p>
-            SciBERT recupera los fragmentos y calcula M/S. Se muestra la clasificación comercial
-            seleccionada, que usa contexto, título y resumen.
-          </p>
-        ) : (
-          <p>
-            Puntuaciones softmax sin calibración de acierto. El servicio calcula M y S; se muestra{' '}
-            {variante ? `la variante ${variante}` : 'ambas variantes'}. Ajuste PH:{' '}
-            {(['M', 'S'] as const)
-              .map((track) => `${track} ${respuesta.clasificadores[track].ajuste_ph ? 'sí' : 'no'}`)
-              .join(', ')}
-            .
-          </p>
-        )}
-        {commercialSelected && commercial && <CommercialDetails result={commercial} />}
+        <AnalysisDetails
+          respuesta={respuesta}
+          truncation={truncation}
+          variante={variante}
+          commercialSelected={commercialSelected}
+          commercial={commercial}
+        />
       </div>
       <div
         className="result-tab-panel analysis-help"

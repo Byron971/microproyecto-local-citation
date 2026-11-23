@@ -8,6 +8,17 @@ for (const mode of ['M', 'S', 'commercial']) {
     let analyses = 0;
     let commercialCalls = 0;
     const labels = Object.keys(meanings);
+    const truncation =
+      mode === 'S'
+        ? {
+            aplicado: true,
+            texto_recortado: true,
+            fragmentos_originales: 92,
+            fragmentos_analizados: 75,
+            caracteres_originales: 70000,
+            caracteres_analizados: 55994,
+          }
+        : undefined;
     const classifier = {
       clase: 'Application',
       probabilidad: 0.7,
@@ -26,7 +37,7 @@ for (const mode of ['M', 'S', 'commercial']) {
         return route.fulfill({
           json: {
             version_contenido: catalog.version_contenido,
-            articulos: [{ paper_id: 'W05-0821', disponible: true }],
+            articulos: [{ paper_id: 'W05-0821', disponible: true, truncamiento: truncation }],
           },
         });
       if (path.endsWith('/articulo')) {
@@ -34,20 +45,21 @@ for (const mode of ['M', 'S', 'commercial']) {
         return route.fulfill({
           json: {
             articulo: {
+              truncamiento: truncation,
               titulo: catalog.articulos.find((article) => article.paper_id === 'W05-0821')!.titulo,
               paper_id: 'W05-0821',
               version_contenido: catalog.version_contenido,
               publicacion: 'https://aclanthology.org/W05-0821/',
             },
             top3: [1, 2, 3].map((i) => ({
-              chunk_id: `p${i}`,
+              chunk_id: ['p00000-p00001', 'p00006-p00007', 'p00028-p00029'][i - 1],
               texto: `Fragmento verificado ${i}`,
               seccion: 'Methods',
               similitud_coseno: 0.5,
               perfil: 'method',
             })),
             clasificadores: { M: classifier, S: classifier },
-            modelo_recuperacion: 'SciBERT',
+            modelo_recuperacion: 'scibert_base_mean_pooling_cosine',
             revision_scibert: 'a'.repeat(40),
             dispositivo: 'cpu',
             tokens_ab: 512,
@@ -119,15 +131,39 @@ for (const mode of ['M', 'S', 'commercial']) {
       name: 'Detalles del análisis',
       exact: true,
     });
-    await expect(detailsPanel.getByText(/Recuperador: SciBERT/)).toBeVisible();
+    await expect(
+      detailsPanel
+        .getByRole('region', { name: 'Resumen del análisis' })
+        .getByText('SciBERT', { exact: true }),
+    ).toBeVisible();
+    await expect(detailsPanel.getByRole('table')).toBeVisible();
+    await expect(detailsPanel.getByRole('rowheader')).toHaveCount(3);
+    await expect(detailsPanel.getByText('a'.repeat(40), { exact: true })).toBeHidden();
+    await expect(detailsPanel.getByText('CPU', { exact: true })).toBeHidden();
     if (mode === 'commercial') {
-      await expect(detailsPanel.getByText(/Modelo efectivo: gpt-6.1-sol/)).toBeVisible();
-      await expect(detailsPanel.getByText(/zero_shot_detailed/)).toBeVisible();
+      await expect(detailsPanel.getByText('gpt-6.1-sol', { exact: true })).toBeVisible();
+      await expect(detailsPanel.getByText('zero_shot_detailed', { exact: true })).toBeHidden();
     }
     await expect(
       result.getByRole('tabpanel', { name: 'Puntuación', exact: true, hidden: true }),
     ).toBeHidden();
+    if (mode === 'S')
+      await expect(detailsPanel.getByText('75 de 92 fragmentos', { exact: true })).toBeVisible();
     await capture('detalles');
+    await detailsPanel.screenshot({ path: info.outputPath('panel-detalles.png') });
+    await detailsPanel.getByRole('link', { name: 'Fragmento 2', exact: true }).click();
+    await expect(page.locator('#fragment-2')).toBeFocused();
+    await expect(details).toHaveAttribute('aria-selected', 'true');
+    const technical = detailsPanel.locator('summary');
+    await technical.focus();
+    await page.keyboard.press('Enter');
+    await expect(detailsPanel.getByText('a'.repeat(40), { exact: true })).toBeVisible();
+    await expect(detailsPanel.getByText('CPU', { exact: true })).toBeVisible();
+    if (mode === 'commercial')
+      await expect(detailsPanel.getByText('zero_shot_detailed', { exact: true })).toBeVisible();
+    await capture('detalles-tecnicos');
+    await page.keyboard.press('Enter');
+    await details.focus();
     await page.keyboard.press('End');
     await expect(help).toBeFocused();
     const helpPanel = result.getByRole('tabpanel', { name: 'Ayuda', exact: true });

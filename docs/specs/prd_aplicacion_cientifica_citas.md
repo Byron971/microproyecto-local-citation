@@ -307,3 +307,5 @@ La espera de análisis largos conserva un solo inicio de inferencia y consulta s
 
 
 **Organización de resultados solicitada posteriormente:** la sección «Función predicha de la cita» presenta tres pestañas locales: Puntuación (activa al abrir), Detalles del análisis y Ayuda (definiciones de las nueve funciones). Los detalles comerciales se incluyen en la segunda; el Top-3 permanece fuera de estas pestañas. No cambia el recorrido de cuatro etapas ni las inferencias. Véase [pestañas de resultados](../notas/pestanas_funcion_predicha.md).
+
+**Refinamiento de los detalles:** resumen del método y clasificador, tabla de fragmentos con sección y similitud, alcance del recorte cuando existe y metadatos técnicos plegados. Se conserva el proveedor comercial identificable y el enlace a cada fragmento. Véase [diseño y comprobaciones](../notas/diseno_detalles_analisis.md).

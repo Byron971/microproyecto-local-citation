@@ -2234,3 +2234,142 @@ summary {
 .result-tab-panel[hidden] {
   display: none;
 }
+
+.analysis-details {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+}
+.analysis-detail-section + .analysis-detail-section,
+.analysis-scope-note + .analysis-detail-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.analysis-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+  margin: 0 0 16px;
+}
+.analysis-facts dt,
+.technical-facts dt {
+  color: var(--secondary);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.analysis-details .analysis-facts dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.analysis-fact-wide {
+  grid-column: 1 / -1;
+}
+.analysis-details .detail-caption {
+  margin-bottom: 16px;
+  color: var(--secondary);
+  font-size: 13px;
+}
+.analysis-detail-section > .detail-caption:last-child {
+  margin-bottom: 0;
+}
+.fragment-metadata {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: left;
+  font-size: 13px;
+}
+.fragment-metadata th,
+.fragment-metadata td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+.fragment-metadata thead th {
+  color: var(--secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+.fragment-metadata th:first-child {
+  padding-left: 0;
+  width: 28%;
+}
+.fragment-metadata th:last-child,
+.fragment-metadata td:last-child {
+  padding-right: 0;
+  width: 22%;
+  text-align: right;
+}
+.fragment-metadata tbody th {
+  font-weight: 500;
+}
+.fragment-metadata tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.similarity-value {
+  font-variant-numeric: tabular-nums;
+}
+.analysis-details .analysis-interpretation,
+.analysis-scope-note {
+  margin: 24px 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--primary);
+  background: var(--background);
+  font-size: 13px;
+  color: var(--secondary);
+}
+.analysis-scope-note p:last-child {
+  margin-bottom: 0;
+}
+.analysis-technical {
+  margin-top: 24px;
+  font-size: 13px;
+}
+.analysis-technical summary {
+  min-height: 44px;
+  padding: 10px 0;
+  color: var(--primary);
+  font-weight: 600;
+}
+.technical-facts {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0;
+}
+.analysis-details .technical-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.technical-facts code {
+  font-size: 12px;
+}
+.technical-profile {
+  display: block;
+  color: var(--secondary);
+  margin-top: 4px;
+}
+@media (max-width: 600px) {
+  .analysis-details {
+    padding: 18px 16px;
+  }
+  .analysis-facts {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fragment-metadata th:first-child {
+    width: 37%;
+  }
+  .fragment-metadata th:last-child,
+  .fragment-metadata td:last-child {
+    width: 24%;
+  }
+}

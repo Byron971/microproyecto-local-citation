@@ -33,3 +33,7 @@ Código frontend: `f3d3e72`. SHA256 de `index.html`: `16ef5fb25a6215c292394ecf51
 - [x] Publicación frontend, HTML público y UI publicada con mocks verificados.
 
 T01–T03 conservan el recorrido publicado; T04 pendiente; T05–T06 suspendidas; T07–T09 M/S/comercial disponibles con familia abierta suspendida; T10 parcial; T11 conserva aceptación real anterior; T12 pendiente; T13 notas actualizadas con cierre final pendiente. El proyecto global sigue parcialmente cumplido.
+
+## Refinamiento posterior
+
+La solicitud posterior de mejorar la lectura introduce resumen, tabla de fragmentos y un desplegable interno para metadatos avanzados. Sustituye la presentación plana descrita arriba; las tres pestañas permanecen. Véase [diseño de los detalles del análisis](diseno_detalles_analisis.md) para implementación y evidencias actuales.
