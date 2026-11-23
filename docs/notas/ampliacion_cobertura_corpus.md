@@ -1,5 +1,8 @@
 # Ampliación de cobertura de texto completo
 
+> Cierre 23/11/2026: ampliación y UI publicadas y aceptadas. Catálogo de 19.776; 19.243 artículos analizables, 508 con recorte. Las secciones históricas registran las incidencias y sus correcciones; la aceptación final está al final.
+
+
 ## Alcance y decisiones
 
 Petición del usuario: ampliar la cobertura de Top-3 y clasificación más allá de los 37 artículos iniciales, sobre el catálogo de 19.776 IDs existente. Las sugerencias siguen siendo una ayuda del paso 2; la selección del artículo es manual y los tres fragmentos pertenecen exclusivamente a ese artículo.
@@ -25,7 +28,7 @@ No hay artículo confirmado por defecto, tampoco al elegir ejemplos. Los ejemplo
 - `IndexedCorpus` verifica integridad al arrancar y lee/descomprime solo el artículo seleccionado; sus metadatos pueden recorrerse sin cargar todos los cuerpos. API y servicio científico usan el mismo inventario y versión. No se descargan artículos durante solicitudes HTTP.
 - El JSON ligero del paso 2 conserva títulos/IDs de todos los artículos y sus indicadores de cobertura. Los 33 ejemplos existentes se conservan; no se incorporan etiquetas o predicciones ni se amplía el modal en esta tarea.
 
-El código y la documentación no sustituyen comprobaciones del despliegue. La aceptación pública queda pendiente hasta completar la preparación, publicación y verificación.
+El código y la documentación no sustituyen comprobaciones del despliegue. La aceptación pública final se registra al cierre, después de preparar, publicar y verificar la integración.
 
 ## Reproducción
 
@@ -57,11 +60,11 @@ La nueva preparación mantiene 19.243 artículos y 508 recortados. Release corre
 - [x] Implementación del almacenamiento indexado y preparación reanudable.
 - [x] Pruebas de contratos e integridad; dos inferencias locales acotadas con pesos en caché, textos contrastados y dos hilos CPU (1,157 s para 3 fragmentos; 11,846 s para 92). Son observaciones operativas, no un benchmark estadístico.
 - [x] Completar extracción de 19.599 JSON y preparación de los 19.776 IDs: 19.243 preparados, 508 con algún recorte; 177 sin archivo, 130 sin párrafos de texto completo y 226 con menos de tres fragmentos distintos. La auditoría exhaustiva previa a publicación reconstruye cada cuerpo desde su fuente.
-- [x] Publicar corpus privado `corpus-ms-c2985eac4e952d4b` (211.222.528 bytes), SHA256 remoto contrastado.
-- [ ] Completar la publicación corregida y su aceptación pública.
-- [ ] Verificar recorridos públicos, capturas de escritorio/móvil, salud y constructora detenida.
+- [x] Publicar corpus privado corregido `corpus-ms-276bc4320e8e8411` (211.255.296 bytes), SHA256 remoto contrastado.
+- [x] Completar la publicación corregida y su aceptación pública.
+- [x] Verificar recorridos públicos, capturas de escritorio/móvil, salud y constructora detenida.
 
-T04 sigue pendiente por cuota; T05–T06 suspendidas; T07–T09 disponibles para M/S/comercial con familia abierta suspendida; T10 parcial; T11 requiere la aceptación pública de esta ampliación; T12 y cierre final de T13 pendientes. No se declara completo el proyecto de tres familias.
+T04 sigue pendiente por cuota; T05–T06 suspendidas; T07–T09 disponibles para M/S/comercial con familia abierta suspendida; T10 parcial; T11 incluye la aceptación pública de esta ampliación y de su espera asíncrona; T12 y cierre final de T13 pendientes. No se declara completo el proyecto de tres familias.
 
 
 ## Límite público de espera y corrección de integración
@@ -70,8 +73,38 @@ La publicación `eb0d14e` verificó servicios, corpus y HTML. El selector públi
 
 Se conserva `POST /api/analisis-cita-ms/articulo`, con modo opcional `asincrono: true` para la web: devuelve 202 e identificador aleatorio. `GET /api/analisis-cita-ms/articulo/{trabajo_id}` consulta exclusivamente ese cálculo y entrega el mismo resultado final. El contrato síncrono anterior se conserva. Hay un solo cálculo activo, sin cola, con el mismo RLock compartido con sugerencias y M/S; ocupado sigue devolviendo 429. El comercial conserva su solicitud única posterior al Top-3 y su consentimiento.
 
-Los resultados son transitorios, solo en memoria del proceso, con máximo ocho y caducidad de 120 segundos después de terminar, eliminados mediante temporizador. No se ofrece historial ni listado; los IDs son aleatorios de 128 bits. Reiniciar el servicio o expirar el resultado devuelve 410, conservando los datos del formulario. El navegador consulta cada segundo, deja de consultar al abandonar la página y limita la espera total a tres minutos; no reintenta automáticamente POST ni un GET fallido. Abandonar la espera no detiene el cálculo ya iniciado. No se añade almacenamiento AWS ni se aumenta CPU/memoria; no se modifican modelos ni el corpus corregido. Estos límites operativos no cierran T10.
+Los resultados son transitorios, solo en memoria del proceso, con máximo ocho y caducidad de 120 segundos después de terminar, eliminados mediante temporizador. No se ofrece historial ni listado; los IDs son aleatorios de 128 bits. Reiniciar el servicio o expirar el resultado devuelve 410, conservando los datos del formulario. El navegador consulta cada segundo, deja de consultar al abandonar la página y deja de programar nuevas consultas al alcanzar tres minutos (cada petición conserva su timeout de 32 segundos); no reintenta automáticamente POST ni un GET fallido. Abandonar la espera no detiene el cálculo ya iniciado. No se añade almacenamiento AWS ni se aumenta CPU/memoria; no se modifican modelos ni el corpus corregido. Estos límites operativos no cierran T10.
 
-La comprobación pública de esta corrección sigue pendiente hasta publicar la imagen científica y el frontend y repetir los ocho recorridos con un proceso recién iniciado.
+En esta fase quedaba pendiente comprobar la corrección sobre la imagen científica y el frontend publicados, con un proceso recién iniciado. El resultado se registra a continuación.
 
 Validación local de la espera: 65 pruebas de contratos/corpus/publicación/trabajos/comercial, 14 científicas/arranque/concurrencia, 41 unitarias frontend y 82 recorridos UI aprobados. El build es correcto. Esta corrección requiere solo imagen científica y frontend; la API comercial se conserva en `eb0d14e`.
+
+
+## Publicación y aceptación final — 23/11/2026
+
+- Imagen científica: código `e84fd3ad0661dea3113470df7ac84a084f4144cd`, digest `sha256:f9737536a03de29fee060db65cbb8b394fe33b46703ddbfa819815da99c1e144`, ECS `citas-api-science:9`.
+- API conservada en código `eb0d14e6339452c7081dcd39bbd777698174f76b`, imagen `release-api-eb0d14e6339452c7081dcd39bbd777698174f76b`, ECS `citas-api:7`. En el último despliegue solo cambió la imagen científica, su definición y su servicio: CPU, memoria, IAM, secretos y controles comerciales iguales.
+- Corpus corregido `corpus-ms-276bc4320e8e8411`, SHA256 SQLite `65bff0328eed93991079d405b060bc0ab18591035e84a060edf13f0813991aa0`. Hash del inventario/versión de contenido `1f496d7b681b0852d927462f7b24a854189f37535e58d598cc131f435146b55d`. Los 37 originales, pesos y embeddings del índice se conservaron.
+- Cuatro recorridos públicos del selector aprobados en la versión final, escritorio/móvil: cinco candidatos automáticos, títulos/resúmenes/IDs/versiones contrastados con el índice, ninguna selección por defecto, selección manual y ausencia real de cobertura. Sin clasificación comercial. Evidencia: `artifacts/coverage-public-selector-e84fd3a/`.
+- Ocho recorridos M/S públicos aprobados, cuatro tipos por dos tamaños: original `W05-0821`, ampliado `A00-1001`, exceso de fragmentos `C80-1027` (110 → 100) y exceso de caracteres `J00-3003` (92 → 75; 55.994 caracteres retenidos, un solo fragmento parcial al final). Se comprueba un único POST de inicio, respuesta 202 y resultado por GET; cada texto Top-3 coincide con el corpus del artículo confirmado. No se acredita calidad científica.
+- La primera pasada asíncrona aprobó cuatro casos y encontró un selector de prueba ambiguo en los otros cuatro: buscaba el aviso tanto en una etapa oculta como en resultados. Se acotó a `#analysis-results` y se repitieron exclusivamente los cuatro afectados, todos aprobados. Se conservan las trazas originales. Evidencia consolidada de los ocho casos: `artifacts/coverage-public-ms-e84fd3a/aceptacion.json`, JSON y capturas por escenario/dispositivo. No se cambió la aplicación para resolver esa ambigüedad del test.
+- Capturas públicas de resultados revisadas en escritorio/móvil, con aviso de alcance recortado, tres fuentes y función predicha; sin desbordamiento horizontal. Capturas del selector revisadas también. La auditoría completa de 19.243 cuerpos fue local y de la copia S3; la aceptación web muestrea cuatro artículos, no ejecuta todos los artículos ni valida etiquetas Gold.
+- `make release-confirm`: servicios estables, imágenes previstas, salud, 19.243 preparados y versión de corpus correctos; HTML idéntico al build. SHA256 de `index.html`: `1486b4dc1a0290982e17eac68b5df0e9dd1c14f3eafaf79a5c2f2d546073a3e6`.
+- EC2 `i-03c35e1f2d0597f9f` detenida mediante Terraform y comprobada por lectura actual; instancia y disco conservados. Reversión inmediata en `artifacts/release-rollback.tfvars.json`; punteros del despliegue anterior a esta tarea en `artifacts/coverage_expansion/reversion_previa_a_cobertura.tfvars.json`. Las releases S3 anteriores son inmutables.
+- No se ejecutaron llamadas comerciales reales en esta tarea; consentimiento, perfil, modelo, cuota y exclusión comercial se comprobaron con mocks/contratos y se conservaron. No se ejecutó QLoRA.
+
+## Checklist del proyecto al cierre
+
+| Tarea | Estado comprobado |
+|---|---|
+| T01–T03 | UI secuencial publicada; sin artículo por defecto, sugerencias automáticas y recorte informado. |
+| T04 | Pendiente de resolución/verificación de cuota y aceptación Serverless; ECS se conserva. |
+| T05–T06 | Suspendidas por decisión sobre QLoRA. |
+| T07–T08 | Catálogo completo y texto ampliado para M/S/comercial; familia abierta suspendida. |
+| T09 | Comercial publicado y aceptado históricamente; sin llamadas reales adicionales en esta entrega. |
+| T10 | Parcial; siguen pendientes los demás controles de acceso, retención, escala, alertas y presupuesto de tiempo/costo. La espera transitoria no lo cierra. |
+| T11 | Ocho recorridos públicos M/S y cuatro del selector aceptados; comercial conserva aceptación anterior. Familia abierta suspendida. |
+| T12 | Migración y retirada pendientes; no se retira ECS. |
+| T13 | Notas y PRD actualizados con evidencia local y pública; cierre documental final del proyecto pendiente. |
+
+El proyecto de tres familias continúa parcialmente cumplido. Esta entrega acredita funcionamiento de aplicación e integración, no balance, validación humana, independencia del test ni superioridad comparativa.

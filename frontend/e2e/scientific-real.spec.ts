@@ -66,13 +66,14 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
       if (r.url().endsWith('/api/analisis-cita-ms/articulo') && r.method() === 'POST') starts++;
     });
     const resultPromise = page.waitForResponse(
-      (r) => r.url().includes('/api/analisis-cita-ms/articulo/') && r.status() === 200,
+      (r) => r.url().includes('/api/analisis-cita-ms/articulo/') && r.status() !== 202,
       { timeout: 100000 },
     );
     await page.getByRole('button', { name: 'Analizar cita', exact: true }).click();
     const started = await responsePromise;
     expect(started.status()).toBe(202);
     const response = await resultPromise;
+    expect(response.status()).toBe(200);
     const data = await response.json();
     expect(starts).toBe(1);
     expect(data.articulo.paper_id).toBe(paperId);
@@ -88,7 +89,9 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
         );
         expect(article.candidatos.at(-1).recortado).toBe(true);
       }
-      await expect(page.getByText(/Análisis limitado a/)).toBeVisible();
+      await expect(
+        page.locator('#analysis-results').getByText(/Análisis limitado a/),
+      ).toBeVisible();
     }
     expect(data.top3).toHaveLength(3);
     expect(new Set(data.top3.map((chunk: { chunk_id: string }) => chunk.chunk_id)).size).toBe(3);
@@ -122,6 +125,8 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
         JSON.stringify(
           {
             ok: true,
+            modo_asincrono: true,
+            inicios_de_inferencia: starts,
             paper_id: data.articulo.paper_id,
             version_contenido: data.articulo.version_contenido,
             truncamiento: data.articulo.truncamiento,

@@ -8,7 +8,7 @@
 
 **Actualización solicitada por el usuario, 22/11/2026:** el paso «Artículo» incorpora sugerencias relacionadas con el contexto, limitadas al corpus preparado y con selección explícita. Esta decisión sustituye la restricción anterior de filtro exclusivamente literal; no habilita otra página de búsqueda global. Véase [decisión y comprobaciones](../notas/selector_articulos_relacionados.md).
 
-**Ampliación posterior solicitada por el usuario:** la búsqueda del paso 2 abarca los 19.776 artículos del índice existente. La selección sigue siendo manual; el análisis Top-3 requiere texto preparado (19.243 artículos en la ampliación local; publicación y aceptación se registran por separado). Esta decisión sustituye la restricción de búsqueda limitada al corpus preparado. Estado y evidencia: [ampliación del catálogo](../notas/busqueda_catalogo_completo_paso2.md).
+**Ampliación posterior solicitada por el usuario:** la búsqueda del paso 2 abarca los 19.776 artículos del índice existente. La selección sigue siendo manual; el análisis Top-3 requiere texto preparado (19.243 artículos preparados; despliegue y recorridos de muestra verificados públicamente). Esta decisión sustituye la restricción de búsqueda limitada al corpus preparado. Estado y evidencia: [ampliación del catálogo](../notas/busqueda_catalogo_completo_paso2.md).
 
 **Cobertura y simplificación posteriores:** se recortan documentos al límite existente (100 fragmentos y 56.000 caracteres de artículo/metadatos), indicando el alcance retenido. Sin artículo por defecto; sugerencias automáticas al entrar al paso 2 y confirmación manual. Implementación, preparación y aceptación: [ampliación de cobertura](../notas/ampliacion_cobertura_corpus.md).
 
@@ -301,3 +301,6 @@ Fuentes oficiales consultadas el 22-nov-2026:
 - [SageMaker Serverless Inference](https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html): memoria hasta 6 GB y exclusión de GPU.
 - [SageMaker Asynchronous Inference](https://docs.aws.amazon.com/sagemaker/latest/dg/async-inference.html): cola y escalado a cero.
 - [Precios SageMaker AI](https://aws.amazon.com/sagemaker/ai/pricing/): comprobar tarifas por modalidad, región y recurso al presupuestar.
+
+
+La espera de análisis largos conserva un solo inicio de inferencia y consulta su resultado transitorio, evitando el límite HTTP de 30 segundos. Los errores no provocan reintentos automáticos ni pérdida del contexto; esta integración no cambia modelos, pesos ni la confirmación manual. Véase el cierre de [cobertura y aceptación](../notas/ampliacion_cobertura_corpus.md).
