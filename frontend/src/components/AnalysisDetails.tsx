@@ -36,7 +36,7 @@ export function AnalysisDetails({
         ? 'GPU (CUDA)'
         : respuesta.dispositivo;
   return (
-    <div className="analysis-details">
+    <div className="result-info-surface analysis-details">
       <section className="analysis-detail-section" aria-label="Resumen del análisis">
         <h4>Cómo se obtuvo el resultado</h4>
         <dl className="analysis-facts">

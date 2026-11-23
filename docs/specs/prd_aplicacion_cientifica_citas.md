@@ -306,8 +306,10 @@ Fuentes oficiales consultadas el 22-nov-2026:
 La espera de análisis largos conserva un solo inicio de inferencia y consulta su resultado transitorio, evitando el límite HTTP de 30 segundos. Los errores no provocan reintentos automáticos ni pérdida del contexto; esta integración no cambia modelos, pesos ni la confirmación manual. Véase el cierre de [cobertura y aceptación](../notas/ampliacion_cobertura_corpus.md).
 
 
-**Organización de resultados solicitada posteriormente:** la sección «Función predicha de la cita» presenta tres pestañas locales: Puntuación (activa al abrir), Detalles del análisis y Ayuda (definiciones de las nueve funciones). Los detalles comerciales se incluyen en la segunda; el Top-3 permanece fuera de estas pestañas. No cambia el recorrido de cuatro etapas ni las inferencias. Véase [pestañas de resultados](../notas/pestanas_funcion_predicha.md).
+**Organización de resultados solicitada posteriormente:** la sección «Función predicha de la cita» presenta tres pestañas locales: Puntuación (activa al abrir), Detalles del análisis y Funciones de cita (antes Ayuda; definiciones de las nueve funciones). Los detalles comerciales se incluyen en la segunda; el Top-3 permanece fuera de estas pestañas. No cambia el recorrido de cuatro etapas ni las inferencias. Véase [pestañas de resultados](../notas/pestanas_funcion_predicha.md).
 
 **Refinamiento de los detalles:** resumen del método y clasificador, tabla de fragmentos con sección y similitud, alcance del recorte cuando existe y metadatos técnicos plegados. Se conserva el proveedor comercial identificable y el enlace a cada fragmento. Véase [diseño y comprobaciones](../notas/diseno_detalles_analisis.md).
 
 **Numeración y espera en resultados:** los números de las cuatro etapas se conservan al completarlas; la espera se presenta dentro de Resultados desde el inicio del cálculo. Véase [decisión y comprobaciones](../notas/pasos_numerados_carga_resultados.md).
+
+**Guía de funciones:** «Funciones de cita» comparte superficie y jerarquía con Detalles del análisis. Glosario con nombre orientativo español, etiqueta inglesa original y definición existente; sin nuevos controles. Véase [decisión y comprobaciones](../notas/guia_funciones_cita.md).

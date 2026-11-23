@@ -2231,7 +2231,7 @@ summary {
   display: none;
 }
 
-.analysis-details {
+.result-info-surface {
   padding: 24px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -2265,7 +2265,7 @@ summary {
 .analysis-fact-wide {
   grid-column: 1 / -1;
 }
-.analysis-details .detail-caption {
+.result-info-surface .detail-caption {
   margin-bottom: 16px;
   color: var(--secondary);
   font-size: 13px;
@@ -2351,7 +2351,7 @@ summary {
   margin-top: 4px;
 }
 @media (max-width: 600px) {
-  .analysis-details {
+  .result-info-surface {
     padding: 18px 16px;
   }
   .analysis-facts {
@@ -2422,5 +2422,44 @@ summary {
   .results-loading {
     padding: 20px 16px;
     gap: 12px;
+  }
+}
+
+/* Glosario de funciones: misma superficie y jerarquía que los detalles. */
+.citation-definitions {
+  margin: 0;
+}
+.citation-definitions > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 12px 32px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+.citation-definitions > div:last-child {
+  padding-bottom: 0;
+}
+.citation-function-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+.citation-function-name {
+  display: block;
+  margin-top: 4px;
+  color: var(--secondary);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.citation-guide .citation-definitions dd {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .citation-definitions > div {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }

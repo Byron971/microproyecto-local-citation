@@ -1,4 +1,5 @@
 import { AnalysisDetails } from './AnalysisDetails';
+import { CitationFunctionGuide } from './CitationFunctionGuide';
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import type { TruncationInfo } from './ArticlePicker';
 import { meanings } from '../citationFunctions';
@@ -43,7 +44,7 @@ export function ScientificResults({
 }) {
   const id = useId();
   const [activeTab, setActiveTab] = useState(0);
-  const tabs = ['Puntuación', 'Detalles del análisis', 'Ayuda'];
+  const tabs = ['Puntuación', 'Detalles del análisis', 'Funciones de cita'];
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   function navigateTabs(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     const next =
@@ -189,17 +190,7 @@ export function ScientificResults({
         hidden={activeTab !== 2}
         tabIndex={0}
       >
-        <h4>Qué significan las nueve funciones</h4>
-        <dl>
-          {Object.entries(meanings).map(([name, meaning]) => (
-            <div key={name}>
-              <dt>
-                <strong>{name}</strong>
-              </dt>
-              <dd>{meaning}</dd>
-            </div>
-          ))}
-        </dl>
+        <CitationFunctionGuide />
       </div>
     </section>
   );

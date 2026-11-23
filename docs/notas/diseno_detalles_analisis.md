@@ -32,3 +32,7 @@ Los seis recorridos M/S/comercial de escritorio/móvil aprobaron sobre la web pu
 - [x] Recorridos de la UI publicada con mocks y capturas revisadas.
 
 El estado general continúa parcial: T01–T03 disponibles; T04 pendiente de cuota; T05–T06 suspendidas por QLoRA; T07–T09 disponibles para M/S y comercial, familia abierta suspendida; T10 parcial; T11 conserva la aceptación real anterior; T12 migración/retirada pendiente, sin retirar ECS; T13 notas actualizadas y cierre final pendiente. Esta mejora no acredita validación científica adicional.
+
+## Homogeneización posterior
+
+La pestaña Ayuda pasa a llamarse «Funciones de cita» y reutiliza la superficie visual de Detalles. Véase [guía de funciones](guia_funciones_cita.md) para el alcance y la evidencia correspondiente a esa entrega.

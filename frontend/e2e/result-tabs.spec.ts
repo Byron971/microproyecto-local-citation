@@ -105,7 +105,7 @@ for (const mode of ['M', 'S', 'commercial']) {
     await expect(tabs.getByRole('tab')).toHaveCount(3);
     const score = tabs.getByRole('tab', { name: 'Puntuación', exact: true });
     const details = tabs.getByRole('tab', { name: 'Detalles del análisis', exact: true });
-    const help = tabs.getByRole('tab', { name: 'Ayuda', exact: true });
+    const help = tabs.getByRole('tab', { name: 'Funciones de cita', exact: true });
     await expect(score).toHaveAttribute('aria-selected', 'true');
     await expect(result.getByRole('tabpanel')).toHaveCount(1);
     const scorePanel = result.getByRole('tabpanel', { name: 'Puntuación', exact: true });
@@ -145,7 +145,7 @@ for (const mode of ['M', 'S', 'commercial']) {
       await expect(detailsPanel.getByText('zero_shot_detailed', { exact: true })).toBeHidden();
     }
     await expect(
-      result.getByRole('tabpanel', { name: 'Puntuación', exact: true, hidden: true }),
+      result.getByRole('tabpanel', { name: 'Puntuación', exact: true, includeHidden: true }),
     ).toBeHidden();
     if (mode === 'S')
       await expect(detailsPanel.getByText('75 de 92 fragmentos', { exact: true })).toBeVisible();
@@ -166,14 +166,41 @@ for (const mode of ['M', 'S', 'commercial']) {
     await details.focus();
     await page.keyboard.press('End');
     await expect(help).toBeFocused();
-    const helpPanel = result.getByRole('tabpanel', { name: 'Ayuda', exact: true });
+    const helpPanel = result.getByRole('tabpanel', { name: 'Funciones de cita', exact: true });
     await expect(
       helpPanel.getByRole('heading', { name: 'Qué significan las nueve funciones' }),
     ).toBeVisible();
     await expect(helpPanel.locator('dt')).toHaveCount(9);
+    for (const [label, definition] of Object.entries(meanings)) {
+      await expect(helpPanel.locator('dt').getByText(label, { exact: true })).toHaveAttribute(
+        'lang',
+        'en',
+      );
+      await expect(helpPanel.locator('dd').getByText(definition, { exact: true })).toBeVisible();
+    }
+    await expect(helpPanel.getByText('Aplicación', { exact: true })).toBeVisible();
+    await expect(helpPanel.getByText('Fuente original', { exact: true })).toBeVisible();
+    const guideSurface = helpPanel.locator('.result-info-surface');
+    const detailsSurface = result
+      .getByRole('tabpanel', { name: 'Detalles del análisis', exact: true, includeHidden: true })
+      .locator('.result-info-surface');
+    for (const property of ['backgroundColor', 'borderRadius', 'padding']) {
+      expect(
+        await guideSurface.evaluate(
+          (element, name) => getComputedStyle(element)[name as keyof CSSStyleDeclaration],
+          property,
+        ),
+      ).toBe(
+        await detailsSurface.evaluate(
+          (element, name) => getComputedStyle(element)[name as keyof CSSStyleDeclaration],
+          property,
+        ),
+      );
+    }
     await expect(helpPanel.getByText(meanings.Application, { exact: true })).toBeVisible();
     await expect(result.getByText('Fragmento verificado 1', { exact: true })).toBeVisible();
-    await capture('ayuda');
+    await capture('funciones-de-cita');
+    await helpPanel.screenshot({ path: info.outputPath('panel-funciones.png') });
     await page.keyboard.press('ArrowRight');
     await expect(score).toBeFocused();
     await page.keyboard.press('ArrowLeft');
