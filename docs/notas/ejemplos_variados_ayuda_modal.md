@@ -29,7 +29,11 @@ Capturas de acciones alineadas, ejemplos variados, ayuda y su parte inferior rev
 
 ## Publicación y checklist
 
-Pendiente de publicar y registrar comprobación pública. Las pruebas locales no prueban el estado público actual. Una consulta real de metadatos, en dos lotes de veinte IDs, confirmó disponibilidad de los 40 artículos con la misma versión de corpus, sin inferencias. Evidencia: `artifacts/context-help-availability-public.json`. La aceptación del nuevo frontend sigue pendiente de publicar.
+Publicado exclusivamente el frontend del commit `b2b3e3b` mediante `make publish-frontend`, usando outputs actualizados y verificados desde `make release-status`. El build final aprobó. `make release-confirm` comprobó estabilidad, imágenes conservadas, salud HTTP, corpus y HTML público idéntico al build. SHA256 de `index.html`: `d4edd92424c5cc86ba54ef22c3443e7978acf6185e5e14c18cf36088573e4f7f`. API conservada en `citas-api:7`; científico en `citas-api-science:9`. No se construyeron imágenes backend ni se encendió la constructora.
+
+Una consulta pública real de metadatos, en dos lotes de veinte IDs, confirmó disponibilidad de los 40 artículos con la misma versión de corpus, sin inferencias. Evidencia: `artifacts/context-help-availability-public.json`. El exportador también reprodujo exactamente el JSON final: SHA256 `6ba8a4a686d8d0ff5737ab515a841e8a212a010f1c8c228cdb20ec89f0cff5c2`.
+
+Los doce recorridos públicos de ayuda, ejemplos y etapas aprobaron en escritorio/móvil con respuestas API simuladas. Se revisaron capturas públicas de la ayuda, acciones y catálogo de ejemplos. Comprueban UI del bundle publicado, búsqueda/paginación, foco, conservación de contexto/modelo/consentimiento y reinicio sin inferencia; no son una nueva ejecución ni aceptación científica o comercial real. Evidencia separada en `artifacts/context-help-public-mocks/`, con copias de la confirmación y disponibilidad. No se repitieron llamadas reales a modelos.
 
 - [x] 40 contextos originales, 40 artículos y ocho subtemas intercalados.
 - [x] Exclusiones y procedencia contrastadas; sin cambio de modelos, corpus ni particiones.
@@ -37,7 +41,7 @@ Pendiente de publicar y registrar comprobación pública. Las pruebas locales no
 - [x] Instrucción breve orientada al párrafo de contexto.
 - [x] Ayuda modal con teclado/foco, conservación de datos y capturas locales.
 - [x] Build, 41 pruebas unitarias, dos comprobaciones de integridad y 92 recorridos locales distintos.
-- [ ] Publicación frontend y confirmación de HTML, salud y servicios actuales.
-- [ ] Recorridos públicos con mocks y capturas revisadas.
+- [x] Publicación frontend y confirmación de HTML, salud y servicios actuales.
+- [x] Recorridos públicos con mocks y capturas revisadas.
 
 Estado general: T01–T03 disponibles; T04 pendiente por cuota; T05–T06 suspendidas por QLoRA; T07–T09 disponibles para M/S y comercial, familia abierta suspendida; T10 parcial; T11 conserva la aceptación real anterior; T12 migración/retirada pendiente sin retirar ECS; T13 notas actualizadas y cierre final pendiente. El proyecto global continúa parcialmente cumplido.
