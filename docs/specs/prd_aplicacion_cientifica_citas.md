@@ -304,3 +304,6 @@ Fuentes oficiales consultadas el 22-nov-2026:
 
 
 La espera de análisis largos conserva un solo inicio de inferencia y consulta su resultado transitorio, evitando el límite HTTP de 30 segundos. Los errores no provocan reintentos automáticos ni pérdida del contexto; esta integración no cambia modelos, pesos ni la confirmación manual. Véase el cierre de [cobertura y aceptación](../notas/ampliacion_cobertura_corpus.md).
+
+
+**Organización de resultados solicitada posteriormente:** la sección «Función predicha de la cita» presenta tres pestañas locales: Puntuación (activa al abrir), Detalles del análisis y Ayuda (definiciones de las nueve funciones). Los detalles comerciales se incluyen en la segunda; el Top-3 permanece fuera de estas pestañas. No cambia el recorrido de cuatro etapas ni las inferencias. Véase [pestañas de resultados](../notas/pestanas_funcion_predicha.md).

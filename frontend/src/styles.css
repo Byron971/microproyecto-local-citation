@@ -1862,11 +1862,8 @@ summary {
   font-size: 13px;
 }
 .commercial-results {
-  margin-top: 28px;
+  margin-top: 0;
   background: var(--surface);
-}
-.commercial-results .analysis-help {
-  margin-bottom: 0;
 }
 .scientific-page :focus-visible {
   outline: 3px solid var(--primary);
@@ -2196,4 +2193,44 @@ summary {
   font-size: 13px;
   font-weight: 600;
   margin-top: 4px;
+}
+
+/* Result tabs are local to the predicted function, separate from workflow progress. */
+.result-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid var(--border);
+  margin: 20px 0 24px;
+}
+.result-tabs [role='tab'] {
+  min-height: 48px;
+  padding: 10px 8px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  color: var(--secondary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.result-tabs [role='tab']:hover {
+  background: var(--surface);
+}
+.result-tabs [aria-selected='true'] {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 600;
+}
+.result-tabs [role='tab']:focus-visible {
+  outline-offset: -4px;
+}
+.result-tab-panel.analysis-help {
+  margin: 0;
+  font-size: 14px;
+}
+.result-tab-panel h4 {
+  margin: 0 0 16px;
+  font-size: 16px;
+}
+.result-tab-panel[hidden] {
+  display: none;
 }

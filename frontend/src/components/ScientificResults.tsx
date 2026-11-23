@@ -1,6 +1,11 @@
+import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import type { TruncationInfo } from './ArticlePicker';
 import { meanings } from '../citationFunctions';
-import { CommercialResults, type CommercialClassification } from './CommercialResults';
+import {
+  CommercialResults,
+  CommercialDetails,
+  type CommercialClassification,
+} from './CommercialResults';
 type Candidato = { chunk_id: string; texto: string; seccion: string };
 type Puntuacion = { clase: string; probabilidad: number };
 type Clasificador = {
@@ -37,6 +42,26 @@ export function ScientificResults({
   commercial?: CommercialClassification;
   commercialPending?: boolean;
 }) {
+  const id = useId();
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ['Puntuación', 'Detalles del análisis', 'Ayuda'];
+  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+  function navigateTabs(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    const next =
+      event.key === 'ArrowRight'
+        ? (index + 1) % tabs.length
+        : event.key === 'ArrowLeft'
+          ? (index + tabs.length - 1) % tabs.length
+          : event.key === 'Home'
+            ? 0
+            : event.key === 'End'
+              ? tabs.length - 1
+              : undefined;
+    if (next === undefined) return;
+    event.preventDefault();
+    setActiveTab(next);
+    buttons.current[next]?.focus();
+  }
   return (
     <section className="results-section" aria-live="polite">
       <h2>Resultados del análisis</h2>
@@ -65,68 +90,90 @@ export function ScientificResults({
           </li>
         ))}
       </ol>
-      {commercialSelected ? (
-        <CommercialResults result={commercial} pending={commercialPending} />
-      ) : (
-        <>
-          <h3>Función predicha de la cita</h3>
-          <p className="field-help">
-            Las barras muestran cómo el clasificador reparte su puntuación entre las nueve
-            funciones. No son porcentajes de acierto.
-          </p>
-          <div className="classifier-results">
-            {(variante ? [variante] : (['M', 'S'] as const)).map((track) => {
-              const classifier = respuesta.clasificadores[track];
-              return (
-                <article key={track} className="classifier-result">
-                  <h3>Modelo {track}</h3>
-                  <p className="prediction-summary">
-                    <strong>{classifier.clase}</strong> · puntuación del modelo{' '}
-                    {percent(classifier.probabilidad)}
-                  </p>
-                  <p>
-                    {meanings[classifier.clase] ||
-                      'Consulta la definición de esta función en la guía.'}
-                  </p>
-                  {classifier.probabilidades.map((score) => (
-                    <div
-                      key={score.clase}
-                      className={`function-score ${score.clase === classifier.clase ? 'predicted-score' : ''}`}
-                    >
-                      <div className="function-score-label">
-                        <span>{score.clase}</span>
-                        <span>{percent(score.probabilidad)}</span>
+      <h3 id={`${id}-heading`}>Función predicha de la cita</h3>
+      <div className="result-tabs" role="tablist" aria-labelledby={`${id}-heading`}>
+        {tabs.map((label, index) => (
+          <button
+            key={label}
+            type="button"
+            role="tab"
+            id={`${id}-tab-${index}`}
+            aria-controls={`${id}-panel-${index}`}
+            aria-selected={activeTab === index}
+            tabIndex={activeTab === index ? 0 : -1}
+            ref={(element) => {
+              buttons.current[index] = element;
+            }}
+            onClick={() => setActiveTab(index)}
+            onKeyDown={(event) => navigateTabs(event, index)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      <div
+        className="result-tab-panel"
+        role="tabpanel"
+        id={`${id}-panel-0`}
+        aria-labelledby={`${id}-tab-0`}
+        hidden={activeTab !== 0}
+        tabIndex={0}
+      >
+        {commercialSelected ? (
+          <CommercialResults result={commercial} pending={commercialPending} />
+        ) : (
+          <>
+            <p className="field-help">
+              Las barras muestran cómo el clasificador reparte su puntuación entre las nueve
+              funciones. No son porcentajes de acierto.
+            </p>
+            <div className="classifier-results">
+              {(variante ? [variante] : (['M', 'S'] as const)).map((track) => {
+                const classifier = respuesta.clasificadores[track];
+                return (
+                  <article key={track} className="classifier-result">
+                    <h3>Modelo {track}</h3>
+                    <p className="prediction-summary">
+                      <strong>{classifier.clase}</strong> · puntuación del modelo{' '}
+                      {percent(classifier.probabilidad)}
+                    </p>
+                    <p>
+                      {meanings[classifier.clase] ||
+                        'Consulta la definición de esta función en la guía.'}
+                    </p>
+                    {classifier.probabilidades.map((score) => (
+                      <div
+                        key={score.clase}
+                        className={`function-score ${score.clase === classifier.clase ? 'predicted-score' : ''}`}
+                      >
+                        <div className="function-score-label">
+                          <span>{score.clase}</span>
+                          <span>{percent(score.probabilidad)}</span>
+                        </div>
+                        <div className="function-score-track" aria-hidden="true">
+                          <div
+                            style={{
+                              width: `${Math.min(Math.max(score.probabilidad * 100, 0), 100)}%`,
+                            }}
+                          />
+                        </div>
                       </div>
-                      <div className="function-score-track" aria-hidden="true">
-                        <div
-                          style={{
-                            width: `${Math.min(Math.max(score.probabilidad * 100, 0), 100)}%`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </article>
-              );
-            })}
-          </div>
-        </>
-      )}
-      <details className="analysis-help">
-        <summary>Qué significan las nueve funciones</summary>
-        <dl>
-          {Object.entries(meanings).map(([name, meaning]) => (
-            <div key={name}>
-              <dt>
-                <strong>{name}</strong>
-              </dt>
-              <dd>{meaning}</dd>
+                    ))}
+                  </article>
+                );
+              })}
             </div>
-          ))}
-        </dl>
-      </details>
-      <details className="analysis-help">
-        <summary>Detalles del análisis</summary>
+          </>
+        )}
+      </div>
+      <div
+        className="result-tab-panel analysis-help"
+        role="tabpanel"
+        id={`${id}-panel-1`}
+        aria-labelledby={`${id}-tab-1`}
+        hidden={activeTab !== 1}
+        tabIndex={0}
+      >
         <p>
           Recuperador: {respuesta.modelo_recuperacion} · revisión SciBERT:{' '}
           {respuesta.revision_scibert}
@@ -167,7 +214,28 @@ export function ScientificResults({
             .
           </p>
         )}
-      </details>
+        {commercialSelected && commercial && <CommercialDetails result={commercial} />}
+      </div>
+      <div
+        className="result-tab-panel analysis-help"
+        role="tabpanel"
+        id={`${id}-panel-2`}
+        aria-labelledby={`${id}-tab-2`}
+        hidden={activeTab !== 2}
+        tabIndex={0}
+      >
+        <h4>Qué significan las nueve funciones</h4>
+        <dl>
+          {Object.entries(meanings).map(([name, meaning]) => (
+            <div key={name}>
+              <dt>
+                <strong>{name}</strong>
+              </dt>
+              <dd>{meaning}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </section>
   );
 }

@@ -20,7 +20,6 @@ export function CommercialResults({
 }) {
   return (
     <section className="commercial-results classifier-result" aria-label="Clasificación comercial">
-      <h3>Función predicha de la cita</h3>
       <p className="model-identity">GPT-6.1 Sol · OpenAI</p>
       {!result ? (
         <p role="status">
@@ -56,20 +55,23 @@ export function CommercialResults({
               </div>
             </div>
           ))}
-          <details className="analysis-help">
-            <summary>Detalles del proveedor</summary>
-            <p>
-              Proveedor: {result.proveedor} · Modelo efectivo: {result.modelo_efectivo}
-            </p>
-            <p>
-              Entrada: contexto, título y resumen. Los fragmentos Top-3 se recuperan con SciBERT.
-            </p>
-            <p>
-              Perfil: {result.perfil} · SHA-256 de instrucciones: {result.sha256_prompts}
-            </p>
-          </details>
         </>
       )}
+    </section>
+  );
+}
+
+export function CommercialDetails({ result }: { result: CommercialClassification }) {
+  return (
+    <section aria-label="Detalles del proveedor">
+      <h4>Detalles del proveedor</h4>
+      <p>
+        Proveedor: {result.proveedor} · Modelo efectivo: {result.modelo_efectivo}
+      </p>
+      <p>Entrada: contexto, título y resumen. Los fragmentos Top-3 se recuperan con SciBERT.</p>
+      <p>
+        Perfil: {result.perfil} · SHA-256 de instrucciones: {result.sha256_prompts}
+      </p>
     </section>
   );
 }
