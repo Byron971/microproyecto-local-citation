@@ -6,6 +6,8 @@
 **Restricción:** no entrenar modelos nuevos. Reutilizar componentes y contratos existentes siempre que sea compatible.
 **Decisión de producto:** mostrar únicamente el demostrador solicitado. Retirar de la interfaz pública el buscador global y las pantallas heredadas ajenas al flujo científico.
 
+**Actualización solicitada por el usuario, 22/11/2026:** el paso «Artículo» incorpora sugerencias relacionadas con el contexto, limitadas al corpus preparado y con selección explícita. Esta decisión sustituye la restricción anterior de filtro exclusivamente literal; no habilita otra página de búsqueda global. Véase [decisión y comprobaciones](../notas/selector_articulos_relacionados.md).
+
 ## Plan de ejecución acordado
 
 1. **Rediseñar la página principal** con un único recorrido: contexto de cita → artículo citado → clasificador → Top-3 y función predicha. El mockup ASCII de §13 define la organización.
@@ -72,7 +74,7 @@ No forma parte del producto público: búsqueda global de artículos, rankings T
 | `/fragmentos`, `/funcion`, `/funcion-b` | Retirar como páginas independientes; reutilizar componentes útiles dentro del flujo único. | Las tareas requeridas se presentan integradas y con los modelos finales. |
 | `/analisis-ms` — formulario manual/JSON | Sustituir por el flujo normal o redirigir al inicio científico. | No exigir al usuario construir candidatos ni conocer el formato interno. |
 | Ayuda de funciones, fuentes, estado y errores | Conservar dentro del flujo. | Necesarios para usar e interpretar la solución. |
-| Selector de artículo citado | Conservar como entrada, sin ranking de recomendación. | El Top-3 debe recuperarse dentro de un documento identificado. |
+| Selector de artículo citado | Conservar como entrada: filtro por título/ID y sugerencias opcionales del corpus preparado. | El Top-3 debe recuperarse dentro de un documento identificado. |
 
 Quitar significa eliminar del recorrido y de las rutas de producto; no basta con ocultar enlaces y dejar accesibles páginas viejas. Usar redirecciones pertinentes o una página de ruta inexistente. No borrar automáticamente APIs o artefactos usados por evaluación/notebooks: su retiro se decide por dependencias, sin convertirlos en parte de la interfaz.
 
@@ -80,7 +82,7 @@ Quitar significa eliminar del recorrido y de las rutas de producto; no basta con
 
 1. Abrir la aplicación; la página principal es «Analizar una cita».
 2. Pegar contexto en inglés y marcar la cita objetivo con una acción sencilla. Internamente se utiliza TARGETCIT exactamente una vez.
-3. Identificar explícitamente el artículo citado por ID de ACL o seleccionarlo de una lista de documentos preparados con título e ID. Puede filtrarse la lista por título/ID para localizar una referencia conocida; no ordenar artículos por similitud al contexto. Un ejemplo público comprobado precarga contexto y artículo. Mostrar título y enlace para confirmar la selección.
+3. Identificar explícitamente el artículo citado por ID de ACL o seleccionarlo de una lista de documentos preparados con título e ID. Puede filtrarse la lista por título/ID o solicitar sugerencias según el contexto usando SciBERT existente. Las sugerencias se limitan a los artículos preparados; no identifican automáticamente la referencia. Un ejemplo público comprobado precarga contexto y artículo. Mostrar título y enlace para confirmar la selección.
 4. Consultar si existe texto preparado. Si no existe, explicar la limitación y mantener lo ingresado; permitir corregir el identificador o seleccionar otro artículo preparado. No sustituir silenciosamente la referencia ni ofrecer JSON como salida normal.
 5. Elegir «Encoder SciBERT — M», «Encoder SciBERT — S», «Modelo abierto — [identidad verificada]» o «Modelo comercial — [identidad verificada]». Agrupar M/S en la misma familia. Mostrar opciones no configuradas como no disponibles con motivo.
 6. Ejecutar el análisis con un botón. Mostrar progreso y evitar duplicados.
@@ -93,7 +95,7 @@ La selección de M o S puede filtrar la respuesta conjunta actual: no afirmar qu
 | ID | Requisito | Criterio de aceptación |
 |---|---|---|
 | RF01 | Acceso directo al análisis científico. | Se completa el caso feliz sin usar el ranking de artículos ni pegar JSON. |
-| RF02 | Identificar el artículo citado sin recomendaciones globales. | Selección explícita por ID o lista de artículos preparados; título e ID visibles y confirmables; sin ranking semántico/TF-IDF. |
+| RF02 | Identificar el artículo citado dentro del corpus preparado. | Filtro literal por título/ID y sugerencias opcionales por contexto, con SciBERT existente; título, resumen y fuente confirmables; selección explícita antes de recuperar fragmentos. Sin buscador global separado ni TF-IDF. |
 | RF03 | Validar contexto y marca. | Vacío, múltiples marcas y exceso de longitud producen instrucciones concretas antes de inferir; límites consistentes con backend. |
 | RF04 | Mostrar cobertura. | Artículo no preparado no dispara inferencia ni presenta resultados ficticios. Fallo de consulta no se confunde con falta de texto. |
 | RF05 | Recuperar únicamente dentro del artículo elegido. | La respuesta identifica el mismo artículo y muestra tres fragmentos distintos con sección, o informa que no se puede completar el análisis. |
@@ -173,7 +175,7 @@ La Entrega A de §4 permite publicar primero el recorrido M/S estable (T01–T03
 
 ## 11. Validación y definición de terminado
 
-Comprobar que no quedan rutas, enlaces, selectores de ranking ni llamadas del frontend al recomendador global; que el selector de documentos no recomienda por similitud; y que el inicio muestra únicamente el flujo científico. Pruebas de contrato M/S sin regresiones; pruebas de adaptadores con respuestas válidas/inválidas y abstenciones; UI de disponibilidad, selector y resultados obsoletos; comprobación de red de que las credenciales no salen al navegador. Las pruebas de red reales utilizan casos sintéticos o públicos, con consumo acotado.
+Comprobar que no quedan rutas ni enlaces al buscador global o paneles heredados; que las sugerencias del paso 2 solo incluyen artículos preparados y no seleccionan automáticamente; y que el inicio muestra únicamente el flujo científico. Pruebas de contrato M/S sin regresiones; pruebas de adaptadores con respuestas válidas/inválidas y abstenciones; UI de disponibilidad, selector y resultados obsoletos; comprobación de red de que las credenciales no salen al navegador. Las pruebas de red reales utilizan casos sintéticos o públicos, con consumo acotado.
 
 **Entrega completa de este PRD:** desde la URL pública un usuario identifica un artículo con texto disponible, obtiene su Top-3 y ejecuta un clasificador real de cada familia; las opciones no disponibles se identifican correctamente; los fallos no rompen el servicio; release y documentación coinciden con lo desplegado. Registrar latencia observada por familia sin convertir una solicitud en benchmark estadístico.
 

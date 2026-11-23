@@ -1,3 +1,4 @@
+import { chooseArticle, selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 const labels = [
@@ -137,8 +138,8 @@ for (const status of [200, 429, 502]) {
     for (const i of [1, 2, 3]) await expect(page.locator(`#workflow-step-${i}`)).toBeDisabled();
     await expect(page.getByText('Fragmento recuperado 1', { exact: true })).toHaveCount(0);
     await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
-    await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('');
-    await page.getByLabel('Artículo preparado por título e ID').selectOption('W05-0821');
+    await expect(selectedArticle(page)).toHaveCount(0);
+    await chooseArticle(page, 'W05-0821');
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await expect(page.getByLabel('Familia y modelo')).toHaveValue('M');
     await page.getByLabel('Familia y modelo').selectOption('commercial');

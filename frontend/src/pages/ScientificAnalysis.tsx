@@ -4,6 +4,7 @@ import { ScientificResults, type Respuesta } from '../components/ScientificResul
 import catalog from '../articleCatalog.json';
 import datasetExamples from '../scientificExamples.json';
 import { ExampleDialog } from '../components/ExampleDialog';
+import { ArticlePicker } from '../components/ArticlePicker';
 import type { CommercialClassification } from '../components/CommercialResults';
 
 export const PUBLIC_EXAMPLE = {
@@ -47,7 +48,8 @@ export function ScientificAnalysis() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [errorField, setErrorField] = useState('');
-  const [articleQuery, setArticleQuery] = useState('');
+  const [articleReset, setArticleReset] = useState(0);
+  const [searchingArticles, setSearchingArticles] = useState(false);
   const [phase, setPhase] = useState<'retrieving' | 'classifying'>('retrieving');
   const [duration, setDuration] = useState<number>();
   const [step, setStep] = useState(0);
@@ -114,18 +116,6 @@ export function ScientificAnalysis() {
     markerCount === 1 &&
     context.length <= 4000 &&
     context.replace('TARGETCIT', '').trim().length > 0;
-  const normalize = (text: string) =>
-    text
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase();
-  const filteredArticles = catalog.articulos.filter((item) =>
-    normalize(`${item.titulo} ${item.paper_id}`).includes(normalize(articleQuery).trim()),
-  );
-  const articleOptions =
-    article && !filteredArticles.includes(article)
-      ? [article, ...filteredArticles]
-      : filteredArticles;
   const guidance =
     step === 2 && coverageStatus !== 'available'
       ? 'Vuelve al artículo citado para comprobar su disponibilidad.'
@@ -133,6 +123,7 @@ export function ScientificAnalysis() {
   function goToStep(next: number) {
     if (
       loading ||
+      searchingArticles ||
       (!completed && next > step + 1) ||
       (next >= 1 && !contextReady) ||
       (next >= 2 && (!article || coverageStatus !== 'available')) ||
@@ -197,7 +188,8 @@ export function ScientificAnalysis() {
     setCompletedSteps(0);
     setPaperId('');
     setCoverage(undefined);
-    setArticleQuery('');
+    setArticleReset((count) => count + 1);
+    setSearchingArticles(false);
     setVariant('M');
     setTarget('');
     setUsingExample(false);
@@ -260,7 +252,7 @@ export function ScientificAnalysis() {
       return;
     }
     if (!article) {
-      reportError('Selecciona el artículo citado por su título e ID.', 'cited-article');
+      reportError('Selecciona el artículo citado por su título e ID.', 'article-filter');
       return;
     }
     if (coverageStatus !== 'available') {
@@ -373,7 +365,7 @@ export function ScientificAnalysis() {
               <button
                 id={`workflow-step-${index}`}
                 type="button"
-                disabled={loading || (!completed && index > step)}
+                disabled={loading || searchingArticles || (!completed && index > step)}
                 aria-current={index === step ? 'step' : undefined}
                 onClick={() => goToStep(index)}
               >
@@ -461,89 +453,26 @@ export function ScientificAnalysis() {
             <legend id="workflow-title-1" tabIndex={-1}>
               Artículo citado
             </legend>
-            <div className="article-filter">
-              <label htmlFor="article-filter">Filtrar artículos por título o ID</label>
-              <input
-                id="article-filter"
-                type="search"
-                value={articleQuery}
-                placeholder="Por ejemplo: translation o W05-0821"
-                onChange={(event) => setArticleQuery(event.target.value)}
-                aria-describedby="article-filter-count"
-              />
-              <p id="article-filter-count" className="field-help" aria-live="polite">
-                {filteredArticles.length} coincidencias en {catalog.articulos.length} artículos del
-                catálogo.
-                {articleQuery && article && !filteredArticles.includes(article)
-                  ? ' Conservamos tu artículo seleccionado.'
-                  : ''}
-              </p>
-            </div>
-            <label htmlFor="cited-article">Artículo preparado por título e ID</label>
-            <select
-              id="cited-article"
-              aria-invalid={errorField === 'cited-article' || undefined}
-              aria-describedby={`article-help${errorField === 'cited-article' ? ' analysis-error' : ''}`}
-              value={paperId}
-              onChange={(e) => {
+            <ArticlePicker
+              key={articleReset}
+              articles={catalog.articulos}
+              version={catalog.version_contenido}
+              context={context}
+              selected={paperId}
+              coverage={coverageStatus}
+              onBusyChange={setSearchingArticles}
+              onSelect={(id) => {
+                if (id === paperId) return;
                 invalidate();
-                setPaperId(e.target.value);
+                setPaperId(id);
                 setUsingExample(false);
                 setSelectedExample('');
               }}
-            >
-              <option value="">Selecciona la referencia citada</option>
-              {articleOptions.map((item) => (
-                <option key={item.paper_id} value={item.paper_id}>
-                  {item.titulo} · {item.paper_id}
-                </option>
-              ))}
-            </select>
-            {article && (
-              <p className="selected-article">
-                <strong>{article.titulo}</strong> · {article.paper_id}
-                <br />
-                <a href={article.publicacion} target="_blank" rel="noreferrer">
-                  Abrir publicación
-                </a>
-              </p>
-            )}
-            {article && (
-              <div className="coverage-status" aria-live="polite">
-                {coverageStatus === 'checking' && <p role="status">Consultando texto preparado…</p>}
-                {coverageStatus === 'available' && (
-                  <p role="status">Texto preparado: disponible.</p>
-                )}
-                {coverageStatus === 'missing' && (
-                  <p role="status">
-                    Este artículo no tiene texto preparado en el servicio. Conservamos tu contexto;
-                    selecciona otro artículo.
-                  </p>
-                )}
-                {coverageStatus === 'error' && (
-                  <>
-                    <p role="status">
-                      No se pudo consultar la disponibilidad. Esto no significa que falte el texto
-                      del artículo.
-                    </p>
-                    <button
-                      type="button"
-                      className="text-button"
-                      onClick={() => {
-                        setCoverage({ paperId, status: 'checking' });
-                        setCoverageRetry((count) => count + 1);
-                      }}
-                    >
-                      Reintentar disponibilidad
-                    </button>
-                  </>
-                )}
-              </div>
-            )}
-            <p className="field-help" id="article-help">
-              Elige la referencia que ya conoces. Los fragmentos se recuperan únicamente dentro de
-              ese artículo.
-            </p>
+              onRetry={() => {
+                setCoverage({ paperId, status: 'checking' });
+                setCoverageRetry((count) => count + 1);
+              }}
+            />
           </fieldset>
           <fieldset
             className="analysis-step"
@@ -621,7 +550,7 @@ export function ScientificAnalysis() {
                 <button
                   type="button"
                   className="secondary-button"
-                  disabled={loading}
+                  disabled={loading || searchingArticles}
                   onClick={() => goToStep(step - 1)}
                 >
                   Anterior
@@ -631,7 +560,10 @@ export function ScientificAnalysis() {
                 <button
                   type="submit"
                   className="primary"
-                  disabled={step === 0 ? !contextReady : !article || coverageStatus !== 'available'}
+                  disabled={
+                    searchingArticles ||
+                    (step === 0 ? !contextReady : !article || coverageStatus !== 'available')
+                  }
                 >
                   {step === 0 ? 'Siguiente: artículo' : 'Siguiente: clasificador'}
                 </button>

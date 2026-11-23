@@ -1,3 +1,4 @@
+import { chooseArticle, selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test('bloquea etapas futuras, resalta la actual y conserva los datos al volver', async ({
@@ -23,7 +24,7 @@ test('bloquea etapas futuras, resalta la actual y conserva los datos al volver',
     page.getByRole('button', { name: 'Siguiente: artículo', exact: true }),
   ).toBeDisabled();
   await expect(page.locator('#article-step')).toBeHidden();
-  await expect(page.locator('#cited-article')).toBeDisabled();
+  await expect(page.locator('#article-filter')).toBeDisabled();
   await expect(page.locator('#classifier-step')).toBeHidden();
   await expect(page.locator('#classifier')).toBeDisabled();
   await page.screenshot({ path: info.outputPath('paso-1.png'), fullPage: true });
@@ -43,7 +44,7 @@ test('bloquea etapas futuras, resalta la actual y conserva los datos al volver',
   await expect(page.locator('#workflow-step-3')).toBeDisabled();
   await page.screenshot({ path: info.outputPath('paso-3.png'), fullPage: true });
   await page.getByRole('button', { name: 'Anterior', exact: true }).click();
-  await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('W05-0821');
+  await expect(selectedArticle(page)).toContainText('W05-0821');
   await page.getByRole('button', { name: 'Anterior', exact: true }).click();
   await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context);
   await page.getByLabel('Contexto en inglés').fill('Unmarked citation context.');
@@ -131,15 +132,14 @@ for (const reset of ['context', 'public-example', 'dataset-example']) {
       const context = await dialog.locator('.example-preview').first().textContent();
       await dialog.locator('.example-card').first().click();
       await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context!);
-      await expect(page.getByLabel('Artículo preparado por título e ID')).not.toHaveValue('');
+      await expect(selectedArticle(page)).toHaveCount(1);
     }
     await expect(page.locator('#workflow-step-0')).toHaveAttribute('aria-current', 'step');
     await expect(page.locator('.workflow-progress .step-complete')).toHaveCount(0);
     for (const i of [1, 2, 3]) await expect(page.locator(`#workflow-step-${i}`)).toBeDisabled();
     await expect(page.getByLabel('Familia y modelo')).toHaveValue('M');
     await expect(page.getByRole('region', { name: 'Resultado del análisis' })).toHaveCount(0);
-    if (reset === 'context')
-      await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('');
+    if (reset === 'context') await expect(selectedArticle(page)).toHaveCount(0);
     expect(inferences).toBe(1);
   });
 }

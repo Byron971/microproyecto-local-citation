@@ -5,7 +5,7 @@ from image_builder_ops import aws
 p=argparse.ArgumentParser()
 p.add_argument('action',choices=['send','result'])
 p.add_argument('--commit')
-p.add_argument('--kind',choices=['all','api'],default='all')
+p.add_argument('--kind',choices=['all','api','ms'],default='all')
 a=p.parse_args()
 w=Path('artifacts/image_builder')
 i=json.loads((w/'outputs.json').read_text())['instance_id']['value']

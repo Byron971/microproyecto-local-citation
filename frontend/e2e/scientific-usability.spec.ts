@@ -1,3 +1,4 @@
+import { chooseArticle, selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test('orientación, errores con foco y filtro local sin perder la referencia', async ({
@@ -35,16 +36,17 @@ test('orientación, errores con foco y filtro local sin perder la referencia', a
     page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
   ).toBeEnabled();
   const context = await page.getByLabel('Contexto en inglés').inputValue();
-  const filter = page.getByRole('searchbox', { name: 'Filtrar artículos por título o ID' });
-  const article = page.getByLabel('Artículo preparado por título e ID');
+  await page.getByRole('button', { name: 'Cambiar artículo', exact: true }).click();
+  const filter = page.getByRole('searchbox', { name: 'Buscar por título o ID', exact: true });
+  const article = selectedArticle(page);
   await filter.fill('w05-0821');
-  await expect(article.locator('option')).toHaveCount(2);
-  await expect(article).toHaveValue('W05-0821');
+  await expect(page.locator('.article-options > li')).toHaveCount(1);
+  await expect(article).toContainText('W05-0821');
   await filter.fill('titulo-inexistente');
   await expect(page.getByText(/0 coincidencias/)).toBeVisible();
-  await expect(article).toHaveValue('W05-0821');
+  await expect(article).toContainText('W05-0821');
   await filter.fill('translation');
-  await expect(article.locator('option')).not.toHaveCount(2);
+  await expect(page.locator('.article-options > li')).toHaveCount(5);
   await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context);
   expect(
     calls.every((path) => path.endsWith('/clasificadores') || path.endsWith('/disponibilidad')),
@@ -78,7 +80,7 @@ test('fallo del catálogo permite reintentar sin borrar el contexto', async ({ p
     .getByLabel('Contexto en inglés')
     .fill('Earlier research TARGETCIT provides the method.');
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
-  await page.getByLabel('Artículo preparado por título e ID').selectOption('W05-0821');
+  await chooseArticle(page, 'W05-0821');
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
   await expect(
     page.getByText('No se pudo consultar el catálogo de clasificadores. Puedes usar M/S.'),

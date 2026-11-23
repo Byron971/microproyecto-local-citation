@@ -1,3 +1,4 @@
+import { selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,7 +15,7 @@ test('ejemplo público completa el flujo con M/S real y textos del artículo', a
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
-  await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('W05-0821');
+  await expect(selectedArticle(page)).toContainText('W05-0821');
   const responsePromise = page.waitForResponse(
     (response) => response.url().endsWith('/api/analisis-cita-ms/articulo'),
     { timeout: 60000 },

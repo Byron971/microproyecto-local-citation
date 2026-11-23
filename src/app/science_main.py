@@ -18,6 +18,14 @@ async def lifespan(app):
         from src.app.scientific_search import ArticleSearch
         app.state.article_search = ArticleSearch(
             os.environ.get('MS_SEARCH_DIR', 'artifacts/scientific_search'), servicio.recuperador.encoder)
+    else:
+        # Sugerencias del paso 2: solo documentos del corpus preparado, sin otro modelo.
+        try:
+            from src.app.scientific_search import prepared_article_search
+            app.state.article_search = prepared_article_search(servicio.recuperador.encoder)
+        except (OSError, ValueError, KeyError, TypeError):
+            import logging
+            logging.getLogger(__name__).warning('Sugerencias no disponibles; el análisis M/S continúa.')
     app.state.modelos_cargados = True
     try:
         yield

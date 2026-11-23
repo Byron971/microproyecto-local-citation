@@ -55,7 +55,7 @@ def modelos_cientificos(request: Request):
     listo = hasattr(request.app.state, 'article_search')
     return {'predeterminado': MODEL_ID, 'modelos': [{
         'id': MODEL_ID, 'nombre': 'SciBERT · búsqueda semántica de artículos',
-        'descripcion': 'Compara el contexto con títulos y resúmenes de todo el catálogo mediante SciBERT base. Extensión experimental; M/S se aplican después a la función de cita.',
+        'descripcion': 'Sugiere candidatos por título y resumen mediante SciBERT existente. La aplicación limita la búsqueda a artículos preparados; M/S clasifican la función después.',
         'disponible': listo, 'motivo': None if listo else 'Índice científico no disponible.',
         'puntaje': {'etiqueta': 'Similitud SciBERT', 'descripcion': 'Similitud coseno entre contexto y título + resumen. No es probabilidad de una referencia correcta.'},
         'devuelve_tfidf': False}]}

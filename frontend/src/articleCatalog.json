@@ -4,187 +4,224 @@
     {
       "paper_id": "D09-1059",
       "titulo": "Statistical Bistratal Dependency Parsing",
-      "publicacion": "https://aclanthology.org/D09-1059/"
+      "publicacion": "https://aclanthology.org/D09-1059/",
+      "resumen": "We present an inexact search algorithm for the problem of predicting a two-layered dependency graph. The algorithm is based on a k-best version of the standard cubictime search algorithm for projective dependency parsing, which is used as the backbone of a beam search procedure. This allows us to handle the complex nonlocal feature dependencies occurring in bistratal parsing if we model the interdependency between the two layers. We apply the algorithm to the syntactic– semantic dependency parsing task of the CoNLL-2008 Shared Task, and we obtain a competitive result equal to the highest published for a system that jointly learns syntactic and semantic structure."
     },
     {
       "paper_id": "D13-1140",
       "titulo": "Decoding with Large-Scale Neural Language Models\nImproves Translation",
-      "publicacion": "https://aclanthology.org/D13-1140/"
+      "publicacion": "https://aclanthology.org/D13-1140/",
+      "resumen": "We explore the application of neural language models to machine translation. We develop a new model that combines the neural probabilistic language model of Bengio et al., rectified linear units, and noise-contrastive estimation, and we incorporate it into a machine translation system both by reranking k-best lists and by direct integration into the decoder. Our large-scale, large-vocabulary experiments across four language pairs show that our neural language model improves translation quality by up to 1.1 B ."
     },
     {
       "paper_id": "D13-1141",
       "titulo": "Bilingual Word Embeddings for Phrase-Based Machine Translation",
-      "publicacion": "https://aclanthology.org/D13-1141/"
+      "publicacion": "https://aclanthology.org/D13-1141/",
+      "resumen": "We introduce bilingual word embeddings: semantic embeddings associated across two languages in the context of neural language models. We propose a method to learn bilingual embeddings from a large unlabeled corpus, while utilizing MT word alignments to constrain translational equivalence. The new embeddings significantly out-perform baselines in word semantic similarity. A single semantic similarity feature induced with bilingual embeddings adds near half a BLEU point to the results of NIST08 Chinese-English machine translation task."
     },
     {
       "paper_id": "D14-1003",
       "titulo": "Translation Modeling with Bidirectional Recurrent Neural Networks",
-      "publicacion": "https://aclanthology.org/D14-1003/"
+      "publicacion": "https://aclanthology.org/D14-1003/",
+      "resumen": "This work presents two different translation models using recurrent neural networks. The first one is a word-based approach using word alignments. Second, we present phrase-based translation models that are more consistent with phrasebased decoding. Moreover, we introduce bidirectional recurrent neural models to the problem of machine translation, allowing us to use the full source sentence in our models, which is also of theoretical interest. We demonstrate that our translation models are capable of improving strong baselines already including recurrent neural language models on three tasks: IWSLT 2013 German—*English, BOLT Arabic—*English and Chinese—*English. We obtain gains up to 1.6% BLEU and 1.7% TER by rescoring 1000-best lists."
     },
     {
       "paper_id": "D15-1045",
       "titulo": "Scientific Article Summarization Using Citation-Context\nand Article’s Discourse Structure",
-      "publicacion": "https://aclanthology.org/D15-1045/"
+      "publicacion": "https://aclanthology.org/D15-1045/",
+      "resumen": "We propose a summarization approach for scientific articles which takes advantage of citation-context and the document discourse model. While citations have been previously used in generating scientific summaries, they lack the related context from the referenced article and therefore do not accurately reflect the article’s content. Our method overcomes the problem of inconsistency between the citation summary and the article’s content by providing context for each citation. We also leverage the inherent scientific article’s discourse for producing better summaries. We show that our proposed method effectively improves over existing summarization approaches (greater than 30% improvement over the best performing baseline) in terms of ROUGE scores on TAC2014 scientific summarization dataset. While the dataset we use for evaluation is in the biomedical domain, most of our approaches are general and therefore adaptable to other domains."
     },
     {
       "paper_id": "D15-1159",
       "titulo": "Improved Transition-Based Parsing and Tagging with Neural Networks",
-      "publicacion": "https://aclanthology.org/D15-1159/"
+      "publicacion": "https://aclanthology.org/D15-1159/",
+      "resumen": "We extend and improve upon recent work in structured training for neural network transition-based dependency parsing. We do this by experimenting with novel features, additional transition systems and by testing on a wider array of languages. In particular, we introduce set-valued features to encode the predicted morphological properties and part-ofspeech confusion sets of the words being parsed. We also investigate the use of joint parsing and partof-speech tagging in the neural paradigm. Finally, we conduct a multi-lingual evaluation that demonstrates the robustness of the overall structured neural approach, as well as the benefits of the extensions proposed in this work. Our research further demonstrates the breadth of the applicability of neural network methods to dependency parsing, as well as the ease with which new features can be added to neural parsing models."
     },
     {
       "paper_id": "D15-1166",
       "titulo": "Effective Approaches to Attention-based Neural Machine Translation",
-      "publicacion": "https://aclanthology.org/D15-1166/"
+      "publicacion": "https://aclanthology.org/D15-1166/",
+      "resumen": "An attentional mechanism has lately been used to improve neural machine translation (NMT) by selectively focusing on parts of the source sentence during translation. However, there has been little work exploring useful architectures for attention-based NMT. This paper examines two simple and effective classes of attentional mechanism: a global approach which always attends to all source words and a local one that only looks at a subset of source words at a time. We demonstrate the effectiveness of both approaches on the WMT translation tasks between English and German in both directions. With local attention, we achieve a significant gain of 5.0 BLEU points over non-attentional systems that already incorporate known techniques such as dropout. Our ensemble model using different attention architectures yields a new state-of-the-art result in the WMT’15 English to German translation task with 25.9 BLEU points, an improvement of 1.0 BLEU points over the existing best system backed by NMT and an n-gram reranker.1"
     },
     {
       "paper_id": "D15-1167",
       "titulo": "Document Modeling with Gated Recurrent Neural Network\nfor Sentiment Classification",
-      "publicacion": "https://aclanthology.org/D15-1167/"
+      "publicacion": "https://aclanthology.org/D15-1167/",
+      "resumen": "Document level sentiment classification remains a challenge: encoding the intrinsic relations between sentences in the semantic meaning of a document. To address this, we introduce a neural network model to learn vector-based document representation in a unified, bottom-up fashion. The model first learns sentence representation with convolutional neural network or long short-term memory. Afterwards, semantics of sentences and their relations are adaptively encoded in document representation with gated recurrent neural network. We conduct document level sentiment classification on four large-scale review datasets from IMDB and Yelp Dataset Challenge. Experimental results show that: (1) our neural model shows superior performances over several state-of-the-art algorithms; (2) gated recurrent neural network dramatically outperforms standard recurrent neural network in document modeling for sentiment classification.1"
     },
     {
       "paper_id": "D15-1246",
       "titulo": "What’s in an Embedding?\nAnalyzing Word Embeddings through Multilingual Evaluation",
-      "publicacion": "https://aclanthology.org/D15-1246/"
+      "publicacion": "https://aclanthology.org/D15-1246/",
+      "resumen": "In the last two years, there has been a surge of word embedding algorithms and research on them. However, evaluation has mostly been carried out on a narrow set of tasks, mainly word similarity/relatedness and word relation similarity and on a single language, namely English. We propose an approach to evaluate embeddings on a variety of languages that also yields insights into the structure of the embedding space by investigating how well word embeddings cluster along different syntactic features. We show that all embedding approaches behave similarly in this task, with dependency-based embeddings performing best. This effect is even more pronounced when generating low dimensional embeddings."
     },
     {
       "paper_id": "E14-1051",
       "titulo": "Word Embeddings through Hellinger PCA",
-      "publicacion": "https://aclanthology.org/E14-1051/"
+      "publicacion": "https://aclanthology.org/E14-1051/",
+      "resumen": "Word embeddings resulting from neural language models have been shown to be a great asset for a large variety of NLP tasks. However, such architecture might be difficult and time-consuming to train. Instead, we propose to drastically simplify the word embeddings computation through a Hellinger PCA of the word cooccurence matrix. We compare those new word embeddings with some well-known embeddings on named entity recognition and movie review tasks and show that we can reach similar or even better performance. Although deep learning is not really necessary for generating good word embeddings, we show that it can provide an easy way to adapt embeddings to specific tasks."
     },
     {
       "paper_id": "K15-1027",
       "titulo": "Task-Oriented Learning of Word Embeddings\nfor Semantic Relation Classification",
-      "publicacion": "https://aclanthology.org/K15-1027/"
+      "publicacion": "https://aclanthology.org/K15-1027/",
+      "resumen": "We present a novel learning method for word embeddings designed for relation classification. Our word embeddings are trained by predicting words between noun pairs using lexical relation-specific features on a large unlabeled corpus. This allows us to explicitly incorporate relationspecific information into the word embeddings. The learned word embeddings are then used to construct feature vectors for a relation classification model. On a wellestablished semantic relation classification task, our method significantly outperforms a baseline based on a previously introduced word embedding method, and compares favorably to previous state-of-the-art models that use syntactic information or manually constructed external resources."
     },
     {
       "paper_id": "P07-2052",
       "titulo": "Minimally Lexicalized Dependency Parsing",
-      "publicacion": "https://aclanthology.org/P07-2052/"
+      "publicacion": "https://aclanthology.org/P07-2052/",
+      "resumen": "Dependency structures do not have the information of phrase categories in phrase structure grammar. Thus, dependency parsing relies heavily on the lexical information of words. This paper discusses our investigation into the effectiveness of lexicalization in dependency parsing. Specifically, by restricting the degree of lexicalization in the training phase of a parser, we examine the change in the accuracy of dependency relations. Experimental results indicate that minimal or low lexicalization is sufficient for parsing accuracy."
     },
     {
       "paper_id": "P13-1078",
       "titulo": "Additive Neural Networks for Statistical Machine Translation",
-      "publicacion": "https://aclanthology.org/P13-1078/"
+      "publicacion": "https://aclanthology.org/P13-1078/",
+      "resumen": "Most statistical machine translation (SMT) systems are modeled using a loglinear framework. Although the log-linear model achieves success in SMT, it still suffers from some limitations: (1) the features are required to be linear with respect to the model itself; (2) features cannot be further interpreted to reach their potential. A neural network is a reasonable method to address these pitfalls. However, modeling SMT with a neural network is not trivial, especially when taking the decoding efficiency into consideration. In this paper, we propose a variant of a neural network, i.e. additive neural networks, for SMT to go beyond the log-linear translation model. In addition, word embedding is employed as the input to the neural network, which encodes each word as a feature vector. Our model outperforms the log-linear translation models with/without embedding features on Chinese-to-English and Japanese-to-English translation tasks."
     },
     {
       "paper_id": "P13-3005",
       "titulo": "Survey on parsing three dependency representations for English",
-      "publicacion": "https://aclanthology.org/P13-3005/"
+      "publicacion": "https://aclanthology.org/P13-3005/",
+      "resumen": "In this paper we focus on practical issues of data representation for dependency parsing. We carry out an experimental comparison of (a) three syntactic dependency schemes; (b) three data-driven dependency parsers; and (c) the influence of two different approaches to lexical category disambiguation (aka tagging) prior to parsing. Comparing parsing accuracies in various setups, we study the interactions of these three aspects and analyze which configurations are easier to learn for a dependency parser."
     },
     {
       "paper_id": "P14-1003",
       "titulo": "Text-level Discourse Dependency Parsing",
-      "publicacion": "https://aclanthology.org/P14-1003/"
+      "publicacion": "https://aclanthology.org/P14-1003/",
+      "resumen": "Previous researches on Text-level discourse parsing mainly made use of constituency structure to parse the whole document into one discourse tree. In this paper, we present the limitations of constituency based discourse parsing and first propose to use dependency structure to directly represent the relations between elementary discourse units (EDUs). The state-of-the-art dependency parsing techniques, the Eisner algorithm and maximum spanning tree (MST) algorithm, are adopted to parse an optimal discourse dependency tree based on the arcfactored model and the large-margin learning techniques. Experiments show that our discourse dependency parsers achieve a competitive performance on text-level discourse parsing."
     },
     {
       "paper_id": "P14-1125",
       "titulo": "Character-Level Chinese Dependency Parsing",
-      "publicacion": "https://aclanthology.org/P14-1125/"
+      "publicacion": "https://aclanthology.org/P14-1125/",
+      "resumen": "Recent work on Chinese analysis has led to large-scale annotations of the internal structures of words, enabling characterlevel analysis of Chinese syntactic structures. In this paper, we investigate the problem of character-level Chinese dependency parsing, building dependency trees over characters. Character-level information can benefit downstream applications by offering flexible granularities for word segmentation while improving wordlevel dependency parsing accuracies. We present novel adaptations of two major shift-reduce dependency parsing algorithms to character-level parsing. Experimental results on the Chinese Treebank demonstrate improved performances over word-based parsing methods."
     },
     {
       "paper_id": "P14-1140",
       "titulo": "A Recursive Recurrent Neural Network\nfor Statistical Machine Translation",
-      "publicacion": "https://aclanthology.org/P14-1140/"
+      "publicacion": "https://aclanthology.org/P14-1140/",
+      "resumen": "In this paper, we propose a novel recursive recurrent neural network (R2NN) to model the end-to-end decoding process for statistical machine translation. R2NN is a combination of recursive neural network and recurrent neural network, and in turn integrates their respective capabilities: (1) new information can be used to generate the next hidden state, like recurrent neural networks, so that language model and translation model can be integrated naturally; (2) a tree structure can be built, as recursive neural networks, so as to generate the translation candidates in a bottom up manner. A semi-supervised training approach is proposed to train the parameters, and the phrase pair embedding is explored to model translation confidence directly. Experiments on a Chinese to English translation task show that our proposed R2NN can outperform the stateof-the-art baseline by about 1.5 points in BLEU."
     },
     {
       "paper_id": "P14-2008",
       "titulo": "Improving Citation Polarity Classification with Product Reviews",
-      "publicacion": "https://aclanthology.org/P14-2008/"
+      "publicacion": "https://aclanthology.org/P14-2008/",
+      "resumen": "Recent work classifying citations in scientific literature has shown that it is possible to improve classification results with extensive feature engineering. While this result confirms that citation classification is feasible, there are two drawbacks to this approach: (i) it requires a large annotated corpus for supervised classification, which in the case of scientific literature is quite expensive; and (ii) feature engineering that is too specific to one area of scientific literature may not be portable to other domains, even within scientific literature. In this paper we address these two drawbacks. First, we frame citation classification as a domain adaptation task and leverage the abundant labeled data available in other domains. Then, to avoid over-engineering specific citation features for a particular scientific domain, we explore a deep learning neural network approach that has shown to generalize well across domains using unigram and bigram features. We achieve better citation classification results with this cross-domain approach than using in-domain classification."
     },
     {
       "paper_id": "P14-2050",
       "titulo": "Dependency-Based Word Embeddings",
-      "publicacion": "https://aclanthology.org/P14-2050/"
+      "publicacion": "https://aclanthology.org/P14-2050/",
+      "resumen": "While continuous word embeddings are gaining popularity, current models are based solely on linear contexts. In this work, we generalize the skip-gram model with negative sampling introduced by Mikolov et al. to include arbitrary contexts. In particular, we perform experiments with dependency-based contexts, and show that they produce markedly different embeddings. The dependencybased embeddings are less topical and exhibit more functional similarity than the original skip-gram embeddings."
     },
     {
       "paper_id": "P14-2089",
       "titulo": "Improving Lexical Embeddings with Semantic Knowledge",
-      "publicacion": "https://aclanthology.org/P14-2089/"
+      "publicacion": "https://aclanthology.org/P14-2089/",
+      "resumen": "Word embeddings learned on unlabeled data are a popular tool in semantics, but may not capture the desired semantics. We propose a new learning objective that incorporates both a neural language model objective (Mikolov et al., 2013) and prior knowledge from semantic resources to learn improved lexical semantic embeddings. We demonstrate that our embeddings improve over those learned solely on raw text in three settings: language modeling, measuring semantic similarity, and predicting human judgements."
     },
     {
       "paper_id": "P14-3006",
       "titulo": "An Exploration of Embeddings for Generalized Phrases",
-      "publicacion": "https://aclanthology.org/P14-3006/"
+      "publicacion": "https://aclanthology.org/P14-3006/",
+      "resumen": "Deep learning embeddings have been successfully used for many natural language processing problems. Embeddings are mostly computed for word forms although lots of recent papers have extended this to other linguistic units like morphemes and word sequences. In this paper, we define the concept of generalized phrase that includes conventional linguistic phrases as well as skip-bigrams. We compute embeddings for generalized phrases and show in experimental evaluations on coreference resolution and paraphrase identification that such embeddings perform better than word form embeddings."
     },
     {
       "paper_id": "P15-1001",
       "titulo": "On Using Very Large Target Vocabulary for\nNeural Machine Translation",
-      "publicacion": "https://aclanthology.org/P15-1001/"
+      "publicacion": "https://aclanthology.org/P15-1001/",
+      "resumen": "Neural machine translation, a recently proposed approach to machine translation based purely on neural networks, has shown promising results compared to the existing approaches such as phrasebased statistical machine translation. Despite its recent success, neural machine translation has its limitation in handling a larger vocabulary, as training complexity as well as decoding complexity increase proportionally to the number of target words. In this paper, we propose a method based on importance sampling that allows us to use a very large target vocabulary without increasing training complexity. We show that decoding can be efficiently done even with the model having a very large target vocabulary by selecting only a small subset of the whole target vocabulary. The models trained by the proposed approach are empirically found to match, and in some cases outperform, the baseline models with a small vocabulary as well as the LSTM-based neural machine translation models. Furthermore, when we use an ensemble of a few models with very large target vocabularies, we achieve performance comparable to the state of the art (measured by BLEU) on both the English→German and English→French translation tasks of WMT’14."
     },
     {
       "paper_id": "P15-1004",
       "titulo": "Statistical Machine Translation Features with Multitask Tensor Networks",
-      "publicacion": "https://aclanthology.org/P15-1004/"
+      "publicacion": "https://aclanthology.org/P15-1004/",
+      "resumen": "We present a three-pronged approach to improving Statistical Machine Translation (SMT), building on recent success in the application of neural networks to SMT. First, we propose new features based on neural networks to model various nonlocal translation phenomena. Second, we augment the architecture of the neural network with tensor layers that capture important higher-order interaction among the network units. Third, we apply multitask learning to estimate the neural network parameters jointly. Each of our proposed methods results in significant improvements that are complementary. The overall improvement is +2.7 and +1.8 BLEU points for Arabic-English and ChineseEnglish translation over a state-of-the-art system that already includes neural network features."
     },
     {
       "paper_id": "P15-1010",
       "titulo": "SENSEMBED: Learning Sense Embeddings\nfor Word and Relational Similarity",
-      "publicacion": "https://aclanthology.org/P15-1010/"
+      "publicacion": "https://aclanthology.org/P15-1010/",
+      "resumen": "Word embeddings have recently gained considerable popularity for modeling words in different Natural Language Processing (NLP) tasks including semantic similarity measurement. However, notwithstanding their success, word embeddings are by their very nature unable to capture polysemy, as different meanings of a word are conflated into a single representation. In addition, their learning process usually relies on massive corpora only, preventing them from taking advantage of structured knowledge. We address both issues by proposing a multifaceted approach that transforms word embeddings to the sense level and leverages knowledge from a large semantic network for effective semantic similarity measurement. We evaluate our approach on word similarity and relational similarity frameworks, reporting state-of-the-art performance on multiple datasets."
     },
     {
       "paper_id": "P15-1078",
       "titulo": "Pairwise Neural Machine Translation Evaluation",
-      "publicacion": "https://aclanthology.org/P15-1078/"
+      "publicacion": "https://aclanthology.org/P15-1078/",
+      "resumen": "We present a novel framework for machine translation evaluation using neural networks in a pairwise setting, where the goal is to select the better translation from a pair of hypotheses, given the reference translation. In this framework, lexical, syntactic and semantic information from the reference and the two hypotheses is compacted into relatively small distributed vector representations, and fed into a multi-layer neural network that models the interaction between each of the hypotheses and the reference, as well as between the two hypotheses. These compact representations are in turn based on word and sentence embeddings, which are learned using neural networks. The framework is flexible, allows for efficient learning and classification, and yields correlation with humans that rivals the state of the art."
     },
     {
       "paper_id": "P15-1117",
       "titulo": "A Neural Probabilistic Structured-Prediction Model for Transition-Based\nDependency Parsing",
-      "publicacion": "https://aclanthology.org/P15-1117/"
+      "publicacion": "https://aclanthology.org/P15-1117/",
+      "resumen": "Neural probabilistic parsers are attractive for their capability of automatic feature combination and small data sizes. A transition-based greedy neural parser has given better accuracies over its linear counterpart. We propose a neural probabilistic structured-prediction model for transition-based dependency parsing, which integrates search and learning. Beam search is used for decoding, and contrastive learning is performed for maximizing the sentence-level log-likelihood. In standard Penn Treebank experiments, the structured neural parser achieves a 1.8% accuracy improvement upon a competitive greedy neural parser baseline, giving performance comparable to the best linear parser."
     },
     {
       "paper_id": "P15-1173",
       "titulo": "AutoExtend: Extending Word Embeddings to Embeddings for Synsets\nand Lexemes",
-      "publicacion": "https://aclanthology.org/P15-1173/"
+      "publicacion": "https://aclanthology.org/P15-1173/",
+      "resumen": "We present AutoExtend, a system to learn embeddings for synsets and lexemes. It is flexible in that it can take any word embeddings as input and does not need an additional training corpus. The synset/lexeme embeddings obtained live in the same vector space as the word embeddings. A sparse tensor formalization guarantees efficiency and parallelizability. We use WordNet as a lexical resource, but AutoExtend can be easily applied to other resources like Freebase. AutoExtend achieves state-of-the-art performance on word similarity and word sense disambiguation tasks."
     },
     {
       "paper_id": "S15-1012",
       "titulo": "Collective Document Classification with Implicit Inter-document Semantic\nRelationships",
-      "publicacion": "https://aclanthology.org/S15-1012/"
+      "publicacion": "https://aclanthology.org/S15-1012/",
+      "resumen": "This paper addresses the question of how document classifiers can exploit implicit information about document similarity to improve document classifier accuracy. We infer document similarity using simple n-gram overlap, and demonstrate that this improves overall document classification performance over two datasets. As part of this, we find that collective classification based on simple iterative classifiers outperforms the more complex and computationally-intensive dual classifier approach."
     },
     {
       "paper_id": "W04-0311",
       "titulo": "Dynamic Dependency Parsing",
-      "publicacion": "https://aclanthology.org/W04-0311/"
+      "publicacion": "https://aclanthology.org/W04-0311/",
+      "resumen": "The inherent robustness of a system might be an important prerequisite for an incremental parsing model to the effect that grammaticality requirements on full sentences may be suspended or allowed to be violated transiently. However, we present additional means that allow the grammarian to model prefix-analyses by altering a grammar for non-incremental parsing in a controlled way. This is done by introducing underspecified dependency edges that model the expected relation between already seen and yet unseen words during parsing. Thus the basic framework of weighted constraint dependency parsing is extended by the notion of dynamic dependency parsing."
     },
     {
       "paper_id": "W05-0821",
       "titulo": "Improved Language Modeling for Statistical Machine Translation",
-      "publicacion": "https://aclanthology.org/W05-0821/"
+      "publicacion": "https://aclanthology.org/W05-0821/",
+      "resumen": "Statistical machine translation systems use a combination of one or more translation models and a language model. While there is a significant body of research addressing the improvement of translation models, the problem of optimizing language models for a specific translation task has not received much attention. Typically, standard word trigram models are used as an out-of-the-box component in a statistical machine translation system. In this paper we apply language modeling techniques that have proved beneficial in automatic speech recognition to the ACL05 machine translation shared data task and demonstrate improvements over a baseline system with a standard language model."
     },
     {
       "paper_id": "W11-3801",
       "titulo": "Statistical Dependency Parsing in Korean:\nFrom Corpus Generation To Automatic Parsing",
-      "publicacion": "https://aclanthology.org/W11-3801/"
+      "publicacion": "https://aclanthology.org/W11-3801/",
+      "resumen": "This paper gives two contributions to dependency parsing in Korean. First, we build a Korean dependency Treebank from an existing constituent Treebank. For a morphologically rich language like Korean, dependency parsing shows some advantages over constituent parsing. Since there is not much training data available, we automatically generate dependency trees by applying head-percolation rules and heuristics to the constituent trees. Second, we show how to extract useful features for dependency parsing from rich morphology in Korean. Once we build the dependency Treebank, any statistical parsing approach can be applied. The challenging part is how to extract features from tokens consisting of multiple morphemes. We suggest a way of selecting important morphemes and use only these as features to avoid sparsity. Our parsing approach is evaluated on three different genres using both gold-standard and automatic morphological analysis. We also test the impact of fine vs. coarse-grained morphologies on dependency parsing. With automatic morphological analysis, we achieve labeled attachment scores of 80%+. To the best of our knowledge, this is the first time that Korean dependency parsing has been evaluated on labeled edges with such a large variety of data."
     },
     {
       "paper_id": "W14-4012",
       "titulo": "On the Properties of Neural Machine Translation: Encoder–Decoder\nApproaches",
-      "publicacion": "https://aclanthology.org/W14-4012/"
+      "publicacion": "https://aclanthology.org/W14-4012/",
+      "resumen": "Neural machine translation is a relatively new approach to statistical machine translation based purely on neural networks. The neural machine translation models often consist of an encoder and a decoder. The encoder extracts a fixed-length representation from a variable-length input sentence, and the decoder generates a correct translation from this representation. In this paper, we focus on analyzing the properties of the neural machine translation using two models; RNN Encoder–Decoder and a newly proposed gated recursive convolutional neural network. We show that the neural machine translation performs relatively well on short sentences without unknown words, but its performance degrades rapidly as the length of the sentence and the number of unknown words increase. Furthermore, we find that the proposed gated recursive convolutional network learns a grammatical structure of a sentence automatically."
     },
     {
       "paper_id": "W15-0607",
       "titulo": "Automated Evaluation of Scientific Writing:\nAESW Shared Task Proposal",
-      "publicacion": "https://aclanthology.org/W15-0607/"
+      "publicacion": "https://aclanthology.org/W15-0607/",
+      "resumen": "The goal of the Automated Evaluation of Scientific Writing (AESW) Shared Task is to analyze the linguistic characteristics of scientific writing to promote the development of automated writing evaluation tools that can assist authors in writing scientific papers. The proposed task is to predict whether a given sentence requires editing to ensure its “fit” with the scientific writing genre. We describe the proposed task, training, development, and test data sets, and evaluation metrics."
     },
     {
       "paper_id": "W15-1523",
       "titulo": "Semantic Information Extraction for Improved Word Embeddings",
-      "publicacion": "https://aclanthology.org/W15-1523/"
+      "publicacion": "https://aclanthology.org/W15-1523/",
+      "resumen": "Word embeddings have recently proven useful in a number of different applications that deal with natural language. Such embeddings succinctly reflect semantic similarities between words based on their sentence-internal contexts in large corpora. In this paper, we show that information extraction techniques provide valuable additional evidence of semantic relationships that can be exploited when producing word embeddings. We propose a joint model to train word embeddings both on regular context information and on more explicit semantic extractions. The word vectors obtained from such an augmented joint training show improved results on word similarity tasks, suggesting that they can be useful in applications that involve word meanings."
     },
     {
       "paper_id": "W15-1525",
       "titulo": "Vector Space and Language Models for Scientific Document Summarization",
-      "publicacion": "https://aclanthology.org/W15-1525/"
+      "publicacion": "https://aclanthology.org/W15-1525/",
+      "resumen": "In this paper we compare the performance of three approaches for estimating the latent weights of terms for scientific document summarization, given the document and a set of citing documents. The first approach is a termfrequency (TF) vector space method utilizing a nonnegative matrix factorization (NNMF) for dimensionality reduction. The other two are language modeling approaches for predicting the term distributions of human-generated summaries. The language model we build exploits the key sections of the document and a set of citing sentences derived from auxiliary documents that cite the document of interest. The parameters of the model may be set via a minimization of the Jensen-Shannon (JS) divergence. We use the OCCAMS algorithm (Optimal Combinatorial Covering Algorithm for Multi-document Summarization) to select a set of sentences that maximizes the term-coverage score while minimizing redundancy. The results are evaluated with standard ROUGE metrics, and the performance of the resulting methods achieve ROUGE scores exceeding those of the average human summarizer."
     },
     {
       "paper_id": "W15-2102",
       "titulo": "Lexicon Embedded Syntax",
-      "publicacion": "https://aclanthology.org/W15-2102/"
+      "publicacion": "https://aclanthology.org/W15-2102/",
+      "resumen": "This paper explores the notion of lexicon embedded syntax: syntactic structures that are preassembled in natural language lexicons. Section 1 proposes a lexicological perspective on (dependency) syntax: first, it deals with the well-known problem of lexicon-grammar dichotomy, then introduces the notion of lexicon embedded syntax and, finally, presents the lexical models this discussion is based on: lexical systems, as implemented in the English and French Lexical Networks. Two cases of lexicon embedded syntax are then treated: the syntax of idioms, section 2, and the syntax of collocations, section 3. Section 4 concludes on the possible exploitation of syntactic structures that can be extracted from lexical systems."
     },
     {
       "paper_id": "W98-0511",
       "titulo": "Parsing with Dependency Relations\nand Robust Parsing",
-      "publicacion": "https://aclanthology.org/W98-0511/"
+      "publicacion": "https://aclanthology.org/W98-0511/",
+      "resumen": "After a short recall of our view of dependency grammars, we present two dependency parsers. The first uses dependency relations to have a more concise expression of dependency rules and to get efficiency in parsing. The second uses typed feature structures to add some semantic knowledge on dependency trees and parses in a more robust left to right manner."
     }
   ]
 }

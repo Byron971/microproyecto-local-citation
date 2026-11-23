@@ -52,3 +52,13 @@ release-confirm: release-status
 .PHONY: release-build-api
 release-build-api:
 	AWS_PROFILE=$(AWS_PROFILE) python3 scripts/release_build_ops.py send --kind api --commit "$(shell git rev-parse HEAD)"
+
+.PHONY: release-build-ms
+release-build-ms:
+	AWS_PROFILE=$(AWS_PROFILE) python3 scripts/release_build_ops.py send --kind ms --commit "$(shell git rev-parse HEAD)"
+
+.PHONY: article-search-check article-search-web-check
+article-search-check:
+	python3 scripts/check_prepared_search.py
+article-search-web-check:
+	E2E_BASE_URL=https://proyectocitas-grupo19.click LIVE_ARTICLE_SEARCH=1 npm --prefix frontend run test:e2e -- article-search-live.spec.ts --workers=1 --output=../artifacts/article-search-live

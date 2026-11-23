@@ -1,3 +1,4 @@
+import { chooseArticle, selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
@@ -77,7 +78,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
   await expect(input).toHaveValue('Earlier work TARGETCIT introduced this method.');
   await expect(page.getByText('Cita objetivo: [Smith, 2020]')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
-  await page.getByLabel('Artículo preparado por título e ID').selectOption('D15-1167');
+  await chooseArticle(page, 'D15-1167');
   await expect(page.getByRole('link', { name: 'Abrir publicación' })).toHaveAttribute(
     'href',
     'https://aclanthology.org/D15-1167/',

@@ -45,5 +45,14 @@ class ArticleSearch:
         return {'consulta': context, 'modelo': MODEL_ID, 'total': len(rows),
                 'recomendaciones': rows, 'revision_scibert': self.encoder.revision,
                 'version_indice': self.version, 'total_catalogo': len(self.papers),
-                'metodo': PROFILE,
+                'metodo': PROFILE, 'version_contenido': self.metadata.get('version_contenido'),
                 'aviso': 'Búsqueda semántica experimental por título y resumen; no evaluada como recomendador en el notebook 10. M/S clasifican la función de cita por separado.'}
+
+
+def prepared_article_search(encoder):
+    from src.app.article_corpus import corpus
+    data, version = corpus()
+    search = ArticleSearch(Path(__file__).resolve().parents[2] / 'config/prepared_article_search', encoder)
+    if search.metadata.get('version_contenido') != version or set(search.ids) != set(data['documentos']):
+        raise ValueError('El índice de sugerencias no corresponde al corpus preparado')
+    return search

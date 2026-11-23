@@ -16,6 +16,7 @@ print(base64.b64decode(value).decode().split(':',1)[1])
 PY
 case "${RELEASE_KIND:-all}" in
   api) export RELEASE_KINDS=api ;;
+  ms) export RELEASE_KINDS=ms ;;
   all) export RELEASE_KINDS='api ms' ;;
   *) exit 1 ;;
 esac

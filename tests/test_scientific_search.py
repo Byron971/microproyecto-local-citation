@@ -90,3 +90,55 @@ def test_public_default_routes_use_scibert(tmp_path, monkeypatch):
     assert client.get('/api/modelos').json()['predeterminado'] == MODEL_ID
     response = client.post('/api/recomendar', json={'contexto': 'scientific query', 'top_k': 2})
     assert response.status_code == 200 and response.json()['modelo'] == MODEL_ID
+
+
+def test_prepared_index_matches_corpus_without_loading_models():
+    from src.app.article_corpus import corpus
+    from src.app.scientific_search import prepared_article_search
+    metadata = json.loads(Path('config/prepared_article_search/indice.json').read_text())
+    search = prepared_article_search(SimpleNamespace(revision=metadata['revision_scibert']))
+    data, version = corpus()
+    assert set(search.ids) == set(data['documentos'])
+    assert search.metadata['version_contenido'] == version
+    assert len(search.papers) == 37
+    assert all(' '.join(data['documentos'][p['paper_id']]['abstract'].split()) == p['resumen'] for p in search.papers)
+
+
+def test_search_startup_failure_does_not_break_ms(monkeypatch):
+    import sys
+    from src.app import scientific_search, science_main
+    monkeypatch.delenv('MS_ENABLE_GLOBAL_SEARCH', raising=False)
+    monkeypatch.setitem(sys.modules, 'src.app.ms_runtime', SimpleNamespace(
+        obtener_servicio=lambda: SimpleNamespace(recuperador=SimpleNamespace(encoder=Encoder()))))
+    def unavailable(encoder):
+        raise ValueError('Corrupt suggestion index')
+    monkeypatch.setattr(scientific_search, 'prepared_article_search', unavailable)
+    app = FastAPI(lifespan=science_main.lifespan)
+    app.include_router(router)
+    with TestClient(app) as client:
+        assert app.state.modelos_cargados is True
+        assert client.post('/api/analisis-cita-ms/recomendar', json={'contexto': 'scientific query'}).status_code == 503
+
+
+def test_export_preserves_existing_vectors_and_checks_source(tmp_path):
+    from scripts.exportar_busqueda_preparada import export
+    docs = json.loads(Path('config/corpus_ms.json').read_text())['documentos']
+    source = tmp_path / 'source'; source.mkdir()
+    papers = [{'paper_id': pid, 'titulo': ' '.join(doc['titulo'].split()), 'resumen': ' '.join(doc['abstract'].split())}
+              for pid, doc in reversed(list(docs.items()))]
+    vectors = np.eye(768, dtype=np.float32)[:len(papers)]
+    (source / 'papers.json').write_text(json.dumps(papers))
+    np.save(source / 'embeddings.npy', vectors, allow_pickle=False)
+    source_meta = json.loads(Path('config/prepared_article_search/indice.json').read_text())
+    source_meta['files'] = {name: hashlib.sha256((source / name).read_bytes()).hexdigest() for name in ['papers.json','embeddings.npy']}
+    (source / 'indice.json').write_text(json.dumps(source_meta))
+    catalog = tmp_path / 'catalog.json'; catalog.write_bytes(Path('frontend/src/articleCatalog.json').read_bytes())
+    destination = tmp_path / 'export'
+    export(source, destination, catalog)
+    rows = json.loads((destination / 'papers.json').read_text())
+    exported = np.load(destination / 'embeddings.npy', allow_pickle=False)
+    by_id = {p['paper_id']: i for i,p in enumerate(papers)}
+    assert np.array_equal(exported, vectors[[by_id[p['paper_id']] for p in rows]])
+    (source / 'papers.json').write_text('[]')
+    with pytest.raises(ValueError, match='hash incorrecto'):
+        export(source, destination, catalog)

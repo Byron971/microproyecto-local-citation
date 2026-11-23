@@ -1,3 +1,4 @@
+import { selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 const examples = JSON.parse(fs.readFileSync('src/scientificExamples.json', 'utf8'));
@@ -49,7 +50,7 @@ test('busca ejemplos, carga contexto y artículo sin ejecutar inferencia', async
   await dialog.locator('.example-card').click();
   await expect(dialog).toHaveCount(0);
   await expect(page.getByLabel('Contexto en inglés')).toHaveValue(chosen.contexto);
-  await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue(chosen.paper_id);
+  await expect(selectedArticle(page)).toContainText(chosen.paper_id);
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Texto preparado: disponible.')).toBeVisible();
   await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();

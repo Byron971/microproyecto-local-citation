@@ -1,3 +1,4 @@
+import { chooseArticle, selectedArticle } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
@@ -49,7 +50,7 @@ for (const mode of ['missing', 'error', 'invalid'] as const) {
       page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
     ).toBeDisabled();
     await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context);
-    await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('W05-0821');
+    await expect(selectedArticle(page)).toContainText('W05-0821');
     expect(analyses).toBe(0);
     if (mode !== 'missing') {
       retry = true;
@@ -83,13 +84,13 @@ test('ignora una consulta antigua de disponibilidad al cambiar de artículo', as
   await page.getByRole('button', { name: 'Usar ejemplo público' }).click();
   await page.getByRole('button', { name: 'Siguiente: artículo', exact: true }).click();
   await expect(page.getByText('Consultando texto preparado…')).toBeVisible();
-  await page.getByLabel('Artículo preparado por título e ID').selectOption('D09-1059');
+  await chooseArticle(page, 'D09-1059');
   await expect(page.getByText(/Este artículo no tiene texto preparado/)).toBeVisible();
   release();
   await expect(
     page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }),
   ).toBeDisabled();
-  await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('D09-1059');
+  await expect(selectedArticle(page)).toContainText('D09-1059');
 });
 
 for (const status of [404, 429, 200]) {
@@ -133,7 +134,7 @@ for (const status of [404, 429, 200]) {
     await expect(page.getByRole('alert')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Resultados del análisis' })).toHaveCount(0);
     await expect(page.getByLabel('Contexto en inglés')).toHaveValue(context);
-    await expect(page.getByLabel('Artículo preparado por título e ID')).toHaveValue('W05-0821');
+    await expect(selectedArticle(page)).toContainText('W05-0821');
     if (status === 404) {
       await expect(
         page.getByText('Vuelve al artículo citado para comprobar su disponibilidad.'),
