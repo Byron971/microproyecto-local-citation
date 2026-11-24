@@ -91,6 +91,16 @@ resource "aws_cloudfront_distribution" "web" {
     compress               = true
     cache_policy_id        = aws_cloudfront_cache_policy.assets.id
   }
+  # Los ZIP y sus hashes están bajo una release inmutable; no usan la caché del HTML.
+  ordered_cache_behavior {
+    path_pattern           = "/models/releases/*"
+    target_origin_id       = "web-s3"
+    viewer_protocol_policy = "redirect-to-https"
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    compress               = false
+    cache_policy_id        = aws_cloudfront_cache_policy.assets.id
+  }
   restrictions {
     geo_restriction { restriction_type = "none" }
   }
