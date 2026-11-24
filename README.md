@@ -527,7 +527,9 @@ Se midieron 20 casos, solo cinco clases representadas y sin segunda validación 
 | `packages/` | Recuperación densa, clasificación de función y auditoría del corpus. |
 | `proyecto_de_grado/` | Protocolos, código y evidencias de investigación. |
 | `config/` | Prompts, hiperparámetros, manifiestos y releases. |
-| `data/`, `annotations/`, `notebooks/` | Datos, anotación y experimentación. |
+| `Modelos/` | Descarga y verificación de los modelos M y S desplegados. |
+| `Datos/` | Origen de los datos y cómo obtenerlos con DVC. |
+| `data/`, `annotations/`, `notebooks/` | Datos, anotación y experimentación (los cuadernos están en `notebooks/`). |
 | `scripts/`, `make/`, `terraform/` | Preparación, validación y operación del despliegue. |
 | `tests/`, `.github/workflows/` | Pruebas automatizadas e integración continua. |
 | `docs/`, `reportes/` | Manuales, reportes, evidencias y material académico. |
