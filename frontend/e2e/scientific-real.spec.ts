@@ -59,23 +59,29 @@ for (const scenario of ['initial', 'expanded', 'truncated', 'truncated_character
     await page.getByRole('button', { name: 'Siguiente: clasificador', exact: true }).click();
     await expect(selectedArticle(page)).toContainText(paperId);
     const responsePromise = page.waitForResponse(
-      (response) => response.url().endsWith('/api/analisis-cita-ms/articulo'),
+      (response) => response.url().endsWith('/api/analisis-cita-ms/trabajos'),
       { timeout: 60000 },
     );
     let starts = 0;
     page.on('request', (r) => {
-      if (r.url().endsWith('/api/analisis-cita-ms/articulo') && r.method() === 'POST') starts++;
+      if (r.url().endsWith('/api/analisis-cita-ms/trabajos') && r.method() === 'POST') starts++;
     });
+    // Solo consultas GET del mismo trabajo hasta un estado terminal (puede esperar en cola).
     const resultPromise = page.waitForResponse(
-      (r) => r.url().includes('/api/analisis-cita-ms/articulo/') && r.status() !== 202,
-      { timeout: 100000 },
+      async (r) =>
+        /\/api\/analisis-cita-ms\/trabajos\/[a-f0-9]{32}$/.test(new URL(r.url()).pathname) &&
+        r.status() === 200 &&
+        !['en_cola', 'procesando'].includes((await r.json()).estado),
+      { timeout: 300000 },
     );
     await page.getByRole('button', { name: 'Ver resultados', exact: true }).click();
     const started = await responsePromise;
     expect(started.status()).toBe(202);
     const response = await resultPromise;
     expect(response.status()).toBe(200);
-    const data = await response.json();
+    const job = await response.json();
+    expect(job.estado).toBe('completado');
+    const data = job.resultado;
     expect(starts).toBe(1);
     expect(data.articulo.paper_id).toBe(paperId);
     if (scenario.startsWith('truncated')) {

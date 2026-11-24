@@ -92,12 +92,12 @@ resource "aws_ecs_task_definition" "scientific" {
     image        = nonsensitive(aws_ssm_parameter.release_science[0].value)
     essential    = true
     portMappings = [{ containerPort = 8000, hostPort = 8000, protocol = "tcp" }]
-    environment = [for name, value in {
+    environment = [for name, value in merge({
       AWS_REGION      = var.aws_region
       OMP_NUM_THREADS = tostring(var.scientific_task_cpu / 1024)
       MKL_NUM_THREADS = tostring(var.scientific_task_cpu / 1024)
       MS_CORS_ORIGINS = join(",", var.scientific_cors_origins)
-    } : { name = name, value = value }]
+    }, local.ms_queue_environment) : { name = name, value = value }]
     healthCheck = {
       command     = ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=4)"]
       interval    = 30

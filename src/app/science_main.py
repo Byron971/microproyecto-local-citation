@@ -28,11 +28,20 @@ async def lifespan(app):
         except (OSError, ValueError, KeyError, TypeError):
             import logging
             logging.getLogger(__name__).warning('Sugerencias no disponibles; el análisis M/S continúa.')
+    # Cola duradera: el worker vive en esta tarea porque aquí está cargado el modelo.
+    from src.app.ms_queue_aws import crear_cola
+    from src.app.ms_router import ejecutar_trabajo
+    app.state.ms_jobs, worker, app.state.ms_jobs_backend = crear_cola(ejecutar_trabajo)
+    hilo, detener = worker.iniciar()
     app.state.modelos_cargados = True
     try:
         yield
     finally:
         app.state.modelos_cargados = False
+        # Un cálculo interrumpido se reanuda en otra tarea cuando vence su concesión.
+        detener.set()
+        hilo.join(timeout=2)
+        del app.state.ms_jobs
         if hasattr(app.state, 'article_search'):
             del app.state.article_search
 

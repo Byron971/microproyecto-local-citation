@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 import catalog from '../src/articleCatalog.json' with { type: 'json' };
 import { meanings } from '../src/citationFunctions';
 import { chooseArticle, suggestionResponse } from './article-picker.helpers';
+import { completedJob, isAnalysisStart } from './analysis-job.helpers';
 
 for (const mode of ['M', 'S', 'commercial']) {
   test(`pestañas de la función predicha: ${mode}`, async ({ page }, info) => {
@@ -41,10 +42,10 @@ for (const mode of ['M', 'S', 'commercial']) {
             articulos: [{ paper_id: 'W05-0821', disponible: true, truncamiento: truncation }],
           },
         });
-      if (path.endsWith('/articulo')) {
+      if (isAnalysisStart(path)) {
         analyses++;
         return route.fulfill({
-          json: {
+          json: completedJob({
             articulo: {
               truncamiento: truncation,
               titulo: catalog.articulos.find((article) => article.paper_id === 'W05-0821')!.titulo,
@@ -65,7 +66,7 @@ for (const mode of ['M', 'S', 'commercial']) {
             dispositivo: 'cpu',
             tokens_ab: 512,
             aviso: 'Puntuaciones del modelo, sin validación de acierto.',
-          },
+          }),
         });
       }
       if (path.endsWith('/comercial/clasificar')) {

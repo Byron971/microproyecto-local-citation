@@ -21,7 +21,7 @@ COPY config/corpus_release.json /app/config/corpus_release.json
 COPY config/corpus_ms.json /app/config/corpus_ms.json
 COPY config/prepared_article_search /app/config/prepared_article_search
 COPY src/app/article_corpus.py src/app/corpus_store.py /app/src/app/
-COPY src/app/scientific_search.py src/app/ms_lock.py src/app/ms_jobs.py /app/src/app/
+COPY src/app/scientific_search.py src/app/ms_lock.py src/app/ms_queue.py src/app/ms_queue_aws.py /app/src/app/
 # Experimental search artifacts are supplied separately when explicitly enabled.
 COPY scripts/iniciar_ciencia.py /app/scripts/iniciar_ciencia.py
 RUN groupadd -g 10001 modelrunner && useradd -u 10001 -g modelrunner modelrunner \

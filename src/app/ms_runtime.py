@@ -173,15 +173,25 @@ class ServicioMS:
             self.manifiestos[pista] = config
 
     @torch.inference_mode()
-    def analizar(self, contexto: str, titulo: str, abstract: str, candidatos: list[dict]) -> dict:
-        ranking = self.recuperador.top3(contexto, candidatos)
-        if len(ranking) != 3:
-            raise ValueError("SciBERT no devolvio tres fragmentos")
-        tokens = preparar_entrada_ab(contexto, titulo, abstract, ranking, self.tokenizador)
+    def analizar(self, contexto: str, titulo: str, abstract: str, candidatos: list[dict],
+                 por_etapa=None) -> dict:
+        """`por_etapa(funcion)` envuelve recuperación, M y S por separado (p. ej. con el
+        bloqueo del encoder) para que otras consultas breves se intercalen entre etapas.
+        No altera el cálculo: sin envoltorio se ejecuta igual que antes."""
+        etapa = por_etapa or (lambda funcion: funcion())
+
+        def recuperar():
+            ranking = self.recuperador.top3(contexto, candidatos)
+            if len(ranking) != 3:
+                raise ValueError("SciBERT no devolvio tres fragmentos")
+            return ranking, preparar_entrada_ab(contexto, titulo, abstract, ranking, self.tokenizador)
+
+        ranking, tokens = etapa(recuperar)
         entrada = torch.tensor([tokens], dtype=torch.long, device=self.device)
         resultados = {}
         for pista, modelo in self.modelos.items():
-            logits = modelo(input_ids=entrada, attention_mask=torch.ones_like(entrada)).float()
+            logits = etapa(lambda modelo=modelo: modelo(
+                input_ids=entrada, attention_mask=torch.ones_like(entrada)).float())
             scores = torch.log_softmax(logits, dim=-1)
             sesgos = self.manifiestos[pista].get("sesgos_ph")
             if sesgos is not None:

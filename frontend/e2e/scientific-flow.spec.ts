@@ -1,5 +1,6 @@
 import { chooseArticle, selectedArticle, suggestionResponse } from './article-picker.helpers';
 import { test, expect } from '@playwright/test';
+import { completedJob } from './analysis-job.helpers';
 
 test.beforeEach(async ({ page }) => {
   await page.route('**/api/clasificadores', (route) =>
@@ -29,10 +30,10 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
       return;
     }
     calls.push(path);
-    expect(path).toBe('/api/analisis-cita-ms/articulo');
+    expect(path).toBe('/api/analisis-cita-ms/trabajos');
     const body = route.request().postDataJSON();
     expect(body).toEqual({
-      asincrono: true,
+      clave_idempotencia: expect.any(String),
       paper_id: 'D15-1167',
       contexto: 'Earlier work TARGETCIT and (Lee, 2019) introduced this method.',
     });
@@ -45,7 +46,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
       })),
     };
     await route.fulfill({
-      json: {
+      json: completedJob({
         articulo: {
           paper_id: body.paper_id,
           titulo: 'Document Modeling',
@@ -63,7 +64,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
         tokens_ab: 512,
         dispositivo: 'cpu',
         aviso: 'Caso simulado de interfaz.',
-      },
+      }),
     });
   });
   await page.goto('/');
@@ -100,7 +101,7 @@ test('recorrido por artículo, selección de cita y resultados sin ranking ni JS
   await expect(page.getByText('Fragmento científico 1')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Modelo S', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Modelo M', exact: true })).toHaveCount(0);
-  expect(calls).toEqual(['/api/analisis-cita-ms/articulo']);
+  expect(calls).toEqual(['/api/analisis-cita-ms/trabajos']);
   await expect(page.locator('body')).toHaveJSProperty(
     'scrollWidth',
     await page.locator('body').evaluate((e) => e.clientWidth),
