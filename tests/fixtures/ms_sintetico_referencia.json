@@ -1,0 +1,123 @@
+{
+  "modelo_recuperacion": "scibert_base_mean_pooling_cosine",
+  "revision_scibert": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+  "dispositivo": "cpu",
+  "tokens_ab": 342,
+  "top3": [
+    {
+      "posicion": 1,
+      "chunk_id": "classifier",
+      "texto": "A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. ",
+      "seccion": "Methods",
+      "similitud_coseno": 0.577923,
+      "perfil": "method"
+    },
+    {
+      "posicion": 2,
+      "chunk_id": "neural",
+      "texto": "Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. ",
+      "seccion": "Methods",
+      "similitud_coseno": 0.577191,
+      "perfil": "method"
+    },
+    {
+      "posicion": 3,
+      "chunk_id": "citations",
+      "texto": "Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. ",
+      "seccion": "Methods",
+      "similitud_coseno": 0.570447,
+      "perfil": "method"
+    }
+  ],
+  "clasificadores": {
+    "M": {
+      "clase": "Comparison",
+      "indice": 3,
+      "probabilidad": 0.975675,
+      "ajuste_ph": true,
+      "probabilidades": [
+        {
+          "clase": "Background",
+          "probabilidad": 0.007582
+        },
+        {
+          "clase": "Gap",
+          "probabilidad": 0.00443
+        },
+        {
+          "clase": "Basis",
+          "probabilidad": 0.001062
+        },
+        {
+          "clase": "Comparison",
+          "probabilidad": 0.975675
+        },
+        {
+          "clase": "Application",
+          "probabilidad": 0.004413
+        },
+        {
+          "clase": "Improvement / Modification",
+          "probabilidad": 0.00106
+        },
+        {
+          "clase": "Evidence",
+          "probabilidad": 0.002385
+        },
+        {
+          "clase": "Identification of the Originator",
+          "probabilidad": 0.002569
+        },
+        {
+          "clase": "Further Reading",
+          "probabilidad": 0.000824
+        }
+      ]
+    },
+    "S": {
+      "clase": "Background",
+      "indice": 0,
+      "probabilidad": 0.421517,
+      "ajuste_ph": false,
+      "probabilidades": [
+        {
+          "clase": "Background",
+          "probabilidad": 0.421517
+        },
+        {
+          "clase": "Gap",
+          "probabilidad": 0.097918
+        },
+        {
+          "clase": "Basis",
+          "probabilidad": 0.162196
+        },
+        {
+          "clase": "Comparison",
+          "probabilidad": 0.259941
+        },
+        {
+          "clase": "Application",
+          "probabilidad": 0.01967
+        },
+        {
+          "clase": "Improvement / Modification",
+          "probabilidad": 0.023872
+        },
+        {
+          "clase": "Evidence",
+          "probabilidad": 0.007291
+        },
+        {
+          "clase": "Identification of the Originator",
+          "probabilidad": 0.003743
+        },
+        {
+          "clase": "Further Reading",
+          "probabilidad": 0.003853
+        }
+      ]
+    }
+  },
+  "aviso": "Prueba de inferencia; las similitudes no son relevancia Gold y las probabilidades no validan precisi\u00f3n."
+}

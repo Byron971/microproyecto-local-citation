@@ -1,0 +1,237 @@
+{
+  "contexto": "We compare our neural approach to scientific document classification and citation recommendation with TARGETCIT.",
+  "titulo": "Neural representations for scientific document classification",
+  "abstract": "This invented example describes a neural approach to representing scientific documents for classification and citation recommendation. It is a synthetic software test and makes no empirical performance claim.",
+  "candidatos": [
+    {
+      "chunk_id": "neural",
+      "texto": "Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. Neural networks encode scientific documents to classify text and recommend citations. We compare document representations in a citation recommendation experiment. ",
+      "seccion": "Methods"
+    },
+    {
+      "chunk_id": "classifier",
+      "texto": "A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. A document classifier assigns research papers to categories using representations of titles and abstracts. Neural embeddings support comparison of scientific articles. ",
+      "seccion": "Methods"
+    },
+    {
+      "chunk_id": "citations",
+      "texto": "Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. Citation recommendation retrieves related scientific papers for an academic sentence. Text representations connect a query with passages from a candidate document. ",
+      "seccion": "Methods"
+    },
+    {
+      "chunk_id": "synthetic-00",
+      "texto": "This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 1. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 1. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 1. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-01",
+      "texto": "This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 2. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 2. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 2. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-02",
+      "texto": "This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 3. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 3. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 3. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-03",
+      "texto": "This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 4. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 4. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 4. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-04",
+      "texto": "This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 5. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 5. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 5. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-05",
+      "texto": "This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 6. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 6. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 6. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-06",
+      "texto": "This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 7. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 7. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 7. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-07",
+      "texto": "This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 8. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 8. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 8. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-08",
+      "texto": "This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 9. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 9. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 9. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-09",
+      "texto": "This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 10. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 10. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 10. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-10",
+      "texto": "This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 11. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 11. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 11. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-11",
+      "texto": "This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 12. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 12. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 12. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-12",
+      "texto": "This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 13. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 13. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 13. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-13",
+      "texto": "This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 14. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 14. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 14. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-14",
+      "texto": "This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 15. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 15. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 15. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-15",
+      "texto": "This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 16. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 16. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 16. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-16",
+      "texto": "This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 17. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 17. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 17. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-17",
+      "texto": "This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 18. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 18. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 18. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-18",
+      "texto": "This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 19. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 19. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 19. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-19",
+      "texto": "This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 20. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 20. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 20. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-20",
+      "texto": "This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 21. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 21. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 21. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-21",
+      "texto": "This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 22. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 22. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 22. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-22",
+      "texto": "This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 23. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 23. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 23. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-23",
+      "texto": "This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 24. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 24. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 24. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-24",
+      "texto": "This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 25. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 25. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 25. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-25",
+      "texto": "This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 26. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 26. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 26. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-26",
+      "texto": "This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 27. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 27. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 27. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-27",
+      "texto": "This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 28. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 28. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 28. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-28",
+      "texto": "This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 29. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 29. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 29. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-29",
+      "texto": "This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 30. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 30. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 30. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-30",
+      "texto": "This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 31. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 31. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 31. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-31",
+      "texto": "This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 32. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 32. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 32. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-32",
+      "texto": "This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 33. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 33. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses seed dormancy. A laboratory protocol records observations at sample location 33. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-33",
+      "texto": "This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 34. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 34. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses volcanic basalt. A laboratory protocol records observations at sample location 34. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-34",
+      "texto": "This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 35. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 35. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses ocean salinity. A laboratory protocol records observations at sample location 35. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-35",
+      "texto": "This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 36. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 36. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses forest pollination. A laboratory protocol records observations at sample location 36. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-36",
+      "texto": "This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 37. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 37. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses planetary orbits. A laboratory protocol records observations at sample location 37. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-37",
+      "texto": "This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 38. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 38. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses glacier movement. A laboratory protocol records observations at sample location 38. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-38",
+      "texto": "This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 39. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 39. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses soil minerals. A laboratory protocol records observations at sample location 39. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-39",
+      "texto": "This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 40. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 40. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses river erosion. A laboratory protocol records observations at sample location 40. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-40",
+      "texto": "This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 41. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 41. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses bird migration. A laboratory protocol records observations at sample location 41. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-41",
+      "texto": "This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 42. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 42. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses coral growth. A laboratory protocol records observations at sample location 42. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    },
+    {
+      "chunk_id": "synthetic-42",
+      "texto": "This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 43. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 43. The example describes physical measurements and seasonal variation without drawing on published material. This synthetic passage discusses stellar radiation. A laboratory protocol records observations at sample location 43. The example describes physical measurements and seasonal variation without drawing on published material. ",
+      "seccion": "Observations"
+    }
+  ]
+}

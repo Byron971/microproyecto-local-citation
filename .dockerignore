@@ -29,3 +29,18 @@ terraform/
 *.pem
 *.ppk
 *.key
+
+# Entornos y materiales locales de experimentación
+.venv*
+tmp/
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+proyecto_de_grado/artifacts/
+.aws/
+.codex/
+.agents/
+*.zip
+*.safetensors
+*.msgpack
+*.bin

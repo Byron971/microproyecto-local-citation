@@ -557,6 +557,25 @@ select {
   margin: 0;
   line-height: 1.8;
 }
+.article-analysis {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  white-space: normal;
+}
+.article-analysis p {
+  margin: 12px 0;
+}
+.article-analysis textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.article-analysis .fragment-list {
+  padding-left: 20px;
+}
+.article-analysis .fragment-list li > div {
+  flex-wrap: wrap;
+}
 .copy-status {
   font-size: 12px;
   color: var(--secondary);
@@ -1404,8 +1423,8 @@ summary {
 }
 .example-dialog-close {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 6px;
   font-size: 26px;
   color: var(--secondary);
@@ -1502,4 +1521,1018 @@ summary {
   border: 1px solid var(--border);
   font-size: 13px;
   line-height: 1.7;
+}
+
+/* Scientific workflow: the three numbered sections follow the citation process. */
+.scientific-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.scientific-page .page-intro {
+  display: block;
+}
+.analysis-step {
+  border: 0;
+  padding: 0 0 24px;
+  margin: 0 0 24px;
+  border-bottom: 1px solid var(--border, #d6dded);
+  min-width: 0;
+}
+.analysis-step legend {
+  font-family: var(--font-title);
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.analysis-step label {
+  display: block;
+  margin-bottom: 8px;
+}
+.analysis-step textarea,
+.analysis-step select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border, #d6dded);
+  background: var(--surface, #fff);
+}
+.analysis-step textarea {
+  resize: vertical;
+}
+.analysis-step .field-help {
+  margin-top: 10px;
+}
+.selected-article {
+  margin-top: 16px;
+  overflow-wrap: anywhere;
+}
+.analysis-help {
+  margin: 28px 0;
+}
+.analysis-help summary {
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.coverage-status {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--surface);
+  border-left: 3px solid var(--primary);
+}
+.coverage-status p:last-child {
+  margin-bottom: 0;
+}
+.classifier-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 16px;
+}
+.classifier-result {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.function-score {
+  margin-bottom: 12px;
+}
+.function-score-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.function-score-label span:last-child {
+  white-space: nowrap;
+}
+.function-score-track {
+  height: 7px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.function-score-track > div {
+  height: 100%;
+  background: var(--primary);
+}
+.analysis-help dd {
+  margin: 0 0 12px;
+}
+.analysis-help p,
+.analysis-help li {
+  overflow-wrap: anywhere;
+}
+
+/* Elección de la cita objetivo entre las referencias detectadas. */
+.citation-choice {
+  border: 0;
+  padding: 0;
+  margin: 0 0 12px;
+  min-width: 0;
+}
+.analysis-step .citation-choice legend {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding: 0;
+}
+.citation-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.analysis-step label.citation-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.citation-option input {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--primary);
+}
+.citation-option input:focus-visible {
+  outline: none;
+}
+.citation-option:has(input:focus-visible) {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+.citation-option:has(input:checked) {
+  border-color: var(--primary);
+  background: var(--soft-primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+.citation-repeat {
+  font-weight: 400;
+  color: var(--secondary);
+}
+.analysis-step .citation-manual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 6px;
+  margin: 8px 0 0;
+}
+.citation-manual .text-button {
+  min-height: 32px;
+  padding: 4px 0;
+}
+
+.commercial-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.commercial-consent input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+/* Búsqueda de citas con la misma tipografía y paleta del formulario. */
+.example-search {
+  padding: 16px 24px 8px;
+}
+.example-search label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.example-search input {
+  width: 100%;
+  min-width: 0;
+}
+.example-search p,
+.example-metadata {
+  color: var(--secondary);
+  font-size: 12px;
+}
+.example-search p {
+  margin: 8px 0 0;
+}
+.example-metadata {
+  display: block;
+  margin-top: 6px;
+}
+.example-empty {
+  padding: 0 24px 20px;
+  color: var(--secondary);
+}
+.example-card-heading strong {
+  overflow-wrap: anywhere;
+}
+
+/* Orientación por etapas, resultados trazables y detalle progresivo. */
+.workflow-progress {
+  margin: 26px 0 12px;
+}
+.workflow-progress ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.workflow-progress b {
+  display: grid;
+  place-items: center;
+  flex: 0 0 25px;
+  height: 25px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 12px;
+}
+.analysis-step,
+.analysis-output,
+.fragment-list li {
+  scroll-margin-top: 24px;
+}
+.context-feedback {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  color: var(--secondary);
+  font-size: 12px;
+  margin: 12px 0 16px;
+}
+.invalid-text {
+  color: var(--error);
+  font-weight: 600;
+}
+.scientific-page [aria-invalid='true'] {
+  border-color: var(--error);
+}
+.article-filter {
+  padding: 16px;
+  margin-bottom: 20px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.article-filter input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.article-filter .field-help {
+  margin-bottom: 0;
+}
+.analysis-submit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 8px;
+}
+.readiness-message {
+  color: var(--secondary);
+  font-size: 13px;
+  margin: 0;
+}
+.analysis-submit .primary {
+  flex-shrink: 0;
+}
+.analysis-output {
+  margin-top: 32px;
+}
+.analysis-summary {
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.analysis-summary p:last-child {
+  margin-bottom: 0;
+}
+.result-kicker {
+  color: var(--secondary);
+  font-size: 12px;
+  margin-top: 0;
+}
+.prediction-summary {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--primary);
+}
+.model-identity {
+  color: var(--secondary);
+  font-size: 13px;
+}
+.predicted-score .function-score-label {
+  font-weight: 700;
+}
+.function-score-label {
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.commercial-results {
+  margin-top: 0;
+  background: var(--surface);
+}
+.scientific-page :focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+#analysis-error:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 6px;
+}
+@media (max-width: 600px) {
+  .workflow-progress ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .analysis-submit {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .analysis-submit .primary {
+    width: 100%;
+  }
+  .analysis-summary {
+    padding: 16px;
+  }
+  .article-filter {
+    padding: 12px;
+  }
+  .scientific-page input,
+  .scientific-page textarea,
+  .scientific-page select {
+    font-size: 16px;
+  }
+  .example-search input {
+    font-size: 16px;
+  }
+}
+
+.analysis-output:focus {
+  outline: none;
+}
+.analysis-output:focus .analysis-summary {
+  border-color: var(--primary);
+}
+.catalog-notice {
+  padding: 12px;
+  border-left: 3px solid var(--primary);
+  background: var(--background);
+  font-size: 13px;
+}
+.catalog-notice p {
+  margin-top: 0;
+}
+
+/* Navegación secuencial: solo se presenta el contenido de la etapa actual. */
+.scientific-page [hidden] {
+  display: none !important;
+}
+.workflow-progress button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 0;
+  text-align: left;
+  color: var(--secondary);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 13px;
+}
+.workflow-progress button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.workflow-progress .step-active button {
+  color: var(--primary);
+  font-weight: 700;
+}
+.workflow-progress .step-active b {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+.workflow-progress .step-complete b {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--soft-primary);
+}
+.step-actions,
+.result-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.step-actions {
+  flex-shrink: 0;
+}
+.result-actions {
+  margin: 20px 0;
+}
+.secondary-button {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  background: var(--surface);
+}
+.secondary-button:hover {
+  border-color: var(--primary);
+}
+.secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+@media (max-width: 600px) {
+  .step-actions {
+    width: 100%;
+  }
+  .step-actions > button {
+    flex: 1;
+  }
+  .workflow-progress button {
+    gap: 8px;
+  }
+}
+
+/* El listado desplaza su contenido; búsqueda y paginación permanecen visibles. */
+.example-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.example-dialog-header,
+.example-search,
+.example-pagination {
+  flex-shrink: 0;
+}
+.example-list {
+  min-height: 0;
+  overflow-y: auto;
+}
+.example-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.example-pagination button {
+  min-height: 44px;
+}
+.example-pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.scientific-page .analysis-submit {
+  justify-content: flex-end;
+}
+.scientific-page .readiness-message {
+  margin-right: auto;
+}
+
+/* El cambio de etapa anuncia su título sin dibujar una pestaña de navegación. */
+.scientific-page .analysis-step legend:focus {
+  outline: none;
+}
+
+/* Identificar la referencia: una selección confirmada y una lista legible. */
+.article-picker .field-help {
+  margin-bottom: 18px;
+}
+.chosen-article {
+  padding: 20px;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  background: var(--soft-primary);
+  margin-bottom: 20px;
+}
+.chosen-article-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.selection-label {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+.chosen-article h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.article-citation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.article-coverage {
+  font-size: 13px;
+}
+.article-coverage p {
+  margin: 0;
+}
+.article-discovery > input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.article-suggest-action {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin: 16px 0 24px;
+  font-size: 13px;
+  color: var(--secondary);
+}
+.article-list-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.article-list-heading h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.article-list-heading > span {
+  font-size: 12px;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+.article-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.article-options li {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.article-options li:hover,
+.article-options .article-option-selected {
+  border-color: var(--primary);
+}
+.article-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  padding: 16px 18px 8px;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+  background: var(--surface);
+}
+.article-option:hover {
+  background: var(--background);
+}
+.article-option strong {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.article-id {
+  font-size: 12px;
+  color: var(--primary);
+}
+.article-abstract {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--secondary);
+}
+.article-source {
+  display: inline-block;
+  margin: 0 18px 12px;
+  font-size: 12px;
+}
+.article-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+.article-pagination button {
+  min-height: 44px;
+}
+.article-pagination button:disabled {
+  cursor: not-allowed;
+}
+@media (max-width: 600px) {
+  .chosen-article {
+    padding: 16px;
+  }
+  .article-suggest-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .article-option {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+.article-select-label {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Result tabs are local to the predicted function, separate from workflow progress. */
+.result-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid var(--border);
+  margin: 20px 0 24px;
+}
+.result-tabs [role='tab'] {
+  min-height: 48px;
+  padding: 10px 8px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  color: var(--secondary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.result-tabs [role='tab']:hover {
+  background: var(--surface);
+}
+.result-tabs [aria-selected='true'] {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 600;
+}
+.result-tabs [role='tab']:focus-visible {
+  outline-offset: -4px;
+}
+.result-tab-panel.analysis-help {
+  margin: 0;
+  font-size: 14px;
+}
+.result-tab-panel h4 {
+  margin: 0 0 16px;
+  font-size: 16px;
+}
+.result-tab-panel[hidden] {
+  display: none;
+}
+
+.result-info-surface {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+}
+.analysis-detail-section + .analysis-detail-section,
+.analysis-scope-note + .analysis-detail-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.analysis-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+  margin: 0 0 16px;
+}
+.analysis-facts dt,
+.technical-facts dt {
+  color: var(--secondary);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.analysis-details .analysis-facts dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.analysis-fact-wide {
+  grid-column: 1 / -1;
+}
+.result-info-surface .detail-caption {
+  margin-bottom: 16px;
+  color: var(--secondary);
+  font-size: 13px;
+}
+.analysis-detail-section > .detail-caption:last-child {
+  margin-bottom: 0;
+}
+.fragment-metadata {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: left;
+  font-size: 13px;
+}
+.fragment-metadata th,
+.fragment-metadata td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+.fragment-metadata thead th {
+  color: var(--secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+.fragment-metadata th:first-child {
+  padding-left: 0;
+  width: 28%;
+}
+.fragment-metadata th:last-child,
+.fragment-metadata td:last-child {
+  padding-right: 0;
+  width: 22%;
+  text-align: right;
+}
+.fragment-metadata tbody th {
+  font-weight: 500;
+}
+.fragment-metadata tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.similarity-value {
+  font-variant-numeric: tabular-nums;
+}
+.analysis-details .analysis-interpretation,
+.analysis-scope-note {
+  margin: 24px 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--primary);
+  background: var(--background);
+  font-size: 13px;
+  color: var(--secondary);
+}
+.analysis-scope-note p:last-child {
+  margin-bottom: 0;
+}
+.analysis-technical {
+  margin-top: 24px;
+  font-size: 13px;
+}
+.analysis-technical summary {
+  min-height: 44px;
+  padding: 10px 0;
+  color: var(--primary);
+  font-weight: 600;
+}
+.technical-facts {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0;
+}
+.analysis-details .technical-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.technical-facts code {
+  font-size: 12px;
+}
+.technical-profile {
+  display: block;
+  color: var(--secondary);
+  margin-top: 4px;
+}
+@media (max-width: 600px) {
+  .result-info-surface {
+    padding: 18px 16px;
+  }
+  .analysis-facts {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fragment-metadata th:first-child {
+    width: 37%;
+  }
+  .fragment-metadata th:last-child,
+  .fragment-metadata td:last-child {
+    width: 24%;
+  }
+}
+
+/* Espera del análisis dentro de la etapa de resultados. */
+.workflow-check {
+  color: var(--primary);
+}
+.workflow-progress .step-active button:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.results-loading {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px;
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.results-loading h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+.results-loading p {
+  margin: 0 0 8px;
+  color: var(--secondary);
+}
+.results-loading p:last-child {
+  margin-bottom: 0;
+}
+.analysis-spinner {
+  flex: 0 0 24px;
+  height: 24px;
+  margin-top: 2px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: analysis-spin 1s linear infinite;
+}
+@keyframes analysis-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .analysis-spinner {
+    animation: none;
+  }
+}
+@media (max-width: 600px) {
+  .results-loading {
+    padding: 20px 16px;
+    gap: 12px;
+  }
+}
+
+/* Glosario de funciones: misma superficie y jerarquía que los detalles. */
+.citation-definitions {
+  margin: 0;
+}
+.citation-definitions > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 12px 32px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+.citation-definitions > div:last-child {
+  padding-bottom: 0;
+}
+.citation-function-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+.citation-function-name {
+  display: block;
+  margin-top: 4px;
+  color: var(--secondary);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.citation-guide .citation-definitions dd {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .citation-definitions > div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* Ayuda contextual: una entrada estable en la cabecera y modal accesible. */
+.header-help {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--secondary);
+  font: inherit;
+}
+.header-help:hover {
+  background: var(--background);
+}
+.help-dialog-content {
+  padding: 24px;
+  overflow-y: auto;
+  min-height: 0;
+}
+.help-workflow {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: help-step;
+}
+.help-workflow li {
+  counter-increment: help-step;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 4px 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.help-workflow li:first-child {
+  padding-top: 0;
+}
+.help-workflow li::before {
+  content: counter(help-step);
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--soft-primary);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  grid-row: 1 / span 2;
+}
+.help-dialog h3 {
+  margin: 2px 0 4px;
+  font-size: 15px;
+}
+.help-dialog-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary);
+}
+.help-context-note {
+  margin-top: 24px;
+}
+.help-context-note p + p {
+  margin-top: 8px;
+}
+.help-dialog-content .help-interpretation {
+  margin-top: 24px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--primary);
+  background: var(--background);
+  font-size: 13px;
+}
+@media (max-width: 600px) {
+  .help-dialog-content,
+  .help-dialog .example-dialog-header {
+    padding: 20px 16px;
+  }
+}
+
+.help-dialog {
+  max-height: min(840px, calc(100dvh - 48px));
 }

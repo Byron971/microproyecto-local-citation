@@ -1,30 +1,3 @@
-export interface Model {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  disponible: boolean;
-  motivo: string | null;
-  puntaje: { etiqueta: string; descripcion: string };
-  devuelve_tfidf: boolean;
-}
-export interface Catalog {
-  predeterminado: string;
-  modelos: Model[];
-}
-export interface Recommendation {
-  posicion: number;
-  paper_id: string;
-  titulo: string;
-  resumen: string;
-  similitud: number;
-  similitud_tfidf?: number;
-}
-export interface RecommendationResponse {
-  consulta: string;
-  modelo?: string;
-  total: number;
-  recomendaciones: Recommendation[];
-}
 export interface Example {
   texto: string;
   cita_correcta: string;
@@ -35,39 +8,6 @@ export interface ExamplesCatalog {
   particion: string | null;
   ejemplos: (Example & { context_id: string })[];
 }
-export interface Fragment {
-  posicion: number;
-  chunk_id: string;
-  texto: string;
-  seccion?: string;
-  puntaje_bm25: number;
-}
-export interface Top3Response {
-  cited_id: string;
-  total_fragmentos_analizados: number;
-  fragmentos: Fragment[];
-  clasificacion: { estado: string; motivo?: string };
-}
-export interface Top3CorpusExample {
-  context_id: string;
-  cited_id: string;
-  cited_title: string;
-  total_chunks: number;
-}
-export interface Top3CorpusCatalog {
-  total: number;
-  ejemplos: Top3CorpusExample[];
-}
-export interface Top3CorpusResponse extends Top3Response {
-  context_id: string;
-  contexto: string;
-  cited_title: string;
-  split: 'train';
-  fuente: string;
-  metodo: string;
-  aviso: string;
-  sha256_ocl_citado: string;
-}
 export interface DenseFragment {
   posicion: number;
   chunk_id: string;
@@ -75,49 +15,6 @@ export interface DenseFragment {
   seccion?: string | null;
   paragraph_indices?: number[];
   similitud_coseno: number;
-}
-export interface DenseTop3Response {
-  cited_id: string;
-  metodo: 'scibert_base_mean_pooling_cosine';
-  modelo: string;
-  revision: string;
-  total_fragmentos_analizados: number;
-  fragmentos: DenseFragment[];
-  clasificacion: { estado: string; motivo?: string };
-}
-export interface DenseCorpusResponse extends DenseTop3Response {
-  context_id: string;
-  contexto: string;
-  cited_title: string;
-  split: 'train';
-  fuente: string;
-  aviso: string;
-}
-export interface ClassificationResponse {
-  modelo: string;
-  encoder: string;
-  entrada: 'A';
-  clase: string;
-  indice_clase: number;
-  puntuaciones_softmax: { categoria: string; score: number }[];
-  latencia_modelo_ms: number;
-  training_labels: 'Haiku';
-  validacion: 'provisional_no_gold_humano';
-  advertencia: string;
-}
-export interface FunctionBResponse {
-  context_id: string | null;
-  cited_id: string;
-  recuperacion: {
-    metodo: 'scibert_base_mean_pooling_cosine';
-    modelo: string;
-    revision: string;
-    fragmentos: DenseFragment[];
-  };
-  clasificacion: Omit<ClassificationResponse, 'entrada'> & { entrada: 'B' };
-  split: 'train' | null;
-  gold_certificado: false;
-  aviso: string;
 }
 export class ApiError extends Error {
   constructor(
@@ -130,9 +27,8 @@ export class ApiError extends Error {
 const base = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
 export async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const controller = new AbortController();
-  const timeoutMs = path.startsWith('/api/analisis-cita-ms')
-    ? 300_000
-    : 32_000;
+  // API Gateway responde o vence a los 30 s; dejar margen de transporte.
+  const timeoutMs = 32_000;
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   const forwardAbort = () => controller.abort();
   options.signal?.addEventListener('abort', forwardAbort, { once: true });
@@ -165,97 +61,6 @@ export async function request<T>(path: string, options: RequestInit = {}): Promi
     options.signal?.removeEventListener('abort', forwardAbort);
   }
 }
-export const api = {
-  reference: (paperId: string, signal?: AbortSignal) =>
-    request<{ paper_id: string; bibtex: string; source_url: string }>(
-      `/api/referencias/${encodeURIComponent(paperId)}`,
-      { signal },
-    ),
-  examples: (signal?: AbortSignal) => request<ExamplesCatalog>('/api/ejemplos', { signal }),
-  status: (signal?: AbortSignal) =>
-    request<{ listo: boolean; modelo: Record<string, unknown> }>('/api/estado', { signal }),
-  models: (signal?: AbortSignal) => request<Catalog>('/api/modelos', { signal }),
-  example: (signal?: AbortSignal) => request<Example>('/api/ejemplo', { signal }),
-  recommend: (contexto: string, top_k: number, modelo?: string, signal?: AbortSignal) =>
-    request<RecommendationResponse>('/api/recomendar', {
-      method: 'POST',
-      body: JSON.stringify({ contexto, top_k, ...(modelo ? { modelo } : {}) }),
-      signal,
-    }),
-  classifyCitationB: (
-    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
-  ) => request<FunctionBResponse>('/api/clasificar-cita-b', {
-    method: 'POST',
-    body: JSON.stringify({
-      contexto, cited_id,
-      parrafos: paragraphs.map((texto, i) => ({chunk_id: `p${i + 1}`, texto})),
-    }),
-    signal,
-  }),
-  classifyCitationBCorpus: (contextId: string, signal?: AbortSignal) =>
-    request<FunctionBResponse>(
-      `/api/clasificar-cita-b/corpus/${encodeURIComponent(contextId)}`, { signal },
-    ),
-  classifyCitation: (
-    contexto: string, cited_title: string, cited_abstract: string,
-    signal?: AbortSignal,
-  ) => request<ClassificationResponse>('/api/clasificar-cita', {
-    method: 'POST',
-    body: JSON.stringify({ contexto, cited_title, cited_abstract }),
-    signal,
-  }),
-  classifyCitationSpecterA: (
-    contexto: string, cited_title: string, cited_abstract: string,
-    signal?: AbortSignal,
-  ) => request<ClassificationResponse>('/api/clasificar-cita-specter-a', {
-    method: 'POST',
-    body: JSON.stringify({ contexto, cited_title, cited_abstract }),
-    signal,
-  }),
-  classifyCitationSpecterB: (
-    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
-  ) => request<FunctionBResponse>('/api/clasificar-cita-specter-b', {
-    method: 'POST',
-    body: JSON.stringify({
-      contexto, cited_id,
-      parrafos: paragraphs.map((texto, i) => ({chunk_id: `p${i + 1}`, texto})),
-    }),
-    signal,
-  }),
-  classifyCitationSpecterBCorpus: (contextId: string, signal?: AbortSignal) =>
-    request<FunctionBResponse>(
-      `/api/clasificar-cita-specter-b/corpus/${encodeURIComponent(contextId)}`,
-      { signal },
-    ),
-  top3SciBERT: (
-    contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal,
-  ) => request<DenseTop3Response>('/api/top3-scibert', {
-    method: 'POST',
-    body: JSON.stringify({
-      contexto, cited_id,
-      parrafos: paragraphs.map((texto, i) => ({ chunk_id: `p${i + 1}`, texto })),
-    }),
-    signal,
-  }),
-  top3SciBERTCorpus: (contextId: string, signal?: AbortSignal) =>
-    request<DenseCorpusResponse>(
-      `/api/top3-scibert/corpus/${encodeURIComponent(contextId)}`, { signal },
-    ),
-  top3CorpusExamples: (signal?: AbortSignal) =>
-    request<Top3CorpusCatalog>('/api/top3-corpus/ejemplos', { signal }),
-  top3Corpus: (contextId: string, signal?: AbortSignal) =>
-    request<Top3CorpusResponse>(`/api/top3-corpus/${encodeURIComponent(contextId)}`, { signal }),
-  top3: (contexto: string, cited_id: string, paragraphs: string[], signal?: AbortSignal) =>
-    request<Top3Response>('/api/top3-fragmentos', {
-      method: 'POST',
-      body: JSON.stringify({
-        contexto,
-        cited_id,
-        parrafos: paragraphs.map((texto, i) => ({ chunk_id: `p${i + 1}`, texto })),
-      }),
-      signal,
-    }),
-};
 export function errorMessage(error: unknown): string {
   if (error instanceof ApiError) {
     if (error.status === 503)
@@ -266,4 +71,129 @@ export function errorMessage(error: unknown): string {
   if (error instanceof DOMException && error.name === 'AbortError')
     return 'La consulta tardó demasiado. Vuelve a intentarlo.';
   return 'No se pudo conectar con el servidor. Comprueba la conexión e inténtalo de nuevo.';
+}
+
+export type JobState =
+  'en_cola' | 'procesando' | 'completado' | 'fallido' | 'expirado' | 'cancelado';
+export interface AnalysisJob<T> {
+  trabajo_id: string;
+  estado: JobState;
+  creado_en: number;
+  espera_maxima_s: number;
+  retencion_s: number;
+  reintentando?: boolean;
+  resultado?: T;
+  error?: { codigo: string; mensaje: string };
+}
+const STATES: JobState[] = [
+  'en_cola',
+  'procesando',
+  'completado',
+  'fallido',
+  'expirado',
+  'cancelado',
+];
+const JOB_ID = /^[a-f0-9]{32}$/;
+export const isTerminal = (state: JobState) => !['en_cola', 'procesando'].includes(state);
+
+export function newIdempotencyKey(): string {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+function checkJob<T>(job: AnalysisJob<T>, id?: string): AnalysisJob<T> {
+  if (
+    !job ||
+    !JOB_ID.test(job.trabajo_id) ||
+    (id !== undefined && job.trabajo_id !== id) ||
+    !STATES.includes(job.estado) ||
+    (job.estado === 'completado' && !job.resultado)
+  )
+    throw new ApiError('El servidor devolvió un estado de análisis inválido.', 502);
+  return job;
+}
+
+// One POST admits one analysis; the same key never starts a second one.
+export async function startAnalysisJob<T>(
+  contexto: string,
+  paper_id: string,
+  clave_idempotencia: string,
+  signal: AbortSignal,
+): Promise<AnalysisJob<T>> {
+  const job = await request<AnalysisJob<T>>('/api/analisis-cita-ms/trabajos', {
+    method: 'POST',
+    signal,
+    body: JSON.stringify({ contexto, paper_id, clave_idempotencia }),
+  });
+  return checkJob(job);
+}
+
+export async function readAnalysisJob<T>(id: string, signal: AbortSignal): Promise<AnalysisJob<T>> {
+  if (!JOB_ID.test(id)) throw new ApiError('Identificador de análisis inválido.', 400);
+  return checkJob(
+    await request<AnalysisJob<T>>(`/api/analisis-cita-ms/trabajos/${id}`, { signal }),
+    id,
+  );
+}
+
+export async function cancelAnalysisJob(id: string): Promise<AnalysisJob<unknown>> {
+  const job = await request<AnalysisJob<unknown>>(`/api/analisis-cita-ms/trabajos/${id}/cancelar`, {
+    method: 'POST',
+  });
+  return checkJob(job, id);
+}
+
+function wait(ms: number, signal: AbortSignal) {
+  return new Promise<void>((resolve, reject) => {
+    const abort = () => {
+      clearTimeout(timer);
+      reject(new DOMException('Cancelado', 'AbortError'));
+    };
+    const timer = setTimeout(() => {
+      signal.removeEventListener('abort', abort);
+      resolve();
+    }, ms);
+    signal.addEventListener('abort', abort, { once: true });
+    if (signal.aborted) abort();
+  });
+}
+
+// A request timeout is transient; only the caller's own cancellation stops following.
+const transient = (error: unknown, signal: AbortSignal) =>
+  !signal.aborted && (!(error instanceof ApiError) || [429, 502, 503, 504].includes(error.status));
+
+// GETs only observe the job; transient read failures are retried, never the POST.
+export async function followAnalysisJob<T>(
+  initial: AnalysisJob<T>,
+  signal: AbortSignal,
+  onUpdate: (job: AnalysisJob<T>) => void,
+): Promise<AnalysisJob<T>> {
+  let job = checkJob(initial);
+  const started = Date.now();
+  // Server-side expiry is authoritative; this only bounds a client that cannot reach it.
+  const deadline = started + (job.espera_maxima_s + 600) * 1000;
+  let failures = 0;
+  while (!isTerminal(job.estado)) {
+    if (Date.now() >= deadline)
+      throw new ApiError(
+        'El análisis sigue pendiente. Tu contexto se conserva; recarga la página para consultarlo de nuevo.',
+        504,
+      );
+    await wait(Date.now() - started < 30000 ? 2000 : 5000, signal);
+    try {
+      const next = checkJob(
+        await request<AnalysisJob<T>>(`/api/analisis-cita-ms/trabajos/${job.trabajo_id}`, {
+          signal,
+        }),
+        job.trabajo_id,
+      );
+      failures = 0;
+      if (next.estado !== job.estado || next.reintentando !== job.reintentando) onUpdate(next);
+      job = next;
+    } catch (error) {
+      if (!transient(error, signal) || ++failures >= 5) throw error;
+    }
+  }
+  return job;
 }

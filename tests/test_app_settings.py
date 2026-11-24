@@ -113,6 +113,8 @@ def test_health_endpoint_exposes_only_safe_runtime_info_with_stub_model(monkeypa
     monkeypatch.setenv("APP_INSIGHTS_PATH", "data/processed/dashboard_insights.json")
     monkeypatch.setenv("OPENAI_API_KEY", "DO-NOT-EXPOSE-THIS")
     monkeypatch.setattr(main, "Recommender", StubRecommender)
+    monkeypatch.setattr("src.app.article_corpus.preparar_corpus_release", lambda: None)
+    monkeypatch.setattr("src.app.article_corpus.corpus", lambda: ({"documentos": {}}, "test"))
 
     def fake_insights(path):
         seen["path"] = path

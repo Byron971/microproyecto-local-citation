@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "scibert_revision": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+  "files": [
+    {
+      "path": "proyecto_de_grado/artifacts/experimentos_10/M/model.safetensors",
+      "bytes": 439725612,
+      "sha256": "26e354d785964b3e8a3a9d9fa0b1857c3e1e542ff5ed4f174f063f48898e80a7"
+    },
+    {
+      "path": "proyecto_de_grado/artifacts/experimentos_10/M/manifiesto_entrenamiento.json",
+      "bytes": 1960,
+      "sha256": "1df5acdec972e4ed43d26e8d7b58ad1329ef4d422a4c861cae6be0b5f9517fe2"
+    },
+    {
+      "path": "proyecto_de_grado/artifacts/experimentos_10/S/model.safetensors",
+      "bytes": 439725612,
+      "sha256": "2369f52bee1b96576dddb1ef0f37a5043f552c73b3e836da31a53d956d271a69"
+    },
+    {
+      "path": "proyecto_de_grado/artifacts/experimentos_10/S/manifiesto_entrenamiento.json",
+      "bytes": 1871,
+      "sha256": "19a299ce990ecc530ee7f1432c43357ad1d3e454f08a5bc22fb37d0c443ddd69"
+    },
+    {
+      "path": "artifacts/huggingface/hub/models--allenai--scibert_scivocab_uncased/snapshots/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/.gitattributes",
+      "bytes": 437,
+      "sha256": "0441e38c416cb84be774e963898fe5e19d4a3ed854c1f5e4f4938b5d08220aaa"
+    },
+    {
+      "path": "artifacts/huggingface/hub/models--allenai--scibert_scivocab_uncased/snapshots/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/README.md",
+      "bytes": 1135,
+      "sha256": "dbf7cf7e4365de6032a9677a4e305113c46f4597ea7f2f25b9ca4e4e6dafcfe5"
+    },
+    {
+      "path": "artifacts/huggingface/hub/models--allenai--scibert_scivocab_uncased/snapshots/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json",
+      "bytes": 385,
+      "sha256": "488e7dbd68e27a38337ecb16358810da6df4226ac3b8880a0fde44bfdc37ccf0"
+    },
+    {
+      "path": "artifacts/huggingface/hub/models--allenai--scibert_scivocab_uncased/snapshots/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/flax_model.msgpack",
+      "bytes": 439681005,
+      "sha256": "53d32c1d93bebe3fbc0a20e081d8575defc8d481989f97fb82c0f95f3b38f2c1"
+    },
+    {
+      "path": "artifacts/huggingface/hub/models--allenai--scibert_scivocab_uncased/snapshots/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/pytorch_model.bin",
+      "bytes": 442221694,
+      "sha256": "e492944d88ac97dee6baa547671d3c526a3d067676883efb058311f4e5882e1a"
+    },
+    {
+      "path": "artifacts/huggingface/hub/models--allenai--scibert_scivocab_uncased/snapshots/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt",
+      "bytes": 227845,
+      "sha256": "f0a650346e51ede8996710f79ba65d83fdb8da05b159f17037b74ba4e3a36c6f"
+    }
+  ],
+  "release_id": "ms-scibert-b8ee47317c29afbc",
+  "bucket": "citas-api-models-646941583111-us-east-1",
+  "prefix": "releases/ms-scibert-b8ee47317c29afbc/"
+}

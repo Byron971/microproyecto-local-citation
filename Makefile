@@ -17,6 +17,8 @@ ECR_KEEP_IMAGES ?= 5
 PROJECT_NAME   ?= citas-api
 TF_STATE_KEY   ?= $(PROJECT_NAME)/terraform.tfstate
 TERRAFORM      ?= terraform
+# Opcional: outputs JSON del estado actual ya verificado; no usar una copia obsoleta.
+FRONTEND_OUTPUTS_FILE ?=
 TF_ARGS        ?=
 IMAGE_TAG      ?= $(shell git rev-parse --short HEAD)
 
@@ -122,20 +124,32 @@ tf-apply: ## Aplica los cambios de infraestructura sin reconstruir la imagen
 # Publicar assets antes que index.html; conservar hashes de versiones abiertas.
 publish-frontend: check-aws ## Compila React, publica en S3 y actualiza CloudFront
 	@set -eu; \
-	bucket=$($(TERRAFORM) -chdir=terraform output -raw frontend_bucket); \
-	distribution=$($(TERRAFORM) -chdir=terraform output -raw distribution_id); \
-	api_url=$($(TERRAFORM) -chdir=terraform output -raw api_base_url); \
-	frontend_url=$($(TERRAFORM) -chdir=terraform output -raw frontend_url); \
+	if [ -n "$(FRONTEND_OUTPUTS_FILE)" ]; then \
+	  outputs=$$(cat "$(FRONTEND_OUTPUTS_FILE)"); \
+	else \
+	  outputs=$$($(TERRAFORM) -chdir=terraform output -json); \
+	fi; \
+	bucket=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["frontend_bucket"]["value"])'); \
+	distribution=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["distribution_id"]["value"])'); \
+	api_url=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["api_base_url"]["value"])'); \
+	frontend_url=$$(printf '%s' "$$outputs" | python3 -c 'import json,sys; print(json.load(sys.stdin)["frontend_url"]["value"])'); \
 	npm --prefix frontend ci; \
-	VITE_API_BASE_URL="$api_url" npm --prefix frontend run build; \
-	$(AWS) s3 sync frontend/dist/assets/ "s3://$bucket/assets/" --cache-control 'public,max-age=31536000,immutable'; \
-	$(AWS) s3 sync frontend/dist/ "s3://$bucket/" --exclude 'assets/*' --exclude index.html --cache-control 'no-cache,max-age=0,must-revalidate'; \
-	$(AWS) s3 cp frontend/dist/index.html "s3://$bucket/index.html" --content-type 'text/html; charset=utf-8' --cache-control 'no-cache,max-age=0,must-revalidate'; \
-	$(AWS) cloudfront create-invalidation --distribution-id "$distribution" --paths '/index.html' >/dev/null; \
-	printf 'Frontend publicado: %s\n' "$frontend_url"
+	VITE_API_BASE_URL="$$api_url" npm --prefix frontend run build; \
+	$(AWS) s3 sync frontend/dist/assets/ "s3://$$bucket/assets/" --cache-control 'public,max-age=31536000,immutable'; \
+	$(AWS) s3 sync frontend/dist/ "s3://$$bucket/" --exclude 'assets/*' --exclude index.html --cache-control 'no-cache,max-age=0,must-revalidate'; \
+	$(AWS) s3 cp frontend/dist/index.html "s3://$$bucket/index.html" --content-type 'text/html; charset=utf-8' --cache-control 'no-cache,max-age=0,must-revalidate'; \
+	$(AWS) cloudfront create-invalidation --distribution-id "$$distribution" --paths '/index.html' >/dev/null; \
+	printf 'Frontend publicado: %s\n' "$$frontend_url"
 
 deploy: ## Construye, publica y despliega (requiere make init previo)
 	$(MAKE) login
 	$(MAKE) build
 	$(MAKE) push
 	$(TERRAFORM) -chdir=terraform apply $(TF_ARGS)
+
+# Operación del constructor y publicación de los servicios actuales.
+include make/image-builder.mk
+
+include make/release.mk
+
+include make/commercial.mk

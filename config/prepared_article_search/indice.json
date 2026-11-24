@@ -1,0 +1,12 @@
+{
+  "perfil": "scibert-title-abstract-windows-mean-cosine-v1",
+  "revision_scibert": "24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1",
+  "dimension": 768,
+  "total_articulos": 37,
+  "version_contenido": "56fbf67a8407cbef9068fc1a10c1e1d6b5b714ebac08752d81016698d5b0bea7",
+  "source_index_sha256": "09be13a7a8e41de380b796b7cdf47390f0c2289700fda304a273ed4eefc719b6",
+  "files": {
+    "papers.json": "0d625a04dc0de669a3c571597de7485a201872bfbcc63ec7c1d07a0cd8255cd1",
+    "embeddings.npy": "f11e6f76c8bdbf747298031c5c8d7e486d91fc2bd98ede483836c5668d84ed52"
+  }
+}

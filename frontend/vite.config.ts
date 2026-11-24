@@ -3,9 +3,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    include: ['@citation-js/core', '@citation-js/plugin-bibtex', '@citation-js/plugin-csl'],
-  },
   server: {
   proxy: {
     '/api/analisis-cita-ms': {

@@ -1,0 +1,339 @@
+{
+  "fuente": "ACL-200",
+  "particion": "val",
+  "version_contenido": "1f496d7b681b0852d927462f7b24a854189f37535e58d598cc131f435146b55d",
+  "sha256_fuentes": {
+    "contexts": "4725714f53cd6e1f2efca883761dc252ac19be1489b699f4d14d1e7b9dcc3a73",
+    "train": "62d670079b8ea1d4654d45d18c3a3e028a94732189acb54bc1b2350984ad9dae",
+    "val": "86e7e475fdb30f212eedb9008124dee25c5a8432f6e8af7070c395a808a94326",
+    "test": "12038ef4996fc73c046b7094d6cbbccb43e8b1b3fe102899f00b2a15200c6f6d",
+    "catalogo": "188b37a6cf8218e8fe4991c188a8c1c21538d48dae2effa1170d448dc92837c1",
+    "seleccion": "6f781fa224d1d430ccf32e6b2a8f9989ccebddd101c394754a9467e908ff9d82"
+  },
+  "sha256_exclusiones": {
+    "provisional_test_gold.jsonl": "ddf073d92606d72a2bfb5d8ff886abb0612026ed475d29449ad98f15c7f1e7fb",
+    "test_gold.jsonl": "3fd504d96d45d1e316017c74e49c5dba66f1f5aa842b1ef7a8768d4ce55d9f32"
+  },
+  "ejemplos": [
+    {
+      "context_id": "E14-1051_P12-2018_0",
+      "paper_id": "P12-2018",
+      "citing_id": "E14-1051",
+      "titulo": "Baselines and Bigrams: Simple, Good Sentiment and Topic Classification",
+      "tema": "Análisis de sentimientos",
+      "contexto": "r approach captures all the necessary sentiment features to predict whether a review is positive or negative. It is thus not surprising that a bag-of-words based method can perform well on this task ( TARGETCIT . However, as our method takes the whole review as input, we can extract windows of words having the most discriminative power: it is a major advantage of our method compared to conventional bag-of-wo"
+    },
+    {
+      "context_id": "E14-1077_W04-1013_0",
+      "paper_id": "W04-1013",
+      "citing_id": "E14-1077",
+      "titulo": "ROUGE: A Package for Automatic Evaluation of Summaries",
+      "tema": "Resumen automático",
+      "contexto": "h larger and standard dataset. We will use the intrinsic evaluation strategy of comparison to a gold standard. Human judgements would be the most credible, but as a cheap alternative, we use ROUGE-L ( TARGETCIT , which has been shown to correlate well to human judgements. For each sentence, ROUGE-L treats it as a sequence of words, and finds the longest common subsequences (LCSs) with any sentence in a gold "
+    },
+    {
+      "context_id": "P14-2105_P13-1158_2",
+      "paper_id": "P13-1158",
+      "citing_id": "P14-2105",
+      "titulo": "Paraphrase-Driven Learning for Open Question Answering",
+      "tema": "Preguntas y diálogo",
+      "contexto": "Freebase and DBpedia (OTHERCIT). Despite significant progress, the problem remains challenging. Most methods have not yet been scaled to large KBs that can support general open-domain QA. In contrast, TARGETCIT proposed the PARALEX system, which targets answering single-relation questions using an automatically created knowledge base, ReVerb (OTHERCIT). By applying simple seed templates to the KB and by leve"
+    },
+    {
+      "context_id": "S14-2081_Q13-1034_0",
+      "paper_id": "Q13-1034",
+      "citing_id": "S14-2081",
+      "titulo": "Joint Morphological and Syntactic Analysis for Richly Inflected Languages",
+      "tema": "Sintaxis y morfología",
+      "contexto": " dependency parser (OTHERCIT) and phrase-based parser (OTHERCIT) as additional features. Our choice of parser was based on the high non-projectivity of the resulting trees, while parsers of (OTHERCIT; TARGETCIT could also be used, among others. We use the parser out of the box, i.e., without any parameter tuning or additional features other than what was previously listed for the open track. Top node detecti"
+    },
+    {
+      "context_id": "S14-1005_P10-1154_0",
+      "paper_id": "P10-1154",
+      "citing_id": "S14-1005",
+      "titulo": "Knowledge-rich Word Sense Disambiguation Rivaling Supervised Systems",
+      "tema": "Semántica",
+      "contexto": "rbury.ac.nz has been a healthy rivalry between the two, in which proponents of unsupervised WSD have long sought to vindicate its potential since two decades ago (OTHERCIT) to even more recent times ( TARGETCIT . OTHERCIT rightly states, supervised systems are bound by their training data, and therefore are limited in portability and flexibility in the face of new domains, changing applications, or different"
+    },
+    {
+      "context_id": "D14-1203_P09-1113_0",
+      "paper_id": "P09-1113",
+      "citing_id": "D14-1203",
+      "titulo": "Distant supervision for relation extraction without labeled data",
+      "tema": "Extracción de información",
+      "contexto": " If the arguments have KB links, we do not allow sentential instances where both arguments represent the same entity. We use the same lexical and syntactic features as MULTIR, based on the features of TARGETCIT . As required for features, we use Stanford CoreNLP’s tokenizer, part of speech tagger (OTHERCIT), and dependency parser (de OTHERCIT), and use the Charniak Johnson constiuent parser (OTHERCIT). For n"
+    },
+    {
+      "context_id": "P14-1107_W10-0701_0",
+      "paper_id": "W10-0701",
+      "citing_id": "P14-1107",
+      "titulo": "Creating Speech and Language Data With Amazon’s Mechanical Turk",
+      "tema": "Recursos y evaluación",
+      "contexto": "non-experts matched experts on a small amount of calibration data. MTurk has subsequently been widely adopted by the NLP community and used for an extensive range of speech and language applications ( TARGETCIT . Although hiring professional translators to create bilingual training data for machine translation systems has been deemed infeasible, Mechanical Turk has provided a low cost way of creating large v"
+    },
+    {
+      "context_id": "W14-0301_W05-0821_0",
+      "paper_id": "W05-0821",
+      "citing_id": "W14-0301",
+      "titulo": "Improved Language Modeling for Statistical Machine Translation",
+      "tema": "Traducción automática",
+      "contexto": " Related Work 2.1 N-best List Re-ranking Walking through various related work concerning this issue, we observe some prominent ideas. The first attempt focuses on proposing additional Language Models. TARGETCIT train one word-based 4-gram model (with modified Kneser-Ney smoothing) and one factored trigram one, then combine them with seven decoder scores for re-ranking N-best lists of several SMT systems. The"
+    },
+    {
+      "context_id": "W14-5902_P11-1015_0",
+      "paper_id": "P11-1015",
+      "citing_id": "W14-5902",
+      "titulo": "Learning Word Vectors for Sentiment Analysis",
+      "tema": "Análisis de sentimientos",
+      "contexto": "ber of positive and negative reviews, or by selecting a balanced subset for certain experiments. Examples for a balanced data set are the movie review data set (OTHERCIT) or the IMDB review data set ( TARGETCIT . Using a balanced data set allows researchers to focus on finding robust methods and feature sets for the problem. Particularly, the movie review data set has been used as a benchmark data set that a"
+    },
+    {
+      "context_id": "P14-1086_N04-1019_0",
+      "paper_id": "N04-1019",
+      "citing_id": "P14-1086",
+      "titulo": "Evaluating Content Selection in Summarization: The Pyramid Method",
+      "tema": "Resumen automático",
+      "contexto": "re recent. Original summaries were generated for the A subsets and update summaries were then produced for the B subsets. Human summaries and candidate systems are evaluated using the Pyramid method ( TARGETCIT . For automatic evaluation, ROUGE (OTHERCIT) variants have been proposed (OTHERCIT). In contrast to this setup, QCFS distinguishes the subsets of documents considered at each step of the process by fa"
+    },
+    {
+      "context_id": "D14-1067_D14-1067_0",
+      "paper_id": "D14-1067",
+      "citing_id": "D14-1067",
+      "titulo": "Question Answering with Subgraph Embeddings",
+      "tema": "Preguntas y diálogo",
+      "contexto": "English. In contrast, (OTHERCIT) proposed a framework for open QA requiring almost no human annotation. Despite being an interesting approach, this method is outperformed by other competing methods. ( TARGETCIT b) introduced an embedding model, which learns lowdimensional vector representations of words and symbols (such as KBs constituents) and can be trained with even less supervision than the system of (O"
+    },
+    {
+      "context_id": "W14-1604_N13-1044_1",
+      "paper_id": "N13-1044",
+      "citing_id": "W14-1604",
+      "titulo": "Morphological Analysis and Disambiguation for Dialectal Arabic",
+      "tema": "Sintaxis y morfología",
+      "contexto": " For a full presentation of CODA and a justification and explanation of its choices, see (OTHERCIT). CODA has been used as part of different approaches for modeling DA morphology (OTHERCIT), tagging ( TARGETCIT ; OTHERCIT) and spelling correction (OTHERCIT). Converting Dialectal Arabic (written using a spontaneous Arabic orthography or Arabizi) to CODA is beneficial to NLP applications that better perform on"
+    },
+    {
+      "context_id": "W14-4711_Q14-1019_0",
+      "paper_id": "Q14-1019",
+      "citing_id": "W14-4711",
+      "titulo": "Entity Linking meets Word Sense Disambiguation: a Unified Approach",
+      "tema": "Semántica",
+      "contexto": "exical realizations of the available concepts in different languages. Finally, we connect the multilingual Babel synsets by establishing semantic relations between them. Next, I will present Babelfy ( TARGETCIT , available at http://babelfy.org, a unified approach that leverages BabelNet to perform Word Sense Disambiguation (WSD) and Entity Linking in arbitrary languages, with performance on both tasks on a "
+    },
+    {
+      "context_id": "W14-1610_N13-1008_1",
+      "paper_id": "N13-1008",
+      "citing_id": "W14-1610",
+      "titulo": "Relation Extraction with Matrix Factorization and Universal Schemas",
+      "tema": "Extracción de información",
+      "contexto": "n the other hand, separating any element from this cluster removes a valid implication. Entailment, however, can capture the fact that both beverages imply caffeine, but not one another. Also related, TARGETCIT try to generalize over open IE extractions by combining knowledge from Freebase and globally predicting which unobserved propositions are true. In contrast, our work identifies inference relations bet"
+    },
+    {
+      "context_id": "E14-1062_N13-1014_0",
+      "paper_id": "N13-1014",
+      "citing_id": "E14-1062",
+      "titulo": "Learning a Part-of-Speech Tagger from Two Hours of Annotation",
+      "tema": "Recursos y evaluación",
+      "contexto": " considerations need to be given for effective typesupervision. In addition, significant manual work might be required to ensure the quality of lexicons. To compare type- and token-supervised tagging, TARGETCIT performed a set of experiments by conducting each type of annotation for two hours. They showed that for lowresource languages, a tag-dictionary can be reasonably effective if label propagation (OTHER"
+    },
+    {
+      "context_id": "P14-1012_P13-1078_0",
+      "paper_id": "P13-1078",
+      "citing_id": "P14-1012",
+      "titulo": "Additive Neural Networks for Statistical Machine Translation",
+      "tema": "Traducción automática",
+      "contexto": "slation models. OTHERCIT presented a joint language and translation model based on a recurrent neural network which predicts target words based on an unbounded history of both source and target words. TARGETCIT went beyond the log-linear model for SMT and proposed a novel additive neural networks based translation model, which overcome some of the shortcomings suffered by the log-linear model: linearity and "
+    },
+    {
+      "context_id": "W14-2614_P10-1141_0",
+      "paper_id": "P10-1141",
+      "citing_id": "W14-2614",
+      "titulo": "A study of Information Retrieval weighting schemes for sentiment analysis",
+      "tema": "Análisis de sentimientos",
+      "contexto": "s of tf-idf exist (OTHERCIT). The purpose of this paper is not to perform an exhaustive comparison of existing weighting schemes, and hence we do not list them here. Interested readers are directed to TARGETCIT and OTHERCIT for comprehensive reviews of the different schemes. In the present work, we propose a simple but novel supervised method to adjust the term frequency portion in tf-idf by assigning a cred"
+    },
+    {
+      "context_id": "W14-1504_P11-1052_0",
+      "paper_id": "P11-1052",
+      "citing_id": "W14-1504",
+      "titulo": "A Class of Submodular Functions for Document Summarization",
+      "tema": "Resumen automático",
+      "contexto": " Computational Linguistics we present the algorithm used for the framework and in Sec. 2.2 we discuss a typical sentence similarity measure, later to be used as a baseline. 2.1 Submodular Optimization TARGETCIT formulated the problem of extractive summarization as an optimization problem using monotone nondecreasing submodular set functions. A submodular function F on the set of sentences V satisfies the fol"
+    },
+    {
+      "context_id": "P14-1091_P03-1003_0",
+      "paper_id": "P03-1003",
+      "citing_id": "P14-1091",
+      "titulo": "A Noisy-Channel Approach to Question Answering",
+      "tema": "Preguntas y diálogo",
+      "contexto": "method for factoid QA. But MT in there work means to translate questions into nbest translations, which are used for finding similar sentences in the document collection that probably contain answers. TARGETCIT have developed a noisy-channel model for QA, which explains how a sentence containing an answer to a given question can be rewritten into that question through a sequence of stochastic operations. Com"
+    },
+    {
+      "context_id": "P14-1127_P08-1084_0",
+      "paper_id": "P08-1084",
+      "citing_id": "P14-1127",
+      "titulo": "Unsupervised Multilingual Learning for Morphological Segmentation",
+      "tema": "Sintaxis y morfología",
+      "contexto": "tion (Durrett and DeOTHERCIT). Next, there is work on minimally supervised methods that use available resources such as dictionaries, bitexts, and other additional morphological annotations (OTHERCIT; TARGETCIT . At the other extreme, we find unsupervised methods that learn morphology models from unannotated data (OTHERCIT). The work we present in this paper makes no use of any morphological annotations what"
+    },
+    {
+      "context_id": "Q14-1023_P00-1065_0",
+      "paper_id": "P00-1065",
+      "citing_id": "Q14-1023",
+      "titulo": "Automatic Labeling of Semantic Roles",
+      "tema": "Semántica",
+      "contexto": "ties. To capture such effects, we count the frequency of occurrence with the POS categories ajdective, adverb, noun and verb. Grammatical Features Grammatical role is a strong predictor of semantics ( TARGETCIT . For instance, the subject of transitive verbs is more likely to refer to an animate entity than a noun chosen at random. Syntactic context also predicts verb semantics (OTHERCIT). We thus count the "
+    },
+    {
+      "context_id": "P14-5011_D12-1042_0",
+      "paper_id": "D12-1042",
+      "citing_id": "P14-5011",
+      "titulo": "Multi-instance Multi-label Learning for Relation Extraction",
+      "tema": "Extracción de información",
+      "contexto": "de is intended for problems which require a pair of texts as input, e.g. a pair of sentences to be classified as paraphrase or non-paraphrase. It represents a special case of multi-instance learning ( TARGETCIT , in which a document contains exactly two instances. Considering the outlined learning approaches and feature modes, we have summarized typical scenarios in supervised learning on textual data in Tab"
+    },
+    {
+      "context_id": "W14-6105_D12-1127_0",
+      "paper_id": "D12-1127",
+      "citing_id": "W14-6105",
+      "titulo": "Wiki-ly Supervised Part-of-Speech Tagging",
+      "tema": "Recursos y evaluación",
+      "contexto": " out-of-vocabulary words based on their morphology this allowed them to achieve a 10% reduction in the error rate of parsing. External lexica have also been used to improve out-of-domain PoS tagging ( TARGETCIT . 2.3 Word clusters In order to reduce the amount of annotated data to train a dependency parser, OTHERCIT used word clusters computed from unlabelled data as features for training a parser. The same "
+    },
+    {
+      "context_id": "W14-4001_D13-1141_1",
+      "paper_id": "D13-1141",
+      "citing_id": "W14-4001",
+      "titulo": "Bilingual Word Embeddings for Phrase-Based Machine Translation",
+      "tema": "Traducción automática",
+      "contexto": "corpus. Our approach is simple, focusing on the preprocessing step of preparing the phrase corpus, and therefore it can be used with different existing frameworks that were developed for word vectors. TARGETCIT learn bilingual word embeddings by designing an objective function that combines unsupervised training with bilingual constraints based on word alignments. Similar to our work, they compute an additio"
+    },
+    {
+      "context_id": "S14-2058_S14-2004_1",
+      "paper_id": "S14-2004",
+      "citing_id": "S14-2058",
+      "titulo": "SemEval-2014 Task 4: Aspect Based Sentiment Analysis",
+      "tema": "Análisis de sentimientos",
+      "contexto": "nt polarity in tweets, and asserted that majority of people tend to express similar sentiments towards same topics, especially in the case of positive sentiments. The baseline approach for this task ( TARGETCIT also associates polarity with aspect terms. Therefore, we also consider aspect term as a potential feature. Our approach for this task is based on our observation of the data, with a provenance of the"
+    },
+    {
+      "context_id": "D14-1196_P14-2052_0",
+      "paper_id": "P14-2052",
+      "citing_id": "D14-1196",
+      "titulo": "Single Document Summarization based on Nested Tree Structure",
+      "tema": "Resumen automático",
+      "contexto": "ts are believed to be highly beneficial for generating informative and coherent summaries. Several discoursebased summarization methods have been developed, such as (OTHERCIT; Daum´e III and OTHERCIT; TARGETCIT . Moreover, the current best ROUGE score for the summarization benchmark data of the RSTdiscourse Treebank (OTHERCIT) has been provided by (OTHERCIT), whose method also utilizes discourse trees. Thus,"
+    },
+    {
+      "context_id": "W14-4344_P13-1046_0",
+      "paper_id": "P13-1046",
+      "citing_id": "W14-4344",
+      "titulo": "Discriminative state tracking for spoken dialog systems",
+      "tema": "Preguntas y diálogo",
+      "contexto": "ctured model can depend on the state of the previous turn, which we call transitional features. It is worth noting that stationary discriminative model can include features built from dialog history ( TARGETCIT . The major difference in utilizing this information from our approach is that by explicitly assuming the Markovian dependency, the structured model is able to exploit the whole probabilistic dialog s"
+    },
+    {
+      "context_id": "W14-5302_P07-2052_0",
+      "paper_id": "P07-2052",
+      "citing_id": "W14-5302",
+      "titulo": "Minimally Lexicalized Dependency Parsing",
+      "tema": "Sintaxis y morfología",
+      "contexto": "et for all four languages. As these generalized tags preserve information not found in EN, they were fed into the parser. (hyper-)lemma Lexicalization is utterly important for the dependency parsing ( TARGETCIT , but to generalize over specifics of historical language varieties, hyperlemmatization needs to be performed. Similar to OTHERCIT, we use projected English words as hyperlemmas and feed them into the"
+    },
+    {
+      "context_id": "P14-1114_Q13-1015_0",
+      "paper_id": "Q13-1015",
+      "citing_id": "P14-1114",
+      "titulo": "Combined Distributional and Logical Semantics",
+      "tema": "Semántica",
+      "contexto": " Combining logical and distributional methods using probabilistic logic There are a few recent attempts to combine logical and distributional representations in order to obtain the advantages of both. TARGETCIT use distributional information to determine word senses, but still produce a strictly logical semantic representation that does not address the “graded” nature of linguistic meaning that is important "
+    },
+    {
+      "context_id": "Q14-1037_W03-0434_0",
+      "paper_id": "W03-0434",
+      "citing_id": "Q14-1037",
+      "titulo": "A Robust Risk Minimization based Named Entity Recognition System",
+      "tema": "Extracción de información",
+      "contexto": " We define the features of a span to be the concatenation of standard NER surface features associated with each token in that chunk. We use surface token features similar to those from previous work ( TARGETCIT ; OTHERCIT): for tokens at offsets of {−2, −1, 0, 1, 2} from the current token, we fire features based on 1) word identity, 2) POS tag, 3) word class (based on capitalization, presence of numbers, suf"
+    },
+    {
+      "context_id": "W14-1702_N12-1067_0",
+      "paper_id": "N12-1067",
+      "citing_id": "W14-1702",
+      "titulo": "Better Evaluation for Grammatical Error Correction",
+      "tema": "Recursos y evaluación",
+      "contexto": "The ranking performance of these two models was evaluated on the 10-best hypotheses generated by the SMT system for each sentence in the development set. Table 1 shows the results from the M2 Scorer ( TARGETCIT , the official scorer for the shared task that, unlike previous versions, weights precision twice as much as recall. Results show that using Microsoft’s Web LM yields better performance, which is unsu"
+    },
+    {
+      "context_id": "W14-3333_P02-1040_0",
+      "paper_id": "P02-1040",
+      "citing_id": "W14-3333",
+      "titulo": "a Method for Automatic Evaluation of Machine Translation",
+      "tema": "Traducción automática",
+      "contexto": "combinations for evaluation of English-to-Spanish are so low that there is not enough evidence to conclude they are any better than a random coin toss. 1 Introduction Automatic metrics, such as BLEU ( TARGETCIT , are widely used in machine translation (MT) as a substitute for human evaluation. Such metrics commonly take the form of an automatic comparison of MT output text with one or more human reference tr"
+    },
+    {
+      "context_id": "S14-2053_N10-1122_0",
+      "paper_id": "N10-1122",
+      "citing_id": "S14-2053",
+      "titulo": "An Unsupervised Aspect-Sentiment Model for Online Reviews",
+      "tema": "Análisis de sentimientos",
+      "contexto": "ent polarity within a single domain. As an example, for the restaurant domain cheap is usually positive with respect to food, but it denotes a negative polarity when discussing the decor or ambiance ( TARGETCIT . A key task of aspect based sentiment analysis is to extract aspects of entities and determine the sentiment corresponding to aspect terms that have been commented in review document. In recent times"
+    },
+    {
+      "context_id": "D14-1196_D13-1158_4",
+      "paper_id": "D13-1158",
+      "citing_id": "D14-1196",
+      "titulo": "Single-Document Summarization as a Tree Knapsack Problem",
+      "tema": "Resumen automático",
+      "contexto": " Overview of our proposed method. In the parser training phase, the parser is trained on the DEP-DTs, and in the summarization phase, the document is directly parsed into the DEP-DT. (b) Overview of ( TARGETCIT . In the parser training phase, the parser is trained on RST-DTs, and in the summarization phase, the document is parsed into the RST-DT, and then transformed into the DEP-DT. that could directly gene"
+    },
+    {
+      "context_id": "W14-5401_P97-1035_0",
+      "paper_id": "P97-1035",
+      "citing_id": "W14-5401",
+      "titulo": "PARADISE: A Framework for Evaluating Spoken Dialogue Agents",
+      "tema": "Preguntas y diálogo",
+      "contexto": "trics that are used in the evaluation of dialogue systems to describe the cost of a dialogue, such as the task completion rate, the number of utterances, the completion time and the number of errors ( TARGETCIT . In the following we describe two experiments we performed with this setup so far. In the first experiment participants completed a series of tasks. In the second experiment, participants also comple"
+    },
+    {
+      "context_id": "D14-1122_P14-1125_0",
+      "paper_id": "P14-1125",
+      "citing_id": "D14-1122",
+      "titulo": "Character-Level Chinese Dependency Parsing",
+      "tema": "Sintaxis y morfología",
+      "contexto": "ing (OTHERCIT). In recent years, there has been growing interests in dependency arc prediction in Chinese (OTHERCIT), and researchers have also investigated characterlevel Chinese dependency parsing ( TARGETCIT . However, even though the above methods all have merits, the results are reported only on standard newswire based Chinese Treebank (e.g. from People’s Daily (OTHERCIT)), and it is unclear how they wo"
+    },
+    {
+      "context_id": "E14-1054_P13-2078_0",
+      "paper_id": "P13-2078",
+      "citing_id": "E14-1054",
+      "titulo": "Measuring semantic content in distributional vectors",
+      "tema": "Semántica",
+      "contexto": " also the source corpus for our context vectors. This measure is harsher than Widdows negation, which decreases the value of common features but does not remove them completely. 3.4 Generality Measure TARGETCIT experiment with hypernym detection using a generality measure. They measure the Kullback-Leibler (KL) divergence (Eq. 5) between the probability distribution over context words for a term A, and the b"
+    },
+    {
+      "context_id": "J14-2008_W09-3302_0",
+      "paper_id": "W09-3302",
+      "citing_id": "J14-2008",
+      "titulo": "Named Entity Recognition in Wikipedia",
+      "tema": "Extracción de información",
+      "contexto": "is a popular ubiquitous source of corpus data for information extraction because of its size, currency, rich semi-structured content, diverse topics, and closer resemblance to web text than newswire ( TARGETCIT ; OTHERCIT). 495 Computational Linguistics Volume 40, Number 2 and OTHERCIT suggested enriching the NEs in Arabic WordNet by using an ontology-based method. This is used in the query expansion stage o"
+    },
+    {
+      "context_id": "P14-1134_P13-2131_0",
+      "paper_id": "P13-2131",
+      "citing_id": "P14-1134",
+      "titulo": "Smatch: an Evaluation Metric for Semantic Feature Structures",
+      "tema": "Recursos y evaluación",
+      "contexto": " AMR parsing. The system is based on a statistical model whose parameters are trained discriminatively using annotated sentences in the AMR Bank corpus (OTHERCIT). We evaluate using the Smatch score ( TARGETCIT , establishing a baseline for future work. The core of JAMR is a two-part algorithm that first identifies concepts using a semi-Markov model and then identifies the relations that obtain between these"
+    },
+    {
+      "context_id": "D14-1061_E12-1014_0",
+      "paper_id": "E12-1014",
+      "citing_id": "D14-1061",
+      "titulo": "Toward Statistical Machine Translation without Parallel Corpora",
+      "tema": "Traducción automática",
+      "contexto": "rst to learn a full MT system using only non parallel data through decipherment. However, the performance of such systems is much lower compared with those trained with parallel data. In another work, TARGETCIT show that, given a phrase table, it is possible to estimate parameters for a phrase-based MT system from non parallel data. Given that we often have some parallel data, it is more practical to improve"
+    }
+  ]
+}
