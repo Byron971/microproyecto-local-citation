@@ -14,3 +14,12 @@ test('assets y API no se convierten en HTML aunque no existan', () => {
     assert.equal(context.handler({ request: { uri } }).uri, uri);
   }
 });
+
+test('el catálogo de modelos tiene índice propio y sus descargas no se reescriben a React', () => {
+  for (const uri of ['/models', '/models/']) {
+    assert.equal(context.handler({ request: { uri } }).uri, '/models/index.html');
+  }
+  for (const uri of ['/models/releases/v1/modelo-M.zip', '/models/releases/v1/manifest.json', '/models/no-existe']) {
+    assert.equal(context.handler({ request: { uri } }).uri, uri);
+  }
+});

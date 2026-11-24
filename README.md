@@ -1,532 +1,429 @@
-# Recomendación Local de Citas Académicas
+# Análisis y recomendación local de citas académicas
 
-## Descripción
+Aplicación académica que ayuda a explorar cómo se utiliza una referencia dentro de un artículo científico. A partir de un contexto de cita en inglés y un artículo citado, recupera tres fragmentos relacionados y predice la función de la cita en nueve categorías.
 
-Cuando una persona escribe un artículo académico necesita identificar trabajos previos que respalden una afirmación concreta. Encontrar la referencia adecuada entre miles de publicaciones puede requerir búsquedas repetitivas por palabras clave y revisión manual de numerosos documentos.
+El proyecto del Grupo 19 de la Maestría en Inteligencia Artificial de la Universidad de los Andes reúne una **aplicación web**, sus servicios de inferencia y los experimentos que sustentan su desarrollo. También conserva el microproyecto inicial de recomendación de artículos con TF-IDF y un reordenador supervisado.
 
-Este proyecto implementa un prototipo de recomendación local de citas académicas. A partir de un fragmento textual que representa el contexto donde debería aparecer una cita, el sistema recupera y ordena artículos potencialmente relevantes.
+**[Aplicación web](https://proyectocitas-grupo19.click)** · **[Descargar modelos](https://proyectocitas-grupo19.click/models/)** · **[API](https://api.proyectocitas-grupo19.click)** · **[Estado científico](https://api.proyectocitas-grupo19.click/api/analisis-cita-ms/estado)** · **[Ayuda e incidencias](https://github.com/Byron971/microproyecto-local-citation/issues)**
 
-La solución fue desarrollada para la materia Proyecto: Desarrollo de Soluciones y combina procesamiento de lenguaje natural, aprendizaje automático, seguimiento experimental, empaquetamiento de modelos, API, tablero web, contenedores y despliegue en AWS.
+## Contenido
 
-El repositorio incluye además un segundo frente de trabajo: la evaluación comparativa de modelos de lenguaje comerciales y open-weight para la clasificación de la **función de cita** en nueve categorías. Ese frente tiene su propio pipeline de prompts, ejecución, métricas y anotación, y se documenta más abajo.
+- [Qué permite hacer](#qué-permite-hacer)
+- [Acceso para la evaluación](#acceso-para-la-evaluación)
+- [Estado y alcance](#estado-y-alcance)
+- [Arquitectura](#arquitectura)
+- [Ejecución local](#ejecución-local)
+- [Uso de la API](#uso-de-la-api)
+- [Configuración](#configuración)
+- [Pruebas y validación](#pruebas-y-validación)
+- [Despliegue en AWS](#despliegue-en-aws)
+- [Datos y modelos](#datos-y-modelos)
+- [Investigación y resultados](#investigación-y-resultados)
+- [Organización del repositorio](#organización-del-repositorio)
+- [Documentación y colaboración](#documentación-y-colaboración)
 
-Datos de origen:
+## Qué permite hacer
 
-[Local-Citation-Recommendation](https://github.com/nianlonggu/Local-Citation-Recommendation)
+1. Introducir un párrafo en inglés y señalar una cita con una única marca `TARGETCIT`, o cargar un ejemplo de la interfaz.
+2. Buscar el artículo citado por título o identificador y revisar las sugerencias semánticas de SciBERT antes de confirmarlo.
+3. Elegir el clasificador M, S o el comercial, cuando esté habilitado.
+4. Consultar los tres fragmentos recuperados, sus secciones y las puntuaciones de función de cita.
 
----
+Las funciones son: **Background**, **Gap**, **Basis**, **Comparison**, **Application**, **Improvement / Modification**, **Evidence**, **Identification of the Originator** y **Further Reading**.
 
-## Estado del frontend React (integración del 15 de noviembre de 2026)
+La modalidad comercial solicita consentimiento antes de enviar a OpenAI el contexto, el título y el resumen del artículo. Los fragmentos se muestran como apoyo a la lectura. Las puntuaciones de los modelos no son porcentajes de acierto ni probabilidades calibradas.
 
-La carpeta [`frontend/`](frontend/) contiene una interfaz React + Vite con
-vistas de recomendación de artículos, análisis descriptivo y fragmentos Top-3.
-Este frontend se puede ejecutar **localmente**, en una terminal con
-`uv run tablero` (API), y en otra con `npm --prefix frontend ci` seguido de
-`npm --prefix frontend run dev`; abrir `http://localhost:5173`.
+## Acceso para la evaluación
 
-La interfaz distingue tareas y capacidades realmente disponibles:
-- **Recomendación de artículos:** TF-IDF + reordenador lineal supervisado.
-- **Top-3 dentro del citado:** baseline BM25 léxico, NO el SciBERT experimental.
-- **Clasificación de nueve funciones:** NO disponible todavía en la API pública.
+| Dato | Información |
+| --- | --- |
+| Proyecto | Análisis y recomendación local de citas académicas — Grupo 19. |
+| Repositorio | [Byron971/microproyecto-local-citation](https://github.com/Byron971/microproyecto-local-citation). |
+| Aplicación | [proyectocitas-grupo19.click](https://proyectocitas-grupo19.click). |
+| API y clasificadores disponibles | [API](https://api.proyectocitas-grupo19.click) y [catálogo de clasificadores](https://api.proyectocitas-grupo19.click/api/clasificadores). |
+| Integrantes | Carlos Eduardo Duque Lugo; John Byron Arias Sanz; Gabriel Gustavo Pinzón Páez; José María Zambrana Arze; Carlos Alfredo Caicedo Bermúdez. |
 
-La prueba E2E de navegador del frontend emplea respuestas controladas; la
-inferencia científica con checkpoints reales y publicación AWS/CloudFront siguen
-pendientes de integración y validación independientes. Ver
-[`frontend/README.md`](frontend/README.md). Las evidencias históricas del
-microproyecto no deben confundirse con el demostrador final de la tesis.
+La interfaz no solicita una cuenta ni credenciales AWS al usuario. El clasificador comercial requiere consentimiento y está sujeto a la cuota compartida del servicio; las credenciales del proveedor permanecen en el backend. Para probar el flujo sin consumir esa cuota, elegir M o S.
 
----
+**Recorrido de comprobación:** abrir la web, cargar un ejemplo, confirmar un artículo con texto disponible, elegir M o S y ejecutar el análisis. Se esperan tres fragmentos del artículo confirmado y nueve puntuaciones para el clasificador elegido. Revisar también el mensaje de un artículo sin texto preparado y la guía de funciones de la interfaz. El estado HTTP por sí solo no comprueba este recorrido.
 
-## Video de síntesis
+El documento «07 Entregable y criterios de evaluación» exige además un **Word o PDF breve** con nombre del proyecto, integrantes y enlaces al repositorio y a la aplicación. Este README aporta esos datos, pero no sustituye ese entregable. Antes de la franja acordada de evaluación se debe confirmar el acceso al repositorio, mantener los servicios disponibles y repetir el recorrido funcional; si se restringe el acceso, proporcionar al evaluador las instrucciones por el canal de entrega.
 
-Presentación del proyecto en 9 minutos: problema y contexto, modelos construidos,
-demostración del tablero, despliegue y conclusiones.
+## Estado y alcance
 
-**[Ver el video](reportes/reporte03/video_sintesis_entrega3.mp4)** — GitHub lo reproduce
-directamente en el navegador al abrir el archivo.
+Descripción contrastada con el código y los manifiestos del repositorio al **23 de noviembre de 2026**. La disponibilidad de una instalación concreta se consulta en sus endpoints de estado y catálogo.
 
-El guion narrado se conserva en [`docs/video_sintesis_entrega3_literal.md`](docs/video_sintesis_entrega3_literal.md).
+| Componente | Estado y alcance |
+| --- | --- |
+| Interfaz React | Recorrido integrado: contexto → artículo → clasificador → resultados; escritorio y móvil. |
+| Búsqueda de artículos | Sugerencias SciBERT por título y resumen sobre un catálogo de 19.776 artículos. Es una tarea diferente de recuperar fragmentos. |
+| Recuperación de fragmentos | Top-3 con SciBERT dentro del artículo confirmado, cuando dispone de texto preparado. |
+| Clasificación M/S | Dos clasificadores basados en SciBERT, con pesos y manifiestos propios; separados del experimento factorial A4. |
+| Clasificación comercial | GPT-6.1 Sol con definiciones de categorías, consentimiento, cuota diaria y control de concurrencia; aparece solo si está configurado y visible. |
+| Trabajos de análisis | Contrato asíncrono con idempotencia, consulta y cancelación de trabajos en espera. Admite DynamoDB/SQS y un backend en memoria para desarrollo. |
+| Modelo abierto / QLoRA en la web | Suspendido y oculto; su uso experimental para generar etiquetas no implica disponibilidad en la interfaz. |
+| Funciones del microproyecto inicial | Se conservan TF-IDF + reordenador lineal, Top-3 BM25, tablero histórico y sus experimentos. No describen por sí solos el flujo web actual. |
 
----
+El manifiesto del corpus ampliado declara **19.243 artículos preparados**, de los cuales **508** se recortaron a los límites de entrada. Los otros **533** artículos del catálogo no tienen contenido suficiente en ese snapshot. El corpus pequeño incluido en Git sirve para desarrollo; no equivale a toda esa colección.
 
-## Arquitectura general
+El proyecto sigue siendo un prototipo académico. La cobertura del corpus, las clases escasas, la procedencia de las etiquetas y la validación humana incompleta limitan la interpretación de sus predicciones. La disponibilidad técnica del servicio no certifica su calidad científica.
 
-El sistema está compuesto por las siguientes capas:
+## Arquitectura
 
-```text
-Usuario
-   |
-   | HTTP :8080
-   v
-Dashboard web
-Nginx
-   |
-   | /api/*
-   v
-FastAPI
-   |
-   v
-Paquete modelo-citas
-   |
-   +-- Recuperación TF-IDF
-   |
-   +-- Reordenador lineal
-   |
-   v
-Ranking de artículos académicos
+```mermaid
+flowchart LR
+    U[Usuario en el navegador] --> W[React · CloudFront]
+    W --> S3W[S3 privado · archivos web]
+    U --> G[API Gateway]
+    G --> V[VPC Link · ALB interno]
+    V --> A[API general · FastAPI]
+    V --> C[Servicio científico · FastAPI]
+    C --> M[SciBERT · Top-3 y clasificadores M/S]
+    C --> S3M[S3 privado · modelos y corpus]
+    C --> Q[SQS + DynamoDB · trabajos configurados]
+    A --> O[OpenAI API · clasificación comercial]
+    A --> D[DynamoDB · cuota y concurrencia comercial]
 ```
 
-Durante el despliegue con Docker Compose se ejecutan dos contenedores:
+Los dos servicios Python se ejecutan en contenedores Docker sobre **ECS Fargate**; React se distribuye como archivos estáticos desde **S3 y CloudFront**. **ECR** almacena imágenes, **SSM Parameter Store** gestiona referencias y credenciales, **CloudWatch** reúne registros y métricas, y **Route 53 / Certificate Manager** resuelven dominios y HTTPS. **Terraform** describe la infraestructura y **GitHub Actions** valida y publica componentes.
 
-```text
-microproyecto-citas-dashboard
-    Nginx
-    Puerto interno: 80
-    Puerto del host: 8080
+El worker de análisis utiliza los modelos cargados en el servicio científico. Con `MS_JOBS_TABLE` y `MS_JOBS_QUEUE_URL` usa DynamoDB y SQS; sin ambas variables usa memoria, que pierde los trabajos al reiniciar. La respuesta de estado informa el backend efectivo como `cola_trabajos`.
 
-microproyecto-citas-api
-    FastAPI + modelo-citas
-    Puerto interno: 8000
-    Puerto del host: 8000
-```
+## Ejecución local
 
-El dashboard no se comunica con la API mediante la IP pública de la máquina. Nginx utiliza la red interna creada por Docker Compose y redirige las solicitudes `/api/*` hacia:
+### Requisitos
 
-```text
-http://api:8000
-```
+| Entorno | Requisitos |
+| --- | --- |
+| API general e investigación | Git, [uv](https://docs.astral.sh/uv/getting-started/installation/) y Python 3.14, declarado en `pyproject.toml` y `.python-version`. |
+| Interfaz | Node.js ≥ 22.12 y npm; versiones de paquetes fijadas en `frontend/package-lock.json`. |
+| Servicio científico M/S | Entorno separado con PyTorch y dependencias de `requirements/science.txt`; `Dockerfile.ms` fija Python 3.12 y PyTorch 2.6.0 CPU. Requiere pesos, snapshot y corpus preparados. |
+| Contenedores | Docker y Docker Compose. |
+| Operación AWS | AWS CLI, Terraform y permisos sobre los recursos correspondientes. |
 
----
+La instalación de la API general descarga el wheel público `modelo-citas` (aproximadamente 60 MB) desde la URL fijada en `pyproject.toml`; necesita acceso HTTPS. Sus dependencias no incluyen automáticamente el entorno científico M/S.
 
-## Estructura del proyecto
-
-```text
-src/
-    app/
-        backend FastAPI, lectura de insights y archivos estáticos del tablero
-    data/
-        procesamiento de datos y construcción del piloto de función de cita
-    evaluation/
-        métricas de ranking, diagnóstico de negativos, anotación
-        commercial/
-            evaluación de LLM comerciales y open-weight
-    tracking/
-        configuración centralizada de MLflow
-    training/
-        scripts de entrenamiento y cálculo de insights del tablero
-    config.py
-        configuración del experimento
-
-model-package/
-    paquete instalable modelo-citas
-        models/        TF-IDF, reordenador lineal, modelo de citas
-        processing/    features, pares de entrenamiento, validación
-        config/        hiperparámetros del modelo
-        train_pipeline.py
-    tests/
-        pruebas del modelo empaquetado
-
-config/
-    model.yaml                    hiperparámetros del modelo
-    citation_eval.env.example     variables de entorno de los proveedores
-    prompts/                      prompts versionados de función de cita
-
-annotations/
-    citation_function/
-        artefactos de validación manual y gold provisional
-
-data/
-    raw/
-    processed/
-        dashboard_insights.json   único archivo procesado versionado en Git
-
-notebooks/
-    análisis exploratorio
-
-scripts/
-    utilidades de corrida (por ejemplo, open-weight local)
-
-tests/
-    pruebas del repositorio: API, evaluación, proveedores, anotación
-
-docs/
-    documentación de usuario y de los frentes de evaluación
-
-reportes/
-    reportes y evidencias del proyecto
-
-.github/workflows/
-    reporte03.yml            compila y valida el PDF del reporte
-    evaluacion-citas.yml     ejecuta las pruebas del frente de evaluación
-
-Dockerfile
-Dockerfile.dashboard
-docker-compose.yml
-nginx.conf
-pyproject.toml
-uv.lock
-```
-
----
-
-## Separación de responsabilidades
-
-La lógica del modelo vive en un único lugar: el paquete `modelo-citas`. El repositorio no duplica esa lógica, sino que la consume.
-
-```text
-model-package/modelo_citas/     lo que se entrena y se despliega
-    models/tfidf_baseline.py    recuperación TF-IDF
-    models/linear_reranker.py   reordenador lineal
-    models/citation_model.py    modelo de extremo a extremo
-    processing/features.py      features de pares contexto-artículo
-    processing/pairs.py         pares de entrenamiento (random y hard)
-    config/core.py              ModelConfig, hiperparámetros validados
-
-src/                            lo que experimenta, mide y sirve
-    config.py                   ExperimentConfig hereda de ModelConfig
-                                y añade data_dir y output_dir
-    training/                   corridas, MLflow, comparación de variantes
-    evaluation/                 métricas de ranking y diagnóstico
-    app/                        API y tablero
-```
-
-Dos consecuencias prácticas de esta separación:
-
-- `src/config.ExperimentConfig` **hereda** de `modelo_citas.config.core.ModelConfig` en lugar de repetir sus campos, de modo que el artefacto que se mide y el que se despliega aceptan exactamente los mismos hiperparámetros.
-- Los indicadores del tablero se calculan fuera de la API. `src/training/build_insights.py` genera `data/processed/dashboard_insights.json` (requiere `data/raw` y scikit-learn), y `src/app/insights.py` solamente lee ese archivo. Por eso la imagen de la API no necesita el dataset ni las dependencias de cómputo científico.
-- El modelo cruza esa frontera como **wheel publicado**, no como código compartido. `model-package/` es donde se desarrolla y entrena; producción instala el paquete ya construido desde S3 y nunca ve ese directorio.
-
-Para regenerar los insights del tablero:
-
-```bash
-uv run --group research python -m src.training.build_insights
-```
-
----
-
-# Ejecución local
-
-## Requisitos
-
-Para ejecutar el proyecto localmente se recomienda tener instalados:
-
-- Git
-- uv
-- Docker Desktop, si se desea ejecutar la versión contenerizada
-
-Python es administrado por `uv`.
-
----
-
-## 1. Clonar el repositorio
+### 1. Instalar y arrancar la API general
 
 ```bash
 git clone https://github.com/Byron971/microproyecto-local-citation.git
 cd microproyecto-local-citation
+uv sync --locked
+uv run tablero
 ```
 
----
+La API escucha en `http://127.0.0.1:8000`; su documentación interactiva está en `http://127.0.0.1:8000/docs`. Esta ejecución conserva el modelo empaquetado y las rutas del tablero inicial. Sin credenciales AWS utiliza el corpus reducido incluido en Git y no necesita recuperar el dataset de entrenamiento con DVC. Arrancar la API general no carga los pesos M/S.
 
-## 2. Instalar uv
+### 2. Arrancar la interfaz
 
-Linux o macOS:
+En otra terminal, desde la raíz:
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+npm --prefix frontend ci
+npm --prefix frontend run dev
 ```
 
-Windows PowerShell:
+Abrir `http://127.0.0.1:5173`. Vite envía las rutas `/api/analisis-cita-ms` al puerto **8001** y las demás rutas `/api` al **8000**. Para completar el análisis local hay que iniciar también el servicio científico.
 
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
+`VITE_API_BASE_URL`, en `frontend/.env.local`, permite apuntar a otra API si esta autoriza el origen mediante CORS. Las variables `VITE_*` se publican en el navegador: no deben contener claves.
 
----
+### 3. Preparar el servicio científico
 
-## 3. Crear el entorno e instalar dependencias
+M/S requiere los checkpoints `M/model.safetensors` y `S/model.safetensors`, sus manifiestos, el snapshot fijado de SciBERT y el paquete local `recuperacion-densa`. Los inventarios de referencia son [modelos](config/ms_release.json), [corpus](config/corpus_release.json) e [índice de búsqueda](config/catalog_search_release.json). Los pesos no se almacenan en Git.
+
+<details>
+<summary>Instalar el entorno científico y recuperar los modelos externos</summary>
+
+La siguiente instalación reproduce las versiones CPU de `Dockerfile.ms` en **Linux x86-64**; utiliza un entorno separado del Python 3.14 de la API general:
 
 ```bash
-uv sync
+uv venv --python 3.12 .venv-ms
+uv pip install --python .venv-ms/bin/python torch==2.6.0 \
+  --index-url https://download.pytorch.org/whl/cpu
+uv pip install --python .venv-ms/bin/python \
+  -r requirements/science.txt -r requirements/science-constraints.txt
 ```
 
-`uv sync` instala únicamente lo necesario para ejecutar la API y el tablero. Incluye la descarga del wheel `modelo-citas` desde S3, de unos 60 MB, que ya trae el modelo entrenado. Las herramientas de investigación (DVC, MLflow, Jupyter, pandas, scikit-learn, matplotlib) están en el grupo opcional `research`:
+Los modelos son demasiado grandes para almacenarlos en Git. Se publican **dos ZIP, uno por clasificador**, en [el catálogo de descargas](https://proyectocitas-grupo19.click/models/):
+
+- [Modelo M — ZIP](https://proyectocitas-grupo19.click/models/releases/ms-scibert-b8ee47317c29afbc/modelo-M.zip) (1,23 GB).
+- [Modelo S — ZIP](https://proyectocitas-grupo19.click/models/releases/ms-scibert-b8ee47317c29afbc/modelo-S.zip) (1,23 GB).
+- [SHA256SUMS](https://proyectocitas-grupo19.click/models/releases/ms-scibert-b8ee47317c29afbc/SHA256SUMS) e [inventario completo](https://proyectocitas-grupo19.click/models/releases/ms-scibert-b8ee47317c29afbc/manifest.json).
+
+Estas descargas públicas no requieren cuenta AWS. Cada ZIP contiene el checkpoint de una pista, su manifiesto de entrenamiento, el snapshot SciBERT fijado y el manifiesto de recuperación. Los archivos comunes son idénticos en ambos; no incluyen el corpus, datos de entrenamiento ni predicciones individuales.
+
+Desde la raíz del repositorio, descargar ambos ZIP, comprobar sus hashes y extraerlos conservando las rutas internas:
 
 ```bash
-uv sync --group research
+mkdir -p /tmp/modelos-citas
+curl -fL https://proyectocitas-grupo19.click/models/releases/ms-scibert-b8ee47317c29afbc/modelo-M.zip -o /tmp/modelos-citas/modelo-M.zip
+curl -fL https://proyectocitas-grupo19.click/models/releases/ms-scibert-b8ee47317c29afbc/modelo-S.zip -o /tmp/modelos-citas/modelo-S.zip
+curl -fL https://proyectocitas-grupo19.click/models/releases/ms-scibert-b8ee47317c29afbc/SHA256SUMS -o /tmp/modelos-citas/SHA256SUMS
+(cd /tmp/modelos-citas && shasum -a 256 -c SHA256SUMS)
+unzip -o /tmp/modelos-citas/modelo-M.zip -d .
+unzip -o /tmp/modelos-citas/modelo-S.zip -d .
+uv run python scripts/verificar_artefactos_ms.py
 ```
 
-Este grupo es necesario para recuperar datos con DVC, entrenar, evaluar y regenerar los insights del tablero.
+En Linux también se puede verificar con `sha256sum -c SHA256SUMS`. La extracción de ambos ZIP combina los archivos de M y S; los archivos compartidos se sobrescriben con copias idénticas. La API actual carga las dos pistas, por lo que necesita ambos ZIP. El verificador comprueba integridad; la carga e inferencia se comprueban al iniciar el servicio y ejecutar un análisis.
 
----
+Con estos ZIP y el corpus reducido incluido en Git se puede realizar la demostración local sin credenciales AWS. Para recuperar además el **corpus ampliado** y su índice desde la release privada, se necesita acceso autorizado a S3; la aplicación pública permite usar ese corpus sin descargarlo.
 
-## 4. Recuperar los datos con DVC
-
-El proyecto utiliza DVC para versionar los datos. Requiere el grupo `research`.
-
-El remoto predeterminado es:
-
-```text
-publico
-```
-
-Este remoto es de solo lectura y puede utilizarse sin credenciales adicionales.
-
-Ejecutar:
+Con un perfil AWS de lectura ya autorizado, el siguiente procedimiento descarga también los manifiestos de entrenamiento, el snapshot SciBERT, el corpus y el índice, y comprueba tamaño y SHA-256 usando la misma función de arranque de producción. No publica ni entrena modelos:
 
 ```bash
+export AWS_PROFILE=citas-evaluacion
+uv run python - <<'PYTHON'
+import json
+from pathlib import Path
+import boto3
+from scripts.iniciar_ciencia import preparar
+
+raiz = Path.cwd()
+cliente = boto3.client("s3", region_name="us-east-1")
+for nombre in ("ms_release.json", "corpus_release.json", "catalog_search_release.json"):
+    manifiesto = json.loads((raiz / "config" / nombre).read_text())
+    preparar(cliente, manifiesto, raiz)
+PYTHON
+uv run python scripts/verificar_artefactos_ms.py
+```
+
+La alternativa S3 anterior es opcional para los modelos ya descargados por ZIP; se conserva para la reproducción del corpus ampliado y la operación del equipo. El perfil `citas-evaluacion` es un nombre de ejemplo, no una credencial incluida. Puede configurarse mediante el mecanismo de autenticación AWS autorizado por la cuenta; no colocar claves en el README, en `terraform.tfvars` ni en el navegador. El verificador valida integridad, no calidad científica ni una inferencia completa.
+
+</details>
+
+En el entorno científico preparado, iniciar desde la raíz:
+
+```bash
+HF_HOME="$PWD/artifacts/huggingface" \
+  PYTHONPATH=.:packages/recuperacion-densa/src \
+  .venv-ms/bin/python -m uvicorn src.app.science_main:app \
+  --host 127.0.0.1 --port 8001
+```
+
+Este comando presupone que `.venv-ms` contiene las dependencias científicas y que los archivos están en las rutas esperadas por `src/app/ms_config.py`. No descarga ni entrena modelos. Para una instalación aislada de producción, `Dockerfile.ms` y `scripts/iniciar_ciencia.py` definen la descarga desde S3 con el rol AWS y la verificación de tamaño y SHA-256 antes de servir.
+
+El inventario M/S suma aproximadamente **1,76 GB** de archivos únicos, antes del corpus. Cada ZIP incorpora una copia del snapshot base para ser autocontenido; sus tamaños comprimidos y hashes figuran en el catálogo de descargas. Cada checkpoint clasificador ocupa unos **440 MB**. La configuración Terraform del servicio científico parte de **2 vCPU y 6 GiB**, como referencia de despliegue y no como garantía de capacidad o requisito mínimo universal.
+
+**Tiempos y escalabilidad.** El [informe operacional A7](docs/A7_benchmark_operativo_consolidado_20261120.md) reporta medianas de 1,62 s para M y 1,49 s para S en CPU Intel Core i7-12650H, con entradas sintéticas de 512 tokens, tres calentamientos y 30 mediciones secuenciales. Esos tiempos excluyen HTTP, espera y recuperación Top-3. Una comprobación pública del flujo integrado registró 13,046 s para un caso sintético (`artifacts/release-integrated.json`); es una observación puntual, no un promedio ni un tiempo garantizado. Los archivos de evidencia operativa se generan localmente y no todos se distribuyen en Git.
+
+La separación del servicio científico permite asignarle memoria y CPU propias. El navegador consulta trabajos asíncronos para evitar mantener abierta una petición durante todo el cálculo; los límites de cola y concurrencia controlan la admisión. Esto no implica paralelismo ilimitado ni escalado automático: aumentar réplicas o recursos requiere comprobar el estado compartido y medir capacidad, latencia y costos.
+
+### Docker Compose: versión inicial y perfil A4
+
+<details>
+<summary>Ejecutar el tablero histórico y sus perfiles de investigación</summary>
+
+```bash
+docker compose build
+docker compose up -d
+docker compose ps
+docker compose logs --no-color --tail=40 api dashboard
+docker compose down
+```
+
+`docker-compose.yml` levanta la API general en `127.0.0.1:8000` y el tablero Nginx en `127.0.0.1:8080`. Nginx reenvía `/api/*` a `http://api:8000` por la red interna y espera al healthcheck de la API. Los puertos son configurables; ver la sección siguiente.
+
+El wheel entrenado se instala durante el build de `Dockerfile`, sin ejecutar entrenamiento ni DVC. `Dockerfile.dashboard` sirve el tablero estático antiguo; no construye la interfaz React actual ni el servicio M/S.
+
+`docker-compose.top3.yml` añade el corpus de demostración BM25. `docker-compose.science.yml` es el perfil experimental A4: necesita `SCIENCE_HF_CACHE_HOST_PATH`, `SCIENCE_A4_RUNS_HOST_PATH` y `TOP3_CORPUS_HOST_PATH`, con snapshots y checkpoints auténticos. Su configuración reserva hasta 12 GiB. No sustituye a `Dockerfile.ms` ni a los checkpoints M/S del notebook 10.
+
+</details>
+
+## Uso de la API
+
+El servicio científico ofrece `/docs` y `/health/ready` en su puerto local. En AWS, el dominio público distribuye las rutas por el ALB; la ruta `/docs` de la API general no describe necesariamente todas las del servicio científico.
+
+| Método y ruta | Propósito |
+| --- | --- |
+| `GET /api/estado` | Estado de la API general. |
+| `GET /api/clasificadores` | Clasificadores ofrecidos; el comercial depende de configuración. |
+| `GET /api/analisis-cita-ms/estado` | Carga de modelos, cobertura, versiones y backend de trabajos; no ejecuta inferencia. |
+| `POST /api/analisis-cita-ms/recomendar` | Sugerencias de artículos con SciBERT. |
+| `POST /api/analisis-cita-ms/disponibilidad` | Disponibilidad de texto de los artículos. |
+| `POST /api/analisis-cita-ms/trabajos` | Crear o recuperar un análisis mediante clave de idempotencia. |
+| `GET /api/analisis-cita-ms/trabajos/{trabajo_id}` | Consultar el estado y, al terminar, el resultado. |
+| `POST /api/analisis-cita-ms/trabajos/{trabajo_id}/cancelar` | Cancelar un trabajo que aún no se está calculando. |
+| `POST /api/comercial/clasificar` | Clasificación comercial con consentimiento y cuota. |
+
+Ejemplo de solicitud al servicio científico local, con un artículo del corpus incluido:
+
+```bash
+curl -sS -X POST http://127.0.0.1:8001/api/analisis-cita-ms/trabajos \
+  -H 'Content-Type: application/json' \
+  -d '{"contexto":"Earlier work TARGETCIT proposed neural methods for scientific document classification.","paper_id":"W05-0821","clave_idempotencia":"ejemplo-analisis-0001"}'
+```
+
+La respuesta contiene `trabajo_id` y `estado`. Consultar ese identificador mediante GET hasta un estado terminal: `completado`, `fallido`, `expirado` o `cancelado`; durante la espera puede estar `en_cola` o `procesando`. Al completarse, `resultado` contiene Top-3, metadatos del artículo y las salidas de M/S. Reutilizar la misma clave para la misma solicitud evita duplicados; no usarla para otro contexto.
+
+Una admisión nueva devuelve HTTP `202`. Ejemplo ilustrativo de sus campos principales (el identificador real lo genera el servidor):
+
+```json
+{"trabajo_id":"<identificador_devuelto>","estado":"en_cola"}
+```
+
+Para consultar el trabajo, sustituir el identificador por el recibido:
+
+```bash
+curl -sS http://127.0.0.1:8001/api/analisis-cita-ms/trabajos/IDENTIFICADOR_DEVUELTO
+```
+
+Al terminar correctamente, la salida esperada contiene:
+
+| Campo | Contenido esperado |
+| --- | --- |
+| `estado` | `completado`. |
+| `resultado.articulo.paper_id` | `W05-0821` para la entrada del ejemplo. |
+| `resultado.top3` | Tres fragmentos distintos, con identificador, texto, sección y similitud. |
+| `resultado.clasificadores.M` y `.S` | Función predicha, puntuación y distribución entre las nueve categorías. |
+| `resultado.articulo.version_contenido` | Identificador del corpus usado en la consulta. |
+
+La comprobación agregada disponible para ese contexto registró `Background` en ambas pistas y tres fragmentos con IDs `p00007-s001`, `p00012-p00012` y `p00002-p00002`. Estos son resultados de una ejecución concreta con una versión fijada, no una etiqueta humana de referencia; pueden cambiar al actualizar modelos o corpus. El texto original de cada fragmento permanece en la respuesta para que el usuario pueda contrastarlo con el artículo.
+
+La consulta del estado no repite la inferencia. Un trabajo que ya se calcula no se puede cancelar: devuelve `409`. Una cola llena devuelve `429`; un artículo sin texto no puede analizarse. Consultar el detalle del error y `Retry-After` cuando corresponda.
+
+Se mantienen las rutas anteriores `/api/analisis-cita-ms/articulo` y `/api/analisis-cita-ms/articulo/{trabajo_id}` para compatibilidad. Su modo síncrono no es adecuado para operaciones largas detrás del gateway; los clientes nuevos deben usar el contrato de trabajos. Las rutas TF-IDF, BM25, A4 e insights siguen en `src/app/main.py` y pertenecen a sus respectivos backends.
+
+## Configuración
+
+Las rutas y variables se validan en el código; no es necesario editarlo para seleccionar archivos o recursos. No guardar credenciales en Git. La clave comercial pertenece al backend; en AWS se entrega mediante SSM.
+
+| Área | Variables principales |
+| --- | --- |
+| API general | `APP_ENV`, `APP_HOST`, `APP_PORT`, `APP_LOG_LEVEL`, `APP_INSIGHTS_PATH`, `TOP3_CORPUS_PATH`. |
+| Backend histórico | `APP_RECOMMENDER_BACKEND=packaged_tfidf_linear`, `APP_TOP3_BACKEND=bm25_lexical`, `APP_MODEL_DEVICE=cpu`. Cambiar estas variables no activa M/S. |
+| Interfaz | `VITE_API_BASE_URL`; sin definir, usa el proxy de Vite en desarrollo. |
+| M/S y corpus | `MS_ARTIFACTS_DIR`, `MS_SCIBERT_MANIFEST`, `HF_HOME`, `MS_CORPUS_PATH` o `MS_CORPUS_DB`, `MS_CORS_ORIGINS`. |
+| Trabajos persistentes | `MS_JOBS_TABLE` y `MS_JOBS_QUEUE_URL`, ambas juntas; sin ellas se usa memoria. |
+| Límites de trabajos | `MS_COLA_MAX_ACTIVOS=10`, `MS_COLA_ESPERA_MAX_S=900`, `MS_TRABAJO_LEASE_S=120`, `MS_TRABAJO_MAX_INTENTOS=2`, `MS_RESULTADO_RETENCION_S=3600`. |
+| Búsqueda | `MS_SUGERENCIAS_ESPERA_S=15`; `MS_ENABLE_GLOBAL_SEARCH=1` activa una variante experimental que exige su propio índice. |
+| Comercial en la web | `CITAS_COMMERCIAL_ENABLED=1`, `CITAS_COMMERCIAL_VISIBLE=1`, `OPENAI_API_KEY`, `CITAS_COMMERCIAL_LIMIT_TABLE`, `CITAS_COMMERCIAL_DAILY_LIMIT` (10 por defecto). |
+| AWS | `AWS_REGION`, `AWS_PROFILE` cuando se utilice un perfil; en ECS se usan roles de tarea. |
+| Recursos en Terraform | `task_cpu`, `task_memory`, `scientific_task_cpu`, `scientific_task_memory`, `desired_count` y `scientific_desired_count`; `ms_queue_enabled` y `ms_queue_limits` para la cola persistente. |
+| Experimentación | `MLFLOW_TRACKING_URI`; credenciales y modelos de proveedores en `config/citation_eval.env.example`. |
+
+Las variables de modelos del evaluador, como `OPENAI_MODEL`, no cambian el modelo servido por `commercial_router.py`, que fija `gpt-6.1-sol` y el perfil `zero_shot_detailed`.
+
+Compose permite ajustar `API_BIND_HOST`, `API_PUBLISHED_PORT`, `DASHBOARD_BIND_HOST` y `DASHBOARD_PUBLISHED_PORT`. La configuración completa de backend y los indicadores científicos opcionales se encuentran en [settings.py](src/app/settings.py), [ms_config.py](src/app/ms_config.py) y [ms_queue.py](src/app/ms_queue.py).
+
+## Pruebas y validación
+
+```bash
+# Backend completo, incluidos módulos de investigación
+uv sync --locked --group research
+uv run --group research pytest
+
+# Interfaz: pruebas unitarias, compilación y navegador
+npm --prefix frontend test
+npm --prefix frontend run build
+npm --prefix frontend run test:e2e
+```
+
+Las pruebas de navegador habituales usan respuestas controladas. Las pruebas con servicios reales requieren activación explícita; no equivalen a las pruebas con mocks y pueden ejecutar inferencias o consumir cuota comercial.
+
+También se conservan `uv run tox`, `uv run tox -e smoke-model` y `uv run tox -c model-package -e test_package`. El reporte histórico de la Entrega 3 se compila en `reporte03.yml`, con un límite propio de 10 páginas.
+
+Los [workflows de GitHub Actions](.github/workflows/) cubren frontend, backend, contratos de evaluación, corpus, checkpoints, imágenes científicas y Terraform. La publicación y la aplicación de infraestructura son **manuales**: `deploy-api.yml`, `publicar-frontend.yml` y `terraform.yml` requieren sus entradas de confirmación en `main`. Un push no implica un despliegue automático.
+
+## Despliegue en AWS
+
+Terraform administra los servicios y su conectividad. La configuración de referencia está en [terraform.tfvars.example](terraform/terraform.tfvars.example); el constructor de imágenes y los artefactos tienen módulos propios en `terraform/image_builder/` y `terraform/model_artifact/`.
+
+<details>
+<summary>Preparación y operación del despliegue</summary>
+
+Requiere Terraform compatible con [versions.tf](terraform/versions.tf), Docker, AWS CLI, credenciales vigentes y los permisos adecuados. `ecs_role_name` permite utilizar un rol existente (por ejemplo `LabRole` en Academy); vacío permite administrar los roles según la configuración. Los comandos de publicación crean o actualizan recursos y pueden generar cargos.
+
+Para un entorno nuevo, resolver primero el acceso a las releases de corpus que cargará la API. Si se reproduce en otra cuenta, actualizar los manifiestos y los permisos antes de arrancar tareas. La siguiente receta inicia la API general; para esa fase, fijar `scientific_api_enabled = false` en la configuración local. Activar después el servicio científico exige tener publicada su imagen y creada la referencia SSM `/<project_name>/science/image_uri`, que lee `terraform/scientific_api.tf`:
+
+```bash
+cp terraform/terraform.tfvars.example terraform/terraform.tfvars
+# Ajustar región, roles, nombres de recursos y configuración local.
+make init
+make login
+make build
+make push
+make tf-plan
+# Revisar el plan antes de aplicar:
+make tf-apply
+```
+
+`make init` prepara el bucket de estado y ECR. Para otra cuenta, definir nombres propios mediante `TF_STATE_BUCKET`, `TF_STATE_KEY`, `PROJECT_NAME`, `ECR_REPOSITORY`, `AWS_REGION` y, si aplica, `AWS_PROFILE`. Este flujo construye la API general; los modelos M/S privados y la publicación de React requieren sus pasos específicos.
+
+Para reproducir la **aplicación completa**, además de la API general:
+
+1. Preparar los artefactos verificados de la sección [Ejecución local](#ejecución-local). Si se usa otra cuenta, copiar las releases autorizadas a su almacenamiento y actualizar los manifiestos; los buckets de los ejemplos pertenecen a la cuenta del proyecto.
+2. Construir y publicar `Dockerfile.ms` en ECR. La tarea científica necesita lectura de los prefijos S3 de modelos y corpus; la carga ocurre al iniciar, con verificación de integridad.
+3. Configurar `scientific_api_enabled`, las referencias de imagen del servicio y, para trabajos persistentes, `ms_queue_enabled`. Ajustar `ms_queue_limits` y comprobar los permisos de DynamoDB/SQS. La API general y el servicio científico deben corresponder a versiones compatibles del contrato de trabajos.
+4. Configurar los dominios y certificados, el origen permitido por CORS y la URL pública de la API que recibirá React. Para la opción comercial se necesitan también el parámetro SSM de la clave, `commercial_enabled`, `commercial_visible` y su tabla de límites; los permisos de lectura se asignan al backend.
+5. Revisar y aplicar el plan, esperar la salud de los servicios y ejecutar `make publish-frontend`, que obtiene la URL de la API de los outputs de Terraform. Verificar la web con un caso de texto disponible.
+
+La configuración y los permisos dependen de la cuenta; los archivos `terraform.tfvars` y las credenciales se mantienen locales. Una imagen Docker construida correctamente no acredita que las releases privadas sean accesibles ni que el flujo completo esté operativo.
+
+Para publicar versiones de los servicios existentes, consultar `make help` y [make/release.mk](make/release.mk). El flujo usa `release-build-api` o `release-build-ms`, consulta su resultado con `release-build-result`, genera referencias con `release-prepare` y revisa el plan antes de `release-apply`. `release-prepare` guarda las referencias previas en `artifacts/release-rollback.tfvars.json`; aplicar la reversión requiere revisar su plan.
+
+```bash
+make release-prepare
+make release-plan RELEASE_VARS=artifacts/release.tfvars.json
+# Tras revisar los cambios de infraestructura:
+make release-apply
+make release-wait
+make release-confirm
+```
+
+La cola persistente se configura con `ms_queue_enabled` y `ms_queue_limits` en `terraform/ms_jobs.tf`, junto con una imagen que contenga el worker. La existencia de los recursos por sí sola no confirma que el servicio los esté usando.
+
+- `make publish-frontend`: compila React, publica los archivos en S3 e invalida el HTML en CloudFront; no reconstruye modelos.
+- `make release-public-state`: consulta el estado científico sin inferencia.
+- `make release-check`: ejecuta el flujo de análisis y genera evidencia; sí realiza inferencia.
+- `make ms-queue-check`: comprueba DynamoDB/SQS con registros y mensajes de prueba, sin inferencia; requiere permisos AWS.
+- `make release-status`, `make release-events`: consultan servicios y registros.
+
+La documentación de laboratorio en [terraform/README.md](terraform/README.md) conserva detalles del despliegue inicial; para los servicios M/S, comercial y cola, contrastarla con los módulos actuales y las recetas `make/release.mk` y `make/commercial.mk`.
+
+Para detener o retirar recursos, revisar el plan de Terraform de la cuenta correspondiente. `desired_count=0` detiene tareas, pero no elimina costos de otros recursos; `terraform destroy` puede retirar la infraestructura administrada. El estado, ECR, S3 y sus artefactos tienen ciclos de vida propios: no borrarlos como parte de una limpieza genérica.
+
+</details>
+
+## Datos y modelos
+
+Los contextos provienen de [Local-Citation-Recommendation / ACL-200](https://github.com/nianlonggu/Local-Citation-Recommendation); el texto de los artículos citados se prepara a partir de ACL OCL. Los datos de entrenamiento se versionan con DVC. Las releases de producción de modelos y corpus se conservan en S3 privado; los ZIP públicos de M y S se distribuyen mediante CloudFront desde `/models/`, con manifiestos y SHA-256.
+
+<details>
+<summary>Recuperar datos, regenerar derivados y gestionar dependencias</summary>
+
+```bash
+uv sync --locked --group research
 uv run dvc pull
-```
-
-También puede comprobarse el estado mediante:
-
-```bash
 uv run dvc status
 ```
 
-Los archivos principales esperados en `data/raw/` son:
+El remoto de lectura predeterminado es `publico`, definido en `.dvc/config`; también existen remotos de equipo para escritura. Los accesos privados se configuran localmente. Los archivos crudos esperados son `contexts.json`, `papers.json`, `train.json`, `val.json` y `test.json`, bajo `data/raw/`; las referencias principales son `data/raw.dvc` y `data/processed.dvc`.
 
-```text
-contexts.json
-papers.json
-train.json
-val.json
-test.json
-```
-
----
-
-## 5. Ejecutar pruebas
-
-Las pruebas están repartidas según la separación de responsabilidades:
-
-```text
-model-package/tests/   pruebas del modelo empaquetado
-tests/                 pruebas del repositorio: API, evaluación, proveedores
-```
-
-Ejecutar toda la suite desde la raíz recoge ambos directorios y requiere el grupo `research`, porque las pruebas de entrenamiento importan MLflow y scikit-learn:
+Alternativa manual: obtener el repositorio de datos original y copiar esos archivos a `data/raw/`, conservando el origen y los splits. Esto no reproduce automáticamente el estado DVC ni prepara el corpus M/S.
 
 ```bash
-uv run --group research pytest
+uv run --group research python -m src.data.make_processed
+uv run --group research python -m src.training.export_top100
+uv run --group research python -m src.training.build_insights --force
 ```
 
-Solo las pruebas del paquete del modelo:
+`data/processed/dashboard_insights.json` se versiona porque alimenta `/api/insights` del tablero inicial; no se recalcula al atender consultas.
+
+`pyproject.toml` declara dependencias y `uv.lock` fija las versiones. Usar `uv add`, `uv remove`, `uv sync` y `uv lock` para gestionarlas. `requirements.txt` es un artefacto de compatibilidad, regenerable con:
 
 ```bash
-uv run tox -c model-package -e test_package
+uv export --locked --no-dev --format requirements.txt --no-hashes --output-file requirements.txt
 ```
 
-Suite completa en un entorno aislado:
+El servicio científico mantiene sus dependencias separadas en `requirements/science.txt` y `requirements/science-constraints.txt`; instalar el grupo `research` no equivale a instalar ese entorno.
 
-```bash
-uv run tox
-```
+</details>
 
-Prueba rápida del modelo supervisado:
+<details>
+<summary>Modelo empaquetado TF-IDF y publicación de un wheel</summary>
 
-```bash
-uv run tox -e smoke-model
-```
-
----
-
-# Análisis exploratorio
-
-El análisis exploratorio puede abrirse con:
-
-```bash
-uv run jupyter notebook notebooks/01_exploracion_datos.ipynb
-```
-
-El tablero también contiene una sección denominada:
-
-```text
-Estudio de los datos
-```
-
-que presenta indicadores y análisis del corpus utilizado.
-
----
-
-# Línea base
-
-La línea base utiliza:
-
-```text
-TF-IDF + similitud coseno
-```
-
-Los artículos y los contextos se representan mediante vectores TF-IDF y se ordenan según su similitud.
-
-Ejecutar:
-
-```bash
-uv run python -m src.training.run_tfidf_baseline
-```
-
-Ejemplo con parámetros:
-
-```bash
-uv run python -m src.training.run_tfidf_baseline --k 5 --limit 200
-```
-
-Referencia obtenida sobre validación para K=10:
-
-```text
-Recall@10 = 0,2541
-MRR@10    = 0,1249
-```
-
----
-
-# Modelo supervisado
-
-El modelo supervisado implementa un reordenador lineal.
-
-La arquitectura utilizada es:
-
-```text
-Recuperación TF-IDF
-        |
-        v
-Top-N candidatos
-        |
-        v
-Features de similitud y longitud
-        |
-        v
-StandardScaler
-        |
-        v
-LogisticRegression
-        |
-        v
-Ranking final
-```
-
-Los hiperparámetros se encuentran en:
-
-```text
-config/model.yaml
-```
-
-El entrenamiento puede ejecutarse mediante:
-
-```bash
-uv run python -m src.training.run_linear_reranker train
-```
-
-La evaluación puede ejecutarse con:
-
-```bash
-uv run python -m src.training.run_linear_reranker evaluate --model artifacts/<run_id>/model.joblib --split val
-```
-
-Los experimentos compararon, entre otras configuraciones, dos estrategias de generación de negativos:
-
-```text
-random
-hard
-```
-
-La estrategia seleccionada para el modelo final fue:
-
-```text
-random
-```
-
-porque obtuvo mejores resultados de ranking en validación.
-
----
-
-# Seguimiento experimental con MLflow
-
-Los experimentos se gestionan mediante:
-
-```text
-src/tracking/mlflow_setup.py
-```
-
-El nombre unificado del experimento es:
-
-```text
-recomendacion-local-citas
-```
-
-Por defecto, si no existe un servidor remoto, MLflow utiliza una base SQLite local:
-
-```text
-mlflow.db
-```
-
-y guarda artefactos en:
-
-```text
-mlartifacts/
-```
-
-Para utilizar MLflow localmente:
-
-```bash
-uv run mlflow ui --backend-store-uri sqlite:///mlflow.db
-```
-
-Luego abrir:
-
-```text
-http://localhost:5000
-```
-
----
-
-## Variable de entorno MLFLOW_TRACKING_URI
-
-El proyecto soporta un servidor MLflow remoto mediante la variable:
-
-```text
-MLFLOW_TRACKING_URI
-```
-
-Ejemplo Linux:
-
-```bash
-export MLFLOW_TRACKING_URI=http://<IP_SERVIDOR>:8050
-```
-
-Ejemplo PowerShell:
-
-```powershell
-$env:MLFLOW_TRACKING_URI="http://<IP_SERVIDOR>:8050"
-```
-
-Si esta variable no está definida, el proyecto utiliza automáticamente el backend SQLite local.
-
-`MLFLOW_TRACKING_URI` se utiliza para entrenamiento y seguimiento de experimentos.
-
-No es una variable obligatoria para ejecutar la API o el dashboard contenerizados.
-
----
-
-# Paquete del modelo
-
-El modelo utilizado por la aplicación se distribuye como un paquete instalable denominado:
-
-```text
-modelo-citas
-```
-
-Su código fuente vive en `model-package/`, pero el proyecto **no lo instala desde ahí**: lo descarga como wheel ya entrenado desde el bucket S3 del proyecto.
-
-```toml
-[tool.uv.sources]
-modelo-citas = { url = "https://ceduque-modelo-citas-wheels.s3.amazonaws.com/wheels/modelo_citas-0.2.0-py3-none-any.whl" }
-```
-
-El wheel lleva el `.pkl` dentro, y `uv.lock` fija su hash SHA-256. Como consecuencia, para ejecutar la API no hacen falta `model-package/`, ni el dataset, ni DVC, ni las dependencias de entrenamiento: basta `pyproject.toml` y `uv.lock`.
-
-El bucket concede únicamente `s3:GetObject` sobre el prefijo `wheels/`, así que la descarga no requiere credenciales.
-
-Ejemplo de uso:
+`model-package/` contiene el código de `modelo-citas`: recuperación TF-IDF, características de pares contexto–artículo y reordenamiento con regresión logística. La API general consume el wheel publicado de versión 0.2.0, con el artefacto entrenado incluido y el hash fijado en `uv.lock`. La URL vigente se toma de `pyproject.toml`, no de ejemplos antiguos de buckets.
 
 ```python
 from modelo_citas import make_prediction
@@ -535,907 +432,128 @@ resultado = make_prediction(
     context="Recent work on neural machine translation with attention",
     top_k=5,
 )
-
 print(resultado["predictions"])
 ```
 
-Cada recomendación incluye información como:
+La salida incluye posición, identificador, título, resumen, puntuación del reordenador y similitud TF-IDF. El reordenador combina características de similitud y longitud, `StandardScaler` y `LogisticRegression` sobre candidatos TF-IDF. La fuente de entrenamiento y empaquetamiento vive en el paquete; la experimentación en `src/training/` lo consume. La imagen de la API instala el wheel y no necesita entrenar ni incluir `model-package/` o el dataset crudo.
 
-```text
-posicion
-paper_id
-titulo
-resumen
-similitud
-similitud_tfidf
-```
-
----
-
-## Publicar una versión nueva del modelo
-
-Entrenar es responsabilidad de quien produce el modelo, no de quien lo consume. El ciclo completo es:
-
-**1. Subir la versión.** Cada reentrenamiento es una versión nueva; un wheel publicado nunca se sobrescribe.
+Para publicar una versión nueva: actualizar `model-package/modelo_citas/VERSION`, recuperar los datos y ejecutar:
 
 ```bash
-echo "0.3.0" > model-package/modelo_citas/VERSION
-```
-
-**2. Entrenar.** Lee `papers.json`, `contexts.json` y `train.json` desde `data/raw/`, así que los datos deben estar recuperados con DVC.
-
-```bash
-uv run --group research dvc pull
 uv run tox -c model-package -e train
-```
-
-También puede apuntarse a otra ubicación de los datos:
-
-```bash
-uv run tox -c model-package -e train -- /ruta/a/data/raw
-```
-
-El artefacto queda en `model-package/modelo_citas/trained/`, con el nombre de la versión del paquete (por ejemplo `modelo-citas-output0.3.0.pkl`). Ese `.pkl` no se versiona en Git.
-
-**3. Construir el wheel.** `MANIFEST.in` incluye `trained/*.pkl`, de modo que el modelo viaja dentro.
-
-```bash
+# Con datos en otra ruta: añadir -- /ruta/a/data/raw al comando anterior.
 uv run tox -c model-package -e build
-unzip -l model-package/dist/modelo_citas-0.3.0-py3-none-any.whl | grep pkl
 ```
 
-**4. Publicar en S3.**
+El entrenamiento escribe `model-package/modelo_citas/trained/modelo-citas-output<VERSION>.pkl`; el build lo incluye en el wheel de `model-package/dist/`. Publicar ese wheel en el almacenamiento autorizado, actualizar `[tool.uv.sources]` de `pyproject.toml` y ejecutar `uv lock`. No sobrescribir una versión publicada: su contenido y su hash deben permanecer estables.
+
+Para desarrollar el paquete, `uv pip install -e model-package` permite una instalación editable y `uv run tox -c model-package -e test_package` ejecuta sus pruebas. Ver [model-package/README.md](model-package/README.md).
+
+</details>
+
+## Investigación y resultados
+
+El repositorio distingue tres tareas: recomendar un **artículo**, recuperar **fragmentos dentro del artículo citado** y clasificar la **función de una cita**. Sus datasets, métricas y modelos no son intercambiables.
+
+La evaluación científica compara SciBERT y SPECTER con contexto + título/resumen (A) o contexto + fragmentos/sección (B), además de variantes AB. Las pistas M/S del demostrador proceden de otro protocolo; sus pesos y métricas no deben atribuirse automáticamente a las cuatro configuraciones A4.
+
+La validación humana continúa siendo parcial. Los pilotos históricos de 20 casos, incluidos `annotations/citation_function/test_gold.jsonl` y `provisional_test_gold.jsonl`, se usaron en desarrollo y **no son un Test Gold final independiente**. El conjunto posterior de 1.533 citas registra fuentes humanas y automáticas; su existencia no demuestra la meta de revisión humana del 15 %, el balance de 2.000 ejemplos por clase ni una doble anotación completa. La relevancia de fragmentos requiere su propia referencia, separada de la etiqueta de función. En el experimento A4, la cobertura de la entrada B fue cercana al 54 %, por debajo del umbral interno del 60 %; esto no es la cobertura del corpus operativo ampliado. Una persona y un asistente de IA no constituyen dos anotadores humanos independientes.
+
+<details>
+<summary>Reproducir experimentos y evaluaciones</summary>
+
+**Exploración y ranking del microproyecto inicial:**
 
 ```bash
-aws s3 cp model-package/dist/modelo_citas-0.3.0-py3-none-any.whl \
-  s3://ceduque-modelo-citas-wheels/wheels/ \
-  --content-type application/zip
+uv run --group research jupyter notebook notebooks/01_exploracion_datos.ipynb
+uv run --group research python -m src.training.run_tfidf_baseline --k 5 --limit 200
+uv run --group research python -m src.training.run_linear_reranker train
+uv run --group research python -m src.training.run_linear_reranker evaluate \
+  --model artifacts/<run_id>/model.joblib --split val
 ```
 
-**5. Apuntar el proyecto a la versión nueva.** Actualizar la URL en `[tool.uv.sources]` de `pyproject.toml` y volver a fijar el hash:
+`config/model.yaml` fija hiperparámetros. Se compararon negativos `random` y `hard`; el modelo inicial seleccionó `random`. Como referencia histórica de TF-IDF en validación a K=10 se reportaron Recall@10 = 0,2541 y MRR@10 = 0,1249.
+
+**Seguimiento con MLflow:** `src/tracking/mlflow_setup.py` configura el experimento `recomendacion-local-citas`. Sin `MLFLOW_TRACKING_URI`, utiliza `sqlite:///mlflow.db` y `mlartifacts/`.
 
 ```bash
-uv lock
+uv run --group research mlflow ui --backend-store-uri sqlite:///mlflow.db
 ```
 
-A partir de ahí, cualquier `uv sync` o `docker compose build` toma el modelo nuevo.
+Abrir `http://localhost:5000`. Para un servidor remoto, definir `MLFLOW_TRACKING_URI=http://<servidor>:8050` (`export` en Bash o `$env:MLFLOW_TRACKING_URI="..."` en PowerShell). No es necesaria para servir la API.
 
----
-
-## Trabajar sobre el código del modelo
-
-Mientras se modifica `model-package/`, conviene instalarlo en modo editable para no tener que publicar un wheel en cada iteración:
+**Evaluación de modelos comerciales y abiertos:** los prompts versionados están en `config/prompts/citation_function_prompts.json`. Configurar los proveedores del modo elegido a partir de `config/citation_eval.env.example`: `OPENAI_*`, `GEMINI_*`, `COHERE_*` u `OPENWEIGHT_*`. Los modos son `openai`, `gemini`, `cohere`, `openweight`, `commercial` (OpenAI + Gemini) y `all` (OpenAI + Gemini + open-weight).
 
 ```bash
-uv pip install -e model-package
-```
-
-Las pruebas del paquete corren directamente sobre el fuente y no dependen de la URL:
-
-```bash
-uv run tox -c model-package -e test_package
-```
-
-El bucket es de lectura pública, así que cualquiera con la URL puede descargar el modelo. Para un modelo que deba permanecer privado, el camino es dejar el bucket cerrado y darle a la instancia un rol IAM con `GetObject`, lo que ya no se resuelve con una URL directa en `pyproject.toml`.
-
----
-
-# API
-
-El backend utiliza FastAPI.
-
-Entre sus endpoints principales se encuentran:
-
-```text
-GET  /api/estado
-GET  /api/insights
-GET  /api/ejemplo
-POST /api/recomendar
-```
-
-Cuando se ejecuta localmente, la documentación automática de FastAPI puede consultarse en:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
----
-
-# Tablero web
-
-El tablero permite:
-
-- introducir manualmente un contexto de cita;
-- utilizar un ejemplo real del corpus;
-- solicitar recomendaciones;
-- seleccionar la cantidad de resultados;
-- consultar títulos y resúmenes;
-- visualizar el puntaje de relevancia;
-- identificar si la cita correcta quedó dentro del ranking;
-- consultar análisis de datos;
-- visualizar desempeño del modelo;
-- consultar diagnóstico de negativos.
-
-Los indicadores que muestra el tablero no se calculan en cada solicitud: `/api/insights` lee `data/processed/dashboard_insights.json`, generado previamente con `src/training/build_insights.py`.
-
-El manual de usuario se encuentra en:
-
-```text
-docs/manual_usuario.md
-```
-
----
-
-# Evaluación de función de cita con modelos de lenguaje
-
-Además del recomendador, el repositorio incluye un frente de evaluación comparativa de modelos de lenguaje para clasificar la **función de una cita** dentro de nueve categorías:
-
-```text
-1. Background
-2. Gap
-3. Basis
-4. Comparison
-5. Application
-6. Improvement / Modification
-7. Evidence
-8. Identification of the Originator
-9. Further Reading
-```
-
-Cada modelo responde un arreglo JSON de nueve puntajes, en ese mismo orden, para que el parseo y las métricas sean idénticos entre proveedores.
-
----
-
-## Componentes
-
-```text
-config/prompts/citation_function_prompts.json
-    tres estrategias versionadas: zero_shot_generic, zero_shot_detailed, few_shot
-
-src/evaluation/commercial/
-    providers_openai.py       OpenAI
-    providers_gemini.py       Gemini (capa compatible con OpenAI)
-    providers_cohere.py       Cohere (capa compatible con OpenAI)
-    providers_openweight.py   cualquier servidor OpenAI-compatible (por ejemplo Ollama)
-    runner.py                 ejecución con reintentos, latencia, tokens y errores
-    metrics.py                Precision, Recall, F1 Macro/Micro y matrices de confusión
-    stability.py              parseo común y estabilidad entre repeticiones
-    orchestrate.py            orquestador de punta a punta
-    cli.py                    ejecución de un solo proveedor
-
-src/evaluation/annotation.py         preparación, acuerdo y consolidación del gold
-src/data/build_citation_function_pilot.py   piloto reproducible de 20 casos
-annotations/citation_function/       validación manual y gold provisional
-```
-
----
-
-## Configuración de proveedores
-
-Las variables de ejemplo están en:
-
-```text
-config/citation_eval.env.example
-```
-
-```text
-OPENAI_API_KEY / OPENAI_MODEL
-GEMINI_API_KEY / GEMINI_MODEL
-COHERE_API_KEY / COHERE_MODEL
-OPENWEIGHT_BASE_URL / OPENWEIGHT_MODEL / OPENWEIGHT_API_KEY
-```
-
-Nunca deben versionarse credenciales reales. El identificador del modelo se controla por variable de entorno para no modificar código al cambiar de versión.
-
----
-
-## Test Gold — actualización del proyecto de grado (octubre de 2026)
-
-```text
-annotations/citation_function/provisional_test_gold.jsonl
-    piloto HISTÓRICO de 20 casos: únicamente desarrollo
-
-annotations/citation_function/test_gold.jsonl
-    archivo HISTÓRICO de 20 casos también usado para elegir prompts/modelos;
-    NO es un Test Gold definitivo por llamarse test_gold.jsonl
-```
-
-La Entrega 3 del microproyecto se realizó con el flujo anterior. **El nuevo código cambia deliberadamente ese comportamiento**: `src.evaluation.commercial.orchestrate` ya **no selecciona automáticamente** `test_gold.jsonl`. Ahora exige siempre `--gold RUTA`, incluso con `--check-only`, y bloquea las corridas reales sin `--allow-provisional`. En el estado actual, **toda corrida queda marcada como provisional** porque aún no hay Test Gold nuevo, doblemente anotado, adjudicado y sellado. Esto no modifica ni invalida retroactivamente el video, los manuales o los resultados históricos de la Entrega 3; sus instrucciones de ejecución reflejaban la versión entonces entregada.
-
-Este bloqueo preserva la independencia de futuras evaluaciones. No renombrar el piloto para eludirlo: hay listas de IDs excluidos, verificaciones de TARGETCIT y particiones. Para resultados finales todavía faltan controles humanos y científicos adicionales (ver `proyecto_de_grado/docs/politica_evaluacion_g0.md`).
-
----
-
-## Ejecutar una evaluación
-
-Validar datos, prompts y configuración sin llamar a ningún proveedor (requiere configurar las variables de entorno correspondientes al modo `all`; no consume créditos):
-
-```bash
+# Validar datos, prompts y configuración sin llamar a los proveedores.
 uv run python -m src.evaluation.commercial.orchestrate \
-    --mode all \
-    --gold annotations/citation_function/provisional_test_gold.jsonl \
-    --check-only
-```
+  --mode commercial \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
+  --check-only
 
-Ejecutar sobre el conjunto provisional:
-
-```bash
+# Corrida de desarrollo: consume la cuota de los proveedores configurados.
 uv run python -m src.evaluation.commercial.orchestrate \
-    --mode commercial \
-    --gold annotations/citation_function/provisional_test_gold.jsonl \
-    --allow-provisional \
-    --request-delay-seconds 5 \
-    --output-dir artifacts/citation_function_eval
+  --mode commercial \
+  --gold annotations/citation_function/provisional_test_gold.jsonl \
+  --allow-provisional \
+  --request-delay-seconds 5 \
+  --output-dir artifacts/citation_function_eval
 ```
 
-Modos disponibles:
+El orquestador exige `--gold` explícito y mantiene el bloqueo de evaluación final; las corridas con `--allow-provisional` se etiquetan como preliminares. No renombrar el piloto para eludirlo. Cada ejecución conserva `results.jsonl`, `summary.csv`, `run_metadata.json` y métricas, predicciones y matrices de confusión bajo `artifacts/`.
 
-```text
-openai      gemini      cohere      openweight
-commercial  OpenAI + Gemini
-all         OpenAI + Gemini + open-weight
-```
+**Factorial A4 y preparación ciega:** `config/checkpoint_registry.json` identifica las corridas históricas. `python -m src.app.science_preflight --strict-all` comprueba sus cuatro checkpoints y snapshots; `scripts/ci/smoke_tesis.py --cientifico --cuatro-modelos` requiere inferencias auténticas. La exportación sin etiquetas y la inferencia ciega usan `src.evaluation.a4_export_unlabeled` y `src.evaluation.a4_infer_unlabeled` (consultar `--help` para sus rutas y manifiestos). Preparar entradas o superar un preflight no certifica el Gold.
 
-`--request-delay-seconds` respeta los límites de solicitudes por minuto de las capas gratuitas; en el piloto se usaron 5 segundos para Gemini y 4 para Cohere.
+**Resultados del piloto de septiembre**, conservados como antecedentes de desarrollo:
 
-Cada corrida genera, en el directorio de salida:
-
-```text
-results.jsonl
-summary.csv
-run_metadata.json
-metrics/
-    evaluation_summary.csv
-    predictions.csv
-    confusion_matrices/
-```
-
-Esos artefactos quedan bajo `artifacts/`, ignorado por Git.
-
----
-
-## Resultados provisionales, corte 20 de septiembre de 2026
-
-Sobre los 20 casos del gold provisional y los tres prompts:
-
-| Modelo | Mejor prompt | F1 Macro | Accuracy | Latencia media |
-|---|---|---:|---:|---:|
+| Modelo | Mejor prompt | F1 macro | Exactitud | Latencia media |
+| --- | --- | ---: | ---: | ---: |
 | Gemini 3.5 Flash-Lite | few_shot | 0,3287 | 0,65 | 1,49 s |
 | Cohere Command A+ | zero_shot_detailed | 0,2614 | 0,45 | 9,27 s |
-| Qwen3:8B (local, Ollama) | few_shot | 0,1742 | 0,30 | 56,60 s |
+| Qwen3:8B local | few_shot | 0,1742 | 0,30 | 56,60 s |
 
-Todas las corridas tuvieron cobertura de clasificación del 100 %, sin errores de proveedor ni de formato. OpenAI quedó implementado y con preflight exitoso, pero la corrida real no produjo predicciones por `credit_balance_exhausted`; por eso no se le atribuyen métricas.
+Se midieron 20 casos, solo cinco clases representadas y sin segunda validación independiente; no son resultados de la aplicación actual. No hubo errores de proveedor o formato en esas corridas; OpenAI no produjo predicciones por falta de saldo y no se le atribuyen métricas del piloto. El código conserva evaluación de estabilidad, control de calidad de etiquetas y benchmarking de latencia y costos. Las métricas posteriores deben consultarse con su protocolo, denominadores y procedencia de etiquetas.
 
-Estos números son preliminares: el conjunto tiene 20 casos, solo 5 de las 9 clases aparecen en las etiquetas, y falta la segunda validación manual independiente. El detalle está en:
+</details>
 
-```text
-docs/evaluacion_comparativa_provisional_20sep.md
-docs/evaluacion_comparativa_provisional_20sep.csv
-```
+## Organización del repositorio
 
----
+| Ruta | Contenido |
+| --- | --- |
+| `frontend/` | Aplicación React, Vite, TypeScript y pruebas de interfaz. |
+| `src/app/` | API general, servicio M/S, corpus, integración comercial y trabajos. |
+| `src/data/`, `src/training/`, `src/evaluation/`, `src/tracking/` | Preparación, entrenamiento, evaluación y MLflow. |
+| `model-package/` | Modelo empaquetado TF-IDF + reordenador lineal. |
+| `packages/` | Recuperación densa, clasificación de función y auditoría del corpus. |
+| `proyecto_de_grado/` | Protocolos, código y evidencias de investigación. |
+| `config/` | Prompts, hiperparámetros, manifiestos y releases. |
+| `data/`, `annotations/`, `notebooks/` | Datos, anotación y experimentación. |
+| `scripts/`, `make/`, `terraform/` | Preparación, validación y operación del despliegue. |
+| `tests/`, `.github/workflows/` | Pruebas automatizadas e integración continua. |
+| `docs/`, `reportes/` | Manuales, reportes, evidencias y material académico. |
 
-## Documentación del frente
+<details>
+<summary>Comprobación de los criterios de evaluación del despliegue</summary>
 
-```text
-docs/evaluacion_comercial.md                      proveedores y contrato de datos
-docs/evaluacion_metricas.md                       pipeline de métricas
-docs/openweight_local.md                          ejecución de modelos locales
-docs/prompts_estabilidad.md                       prompts y medición de estabilidad
-docs/guia_anotacion_funcion_cita.md               guía de anotación
-docs/control_calidad_etiquetas_provisional.md     control de calidad asistido
-docs/evaluacion_comparativa_provisional_20sep.md  resultados preliminares
-```
+| Criterio oficial | Peso | Cómo comprobarlo |
+| --- | ---: | --- |
+| Funcionamiento | 35 % | Ejecutar el recorrido web o el ejemplo de API con modelos reales y verificar Top-3 y clasificación. |
+| Documentación del despliegue | 15 % | Seguir requisitos, descarga de artefactos, configuración y pasos de publicación de este README. |
+| Parametrización | 15 % | Revisar variables y módulos Terraform; comprobar que límites, rutas y credenciales se configuran sin editar código. |
+| Usabilidad y presentación | 35 % | Probar el flujo por etapas, la guía de funciones, las puntuaciones, los mensajes de espera y el caso sin cobertura. |
 
----
+La documentación no sustituye esas comprobaciones. La disposición solicitada de `notebooks/` y código de aplicación está en el repositorio; los modelos grandes se suministran externamente con rutas, permisos y carga documentados, según la excepción prevista en el enunciado. Quedan como requisitos de entrega el Word/PDF breve y la accesibilidad efectiva de repositorio y aplicación durante la franja asignada.
 
-# Integración continua
+</details>
 
-El repositorio tiene dos flujos de GitHub Actions:
+## Documentación y colaboración
 
-```text
-.github/workflows/evaluacion-citas.yml
-    ejecuta las pruebas del frente de evaluación de función de cita
-    en push a main y en pull requests que tocan src/evaluation/, los
-    prompts o sus pruebas
+- [Interfaz y pruebas de navegador](frontend/README.md).
+- [Manual de usuario](docs/manual_usuario.md) y [manual de instalación](docs/manual_instalacion.md): complementar con el recorrido y los contratos actuales de este README.
+- [Paquete modelo-citas](model-package/README.md), [recuperación densa](packages/recuperacion-densa/README.md) y [clasificación](packages/clasificacion-funcion/README.md).
+- [Evaluación comercial](docs/evaluacion_comercial.md), [métricas](docs/evaluacion_metricas.md), [modelos abiertos locales](docs/openweight_local.md), [prompts y estabilidad](docs/prompts_estabilidad.md) y [guía de anotación](docs/guia_anotacion_funcion_cita.md).
+- [Video de síntesis de la Entrega 3](reportes/reporte03/video_sintesis_entrega3.mp4) y [reporte](reportes/reporte03/main.pdf): documentan la versión histórica del microproyecto.
 
-.github/workflows/reporte03.yml
-    compila reportes/reporte03/main.tex, verifica que el PDF no supere
-    las 10 páginas y lo publica como artefacto de la corrida
-```
+El equipo mantiene el proyecto mediante [issues](https://github.com/Byron971/microproyecto-local-citation/issues) y pull requests. Al proponer un cambio, describir el comportamiento esperado, sus pruebas y cualquier modificación en los contratos o requisitos de modelos. Conservar fuera de Git credenciales, pesos privados, textos de anotación y resultados individuales; compartir únicamente los agregados autorizados.
 
-El PDF final también está versionado en `reportes/reporte03/main.pdf`.
-
----
-
-# Contenerización
-
-La solución utiliza dos imágenes Docker independientes.
-
----
-
-## Contenedor de API
-
-Archivo:
-
-```text
-Dockerfile
-```
-
-Imagen:
-
-```text
-microproyecto-citas-api:0.1.0
-```
-
-El Dockerfile:
-
-1. instala `uv`;
-2. copia `pyproject.toml`, `uv.lock` y `README.md`;
-3. instala las dependencias de ejecución (`uv sync --frozen --no-dev`), lo que descarga el wheel `modelo-citas` desde S3 con el modelo dentro;
-4. copia el código del proyecto;
-5. inicia FastAPI mediante Uvicorn.
-
-Ni el entrenamiento ni la recuperación de datos ocurren en el build. `model-package/` está excluido en `.dockerignore`: la imagen no contiene el código fuente del modelo, solo el paquete instalado desde el wheel publicado.
-
-Esto mantiene la imagen pequeña y sin credenciales: el contenedor no necesita DVC, ni el dataset crudo, ni las dependencias de entrenamiento. La única condición es que la URL declarada en `pyproject.toml` esté publicada y que `uv.lock` esté sincronizado con ella.
-
-El único archivo procesado que sí viaja en Git y dentro de la imagen es:
-
-```text
-data/processed/dashboard_insights.json
-```
-
-que alimenta el endpoint `/api/insights` sin recalcular nada en tiempo de ejecución.
-
-La API escucha dentro del contenedor en:
-
-```text
-8000
-```
-
----
-
-## Contenedor del dashboard
-
-Archivo:
-
-```text
-Dockerfile.dashboard
-```
-
-Imagen:
-
-```text
-microproyecto-citas-dashboard:0.1.0
-```
-
-El contenedor utiliza:
-
-```text
-nginx:alpine
-```
-
-y sirve los archivos estáticos del tablero.
-
-Nginx escucha internamente en:
-
-```text
-80
-```
-
----
-
-# Docker Compose
-
-Los dos servicios se orquestan mediante:
-
-```text
-docker-compose.yml
-```
-
-Servicios:
-
-```text
-api
-dashboard
-```
-
-El servicio `api` posee un healthcheck sobre:
-
-```text
-http://127.0.0.1:8000/api/estado
-```
-
-El dashboard tiene la dependencia:
-
-```text
-service_healthy
-```
-
-por lo que Docker Compose espera a que la API esté saludable antes de iniciar el dashboard.
-
----
-
-## Construir las imágenes
-
-No hay pasos previos: el modelo se descarga del wheel publicado durante el build.
-
-```bash
-docker compose build
-```
-
-Para construir únicamente la API:
-
-```bash
-docker compose build api --progress=plain
-```
-
----
-
-## Levantar los servicios
-
-```bash
-docker compose up -d
-```
-
----
-
-## Verificar los contenedores
-
-```bash
-docker compose ps
-```
-
-El estado esperado es similar a:
-
-```text
-microproyecto-citas-api        Up (...) (healthy)
-microproyecto-citas-dashboard  Up (...)
-```
-
----
-
-## Consultar logs
-
-```bash
-docker compose logs
-```
-
-Logs de ambos servicios:
-
-```bash
-docker compose logs --no-color --tail=40 api dashboard
-```
-
-Para comprobar solicitudes reales de inferencia:
-
-```bash
-docker compose logs --no-color api | grep "POST"
-```
-
-Una recomendación correcta desde el tablero debe generar una respuesta similar a:
-
-```text
-POST /api/recomendar HTTP/1.1" 200 OK
-```
-
----
-
-## Detener los servicios
-
-```bash
-docker compose down
-```
-
----
-
-# Puertos
-
-La configuración local con Docker Compose utiliza:
-
-| Servicio | Puerto del contenedor | Puerto del host | Uso |
-|---|---:|---:|---|
-| Dashboard Nginx | 80 | 8080 | Interfaz web |
-| FastAPI | 8000 | 8000 | API |
-| MLflow remoto | 8050 | 8050 | Seguimiento experimental, cuando se utiliza |
-
-Para acceder al tablero local:
-
-```text
-http://127.0.0.1:8080
-```
-
-La API no necesita exponerse públicamente para que el tablero funcione, ya que Nginx se comunica con ella mediante la red interna de Docker utilizando:
-
-```text
-api:8000
-```
-
----
-
-# Despliegue en AWS con Terraform
-
-API Gateway conecta con ECS mediante un ALB interno.
-
-Ejecuta desde la raíz del repositorio con Docker iniciado, Terraform >= 1.10 y < 2.0
-y credenciales AWS vigentes. Si usas un perfil, selecciona `AWS_PROFILE`.
-La cuenta debe tener `LabRole` y permitir pasarlo a ECS.
-
-Copia la configuración inicial (solo la primera vez):
-
-```bash
-cp terraform/terraform.tfvars.example terraform/terraform.tfvars
-```
-
-Prepara bucket/ECR e inicializa Terraform para guardar el estado en S3.
-En otra cuenta, define antes `TF_STATE_BUCKET` con un nombre único:
-
-```bash
-make init
-```
-
-Construye y publica la imagen; guarda su tag en SSM:
-
-```bash
-make login
-make build
-make push
-```
-
-Revisa el plan y confirma la creación con `yes`:
-
-```bash
-terraform -chdir=terraform plan
-terraform -chdir=terraform apply
-```
-
-Obtén la URL del tablero y ábrela cuando la tarea ECS esté lista:
-
-```bash
-terraform -chdir=terraform output -raw api_url
-```
-
-Para eliminar el servicio (conserva bucket, ECR y tag SSM):
-
-```bash
-terraform -chdir=terraform destroy
-```
-
-Al integrar cambios en `main`, GitHub Actions despliega el API o aplica los
-cambios de Terraform. Antes, carga los secrets `AWS_ACCESS_KEY_ID`,
-`AWS_SECRET_ACCESS_KEY` y `AWS_SESSION_TOKEN` del lab en el repositorio.
-
-Más detalles en [terraform/README.md](terraform/README.md).
-
----
-
-# Variables de entorno del despliegue
-
-## Variables obligatorias
-
-La configuración actual de Docker Compose no requiere variables de entorno obligatorias para ejecutar:
-
-```text
-api
-dashboard
-```
-
-El modelo y la configuración necesaria quedan dentro de la imagen, junto con `data/processed/dashboard_insights.json`.
-
-El modelo se instala desde el wheel publicado en S3, cuya lectura es pública, por lo que el build no requiere credenciales de AWS ni acceso al remoto DVC. Sí requiere salida HTTPS hacia el bucket.
-
-Las variables de los proveedores de LLM (`OPENAI_API_KEY`, `GEMINI_API_KEY`, `COHERE_API_KEY`, `OPENWEIGHT_*`) pertenecen al frente de evaluación de función de cita y no las usa la API desplegada.
-
----
-
-## Variables opcionales
-
-Para seguimiento experimental mediante un servidor MLflow remoto:
-
-```text
-MLFLOW_TRACKING_URI
-```
-
-Ejemplo:
-
-```bash
-export MLFLOW_TRACKING_URI=http://<IP_MLFLOW>:8050
-```
-
-Esta variable no es necesaria para servir recomendaciones desde la API.
-
----
-
-# Gestión de datos con DVC
-
-Los datos no se almacenan directamente en Git debido a su tamaño.
-
-Archivos DVC principales:
-
-```text
-data/raw.dvc
-data/processed.dvc
-```
-
-Descargar los datos:
-
-```bash
-uv run dvc pull
-```
-
-Remoto público:
-
-```text
-publico
-```
-
-También existen remotos utilizados por integrantes del equipo para escritura.
-
-Las credenciales de esos remotos no deben versionarse.
-
----
-
-## Regenerar datos procesados
-
-```bash
-uv run --group research python -m src.data.make_processed
-uv run --group research python -m src.training.export_top100
-```
-
-Regenerar la información precalculada del tablero:
-
-```bash
-uv run --group research python -m src.training.build_insights --force
-```
-
-Este comando escribe `data/processed/dashboard_insights.json`, que sí se versiona en Git porque lo consume la API.
-
----
-
-## Alternativa manual sin DVC
-
-```bash
-git clone https://github.com/nianlonggu/Local-Citation-Recommendation.git
-```
-
-Después copiar los archivos requeridos desde el dataset original hacia:
-
-```text
-data/raw/
-```
-
----
-
-# Dependencias
-
-El proyecto utiliza `uv`.
-
-Las dependencias se declaran en:
-
-```text
-pyproject.toml
-```
-
-y sus versiones resueltas se fijan en:
-
-```text
-uv.lock
-```
-
-Las dependencias están separadas por grupo según la responsabilidad de cada capa:
-
-```text
-principales   FastAPI, pydantic, modelo-citas, openai
-dev           pytest, tox
-research      DVC, MLflow, Jupyter, pandas, scikit-learn, matplotlib, seaborn
-```
-
-El grupo `research` no entra en la imagen de la API. Se instala solo cuando se va a entrenar, evaluar o explorar:
-
-```bash
-uv sync --group research
-```
-
-Agregar una dependencia:
-
-```bash
-uv add <paquete>
-```
-
-Eliminar:
-
-```bash
-uv remove <paquete>
-```
-
-Sincronizar:
-
-```bash
-uv sync
-```
-
-Actualizar el lockfile:
-
-```bash
-uv lock
-```
-
----
-
-# requirements.txt
-
-`requirements.txt` se mantiene como artefacto de compatibilidad para herramientas que todavía esperan ese formato.
-
-Puede regenerarse mediante:
-
-```bash
-uv export --locked --no-dev --format requirements.txt --no-hashes --output-file requirements.txt
-```
-
-No debe editarse manualmente si puede regenerarse desde `pyproject.toml` y `uv.lock`.
-
----
-
-# Tecnologías utilizadas
-
-```text
-Python
-uv
-Git
-GitHub
-DVC
-Amazon S3
-AWS ECS Fargate
-Docker
-Docker Compose
-Nginx
-FastAPI
-Uvicorn
-scikit-learn
-pandas
-MLflow
-SQLite
-Jupyter
-pytest
-tox
-setuptools
-GitHub Actions
-LaTeX
-OpenAI API
-Google Gemini
-Cohere
-Ollama
-```
-
----
-
-# Flujo reproducible resumido
-
-## Desarrollo local
-
-```bash
-git clone https://github.com/Byron971/microproyecto-local-citation.git
-cd microproyecto-local-citation
-
-uv sync --group research
-uv run dvc pull
-uv run --group research pytest
-```
-
----
-
-## Ejecución contenerizada local
-
-```bash
-docker compose build
-docker compose up -d
-docker compose ps
-```
-
-Abrir:
-
-```text
-http://127.0.0.1:8080
-```
-
----
-
-# Estado de la solución
-
-La solución implementa actualmente:
-
-- recuperación de candidatos mediante TF-IDF;
-- reordenamiento supervisado;
-- evaluación con métricas de ranking;
-- comparación experimental con MLflow;
-- empaquetamiento del modelo;
-- API FastAPI;
-- tablero interactivo;
-- manual de usuario;
-- pruebas automatizadas;
-- contenerización de API y dashboard;
-- orquestación mediante Docker Compose;
-- healthcheck de la API;
-- comunicación interna mediante Nginx;
-- infraestructura de despliegue en Amazon ECS Fargate con Terraform;
-- acceso desde navegador externo;
-- evidencia reproducible del flujo de inferencia;
-- separación de responsabilidades entre el paquete del modelo y el repositorio de experimentación;
-- distribución del modelo como wheel versionado y publicado en S3, con hash fijado en `uv.lock`;
-- imagen de API sin código del modelo, sin dependencias de entrenamiento y sin acceso a datos;
-- integración continua para las pruebas de evaluación y la compilación del reporte;
-- pipeline de evaluación de función de cita con prompts versionados, cuatro proveedores de modelos, métricas comparables y medición de estabilidad;
-- validación manual del piloto de anotación y gold provisional de 20 casos.
-
-Pendiente en el frente de función de cita:
-
-- diseñar y completar una **nueva** anotación humana independiente, distinta del piloto histórico;
-- calcular el acuerdo entre anotadores y adjudicar desacuerdos;
-- crear un **nuevo** Test Gold independiente (no reutilizar ni renombrar `test_gold.jsonl` histórico), con validación de splits, manifiesto y exclusiones;
-- aprobar una vía futura de evaluación final: a octubre de 2026 el orquestador solo autoriza resultados provisionales;
-- repetir las corridas sobre el nuevo Test Gold una vez aprobado el protocolo;
-- consolidación de las métricas finales en el reporte.
-
-El sistema debe considerarse un prototipo académico. Las recomendaciones dependen del corpus utilizado, de la etapa de recuperación y del modelo entrenado, y no sustituyen la revisión académica de las referencias por parte del usuario.
-
----
-
-## Estado de ingeniería científica pre-Gold — noviembre de 2026
-
-El microproyecto de recomendación de artículos TF-IDF y la tesis de recomendación
-**Top-3 de fragmentos del artículo citado** + **clasificación de nueve funciones**
-son tareas distintas. La API de baseline y el frontend están integrados, pero
-el backend científico es opt-in y **no equivale a calidad validada**.
-
-Los clasificadores A4 disponibles en código son SciBERT-A/B y SPECTER-A/B.
-Las cuatro corridas históricas de semilla 42 están descritas en
-`config/checkpoint_registry.json`, pero sus cuatro archivos
-`model.safetensors` **no están versionados**. El nuevo preflight
-`python -m src.app.science_preflight --strict-all` exige pesos auténticos,
-identidad/SHA original y snapshots pinned de los dos encoders (sin red por
-defecto). El smoke `python scripts/ci/smoke_tesis.py --cientifico
---cuatro-modelos` requiere inferencias HTTP auténticas, no fixtures.
-
-La preparación de casos para futuras métricas NO requiere transcribir datos:
-
-1. Congelar fuera del repositorio una selección elegible de IDs de ACL-200 test.
-2. Generar las entradas sin etiquetas con
-   `python -m src.evaluation.a4_export_unlabeled --ids-file ... --raw-dir ...
-   --ocl-cache ... --output ... --manifest ...`.
-3. Inspeccionar y ejecutar cuatro inferencias offline con
-   `python -m src.evaluation.a4_infer_unlabeled --inputs ... --raw-dir ...
-   --ocl-cache ... --checkpoint-root ... --output-dir ... --apply`.
-4. Solo con Gold legítimo, utilizar el benchmark factorial ya existente para
-   Precision/Recall/F1, matrices y comparaciones pareadas. El Gold de
-   relevancia de *chunks* es independiente del Gold de nueve funciones y
-   exige comprobar todo su universo contra ACL/OCL, no solo el Top-3.
-
-**Límites científicos aún abiertos**: cuatro checkpoints originales,
-ejecución científica auténtica, elegibilidad/independencia de la muestra,
-cobertura de entrada B inferior al umbral interno del 60%, Gold humano
-de las nueve funciones (meta 15% y doble anotación), Gold humano de relevancia
-por fragmentos, métricas reales, costos/HTTPS autorizados y artículo final.
-Un humano y un asistente IA **no** constituyen dos anotadores humanos
-independientes. No afirmar ni presentar métricas Gold, URLs AWS o niveles de
-acuerdo inexistentes.
-
-Operación completa, comandos y tablas sin valores inventados:
-`docs/mega_pr_183_operacion_final_pre_gold.md`. Para CI sin Gold,
-`tests/test_a4_unlabeled_pipeline.py`, `tests/test_science_hardening.py`,
-`tests/test_four_arm_smoke.py` y `tests/test_top3_acl_official.py`.
-
-### Flujo integrado SciBERT + M/S (21 de noviembre de 2026)
-
-La [web pública](https://proyectocitas-grupo19.click/) permite recomendar un
-artículo, abrir uno con texto disponible, marcar la posición de cita y obtener
-Top-3 y las nueve puntuaciones de M y S sin copiar metadatos ni fragmentos.
-La búsqueda semántica SciBERT preparada cubre **los 19.776 artículos** por título
-y resumen; la ampliación del corpus V2 prepara **19.243 artículos**, con **508 recortados**
-a los límites existentes. Los 533 restantes no tienen contenido suficiente en el snapshot.
-Esto corresponde a M/S del notebook 10,
-separado del factorial A4 y de su evaluación Gold descritos arriba.
-
-La búsqueda semántica sustituye TF-IDF en la portada y en las rutas públicas de
-recomendación. Es una extensión experimental; los checkpoints M/S clasifican la
-función de cita después.
+El repositorio no contiene un archivo `LICENSE` general para el código. Los datos y modelos conservan sus licencias propias; el manifiesto del corpus preparado registra **CC-BY-NC-4.0**, lo que no define una licencia global para el proyecto.
